@@ -34,7 +34,15 @@ def add_pyproject_buildrequires(sections: specfile.sections.Sections) -> ResultM
 
     Insert %pyproject_buildrequires to the end of %generate_buildrequires.
     """
-    pb = ["%pyproject_buildrequires", ""]
+    if "prep" in sections:
+        endlines = 0
+        for line in reversed(sections.prep):
+            if line.strip():
+                break
+            endlines += 1
+    else:
+        endlines = 1
+    pb = ["%pyproject_buildrequires"] + [""] * endlines
 
     if "generate_buildrequires" not in sections:
         if "prep" not in sections:

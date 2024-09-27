@@ -202,11 +202,13 @@ def remove_setuptools_br(sections: specfile.sections.Sections) -> ResultMsg:
     ret = Result.NOT_NEEDED, "no BuildRequires for setuptools found"
 
     setuptools = r"(python(3|%{python3_pkgversion})-setuptools|python3dist\(setuptools\)|%{py3_dist setuptools})"
-    rich = rf"\({setuptools}\s+.+\)\s*"
-    last_rich = rf"\s*{rich}$"
-    regular = rf"{setuptools}(\s+[<>=]{{1,3}}\s+\S+)?\s*"
-    last_regular = rf"\s*{regular}$"
-    drop_me = rf"({last_rich}|{rich}|{last_regular}|{regular})"
+    rich = rf"\({setuptools}\s+.+\)"
+    last_rich = rf"\s*{rich}\s*$"
+    nolast_rich = rf"{rich}(\s+|$)"
+    regular = rf"{setuptools}(\s+[<>=]{{1,3}}\s+\S+)?"
+    last_regular = rf"\s*{regular}\s*$"
+    nolast_regular = rf"{regular}(\s+|$)"
+    drop_me = rf"({last_rich}|{nolast_rich}|{last_regular}|{nolast_regular})"
 
     for section in sections:
         if section.name == "package":  # the spec preamble is also here

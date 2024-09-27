@@ -107,7 +107,7 @@ def py3_build_to_pyproject_wheel(sections: specfile.sections.Sections) -> Result
         return f"%{LB}pyproject_wheel{RB}"
 
     newline = re.sub(
-        r"%(?P<LB>{)?\??py3_build(\s+(--\s+)?(?P<arguments>[^}]+))(?P<RB>})?",
+        r"%(?P<LB>{)?\??py3_build(\s+(--\s+)?(?P<arguments>[^}]+))?(?P<RB>})?",
         repl,
         sections.build[index],
     )

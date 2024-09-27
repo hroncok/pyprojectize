@@ -276,7 +276,7 @@ def main() -> int:
             print(modifier.__name__, resmes := modifier(sections))
             results.add(resmes[0])
 
-    if Result.UPDATED in resmes:
+    if Result.UPDATED in results:
         spec.save()
 
     return 1 if Result.ERROR in resmes else 0

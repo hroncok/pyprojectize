@@ -227,6 +227,37 @@ def remove_setuptools_br(sections: specfile.sections.Sections) -> ResultMsg:
     return ret
 
 
+@register
+def update_extras_subpkg(sections: specfile.sections.Sections) -> ResultMsg:
+    """
+    %{?python_extras_subpkg:%python_extras_subpkg -n python3-ipython -i %{python3_sitelib}/*.egg-info notebook}
+    ->
+    %pyproject_extras_subpkg -n python3-ipython notebook
+    """
+    ret = (
+        Result.NOT_NEEDED,
+        "%{?python_extras_subpkg:%python_extras_subpkg ...} not found",
+    )
+
+    for section in sections:
+        if section.name in ("package", "description", "files"):
+            for idx, line in enumerate(section):
+                if "%python_extras_subpkg" in line:
+                    newline = re.sub(
+                        r"%{\?python_extras_subpkg:%python_extras_subpkg(?P<before>.*)\s+-i\s*\S+(?P<after>\s+.*)}",
+                        r"%pyproject_extras_subpkg\g<before>\g<after>",
+                        line,
+                    )
+                    if line != newline:
+                        section[idx] = newline
+                        ret = (
+                            Result.UPDATED,
+                            "replaced %python_extras_subpkg with %pyproject_extras_subpkg",
+                        )
+
+    return ret
+
+
 def specfile_path() -> str:
     if len(sys.argv) == 2:
         return sys.argv[1]

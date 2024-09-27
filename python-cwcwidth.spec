@@ -8,7 +8,6 @@ Source0:        %{pypi_source cwcwidth}
 BuildRequires:  gcc
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(cython) >= 0.28
-BuildRequires:  python3dist(setuptools)
 %global _description \
 Python bindings for wc(s)widthcwcwidth provides Python bindings for \
 wcwidth and wcswidth functions defined in POSIX.1-2001 and \
@@ -25,11 +24,14 @@ Summary:        %{summary}
 %autosetup -n cwcwidth-%{version}
 rm -rf cwcwidth.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -38,7 +40,7 @@ rm -rf cwcwidth.egg-info
 %license LICENSE
 %doc README.md
 %{python3_sitearch}/cwcwidth
-%{python3_sitearch}/cwcwidth-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/cwcwidth-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.9-5

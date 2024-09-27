@@ -22,7 +22,6 @@ nor has any extra requirements.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       python3-XStatic
 Requires:       xstatic-jquery-migrate-common
@@ -60,11 +59,14 @@ This package contains the javascript files.
 # patch to use webassets dir
 sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/jquery_migrate'|" xstatic/pkg/jquery_migrate/__init__.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 mkdir -p %{buildroot}%{_jsdir}/jquery_migrate
 mv %{buildroot}%{python3_sitelib}/xstatic/pkg/jquery_migrate/data/* %{buildroot}%{_jsdir}/jquery_migrate
 rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/jquery_migrate/data/
@@ -74,7 +76,7 @@ chmod 644 %{buildroot}%{_jsdir}/jquery_migrate/*.js
 %files -n python3-%{pypi_name}
 %doc README.txt
 %{python3_sitelib}/xstatic/pkg/jquery_migrate
-%{python3_sitelib}/XStatic_JQuery_Migrate-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/XStatic_JQuery_Migrate-%{version}.dist-info
 %{python3_sitelib}/XStatic_JQuery_Migrate-%{version}-py%{python3_version}-nspkg.pth
 
 %files -n xstatic-jquery-migrate-common

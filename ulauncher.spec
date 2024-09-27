@@ -50,12 +50,16 @@ using GTK+.
 sed -i "s|version=''|version='%{version}'|g" setup.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -92,7 +96,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.svg
 %{_datadir}/icons/ubuntu-mono-*/scalable/apps/%{name}-indicator.svg
 %{_userunitdir}/%{name}.service
-%{python3_sitelib}/%{name}-*-py*.egg-info
+%{python3_sitelib}/%{name}-*.dist-info
 %{python3_sitelib}/%{name}/
 
 

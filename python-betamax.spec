@@ -25,7 +25,6 @@ much easier.
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if %{with tests}
 BuildRequires:  python3-pytest
 BuildRequires:  python3-requests >= 2.0
@@ -39,11 +38,14 @@ Python 3 version.
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %if %{with tests}
@@ -58,7 +60,7 @@ py.test-%{python3_version} -vk "$TEST_SELECTOR"
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.0-3

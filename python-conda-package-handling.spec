@@ -19,7 +19,6 @@ Create and extract conda packages of various formats.
 %package -n python%{python3_pkgversion}-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-conda-package-streaming
 BuildRequires:  python%{python3_pkgversion}-pytest
 BuildRequires:  python%{python3_pkgversion}-pytest-mock
@@ -34,11 +33,14 @@ sed -i -e s/archive_and_deps/archive/ setup.py
 # do not run coverage in pytest
 sed -i -E '/--(no-)?cov/d' setup.cfg
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} -v tests 
@@ -47,7 +49,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} -v tests
 %license LICENSE
 %doc AUTHORS.md CHANGELOG.md README.md
 %{_bindir}/cph
-%{python3_sitelib}/%{pkgname}-*.egg-info/
+%{python3_sitelib}/%{pkgname}.dist-info/
 %{python3_sitelib}/%{pkgname}/
 
 %changelog

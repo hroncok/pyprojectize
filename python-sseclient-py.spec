@@ -19,7 +19,6 @@ urllib3 and requests.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(pytest)
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -32,11 +31,14 @@ urllib3 and requests.
 %autosetup -n sseclient-%{pypi_name}-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v tests/unittests.py
@@ -45,7 +47,7 @@ rm -rf %{pypi_name}.egg-info
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/sseclient/
-%{python3_sitelib}/sseclient_py-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/sseclient_py-%{version}.dist-info/
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 1.7-15

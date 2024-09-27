@@ -35,7 +35,6 @@ Features:\
 Summary:        Automatic model code generator for SQLAlchemy
 %{?python_provide:%python_provide python3-%{modname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools >= 36.2.7
 BuildRequires:  python3-setuptools_scm >= 1.7.0
 
 %description -n python3-%{modname} %{_description}
@@ -45,11 +44,14 @@ Python 3 version.
 %prep
 %autosetup -n %{modname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 #check
 # Requires multiple DBs to be running

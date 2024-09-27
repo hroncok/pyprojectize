@@ -78,13 +78,16 @@ A python client for etcd3 grpc-gateway v3alpha API
 # Let's manage dependencies using rpm deps.
 rm -f *requirements.txt
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if %{with python2}
 %py2_build
 %endif
 
 %if %{with python3}
-%py3_build
+%pyproject_wheel
 %endif
 
 %install
@@ -93,7 +96,7 @@ rm -f *requirements.txt
 %endif
 
 %if %{with python3}
-%py3_install
+%pyproject_install
 %endif
 
 %check
@@ -113,7 +116,7 @@ py.test-3
 %files -n python2-%{srcname}
 %license LICENSE
 %doc README.md CONTRIBUTING.rst HACKING.rst
-%{python2_sitelib}/%{srcname}-*.egg-info/
+%{python2_sitelib}/%{srcname}.dist-info/
 %{python2_sitelib}/%{srcname}/
 %endif
 
@@ -121,7 +124,7 @@ py.test-3
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.md CONTRIBUTING.rst HACKING.rst
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 %{python3_sitelib}/%{srcname}/
 %endif
 

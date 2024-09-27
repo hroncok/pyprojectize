@@ -24,7 +24,6 @@ writing Python software.
 Summary:            Fancy python dictionary types
 %{?python_provide:%python_provide python3-%{modname}}
 BuildRequires:      python3-devel
-BuildRequires:      python3-setuptools
 
 %description -n python3-%{modname}
 A collection of Python dictionary types that support attribute-style
@@ -38,11 +37,14 @@ writing Python software.
 # Remove upstreams egg info
 rm -rf *.egg*
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # https://bitbucket.org/lcrees/stuf/issues/9/find_packages-should-exclude-tests
 rm -rf %{buildroot}%{python3_sitelib}/tests/

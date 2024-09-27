@@ -12,7 +12,6 @@ Source5:        trac.wsgi
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-jinja2
 BuildRequires:  python3-markupsafe
 BuildRequires:  make
@@ -50,11 +49,15 @@ rm -f contrib/trac-post-commit-hook.cmd
 cp -a %{SOURCE4} README.fedora
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 install -dm 755 $RPM_BUILD_ROOT%{_var}/www/cgi-bin
 

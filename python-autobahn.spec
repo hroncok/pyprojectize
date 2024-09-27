@@ -54,7 +54,7 @@ BuildRequires:  %py3_dist sphinx-rtd-theme
 %description -n python-%{pypi_name}-doc
 Documentation for %{name}.
 
-%{?python_extras_subpkg:%python_extras_subpkg -n python3-%{pypi_name} -i %{python3_sitelib}/%{pypi_name}-%{version}*-py%{python3_version}.egg-info twisted}
+%pyproject_extras_subpkg -n python3-%{pypi_name} twisted
 
 %prep
 %autosetup -n %{pypi_name}-python-%{version}
@@ -72,14 +72,17 @@ sed -i '\@recursive-include autobahn/xbr/test/catalog/schema@d' MANIFEST.in
 sed -i '\@autobahn/xbr/test/profile@d' MANIFEST.in
 %endif
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 # Disable in case local builder support NVX
-AUTOBAHN_USE_NVX=false %py3_build
+AUTOBAHN_USE_NVX=false %pyproject_wheel
 #PYTHONPATH=${PWD} sphinx-build-3 docs html
 #rm -rf html/.{doctrees,buildinfo}
 
 %install
-AUTOBAHN_USE_NVX=false %py3_install
+AUTOBAHN_USE_NVX=false %pyproject_install
 
 %check
 # Ignore tests that rely on optional and not packaged deps.
@@ -109,7 +112,7 @@ USE_ASYNCIO=1 %pytest --ignore=xbr/test --pyargs autobahn ${k+ -k} "${k-}"
 %{_bindir}/wamp
 %{_bindir}/xbrnetwork
 %{_bindir}/xbrnetwork-ui
-%{python3_sitelib}/%{pypi_name}-%{version}*-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}*.dist-info/
 %{python3_sitelib}/%{pypi_name}/
 %dir %{python3_sitelib}/twisted
 %dir %{python3_sitelib}/twisted/plugins

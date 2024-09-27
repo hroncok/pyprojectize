@@ -28,7 +28,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 BuildRequires: make
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3-nose
 BuildRequires:  python3-coverage >= 3.7.1
 BuildRequires:  python3-lxml >= 3.6.0
@@ -71,8 +70,12 @@ sed -i '1{\@^#!/usr/bin/env Python@d}' agate/testcase.py
 sed -i 's/parsedatetime>=2.1,!=2.5,!=2.6/parsedatetime>=2.1,!=2.5/' setup.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 # Build documentation
 pushd docs
@@ -82,7 +85,7 @@ popd
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -94,7 +97,7 @@ nosetests-%{python3_version} tests -v --exclude=test_cast_format_locale --exclud
 %files -n python3-%{pypi_name}
 %doc README.rst AUTHORS.rst CHANGELOG.rst
 %license COPYING
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 %{python3_sitelib}/%{pypi_name}/
 
 

@@ -23,7 +23,6 @@ Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{pkgname}}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
 BuildRequires:  python3-wheel
 %if 0%{?with_tests}
@@ -41,13 +40,16 @@ Angus Johnson.
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 # Here we set upstream version based on setuptools_scm documentation
 # this is done to avoid the following error:
 # LookupError: setuptools-scm was unable to detect version
 # since we are not importing a .git repository in the tarball
 export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
-%py3_build
+%pyproject_wheel
 
 %install
 # Here we set upstream version based on setuptools_scm documentation
@@ -55,7 +57,7 @@ export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 # LookupError: setuptools-scm was unable to detect version
 # since we are not importing a .git repository in the tarball
 export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
-%py3_install
+%pyproject_install
 
 %check
 %if 0%{?with_tests}
@@ -70,7 +72,7 @@ export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 %files -n python3-%{pkgname}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{srcname}-*.egg-info
+%{python3_sitelib}/%{srcname}.dist-info
 %{python3_sitelib}/%{srcname}
 
 %changelog

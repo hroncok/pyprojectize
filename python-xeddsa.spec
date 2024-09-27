@@ -12,7 +12,6 @@ URL:            https://github.com/Syndace/%{name}
 Source0:        https://github.com/Syndace/%{name}/archive/v%{version}.tar.gz
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-cffi
 ##BuildRequires:  python3-pynacl
 BuildRequires:  libxeddsa-devel
@@ -45,12 +44,16 @@ and X448 elliptic curve Diffie-Hellman functions.
 %autosetup -n %{name}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 # Nothing to build
 
 
 %install
-%py3_install
+%pyproject_install
 # Manual installation:
 mkdir -p %{buildroot}%{python3_sitearch}/xeddsa/
 cp -a xeddsa/* %{buildroot}%{python3_sitearch}/xeddsa/
@@ -62,7 +65,7 @@ cp -a xeddsa/* %{buildroot}%{python3_sitearch}/xeddsa/
 %doc README.md
 # For arch-specific packages: sitearch
 %{python3_sitearch}/xeddsa/
-%{python3_sitearch}/XEdDSA-%{version}-py%{python3_version}.egg-info/
+%{python3_sitearch}/XEdDSA-%{version}.dist-info/
 
 
 

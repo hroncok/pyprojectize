@@ -50,7 +50,7 @@ BuildRequires: python2-pytest
 %endif
 
 %if %{with python3}
-BuildRequires: python3-setuptools python3-devel
+BuildRequires: python3-devel
 BuildRequires: python3-packaging
 BuildRequires: python3-tomli
 %if %{with check}
@@ -115,7 +115,7 @@ Requires:       python3-setuptools
 %py2_build
 %endif
 %if %{with python3}
-%py3_build
+%pyproject_wheel
 %endif
 %if %{with pyproject}
 %pyproject_wheel
@@ -127,7 +127,7 @@ Requires:       python3-setuptools
 %py2_install
 %endif
 %if %{with python3}
-%py3_install
+%pyproject_install
 %endif
 %if %{with pyproject}
 %pyproject_install
@@ -165,7 +165,7 @@ PYTHONPATH=%buildroot%python3_sitearch %__python3 -m pytest -vv
 %license LICENSE
 %python2_sitelib/build_manpages
 %python2_sitelib/argparse_manpage
-%python2_sitelib/argparse_manpage-%{version}*.egg-info
+%python2_sitelib/argparse_manpage-%{version}*.dist-info
 %exclude %python2_sitelib/argparse_manpages/cli.py
 %endif
 
@@ -178,7 +178,7 @@ PYTHONPATH=%buildroot%python3_sitearch %__python3 -m pytest -vv
 %if %{with pyproject}
 %python3_sitelib/argparse_manpage-*dist-info
 %else
-%python3_sitelib/argparse_manpage-%{version}*.egg-info
+%python3_sitelib/argparse_manpage-%{version}*.dist-info
 %endif
 %exclude %python3_sitelib/argparse_manpage/cli.py
 %endif

@@ -61,7 +61,6 @@ Obsoletes: mod_wsgi < %{version}-%{release}
 Summary:        %summary
 Requires:       httpd-mmn = %{_httpd_mmn}
 BuildRequires:  python3-devel, python3-sphinx, python3-sphinx_rtd_theme
-BuildRequires:  python3-setuptools
 %if !%{with python2}
 Provides: mod_wsgi = %{version}-%{release}
 Provides: mod_wsgi%{?_isa} = %{version}-%{release}
@@ -76,6 +75,9 @@ Obsoletes: mod_wsgi < %{version}-%{release}
 %autosetup -p1 -n %{name}-%{version}
 
 : Python2=%{with python2} Python3=%{with python3}
+
+%generate_buildrequires
+%pyproject_buildrequires
 
 %build
 %if %{with python3}
@@ -93,7 +95,7 @@ cp -R * py3build/ || :
 pushd py3build
 %configure --enable-shared --with-apxs=%{_httpd_apxs} --with-python=%{python3}
 %make_build
-%py3_build
+%pyproject_wheel
 popd
 %endif
 
@@ -114,7 +116,7 @@ install -d -m 755 $RPM_BUILD_ROOT%{_httpd_modconfdir}
 # httpd >= 2.4.x
 install -p -m 644 %{SOURCE2} $RPM_BUILD_ROOT%{_httpd_modconfdir}/10-wsgi-python3.conf
 
-%py3_install
+%pyproject_install
 mv $RPM_BUILD_ROOT%{_bindir}/mod_wsgi-express{,-3}
 popd
 
@@ -139,7 +141,7 @@ ln -s %{_bindir}/mod_wsgi-express-2 $RPM_BUILD_ROOT%{_bindir}/mod_wsgi-express
 %doc CREDITS.rst README.rst
 %config(noreplace) %{_httpd_modconfdir}/*wsgi.conf
 %{_httpd_moddir}/mod_wsgi.so
-%{python2_sitearch}/mod_wsgi-*.egg-info
+%{python2_sitearch}/mod_wsgi.dist-info
 %{python2_sitearch}/mod_wsgi
 %{_bindir}/mod_wsgi-express-2
 %{_bindir}/mod_wsgi-express
@@ -151,7 +153,7 @@ ln -s %{_bindir}/mod_wsgi-express-2 $RPM_BUILD_ROOT%{_bindir}/mod_wsgi-express
 %doc CREDITS.rst README.rst
 %config(noreplace) %{_httpd_modconfdir}/*wsgi-python3.conf
 %{_httpd_moddir}/mod_wsgi_python3.so
-%{python3_sitearch}/mod_wsgi-*.egg-info
+%{python3_sitearch}/mod_wsgi.dist-info
 %{python3_sitearch}/mod_wsgi
 %{_bindir}/mod_wsgi-express-3
 %endif

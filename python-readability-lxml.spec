@@ -18,7 +18,6 @@ BuildRequires:  python3dist(cssselect)
 BuildRequires:  python3dist(lxml)
 BuildRequires:  python3dist(lxml-html-clean)
 BuildRequires:  python3dist(pytest)
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(timeout-decorator)
 
 %description
@@ -54,12 +53,16 @@ for lib in readability/*.py; do
 done
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -69,7 +72,7 @@ done
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/readability_lxml-*-py%{python3_version}.egg-info
+%{python3_sitelib}/readability_lxml-*.dist-info
 %{python3_sitelib}/readability/
 
 

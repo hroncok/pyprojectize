@@ -18,7 +18,6 @@ Source0:        https://files.pythonhosted.org/packages/source/s/%{srcname}/%{sr
 BuildArch:      noarch
 Requires:       python3-%{srcname}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 
 %description
@@ -51,12 +50,16 @@ from command line. Interface is similar to htop, alot or tig.
 sed -i 1d sen/cli.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %if %{with tests}

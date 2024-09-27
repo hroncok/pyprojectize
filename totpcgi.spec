@@ -67,8 +67,12 @@ This package includes SELinux policy for totpcgi and totpcgi-provisioning.
 %autosetup -n totp-cgi-%{commit} -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 pushd selinux
 for selinuxvariant in %{selinux_variants}
 do
@@ -80,7 +84,7 @@ popd
 
 
 %install
-%py3_install
+%pyproject_install
 
 # Install config files
 mkdir -p -m 0750  %{buildroot}%{_sysconfdir}/totpcgi

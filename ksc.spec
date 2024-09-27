@@ -20,7 +20,6 @@ Requires:	binutils
 Requires:	kernel-devel
 Requires:	python3-requests
 BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
 Source0:	https://github.com/RedHatOfficial/ksc/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
 
 %description
@@ -32,11 +31,14 @@ A kernel module source code checker to find usage of select symbols
 # https://github.com/RedHatOfficial/ksc/issues/3
 sed -i "15i packages=[]," setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 install -D ksc.1 %{buildroot}%{_mandir}/man1/ksc.1
 
 %files
@@ -46,7 +48,7 @@ install -D ksc.1 %{buildroot}%{_mandir}/man1/ksc.1
 %{_datadir}/ksc
 %{_mandir}/man1/ksc.*
 %config(noreplace) %{_sysconfdir}/ksc.conf
-%{python3_sitelib}/ksc-%{version}*.egg-info
+%{python3_sitelib}/ksc-%{version}*.dist-info
 
 %changelog
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.7-11

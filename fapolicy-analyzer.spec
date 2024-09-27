@@ -26,7 +26,6 @@ Source0:       %{url}/releases/download/v%{version}/%{name}-%{version}.tar.gz
 Source1:       %{url}/releases/download/v%{version}/vendor-docs-%{version}.tar.gz
 
 BuildRequires: python3-devel
-BuildRequires: python3dist(setuptools)
 BuildRequires: python3dist(pip)
 BuildRequires: python3dist(wheel)
 BuildRequires: python3dist(babel)
@@ -100,6 +99,9 @@ sed -i 's/"4.0"/"4.1"/' fapolicy_analyzer/ui/help_browser.py
 
 %generate_buildrequires
 %cargo_generate_buildrequires -a
+
+%pyproject_buildrequires
+
 
 %build
 # ensure standard Rust compiler flags are set

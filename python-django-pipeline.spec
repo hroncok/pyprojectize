@@ -18,7 +18,6 @@ support, and optional data-URI image and font embedding
 %package -n python3-%{pypi_name}
 Summary:        Packaging library for Django - Python 3 version
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       python3-django
 
@@ -36,18 +35,21 @@ This package provides Python 3 build of %{pypi_name}.
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 # Remove the "tests" subdirectory to avoid it polluting the main python
 # namespace:
 rm -rf %{buildroot}%{python3_sitelib}/tests
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/django_pipeline*.egg-info/
+%{python3_sitelib}/django_pipeline*.dist-info/
 %{python3_sitelib}/pipeline/
 
 %changelog

@@ -24,7 +24,6 @@ about the secret.}
 %package -n python3-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description -n python3-%{srcname} %_description
 
@@ -32,17 +31,20 @@ BuildRequires:  python3-setuptools
 %autosetup -n %{srcname}-%{version}
 rm -rf *.egg-info/
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.rst
 %doc CHANGELOG.rst
-%{python3_sitelib}/shamir_mnemonic-*.egg-info/
+%{python3_sitelib}/shamir_mnemonic.dist-info/
 %{python3_sitelib}/shamir_mnemonic/
 %{_bindir}/shamir
 

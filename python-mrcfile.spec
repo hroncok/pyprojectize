@@ -31,7 +31,6 @@ Source: https://github.com/ccpem/%{pname}/archive/v%{version}/%{pname}-%{version
 %package -n python3-%{pname}
 Summary: %{summary}
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 %if %{with check}
 BuildRequires: python3-numpy
 %endif
@@ -44,11 +43,14 @@ BuildArch: noarch
 %prep
 %autosetup -p1 -n %{pname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with check}
 %check
@@ -63,7 +65,7 @@ python3 -m unittest tests
 %doc CHANGELOG.txt README.rst
 %{_bindir}/mrcfile-header
 %{_bindir}/mrcfile-validate
-%{python3_sitelib}/%{pname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pname}-%{version}.dist-info
 %{python3_sitelib}/%{pname}
 
 %changelog

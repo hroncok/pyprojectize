@@ -21,7 +21,6 @@ Summary:        %{summary}
 BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3-pytest >= 2.7
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
 Requires:       python3-pytest >= 2.7
 Requires:       python3-vcrpy
@@ -36,18 +35,22 @@ Requires:       python3-vcrpy
 rm -rf *.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{pypi_name}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/%{file_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{file_name}-%{version}.dist-info/
 %{python3_sitelib}/%{file_name}.py*
 %{python3_sitelib}/__pycache__/%{file_name}*.py*
 

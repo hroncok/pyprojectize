@@ -10,7 +10,6 @@ Source0:            https://pypi.io/packages/source/p/pag/pag-%{version}.tar.gz
 BuildArch:          noarch
 
 BuildRequires:      python3-devel
-BuildRequires:      python3-setuptools
 BuildRequires:      python3-click
 BuildRequires:      python3-PyYAML
 BuildRequires:      python3-beautifulsoup4
@@ -34,11 +33,14 @@ It is under active development and will be gaining new features over time.
 %prep
 %autosetup -n pag-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # For rpmlint
 find %{buildroot}/%{python3_sitelib}/pag -name "*.py" -exec chmod -x {} \;

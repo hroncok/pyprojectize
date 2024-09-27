@@ -19,7 +19,6 @@ Patch0:         relax-setuptools_scm.patch
 %package -n python3-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
 
 %{?python_provide:%python_provide python3-%{srcname}}
@@ -33,18 +32,21 @@ BuildRequires:  python3-setuptools_scm
 rm -rf %{srcname}.egg-info
 %patch -P0 -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{srcname}
 %doc CHANGELOG.md
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 %{python3_sitelib}/%{srcname}/
 
 %changelog

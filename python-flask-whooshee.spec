@@ -20,7 +20,6 @@ Whoosh integration that allows to create and search custom indexes.
 %package -n python3-%{mod_name}
 Summary:        Whoosh integration
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-whoosh
 BuildRequires:  python3-flask
 BuildRequires:  python3-flask-sqlalchemy
@@ -40,21 +39,24 @@ Python 3 version.
 %prep
 %autosetup -n %{mod_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %check
 %{__python3} -m pytest -vv test.py
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{mod_name}
 %doc LICENSE README.md
 %{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{python3_sitelib}/flask_whooshee.py
 
 

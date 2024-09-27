@@ -25,7 +25,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-requests
 Requires:       python3-requests
 
@@ -37,11 +36,14 @@ Python 3 version.
 %prep
 %autosetup -n %{name}-%{commit} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -49,7 +51,7 @@ Python 3 version.
 %files -n python3-openidc-client
 %license COPYING
 %doc README.md
-%{python3_sitelib}/%{pkgname}-*.egg-info/
+%{python3_sitelib}/%{pkgname}.dist-info/
 %{python3_sitelib}/%{pkgname}/
 
 %changelog

@@ -9,7 +9,7 @@ Source0: https://github.com/linux-ras/%{name}/archive/v%{version}/%{name}-%{vers
 
 BuildArch: noarch
 
-BuildRequires: python3-devel python3-setuptools
+BuildRequires: python3-devel
 BuildRequires: systemd-rpm-macros
 
 %description
@@ -20,11 +20,14 @@ the incorrect configuration
 %prep
 %setup -q
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %post
 %systemd_post servicereport.service
@@ -42,7 +45,7 @@ the incorrect configuration
 %{_bindir}/servicereport
 %{_unitdir}/servicereport.service
 %{python3_sitelib}/servicereportpkg
-%{python3_sitelib}/ServiceReport*.egg-info
+%{python3_sitelib}/ServiceReport*.dist-info
 
 %changelog
 * Wed Jul 17 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.2.4-3

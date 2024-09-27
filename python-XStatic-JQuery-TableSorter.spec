@@ -23,7 +23,6 @@ nor has any extra requirements.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       python3-XStatic
 Requires:       xstatic-jquery-tablesorter-common
@@ -61,11 +60,14 @@ This package contains the javascript files.
 # patch to use webassets dir
 sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/jquery_tablesorter'|" xstatic/pkg/jquery_tablesorter/__init__.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 mkdir -p %{buildroot}%{_jsdir}/jquery_tablesorter
 mv %{buildroot}%{python3_sitelib}/xstatic/pkg/jquery_tablesorter/data/jquery.tablesorter.js %{buildroot}%{_jsdir}/jquery_tablesorter
@@ -76,7 +78,7 @@ chmod 644 %{buildroot}%{_jsdir}/jquery_tablesorter/jquery.tablesorter.js
 %files -n python3-%{pkgname}
 %doc README.txt
 %{python3_sitelib}/xstatic/pkg/jquery_tablesorter
-%{python3_sitelib}/XStatic_JQuery.TableSorter-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/XStatic_JQuery.TableSorter-%{version}.dist-info
 %{python3_sitelib}/XStatic_JQuery.TableSorter-%{version}-py%{python3_version}-nspkg.pth
 
 %files -n xstatic-jquery-tablesorter-common

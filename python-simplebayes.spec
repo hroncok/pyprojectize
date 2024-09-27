@@ -32,7 +32,6 @@ Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-nose
 BuildRequires:  python3-mock
 
@@ -46,12 +45,16 @@ BuildRequires:  python3-mock
 rm -rf %{srcname}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -62,7 +65,7 @@ nosetests-3
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 
 %changelog

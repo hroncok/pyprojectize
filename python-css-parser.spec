@@ -12,7 +12,6 @@ Source0:        %{forgesource}
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 # for tests
 BuildRequires:  python3-chardet
 
@@ -31,20 +30,23 @@ Summary:        %{summary}
 %prep
 %forgeautosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 sed -r -i '1{/.usr.bin.env python/d;}' src/css_parser/*py src/css_parser/*/*py
 
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %python3 run_tests.py
 
 %files -n python3-css-parser
 %{python3_sitelib}/css_parser/
-%{python3_sitelib}/css_parser-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/css_parser-%{version}.dist-info/
 %doc README.md
 %license COPYING COPYING.LESSER
 

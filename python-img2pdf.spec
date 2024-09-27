@@ -44,7 +44,6 @@ BuildRequires:  icc-profiles-openicc
 
 # other requirements
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 
 %if 0%{?epel} == 0
@@ -83,12 +82,16 @@ sed -i '/^INSTALL_REQUIRES/,/)/s/\("pikepdf".*$\)/### not available on EPEL ### 
 %endif
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 sed -i '1{/^#!\//d}' src/*.py
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 
@@ -111,7 +114,7 @@ PYTHONPATH=src %{__python3} -m pytest src/img2pdf_test.py -v -k 'not miff_c and 
 %{python3_sitelib}/%{srcname}.py
 %{python3_sitelib}/jp2.py
 %{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/%{srcname}-%{version}*.egg-info
+%{python3_sitelib}/%{srcname}-%{version}*.dist-info
 %doc README.md
 
 

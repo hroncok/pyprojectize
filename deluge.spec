@@ -18,7 +18,6 @@ BuildRequires: desktop-file-utils
 BuildRequires: intltool
 BuildRequires: libappstream-glib
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-wheel
 BuildRequires: rb_libtorrent-python3
 BuildRequires: systemd-rpm-macros
@@ -112,11 +111,14 @@ Files for the Deluge daemon
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # http://dev.deluge-torrent.org/ticket/2034
 mkdir -p %{buildroot}%{_unitdir}
@@ -165,7 +167,7 @@ popd && mv %{buildroot}/%{name}.lang .
 %files common -f %{name}.lang
 %doc CHANGELOG.md LICENSE README.md
 
-%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{name}-%{version}.dist-info/
 %dir %{python3_sitelib}/%{name}
 %{python3_sitelib}/%{name}/__pycache__
 %{python3_sitelib}/%{name}/*.py*

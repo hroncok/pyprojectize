@@ -17,7 +17,6 @@ Cachy provides a simple yet effective caching library.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 #Recommends:     python3dist(memcached) >= 1.59
 Recommends:     python3-msgpack >= 0.5.0
@@ -30,17 +29,20 @@ Cachy provides a simple yet effective caching library.
 %prep
 %autosetup -n %{pypi_name}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %doc README.rst
 %license 
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %exclude %{python3_sitelib}/tests/
 
 %changelog

@@ -16,7 +16,6 @@ BuildRequires:	ninja-build
 BuildRequires:	gperftools-devel
 BuildRequires:	pkgconfig
 BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
 
 %description
 The SentencePiece is an unsupervised text tokenizer for Neural Network-based
@@ -60,6 +59,9 @@ This package contains Python3 module file for SentencePiece.
 %prep
 %autosetup
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %cmake \
     -GNinja \
@@ -68,14 +70,14 @@ This package contains Python3 module file for SentencePiece.
 %cmake_build
 
 pushd python
-CFLAGS="-I../src" LDFLAGS="-L../%{_vpath_builddir}/src -lsentencepiece" PKG_CONFIG_PATH="../%{_vpath_builddir}" %py3_build
+CFLAGS="-I../src" LDFLAGS="-L../%{_vpath_builddir}/src -lsentencepiece" PKG_CONFIG_PATH="../%{_vpath_builddir}" %pyproject_wheel
 popd
 
 %install
 %cmake_install
 
 pushd python
-%py3_install
+%pyproject_install
 popd
 
 rm %{buildroot}%{_libdir}/libsentencepiece*.a
@@ -95,7 +97,7 @@ rm %{buildroot}%{_libdir}/libsentencepiece*.a
 
 %files -n python3-%{name}
 %{python3_sitearch}/%{name}/
-%{python3_sitearch}/%{name}-*.egg-info/
+%{python3_sitearch}/%{name}.dist-info/
 
 
 %changelog

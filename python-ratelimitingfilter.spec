@@ -12,7 +12,6 @@ Source0:        https://files.pythonhosted.org/packages/source/r/%{pypi_name}/%{
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 The RateLimitingFilter is a filter for the Python logging system that allows
@@ -37,18 +36,21 @@ Error notification emails provide a useful means of keeping an eye on.
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
 # Must do the subpackages' install first because the scripts in /usr/bin are
 # overwritten with every setup.py install.
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %doc README.rst
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.5-12

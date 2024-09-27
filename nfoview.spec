@@ -10,7 +10,6 @@ Source0:        https://github.com/otsaloma/nfoview/archive/%{version}/%{name}-%
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-gobject-devel
 
 BuildRequires:  desktop-file-utils
@@ -31,11 +30,14 @@ size and clickable hyperlinks.
 %prep
 %autosetup
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 desktop-file-install                                        \
     --add-category="TextTools;"                             \
     --remove-category="Viewer;"                             \
@@ -55,7 +57,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/io.otsaloma.nf
 %{_datadir}/%{name}/
 %{_metainfodir}/io.otsaloma.nfoview.appdata.xml
 %{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}*.egg-info
+%{python3_sitelib}/%{name}*.dist-info
 %{_datadir}/applications/io.otsaloma.nfoview.desktop
 %{_datadir}/icons/hicolor/*/apps/io.otsaloma.nfoview*
 

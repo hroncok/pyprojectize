@@ -17,7 +17,6 @@ BuildArch:      noarch
 
 BuildRequires:  sed
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 %description
 %{common_description}
@@ -38,11 +37,14 @@ rm -rf %{pypi_name}.egg-info
 # Remove unnecessary shebang
 sed -e '\|#!/usr/bin/env python|d' -i */*.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n %{pypi_name}
 %doc README.md
@@ -50,7 +52,7 @@ sed -e '\|#!/usr/bin/env python|d' -i */*.py
 %{python3_sitelib}/pci_lib
 %{python3_sitelib}/pci_vpd_lib
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.0-13

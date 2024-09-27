@@ -20,7 +20,6 @@ Patch:          570.patch
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 BuildRequires:  python3dist(appdirs)
 BuildRequires:  python3dist(six)
@@ -46,11 +45,14 @@ Summary:        %{summary}
 %prep
 %autosetup -n pyfilesystem2-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with tests}
 %check
@@ -63,7 +65,7 @@ Summary:        %{summary}
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.md examples
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 %{python3_sitelib}/%{srcname}/
 
 %changelog

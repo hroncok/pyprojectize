@@ -10,7 +10,6 @@ Source0:        %{pypi_source}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %global _description %{expand:
 This package provides basic support for epytext docstrings in Sphinx autodoc.}
@@ -28,17 +27,20 @@ Summary:        %{summary}
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/sphinx_epytext/
-%{python3_sitelib}/sphinx_epytext-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/sphinx_epytext-%{version}.dist-info/
 
 %changelog
 %autochangelog

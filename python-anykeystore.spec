@@ -12,7 +12,6 @@ Patch0:         python-anykeystore-use-unittest1.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 
 # Optional backends for the tests
@@ -48,11 +47,15 @@ sed -i -e 's/^import mock/from unittest import mock/' \
 rm -rf %{modname}/tests/integration/tests.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest

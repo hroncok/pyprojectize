@@ -15,7 +15,6 @@ BuildArch:      noarch
 Patch0:         0001-Add-upstream-test-suite.patch
  
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(django)
 BuildRequires:  python3dist(six)
 BuildRequires:  python3dist(python-slugify)
@@ -42,20 +41,23 @@ A Django slugify application that guarantees Uniqueness and handles Unicode
 # Remove bundled egg-info
 rm -rf django_uuslug.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %check
 %{__python3} manage.py test
 
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/uuslug/
-%{python3_sitelib}/django_uuslug-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/django_uuslug-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.0.0-10

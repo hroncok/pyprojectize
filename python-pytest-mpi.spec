@@ -21,7 +21,6 @@ tests under MPI, and testing MPI-related code.
 %package -n python%{python3_pkgversion}-%{srcname}
 Summary:        Pytest plugin for running tests under MPI
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-pytest
 BuildRequires:  python%{python3_pkgversion}-sybil >= 3.0
 BuildRequires:  mpich-devel
@@ -38,12 +37,16 @@ tests under MPI, and testing MPI-related code.
 %autosetup -p1 -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -62,7 +65,7 @@ module unload mpi/openmpi-%{_host_cpu}
 %license LICENSE.txt
 %doc README.md
 %{python3_sitelib}/pytest_mpi/
-%{python3_sitelib}/pytest_mpi-*.egg-info/
+%{python3_sitelib}/pytest_mpi.dist-info/
 
 
 %changelog

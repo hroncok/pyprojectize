@@ -23,7 +23,6 @@ Summary:        %{summary}
 
 BuildRequires:  git-core
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       python3-pytest >= 2.8.6
 
@@ -40,17 +39,20 @@ work with pyfakefs.
 # Let RPM handle the requirements
 rm -f {,test-}requirements.txt
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{package_name}
 %license COPYING
 %doc README.md
 %{python3_sitelib}/%{package_name}
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 5.2.4-5

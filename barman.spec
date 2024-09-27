@@ -11,7 +11,6 @@ Source1:    %{name}.cron
 Source2:    %{name}.logrotate
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 # https://docs.fedoraproject.org/en-US/packaging-guidelines/CronFiles/#_cron_job_files_packaging:
 Requires:       cronie
@@ -49,11 +48,14 @@ Python libraries used by Barman.
 # Change shebang in all relevant executable files in this directory and all subdirectories
 find -type f -executable -exec sed -i '1s=^#!/usr/bin/\(python\|env python\)[23]\?=#!%{__python3}=' {} +
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 mkdir -p %{buildroot}%{_sysconfdir}/%{name}/conf.d
 mkdir -p %{buildroot}%{_sysconfdir}/cron.d/
@@ -110,7 +112,7 @@ sed -i 's|/etc/%{name}.d|/etc/%{name}/conf.d|g' %{buildroot}%{_sysconfdir}/%{nam
 %files -n python3-%{name}
 %license LICENSE
 %doc NEWS README.rst
-%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{name}-%{version}.dist-info
 %{python3_sitelib}/%{name}/
 
 %pre

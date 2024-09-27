@@ -31,7 +31,6 @@ BuildRequires:  python3-sphinx
 Summary:        Promises, promises, promises
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if %{with tests}
 BuildRequires:  python3-pytest
 BuildRequires:  python3-pytest-cov
@@ -57,8 +56,11 @@ rm -rf %{pypi_name}.egg-info
 # https://github.com/celery/vine/commit/cf9b3979173ff22a4a410c4da6cfdad878eced8c
 sed -i "/def setup(self)/s/setup/setup_method/" t/unit/test_synchronization.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 # docs depend on sphinx-celery
 %if %{with docs}
@@ -70,7 +72,7 @@ rm -rf html/.{doctrees,buildinfo}
 %endif
 
 %install
-%py3_install
+%pyproject_install
 
 
 %if %{with tests}
@@ -82,7 +84,7 @@ rm -rf html/.{doctrees,buildinfo}
 %license LICENSE
 %doc docs/templates/readme.txt README.rst
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %if %{with docs}
 %files -n python-%{pypi_name}-doc

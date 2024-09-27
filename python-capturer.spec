@@ -30,7 +30,6 @@ HTML documentation for the '%{srcname}' Python module.
 Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-humanfriendly >= 8.0
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-pytest
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
@@ -52,8 +51,12 @@ real time but is also available to the Python program for additional processing.
 %autosetup -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 # Don't install the tests.py
 rm build/lib/%{srcname}/tests.py
@@ -63,7 +66,7 @@ rm docs/build/html/.buildinfo
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -78,7 +81,7 @@ PYTHONUNBUFFERED=1 py.test-%{python3_version} %{srcname}/tests.py
 %license LICENSE.txt
 %doc README.rst
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 
 
 %changelog

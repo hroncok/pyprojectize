@@ -21,7 +21,6 @@ Python bindings for the snappy compression library from Google.
 Summary:        Python library for the snappy compression library from Google
 BuildRequires:  gcc-c++
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-cffi
 BuildRequires:  python3-cramjam
 BuildRequires:  snappy-devel
@@ -38,19 +37,23 @@ Python bindings for the snappy compression library from Google.
 %setup -qn python_snappy-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-snappy
 %doc README.rst AUTHORS
 %license LICENSE
 %{python3_sitelib}/snappy/
-%{python3_sitelib}/python_snappy-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/python_snappy-%{version}.dist-info/
 
 
 %changelog

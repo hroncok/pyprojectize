@@ -20,7 +20,6 @@ Sphinx domain for CMake.
 %package -n python%{python3_pkgversion}-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 Requires:       python%{python3_pkgversion}-sphinx
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
@@ -41,17 +40,21 @@ Sphinx domain for CMake.
 %autosetup -p1 -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python%{python3_pkgversion}-%{srcname}
 %doc README.md
-%{python3_sitelib}/catkin_sphinx-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/catkin_sphinx-%{version}.dist-info
 %{python3_sitelib}/catkin_sphinx/
 
 

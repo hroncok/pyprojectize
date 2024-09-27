@@ -28,7 +28,6 @@ and a very minimal setup.py which will slurp its arguments from the setup.cfg.
 Summary: Allows using distutils2-like setup.cfg files with setup.py
 %{?python_provide:%python_provide python3-d2to1}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Requires:  python3-setuptools
 
 %description -n python3-d2to1 %_description
@@ -39,11 +38,14 @@ Requires:  python3-setuptools
 
 find . -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python3}|'
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-d2to1
 %doc CHANGES.rst README.rst

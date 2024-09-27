@@ -23,7 +23,6 @@ BuildArch:	noarch
 Summary:	%{summary}
 
 BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
 Requires:	python3-attrs
 
 %py_provides  python3-%{pkg_name}
@@ -35,18 +34,21 @@ Requires:	python3-attrs
 %prep
 %autosetup -n %{pkg_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pkg_name}
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/itemadapter
-%{python3_sitelib}/itemadapter-*.egg-info
+%{python3_sitelib}/itemadapter.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.9.0-11

@@ -19,7 +19,6 @@ Patch1:         %{name}-python3.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 This is MultipartPostHandler plus a fix for UTF-8 systems.
@@ -46,11 +45,14 @@ rm -rf doc # no real doc there
 # also change the URL in the Py2 example
 sed -i 's|http://www.google.com|https://getfedora.org/|' examples/MultipartPostHandler-example.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with internet}
 %check

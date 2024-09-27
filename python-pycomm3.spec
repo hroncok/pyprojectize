@@ -13,7 +13,6 @@ Source0:        %{pypi_source}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 %description
 pycomm3 is a native Python library for communicating with PLCs
@@ -23,7 +22,6 @@ from Allen-Bradley using Ethernet/IP.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -35,11 +33,14 @@ from Allen-Bradley using Ethernet/IP.
 rm -rf %{pypi_name}.egg-info
 sed -i 's/\r$//' README.rst
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with device}
 %check
@@ -50,7 +51,7 @@ sed -i 's/\r$//' README.rst
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.10.2-14

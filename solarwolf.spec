@@ -11,7 +11,7 @@ Source1: solarwolf.desktop
 #Patch0: solarwolf-path.patch
 Patch1: solarwolf-1.6.0a4-python3.patch
 BuildArchitectures: noarch
-BuildRequires: desktop-file-utils python3-devel python3-setuptools
+BuildRequires: desktop-file-utils python3-devel
 Requires: hicolor-icon-theme python3-pygame
 
 %description
@@ -33,11 +33,14 @@ powerups for your only chance.
 #%py3_shebang_fix .
 #find . -type f -name '*.py' | xargs 2to3 -w
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 #mkdir -p  %{buildroot}%{_bindir}
 #install -p -m 755 solarwolf.py %{buildroot}%{_bindir}/solarwolf
 
@@ -62,7 +65,7 @@ install -p -m 644 dist/solarwolf.png \
 %{_bindir}/solarwolf
 #%{_datadir}/solarwolf/
 %{python3_sitelib}/solarwolf/
-%{python3_sitelib}/solarwolf-*.egg-info/
+%{python3_sitelib}/solarwolf.dist-info/
 %license lgpl.txt
 %doc README.rst
 %{_datadir}/applications/solarwolf.desktop

@@ -13,7 +13,6 @@ Patch:          remove_future.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       python3-%{pypi_name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
@@ -32,11 +31,14 @@ Active Directory information dumper via LDAP.
 rm -rf %{pypi_name}.egg-info
 sed -i -e '/^#!\//, 1d' ldapdomaindump/__main__.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %doc Readme.md
@@ -47,7 +49,7 @@ sed -i -e '/^#!\//, 1d' ldapdomaindump/__main__.py
 
 %files -n python3-%{pypi_name}
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.3-17

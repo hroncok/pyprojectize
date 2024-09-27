@@ -13,7 +13,6 @@ Source0:        http://pypi.python.org/packages/source/h/%{srcname}/%{srcname}-%
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 hgdistver is a simple drop-in to support setup.py in mercurial based projects.
@@ -34,17 +33,20 @@ and using the distance to it as .post marker.
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %doc CHANGELOG.rst README.rst 
 %license LICENSE
 %{python3_sitelib}/%{srcname}.py
-%{python3_sitelib}/%{srcname}*.egg-info
+%{python3_sitelib}/%{srcname}*.dist-info
 %{python3_sitelib}/__pycache__/%{srcname}*
 
 %changelog

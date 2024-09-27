@@ -11,7 +11,6 @@ Source0:        https://files.pythonhosted.org/packages/source/z/%{modname}/%{mo
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %global _description\
 This package provides a simple function called 'deprecated(names, reason)' to\
@@ -33,11 +32,14 @@ deprecate the previously mentioned Python objects.
 
 rm -rf %{modname}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 rm -f %{buildroot}%{python3_sitelib}/zope/deprecation/tests.py*
 
 %check

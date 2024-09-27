@@ -20,7 +20,6 @@ Source4: %{name}.systemd
 Patch0: %{name}-daemon.patch
 BuildRequires: python3-daemon
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-iniparse
 BuildRequires: python3-vobject
 BuildRequires: systemd-rpm-macros
@@ -48,11 +47,14 @@ patches to Radicale but was eventually split off as a separate project.
 %setup -q -n %{name}-%{commit}
 %patch -P0 -p1 -b .daemon
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 mkdir -p %{buildroot}%{_sharedstatedir}/calypso
 install -Dpm644 calypso.1 %{buildroot}%{_mandir}/man1/calypso.1
 install -Dpm644 %{S:2} %{buildroot}%{_sysconfdir}/calypso/config
@@ -100,7 +102,7 @@ fi
 %{_bindir}/calypso
 %{_mandir}/man1/calypso.1*
 %{_unitdir}/calypso.service
-%{python3_sitelib}/calypso-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/calypso-%{version}.dist-info
 %{python3_sitelib}/calypso
 %dir %attr(0750,calypso,calypso) %{_sharedstatedir}/calypso
 

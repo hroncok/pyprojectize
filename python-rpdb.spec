@@ -14,7 +14,6 @@ Source0: %{url}/%{srcname}/archive/%{srcname}-%{version}.tar.gz
 
 BuildRequires: python3-devel
 # This is needed for distutils until https://github.com/tamentis/rpdb/issues/31 is fixed.
-BuildRequires: python3-setuptools
 
 
 %description
@@ -39,19 +38,23 @@ debugging tools are available.
 %autosetup -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{srcname}
 %license LICENSE.txt
 %doc README.rst
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 
 
 %changelog

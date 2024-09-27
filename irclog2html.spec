@@ -10,7 +10,6 @@ Source0:        https://github.com/mgedmin/irclog2html/archive/%{version}/%{name
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 irclog2html is a nice IRC log parser and colorizer that will do the most common
@@ -23,11 +22,14 @@ echo "You may need the irclog.css file. It is available at
   %{_datadir}/%{name}/irclog.css
 " > README.fedora
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 mkdir -p %{buildroot}%{_datadir}/%{name}
 install -Dpm 0644 src/%{name}/irclog.css %{buildroot}%{_datadir}/%{name}
 
@@ -40,7 +42,7 @@ install -Dpm 0644 src/%{name}/irclog.css %{buildroot}%{_datadir}/%{name}
 %{_bindir}/logs2html
 %{_datadir}/%{name}/
 %{python3_sitelib}/%{name}/
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 
 %changelog
 * Fri Jul 26 2024 Miroslav Suchý <msuchy@redhat.com> - 2.17.2-22

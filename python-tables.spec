@@ -33,7 +33,6 @@ BuildRequires:  lzo-devel
 BuildRequires:  blosc-devel
 BuildRequires:  blosc2-devel
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-blosc2
 BuildRequires:  python%{python3_pkgversion}-Cython >= 0.13
 BuildRequires:  python%{python3_pkgversion}-numpy
@@ -78,14 +77,17 @@ sed -r -i \
   '/def get_blosc2_directories\(\):/a \ \ \ \ return Path("%{_includedir}"),Path("%{_libdir}"),None' \
   setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
 chmod -x examples/check_examples.sh
 sed -i 's|bin/env |bin/|' utils/*
 
-%py3_install
+%pyproject_install
 
 %check
 %if %{with tests}
@@ -106,7 +108,7 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} %{python3} -m tables.tests.test_all -
 %{_bindir}/pt2to3
 %{_bindir}/pttree
 %{python3_sitearch}/tables/
-%{python3_sitearch}/tables-%{version}*.egg-info/
+%{python3_sitearch}/tables-%{version}*.dist-info/
 
 %files doc
 %license LICENSE.txt LICENSES

@@ -25,7 +25,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  %{py3_dist setuptools}
 
 %py_provides python3-%{pypi_name}
 
@@ -37,11 +36,14 @@ BuildRequires:  %{py3_dist setuptools}
 rm -rf %{pypi_name}.egg-info
 find . -type f -name "*.py" -exec sed -i '/^#![  ]*\/usr\/bin\/env.*$/ d' {} 2>/dev/null ';'
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # No test files
 
@@ -49,7 +51,7 @@ find . -type f -name "*.py" -exec sed -i '/^#![  ]*\/usr\/bin\/env.*$/ d' {} 2>/
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.0.3-13

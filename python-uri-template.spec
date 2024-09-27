@@ -12,7 +12,6 @@ Source0:        %{url}/archive/refs/tags/v%{pypi_version}.tar.gz#/%{name}-%{pypi
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 %description
 An implementation of RFC 6570 URI Templates.This packages implements
@@ -33,11 +32,14 @@ few extensions.
 # Upstream released tarball contains version 0.0.0 in setup.py
 sed -i 's/0.0.0/%{pypi_version}/g' setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{python3} test.py
@@ -46,7 +48,7 @@ sed -i 's/0.0.0/%{pypi_version}/g' setup.py
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/uri_template
-%{python3_sitelib}/uri_template-%{pypi_version}-py%{python3_version}.egg-info
+%{python3_sitelib}/uri_template-%{pypi_version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.2.0-10

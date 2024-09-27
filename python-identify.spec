@@ -12,7 +12,6 @@ Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(ukkonen)
 %if %{with check}
 BuildRequires:  python3-pytest
@@ -41,12 +40,16 @@ Summary:        %{summary}
 rm -rf %{pypi_name}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %if %{with check}
@@ -60,7 +63,7 @@ rm -rf %{pypi_name}.egg-info
 %doc README.md
 %{_bindir}/%{pypi_name}-cli
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 
 %changelog

@@ -24,7 +24,6 @@ BuildArch:      noarch
 %package -n     python3-%{pypi_name}
 Summary:        %{sum}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -36,12 +35,16 @@ BuildRequires:  python3-setuptools
 rm -rf *.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 # No tests
@@ -50,7 +53,7 @@ rm -rf *.egg-info
 %files -n python3-%{pypi_name}
 %license LICENCE.rst
 %doc README.rst AUTHORS.rst
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 %{python3_sitelib}/%{pypi_name}/
 
 %changelog

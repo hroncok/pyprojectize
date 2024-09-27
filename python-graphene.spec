@@ -23,7 +23,6 @@ BuildRequires:  python3dist(pytest-asyncio) >= 0.10
 BuildRequires:  python3dist(pytest-benchmark) >= 3.2
 BuildRequires:  python3dist(pytest-cov) >= 2.8
 BuildRequires:  python3dist(pytz)
-BuildRequires:  python3dist(setuptools)
 #NOTE(jpena): some build requirements are not available in Fedora, so we have to
 #             skip unit tests
 # BuildRequires:  python3dist(mock) >= 4
@@ -51,11 +50,14 @@ Graphene is a Python library for building GraphQL schemas/types fast and easily.
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # %{__python3} setup.py test
@@ -64,7 +66,7 @@ rm -rf %{pypi_name}.egg-info
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 3.0b6-14

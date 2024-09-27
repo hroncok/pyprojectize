@@ -20,7 +20,6 @@ Summary:        %{summary}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-six
-BuildRequires:  python3-setuptools
 
 %if %{with network}
 BuildRequires: python3-coverage
@@ -48,13 +47,16 @@ Documentation for %{name}.
 %prep
 %setup -q -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 PYTHONPATH=${PWD} sphinx-build-3 docs html
 rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with network}
 %check
@@ -68,7 +70,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v --pyargs 
 %license LICENSE_GPL2.0.txt LICENSE_LGPL_2.1.txt LICENSE_MPL_1.1.txt
 %{_bindir}/update-tld-names
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py*.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 %exclude %{python3_sitelib}/%{pypi_name}/tests/
 
 %files -n %{name}-doc

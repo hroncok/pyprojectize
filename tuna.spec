@@ -9,7 +9,6 @@ Source: https://www.kernel.org/pub/software/utils/%{name}/%{name}-%{version}.tar
 URL: https://rt.wiki.kernel.org/index.php/Tuna
 BuildArch: noarch
 BuildRequires: python3-devel, gettext
-BuildRequires: python3-setuptools
 Requires: python3-linux-procfs >= 0.6
 # This really should be a Suggests...
 # Requires: python-inet_diag
@@ -50,8 +49,11 @@ priority is changed, be it using tuna or plain chrt & taskset.
 %patch 1 -p1
 %patch 2 -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 %py3_shebang_fix tuna/
 %py3_shebang_fix tuna-cmd.py
 %if %{with oscilloscope}
@@ -60,7 +62,7 @@ priority is changed, be it using tuna or plain chrt & taskset.
 
 %install
 rm -rf %{buildroot}
-%py3_install
+%pyproject_install
 mkdir -p %{buildroot}/%{_sysconfdir}/tuna/
 mkdir -p %{buildroot}/{%{_bindir},%{_datadir}/tuna/help/kthreads,%{_mandir}/man8}
 mkdir -p %{buildroot}/%{_datadir}/polkit-1/actions/
@@ -86,7 +88,7 @@ done
 
 %files -f %{name}.lang
 %doc ChangeLog
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{_bindir}/tuna
 %{_datadir}/tuna/
 %{python3_sitelib}/tuna/

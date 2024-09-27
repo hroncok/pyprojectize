@@ -17,7 +17,6 @@ BuildArch:      noarch
 ExclusiveArch: %{qt5_qtwebengine_arches} noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 BuildRequires:  python3-qt5
 BuildRequires:  python3-pyparsing
@@ -111,13 +110,16 @@ rm -rv debian rpm win
 # skip tests of plugins, too hungry for poor Xvfb
 rm -v tests/test_plugins/*.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 sphinx-build-3 doc html
 rm -rv html/.buildinfo html/.doctrees
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
@@ -137,7 +139,7 @@ xvfb-run -s '-screen :0 1024x768x16' %{__python3} run_all.py
 %files
 %license LICENSE.GPL2
 %doc README.md ChangeLog
-%{python3_sitelib}/%{name}*.egg-info
+%{python3_sitelib}/%{name}*.dist-info
 %{python3_sitelib}/%{name}/
 %{_datadir}/icons/hicolor/*/apps/%{name}.*
 %{_datadir}/pixmaps/%{name}.png

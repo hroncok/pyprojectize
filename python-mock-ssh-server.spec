@@ -11,7 +11,6 @@ Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 BuildArch:      noarch
  
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python%{python3_pkgversion}-paramiko
 
 %global _description\
@@ -35,18 +34,21 @@ Requires:       python%{python3_pkgversion}-paramiko
 # Remove bundled egg-info
 rm -rf *.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python%{python3_pkgversion}-%{srcname}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/mockssh/
-%{python3_sitelib}/mock_ssh_server-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/mock_ssh_server-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.8.2-14

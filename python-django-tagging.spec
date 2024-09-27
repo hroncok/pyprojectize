@@ -23,7 +23,6 @@ Summary:        A generic tagging application for Django projects
 %{?python_provide:%python_provide python3-django-tagging}
 Requires:       python3-django
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description -n python3-django-tagging
 A generic tagging application for Django projects, which allows association
@@ -35,18 +34,22 @@ simple.
 %autosetup -n %{pkgname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-django-tagging
 %doc CHANGELOG.txt LICENSE.txt README.rst docs/*
 %{python3_sitelib}/tagging/
-%{python3_sitelib}/django_tagging-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/django_tagging-%{version}.dist-info/
 
 
 %changelog

@@ -73,7 +73,6 @@ BuildArch:      noarch
 
 %if 0%{?with_python3}
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-colorclass
 BuildRequires:  python%{python3_pkgversion}-easygui
 BuildRequires:  python%{python3_pkgversion}-olefile
@@ -220,12 +219,16 @@ sed -i -e '/pcodedmp/d' requirements.txt setup.py
 %endif
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 %if 0%{?with_python2}
 %py2_build
 %endif
 %if 0%{?with_python3}
-%py3_build
+%pyproject_wheel
 %endif
 
 
@@ -268,7 +271,7 @@ sed -e 's|infixNotation|operatorPrecedence|g' -i %{buildroot}%{python2_sitelib}/
 
 %if 0%{?with_python3}
 # Install python3 files
-%py3_install
+%pyproject_install
 
 # Move executables to python3 versioned names
 pushd %{buildroot}%{_bindir}

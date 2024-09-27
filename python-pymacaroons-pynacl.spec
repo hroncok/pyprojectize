@@ -30,7 +30,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 BuildRequires: make
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{pkgname}}
 
 %description -n python3-%{pkgname}
@@ -51,15 +50,19 @@ Documentation for the python-pymacaroons-pynacl package.
 %autosetup -n pymacaroons-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 make %{?_smp_mflags} -C docs SPHINXBUILD=sphinx-build-3 html PYTHONPATH=$(pwd)
 rm docs/_build/html/.buildinfo
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 # check

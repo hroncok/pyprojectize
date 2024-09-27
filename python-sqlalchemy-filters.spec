@@ -12,7 +12,6 @@ Source0:        %{pypi_source}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 %description
 Filter, sort and paginate SQLAlchemy query
@@ -34,11 +33,14 @@ objects. Ideal for exposing these actions over a REST API.
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # Tests are not included in the tarball
@@ -47,7 +49,7 @@ rm -rf %{pypi_name}.egg-info
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/sqlalchemy_filters
-%{python3_sitelib}/sqlalchemy_filters-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/sqlalchemy_filters-%{version}.dist-info
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 0.12.0-17

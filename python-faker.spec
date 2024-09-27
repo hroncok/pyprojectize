@@ -21,7 +21,6 @@ URL: https://faker.readthedocs.io
 Source: https://github.com/joke2k/%{srcname}/archive/v%{version}/%{srcname}-%{version}.tar.gz
 BuildArch: noarch
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 %if %{with tests}
 BuildRequires: python3-pytest
 BuildRequires: python3-dateutil
@@ -47,11 +46,14 @@ Summary: Documentation for %{name}
 %prep
 %autosetup -p1 -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with tests}
 %check
@@ -63,7 +65,7 @@ Summary: Documentation for %{name}
 %license LICENSE.txt
 %{_bindir}/faker
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/Faker-%{version}-py*.egg-info
+%{python3_sitelib}/Faker-%{version}.dist-info
 
 %files doc
 %license LICENSE.txt

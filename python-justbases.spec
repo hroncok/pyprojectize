@@ -20,7 +20,6 @@ Summary:    A small library for precise conversion between arbitrary bases
 %{?python_provide:%python_provide python3-%{srcname}}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description -n python3-%{srcname}
 A small library for precise conversion between arbitrary bases and native
@@ -30,17 +29,20 @@ Python numbers.
 %autosetup -n %{srcname}-%{version}
 rm -rf justbases.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/justbases/
-%{python3_sitelib}/justbases-%{version}-*.egg-info
+%{python3_sitelib}/justbases-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.15.2-9

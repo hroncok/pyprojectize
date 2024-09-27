@@ -26,7 +26,6 @@ implementation is in the form of a module called 'regex'.}
 %package -n python%{python3_pkgversion}-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 
 %description -n python%{python3_pkgversion}-%{srcname} %_description
 
@@ -35,15 +34,19 @@ BuildRequires:  python%{python3_pkgversion}-setuptools
 %autosetup -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 # rebuild the HTML doc
 rst2html docs/UnicodeProperties.rst > docs/UnicodeProperties.html
 rst2html README.rst > README.html
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python%{python3_pkgversion}-%{srcname}

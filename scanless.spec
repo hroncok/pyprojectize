@@ -11,7 +11,6 @@ Source0:        %{pypi_source}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 Requires:       python3-%{pypi_name} = %{version}-%{release}
 
@@ -31,11 +30,14 @@ that can perform port scans on your behalf.
 %autosetup -n %{pypi_name}-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n %{pypi_name}
 %{_bindir}/%{pypi_name}
@@ -44,7 +46,7 @@ rm -rf %{pypi_name}.egg-info
 %doc README.md
 %{_bindir}/scanless
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 %autochangelog

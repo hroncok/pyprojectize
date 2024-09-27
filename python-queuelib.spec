@@ -19,7 +19,6 @@ Python. Queuelib goals are speed and simplicity.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-nose
 BuildRequires:  python3-pytest
 %{?python_provide:%python_provide python3-%{srcname}}
@@ -31,11 +30,14 @@ Python. Queuelib goals are speed and simplicity.
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 nosetests-%{python3_version} queuelib/tests
@@ -44,7 +46,7 @@ nosetests-%{python3_version} queuelib/tests
 %doc NEWS README.rst
 %license LICENSE
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}*.egg-info
+%{python3_sitelib}/%{srcname}*.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.5.0-22

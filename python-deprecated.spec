@@ -17,7 +17,6 @@ functions or methods.
 %package -n python3-%{pkgname}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{pkgname}}
 
 %description -n python3-%{pkgname}
@@ -28,17 +27,20 @@ functions or methods.
 %autosetup -n %{srcname}-%{version}
 rm -rf %{pkgname}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pkgname}
 %license LICENSE.rst
 %doc README.md
 %{python3_sitelib}/%{pkgname}/
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 
 
 %changelog

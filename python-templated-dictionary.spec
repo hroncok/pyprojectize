@@ -21,7 +21,6 @@ Source0:    %name-%version.tar.gz
 BuildArch: noarch
 
 BuildRequires: python%{python3_pkgversion}-devel
-BuildRequires: python%{python3_pkgversion}-setuptools
 Requires:      python%{python3_pkgversion}-jinja2
 
 %global _description\
@@ -40,16 +39,20 @@ Summary: %{summary}
 %setup -q
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-version="%version" %py3_build
+version="%version" %pyproject_wheel
 
 %install
-version=%version %py3_install
+version=%version %pyproject_install
 
 
 %files -n python3-%{srcname}
 %license LICENSE
-%{python3_sitelib}/templated_dictionary-*.egg-info/
+%{python3_sitelib}/templated_dictionary.dist-info/
 %{python3_sitelib}/templated_dictionary/
 
 

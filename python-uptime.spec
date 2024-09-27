@@ -20,7 +20,6 @@ time.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -31,17 +30,20 @@ time.
 %autosetup -n %{pypi_name}-%{version}
 sed -i -e '/^#!\//, 1d' src/__*.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %license COPYING.txt
 %doc README.txt
 %{python3_sitearch}/%{pypi_name}/
-%{python3_sitearch}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 3.0.1-15

@@ -13,7 +13,6 @@ BuildArch:      noarch
 Patch0:         001_setup_py.patch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 # Tests
 BuildRequires:  python3dist(pytest)
@@ -38,11 +37,14 @@ Summary:        %{summary}
 %prep
 %autosetup -n %{pypi_name}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest
@@ -50,7 +52,7 @@ Summary:        %{summary}
 %files -n python3-%{pypi_name}
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %{python3_sitelib}/%{pypi_name}/
 
 

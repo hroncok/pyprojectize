@@ -15,7 +15,6 @@ Patch0:         python310.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 A .pth file to site-packages to enable coverage.py.
@@ -37,16 +36,19 @@ Python 3 version.
 %autosetup -n %{pypi_name}-%{version}
 cp %{SOURCE1} .
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %license LICENSE.txt
 %doc README.rst
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %{python3_sitelib}/%{pypi_name}.pth
 
 %changelog

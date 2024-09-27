@@ -16,7 +16,6 @@ BuildRequires: mercurial >= 1.4.3
 BuildRequires: python3-devel
 BuildRequires: python3-hglib
 BuildRequires: python3-nose
-BuildRequires: python3-setuptools
 BuildRequires: subversion
 
 %description
@@ -31,11 +30,14 @@ fast local operations like hg log and hg annotate.
 %prep
 %setup -q
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 %check
 %{__python3} setup.py test || :
@@ -47,7 +49,7 @@ fast local operations like hg log and hg annotate.
 %{_bindir}/hgpullsvn
 %{_bindir}/hgpushsvn
 %{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}-*-py*.egg-info
+%{python3_sitelib}/%{name}-*.dist-info
 
 %changelog
 * Thu Jul 25 2024 Miroslav Suchý <msuchy@redhat.com> - 0.6.0-16

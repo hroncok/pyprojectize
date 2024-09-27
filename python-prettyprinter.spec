@@ -45,7 +45,6 @@ BuildArch:      noarch
 %package -n python3-%{pkgname}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if %{with tests}
 BuildRequires:  python3-pytest
 BuildRequires:  python3-hypothesis
@@ -74,12 +73,16 @@ rm -rf %{eggname}.egg-info
 rm -r tests/test_django
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %if %{with tests}
@@ -92,7 +95,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} --verbose t
 %license LICENSE
 %doc AUTHORS.rst HISTORY.rst README.rst
 %{python3_sitelib}/%{libname}
-%{python3_sitelib}/%{eggname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{eggname}-%{version}.dist-info
 
 
 %changelog

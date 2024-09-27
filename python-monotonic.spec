@@ -32,7 +32,6 @@ it will fall back to an equivalent platform specific implementation.\
 Summary:        An implementation of time.monotonic() for Python 2 & < 3.3
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description -n python3-%{pypi_name}
 This module provides a ``monotonic()`` function which
@@ -49,21 +48,25 @@ it will fall back to an equivalent platform specific implementation.
 %autosetup -n %{pypi_name}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 
-%py3_build
+%pyproject_wheel
 
 
 %install
 
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{pypi_name}
 %license LICENSE
 %{python3_sitelib}/__pycache__/%{pypi_name}.*
 %{python3_sitelib}/%{pypi_name}.py
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 1.5-22

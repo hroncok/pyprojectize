@@ -78,13 +78,16 @@ This is the Python 3 version of the package.
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if %{with python2}
 %py2_build
 %endif
 
 %if %{with python3}
-%py3_build
+%pyproject_wheel
 %endif
 
 %check
@@ -102,7 +105,7 @@ This is the Python 3 version of the package.
 %endif
 
 %if %{with python3}
-%py3_install
+%pyproject_install
 %endif
 
 %if %{with python2}
@@ -110,7 +113,7 @@ This is the Python 3 version of the package.
 %license LICENSE.txt
 %doc README.md
 %{python2_sitelib}/digitalocean
-%{python2_sitelib}/python_digitalocean-%{version}*.egg-info
+%{python2_sitelib}/python_digitalocean-%{version}*.dist-info
 %endif
 
 %if %{with python3}
@@ -118,7 +121,7 @@ This is the Python 3 version of the package.
 %license LICENSE.txt
 %doc README.md
 %{python3_sitelib}/digitalocean
-%{python3_sitelib}/python_digitalocean-%{version}*.egg-info
+%{python3_sitelib}/python_digitalocean-%{version}*.dist-info
 %endif
 
 %changelog

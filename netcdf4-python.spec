@@ -11,7 +11,6 @@ Source0:        https://github.com/Unidata/netcdf4-python/archive/refs/tags/v%{v
 Patch0:         netcdf4-python-norpath.patch
 
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools >= 18
 BuildRequires:  python%{python3_pkgversion}-certifi
 BuildRequires:  python%{python3_pkgversion}-cftime
 BuildRequires:  python%{python3_pkgversion}-Cython
@@ -63,17 +62,21 @@ containing vlens, and vlens containing compound types) are not supported.
 %autosetup -p1 -n %{name}-%{version}rel
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 # Set to get libs from ncconfig to avoid directly linking to -lhdf5
 export USE_NCCONFIG=1
 # This causes the plugins to be duplicated into the python package
 # https://github.com/Unidata/netcdf4-python/issues/1263
 #export NETCDF_PLUGIN_DIR=%%{_libdir}/hdf5/plugin
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
  
 %check

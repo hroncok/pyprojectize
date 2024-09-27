@@ -10,7 +10,6 @@ Source0:        https://pagure.io/oct2spec/archive/%{version}/oct2spec-%{version
 
 BuildArch:      noarch
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python3dist(setuptools)
 
 Requires:       wget
 Requires:       fedora-packager
@@ -26,11 +25,14 @@ oct2spec API.
 %prep
 %setup -q
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %license LICENSE

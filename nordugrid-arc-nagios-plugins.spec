@@ -29,7 +29,6 @@ Requires:	nagios-common
 Requires:	glue-schema >= 2.0.8
 BuildRequires:	make
 BuildRequires:	python%{python3_pkgversion}-devel
-BuildRequires:	python%{python3_pkgversion}-setuptools
 %if %{enable_doc}
 BuildRequires:	/usr/bin/sphinx-build
 %endif
@@ -57,15 +56,18 @@ EGI configuration and dependencies for the ARC Nagios plugins.
 %prep
 %setup -q
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 %if %{enable_doc}
 make -C doc html
 rm -f doc/_build/html/.buildinfo
 %endif
 
 %install
-%py3_install
+%pyproject_install
 
 install -m755 -d %{buildroot}%{pkg_spooldir}
 
@@ -82,7 +84,7 @@ install -m755 -d %{buildroot}%{pkg_spooldir}
 %{nagios_bindir}/check_arcservice
 %{nagios_bindir}/check_gridstorage
 %{python3_sitelib}/arcnagios
-%{python3_sitelib}/nordugrid_arc_nagios_plugins-*.egg-info
+%{python3_sitelib}/nordugrid_arc_nagios_plugins.dist-info
 %dir %{arc_spooldir}
 %attr(-,nagios,nagios) %{pkg_spooldir}
 %license LICENSE NOTICE

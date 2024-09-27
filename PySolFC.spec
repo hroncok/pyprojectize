@@ -13,7 +13,6 @@ Patch0:         PySolFC-desktop-exec.patch
 BuildArch:      noarch
 
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  desktop-file-utils
 BuildRequires:  perl-interpreter
 
@@ -57,11 +56,14 @@ written plug-ins, an integrated HTML help browser, and lots of documentation.
 %prep
 %autosetup -p1 -a2
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 # install desktop file
 desktop-file-install \
     --delete-original \

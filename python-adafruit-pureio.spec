@@ -19,7 +19,6 @@ spidev modules.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(setuptools-scm)
 %{?python_provide:%python_provide python3-%{pypi_name}}
@@ -41,13 +40,16 @@ Documentation for adafruit-pureio.
 %autosetup -n Adafruit_PureIO-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 PYTHONPATH=${PWD} sphinx-build-3 docs html
 rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 
 %ifarch %{arm} %{arm64}
 %check
@@ -58,7 +60,7 @@ rm -rf html/.{doctrees,buildinfo}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/Adafruit_PureIO
-%{python3_sitelib}/Adafruit_PureIO-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/Adafruit_PureIO-%{version}.dist-info
 
 %files -n python-%{pypi_name}-doc
 %doc html

@@ -19,7 +19,6 @@ A Python slugify application that handles Unicode.
 Summary:        %{sum}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-text-unidecode
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -29,11 +28,14 @@ A Python slugify application that handles Unicode.
 %prep
 %autosetup -n python-%{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} test.py
@@ -43,7 +45,7 @@ A Python slugify application that handles Unicode.
 %license LICENSE
 %{_bindir}/%{pypi_name}
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/python_slugify-%{version}-py*.egg-info
+%{python3_sitelib}/python_slugify-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 6.1.2-9

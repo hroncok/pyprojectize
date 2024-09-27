@@ -14,7 +14,6 @@ BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3-beautifulsoup4
 BuildRequires:  python3-dns
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-urllib3
 
 Requires:       python3-%{pypi_name} = %{?epoch:%{epoch}:}%{version}-%{release}
@@ -36,11 +35,14 @@ Python files or module parts for %{pypi_name}.
 %autosetup -n %{pypi_name}-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # Not running the lint test
@@ -53,7 +55,7 @@ rm -rf %{pypi_name}.egg-info
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 %autochangelog

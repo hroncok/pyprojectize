@@ -41,7 +41,6 @@ HTML documentation for the '%{srcname}' Python module.
 Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-pytest
-BuildRequires:  python%{python3_pkgversion}-setuptools
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %if 0%{?fedora} || 0%{?rhel} >= 8
@@ -65,8 +64,12 @@ to every project I'm working on, hence this package.
 %autosetup -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 # Don't install pylint.py or tests.py
 rm build/lib/%{srcname}/{pylint,tests}.py
@@ -76,7 +79,7 @@ rm docs/build/html/.buildinfo
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -92,7 +95,7 @@ PYTHONUNBUFFERED=1 py.test-%{python3_version} %{srcname}/tests.py \
 %license LICENSE.txt
 %doc README.rst
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 
 
 %changelog

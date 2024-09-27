@@ -24,7 +24,6 @@ need a database connection.
 Summary: SQLite3 integration for Bottle WSGI framework
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       python3-bottle
 
@@ -43,17 +42,20 @@ need a database connection.
 %prep
 %setup -q -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %doc PKG-INFO README.rst
 %{python3_sitelib}/bottle_sqlite.py*
 %{python3_sitelib}/__pycache__/bottle_sqlite*
-%{python3_sitelib}/bottle_sqlite*.egg-info
+%{python3_sitelib}/bottle_sqlite*.dist-info
 
 
 %changelog

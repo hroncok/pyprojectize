@@ -17,7 +17,6 @@ Source0:        https://github.com/python-excel/xlwt/archive/%{commit}.tar.gz#/%
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 
 %description
@@ -47,8 +46,12 @@ is Python 2.6 or later.
 sed -i "s|tests/python.bmp|python.bmp|g" tests/test_bitmaps.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %check
@@ -57,7 +60,7 @@ PYTHONPATH=.. %{__python3} -m unittest discover
 
 
 %install
-%py3_install
+%pyproject_install
 mkdir tmp_docs
 cp -ar examples docs tmp_docs
 
@@ -66,7 +69,7 @@ cp -ar examples docs tmp_docs
 %license docs/licenses.rst
 %doc README.rst tmp_docs/*
 %{python3_sitelib}/xlwt
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 
 
 %changelog

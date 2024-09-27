@@ -30,7 +30,6 @@ the XStatic base package, if you like.
 Summary:        Angular (XStatic packaging standard)
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  web-assets-devel
 
 Requires: python3-XStatic
@@ -64,15 +63,19 @@ Common files for XStatic-Angular (XStatic packaging standard)
 sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/angular'|" xstatic/pkg/angular/__init__.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 # due
 # https://bitbucket.org/thomaswaldmann/xstatic/issue/2/
 # this package can not be built with python-XStatic installed.
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 # move angular.js to appropriate _jsdir
 mkdir -p %{buildroot}/%{_jsdir}/angular
@@ -86,7 +89,7 @@ mv %{buildroot}/%{python3_sitelib}/xstatic/pkg/angular/data/angular* %{buildroot
 %files -n python3-%{pypi_name}
 %doc README.txt
 %{python3_sitelib}/xstatic/pkg/angular
-%{python3_sitelib}/XStatic_Angular-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/XStatic_Angular-%{version}.dist-info
 %{python3_sitelib}/XStatic_Angular-%{version}-py%{python3_version}-nspkg.pth
 
 

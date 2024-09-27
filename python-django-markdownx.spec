@@ -16,7 +16,6 @@ BuildRequires:  python3dist(django)
 BuildRequires:  python3dist(markdown)
 BuildRequires:  python3dist(pillow)
 BuildRequires:  python3dist(pip)
-BuildRequires:  python3dist(setuptools)
 
 %description
 Django MarkdownX is a comprehensive Markdown plugin built for Django, 
@@ -50,11 +49,14 @@ rm -rf markdownx/templates/markdownx/.DS_Store
 
 chmod 0644 README.rst
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %find_lang django
 %files -n python3-%{pypi_name} -f django.lang
@@ -62,7 +64,7 @@ chmod 0644 README.rst
 %doc README.rst
 %{python3_sitelib}/markdownx
 %exclude %{python3_sitelib}/markdownx/locale
-%{python3_sitelib}/django_markdownx-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/django_markdownx-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 3.0.1-18

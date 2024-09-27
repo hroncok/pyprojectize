@@ -30,7 +30,6 @@ purpose with absolutely no restrictions.
 %package -n python3-%{pkgname}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 BuildRequires:  python3-cheroot
 
@@ -46,12 +45,16 @@ Requires:       python3-cheroot
 %autosetup -n %{pkgname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 pytest -k 'not test_routing' tests
@@ -60,7 +63,7 @@ pytest -k 'not test_routing' tests
 %doc README.md
 %license LICENSE.txt
 %{python3_sitelib}/web
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 
 %changelog

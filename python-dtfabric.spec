@@ -20,7 +20,6 @@ libyal projects.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pyyaml
 BuildRequires:  python3-six
 BuildRequires:  python3-pip
@@ -34,18 +33,21 @@ libyal projects.
 %prep
 %autosetup -n %{pypi_name}-%{date}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 rm -rf %{buildroot}%{_defaultdocdir}/%{pypi_name}/*
 
 %files -n python3-%{pypi_name}
 %doc ACKNOWLEDGEMENTS AUTHORS README
 %license LICENSE
 %{_bindir}/*.py
-%{python3_sitelib}/*.egg-info/
+%{python3_sitelib}/*.dist-info/
 %{python3_sitelib}/%{pypi_name}/
 
 %changelog

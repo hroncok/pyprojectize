@@ -28,7 +28,6 @@ Features included but not limited to:
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-wcwidth
 %{?python_provide:%python_provide python3-%{pypi_name}}
  
@@ -58,13 +57,16 @@ Documentation for %{name}.
 %autosetup -n %{pypi_name}-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 PYTHONPATH=${PWD} sphinx-build-3 docs html
 rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} test.py
@@ -73,7 +75,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} test.py
 %doc README.rst
 %license LICENSE.txt
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py*.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %files -n %{name}-doc
 %doc html

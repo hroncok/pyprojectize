@@ -33,7 +33,6 @@ client applications in Python.
 %package -n python%{python3_pkgversion}-xlib
 Summary:        X client library for Python 3
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-setuptools_scm
 BuildRequires:  python%{python3_pkgversion}-six >= 1.10.0
 BuildRequires:  python%{python3_pkgversion}-tkinter
@@ -58,15 +57,18 @@ that tell you how to program with python-xlib.
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 cd doc
 make html ps
 cd html
 rm Makefile
 
 %install
-%py3_install
+%pyproject_install
 chmod a-x examples/*.py
 
 %check

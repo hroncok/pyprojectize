@@ -50,11 +50,15 @@ general might be used separately.
 %setup -q
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 %if %{with python2}
 %py2_build
 %else
-%py3_build
+%pyproject_wheel
 %endif
 
 
@@ -62,7 +66,7 @@ general might be used separately.
 %if %{with python2}
 %py2_install
 %else
-%py3_install
+%pyproject_install
 %endif
 
 
@@ -75,7 +79,7 @@ general might be used separately.
 %{_bindir}/%{name}-*
 %_mandir/man1/%{name}-*.1*
 %{default_sitelib}/%{pkgname}
-%{default_sitelib}/%{pkgname}-*.egg-info
+%{default_sitelib}/%{pkgname}.dist-info
 
 
 %changelog

@@ -12,7 +12,6 @@ URL:            http://pypi.python.org/pypi/pyotp
 Source0:        https://files.pythonhosted.org/packages/source/p/%{srcname}/%{srcname}-%{version}.tar.gz
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 PyOTP is a Python library for generating and verifying one-time passwords. It
@@ -34,8 +33,12 @@ methods in web applications and in other systems that require users to log in.
 %autosetup -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %check
@@ -43,14 +46,14 @@ methods in web applications and in other systems that require users to log in.
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{srcname}
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 
 
 %changelog

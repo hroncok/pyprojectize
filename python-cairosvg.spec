@@ -56,11 +56,14 @@ rm -rf %{srcname}.egg-info
 mkdir test_non_regression/cairosvg_reference/
 cp -a $(ls -1 . | grep -v test_non_regression) test_non_regression/cairosvg_reference/
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} -m pytest -v

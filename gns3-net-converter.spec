@@ -13,7 +13,6 @@ Source0:        https://files.pythonhosted.org/packages/source/g/%{name}/%{name}
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Requires: python3-configobj
 
 %description
@@ -27,11 +26,14 @@ to the newer version v1+ JSON format for use in GNS3 v1+.
 %prep
 %autosetup 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -42,7 +44,7 @@ to the newer version v1+ JSON format for use in GNS3 v1+.
 %license COPYING
 %doc README.rst ChangeLog
 %{python3_sitelib}/gns3converter
-%{python3_sitelib}/gns3_net_converter-*.egg-info
+%{python3_sitelib}/gns3_net_converter.dist-info
 %{_bindir}/gns3-converter
 
 

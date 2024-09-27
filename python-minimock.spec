@@ -10,7 +10,6 @@ Source0:        http://pypi.python.org/packages/source/M/MiniMock/MiniMock-%{ver
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 minimock is a simple library for doing Mock objects with doctest.
@@ -26,12 +25,16 @@ minimock is a simple library for doing Mock objects with doctest.
 %setup -q -n MiniMock-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -40,7 +43,7 @@ minimock is a simple library for doing Mock objects with doctest.
 
 %files -n python3-minimock
 %doc docs/*
-%{python3_sitelib}/MiniMock-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/MiniMock-%{version}.dist-info
 %{python3_sitelib}/minimock*
 %{python3_sitelib}/__pycache__/minimock*
 

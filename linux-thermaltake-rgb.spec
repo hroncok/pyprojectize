@@ -19,7 +19,6 @@ Source0: %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires: python3-devel
 BuildRequires: systemd-rpm-macros
-BuildRequires: python3dist(setuptools)
 
 %if %{with tests}
 # BuildRequires: python3dist(base_test_object)
@@ -63,12 +62,16 @@ sed -i 's/GObject/PyGObject/g' setup.py
 rm -rf %{name}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 mkdir -p %{buildroot}%{_unitdir}
 mv %{buildroot}%{_datadir}/%{pypi_name}/%{name}.service \
@@ -102,7 +105,7 @@ mv %{buildroot}%{_datadir}/%{pypi_name}/config.yml \
 %dir %{_sysconfdir}/%{pypi_name}
 %{_bindir}/%{name}
 %{_unitdir}/*.service
-%{python3_sitelib}/%{pypi_name}-%{version}-py*.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 %{python3_sitelib}/%{pypi_name}/
 
 

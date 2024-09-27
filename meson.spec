@@ -14,7 +14,6 @@ Source:         https://github.com/mesonbuild/meson/releases/download/%{version_
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Requires:       python%{python3_version}dist(setuptools)
 Requires:       ninja-build
 
@@ -98,11 +97,14 @@ unit tests, coverage reports, Valgrind, CCache and the like.
 # Macro should not change when we are redefining bindir
 sed -i -e "/^%%__meson /s| .*$| %{_bindir}/%{name}|" data/macros.%{name}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 install -Dpm0644 -t %{buildroot}%{rpmmacrodir} data/macros.%{name}
 install -Dpm0644 -t %{buildroot}%{_datadir}/bash-completion/completions/ data/shell-completions/bash/meson
 install -Dpm0644 -t %{buildroot}%{_datadir}/zsh/site-functions/ data/shell-completions/zsh/_meson
@@ -118,7 +120,7 @@ export MESON_PRINT_TEST_OUTPUT=1
 %license COPYING
 %{_bindir}/%{name}
 %{python3_sitelib}/%{libname}/
-%{python3_sitelib}/%{name}-*.egg-info/
+%{python3_sitelib}/%{name}.dist-info/
 %{_mandir}/man1/%{name}.1*
 %{rpmmacrodir}/macros.%{name}
 %dir %{_datadir}/polkit-1

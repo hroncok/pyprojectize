@@ -38,7 +38,6 @@ Pytest plugin with mechanisms for caching across test runs for Python 3.
 %package -n python%{python3_pkgversion}-%{srcname}
 Summary:        Pytest plugin with mechanisms for caching across test runs for Python 3
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-execnet
 BuildRequires:  python%{python3_pkgversion}-pytest
 Requires:       python%{python3_pkgversion}-execnet
@@ -54,15 +53,19 @@ Pytest plugin with mechanisms for caching across test runs for Python 3.
 rm -rf *.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 %if %{with python2}
 %py2_build
 %endif
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 %if %{with python2}
 %py2_install
 %endif
@@ -81,14 +84,14 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} -v || :
 %license LICENSE
 %doc CHANGELOG PKG-INFO README.rst
 %{python2_sitelib}/pytest_cache.py*
-%{python2_sitelib}/pytest_cache-*.egg-info/
+%{python2_sitelib}/pytest_cache.dist-info/
 %endif
 
 %files -n python%{python3_pkgversion}-%{srcname}
 %license LICENSE
 %doc CHANGELOG PKG-INFO README.rst
 %{python3_sitelib}/pytest_cache.py
-%{python3_sitelib}/pytest_cache-*.egg-info/
+%{python3_sitelib}/pytest_cache.dist-info/
 %{python3_sitelib}/__pycache__/*
 
 

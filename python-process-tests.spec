@@ -19,7 +19,6 @@ Tools for testing processes.
 %package -n python%{python3_pkgversion}-%{srcname}
 Summary:        Tools for testing processes
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %description -n python%{python3_pkgversion}-%{srcname}
@@ -30,12 +29,16 @@ Tools for testing processes for Python 3.
 %setup -q -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 
 %files -n python%{python3_pkgversion}-%{srcname}

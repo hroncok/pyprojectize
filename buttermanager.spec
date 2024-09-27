@@ -12,7 +12,6 @@ BuildArch:      noarch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 Requires:       btrfs-progs
 Requires:       python3-tkinter
 # Recommends:     grub2-btrfs
@@ -25,12 +24,16 @@ and upgrading the system safely.
 %autosetup -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 install -Dpm644 packaging/%{name}.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
 

@@ -24,7 +24,6 @@ BuildArch:      noarch
  
 BuildRequires: make
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(mock)
 
@@ -60,12 +59,15 @@ systemd plugin to access service status via dbus.
 rm -rf %{pypi_name}.egg-info
 cp -p %{SOURCE1} .
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 make -f /usr/share/selinux/devel/Makefile collectd_systemd.pp
 
 %install
-%py3_install
+%pyproject_install
 
 mkdir -p %{buildroot}%{_datadir}/selinux/packages/%{name}
 install -m 644 -p collectd_systemd.pp \
@@ -86,7 +88,7 @@ fi
 %license LICENSE
 %{python3_sitelib}/__pycache__/*
 %{python3_sitelib}/%{pypi_name}.py
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %files selinux
 %{_datadir}/selinux/packages/%{name}/collectd_systemd.pp

@@ -10,7 +10,6 @@ Source0:        https://pypi.io/packages/source/m/%{srcname}/%{srcname}-%{versio
 BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3-pygments
-BuildRequires:  python3-setuptools
 
 
 %description
@@ -47,12 +46,16 @@ http://daringfireball.net/projects/markdown/
 %autosetup -n %{srcname}-%{version} -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 # remove shebangs and fix permissions
 find %{buildroot}%{python3_sitelib} \

@@ -17,7 +17,6 @@ Mido is a library for working with MIDI messages and ports.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -34,11 +33,14 @@ Documentation for %{name}.
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 PYTHONPATH=${PWD} sphinx-build-3 docs html
 rm -rf html/.{doctrees,buildinfo}
 
@@ -50,7 +52,7 @@ rm -rf html/.{doctrees,buildinfo}
 %doc README.rst
 %license LICENSE
 %{_bindir}/mido-*
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{python3_sitelib}/%{pypi_name}/
 
 %files -n python-%{pypi_name}-doc

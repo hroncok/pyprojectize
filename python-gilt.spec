@@ -50,8 +50,11 @@ Gilt is a git layering tool
 %prep
 %autosetup -n %{pkgname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{setup_flags} %{py3_build}
+%{setup_flags} %{pyproject_wheel}
 
 # generate html docs
 cd doc
@@ -60,12 +63,12 @@ PYTHONPATH=.. make html
 rm -rf build/html/.{doctrees,buildinfo}
 
 %install
-%{setup_flags} %{py3_install}
+%{setup_flags} %{pyproject_install}
 
 %files -n python3-%{srcname}
 %license LICENSE
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/python_%{srcname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/python_%{srcname}-%{version}.dist-info
 %{_bindir}/%{srcname}
 
 %files -n python-%{srcname}-doc

@@ -11,7 +11,6 @@ Source0:        %{pypi_source}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       python3-%{pypi_name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
@@ -30,11 +29,14 @@ Python-based Kerberos security toolkit.
 rm -rf %{pypi_name}.egg-info
 sed -i -e '/^#!\//, 1d' kerberoast/kerberoast.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %{_bindir}/kerberoast
@@ -43,7 +45,7 @@ sed -i -e '/^#!\//, 1d' kerberoast/kerberoast.py
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py*.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.4-14

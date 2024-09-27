@@ -8,7 +8,6 @@ License:    GPL-2.0-only
 BuildArch:  noarch
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3dist(systemd-python)
 BuildRequires: python3dist(psutil)
 
@@ -21,19 +20,22 @@ troubleshooting and data collection for randomly occurring events.
 %prep
 %setup -q
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
 mkdir -p ${RPM_BUILD_ROOT}%{_mandir}/man1
 install -p -m644 man/en/rig.1 ${RPM_BUILD_ROOT}%{_mandir}/man1/
-%py3_install
+%pyproject_install
 
 %files
 %{_bindir}/rig
 %{_mandir}/man1/*
 
-%{python3_sitelib}/rig-*.egg-info/
+%{python3_sitelib}/rig.dist-info/
 %{python3_sitelib}/rigging/
 
 %license LICENSE

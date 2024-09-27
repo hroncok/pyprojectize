@@ -19,7 +19,6 @@ PyXDG is a python library to access freedesktop.org standards.
 %package -n python%{python3_pkgversion}-pyxdg
 Summary:        Python3 library to access freedesktop.org standards
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 %if %{with check}
 # These are needed for the nose tests.
 BuildRequires:  python%{python3_pkgversion}-nose
@@ -33,11 +32,14 @@ package contains a Python 3 version of PyXDG.
 %prep
 %setup -q -a 1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # icon-test currently fails
@@ -48,7 +50,7 @@ nosetests-%{python3_version} || :
 %license COPYING
 %doc AUTHORS ChangeLog README TODO
 %{python3_sitelib}/xdg
-%{python3_sitelib}/pyxdg-*.egg-info
+%{python3_sitelib}/pyxdg.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.27-13

@@ -28,7 +28,6 @@ Requires:         python3-pbr
 Requires:         python3-PyYAML
 Requires:         python3-requests
 Requires:         python3-six
-BuildRequires:    python3-setuptools
 BuildRequires:    python3-devel
 BuildRequires:    python3-pbr
 # for %%check tests
@@ -46,20 +45,23 @@ BuildRequires:    python3-six
 # let RPM handle the requirements
 rm -f {test-,}requirements.txt
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %check
 %{__python3} setup.py test
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-distroinfo
 %doc README.rst AUTHORS
 %license LICENSE
 %{python3_sitelib}/distroinfo
-%{python3_sitelib}/distroinfo-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/distroinfo-%{version}.dist-info
 
 
 %changelog

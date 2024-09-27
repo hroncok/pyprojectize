@@ -64,7 +64,6 @@ HTML documentation for the '%{srcname}' Python module.
 %package -n python%{python3_pkgversion}-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %if %{with tests}
@@ -95,8 +94,12 @@ interfaces more user friendly. Some example features:
 %autosetup -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 # Don't install the tests.py
 rm build/lib/%{srcname}/tests.py
@@ -106,7 +109,7 @@ rm docs/build/html/.buildinfo
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -125,7 +128,7 @@ PYTHONUNBUFFERED=1 py.test-%{python3_version} %{srcname}/tests.py
 %license LICENSE.txt
 %doc CHANGELOG.rst README.rst
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 %{_bindir}/%{srcname}
 
 

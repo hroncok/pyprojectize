@@ -12,7 +12,6 @@ BuildArch:      noarch
 BuildRequires:  python3-configobj
 BuildRequires:  python3-devel
 BuildRequires:  python3-pytest
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-tabulate
 BuildRequires:  python3-terminaltables
 BuildRequires:  python3-wcwidth
@@ -32,17 +31,20 @@ Requires:       python3-terminaltables >= 3.0.0
 Requires:       python3-wcwidth
 %description -n python3-cli-helpers %_description
 
-%{?python_extras_subpkg:%python_extras_subpkg -n python3-cli-helpers -i %{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info styles}
+%pyproject_extras_subpkg -n python3-cli-helpers styles
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 PYTHONPATH=build/lib/ py.test-3
@@ -51,7 +53,7 @@ PYTHONPATH=build/lib/ py.test-3
 %license LICENSE
 %doc AUTHORS CHANGELOG README.rst
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 2.3.1-4

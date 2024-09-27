@@ -16,7 +16,6 @@ Patch:          %{url}/commit/52457154d7.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-sphinx
 BuildRequires:  python3-pytest
 
@@ -35,11 +34,14 @@ directives.
 %prep
 %autosetup -p1 -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 # https://github.com/MrSenko/sphinx-removed-in/pull/10
 rm -rf %{buildroot}%{python3_sitelib}/tests
 
@@ -50,7 +52,7 @@ rm -rf %{buildroot}%{python3_sitelib}/tests
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/sphinx_removed_in/
-%{python3_sitelib}/sphinx_removed_in-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/sphinx_removed_in-%{version}.dist-info/
 
 %changelog
 %autochangelog

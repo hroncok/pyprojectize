@@ -24,7 +24,6 @@ follow the DTD given in RFC-7749 (or successor). }
 %package -n python3-%{srcname}
 Summary: Convert IETF RFC-2629 XML into txt format
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  libxslt-devel
 BuildRequires:  libxml2-devel
 Requires: python3-google-i18n-address
@@ -43,21 +42,24 @@ Requires: python3-jinja2
 # temp workaround, filed bug upstream: https://trac.ietf.org/trac/xml2rfc/ticket/661#ticket
 sed -i "s/jinja2>=2.11,<3.0/jinja2>=2.11/" requirements.txt
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %check
 # fails on AssertionError: 'Noto Sans Cherokee' not found
 #%{python3} setup.py test
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %license PKG-INFO
 %doc changelog README
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 %{_bindir}/xml2rfc
 
 %changelog

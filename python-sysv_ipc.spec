@@ -14,7 +14,6 @@ Source0:        https://pypi.python.org/packages/source/s/%{srcname}/%{srcname}-
 
 BuildRequires:  gcc
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 %{desc}
@@ -36,19 +35,22 @@ Summary:        %{sum}
 %prep
 %setup -q -n sysv_ipc-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 chmod -x demos/*/*.{py,sh}
 
 %files -n python3-%{srcname}
 %license LICENSE 
 %doc LICENSE README ReadMe.html VERSION
 %{python3_sitearch}/*
-%{python3_sitearch}/%{srcname}-%{version}-*.egg-info
+%{python3_sitearch}/%{srcname}-%{version}.dist-info
 
 
 %files examples

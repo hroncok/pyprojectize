@@ -13,7 +13,6 @@ Patch0:         rpl-python3.patch
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 rpl is a UN*X text replacement utility. It will replace strings with
@@ -31,12 +30,15 @@ rpl was originally written by Joe Laffey; this is a rewritten version.
 # upstream mistake
 sed -i s/1\.5\.6/%{version}/ setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 %{__install} -m 0644 -D rpl.1 %{buildroot}%{_mandir}/man1/rpl.1
 
 

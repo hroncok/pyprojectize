@@ -10,7 +10,7 @@ Source:         %{url}/archive/v%{version}/%{oname}-%{version}.tar.gz
 # Proposed upstream
 ## From: https://github.com/open-iscsi/targetcli-fb/pull/176
 BuildArch:      noarch
-BuildRequires:  python3-devel, python3-setuptools, systemd-rpm-macros
+BuildRequires:  python3-devel, systemd-rpm-macros
 Requires:       python3-rtslib, target-restore, python3-configshell, python3-six, python3-dbus
 Requires:       python3-gobject-base
 
@@ -24,11 +24,14 @@ users will also need to install and use fcoe-utils.
 %prep
 %setup -q -n %{oname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 mkdir -p %{buildroot}%{_sysconfdir}/target/backup
 mkdir -p %{buildroot}%{_mandir}/man8/
 install -m 644 targetcli*.8 %{buildroot}%{_mandir}/man8/

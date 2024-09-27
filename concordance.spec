@@ -14,7 +14,6 @@ BuildRequires: gcc
 BuildRequires: gcc-c++
 BuildRequires: hidapi-devel
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: autoconf
 BuildRequires: automake
 BuildRequires: libcurl-devel
@@ -59,6 +58,10 @@ Python 3 bindings for libconcord
 %setup -q
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 cd %{libpkg}
 
@@ -68,7 +71,7 @@ cd -
 
 # python bindings
 cd %{libpkg}/bindings/python
-%py3_build
+%pyproject_wheel
 cd -
 
 cd %{name}
@@ -89,7 +92,7 @@ cd -
 
 # python bindings
 cd %{libpkg}/bindings/python
-%py3_install
+%pyproject_install
 cd -
 
 cd %{name}

@@ -17,7 +17,6 @@ License:        GPL-3.0-or-later
 Source0:        https://files.pythonhosted.org/packages/source/k/%{srcname}/%{srcname}-%{version}.tar.gz
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 # doc build requirements
 BuildRequires:  make
@@ -48,11 +47,14 @@ This package provides the Python 3 library plugin.
 %prep
 %autosetup -n %{srcname}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Install documentation
 make buildroot=%{buildroot}/ docdir=%{_defaultdocdir}/ install

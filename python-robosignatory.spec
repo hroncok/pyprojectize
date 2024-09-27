@@ -13,7 +13,6 @@ Source0:            https://pagure.io/releases/robosignatory/robosignatory-%{ver
 BuildArch:          noarch
 
 BuildRequires:      python3-devel
-BuildRequires:      python3-setuptools
 BuildRequires:      python3-fedora-messaging
 BuildRequires:      python3-psutil
 BuildRequires:      python3-boto3
@@ -57,11 +56,14 @@ Provides:           robosignatory = %{version}-%{release}
 # Remove bundled egg-info in case it exists
 rm -rf %{modname}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} -m pytest -v

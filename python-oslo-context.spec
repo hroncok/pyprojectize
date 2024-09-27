@@ -85,8 +85,11 @@ Documentation for the OpenStack Oslo context library.
 %autosetup -n %{pypi_name}-%{upstream_version} -S git
 rm -rf *requirements.txt
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %if 0%{?with_doc}
 # doc
@@ -96,7 +99,7 @@ rm -fr doc/build/html/.{doctrees,buildinfo}
 %endif
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 %check
 python3 setup.py test
@@ -105,7 +108,7 @@ python3 setup.py test
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/oslo_context
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %exclude %{python3_sitelib}/oslo_context/tests
 
 %if 0%{?with_doc}

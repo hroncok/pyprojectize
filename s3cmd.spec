@@ -20,7 +20,6 @@ BuildArch:      noarch
 
 %if %{with python3}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Requires:       python3-dateutil
 Requires:       python3-magic
 
@@ -51,10 +50,13 @@ rm -rf *.egg-info
 rm -f S3/Custom_httplib3x.py
 %endif
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 export S3CMD_PACKAGING=1
 %if %{with python3}
-%py3_build
+%pyproject_wheel
 %else
 %py2_build
 %endif
@@ -62,7 +64,7 @@ export S3CMD_PACKAGING=1
 %install
 export S3CMD_PACKAGING=1
 %if %{with python3}
-%py3_install
+%pyproject_install
 %else
 %py2_install
 %endif
@@ -76,10 +78,10 @@ install -D -p -m 0644 -t %{buildroot}%{_mandir}/man1 %{name}.1
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*
 %if %{with python3}
-%{python3_sitelib}/%{name}-*.egg-info/
+%{python3_sitelib}/%{name}.dist-info/
 %{python3_sitelib}/S3/
 %else
-%{python2_sitelib}/%{name}-*.egg-info/
+%{python2_sitelib}/%{name}.dist-info/
 %{python2_sitelib}/S3/
 %endif
 

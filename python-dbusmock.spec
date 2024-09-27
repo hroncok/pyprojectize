@@ -13,7 +13,6 @@ BuildArch:        noarch
 BuildRequires:    git
 BuildRequires:    python3-dbus
 BuildRequires:    python3-devel
-BuildRequires:    python3-setuptools
 BuildRequires:    python3-gobject
 BuildRequires:    python3-pytest
 BuildRequires:    dbus-x11
@@ -38,11 +37,15 @@ Requires:         python3-dbus, python3-gobject, dbus-x11
 rm -rf python-%{modname}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} -m unittest -v

@@ -14,7 +14,6 @@ Source0:            https://github.com/regebro/svg.path/archive/%{version}.tar.g
 BuildArch:          noarch
 
 BuildRequires:      python3-devel
-BuildRequires:      python3-setuptools
 
 %global _description\
 svg.path is a collection of objects that implement the different path\
@@ -36,11 +35,14 @@ commands in SVG, and a parser for SVG path definitions.
 
 # Remove bundled egg-info in case it exists rm -rf %%{modname}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 %check
 %{__python3} setup.py test
@@ -48,7 +50,7 @@ commands in SVG, and a parser for SVG path definitions.
 %files -n python3-svg-path
 %doc README.rst CHANGES.txt CONTRIBUTORS.txt
 %{python3_sitelib}/svg/
-%{python3_sitelib}/%{modname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{modname}-%{version}.dist-info/
 
 %changelog
 * Wed Aug 07 2024 Miroslav Suchý <msuchy@redhat.com> - 4.1-13

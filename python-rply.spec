@@ -21,7 +21,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{modname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 BuildRequires:  python3dist(appdirs)
 
@@ -35,11 +34,14 @@ Python 3 version.
 sed -i "s/import py/import pytest/" tests/test_*
 sed -i "s/py\.test/pytest/" tests/test_*
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 pytest-%{python3_version} -v
@@ -47,7 +49,7 @@ pytest-%{python3_version} -v
 %files -n python3-%{modname}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{modname}-*.egg-info/
+%{python3_sitelib}/%{modname}.dist-info/
 %{python3_sitelib}/%{modname}/
 
 %changelog

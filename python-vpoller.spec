@@ -46,7 +46,6 @@ Summary:        %{sum}
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{modname}}
 BuildRequires: make
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 #BuildRequires: %%{py3_dist docopt zmq vconnector pyvmomi sphinx}
 BuildRequires:  python%{python3_pkgversion}-docopt
 BuildRequires:  python%{python3_pkgversion}-zmq
@@ -83,8 +82,11 @@ This pacakge installs several documentation files.
 %prep
 %autosetup -p1 -npy-%{modname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 export PYTHONPATH=../src
 sed -i -r \
  -e 's:(SPHINXBUILD.*=).*:\1 %{_bindir}/sphinx-build-%{python3_version}:' \
@@ -97,7 +99,7 @@ grep -rl "/usr/bin/env" | xargs chmod 0644
 grep -rl "/usr/bin/env" | xargs sed -i "s|#!/usr/bin/env |/usr/bin/|"
 
 %install
-%py3_install
+%pyproject_install
 # manpages
 pushd %{buildroot}
 install -d .%{_mandir}/man1
@@ -112,7 +114,7 @@ popd
 %license LICENSE
 %doc README.rst AUTHORS.txt
 %{python3_sitelib}/%{modname}/
-%{python3_sitelib}/%{modname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{modname}-%{version}.dist-info/
 
 %files -n %{modname}
 %license LICENSE

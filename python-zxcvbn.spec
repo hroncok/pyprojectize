@@ -9,7 +9,6 @@ URL: https://github.com/dwolfhub/zxcvbn-python
 Source: https://github.com/dwolfhub/%{srcname}/archive/v%{version}/%{srcname}-%{version}.tar.gz
 BuildArch: noarch
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: pytest
 
 %global _description %{expand:
@@ -33,20 +32,23 @@ Summary: Realistic password strength estimator python3 module
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %check
 %pytest
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-zxcvbn
 %license LICENSE.txt
 %doc README.rst
 %{_bindir}/zxcvbn
-%{python3_sitelib}/zxcvbn-*.egg-info/
+%{python3_sitelib}/zxcvbn.dist-info/
 %{python3_sitelib}/zxcvbn
 
 %changelog

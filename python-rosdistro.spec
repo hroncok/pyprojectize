@@ -44,7 +44,6 @@ BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-pytest
 BuildRequires:  python%{python3_pkgversion}-PyYAML
 BuildRequires:  python%{python3_pkgversion}-rospkg
-BuildRequires:  python%{python3_pkgversion}-setuptools
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 Obsoletes:      python2-%{srcname} < 0.7.4-4
 
@@ -80,8 +79,12 @@ local cache file, to speed up performance for the next query.
 sed -i "s/mock; python_version < '3.3'//" setup.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 PYTHONPATH=$PWD/src \
   %make_build -C doc html SPHINXBUILD=sphinx-build-%{python3_version} SPHINXAPIDOC=sphinx-apidoc-%{python3_version}
@@ -89,7 +92,7 @@ rm doc/_build/html/.buildinfo
 
 
 %install
-%py3_install
+%pyproject_install
 
 # backwards compatibility symbolic links
 pushd %{buildroot}%{_bindir}
@@ -114,7 +117,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} \
 %license LICENSE.txt
 %doc README.md
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 %{_bindir}/rosdistro_build_cache
 %{_bindir}/rosdistro_freeze_source
 %{_bindir}/rosdistro_migrate_to_rep_141

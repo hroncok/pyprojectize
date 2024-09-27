@@ -34,7 +34,6 @@ Source0: %{url}/releases/download/%{version}/%{name}-%{version}.tar.bz2
 BuildArch: noarch
 BuildRequires: git-core
 BuildRequires: python%{python3_pkgversion}-devel
-BuildRequires: python%{python3_pkgversion}-setuptools
 BuildRequires: python%{python3_pkgversion}-six
 %if %{with python2}
 BuildRequires: python2-devel
@@ -89,6 +88,9 @@ Conflicts: python2-nitrate < 1.5-3
 %prep
 %autosetup -S git
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if %{with englocale}
 export LANG=en_US.utf-8
@@ -96,7 +98,7 @@ export LANG=en_US.utf-8
 %if %{with python2}
 %py2_build
 %endif
-%py3_build
+%pyproject_wheel
 
 %install
 %if %{with englocale}
@@ -105,7 +107,7 @@ export LANG=en_US.utf-8
 %if %{with python2}
 %py2_install
 %endif
-%py3_install
+%pyproject_install
 mkdir -p %{buildroot}%{_mandir}/man1
 install -pm 644 docs/*.1.gz %{buildroot}%{_mandir}/man1
 
@@ -115,13 +117,13 @@ install -pm 644 docs/*.1.gz %{buildroot}%{_mandir}/man1
 %if %{with python2}
 %files -n python2-nitrate
 %{python2_sitelib}/nitrate/
-%{python2_sitelib}/nitrate-*.egg-info/
+%{python2_sitelib}/nitrate.dist-info/
 %license LICENSE
 %endif
 
 %files -n python%{python3_pkgversion}-nitrate
 %{python3_sitelib}/nitrate/
-%{python3_sitelib}/nitrate-*.egg-info/
+%{python3_sitelib}/nitrate.dist-info/
 %{_mandir}/man1/*
 %{_bindir}/nitrate
 %doc README.rst examples

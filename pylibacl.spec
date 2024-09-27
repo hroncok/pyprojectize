@@ -14,7 +14,6 @@ BuildRequires:  libacl-devel
 BuildRequires:  python3-devel
 BuildRequires:  gnupg2
 BuildRequires:  python3dist(pytest)
-BuildRequires:  python3-setuptools
 
 %global _description %{expand:
 Python extension module for POSIX ACLs. It allows to query, list,
@@ -35,11 +34,14 @@ Obsoletes: py3libacl < 0.5.4
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # the module is just a C extension => need to add the installed destination to

@@ -19,7 +19,6 @@ Summary:       %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 Provides:      %{srcname} = %{version}-%{release}
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 %description -n python3-%{srcname}
 %{summary}.
@@ -27,18 +26,21 @@ BuildRequires: python3-setuptools
 %prep
 %autosetup -n %{srcname}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 %files -n python3-%{srcname}
 %doc README.md
 %license LICENSE
 %{_bindir}/mailmerge
 %{python3_sitelib}/mailmerge/
-%{python3_sitelib}/mailmerge-*.egg-info/
+%{python3_sitelib}/mailmerge.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.2.1-11

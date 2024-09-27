@@ -32,7 +32,6 @@ BuildRequires: pkgconfig(zlib)
 %if 0%{?python3:1}
 BuildRequires: %{python3} %{python3}-devel
 BuildRequires: pyproject-rpm-macros
-BuildRequires: python3-setuptools
 # we cannot use pyproject_buildrequires as setup.py is created in
 # build phase
 BuildRequires: python3-pip
@@ -104,6 +103,10 @@ sed -i.shbang \
 %endif
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 %cmake \
   -DBUILD_DOC:BOOL=ON \
@@ -119,7 +122,7 @@ sed -i.shbang \
 # do a proper guideline-compliant build of the python library
 %if 0%{?rhel} && 0%{?rhel} < 9
 pushd apps
-%py3_build
+%pyproject_wheel
 %else
 pushd %_vpath_builddir/apps
 %pyproject_wheel
@@ -133,7 +136,7 @@ popd
 # do a proper guideline-compliant install of the python library
 %if 0%{?rhel} && 0%{?rhel} < 9
 pushd apps
-%py3_install
+%pyproject_install
 %else
 pushd %_vpath_builddir/apps
 %pyproject_install
@@ -190,7 +193,7 @@ export CTEST_OUTPUT_ON_FAILURE=1
 
 %if 0%{?rhel} && 0%{?rhel} < 9
 %files -n %{python3}-lensfun
-%{python3_sitelib}/lensfun-*.egg-info/
+%{python3_sitelib}/lensfun.dist-info/
 %{python3_sitelib}/lensfun/
 %else
 %files -n %{python3}-lensfun -f %{pyproject_files}

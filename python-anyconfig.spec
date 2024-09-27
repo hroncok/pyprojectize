@@ -35,7 +35,6 @@ BuildRequires:  python3-PyYAML
 BuildRequires:  python3-sphinx-autodoc-typehints
 %endif
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description    %{desc}
 
@@ -67,9 +66,12 @@ HTML documentation for %{name}.
 %prep
 %autosetup -n %{name}-RELEASE_%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 
-%py3_build
+%pyproject_wheel
 
 %if %{with doc}
 make -C docs/ SPHINXBUILD=sphinx-build-3 html
@@ -78,7 +80,7 @@ rm -frv docs/build/html/_sources
 %endif
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with tests}
 %check

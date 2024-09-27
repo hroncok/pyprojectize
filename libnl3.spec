@@ -66,7 +66,6 @@ This package contains libnl3 API documentation
 Summary: libnl3 binding for Python 3
 %{?python_provide:%python_provide python3-libnl3}
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: make
 Requires: %{name} = %{version}-%{release}
 
@@ -78,6 +77,9 @@ Python 3 bindings for libnl3
 %autosetup -p1 -n libnl-%{version}
 
 tar -xzf %SOURCE1
+
+%generate_buildrequires
+%pyproject_buildrequires
 
 %build
 autoreconf -vif
@@ -99,7 +101,7 @@ find $RPM_BUILD_ROOT -name \*.la -delete
 
 %if %{with python3}
 pushd ./python/
-%py3_install
+%pyproject_install
 popd
 %endif
 
@@ -149,7 +151,7 @@ popd
 %if %{with python3}
 %files -n python3-libnl3
 %{python3_sitearch}/netlink
-%{python3_sitearch}/netlink-*.egg-info
+%{python3_sitearch}/netlink.dist-info
 %endif
 
 %changelog

@@ -15,7 +15,6 @@ Patch0:         %{srcname}-dont_ship_tests.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if %{with tests}
 BuildRequires:  python3-test
 BuildRequires:  %{py3_dist appdirs}
@@ -43,12 +42,16 @@ Requires:       %{py3_dist appdirs}
 sed -i '1d' fissix/pgen2/token.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 cp -p fissix/*.txt %{buildroot}%{python3_sitelib}/%{srcname}/
 
 
@@ -61,7 +64,7 @@ cp -p fissix/*.txt %{buildroot}%{python3_sitelib}/%{srcname}/
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 
 %changelog

@@ -21,7 +21,7 @@ Python/Python3.  See README for extension RFCs implemented.
 
 %package -n python3-%{srcname}
 Summary: %summary
-BuildRequires: python3-devel python3-setuptools
+BuildRequires: python3-devel
 
 %{?python_provide:%python_provide python3-%{srcname}}
 
@@ -32,12 +32,16 @@ BuildRequires: python3-devel python3-setuptools
 %autosetup -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -48,7 +52,7 @@ BuildRequires: python3-devel python3-setuptools
 %license COPYING
 %doc CHANGES README
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 
 
 %changelog

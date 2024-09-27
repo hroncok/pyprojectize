@@ -17,7 +17,6 @@ ChirpStack gRPC API message and service wrappers for Python.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -27,16 +26,19 @@ ChirpStack gRPC API message and service wrappers for Python.
 %autosetup -n %{pypi_name}-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %doc README.md
 %{python3_sitelib}/chirpstack_api
-%{python3_sitelib}/chirpstack_api-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/chirpstack_api-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 3.9.4-13

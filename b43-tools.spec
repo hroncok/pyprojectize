@@ -22,7 +22,6 @@ BuildRequires:	flex-static
 BuildRequires:	gcc
 BuildRequires:	make
 BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
 
 
 %description
@@ -43,12 +42,16 @@ install -p -m 0644 ssb_sprom/COPYING COPYING.ssb_sprom
 sed 's/py_modules=/version="%{version}", py_modules=/' debug/install.py > debug/setup.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 CFLAGS="%{optflags}" %{make_build} -C assembler
 CFLAGS="%{optflags}" %{make_build} -C disassembler
 CFLAGS="%{optflags}" %{make_build} -C ssb_sprom
 cd debug
-%py3_build
+%pyproject_wheel
 
 
 %install
@@ -61,7 +64,7 @@ install -p -m 0755 disassembler/brcm80211-fwconv %{buildroot}%{_bindir}
 install -p -m 0755 disassembler/brcm80211-ivaldump %{buildroot}%{_bindir}
 install -p -m 0755 ssb_sprom/ssb-sprom %{buildroot}%{_bindir}
 cd debug
-%py3_install
+%pyproject_install
 
 
 %files

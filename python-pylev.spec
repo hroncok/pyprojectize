@@ -24,7 +24,6 @@ Source1:        https://raw.githubusercontent.com/toastdriven/pylev/master/LICEN
 BuildArch:      noarch
  
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 %description %{common_description}
 
@@ -45,12 +44,16 @@ rm -rf %{pypi_name}.egg-info
 cp %{SOURCE1} .
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{pypi_name}
@@ -59,7 +62,7 @@ cp %{SOURCE1} .
 
 %{python3_sitelib}/__pycache__/*
 %{python3_sitelib}/%{pypi_name}.py
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 
 %changelog

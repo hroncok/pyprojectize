@@ -12,7 +12,6 @@ Source1:        https://raw.githubusercontent.com/algorand/py-algorand-sdk/devel
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pynacl
 BuildRequires:  python3-pycryptodomex
 BuildRequires:  python3-msgpack
@@ -31,19 +30,23 @@ A python library for interacting with the Algorand network.
 %setup -q -n %{pypi_name}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 cp %{SOURCE1} .
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/algosdk
-%{python3_sitelib}/py_algorand_sdk-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/py_algorand_sdk-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.6.1-2

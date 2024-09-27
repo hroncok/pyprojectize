@@ -18,7 +18,6 @@ A python module which provides a timeout decorator.
 %package -n python3-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
@@ -27,11 +26,14 @@ A python module which provides a timeout decorator.
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with tests}
 %check
@@ -41,7 +43,7 @@ A python module which provides a timeout decorator.
 %files -n python3-%{srcname}
 %doc README.rst
 %{python3_sitelib}/timeout_decorator
-%{python3_sitelib}/timeout_decorator-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/timeout_decorator-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.4.1-18

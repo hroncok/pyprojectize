@@ -19,7 +19,6 @@ Patch1000: 0001-buildrpm-Always-use-DNF.patch
 License: GPL-2.0-or-later
 URL: http://gitweb.mageia.org/software/build-system/mgarepo/
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 Requires: subversion
 Requires: openssh-clients
 Requires: python3-rpm
@@ -52,11 +51,14 @@ See mgarepo --help-plugin ldapusers for more information.
 # Fix requires for RPM Python bindings
 sed -e "s/rpm-python/rpm/" -i setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %doc README.BINREPO CHANGES %{name}-example.conf
@@ -69,7 +71,7 @@ sed -e "s/rpm-python/rpm/" -i setup.py
 %exclude %{python3_sitelib}/%{Uname}/plugins/ldapusers.py*
 %exclude %{python3_sitelib}/%{Uname}/plugins/__pycache__/__init__*
 %exclude %{python3_sitelib}/%{Uname}/plugins/__pycache__/ldapusers*
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{_datadir}/bash-completion/completions/%{name}
 
 %files ldap

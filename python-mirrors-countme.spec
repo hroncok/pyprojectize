@@ -50,7 +50,6 @@ system arch, etc.}
 Summary: %{summary}
 BuildRequires: python%{python3_pkgversion}-devel
 %if ! %{with auto_buildrequires}
-BuildRequires: python%{python3_pkgversion}-setuptools
 %endif
 %if %{with tests}
 BuildRequires: glibc-langpack-en
@@ -74,7 +73,7 @@ BuildRequires: python%{python3_pkgversion}-pytest-xdist
 %if %{with poetry_compatible}
 %pyproject_wheel
 %else
-%py3_build
+%pyproject_wheel
 %endif
 
 %install
@@ -82,7 +81,7 @@ BuildRequires: python%{python3_pkgversion}-pytest-xdist
 %pyproject_install
 %pyproject_save_files %{pkgname}
 %else
-%py3_install
+%pyproject_install
 
 pushd %{buildroot}
 find "./%{python3_sitelib}/%{pkgname}"* -type d | while read d; do

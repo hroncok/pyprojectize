@@ -23,7 +23,6 @@ BuildRequires:	sed
 BuildRequires:	findutils
 BuildRequires:	grep
 BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
 Requires:	bash
 Requires:	openssh-clients
 Recommends:	python3-scapy
@@ -42,11 +41,14 @@ find . -type f -exec sed -i 's/^#!\/usr\/bin\/env python/#!\/usr\/bin\/python/' 
 # Assume unverisoned python is python3.
 find . -type f -exec sed -i 's/^#!\/usr\/bin\/python$/#!\/usr\/bin\/python3/' {} +
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Restore executable bit on scripts (remove by `python setup.py ...`).
 (cd %{buildroot}; grep -l -R -m 1 "^#!\/" . | xargs  chmod +x)
@@ -56,7 +58,7 @@ cp docs/dist/man/man1/*.1 %{buildroot}%{_mandir}/man1/
 cp docs/dist/man/man7/*.7 %{buildroot}%{_mandir}/man7/
 
 %files
-%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{name}-%{version}.dist-info
 %{python3_sitelib}/%{name}
 %{_bindir}/%{name}
 %{_bindir}/%{name}-*

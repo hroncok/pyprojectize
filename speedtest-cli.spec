@@ -9,7 +9,6 @@ URL: https://github.com/sivel/speedtest-cli
 Source0: %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 BuildArch: noarch
 
@@ -20,11 +19,14 @@ Command line interface for testing internet bandwidth using speedtest.net
 %autosetup
 sed -i -e '/^#!\//, 1d' *.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 mkdir -p %{buildroot}%{_mandir}/man1/
 install -p -m 644 speedtest-cli.1 %{buildroot}%{_mandir}/man1/speedtest-cli.1
 rm -f %{buildroot}%{_bindir}/speedtest

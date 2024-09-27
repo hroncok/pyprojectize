@@ -11,7 +11,6 @@ BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3-click
 BuildRequires:  python3-pyyaml
-BuildRequires:  python3-setuptools
 
 # coma separated list of provider plugins
 %global provider_plugins aws,beaker,openstack,podman,virt
@@ -129,11 +128,14 @@ library extending mrack package using testcloud
 # Remove bundled egg-info
 rm -r src/%{name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %license LICENSE
@@ -153,7 +155,7 @@ rm -r src/%{name}.egg-info
 %doc README.md
 %doc CHANGELOG.md
 %{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{name}-%{version}.dist-info
 %exclude %{python3_sitelib}/%{name}/{,__pycache__/}run.*
 %exclude %{python3_sitelib}/%{name}/providers/utils/{,__pycache__/}osapi.*
 %exclude %{python3_sitelib}/%{name}/providers/utils/{,__pycache__/}testcloud.*

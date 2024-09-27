@@ -16,7 +16,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-docutils
 BuildRequires:  python3-pygments
 BuildRequires:  python3-readme-renderer
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 
 Requires:       python3-%{pypi_name} = %{?epoch:%{epoch}:}%{version}-%{release}
@@ -38,11 +37,14 @@ A library for ReStructuredText documents that renders them.
 %autosetup -p1 -n %{pypi_name}-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v src/restview/tests.py -k "not restview.tests.doctest_RestViewer_rest_to_html"
@@ -54,7 +56,7 @@ rm -rf %{pypi_name}.egg-info
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py*.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Thu Jul 25 2024 Miroslav Suchý <msuchy@redhat.com> - 3.0.0-9

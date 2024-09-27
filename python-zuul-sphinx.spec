@@ -20,7 +20,6 @@ A Sphinx extension for documenting Zuul jobs.
 %package -n     python3-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pbr
 Requires:       python3-pbr
 Requires:       python3-sphinx
@@ -37,20 +36,24 @@ A Sphinx extension for documenting Zuul jobs.
 rm -rf *requirements.txt %{srcname}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 export PBR_VERSION=%{version}
-%py3_build
+%pyproject_wheel
 
 
 %install
 export PBR_VERSION=%{version}
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/zuul_sphinx-%{version}-py3*.egg-info/
+%{python3_sitelib}/zuul_sphinx-%{version}-py3*.dist-info/
 %{python3_sitelib}/zuul_sphinx/
 
 

@@ -14,7 +14,6 @@ Source0:            http://pypi.python.org/packages/source/F/%{srcname}/%{srcnam
 BuildArch:          noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-flask
 BuildRequires:  python3-mako
 
@@ -38,11 +37,14 @@ to use Mako Templates instead of the default Jinja2 templating engine.
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-flask-mako
 %doc PKG-INFO

@@ -13,7 +13,6 @@ URL:                https://fedoraproject.org/wiki/Business_cards
 Source:             %{forgesource}
 
 BuildArch:          noarch
-BuildRequires:      python3-setuptools
 BuildRequires:      python3-devel
 Requires:           python3-fedora fedora-logos
 Requires:           inkscape ghostscript
@@ -26,18 +25,21 @@ for Fedora Project contributors.
 %prep
 %forgesetup
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %doc README
 %license COPYING
 %{python3_sitelib}/fedora_business_cards/
-%{python3_sitelib}/fedora_business_cards-*.egg-info/
+%{python3_sitelib}/fedora_business_cards.dist-info/
 %{_bindir}/%{name}
 
 

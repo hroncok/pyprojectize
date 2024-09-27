@@ -22,11 +22,14 @@ Control process attributes through prctl
 %autosetup -n %{srcname}-%{version}
 cp -p %{SOURCE1} .
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %doc README
@@ -34,7 +37,7 @@ cp -p %{SOURCE1} .
 %{python3_sitearch}/prctl.py
 %{python3_sitearch}/__pycache__/prctl*
 %{python3_sitearch}/_prctl*
-%{python3_sitearch}/python_prctl*.egg-info
+%{python3_sitearch}/python_prctl*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.6.1-20

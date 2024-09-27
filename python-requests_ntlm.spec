@@ -23,7 +23,6 @@ order to support md4 in Python.}
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(requests) >= 2
 BuildRequires:  python3dist(ntlm-auth) >= 1.0.2
 BuildRequires:  python3dist(cryptography) >= 1.3
@@ -38,11 +37,14 @@ Python 3 version.
 %prep
 %autosetup -n requests-ntlm-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %python3 -m tests.test_server &
@@ -72,7 +74,7 @@ export OPENSSL_CONF=${PWD}/openssl.cnf
 %license LICENSE
 %doc CONTRIBUTORS.rst README.rst
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.2.0-5

@@ -28,7 +28,6 @@ Summary:        %{summary}
 BuildRequires:  git
 BuildRequires:  python3-devel
 BuildRequires:  python3-oslotest >= 1.10.0
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-testrepository >= 0.0.18
 BuildRequires:  python3-testtools >= 1.4.0
 
@@ -61,8 +60,11 @@ Documentation for python-rsdclient
 %prep
 %autosetup -n %{name}-%{upstream_version} -S git
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %if 0%{?with_doc}
 # generate html docs
@@ -72,7 +74,7 @@ rm -rf doc/build/html/.{doctrees,buildinfo}
 %endif
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 # Setup directories
 install -d -m 755 %{buildroot}%{_datadir}/%{pyname}
@@ -83,7 +85,7 @@ install -d -m 755 %{buildroot}%{_localstatedir}/log/%{pyname}
 %license LICENSE
 %doc README.rst doc/source/readme.rst
 %{python3_sitelib}/%{sname}
-%{python3_sitelib}/%{pyname}-*.egg-info
+%{python3_sitelib}/%{pyname}.dist-info
 %exclude %{python3_sitelib}/%{sname}/tests
 
 %files -n python3-%{sname}-tests

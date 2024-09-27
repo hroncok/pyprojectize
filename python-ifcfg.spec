@@ -25,7 +25,6 @@ Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-mock
 BuildRequires:  python%{python3_pkgversion}-nose
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  iproute
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
@@ -45,12 +44,16 @@ A fallback to ip is included for newer Unix systems w/o ifconfig.
 %autosetup -p1 -n %{name}-releases-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -61,7 +64,7 @@ A fallback to ip is included for newer Unix systems w/o ifconfig.
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 
 
 %changelog

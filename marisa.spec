@@ -26,7 +26,6 @@ BuildRequires: perl-generators
 BuildRequires: python2-devel
 %endif
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: ruby-devel
 
 %description
@@ -107,6 +106,10 @@ Ruby language binding for groonga
 %autosetup -n %{name}-trie-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 %set_build_flags
 
@@ -133,7 +136,7 @@ pushd bindings/python
 %endif
 
 %{__python3} setup.py build_ext --include-dirs="%{_builddir}/%{name}-trie-%{version}/include" --library-dirs="%{_builddir}/%{name}-trie-%{version}/lib/%{name}/.libs"
-%py3_build
+%pyproject_wheel
 popd
 
 # build Ruby bindings
@@ -163,7 +166,7 @@ pushd bindings/python
 %if %{with python2}
 %py2_install
 %endif
-%py3_install
+%pyproject_install
 rm -rf %{buildroot}/%{python3_sitearch}/marisa-0.0.0-py%{python3_version}.egg-info
 popd
 
@@ -213,7 +216,7 @@ rm -f $RPM_BUILD_ROOT%{perl_vendorarch}/sample.pl
 %files -n python2-%{name}
 %{python2_sitearch}/_marisa.so
 %{python2_sitearch}/marisa.py*
-%{python2_sitearch}/marisa-0.0.0-py2.?.egg-info
+%{python2_sitearch}/marisa-0.0.0-py2.?.dist-info
 %endif
 
 %files -n python3-%{name}

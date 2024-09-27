@@ -41,7 +41,6 @@ BuildRequires:  python%{python3_pkgversion}-capturer >= 2.4
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-humanfriendly >= 9.1
 BuildRequires:  python%{python3_pkgversion}-pytest
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-verboselogs >= 1.7
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
@@ -64,8 +63,12 @@ standard colors so it should work on any UNIX terminal.
 %autosetup -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 # Don't install tests.py
 rm build/lib/%{srcname}/tests.py
@@ -75,7 +78,7 @@ rm docs/build/html/.buildinfo
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -101,7 +104,7 @@ PATH=%{buildroot}%{_bindir}:$PATH \
 %license LICENSE.txt
 %doc CHANGELOG.rst README.rst
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 %{python3_sitelib}/%{srcname}.pth
 %{_bindir}/%{srcname}
 

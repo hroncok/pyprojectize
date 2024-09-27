@@ -22,7 +22,6 @@ Summary:        %{summary}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-beautifulsoup4
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -36,11 +35,14 @@ others; for a full list, see the advisory_parser/flaw.py file.
 %autosetup -n %{pypi_name}-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v tests
@@ -49,7 +51,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v tests
 %license LICENSE COPYRIGHT
 %doc README.rst
 %{python3_sitelib}/advisory_parser
-%{python3_sitelib}/advisory_parser-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/advisory_parser-%{version}.dist-info
 
 %changelog
 * Wed Aug 07 2024 Miroslav Suchý <msuchy@redhat.com> - 1.10-15

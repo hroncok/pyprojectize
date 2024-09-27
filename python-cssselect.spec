@@ -25,7 +25,6 @@ matching elements in an XML or HTML document.
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{modname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if %{with tests}
 BuildRequires:  python3-lxml
 BuildRequires:  python3-pytest
@@ -38,11 +37,14 @@ Python 3 version.
 %prep
 %autosetup -n %{modname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with tests}
 %check
@@ -52,7 +54,7 @@ Python 3 version.
 %files -n python3-%{modname}
 %license LICENSE
 %doc README.rst CHANGES AUTHORS
-%{python3_sitelib}/%{modname}-*.egg-info/
+%{python3_sitelib}/%{modname}.dist-info/
 %{python3_sitelib}/%{modname}/
 
 %changelog

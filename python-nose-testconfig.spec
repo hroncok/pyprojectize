@@ -37,7 +37,6 @@ Summary:        Test configuration plugin for nosetests for Python3
 %{?python_provide:%python_provide python3-%{srcname}}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       python3-nose
 # Require >= 5.1 for yaml.FullLoader, used by Patch0
@@ -62,18 +61,21 @@ This is the Python 3 version of the package.
 rm -rf nose_testconfig.egg-info
 cp %{SOURCE1} .
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %license LICENSE-2.0
 %doc ACKS TODO docs/index.txt
 %{python3_sitelib}/testconfig.py*
 %{python3_sitelib}/__pycache__/testconfig.*
-%{python3_sitelib}/nose_testconfig-%{version}-*.egg-info
+%{python3_sitelib}/nose_testconfig-%{version}.dist-info
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 0.10-34

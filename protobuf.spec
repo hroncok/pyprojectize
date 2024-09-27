@@ -179,7 +179,6 @@ lacks descriptors, reflection, and some other features.
 %package -n python3-protobuf
 Summary:        Python bindings for Google Protocol Buffers
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(wheel)
 %if %{with python_cpp}
 Requires:       protobuf%{?_isa} = %{version}-%{release}
@@ -325,6 +324,9 @@ find -name '*.java' | xargs sed -ri \
 
 rm -f src/solaris/libstdc++.la
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 iconv -f iso8859-1 -t utf-8 CONTRIBUTORS.txt > CONTRIBUTORS.txt.utf8
 mv CONTRIBUTORS.txt.utf8 CONTRIBUTORS.txt
@@ -341,7 +343,7 @@ export PTHREAD_LIBS="-lpthread"
 
 %if %{with python}
 pushd python
-%py3_build %{?with_python_cpp:-- --cpp_implementation}
+%pyproject_wheel -C--global-option='%{?with_python_cpp:-- --cpp_implementation'}
 popd
 %endif
 
@@ -372,7 +374,7 @@ install -p -m 0644 -D -t '%{buildroot}%{_mandir}/man1' '%{SOURCE4}'
 
 %if %{with python}
 pushd python
-%py3_install %{?with_python_cpp:-- --cpp_implementation}
+%pyproject_install}
 %if %{without python_cpp}
 find %{buildroot}%{python3_sitelib} -name \*.py -exec sed -i -e '1{\@^#!@d}' {} +
 %endif
@@ -431,13 +433,13 @@ install -p -m 0644 %{SOURCE2} %{buildroot}%{_emacs_sitestartdir}
 %if %{with python_cpp}
 %dir %{python3_sitearch}/google
 %{python3_sitearch}/google/protobuf/
-%{python3_sitearch}/protobuf-%{version}%{?rcver}-py3.*.egg-info/
+%{python3_sitearch}/protobuf-%{version}%{?rcver}-py3.*.dist-info/
 %{python3_sitearch}/protobuf-%{version}%{?rcver}-py3.*-nspkg.pth
 %else
 %license LICENSE
 %dir %{python3_sitelib}/google
 %{python3_sitelib}/google/protobuf/
-%{python3_sitelib}/protobuf-%{version}%{?rcver}-py3.*.egg-info/
+%{python3_sitelib}/protobuf-%{version}%{?rcver}-py3.*.dist-info/
 %{python3_sitelib}/protobuf-%{version}%{?rcver}-py3.*-nspkg.pth
 %endif
 %doc python/README.md

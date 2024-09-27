@@ -11,7 +11,6 @@ URL:        https://github.com/amanusk/s-tui
 Source0:    %{pypi_source}
 
 BuildRequires: python3-devel
-BuildRequires: python3dist(setuptools)
 
 Recommends: stress-ng
 
@@ -34,12 +33,16 @@ What it does
 rm -rf %{name}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 # Remove shebang from Python libraries
 for lib in %{buildroot}%{python3_sitelib}/%{sys_name}/{/,sources,sturwid}/*.py; do
@@ -59,7 +62,7 @@ done
 %license LICENSE
 %doc README.md
 %{_bindir}/%{name}
-%{python3_sitelib}/%{sys_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{sys_name}-%{version}.dist-info/
 %{python3_sitelib}/%{sys_name}/
 
 

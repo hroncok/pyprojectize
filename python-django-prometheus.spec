@@ -23,7 +23,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(pytest-runner)
 %if %{with check}
 BuildRequires:  python3dist(pytest)
@@ -40,11 +39,14 @@ Python 3 version.
 %autosetup -n %{srcname}-%{version} -p1
 rm -vr *.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with check}
 %check
@@ -54,7 +56,7 @@ rm -vr *.egg-info
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/django_prometheus-*.egg-info/
+%{python3_sitelib}/django_prometheus.dist-info/
 %{python3_sitelib}/django_prometheus/
 
 %changelog

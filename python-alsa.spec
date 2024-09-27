@@ -9,7 +9,6 @@ Source0:	ftp://ftp.alsa-project.org/pub/pyalsa/pyalsa-%{version}.tar.bz2
 URL:		http://www.alsa-project.org/
 BuildRequires:	alsa-lib-devel >= %{version}
 BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
 BuildRequires:	gcc
 
 # Filter private shared library provides
@@ -29,11 +28,14 @@ Summary: %summary
 %prep
 %autosetup -n pyalsa-%{version} -p 1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 	
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-alsa
 %{python3_sitearch}/*

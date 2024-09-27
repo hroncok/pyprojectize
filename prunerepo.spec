@@ -13,7 +13,6 @@ License: GPL-2.0-or-later
 BuildArch: noarch
 BuildRequires: bash
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-rpm
 BuildRequires: createrepo_c
 BuildRequires: asciidoc
@@ -44,15 +43,18 @@ to recreate the repository metadata.
 %prep
 %setup -q
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %check
 tests/run.sh
 
 %build
-name="%{name}" version="%{version}" summary="%{summary}" %py3_build
+name="%{name}" version="%{version}" summary="%{summary}" %pyproject_wheel
 a2x -d manpage -f manpage man/prunerepo.1.asciidoc
 
 %install
-name="%{name}" version="%{version}" summary="%{summary}" %py3_install
+name="%{name}" version="%{version}" summary="%{summary}" %pyproject_install
 
 install -d %{buildroot}%{_mandir}/man1
 install -p -m 644 man/prunerepo.1 %{buildroot}/%{_mandir}/man1/

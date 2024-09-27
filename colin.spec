@@ -29,7 +29,6 @@ for containers/images/dockerfiles
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{pypi_name}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Recommends:     moby-engine
 
 %description -n python3-%{pypi_name}
@@ -49,8 +48,11 @@ Documentation for colin
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 # generate html docs
 PYTHONPATH="${PWD}:${PWD}/docs/" sphinx-build docs html
@@ -58,7 +60,7 @@ PYTHONPATH="${PWD}:${PWD}/docs/" sphinx-build docs html
 rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %license LICENSE
@@ -69,7 +71,7 @@ rm -rf html/.{doctrees,buildinfo}
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-*.egg-info/
+%{python3_sitelib}/%{pypi_name}.dist-info/
 %{_datadir}/%{pypi_name}/
 %exclude %{python3_sitelib}/tests
 

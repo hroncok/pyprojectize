@@ -35,7 +35,6 @@ Summary:        Oslo service library
 %py_provides python3-%{pkg_name}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pbr >= 2.0.0
 BuildRequires:  git-core
 BuildRequires:  python3-oslo-i18n
@@ -112,8 +111,11 @@ Documentation for oslo.service
 %endif
 %autosetup -p0 -n %{pypi_name}-%{upstream_version} -S git
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %if 0%{?with_doc}
 # generate html docs
@@ -125,7 +127,7 @@ rm -rf doc/build/html/.{doctrees,buildinfo}
 %install
 # Must do the subpackages' install first because the scripts in /usr/bin are
 # overwritten with every setup.py install.
-%{py3_install}
+%{pyproject_install}
 
 %check
 # FIXME: https://review.openstack.org/279011 seems to break tests in CentOS7,
@@ -137,7 +139,7 @@ rm -rf .testrepository
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/oslo_service
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %exclude %{python3_sitelib}/oslo_service/tests
 
 %files -n python3-%{pkg_name}-tests

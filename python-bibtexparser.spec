@@ -12,7 +12,6 @@ Source0:        https://github.com/sciunto-org/python-%{srcname}/archive/v%{vers
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pyparsing
 BuildRequires:  python3-sphinx
 
@@ -37,20 +36,23 @@ Documentation for python-bibtexparser.
 %prep
 %autosetup -n python-%{srcname}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 # Generate html documentation.
 PYTHONPATH=${PWD} sphinx-build docs/source html
 # Remove the sphinx-build leftovers.
 rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %doc CHANGELOG README.rst requirements.txt
 %license COPYING
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 %{python3_sitelib}/bibtexparser/
 
 %files doc

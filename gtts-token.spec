@@ -13,7 +13,6 @@ Source0:        https://github.com/Boudewijn26/gTTS-token/archive/v%{version}.ta
 
 BuildArch: noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3dist(requests)
 %if 0%{?with_tests}
 BuildRequires:  python3-pytest
@@ -36,11 +35,14 @@ validation of Google Translate
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %if %{with_tests}

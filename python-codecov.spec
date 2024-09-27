@@ -19,7 +19,6 @@ BuildArch:      noarch
 
 BuildRequires:  sed
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(ddt)
 BuildRequires:  python3dist(mock)
@@ -44,11 +43,14 @@ rm -rf %{pypi_name}.egg-info
 # Remove unneeded shebang
 sed -e "\|#!/usr/bin/env python3|d" -i %{pypi_name}/*.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # Disable tests that require network access
@@ -62,7 +64,7 @@ sed -e "\|#!/usr/bin/env python3|d" -i %{pypi_name}/*.py
 %doc README.md CHANGELOG.md
 %{_bindir}/codecov
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 %autochangelog

@@ -23,7 +23,6 @@ BuildArch:      noarch
 Summary:        %{sum}
 BuildArch:      noarch
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-docutils
 BuildRequires:  python%{python3_pkgversion}-CommonMark
 BuildRequires:  python%{python3_pkgversion}-pytest
@@ -42,13 +41,17 @@ rm -rf recommonmark.egg-info
 sed -i '1{\@^#!/usr/bin/env python@d}' recommonmark/scripts.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
 #  install python3 first to have unversioned binaries for python 3
-%py3_install
+%pyproject_install
 pushd %{buildroot}%{_bindir}  # Enter buildroot bindir to ease symlink creation
 for cm2bin in cm2*; do
     mv "${cm2bin}" "${cm2bin}-%{python3_version}"
@@ -66,7 +69,7 @@ popd  # Leave buildroot bindir
 %files -n python%{python3_pkgversion}-recommonmark
 %doc README.md
 %license license.md
-%{python3_sitelib}/recommonmark-%{version}*-py%{python3_version}.egg-info/
+%{python3_sitelib}/recommonmark-%{version}*.dist-info/
 %{python3_sitelib}/recommonmark/
 %{_bindir}/cm2*-3
 %{_bindir}/cm2*-%{python3_version}

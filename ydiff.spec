@@ -6,7 +6,7 @@ URL:        https://github.com/ymattw/ydiff
 # Automatically converted from old format: BSD - review is highly recommended.
 License:    LicenseRef-Callaway-BSD
 Source0:    https://github.com/ymattw/ydiff/archive/%{version}/%{name}-%{version}.tar.gz
-BuildRequires: python3-devel python3-setuptools
+BuildRequires: python3-devel
 BuildArch: noarch
 
 Requires: less
@@ -26,11 +26,14 @@ Python library that implements API used by ydiff tool.
 %autosetup -n %{name}-%{version}
 /usr/bin/sed -i '/#!\/usr\/bin\/env python/d' ydiff.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %doc README.rst
@@ -40,7 +43,7 @@ Python library that implements API used by ydiff tool.
 %files -n python3-%{name}
 %{python3_sitelib}/__pycache__/*
 %{python3_sitelib}/%{name}.py
-%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{name}-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.3-4

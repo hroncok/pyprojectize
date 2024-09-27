@@ -23,7 +23,6 @@ Source0:  %{forgesource}
 BuildArch: noarch
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 Requires: python3-gobject
 Requires: gtk-layer-shell
@@ -40,11 +39,14 @@ compositors.
 %prep
 %forgesetup -a
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 for lib in %{buildroot}%{python3_sitelib}/%{sys_name}/*.py; do
  sed '1{\@^#!/usr/bin/env python@d}' $lib > $lib.new &&
  touch -r $lib $lib.new &&
@@ -56,7 +58,7 @@ done
 %doc README.md
 %{_bindir}/%{name}
 %{python3_sitelib}/%{sys_name}/
-%{python3_sitelib}/%{sys_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{sys_name}-%{version}.dist-info/
 
 %changelog
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.3-9

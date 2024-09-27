@@ -13,7 +13,6 @@ Source0:          http://pypi.python.org/packages/source/T/%{srcname}/%{srcname}
 BuildArch:        noarch
 
 BuildRequires:    python3-devel
-BuildRequires:    python3-setuptools
 BuildRequires:    python3-dateutil
 BuildRequires:    python3-six
 
@@ -39,11 +38,14 @@ have one-time or recurring tasks run as needed. Python 3 version.
 %setup -q -n %{srcname}-%{version}
 %{__rm} -rf TGScheduler.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -53,7 +55,7 @@ have one-time or recurring tasks run as needed. Python 3 version.
 %doc README.rst
 
 %{python3_sitelib}/tgscheduler
-%{python3_sitelib}/%{srcname}-%{version}-*.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 
 %changelog

@@ -336,7 +336,6 @@ BuildRequires: gcc-gfortran
 BuildRequires: make
 BuildRequires: libX11-devel
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: pcre2-devel
 %if %{with hdf5}
 BuildRequires: hdf5-devel
@@ -454,7 +453,6 @@ Summary:        Python3 bindings for OpenMPI PETSc
 %{?python_provide:%python_provide python3-%{name}-openmpi}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-wheel
 BuildRequires:  hdf5-openmpi-devel
 BuildRequires:  scalapack-openmpi-devel
@@ -543,7 +541,6 @@ Summary:        Python3 bindings for MPICH PETSc
 %{?python_provide:%python_provide python3-%{name}-mpich}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-wheel
 BuildRequires:  hdf5-mpich-devel
 BuildRequires:  scalapack-mpich-devel
@@ -636,6 +633,9 @@ cp %{SOURCE3} buildmpich_dir/src/binding/petsc4py/src/petsc4py/PETSc_api.h
 pushd %{name}-%{version}
 %patch -P 3 -p1 -b .backup
 popd
+
+%generate_buildrequires
+%pyproject_buildrequires
 
 %build
 pushd %{name}-%{version}
@@ -1177,7 +1177,7 @@ xvfb-run -a make MAKE_NP=$RPM_BUILD_NCPUS all test -C build64 V=1 MPIEXEC='%{_bu
 %if %{with python}
 %files -n python3-%{name}-openmpi
 %{python3_sitearch}/openmpi/%{pymodule_name}/
-%{python3_sitearch}/openmpi/%{pymodule_name}-%{pymodule_version}-py%{python3_version}.egg-info
+%{python3_sitearch}/openmpi/%{pymodule_name}-%{pymodule_version}.dist-info
 %endif
 %endif
 
@@ -1199,7 +1199,7 @@ xvfb-run -a make MAKE_NP=$RPM_BUILD_NCPUS all test -C build64 V=1 MPIEXEC='%{_bu
 %if %{with python}
 %files -n python3-%{name}-mpich
 %{python3_sitearch}/mpich/%{pymodule_name}/
-%{python3_sitearch}/mpich/%{pymodule_name}-%{pymodule_version}-py%{python3_version}.egg-info
+%{python3_sitearch}/mpich/%{pymodule_name}-%{pymodule_version}.dist-info
 %endif
 %endif
 

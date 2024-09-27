@@ -29,7 +29,6 @@ BuildRequires: %{py3_dist netaddr}
 BuildRequires: %{py3_dist pyyaml}
 BuildRequires: %{py3_dist requests}
 BuildRequires: %{py3_dist schema}
-BuildRequires: %{py3_dist setuptools}
 BuildRequires: %{py3_dist simplejson}
 # For docs
 BuildRequires: %{py3_dist sphinx}
@@ -121,9 +120,13 @@ mkdir -p selinux
 cp -p %{SOURCE2} %{SOURCE3} %{SOURCE4} selinux/
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 . ./distro_build_configs.sh
-%py3_build
+%pyproject_wheel
 make man
 
 # SELinux
@@ -134,7 +137,7 @@ bzip2 -9 %{name}.pp
 %install
 . ./distro_build_configs.sh
 # bypass install errors ( don't chown in install step)
-%py3_install ||:
+%pyproject_install
 
 # cobbler
 rm %{buildroot}%{_sysconfdir}/cobbler/cobbler.conf
@@ -293,7 +296,7 @@ fi
 %{_mandir}/man5/cobbler.conf.5*
 %{_mandir}/man8/cobblerd.8*
 %{python3_sitelib}/cobbler/
-%{python3_sitelib}/cobbler*.egg-info
+%{python3_sitelib}/cobbler*.dist-info
 %{_unitdir}/cobblerd.service
 %{tftpboot_dir}/*
 /var/www/cobbler

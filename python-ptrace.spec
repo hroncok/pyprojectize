@@ -8,7 +8,6 @@ URL:           https://github.com/vstinner/python-ptrace
 Source0:       https://files.pythonhosted.org/packages/source/p/%{name}/%{name}-%{version}.tar.gz
 BuildRequires: gcc
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 %global _description \
 python-ptrace is a debugger using ptrace written in Python. \
 Features: \
@@ -31,12 +30,15 @@ Summary:       Debugger using ptrace written in Python 3
 %autosetup
 chmod 0644 examples/*.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 %{__python3} setup_cptrace.py build
 
 %install
-%{py3_install}
+%{pyproject_install}
 %{__python3} setup_cptrace.py install -O1 --skip-build --root %{buildroot}
 
 rm -f %{buildroot}%{_bindir}/{gdb,strace}.{pyo,pyc}
@@ -51,9 +53,9 @@ rm -f %{buildroot}%{_bindir}/{gdb,strace}.{pyo,pyc}
 %{_bindir}/gdb.py
 %{_bindir}/strace.py
 %{python3_sitelib}/ptrace/
-%{python3_sitelib}/python_ptrace-*-py*.egg-info
+%{python3_sitelib}/python_ptrace-*.dist-info
 %{python3_sitearch}/cptrace.cpython-*.so
-%{python3_sitearch}/cptrace-*-py*.egg-info
+%{python3_sitearch}/cptrace-*.dist-info
 
 %changelog
 * Mon Jul 29 2024 Miroslav Suchý <msuchy@redhat.com> - 0.9.9-4

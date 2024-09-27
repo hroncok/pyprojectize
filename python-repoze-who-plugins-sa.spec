@@ -22,7 +22,6 @@ Patch101: repoze-who-plugins-sa-requires.patch
 BuildArch:      noarch
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-repoze-who
 BuildRequires: python3-sqlalchemy
 BuildRequires: python3-coverage
@@ -50,12 +49,17 @@ based models on python3
 
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check

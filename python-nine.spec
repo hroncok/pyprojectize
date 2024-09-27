@@ -12,7 +12,6 @@ BuildArch:          noarch
 
 
 BuildRequires:      python3-devel
-BuildRequires:      python3-setuptools
 
 %generate_buildrequires
 %pyproject_buildrequires -t
@@ -51,10 +50,10 @@ Summary:            %{summary}
 rm -rf %{modname}.egg-info
 
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %tox

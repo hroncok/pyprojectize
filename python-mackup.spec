@@ -16,7 +16,6 @@ Source0:        %{url}/archive/%{version}/%{pypi_name}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 %if %{with tests}
 BuildRequires:  procps-ng
 BuildRequires:  python3dist(pytest)
@@ -51,11 +50,14 @@ Requires:       procps-ng
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest
@@ -66,7 +68,7 @@ rm -rf %{pypi_name}.egg-info
 %doc CHANGELOG.md README.md
 %{_bindir}/mackup
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 
 %changelog

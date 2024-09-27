@@ -33,7 +33,6 @@ BuildRequires: python3dist(funcsigs)
 BuildRequires: python3dist(paste)
 BuildRequires: python3dist(pycrypto)
 BuildRequires: python3dist(redis)
-BuildRequires: python3dist(setuptools)
 BuildRequires: python3dist(sqlalchemy)
 BuildRequires: python3dist(webtest)
 # for tests
@@ -55,12 +54,16 @@ Recommends: python3dist(pycryptopp)
 %autosetup -p1 -n beaker-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check

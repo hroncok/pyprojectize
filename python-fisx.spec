@@ -30,11 +30,14 @@ Summary: %summary
 %prep
 %autosetup -n fisx-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitearch} %python3 -m fisx.tests.testAll
@@ -43,7 +46,7 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} %python3 -m fisx.tests.testAll
 %license LICENSE
 %doc README.rst
 %{python3_sitearch}/fisx/
-%{python3_sitearch}/fisx-%{version}-py%{python3_version}.egg-info/
+%{python3_sitearch}/fisx-%{version}.dist-info/
 
 %changelog
 %autochangelog

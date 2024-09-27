@@ -13,7 +13,6 @@ BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3-docutils
 BuildRequires:  gettext
-BuildRequires:  python3-setuptools
 BuildRequires:  desktop-file-utils
 Requires:       python3
 Requires:       python3-gobject
@@ -27,11 +26,14 @@ drag-and-drop way.
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 desktop-file-validate %{buildroot}/%{_datadir}/applications/arandr.desktop
 
@@ -44,7 +46,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/arandr.desktop
 %{_bindir}/arandr
 %{_bindir}/unxrandr
 %{python3_sitelib}/screenlayout/
-%{python3_sitelib}/arandr-%{version}-py*.egg-info
+%{python3_sitelib}/arandr-%{version}.dist-info
 %{_mandir}/man1/arandr.1.*
 %{_mandir}/man1/unxrandr.1.*
 %{_datadir}/applications/arandr.desktop

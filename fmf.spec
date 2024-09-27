@@ -27,7 +27,6 @@ This package contains the command line tool.
 %package -n     python%{python3_pkgversion}-%{name}
 Summary:        %{summary}
 BuildRequires: python%{python3_pkgversion}-devel
-BuildRequires: python%{python3_pkgversion}-setuptools
 BuildRequires: python%{python3_pkgversion}-pytest
 BuildRequires: python%{python3_pkgversion}-ruamel-yaml
 BuildRequires: python%{python3_pkgversion}-filelock
@@ -49,12 +48,16 @@ This package contains the Python 3 module.
 %autosetup
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 mkdir -p %{buildroot}%{_mandir}/man1
 install -pm 644 fmf.1* %{buildroot}%{_mandir}/man1
 
@@ -73,7 +76,7 @@ install -pm 644 fmf.1* %{buildroot}%{_mandir}/man1
 
 %files -n python%{python3_pkgversion}-%{name}
 %{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}-*.egg-info
+%{python3_sitelib}/%{name}.dist-info
 %license LICENSE
 
 

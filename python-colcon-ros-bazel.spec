@@ -20,7 +20,6 @@ An extension for colcon-core to support ROS2 Bazel projects.
 Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-pytest
-BuildRequires:  python%{python3_pkgversion}-setuptools >= 30.3.0
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %if %{undefined __pythondist_requires}
@@ -38,12 +37,16 @@ An extension for colcon-core to support ROS2 Bazel projects.
 %autosetup -p1 -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -57,7 +60,7 @@ An extension for colcon-core to support ROS2 Bazel projects.
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/colcon_ros_bazel/
-%{python3_sitelib}/colcon_ros_bazel-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/colcon_ros_bazel-%{version}.dist-info/
 
 
 %changelog

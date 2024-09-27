@@ -9,7 +9,6 @@ Source0:        http://ftp.debian.org/debian/pool/main/p/python-debian/python-de
 URL:            https://salsa.debian.org/python-debian-team/python-debian
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 #tests
 BuildRequires:  dpkg
 BuildRequires:  python3-six
@@ -60,12 +59,15 @@ related files. Currently handled are:
 %prep
 %setup -q
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 sed -e 's/__CHANGELOG_VERSION__/%{version}/' < lib/debian/_version.py.in > lib/debian/_version.py
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %if 0%{?rhel}

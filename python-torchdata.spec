@@ -51,7 +51,6 @@ BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(requests)
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(torch)
 BuildRequires:  python3dist(urllib3)
 
@@ -78,8 +77,11 @@ rm -rf third_party/*
 # pyproject_ is broken it is generate_buildrequires looks for
 # python3-cmake and python3-ninja, revert to old py3_
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 # Testing has a circular dependency
 # E   ModuleNotFoundError: No module named 'torchtext'
@@ -90,13 +92,13 @@ rm -rf third_party/*
 %endif
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-*.egg-info
+%{python3_sitelib}/%{pypi_name}.dist-info
 
 %changelog
 %autochangelog

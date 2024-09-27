@@ -53,7 +53,6 @@ Source0:        %{forgesource}
 ExcludeArch:    %{ix86}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 %if %{with doc_pdf}
 BuildRequires:  make
@@ -102,12 +101,15 @@ done
 # Disable coverage and fix pytest command (has no option '-n')
 sed -i -e 's/-n auto //' setup.cfg
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 # We run this in %%install, since Sphinx imports __version__ from pyunicorn.
 # So, that needs to be installed first.
@@ -126,7 +128,7 @@ sed -i -e 's/-n auto //' setup.cfg
 %doc README.rst examples/
 %license LICENSE.txt
 %{python3_sitearch}/%{pypi_name}
-%{python3_sitearch}/%{pypi_name}-%{upstream_version}-py%{python3_version}.egg-info
+%{python3_sitearch}/%{pypi_name}-%{upstream_version}.dist-info
 
 %files doc
 %doc README.rst

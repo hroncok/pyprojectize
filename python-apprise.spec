@@ -83,7 +83,6 @@ Summary: A simple wrapper to many popular notification services used today
 
 BuildRequires: gettext
 BuildRequires: python%{python3_pkgversion}-devel
-BuildRequires: python%{python3_pkgversion}-setuptools
 BuildRequires: python%{python3_pkgversion}-requests
 BuildRequires: python%{python3_pkgversion}-requests-oauthlib
 BuildRequires: python%{python3_pkgversion}-click >= 5.0
@@ -124,11 +123,14 @@ BuildRequires: python%{python3_pkgversion}-pytest-xdist
 # at this time; remove failing test until this is resolved
 %{__rm} test/test_apprise_translations.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %{__install} -p -D -T -m 0644 packaging/man/%{pypi_name}.1 \
    %{buildroot}%{_mandir}/man1/%{pypi_name}.1
@@ -143,7 +145,7 @@ LANG=C.UTF-8 PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version
 %doc README.md
 %{python3_sitelib}/%{pypi_name}
 %exclude %{python3_sitelib}/%{pypi_name}/cli.*
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 
 %files -n %{pypi_name}
 %{_bindir}/%{pypi_name}

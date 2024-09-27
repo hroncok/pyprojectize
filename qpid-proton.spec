@@ -39,7 +39,6 @@ BuildRequires:  python3-wheel
 BuildRequires:  glibc-headers
 BuildRequires:  cyrus-sasl-devel
 BuildRequires:  jsoncpp-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  libuv-devel
 BuildRequires:  nspr-devel
 #BuildRequires:  opentelemetry-cpp-devel
@@ -213,6 +212,10 @@ BuildArch: noarch
 %prep
 %setup -q -n %{name}-%{version}
 %patch -p1 0
+
+
+%generate_buildrequires
+%pyproject_buildrequires
 
 
 %build

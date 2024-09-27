@@ -10,7 +10,6 @@ Patch0:         python-pyte-0.8.0-docs.patch
 BuildArch:      noarch
 BuildRequires:  make
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest-runner
 BuildRequires:  python3-sphinx
 BuildRequires:  python3-wcwidth
@@ -33,12 +32,15 @@ This contains documentation of the API in Python module pyte.
 %prep
 %autosetup -p1 -n pyte-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 pushd docs && make all
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -47,7 +49,7 @@ pushd docs && make all
 %license LICENSE
 %doc AUTHORS CHANGES README 
 %{python3_sitelib}/pyte/
-%{python3_sitelib}/pyte-%{version}-py*.egg-info
+%{python3_sitelib}/pyte-%{version}.dist-info
 
 %files -n python3-pyte-docs
 %license LICENSE

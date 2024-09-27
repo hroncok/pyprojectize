@@ -21,7 +21,6 @@ a configurable way to extract the representation of a value.
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description -n python3-%{srcname} %{_description}
 
@@ -31,17 +30,20 @@ Python 3 version.
 %autosetup -n %{srcname}-%{version}
 rm -rf justbytes.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/justbytes/
-%{python3_sitelib}/justbytes-%{version}-*.egg-info/
+%{python3_sitelib}/justbytes-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.15.2-7

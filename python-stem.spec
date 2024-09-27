@@ -28,7 +28,6 @@ Source0: %{pypi_source}
 BuildArch: noarch
 BuildRequires: make
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 # Doc building
 BuildRequires: python3-sphinx
 BuildRequires: python3-sphinx-autodoc-typehints
@@ -57,8 +56,11 @@ Summary: %{summary}
 %prep
 %autosetup -n %{srcname}-%{version} -p 1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 pushd docs
 %make_build html
 %make_build text
@@ -66,7 +68,7 @@ pushd docs
 popd
 
 %install
-%py3_install
+%pyproject_install
 %py3_shebang_fix %{buildroot}%{_bindir}/tor-prompt
 find docs/_build -name .buildinfo -delete
 install -D -m 0644 docs/_build/man/%{srcname}.1 %{buildroot}%{_mandir}/man1/%{srcname}.1
@@ -80,7 +82,7 @@ install -D -m 0644 docs/_build/man/%{srcname}.1 %{buildroot}%{_mandir}/man1/%{sr
 %license LICENSE
 %{_bindir}/tor-prompt
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-*.egg-info
+%{python3_sitelib}/%{srcname}.dist-info
 
 %files doc
 %doc README.md docs/_build/html docs/_build/text

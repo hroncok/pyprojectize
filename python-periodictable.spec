@@ -61,7 +61,6 @@ Patch0:         %{name}-remove_unrecognized_flag.patch
 Summary: Extensible periodic table of the elements
 
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-numpy
 BuildRequires:  python%{python3_pkgversion}-pytest
 BuildRequires:  python%{python3_pkgversion}-pyparsing
@@ -74,11 +73,14 @@ BuildRequires:  python%{python3_pkgversion}-pyparsing
 %prep
 %autosetup -n %{pname}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with check}
 %check

@@ -23,7 +23,6 @@ tags for ease of use.
 Summary:        Django app for permissions - Python 3 version
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Requires:       python3-django
 
 %{?python_provide:%python_provide python3-%{pypi_name}}
@@ -46,12 +45,16 @@ chmod ugo-x example/manage.py
 find example -name '._*.py' -exec rm '{}' \;
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 # example gets accidently installed to python_sitelib, too
 rm -rf %{buildroot}/%{python3_sitelib}/example
@@ -61,7 +64,7 @@ rm -rf %{buildroot}/%{python3_sitelib}/example
 %license LICENSE
 %doc AUTHORS README.rst docs/ example/
 %{python3_sitelib}/authority/
-%{python3_sitelib}/django_authority-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/django_authority-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.11-29

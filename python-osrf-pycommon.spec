@@ -46,7 +46,6 @@ BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-importlib-metadata
 %endif
 BuildRequires:  python%{python3_pkgversion}-pytest
-BuildRequires:  python%{python3_pkgversion}-setuptools
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{pkgname}}
 
 %if !0%{?rhel} || 0%{?rhel} >= 8
@@ -78,15 +77,19 @@ sed -i "\\|('share/ament_index/resource_index/packages',|$!{
   }" setup.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %make_build -C docs html man SPHINXBUILD=sphinx-build-%{python3_version}
 rm docs/_build/html/.buildinfo
 
 
 %install
-%py3_install
+%pyproject_install
 
 install -p -m0644 -D docs/_build/man/%{srcname}.1 %{buildroot}%{_mandir}/man1/%{srcname}.1
 
@@ -103,7 +106,7 @@ install -p -m0644 -D docs/_build/man/%{srcname}.1 %{buildroot}%{_mandir}/man1/%{
 %license LICENSE
 %doc CHANGELOG.rst README.md
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 %{_mandir}/man1/%{srcname}.1.gz
 
 

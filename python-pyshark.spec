@@ -21,7 +21,6 @@ ability to export XMLs to use its parsing.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-logbook
 BuildRequires:  python3-lxml
 BuildRequires:  python3-pytest
@@ -36,14 +35,17 @@ ability to export XMLs to use its parsing.
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 pushd src
-%py3_build
+%pyproject_wheel
 popd
 
 %install
 pushd src
-%py3_install
+%pyproject_install
 popd
 
 # TShark is crashing during the tests, need upstream fix
@@ -54,7 +56,7 @@ popd
 %doc README.md
 %license LICENSE.txt
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.4.3-11

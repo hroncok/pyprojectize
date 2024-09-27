@@ -15,7 +15,6 @@ Source2:        https://raw.githubusercontent.com/JonathanSalwan/ROPgadget/c29c5
 BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  %{py3_dist capstone}
-BuildRequires:  %{py3_dist setuptools}
 
 %description
 ROPGadget lets you search your gadgets on your binaries to facilitate
@@ -41,11 +40,14 @@ sed -i 's/>=5.0.0rc2//g' setup.py
 cp -p %SOURCE1 .
 cp -p %SOURCE2 .
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 for lib in $(find %{buildroot}%{python3_sitelib}/ropgadget/ -name "*.py"); do
   sed '1{\@^#!/usr/bin/env python@d}' $lib > $lib.new &&
   touch -r $lib $lib.new &&
@@ -55,7 +57,7 @@ done
 %files -n python3-%{srcname}
 %doc LICENSE_BSD.txt README.md
 %{python3_sitelib}/ropgadget
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 %{_bindir}/*
 
 %changelog

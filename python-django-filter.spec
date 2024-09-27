@@ -14,7 +14,6 @@ BuildArch:      noarch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-django
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-django-rest-framework
 BuildRequires:  python3-django-crispy-forms
 BuildRequires:	python3-sphinx
@@ -44,15 +43,18 @@ Documentation for django-filter
 %prep
 %autosetup -n %{pypi_name}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 # generate html docs 
 PYTHONPATH=${PWD} sphinx-build-3 docs html
 # remove the sphinx-build leftovers
 rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 
 # https://github.com/carltongibson/django-filter/issues/1069
 # %check
@@ -61,7 +63,7 @@ rm -rf html/.{doctrees,buildinfo}
 %files -n python3-%{pypi_name}
 %doc CHANGES.rst README.rst LICENSE docs/
 %{python3_sitelib}/django_filters
-%{python3_sitelib}/django_filter-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/django_filter-%{version}.dist-info
 
 %files -n python-%{pypi_name}-doc
 %doc html

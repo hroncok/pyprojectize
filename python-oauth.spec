@@ -8,7 +8,7 @@ URL:            http://code.google.com/p/oauth/
 Source0:        http://pypi.python.org/packages/source/o/oauth/oauth-%{version}.tar.gz
 
 BuildArch:      noarch
-BuildRequires:  python3-devel python3-setuptools
+BuildRequires:  python3-devel
 
 %global _description\
 Library for OAuth version 1.0a.\
@@ -26,12 +26,16 @@ Summary: %summary
 %autosetup -n oauth-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 
 %install
-%{py3_install}
+%{pyproject_install}
  
 
 %files -n python3-oauth

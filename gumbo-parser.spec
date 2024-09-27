@@ -23,7 +23,6 @@ BuildRequires: libtool automake autoconf
 BuildRequires: doxygen
 
 # For the python bindings
-BuildRequires: python3-setuptools
 BuildRequires: python3-devel
 BuildRequires: make
 
@@ -65,6 +64,10 @@ doxygen -w html /dev/null footer.html /dev/null Doxyfile
 sed -i -e 's,\$generatedby,Generated on $date for $projectname by,' footer.html
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 %configure --disable-static --disable-silent-rules --docdir=%{_pkgdocdir}
 %{make_build}
@@ -73,7 +76,7 @@ sed -i -e 's,\$generatedby,Generated on $date for $projectname by,' footer.html
 doxygen Doxyfile
 
 # python bindings
-%py3_build
+%pyproject_wheel
 
 %check
 make check
@@ -91,7 +94,7 @@ install -m 644 doc/COPYING ${RPM_BUILD_ROOT}%{_pkgdocdir}
 install -m 644 doc/*.md ${RPM_BUILD_ROOT}%{_pkgdocdir}
 
 # python bindings
-%py3_install
+%pyproject_install
 
 %ldconfig_scriptlets
 

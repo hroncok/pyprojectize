@@ -14,7 +14,6 @@ URL: https://github.com/gsnedders/python-%{srcname}
 Source0: %{url}/archive/v%{version}/%{srcname}-%{version}.tar.gz
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-pytest
 BuildRequires: python3-sphinx
 
@@ -47,8 +46,12 @@ Requires: python3
 %autosetup -n python-%{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 PYTHONPATH=. sphinx-build-3 docs docs/_build
 
@@ -58,7 +61,7 @@ rm -rf docs/_build/.doctrees
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -74,7 +77,7 @@ py.test-3
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 
 
 %changelog

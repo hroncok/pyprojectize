@@ -12,7 +12,6 @@ Source0:        %{url}/archive/v%{version}/%{srcname}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 
 
@@ -32,12 +31,16 @@ Pretend is a library to make stubbing with Python easier.
 %autosetup -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -48,7 +51,7 @@ Pretend is a library to make stubbing with Python easier.
 %doc README.rst
 %license LICENSE.rst
 %pycached %{python3_sitelib}/pretend.py
-%{python3_sitelib}/pretend-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/pretend-%{version}.dist-info/
 
 
 %changelog

@@ -10,7 +10,6 @@ Source0:       https://github.com/dfunckt/%{shortname}/archive/v%{version}/%{sho
 
 BuildArch: noarch
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 %description
 Awesome Django authorization, without the database.
@@ -26,11 +25,14 @@ Awesome Django authorization, without the database.
 %prep
 %autosetup -n %{shortname}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{shortname}
 %license LICENSE

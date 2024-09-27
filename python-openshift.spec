@@ -117,12 +117,15 @@ sed -i -e "49d" setup.py
 #work around https://bugzilla.redhat.com/show_bug.cgi?id=1759100 in Fedora 31
 sed -i 's/~/>/g' requirements.txt
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if 0%{?with_python2}
 %py2_build
 %endif
 %if 0%{?with_python3}
-%py3_build
+%pyproject_wheel
 %endif
 
 %if 0%{?fedora} >= 30
@@ -142,7 +145,7 @@ sphinx-build doc/source/ html
 %py2_install
 %endif
 %if 0%{?with_python3}
-%py3_install
+%pyproject_install
 %endif
 
 %check
@@ -160,7 +163,7 @@ py.test test/unit -c /dev/null -v -r s
 %files -n python2-%{library}
 %license LICENSE
 %{python2_sitelib}/%{library}
-%{python2_sitelib}/%{library}-*.egg-info
+%{python2_sitelib}/%{library}.dist-info
 %exclude %{python2_sitelib}/scripts
 %endif
 
@@ -168,7 +171,7 @@ py.test test/unit -c /dev/null -v -r s
 %files -n %{py3}-%{library}
 %license LICENSE
 %{python3_sitelib}/%{library}
-%{python3_sitelib}/%{library}-*.egg-info
+%{python3_sitelib}/%{library}.dist-info
 %exclude %{python3_sitelib}/scripts
 %endif
 

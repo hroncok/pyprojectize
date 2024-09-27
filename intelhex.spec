@@ -10,7 +10,6 @@ Source0:       https://github.com/python-intelhex/intelhex/archive/%{version}.ta
 BuildArch: noarch
 BuildRequires: dos2unix
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-sphinx
 BuildRequires: make
 
@@ -54,14 +53,17 @@ dos2unix README.rst
 dos2unix NEWS.rst
 sed -i '1d' intelhex/bench.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 pushd docs/manual/
 make html
 popd 
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %doc NEWS.rst README.rst

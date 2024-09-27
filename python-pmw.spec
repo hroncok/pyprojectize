@@ -10,7 +10,6 @@ License: LicenseRef-Callaway-MIT AND GPL-2.0-or-later
 URL: http://pmw.sourceforge.net/
 Source: http://downloads.sourceforge.net/pmw/Pmw-%{version}.tar.gz
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: dos2unix
 BuildArch: noarch
 
@@ -39,11 +38,14 @@ widgets, paned widgets, scrolled widgets and dialog windows.
 %prep
 %autosetup -n Pmw-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # file fixes
 chmod 644 Pmw/Pmw_1_3_3/doc/*

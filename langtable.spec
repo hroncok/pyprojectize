@@ -12,7 +12,6 @@ Source0:        https://github.com/mike-fabian/langtable/releases/download/%{ver
 BuildArch:      noarch
 BuildRequires:  perl-interpreter
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 langtable is used to guess reasonable defaults for locale, keyboard layout,
@@ -36,14 +35,17 @@ from langtable-data.
 %prep
 %setup -q
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 perl -pi -e "s,_DATADIR = '(.*)',_DATADIR = '%{_datadir}/langtable'," langtable/langtable.py
 
-%py3_build
+%pyproject_wheel
 
 %install
 
-%py3_install
+%pyproject_install
 
 %check
 (cd $RPM_BUILD_DIR/%{name}-%{version}/langtable; %{__python3} langtable.py)
@@ -71,8 +73,8 @@ xmllint --noout --relaxng \
 %files -n python3-langtable
 %dir %{python3_sitelib}/langtable
 %{python3_sitelib}/langtable/*
-%dir %{python3_sitelib}/langtable-*.egg-info
-%{python3_sitelib}/langtable-*.egg-info/*
+%dir %{python3_sitelib}/langtable.dist-info
+%{python3_sitelib}/langtable.dist-info/*
 
 %changelog
 %autochangelog

@@ -41,7 +41,6 @@ This package contains the JavaScript files.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       python3-XStatic
 Requires:       xstatic-angular-uuid-common
@@ -68,12 +67,16 @@ rm -rf %{pypi_name}.egg-info
 sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/angular_uuid'|" xstatic/pkg/angular_uuid/__init__.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 mkdir -p %{buildroot}/%{_jsdir}/angular_uuid
 mv %{buildroot}/%{python3_sitelib}/xstatic/pkg/angular_uuid/data/angular-uuid.js %{buildroot}/%{_jsdir}/angular_uuid
@@ -88,7 +91,7 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/angular_uuid/data/
 %files -n python3-%{pypi_name}
 %doc README.txt
 %{python3_sitelib}/xstatic/pkg/angular_uuid
-%{python3_sitelib}/XStatic_Angular_UUID-%{version}-py3.*.egg-info
+%{python3_sitelib}/XStatic_Angular_UUID-%{version}-py3.*.dist-info
 %{python3_sitelib}/XStatic_Angular_UUID-%{version}-py3.*-nspkg.pth
 
 

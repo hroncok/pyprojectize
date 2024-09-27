@@ -12,7 +12,6 @@ Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  %{py3_dist setuptools}
 
 %global _description %{summary}, supported under python 2.7, 3.4 and 3.5.
 
@@ -33,19 +32,23 @@ sed -e 's|grpcio==.*|grpcio==1.26.0|' \
     -e 's|tenacity==.*|tenacity==6.0.0|' -i requirements/base.txt
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{srcname}
 %license LICENSE
 %doc AUTHORS.rst CONTRIBUTING.rst HISTORY.rst README.rst
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 
 
 %changelog

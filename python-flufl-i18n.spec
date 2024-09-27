@@ -21,7 +21,6 @@ BuildArch:      noarch
 
 BuildRequires:  python-srpm-macros
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-atpublic
 %if 0%{?with_python3_other}
 BuildRequires:  python%{python3_other_pkgversion}-devel
@@ -56,15 +55,19 @@ Requires:       python%{python3_other_pkgversion}-atpublic
 %autosetup -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 %if 0%{?with_python3_other}
 %py3_other_build
 %endif
 
 
 %install
-%py3_install
+%pyproject_install
 %if 0%{?with_python3_other}
 %py3_other_install
 %endif
@@ -84,7 +87,7 @@ rm -rf %{buildroot}%{_prefix}/lib/python*/site-packages/flufl/i18n/{*.rst,docs,c
 %license LICENSE
 %doc flufl/i18n/*.rst flufl/i18n/docs/*.rst
 %{python3_sitelib}/flufl/
-%{python3_sitelib}/%{srcname}-%{version}*-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}*.dist-info/
 %{python3_sitelib}/%{srcname}-%{version}*-py%{python3_version}-nspkg.pth
 
 %if 0%{?with_python3_other}
@@ -92,7 +95,7 @@ rm -rf %{buildroot}%{_prefix}/lib/python*/site-packages/flufl/i18n/{*.rst,docs,c
 %license LICENSE
 %doc flufl/i18n/*.rst flufl/i18n/docs/*.rst
 %{python3_other_sitelib}/flufl/
-%{python3_other_sitelib}/%{srcname}-%{version}*-py%{python3_other_version}.egg-info/
+%{python3_other_sitelib}/%{srcname}-%{version}*-py%{python3_other_version}.dist-info/
 %{python3_other_sitelib}/%{srcname}-%{version}*-py%{python3_other_version}-nspkg.pth
 %endif
 

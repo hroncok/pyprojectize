@@ -10,7 +10,6 @@ Source0:        https://github.com/%{name}/%{name}/archive/v%{version}/%{name}-%
 BuildArch:      noarch
 BuildRequires:  desktop-file-utils
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 #Suggests:       w3m-img
 
 %description
@@ -26,12 +25,16 @@ you'll be going.
 sed -i -e '1d;2i#!/usr/bin/python3' %{name}.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}.desktop
 mv %{buildroot}%{_pkgdocdir} _doc
 find _doc -type f -exec chmod -R -x '{}' \;

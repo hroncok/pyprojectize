@@ -11,7 +11,6 @@ BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  hunspell-devel
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 # make it build with hunspell-1.7:
 Patch0: pyhunspell-fix-build.patch
@@ -34,11 +33,14 @@ from Python3.
 %setup -q -n pyhunspell-%{version}
 %patch -P0 -p1 -b .hunspell13
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-pyhunspell
 %doc AUTHORS.md CHANGELOG.md COPYING COPYING.LESSER gpl-3.0.txt lgpl-3.0.txt PKG-INFO README.md

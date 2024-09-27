@@ -39,7 +39,6 @@ A sphinx extension for embedding block diagram using blockdiag_.
 %package -n python3-%{pypi_name}
 Summary:        Sphinx "blockdiag" extension
 %{?python_provide:%python_provide python3-%{pypi_name}}
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-devel
 Requires:       python3-blockdiag >= 2.0.0
 Requires:       python3-sphinx >= 2.0.0
@@ -52,12 +51,15 @@ A sphinx extension for embedding block diagram using blockdiag_.
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if %{with python2}
 %py2_build
 %endif
 %if %{with python3}
-%py3_build
+%pyproject_wheel
 %endif
 
 %install
@@ -65,7 +67,7 @@ rm -rf %{pypi_name}.egg-info
 %py2_install
 %endif
 %if 0%{with python3}
-%py3_install
+%pyproject_install
 %endif
 
 %if %{with python2}
@@ -73,7 +75,7 @@ rm -rf %{pypi_name}.egg-info
 %license LICENSE
 %doc README.rst
 %{python2_sitelib}/sphinxcontrib
-%{python2_sitelib}/sphinxcontrib_blockdiag-*.egg-info
+%{python2_sitelib}/sphinxcontrib_blockdiag.dist-info
 %{python2_sitelib}/sphinxcontrib_blockdiag-*.pth
 %exclude %{python2_sitelib}/sphinxcontrib/tests
 %endif
@@ -83,7 +85,7 @@ rm -rf %{pypi_name}.egg-info
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/sphinxcontrib
-%{python3_sitelib}/sphinxcontrib_blockdiag-*.egg-info
+%{python3_sitelib}/sphinxcontrib_blockdiag.dist-info
 %{python3_sitelib}/sphinxcontrib_blockdiag-*.pth
 %exclude %{python3_sitelib}/sphinxcontrib/tests
 %endif

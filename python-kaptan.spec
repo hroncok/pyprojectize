@@ -18,7 +18,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3dist(pyyaml)
 BuildRequires:  python3dist(pytest)
 %{?python_provide:%python_provide python3-%{srcname}}
@@ -30,11 +29,14 @@ BuildRequires:  python3dist(pytest)
 %autosetup -n %{srcname}-%{version}
 sed -i -e 's/PyYAML>=3.13,<6/PyYAML/' requirements/base.txt
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v tests
@@ -44,7 +46,7 @@ sed -i -e 's/PyYAML>=3.13,<6/PyYAML/' requirements/base.txt
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 %{python3_sitelib}/%{srcname}/
 %{_bindir}/%{srcname}
 

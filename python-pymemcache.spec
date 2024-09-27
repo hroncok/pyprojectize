@@ -52,10 +52,10 @@ rm -rf %{pypi_name}.egg-info
 
 
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 py.test-3 ./pymemcache/test/
@@ -63,7 +63,7 @@ py.test-3 ./pymemcache/test/
 %files -n python3-%{pypi_name}
 %doc README.rst LICENSE.txt
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 4.0.0-7

@@ -36,7 +36,6 @@ BuildRequires:  web-assets-devel
 Summary:        %{common_sum}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %if 0%{?rhel}
 Provides:       bundled(glyphicons-halflings-fonts)
@@ -58,12 +57,16 @@ Requires:       python3-sphinx
 rm -rf *.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 # Remove the bundled fonts on RHEL
 %if 0%{?rhel}
@@ -79,7 +82,7 @@ done
 %license LICENSE.txt
 %doc *.rst
 %{python3_sitelib}/sphinx_bootstrap_theme
-%{python3_sitelib}/sphinx_bootstrap_theme-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/sphinx_bootstrap_theme-%{version}.dist-info
 
 
 %changelog

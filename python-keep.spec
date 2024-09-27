@@ -37,7 +37,6 @@ BuildRequires:  python3-devel
 %if %{with tests}
 BuildRequires:  python3-pytest
 %endif
-BuildRequires:  python3-setuptools
 BuildRequires:  python3dist(click)
 BuildRequires:  python3dist(pygithub)
 BuildRequires:  python3dist(terminaltables)
@@ -47,11 +46,14 @@ BuildRequires:  python3dist(terminaltables)
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with tests}
 %check
@@ -61,7 +63,7 @@ BuildRequires:  python3dist(terminaltables)
 %files -n python3-%{srcname}
 %license LICENSE.md
 %doc README.md tutorial.md
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 %{python3_sitelib}/%{srcname}/
 %{_bindir}/%{srcname}
 

@@ -22,7 +22,6 @@ nor has any extra requirements.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       python3-XStatic
 Requires:       xstatic-spin-common
@@ -60,11 +59,14 @@ This package contains the javascript files.
 # patch to use webassets dir
 sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/spin'|" xstatic/pkg/spin/__init__.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 mkdir -p %{buildroot}%{_jsdir}/spin
 mv %{buildroot}%{python3_sitelib}/xstatic/pkg/spin/data/*.js %{buildroot}%{_jsdir}/spin
@@ -75,7 +77,7 @@ chmod 644 %{buildroot}%{_jsdir}/spin/*.js
 %files -n python3-%{pypi_name}
 %doc README.txt
 %{python3_sitelib}/xstatic/pkg/spin
-%{python3_sitelib}/XStatic_Spin-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/XStatic_Spin-%{version}.dist-info
 %{python3_sitelib}/XStatic_Spin-%{version}-py%{python3_version}-nspkg.pth
 
 %files -n xstatic-spin-common

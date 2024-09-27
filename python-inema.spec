@@ -20,7 +20,6 @@ BuildArch:      noarch
 # required for py3_build macro
 BuildRequires:  python3-devel
 
-BuildRequires:  python3-setuptools
 
 # from setup.py
 BuildRequires: python3-pytz
@@ -41,19 +40,22 @@ Summary:        %{summary}
 %prep
 %autosetup -p1 -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 sed -i '1,1s@^#!.*$@@' inema/frank.py inema/inema.py
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %{_bindir}/frank
 %doc README.rst
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-*-py*.egg-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 
 
 %changelog

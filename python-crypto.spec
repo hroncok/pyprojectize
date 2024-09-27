@@ -33,7 +33,6 @@ BuildRequires:	gcc
 BuildRequires:	gmp-devel >= 4.1
 BuildRequires:	libtomcrypt-devel >= 1.16
 BuildRequires:	python%{python3_pkgversion}-devel
-BuildRequires:	python%{python3_pkgversion}-setuptools
 
 %description
 PyCrypto is a collection of both secure hash functions (such as MD5 and
@@ -120,12 +119,15 @@ rm -rf src/libtom
 # Fix Python 3.13 compatibility
 %patch -P 14
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %global optflags %{optflags} -fno-strict-aliasing
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Remove group write permissions on shared objects
 find %{buildroot}%{python3_sitearch} -name '*.so' -exec chmod -c g-w {} \;
@@ -141,7 +143,7 @@ find %{buildroot}%{python3_sitearch} -name '*.so' -exec chmod -c g-w {} \;
 %license COPYRIGHT LEGAL/
 %doc README TODO ACKS ChangeLog Doc/
 %{python3_sitearch}/Crypto/
-%{python3_sitearch}/pycrypto-%{version}-py3.*.egg-info
+%{python3_sitearch}/pycrypto-%{version}-py3.*.dist-info
 
 %changelog
 * Wed Aug 14 2024 Paul Howarth <paul@city-fan.org> - 2.6.1-53

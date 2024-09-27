@@ -24,7 +24,6 @@ BuildArch:          noarch
 BuildRequires:      python3-sphinx
 
 BuildRequires:      python3-devel
-BuildRequires:      python3-setuptools
 BuildRequires:      python3-sphinx
 
 %description
@@ -51,11 +50,14 @@ You should use Twiggy because it is awesome. For more information, read the
 # Remove bundled egg-info in case it exists
 rm -rf %{distname}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # There are errors in the test suite.
 #%%check

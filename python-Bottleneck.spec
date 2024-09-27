@@ -36,7 +36,6 @@ BuildRequires:	python3-pytest
 BuildRequires:	python3-numpy
 BuildRequires:	python3-numpydoc
 BuildRequires:	python3-scipy
-BuildRequires:	python3-setuptools
 BuildRequires:	python3-sphinx
 
 Requires:	python3-numpy%{?_isa}
@@ -63,12 +62,15 @@ sed -i 's/fid = file(/fid = open(/' doc/source/conf.py
 # have a repo anyway.
 sed -i /contributors/d doc/source/conf.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 # clean unneeded stuff
 rm -rf %{buildroot}%{python3_sitearch}/bottleneck/LICENSE
@@ -99,7 +101,7 @@ rm -rf %{buildroot}%{python3_sitearch}/.pytest_cache
 %license LICENSE
 %doc README* RELEASE*
 %{python3_sitearch}/bottleneck
-%{python3_sitearch}/%{upname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/%{upname}-%{version}.dist-info
 
 
 %changelog

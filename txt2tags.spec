@@ -12,7 +12,6 @@ Source0: https://github.com/jendrikseipp/txt2tags/archive/%{version}.tar.gz
 BuildArch: noarch
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 Requires:      python3
 
 %description
@@ -36,17 +35,20 @@ Txt2tags is a document generator. It reads a text file with minimal markup as
 %prep
 %setup -q
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 %files
 %doc CHANGELOG.md README.md
 %license COPYING
 %{_bindir}/txt2tags
-%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{name}-%{version}.dist-info
 %{python3_sitelib}/%{name}.py
 %{python3_sitelib}/__pycache__/%{name}*
 

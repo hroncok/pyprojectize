@@ -12,7 +12,6 @@ URL:     https://github.com/Pylons/plaster_pastedeploy
 Source0: %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-paste-deploy >= 2.0.0
 BuildRequires: python3-plaster >= 0.5
 BuildRequires: python3-pytest
@@ -43,12 +42,16 @@ Requires: python3-setuptools
 %autosetup -n plaster_pastedeploy-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -60,7 +63,7 @@ PYTHONPATH="./src" py.test-3
 %doc CHANGES.rst
 %doc README.rst
 %{python3_sitelib}/plaster_pastedeploy
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 
 
 %changelog

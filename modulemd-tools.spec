@@ -13,7 +13,6 @@ BuildRequires: createrepo_c
 BuildRequires: argparse-manpage
 BuildRequires: python3-devel
 BuildRequires: python3-pip
-BuildRequires: python3-setuptools
 BuildRequires: python3-wheel
 BuildRequires: python3-libmodulemd >= 2.9.3
 BuildRequires: python3-dnf
@@ -64,14 +63,18 @@ bld2repo - Simple tool for dowloading build required RPMs of a modular build fro
 %patch 0 -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 PYTHONPATH=: ./man/generate-manpages.sh
 
 
 %install
-%py3_install
+%pyproject_install
 
 install -d %{buildroot}%{_mandir}/man1
 cp man/*.1 %{buildroot}%{_mandir}/man1/
@@ -86,7 +89,7 @@ cp man/*.1 %{buildroot}%{_mandir}/man1/
 %license LICENSE
 
 %{python3_sitelib}/modulemd_tools
-%{python3_sitelib}/modulemd_tools-*.egg-info/
+%{python3_sitelib}/modulemd_tools.dist-info/
 
 %{_bindir}/repo2module
 %{_bindir}/dir2module

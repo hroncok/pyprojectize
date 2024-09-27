@@ -13,7 +13,6 @@ Patch1:         0002-setup.py-Require-docopt-0.9.0.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel > 3.4
-BuildRequires:  python3-setuptools
 BuildRequires:  %{py3_dist coverage} > 4.0
 BuildRequires:  python3-sphinx
 
@@ -49,11 +48,14 @@ Includes the documentation for python-%{pypi_name}
 %autosetup -n %{pypi_name}-python-%{version}
 PYTHONPATH=./ sphinx-build-3 -a -b html ./docs/ ./docs/html/
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 cp %{buildroot}%{_bindir}/coveralls %{buildroot}%{_bindir}/coveralls-py3
 
 %files -n python3-%{pypi_name}

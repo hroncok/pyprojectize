@@ -13,7 +13,7 @@ Source0:        %{url}/archive/%{commit0}.tar.gz#/%{name}-%{commit0}.tar.gz
 
 BuildArch:      noarch
 
-BuildRequires:  python3-devel python3-setuptools
+BuildRequires:  python3-devel
 BuildRequires:  fontpackages-devel
 BuildRequires:  desktop-file-utils libappstream-glib
 
@@ -64,12 +64,15 @@ find %{name} -name \*.py |xargs sed -i '/^#!\//, 1d'
 sed -i /utils.install_font.*/d bin/%{name}
 sed -i -r 's,(fonts/)04b03,\1%{name},' setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 sed -i '/"install":/d' setup.py
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 # avoid misplaced license file
 find %{buildroot} -name '*LICENSE' -print -delete
 

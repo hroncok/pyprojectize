@@ -9,7 +9,6 @@ Source0:        %{pypi_source %{name}}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 XCat is a command line program that aides in the exploitation of blind XPath
@@ -28,11 +27,14 @@ sed -i -e "s/aiohttp~=3.0/aiohttp<4.0/g" setup.py
 # https://bugzilla.redhat.com/show_bug.cgi?id=2021804
 sed -i -e "/cchardet/d" setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %doc README.md
@@ -40,7 +42,7 @@ sed -i -e "/cchardet/d" setup.py
 #%%license LICENSE
 %{_bindir}/%{name}
 %{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}-*.egg-info/
+%{python3_sitelib}/%{name}.dist-info/
 
 %changelog
 * Sat Jul 20 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.4-16

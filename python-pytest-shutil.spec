@@ -15,7 +15,6 @@ Patch3:         https://github.com/man-group/pytest-plugins/pull/219.patch
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 BuildRequires:  python3-six
 BuildRequires:  python3-mock
@@ -54,11 +53,14 @@ sed -i -e '/setuptools-git/d' common_setup.py
 # https://bugzilla.redhat.com/show_bug.cgi?id=1702355
 sed -i -e 's|path.py|path|' setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # test_pretty_formatter requires termcolor

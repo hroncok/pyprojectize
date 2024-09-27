@@ -52,14 +52,18 @@ BuildRequires:  python3-pep8
 %autosetup
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 %py2_build
-%py3_build
+%pyproject_wheel
 
 
 %install
 %py2_install
-%py3_install
+%pyproject_install
 
 
 %check

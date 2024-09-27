@@ -22,7 +22,6 @@ Summary:            Easy to use mocking/stub framework
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{modname}}
 
 BuildRequires:      python%{python3_pkgversion}-devel
-BuildRequires:      python%{python3_pkgversion}-setuptools
 
 %description -n python%{python3_pkgversion}-%{modname}
 Chai provides a very easy to use api for mocking/stubbing your python
@@ -49,11 +48,14 @@ sed -i \
     -e 's|assert_equals(|assertEqual(|' \
 $(find tests -type f)
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 %check
 %{__python3} setup.py test

@@ -20,7 +20,6 @@ Summary:        %{summary}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(requests)
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(pytest)
 %{?python_provide:%python_provide python3-%{pkg_name}}
 
@@ -31,11 +30,14 @@ A Python wrapper around the ZoneMinder RESTful API.
 %autosetup -n %{pypi_name}-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v tests
@@ -45,7 +47,7 @@ rm -rf %{pypi_name}.egg-info
 %doc README.md
 %exclude %{python3_sitelib}/tests
 %{python3_sitelib}/zoneminder
-%{python3_sitelib}/zm_py-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/zm_py-%{version}.dist-info
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 0.5.2-15

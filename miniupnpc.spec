@@ -18,7 +18,6 @@ BuildRequires:  cmake >= 3.5.0
 BuildRequires:  gcc
 BuildRequires:  make
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Source0:    http://miniupnp.free.fr/files/%{name}-%{version}.tar.gz
 
@@ -51,6 +50,9 @@ This package contains python3 interfaces to %{name}.
 # Unversioned link is not enough to avoid a rebuild
 sed -i -e 's|build/libminiupnpc.a|build/libminiupnpc.so.%{version}|g' setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %cmake \
     -DCMAKE_SKIP_INSTALL_RPATH:BOOL=YES \
@@ -63,11 +65,11 @@ sed -i -e 's|build/libminiupnpc.a|build/libminiupnpc.so.%{version}|g' setup.py
     -DUPNPC_NO_INSTALL=FALSE
 
 %cmake_build
-%py3_build
+%pyproject_wheel
 
 %install
 %cmake_install
-%py3_install
+%pyproject_install
 
 mv %{buildroot}%{_bindir}/upnpc-shared %{buildroot}%{_bindir}/upnpc
 mv %{buildroot}%{_bindir}/listdevices %{buildroot}%{_bindir}/upnp-listdevices
@@ -94,7 +96,7 @@ make CFLAGS="%{optflags} -DMINIUPNPC_SET_SOCKET_TIMEOUT" check
 %{_mandir}/man3/%{name}.3*
 
 %files -n python3-%{name}
-%{python3_sitearch}/miniupnpc-%{version}-py3.*.egg-info/
+%{python3_sitearch}/miniupnpc-%{version}-py3.*.dist-info/
 %{python3_sitearch}/miniupnpc*.so
 
 %changelog

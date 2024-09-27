@@ -18,7 +18,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-gexiv2
 BuildRequires:  python3-genshi
 BuildRequires:  python3-pillow
-BuildRequires:  python3-setuptools
 Recommends:     /usr/bin/ffmpeg
 Recommends:     /usr/bin/ffprobe
 Requires:       js-jquery
@@ -46,13 +45,16 @@ It can be summed up by the following features :
 %prep
 %setup -q
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 %{__python3} setup.py build_i18n
 %{__python3} setup.py build_manpages
 
 %install
-%py3_install
+%pyproject_install
 install -dm755 %{buildroot}%{_mandir}/man{1,5}
 install -pm644 man/lazygal.1 %{buildroot}%{_mandir}/man1/
 install -pm644 man/lazygal.conf.5 %{buildroot}%{_mandir}/man5/
@@ -68,7 +70,7 @@ cp -pr build/mo/* %{buildroot}%{_datadir}/locale/
 %license COPYING
 %doc README.md TODO ChangeLog
 %{_bindir}/%{name}
-%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{name}-%{version}.dist-info
 %{python3_sitelib}/%{name}
 %{_datadir}/%{name}
 %{_mandir}/man1/%{name}.1*

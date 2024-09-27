@@ -30,7 +30,6 @@ Summary:        %{summary}
 
 BuildRequires:  gcc
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-nose >= 1.0
 BuildRequires:  python3-pillow
 
@@ -49,12 +48,16 @@ rm -rf %{srcname}.egg-info
 echo "#define INTERNAL_PILLOWFIGHT_VERSION \"%{version}\"" > src/pillowfight/_version.h
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -67,7 +70,7 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} \
 %license LICENSE
 %doc README.md
 %{python3_sitearch}/pillowfight
-%{python3_sitearch}/%{srcname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/%{srcname}-%{version}.dist-info
 
 
 %changelog

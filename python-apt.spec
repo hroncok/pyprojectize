@@ -16,7 +16,6 @@ BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(python-distutils-extra)
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  zlib-devel
 
 %description
@@ -47,16 +46,20 @@ the sources.list configuration on the repository and the distro level.
 %autosetup -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 # Deal with python-apt not having proper default version set by using debver hack
 export DEBVER="%{version}"
-%py3_build
+%pyproject_wheel
 
 
 %install
 # Deal with python-apt not having proper default version set by using debver hack
 export DEBVER="%{version}"
-%py3_install
+%pyproject_install
 
 # Get rid of unused garbage
 rm -rf %{buildroot}%{python3_sitelib}/apt_*-stubs*
@@ -68,7 +71,7 @@ rm -rf %{buildroot}%{python3_sitelib}/apt_*-stubs*
 %{python3_sitearch}/apt/
 %{python3_sitearch}/apt_*
 %{python3_sitearch}/aptsources/
-%{python3_sitearch}/python_apt-%{version}-py%{python3_version}.egg-info/
+%{python3_sitearch}/python_apt-%{version}.dist-info/
 %{_datadir}/%{name}/
 
 

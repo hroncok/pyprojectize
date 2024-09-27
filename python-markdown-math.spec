@@ -13,7 +13,6 @@ Source0:        %{url}/archive/%{version}/%{pypi_name}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(markdown)
 
 %description
@@ -34,11 +33,14 @@ formulas support to Python-Markdown.
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} test.py
@@ -49,7 +51,7 @@ rm -rf %{pypi_name}.egg-info
 %doc README.md
 %{python3_sitelib}/__pycache__/*
 %{python3_sitelib}/mdx_math.py
-%{python3_sitelib}/python_markdown_math-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/python_markdown_math-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.8-15

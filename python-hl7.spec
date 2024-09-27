@@ -20,7 +20,6 @@ BuildRequires:  make
 BuildRequires:  python3-devel
 BuildRequires:  python3-sphinx
 BuildRequires:  python3-sphinxcontrib-htmlhelp
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-six
 
 %description
@@ -46,6 +45,9 @@ Documentation files for %{srcname}
 rm -rf *egg-info
 cp %{SOURCE1} .
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 
 # Make docs
@@ -57,10 +59,10 @@ pushd docs/
     make htmlhelp
 popd
 
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Delete buildinfo file
 find docs/_build/ -name ".buildinfo" -execdir rm -fv '{}' \;
@@ -68,7 +70,7 @@ find docs/_build/ -name ".buildinfo" -execdir rm -fv '{}' \;
 %files -n python3-%{srcname}
 %{_bindir}/mllp_send
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 %license LICENSE
 
 %files doc

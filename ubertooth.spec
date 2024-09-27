@@ -22,7 +22,6 @@ BuildRequires:  libbtbb-devel
 BuildRequires:  libpcap-devel
 BuildRequires:  libusb1-devel
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  systemd
 Requires:       lib%{name}%{?_isa} = %{version}-%{release}
 Recommends:     %{name}-specan-ui = %{version}-%{release}
@@ -65,6 +64,10 @@ The %{name}-specan-ui is a basic spectrum analysis tool for the Ubertooth.
 %autosetup -p1 -n %{name}-%{POSTYEAR}-%{POSTMONTH}-R%{POSTNUM}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 sed -i -e 's/GROUP="@UBERTOOTH_GROUP@"/ENV{ID_SOFTWARE_RADIO}="1"/g' host/misc/udev/40-ubertooth.rules.in
 %cmake \
@@ -78,7 +81,7 @@ sed -i -e 's/GROUP="@UBERTOOTH_GROUP@"/ENV{ID_SOFTWARE_RADIO}="1"/g' host/misc/u
 (
   cd host/python/specan_ui
   sed -i "s/version\s*=\s*''/version = '%{version}'/" setup.py
-  %py3_build
+  %pyproject_wheel
 )
 
 
@@ -86,7 +89,7 @@ sed -i -e 's/GROUP="@UBERTOOTH_GROUP@"/ENV{ID_SOFTWARE_RADIO}="1"/g' host/misc/u
 %cmake_install
 (
   cd host/python/specan_ui
-  %py3_install
+  %pyproject_install
   install -Dp -m755 ubertooth-specan-ui %{buildroot}%{_bindir}
 )
 
@@ -120,7 +123,7 @@ sed -i -e 's/GROUP="@UBERTOOTH_GROUP@"/ENV{ID_SOFTWARE_RADIO}="1"/g' host/misc/u
 %doc host/python/specan_ui/README
 %{_bindir}/%{name}-specan-ui
 %{python3_sitelib}/specan
-%{python3_sitelib}/specan-%{POSTYEAR}.%{POSTMONTH}.post%{POSTNUM}-py%{python3_version}.egg-info
+%{python3_sitelib}/specan-%{POSTYEAR}.%{POSTMONTH}.post%{POSTNUM}.dist-info
 
 
 %changelog

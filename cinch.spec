@@ -11,7 +11,6 @@ Source0:	http://github.com/RedHatQE/%{name}/archive/v%{version}.tar.gz
 BuildRequires:	ansible
 BuildRequires:	python3-plumbum
 BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
 Requires:	ansible
 Requires:	python3-plumbum
 
@@ -28,12 +27,15 @@ the Continuous Integration experience.
 find . -name '*.sh' -exec chmod +x '{}' \;
 find . -name '*.py' -exec chmod -x '{}' \;
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 # This is improperly installed by pip
 rm -rf %{buildroot}%{python3_sitelib}/tests
@@ -44,7 +46,7 @@ rm -rf %{buildroot}%{python3_sitelib}/tests
 %license LICENSE
 %{_bindir}/cinch
 %{_bindir}/teardown
-%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{name}-%{version}.dist-info/
 %{python3_sitelib}/%{name}
 
 

@@ -12,7 +12,6 @@ URL:            https://github.com/andrewleech/%{pypiname}
 Source0:        https://files.pythonhosted.org/packages/source/P/%{pypiname}/%{pypiname}-%{version}.tar.gz
 
 BuildArch:      noarch
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-devel
 
 
@@ -39,14 +38,18 @@ store properties for objects, etc.
 rm -f doc/INSTALL
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 # Move the LICENSE to separate it from other documentation
 mv doc/LICENSE .
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{srcname}
@@ -58,7 +61,7 @@ mv doc/LICENSE .
 %doc doc/
 
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{pypiname}*.egg-info
+%{python3_sitelib}/%{pypiname}*.dist-info
 %exclude %{python3_sitelib}/%{srcname}/server
 %exclude %{_bindir}/*
 

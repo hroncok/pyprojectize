@@ -88,6 +88,9 @@ This package contains C binding of %{name}.
 %cargo_prep
 %endif
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %cargo_build
 %cargo_license_summary
@@ -97,7 +100,7 @@ This package contains C binding of %{name}.
 %endif
 
 pushd src/python
-%py3_build
+%pyproject_wheel
 popd
 
 %install
@@ -114,7 +117,7 @@ popd
 env SKIP_PYTHON_INSTALL=1 PREFIX=%{_prefix} LIBDIR=%{_libdir} %make_install
 
 pushd src/python
-%py3_install
+%pyproject_install
 popd
 
 %if %{with check}

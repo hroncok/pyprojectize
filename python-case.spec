@@ -29,7 +29,6 @@ Requires:       python3-setuptools
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-coverage >= 3.0
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-nose
 BuildRequires:  python3-six
 
@@ -48,8 +47,11 @@ Documentation for case
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %if 0%{?with_docs} > 0
 # generate html docs
@@ -61,7 +63,7 @@ rm -rf html/.{doctrees,buildinfo}
 %install
 # Must do the subpackages' install first because the scripts in /usr/bin are
 # overwritten with every setup.py install.
-%py3_install
+%pyproject_install
 
 
 %check
@@ -71,7 +73,7 @@ rm -rf html/.{doctrees,buildinfo}
 %license LICENSE
 %doc docs/templates/readme.txt README.rst
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %if 0%{?with_docs} > 0
 %files -n python-%{pypi_name}-doc

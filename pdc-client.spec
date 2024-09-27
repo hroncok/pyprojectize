@@ -23,7 +23,6 @@ Source0:        https://files.pythonhosted.org/packages/source/p/pdc-client/pdc-
 
 
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-pytest
 BuildRequires:  python%{python3_pkgversion}-requests
 BuildRequires:  python3-requests-kerberos
@@ -81,8 +80,11 @@ server connections
 sed -i 's|^DEFAULT_PLUGIN_DIR = .*|DEFAULT_PLUGIN_DIR = "%{plugin_install_path}"|' \
         pdc_client/runner.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %check
 # Override plugin directory for tests.
@@ -97,7 +99,7 @@ for executable in "%{buildroot}%{_bindir}"/*; do
 done
 
 %install
-%py3_install
+%pyproject_install
 
 # Plugins are only required in the "pdc" script (not the Python packages). So
 # move plugins to pdc-client package from Python package (this should also

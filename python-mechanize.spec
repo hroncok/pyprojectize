@@ -62,11 +62,14 @@ chmod -x examples/forms/{echo.cgi,example.py,simple.py}
 # Workaround for https://github.com/rpm-software-management/rpm/issues/2532:
 rm -rf SPECPARTS
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 chmod +x examples/forms/{echo.cgi,example.py,simple.py}
@@ -77,7 +80,7 @@ chmod -x examples/forms/{echo.cgi,example.py,simple.py}
 %license LICENSE
 %doc README.rst ChangeLog COPYRIGHT
 %{python3_sitelib}/mechanize/
-%{python3_sitelib}/mechanize*.egg-info/
+%{python3_sitelib}/mechanize*.dist-info/
 
 %changelog
 %autochangelog

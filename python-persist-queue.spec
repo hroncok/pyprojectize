@@ -46,7 +46,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-mock
 BuildRequires:  python3-nose2
 BuildRequires:  python3-msgpack
-BuildRequires:  python3-setuptools
 
 Requires: python3-msgpack
 
@@ -58,13 +57,16 @@ A single process, persistent multi-producer, multi-consumer queue
 %prep
 %setup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if 0%{?with_python2}
 %py2_build
 %endif
 
 %if 0%{?with_python3}
-%py3_build
+%pyproject_wheel
 %endif
 
 %install
@@ -73,7 +75,7 @@ A single process, persistent multi-producer, multi-consumer queue
 %endif
 
 %if 0%{?with_python3}
-%py3_install
+%pyproject_install
 %endif
 
 %check

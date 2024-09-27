@@ -7,7 +7,6 @@ License:        LicenseRef-Callaway-LGPLv2+
 URL:            https://linuxcontainers.org/lxc
 Source0:        https://linuxcontainers.org/downloads/lxc/%{name}-%{version}.tar.gz
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  lxc-devel >= 3.0.0
 BuildRequires:  pkgconfig
 BuildRequires:  gcc
@@ -39,12 +38,16 @@ Summary: Python binding for LXC
 %autosetup
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 # fix examples
 chmod -x examples/*.py

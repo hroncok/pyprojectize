@@ -21,7 +21,6 @@ Source0:        %{pypi_source}
 BuildArch:      noarch
 
 %if 0%{?with_python3}
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-pbr
 BuildRequires:  python%{python3_pkgversion}-pytest
@@ -74,9 +73,13 @@ Requires:       python%{python3_other_pkgversion}-sphinx
 rm -rf %{pypi_name}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 %if %{with python3}
-%py3_build
+%pyproject_wheel
 %endif
 
 %if 0%{?with_python3_other}
@@ -90,7 +93,7 @@ rm -rf %{pypi_name}.egg-info
 %endif
 
 %if %{with python3}
-%py3_install
+%pyproject_install
 %endif
 
 

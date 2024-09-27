@@ -10,7 +10,6 @@ Source0:        %{url}/archive/%{version}/%{pypi_name}-python-%{version}.tar.gz
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(numpy)
 
@@ -23,14 +22,17 @@ This spying framework allows to easily create mocks with a very readable syntax.
 %prep
 %autosetup -n %{pypi_name}-python-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %check
 %pytest
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 %package -n python3-mockito
 Summary: %{summary}
@@ -43,7 +45,7 @@ Summary: %{summary}
 %doc CHANGES.txt
 %doc README.rst
 %{python3_sitelib}/mockito/
-%{python3_sitelib}/mockito-*.egg-info
+%{python3_sitelib}/mockito.dist-info
 %license LICENSE
 
 %changelog

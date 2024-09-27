@@ -25,7 +25,6 @@ with Satisfiability Modulo Theory simple. Among others, you can:
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-six
 #BuildRequires:  python3-nose
 %{?python_provide:%python_provide python3-%{pypi_name}}
@@ -45,11 +44,14 @@ with Satisfiability Modulo Theory simple. Among others, you can:
 rm -rf %{pypi_name}.egg-info
 sed -i -e '/^#!\//, 1d' pysmt/{cmd/shell.py,constants.py}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # https://github.com/pysmt/pysmt/issues/608
 #%%check
@@ -62,7 +64,7 @@ sed -i -e '/^#!\//, 1d' pysmt/{cmd/shell.py,constants.py}
 %license LICENSE
 %doc README.rst docs/*.rst docs/tutorials/
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/PySMT-%{version}-py*.egg-info/
+%{python3_sitelib}/PySMT-%{version}.dist-info/
 %exclude %{python3_sitelib}/%{pypi_name}/test/
 %{_bindir}/pysmt-install
 

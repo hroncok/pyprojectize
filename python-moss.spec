@@ -36,7 +36,6 @@ Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{modname}}
 Provides:       bundled(PyMVPA)
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if %{with check}
 # install_requires
 BuildRequires:  python3dist
@@ -77,11 +76,14 @@ Python 3 version.
 %autosetup -n %{modname}-%{version} -p1
 rm -vf licenses/BUNCH_LICENSE moss/external/bunch.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Depends on 'freeview' utility
 rm -vf %{buildroot}%{_bindir}/recon_qc

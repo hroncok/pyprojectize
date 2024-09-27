@@ -22,7 +22,6 @@ modules, including Dublin Core and Apple's iTunes extensions.
 %package -n python3-%{pypi_name}
 Summary:        Parse RSS and Atom feeds in Python
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-sgmllib3k
 
 ## TODO: Decide on these, also with regard to explicit "Requires".
@@ -66,8 +65,12 @@ find -type f -exec sed -i 's/\r//' {} ';'
 find -type f -exec chmod 0644 {} ';'
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 # build documentation
 rm -rf __tmp_docs ; mkdir __tmp_docs
@@ -75,7 +78,7 @@ sphinx-build -b html -d __tmp_docs/ docs/ __tmp_docs/html/
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -86,7 +89,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} tests/runtests.py || :
 %license LICENSE
 %doc README.rst NEWS
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-*.egg-info/
+%{python3_sitelib}/%{pypi_name}.dist-info/
 
 %files doc
 %doc LICENSE __tmp_docs/html/

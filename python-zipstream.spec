@@ -20,7 +20,6 @@ BuildArch:      noarch
 %package -n python3-%{srcname}
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-devel
 
 %description -n python3-%{srcname}
@@ -30,11 +29,14 @@ Python 3 version.
 %prep
 %autosetup
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} -m unittest discover -v

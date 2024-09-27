@@ -94,7 +94,6 @@ BuildRequires:  python3-testrepository
 BuildRequires:  python3-testscenarios
 BuildRequires:  python3-testtools
 BuildRequires:  python3-reno
-BuildRequires:  python3-setuptools
 # Required for tests
 BuildRequires:  python3-semantic_version
 BuildRequires:  python3-oslo-i18n
@@ -120,12 +119,15 @@ rm -rf %{pypi_name}.egg-info
 # Let's handle requirements from the RPM side
 rm -rf {test-,}requirements.txt tools/{pip,test}-requires
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if %{with python2}
 %py2_build
 %endif
 %if %{with python3}
-%py3_build
+%pyproject_wheel
 %endif
 
 %if 0%{?with_docs}
@@ -148,7 +150,7 @@ rm -rf doc/build/html/.{doctrees,buildinfo}
 # Must do the subpackages' install first because the scripts in /usr/bin are
 # overwritten with every setup.py install.
 %if %{with python3}
-%py3_install
+%pyproject_install
 mv %{buildroot}/%{_bindir}/murano-pkg-check %{buildroot}/%{_bindir}/murano-pkg-check-3
 ln -s ./murano-pkg-check-3 %{buildroot}%{_bindir}/murano-pkg-check
 %endif
@@ -181,7 +183,7 @@ PYTHON=python3 %{__python3} setup.py test
 %{_mandir}/man1/murano-pkg-check.1.gz
 %{python2_sitelib}/%{library}
 %exclude %{python2_sitelib}/%{library}/tests
-%{python2_sitelib}/murano_pkg_check-*.egg-info
+%{python2_sitelib}/murano_pkg_check.dist-info
 %endif
 
 %if 0%{?with_docs}
@@ -201,7 +203,7 @@ PYTHON=python3 %{__python3} setup.py test
 %endif
 %{python3_sitelib}/%{library}
 %exclude %{python3_sitelib}/%{library}/tests
-%{python3_sitelib}/murano_pkg_check-*.egg-info
+%{python3_sitelib}/murano_pkg_check.dist-info
 %endif
 
 %changelog

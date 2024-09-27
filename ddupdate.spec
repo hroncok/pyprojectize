@@ -28,7 +28,6 @@ Patch2:         0002-plugins-dtdns-Remove-service-seems-dead.patch
 Patch3:         0003-Manpages-update.patch
 
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  systemd
 BuildRequires:  /usr/bin/pkg-config
 
@@ -62,13 +61,17 @@ sed -i '/ExecStart/s|/usr/local|/usr|' systemd/ddupdate.service
 sed -i 's|systemd_unitdir(),|"lib/systemd/user",|' setup.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
 export FINAL_PREFIX=/
-%py3_install
+%pyproject_install
 %py_byte_compile %{__python3} %{buildroot}%{_datadir}/ddupdate/plugins
 
 

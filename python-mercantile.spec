@@ -15,7 +15,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3dist(click)
 BuildRequires:  python3dist(hypothesis)
 BuildRequires:  python3dist(pytest)
-BuildRequires:  python3dist(setuptools)
 
 BuildRequires:  python3dist(sphinx)
 BuildRequires:  python3dist(numpydoc)
@@ -40,8 +39,11 @@ Summary:        %{summary}
 # Remove bundled egg-info
 rm -rf %{srcname}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 # generate html docs
 PYTHONPATH=${PWD} sphinx-build-3 docs html
@@ -50,7 +52,7 @@ PYTHONPATH=${PWD} sphinx-build-3 docs html
 rm -rf html/.{buildinfo,doctrees}
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{pytest}
@@ -60,7 +62,7 @@ rm -rf html/.{buildinfo,doctrees}
 %license LICENSE.txt
 %{_bindir}/mercantile
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.2.1-14

@@ -45,7 +45,6 @@ BuildRequires: python2-scipy
 %if %{python3_enabled}
 # Needed to build the python libraries
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 # These are only needed for the checks
 %if %{with tests}
 BuildRequires: python3-pytest
@@ -113,6 +112,9 @@ This package contains the Python 3 files.
 %patch 1 -p1 -b .hpath
 %patch 2 -p1 -b .gcc-14
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 pys=""
 %if %{python2_enabled}
@@ -135,7 +137,7 @@ done
 %py2_build
 %endif
 %if %{python3_enabled}
-%py3_build
+%pyproject_wheel
 %endif
 
 %if %{with tests}
@@ -175,13 +177,13 @@ PYBIND11_USE_CMAKE=true %py3_install "--install-purelib" "%{python3_sitearch}"
 %if %{python2_enabled}
 %files -n python2-%{name}
 %{python2_sitearch}/%{name}/
-%{python2_sitearch}/%{name}-%{version}-py?.?.egg-info
+%{python2_sitearch}/%{name}-%{version}-py?.?.dist-info
 %endif
 
 %if %{python3_enabled}
 %files -n python3-%{name}
 %{python3_sitearch}/%{name}/
-%{python3_sitearch}/%{name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/%{name}-%{version}.dist-info
 %endif
 
 %changelog

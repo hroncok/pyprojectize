@@ -16,7 +16,6 @@ Source0: https://github.com/whipper-team/%{srcname}/archive/v%{version}.tar.gz
 Patch:         https://patch-diff.githubusercontent.com/raw/whipper-team/whipper/pull/543.patch
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-setuptools_scm
 BuildRequires: gcc
 BuildRequires: libsndfile-devel
@@ -46,13 +45,16 @@ ExcludeArch: s390x
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
-%py3_build
+%pyproject_wheel
 
 %install
 export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
-%py3_install
+%pyproject_install
 
 %if "%_metainfodir" != "%{_datadir}/metainfo"
 mv %{buildroot}%{_datadir}/metainfo/ \
@@ -66,7 +68,7 @@ appstream-util validate-relax --nonet %{buildroot}/%{_metainfodir}/com.github.wh
 %{_bindir}/accuraterip-checksum
 %{_metainfodir}/com.github.whipper_team.Whipper.metainfo.xml
 %{python3_sitearch}/%{srcname}/
-%{python3_sitearch}/%{srcname}-*.egg-info/
+%{python3_sitearch}/%{srcname}.dist-info/
 %{python3_sitearch}/accuraterip*
 %license LICENSE
 %doc README.md TODO CHANGELOG.md HACKING COVERAGE

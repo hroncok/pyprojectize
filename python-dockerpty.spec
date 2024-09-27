@@ -45,7 +45,6 @@ Requires:       python2-six
 %package -n python%{python3_pkgversion}-%{pkgname}
 Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 Requires:       python%{python3_pkgversion}-six
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{pkgname}}
 
@@ -55,13 +54,16 @@ Requires:       python%{python3_pkgversion}-six
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %{?with_python2:%py2_build}
-%{?with_python3:%py3_build}
+%{?with_python3:%pyproject_wheel}
 
 %install
 %{?with_python2:%py2_install}
-%{?with_python3:%py3_install}
+%{?with_python3:%pyproject_install}
 
 # we are missing the 'expects' library to run the tests
 # %%check
@@ -73,7 +75,7 @@ Requires:       python%{python3_pkgversion}-six
 %license LICENSE.txt
 %doc README.md MANIFEST.in
 %{python2_sitelib}/%{libname}
-%{python2_sitelib}/%{eggname}-%{version}-py%{python2_version}.egg-info
+%{python2_sitelib}/%{eggname}-%{version}-py%{python2_version}.dist-info
 %endif
 
 %if %{with python3}
@@ -81,7 +83,7 @@ Requires:       python%{python3_pkgversion}-six
 %license LICENSE.txt
 %doc README.md MANIFEST.in
 %{python3_sitelib}/%{libname}
-%{python3_sitelib}/%{eggname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{eggname}-%{version}.dist-info
 %endif
 
 %changelog

@@ -22,7 +22,6 @@ application would use.
 Summary:        %{summary} - Python 3 version
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Requires:       python3-django
 
 Obsoletes:      python-%{pypi_name} < 1.1-1
@@ -38,15 +37,18 @@ This package provides Python 3 build of %{pypi_name}.
 %prep
 %autosetup -p1 -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %{python3_sitelib}/threadedcomments
-%{python3_sitelib}/django_threadedcomments-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/django_threadedcomments-%{version}.dist-info
 %license LICENSE.txt
 %doc README.rst LICENSE.txt CHANGELOG.rst
 

@@ -13,7 +13,6 @@ Source0:        http://launchpad.net/%{name}/trunk/%{version}/+download/%{name}-
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 Enables you to easily integrate gettext support, themed icons and
@@ -31,17 +30,20 @@ scrollkeeper based documentation into Python's distutils.
 %prep
 %autosetup -n %{name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %doc doc/*
 %license LICENSE
 %{python3_sitelib}/DistUtilsExtra/
-%{python3_sitelib}/python_distutils_extra*.egg-info
+%{python3_sitelib}/python_distutils_extra*.dist-info
 
 %changelog
 * Fri Jul 26 2024 Miroslav Suchý <msuchy@redhat.com> - 2.39-32

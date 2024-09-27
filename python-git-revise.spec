@@ -25,7 +25,6 @@ Source0:        https://github.com/mystor/git-revise/archive/%{version}/%{shortn
 BuildArch:      noarch
 
 BuildRequires:  python3-devel >= 3.8
-BuildRequires:  python3dist(setuptools)
 
 # For testing purposes
 BuildRequires:  python3dist(pytest)
@@ -62,11 +61,14 @@ This package contains the python modules for the git-revise program.
 %prep
 %autosetup -n %{shortname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} -m pytest
@@ -81,7 +83,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} -m pytest
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/gitrevise
-%{python3_sitelib}/git_revise-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/git_revise-%{version}.dist-info
 
 
 

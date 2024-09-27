@@ -10,7 +10,6 @@ Source0:        https://github.com/fabaff/pysysbot/archive/%{version}.tar.gz#/%{
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  systemd
 
 Requires:         python3-slixmpp
@@ -28,11 +27,14 @@ get information about the remote system.
 %prep
 %autosetup -n %{name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 install -Dp -m 0644 data/%{name}.service %{buildroot}%{_unitdir}/%{name}.service
 install -Dp -m 0644 data/%{name}.conf %{buildroot}%{_sysconfdir}/%{name}/%{name}.conf
 install -Dp -m 0644 man/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
@@ -54,7 +56,7 @@ rm -rf %{buildroot}%{_defaultdocdir}
 %{_bindir}/%{name}
 %config(noreplace) %{_sysconfdir}/%{name}/
 %{_unitdir}/%{name}.service
-%{python3_sitelib}/%{name}-*.egg-info/
+%{python3_sitelib}/%{name}.dist-info/
 %{python3_sitelib}/%{name}/
 
 %changelog

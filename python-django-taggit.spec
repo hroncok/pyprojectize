@@ -21,7 +21,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 %description -n python3-%{srcname} %{_description}
 
@@ -33,17 +32,20 @@ rm -vr *.egg-info
 # remove unnecessary language ressources:
 rm taggit/locale/*/LC_MESSAGES/django.po
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 %find_lang django
 
 %files -n python3-%{srcname} -f django.lang
 %license LICENSE
 %doc README.rst CHANGELOG.rst
-%{python3_sitelib}/django_taggit-*.egg-info/
+%{python3_sitelib}/django_taggit.dist-info/
 %{python3_sitelib}/taggit/
 
 %changelog

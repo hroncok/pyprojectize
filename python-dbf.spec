@@ -28,7 +28,6 @@ BuildArch:      noarch
 %package -n     python3-%{pypi_name}
 Summary:        %{sum}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Requires:       python3-aenum
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -47,17 +46,21 @@ rm -f dbf/ver_2.py
 sed -i "s|\r||g" dbf/README.md
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{pypi_name}
 %doc dbf/README.md
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %{python3_sitelib}/%{pypi_name}/
 
 %changelog

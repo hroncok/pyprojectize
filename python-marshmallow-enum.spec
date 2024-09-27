@@ -20,7 +20,6 @@ A Python enum serializer/deserializer for use with Marshmallow.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 BuildRequires:  python3-pytest
 BuildRequires:  python3-marshmallow
@@ -33,11 +32,14 @@ A Python enum serializer/deserializer for use with Marshmallow.
 %autosetup -n %{modname}-%{version}
 rm -vf tox.ini
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 PYTHONPATH=%{buildroot}/%{python3_sitelib} py.test-%{python3_version} -v
@@ -46,7 +48,7 @@ PYTHONPATH=%{buildroot}/%{python3_sitelib} py.test-%{python3_version} -v
 %doc README.md CHANGELOG
 %license LICENSE
 %{python3_sitelib}/%{modname}/
-%{python3_sitelib}/%{modname}-*.egg-info/
+%{python3_sitelib}/%{modname}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.5.1-17

@@ -28,7 +28,6 @@ Source0:        %pypi_source
 BuildArch:      noarch
 BuildRequires:  make
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-stack-data
 
 %if %{with doc}
@@ -114,7 +113,7 @@ Requires:       (tex(bm.sty)      if /usr/bin/dvipng)
 
 This package provides IPython for in a terminal.
 
-%{?python_extras_subpkg:%python_extras_subpkg -n python3-ipython -i %{python3_sitelib}/*.egg-info notebook}
+%pyproject_extras_subpkg -n python3-ipython notebook
 
 %package -n python3-ipython-sphinx
 Summary:        Sphinx directive to support embedded IPython code
@@ -186,8 +185,12 @@ sed -i "s/def setup(/def setup_method(/" IPython/core/tests/test_pylabtools.py
 sed -i "s/def teardown(/def teardown_method(/" IPython/core/tests/test_pylabtools.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %if %{with doc}
@@ -200,7 +203,7 @@ popd
 
 
 %install
-%py3_install
+%pyproject_install
 
 # link the manpage to ipython3
 mv %{buildroot}%{_mandir}/man1/ipython{,3}.1
@@ -240,7 +243,7 @@ rm -r %{buildroot}%{python3_sitelib}/IPython/*/tests
 %{python3_sitelib}/IPython/testing/__pycache__/
 %{python3_sitelib}/IPython/testing/*.py*
 %{python3_sitelib}/IPython/testing/plugin
-%{python3_sitelib}/ipython-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/ipython-%{version}.dist-info/
 
 %{python3_sitelib}/IPython/core/
 %{python3_sitelib}/IPython/extensions/
@@ -257,7 +260,7 @@ rm -r %{buildroot}%{python3_sitelib}/IPython/*/tests
 
 %if %{with check}
 %files -n python3-ipython+test
-%ghost %{python3_sitelib}/ipython-%{version}-py%{python3_version}.egg-info/
+%ghost %{python3_sitelib}/ipython-%{version}.dist-info/
 %{python3_sitelib}/IPython/*/tests
 %endif
 

@@ -13,7 +13,6 @@ Source0:        %{pypi_source}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(pytest)
 BUildRequires:  python3dist(six)
 
@@ -41,11 +40,14 @@ rm -rf %{pypi_name}.egginfo
 
 chmod 644 LICENSE NOTICE langdetect/profiles/*
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest
@@ -53,7 +55,7 @@ chmod 644 LICENSE NOTICE langdetect/profiles/*
 %files -n python3-%{pypi_name}
 %doc README.md
 %license LICENSE NOTICE
-%{python3_sitelib}/%{pypi_name}-%{version}-py*.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 %{python3_sitelib}/%{pypi_name}/
 
 %changelog

@@ -35,7 +35,6 @@ Patch0:         00-dont-install-tests.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(pytest)
 
 %description %{common_description}
@@ -55,12 +54,16 @@ Summary:        %{summary}
 rm -rf %{pypi_name}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -72,7 +75,7 @@ PYTHONPATH=. pytest tests
 %license LICENSE
 
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 
 %changelog

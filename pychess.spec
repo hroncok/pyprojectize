@@ -24,7 +24,6 @@ Patch3:         0001-TimeSeal.py-make-IAC_WONT_ECHO-a-literal-as-telnetli.patch
 BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3-gobject
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(pexpect)
 BuildRequires:  python3dist(sqlalchemy) < 2
 BuildRequires:  gtk3
@@ -101,8 +100,11 @@ sed -r \
     -i docs/conf.py
 %endif
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 %if %{with docs}
 # generate html docs
 PYTHONPATH=${PWD}/lib sphinx-build-3 docs html
@@ -110,7 +112,7 @@ PYTHONPATH=${PWD}/lib sphinx-build-3 docs html
 
 
 %install
-%py3_install
+%pyproject_install
 # Remove Debian specific menu stuff
 rm -r %{buildroot}%{_datadir}/menu
 
@@ -144,7 +146,7 @@ PYTHONPATH=../lib PYCHESS_UNITTEST=true xvfb-run -a coverage run \
 %doc utilities
 %license LICENSE
 %{python3_sitelib}/%{name}
-%{python3_sitelib}/PyChess-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/PyChess-%{version}.dist-info
 %{_bindir}/%{name}
 %{_datadir}/%{name}
 %{_datadir}/gtksourceview-3.0/language-specs/pgn.lang

@@ -22,7 +22,6 @@ PBKDF2, specified in RSA PKCS#5 v2.0.}
 %package -n python3-%{srcname}
 Summary:       %{summary}
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 %description -n python3-%{srcname} %_description
 
@@ -31,11 +30,14 @@ BuildRequires: python3-setuptools
 
 rm -rf %{srcname}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{python3} -m unittest test/*
@@ -44,7 +46,7 @@ rm -rf %{srcname}.egg-info
 %doc PKG-INFO
 %doc README.txt
 %license LICENSE
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 %pycached %{python3_sitelib}/pbkdf2.py
 
 %changelog

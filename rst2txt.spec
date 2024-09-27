@@ -12,7 +12,6 @@ Source0:        %{url}/archive/%{version}/%{pypi_name}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
 BuildRequires:  python3-docutils
 BuildRequires:  python3-pygments
@@ -32,11 +31,14 @@ a plain text document, such as images, stripped.
 %autosetup -n %{pypi_name}-%{version}
 sed -i -e 's/use_scm_version=True,/version="%{version}",/g' setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
     
 %check
 PYTHONPATH=%{buildroot}/%{python3_sitelib}/ pytest-%{python3_version} -v tests
@@ -46,7 +48,7 @@ PYTHONPATH=%{buildroot}/%{python3_sitelib}/ pytest-%{python3_version} -v tests
 %license LICENSE
 %{_bindir}/%{name}
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}*.egg-info
+%{python3_sitelib}/%{pypi_name}*.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.1.0-24

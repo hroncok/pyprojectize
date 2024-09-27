@@ -14,7 +14,6 @@ Source0:        https://codeberg.org/poezio/slixmpp-omemo/archive/v%{version}.ta
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-slixmpp
 BuildRequires:  python3-omemo
 # for tests
@@ -41,12 +40,16 @@ python-slixmpp.
 find ./%{srcname}/ -type f '(' -name __init__.py -o -name stanza.py -o -name version.py ')' -ls -exec sed -i 's@#!/usr/bin/env python3@@' '{}' \;
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -59,7 +62,7 @@ find ./%{srcname}/ -type f '(' -name __init__.py -o -name stanza.py -o -name ver
 %doc CONTRIBUTING.rst ChangeLog README.rst
 # For noarch packages: sitelib
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 
 
 

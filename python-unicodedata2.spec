@@ -16,7 +16,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(pytest-randomly)
 BuildRequires:  python3dist(pytest-xdist)
-BuildRequires:  python3dist(setuptools)
 
 %description
 This module provides access to the Unicode Character Database (UCD)
@@ -42,11 +41,14 @@ is data from Unicode 13.0.0.
 %prep
 %autosetup -n %{pypi_name}-%{pypi_version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v
@@ -55,7 +57,7 @@ is data from Unicode 13.0.0.
 %license LICENSE
 %doc README.md
 %{python3_sitearch}/%{pypi_name}%{python3_ext_suffix}
-%{python3_sitearch}/%{pypi_name}-%{pypi_version}-py%{python3_version}.egg-info
+%{python3_sitearch}/%{pypi_name}-%{pypi_version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 15.1.0-5

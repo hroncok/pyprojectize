@@ -12,7 +12,6 @@ Patch0:    pyee-switch-to-unittest-mock.diff
 BuildArch: noarch
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-sphinx
 BuildRequires: python3-tox
 BuildRequires: python3-twisted
@@ -37,11 +36,14 @@ A port of node.js's EventEmitter to python.
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # currently segfaults

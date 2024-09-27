@@ -22,7 +22,6 @@ Patch1:         test-only-python-implementation.diff
 Patch2:         nocimplementation-fix-0.9.1.patch
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 
 %global _description\
@@ -49,11 +48,14 @@ Python 3 Version.
 %autosetup -n %{realname}-%{version} -p1
 tar xf %{SOURCE1} -C testdata
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # testdata is here: https://github.com/jamesturk/jellyfish-testdata.git
@@ -63,7 +65,7 @@ PYTHONPATH=. pytest-3 jellyfish/test.py
 %license LICENSE
 %doc README.md docs/
 %{python3_sitelib}/%{realname}
-%{python3_sitelib}/%{realname}*.egg-info
+%{python3_sitelib}/%{realname}*.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.9.1-9

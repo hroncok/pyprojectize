@@ -12,7 +12,6 @@ BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3-deprecation
 BuildRequires:  python3-filetype
-BuildRequires:  python3-setuptools
 # Test dependencies.
 BuildRequires:  python3-factory-boy
 BuildRequires:  python3-nose
@@ -38,12 +37,16 @@ Requires:       python3-six
 %autosetup -n eyeD3-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -58,7 +61,7 @@ py.test-%{python3_version} --ignore=tests/{test_classic_plugin.py,test_core.py,i
 %license LICENSE
 %{_bindir}/eyeD3
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/eyed3-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/eyed3-%{version}.dist-info/
 
 
 %changelog

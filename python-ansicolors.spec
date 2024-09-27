@@ -20,7 +20,6 @@ Patch0: add-bright-colors.patch
 
 %package -n python3-%{pkgname}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{pkgname}}
@@ -34,11 +33,14 @@ Summary:        %{summary}
 # Remove upstream egg-info
 rm -rf %{pkgname}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 PYTHONPATH=$(pwd) py.test-3 -v test
@@ -46,7 +48,7 @@ PYTHONPATH=$(pwd) py.test-3 -v test
 %files -n python3-%{pkgname}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/%{pkgname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pkgname}-%{version}.dist-info
 %{python3_sitelib}/colors
 
 %changelog

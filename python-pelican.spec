@@ -32,7 +32,6 @@ Conflicts:      python2-%{pypi_name} < 3.7.1-4
 Provides:       %{pypi_name} == %{version}-%{release}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-blinker
 BuildRequires:  python3-sphinx
 BuildRequires:  python3-unidecode
@@ -90,8 +89,11 @@ sed -i '1d' pelican/tools/templates/publishconf.py.jinja2
 # release pytz constraints
 sed -i "s|'pytz >= 0a'|'pytz'|" setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 # build docs
 PYTHONPATH=.:$PYTHONPATH sphinx-build-3 docs html
@@ -102,7 +104,7 @@ rm -rf html/.doctrees html/.buildinfo
 
 
 %install
-%py3_install
+%pyproject_install
 
 # backwards compatibility helpers
 ln -s ./pelican %{buildroot}/%{_bindir}/pelican-3
@@ -132,7 +134,7 @@ ln -s ./pelican-themes %{buildroot}/%{_bindir}/pelican-themes-3
 %{_bindir}/pelican-themes-3
 
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-*-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-*.dist-info
 
 
 %changelog

@@ -12,7 +12,6 @@ Source3: supervisor.logrotate
 Source4: supervisor.tmpfiles
 BuildArch: noarch
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: systemd
 
 Requires: python3-setuptools
@@ -24,11 +23,14 @@ number of processes on UNIX-like operating systems.
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 mkdir -p %{buildroot}/%{_sysconfdir}
 mkdir -p %{buildroot}/%{_sysconfdir}/supervisord.d

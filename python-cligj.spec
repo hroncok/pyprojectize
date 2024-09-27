@@ -12,7 +12,6 @@ Source0:        %{pypi_source}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(click) >= 4
 BuildRequires:  python3dist(pytest)
 
@@ -34,12 +33,16 @@ Common arguments and options for GeoJSON processing commands, using Click.
 chmod -x README.rst
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -50,7 +53,7 @@ chmod -x README.rst
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 
 
 %changelog

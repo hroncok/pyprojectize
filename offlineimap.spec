@@ -35,7 +35,6 @@ BuildArch:      noarch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-distro
-BuildRequires:  python3-setuptools
 BuildRequires:  asciidoc
 BuildRequires:  make
 BuildRequires:  gzip
@@ -68,9 +67,12 @@ cd imaplib2-%{imaplib2_commit}
 %autopatch -m200 -p1
 mv imaplib2/imaplib2.py3 ../offlineimap3-%{version}/offlineimap/imaplib2.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 
-%{py3_build}
+%{pyproject_wheel}
 
 # 'make docs' builds the man pages and the api documentation.
 make docs SPHINXBUILD='%{__python3} -msphinx'
@@ -80,7 +82,7 @@ chmod a-x docs/offlineimap.1.gz
 chmod a-x docs/offlineimapui.7.gz
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 #  Fix python shebang in the offlineimap program.
 %py3_shebang_fix %{buildroot}/%{_bindir}/offlineimap
@@ -99,7 +101,7 @@ install -p docs/offlineimapui.7.gz %{buildroot}/%{_mandir}/man7/
 %doc offlineimap.conf* docs/html/*.html
 %{_bindir}/%{name}
 %{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}-*-py%{python3_version}.egg-info
+%{python3_sitelib}/%{name}-*.dist-info
 %{_mandir}/man1/%{name}.1*
 %{_mandir}/man7/%{name}ui.7*
 

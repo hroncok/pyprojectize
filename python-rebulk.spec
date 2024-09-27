@@ -13,7 +13,6 @@ URL: https://github.com/Toilal/rebulk
 Source: https://github.com/Toilal/%{srcname}/archive/v%{version}/%{srcname}-%{version}.tar.gz
 BuildArch: noarch
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-pytest-runner
 BuildRequires: python3-six
 BuildRequires: pylint
@@ -38,11 +37,14 @@ Requires: python3-six
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 # Remove shebang from Python3 libraries
 for lib in `find %{buildroot}%{python3_sitelib} -name "*.py"`; do
  sed '1{\@^#!/usr/bin/env python@d}' $lib > $lib.new &&
@@ -57,7 +59,7 @@ done
 %doc README.md CHANGELOG.md
 %license LICENSE
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-%{version}-py*.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 3.3.0-6

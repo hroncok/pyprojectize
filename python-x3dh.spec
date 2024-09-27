@@ -9,7 +9,6 @@ Source0:        https://github.com/Syndace/%{name}/archive/v%{version}.tar.gz
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-cryptography
 BuildRequires:  python3-xeddsa
 # For tests
@@ -45,12 +44,16 @@ secrecy and cryptographic deniability.
 %autosetup -n %{name}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 
@@ -59,7 +62,7 @@ secrecy and cryptographic deniability.
 %doc README.md
 # For noarch packages: sitelib
 %{python3_sitelib}/x3dh/
-%{python3_sitelib}/X3DH-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/X3DH-%{version}.dist-info/
 
 
 

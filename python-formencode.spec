@@ -25,7 +25,6 @@ for filling and generating forms.
 Summary: HTML form validation, generation, and convertion package
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-docutils
 BuildRequires: python3-wheel
 BuildRequires: python3-pip
@@ -56,14 +55,18 @@ library.
 %autosetup -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 # remove setuptools_scm_git_archive from setup requires
 sed -i "s|'setuptools_scm_git_archive',||" setup.py
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 rm -rf $RPM_BUILD_ROOT%{python3_sitelib}/docs/
 # packaged as license, remove this file with wrong path
@@ -96,7 +99,7 @@ rm -rf $RPM_BUILD_ROOT%{python3_sitelib}/formencode/i18n
 %doc PKG-INFO docs
 %license LICENSE.txt
 %{python3_sitelib}/formencode/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 
 %files -n python-formencode-langpacks -f %{srcname}.lang
 

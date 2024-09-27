@@ -25,7 +25,6 @@ BuildArch:      noarch
 %package -n python3-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 %{?python_provide:%python_provide python3-%{srcname}}
 
@@ -37,11 +36,15 @@ Python 3 version.
 %autosetup -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 py.test-3 -v
@@ -50,7 +53,7 @@ py.test-3 -v
 %doc README.rst
 %license LICENSE.rst
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 
 
 %changelog

@@ -15,7 +15,6 @@ Patch1:         btrfs-sxbackup-tests.patch
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 Btrfs snapshot backup utility with push/pull support via SSH, retention, Email
@@ -26,12 +25,16 @@ notifications, compression of transferred data, and syslog logging.
 %autosetup -p 1 -n %{name}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 install -d %{buildroot}/%{_mandir}/man1
 install -p -m644 man/* %{buildroot}/%{_mandir}/man1
 install -d %{buildroot}/%{_sysconfdir}

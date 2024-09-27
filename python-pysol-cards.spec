@@ -13,7 +13,6 @@ BuildArch:      noarch
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-pbr >= 2
 BuildRequires:  python%{python3_pkgversion}-random2
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-six
 
 %description
@@ -34,20 +33,23 @@ initial deals of some PySol FC games.
 rm -rf %{pypi_name}.egg-info
 sed -i '/^#! \/usr\/bin\/env python$/d' pysol_cards/*.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
 # Must do the default python version install last because
 # the scripts in /usr/bin are overwritten with every setup.py install.
-%py3_install
+%pyproject_install
 rm -rf %{buildroot}/%{_bindir}
 
 %files -n python%{python3_pkgversion}-%{pypi_name}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/pysol_cards
-%{python3_sitelib}/pysol_cards-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/pysol_cards-%{version}.dist-info
 
 %changelog
 * Sun Sep 15 2024 Fedora Release Monitoring <release-monitoring@fedoraproject.org> - 0.18.0-1

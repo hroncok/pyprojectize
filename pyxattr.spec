@@ -12,7 +12,6 @@ Source2:        https://k1024.org/files/key.asc
 BuildRequires:  gcc
 BuildRequires:  libattr-devel
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  gnupg2
 BuildRequires:  %{py3_dist pytest}
 
@@ -32,11 +31,14 @@ Summary: %{summary}
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # selinux in koji produces unexpected xattrs for tests

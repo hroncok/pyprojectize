@@ -22,7 +22,6 @@ MathML translation, Python code coloring and much more.
 %package -n python3-%{srcname}
 Summary:        A Humane Web Text Generator
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 BuildRequires:  python3-pytest-cov
 BuildRequires:  python3-pytest-runner
@@ -45,12 +44,16 @@ MathML translation, Python code coloring and much more.
 %autosetup -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 for f in README CHANGELOG ; do
   PYTHONPATH=%{buildroot}%{python3_sitelib} \
@@ -72,7 +75,7 @@ find %{buildroot}%{python3_sitelib} -name '*.py' \
 %doc README.* CONTRIBUTORS.txt CHANGELOG.*
 %license LICENSE.txt
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-%{version}-*.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 %{_bindir}/pytextile
 
 

@@ -15,7 +15,6 @@ URL:            http://tracmtn.1erlei.de/
 Source:         %{tarname}.tar.bz2
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Requires:       python3-setuptools
 Requires:       trac >= 1.5
 Requires:       monotone >= 1.1
@@ -29,18 +28,22 @@ This Trac plugin provides support for the Monotone SCM.
 %autosetup -n %{tarname}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files
 %doc README
 %license COPYING
-%{python3_sitelib}/TracMonotone-*.egg-info/
+%{python3_sitelib}/TracMonotone.dist-info/
 %{python3_sitelib}/tracmtn/
 
 

@@ -17,7 +17,6 @@ URL:        https://github.com/rossengeorgiev/gevent-eventemitter
 Source0:    %{url}/archive/v%{version}/%{pypi_name}-%{version}.tar.gz
 
 BuildRequires: python3-devel
-BuildRequires: python3dist(setuptools)
 BuildRequires: python3dist(coverage) >= 4.0.3
 BuildRequires: python3dist(gevent) >= 1.3
 BuildRequires: python3dist(pytest-cov) >= 2.5.1
@@ -40,12 +39,16 @@ Summary:    %{summary}
 %autosetup -n %{pypi_name}-%{version} -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -55,7 +58,7 @@ Summary:    %{summary}
 %files -n python3-%{pypi_name}
 %dnl %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{eggname}-%{version}-*.egg-info
+%{python3_sitelib}/%{eggname}-%{version}.dist-info
 %{python3_sitelib}/%{modname}/
 
 

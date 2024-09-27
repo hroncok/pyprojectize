@@ -16,7 +16,6 @@ BuildArch:      noarch
 Requires:       collectd-python
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  systemd-rpm-macros
 
 
@@ -36,11 +35,14 @@ Collectd plugin for puppet run status.
 # Remove bundled egg_info
 rm -r src/%{module_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %postun
 %systemd_postun_with_restart collectd.service
@@ -50,7 +52,7 @@ rm -r src/%{module_name}.egg-info
 %doc README.rst NEWS.rst
 %{_datadir}/collectd/puppet_types.db
 %{python3_sitelib}/%{module_name}
-%{python3_sitelib}/%{module_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{module_name}-%{version}.dist-info
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 2.0.0-22

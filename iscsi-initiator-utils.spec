@@ -98,7 +98,6 @@ libiscsi interface for interacting with %{name}
 Summary: Python %{python3_version} bindings to %{name}
 Requires: %{name} = %{version}-%{release}
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: make
 
 %description -n python3-%{name}
@@ -109,6 +108,9 @@ libiscsi interface for interacting with %{name}
 
 %prep
 %autosetup -p1 -n open-iscsi-%{commit0} -Sgit_am
+
+%generate_buildrequires
+%pyproject_buildrequires
 
 %build
 # avoid undefined references linking failures
@@ -123,7 +125,7 @@ pushd libiscsi
   %py2_build
 %endif
 %if %{with python3}
-  %py3_build
+  %pyproject_wheel
 %endif
 touch -r libiscsi.doxy html/*
 popd
@@ -179,7 +181,7 @@ pushd libiscsi
 %endif
 %if %{with python3}
   %{__install} -d $RPM_BUILD_ROOT%{python3_sitearch}
-  %py3_install
+  %pyproject_install
 %endif
 popd
 

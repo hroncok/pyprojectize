@@ -20,7 +20,6 @@ BuildArch:      noarch
 %package -n python3-%{modname}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if %{with check}
 BuildRequires:  python3dist(pytest-runner)
 BuildRequires:  python3dist(pytest)
@@ -37,11 +36,14 @@ BuildRequires:  python3dist(idna) >= 2
 %prep
 %autosetup -n %{modname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with check}
 %check
@@ -51,7 +53,7 @@ BuildRequires:  python3dist(idna) >= 2
 %files
 %license LICENSE
 %doc README.rst example.py
-%{python3_sitelib}/idna_ssl-*.egg-info/
+%{python3_sitelib}/idna_ssl.dist-info/
 %{python3_sitelib}/idna_ssl.py
 %{python3_sitelib}/__pycache__/idna_ssl.*
 

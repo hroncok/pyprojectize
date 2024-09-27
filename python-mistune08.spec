@@ -18,7 +18,6 @@ BuildRequires:  gcc
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-pytest
-BuildRequires:  python3-setuptools
 
 %description %{common_description}
 
@@ -38,12 +37,16 @@ Provides:       deprecated()
 %setup -q -n %{upname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 %py3_shebang_fix %{buildroot}%{python3_sitelib}
 %{_fixperms} %{buildroot}/*
@@ -57,7 +60,7 @@ Provides:       deprecated()
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/%{upname}.*
-%{python3_sitelib}/%{upname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{upname}-%{version}.dist-info/
 %{python3_sitelib}/__pycache__/%{upname}*
 
 

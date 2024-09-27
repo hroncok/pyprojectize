@@ -23,7 +23,6 @@ for instance) and de-serialize it there.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-attrs
 BuildRequires:  python3-pytz
 BuildRequires:  pytest
@@ -38,11 +37,14 @@ for instance) and de-serialize it there.
 %autosetup -n %{pypi_name}-%{version} -p1
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest
@@ -52,7 +54,7 @@ rm -rf %{pypi_name}.egg-info
 %doc README.md
 %{python3_sitelib}/__pycache__/*
 %{python3_sitelib}/%{pypi_name}.py
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.40-9

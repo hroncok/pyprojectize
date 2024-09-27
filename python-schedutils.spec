@@ -8,7 +8,6 @@ URL: https://rt.wiki.kernel.org/index.php/Tuna
 Source: https://cdn.kernel.org/pub/software/libs/python/%{name}/%{name}-%{version}.tar.xz
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: gcc
 
 
@@ -27,11 +26,14 @@ Summary: %summary
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-schedutils
 %license COPYING
@@ -40,7 +42,7 @@ Summary: %summary
 %{_mandir}/man1/pchrt.1*
 %{_mandir}/man1/ptaskset.1*
 %{python3_sitearch}/schedutils*.so
-%{python3_sitearch}/*.egg-info
+%{python3_sitearch}/*.dist-info
 
 %changelog
 * Mon Jul 29 2024 Miroslav Suchý <msuchy@redhat.com> - 0.6-26

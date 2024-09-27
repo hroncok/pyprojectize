@@ -23,7 +23,6 @@ nor has any extra requirements.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       python3-XStatic
 Requires:       xstatic-bootstrap-scss-common
@@ -64,11 +63,14 @@ sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/bootstrap_scss'|" xstatic/pkg/boo
 # Include email identifying the license for the Glyphicons Halflings font
 cp %{SOURCE1} .
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 mkdir -p %{buildroot}%{_jsdir}/bootstrap_scss
 mv %{buildroot}%{python3_sitelib}/xstatic/pkg/bootstrap_scss/data/* %{buildroot}%{_jsdir}/bootstrap_scss
@@ -80,7 +82,7 @@ chmod 644 %{buildroot}%{_jsdir}/bootstrap_scss/js/bootstrap/*.js
 %files -n python3-%{pypi_name}
 %doc README.txt
 %{python3_sitelib}/xstatic/pkg/bootstrap_scss
-%{python3_sitelib}/XStatic_Bootstrap_SCSS-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/XStatic_Bootstrap_SCSS-%{version}.dist-info
 %{python3_sitelib}/XStatic_Bootstrap_SCSS-%{version}-py%{python3_version}-nspkg.pth
 
 %files -n xstatic-bootstrap-scss-common

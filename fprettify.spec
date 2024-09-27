@@ -10,7 +10,6 @@ BuildArch:      noarch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(configargparse)
-BuildRequires:  python3dist(setuptools)
 
 Requires:       python3-fprettify = %{version}-%{release}
 
@@ -39,11 +38,14 @@ This package contains the Python library.
 # Remove bundled egg-info
 rm -rf %{name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -55,7 +57,7 @@ rm -rf %{name}.egg-info
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/fprettify/
-%{python3_sitelib}/fprettify-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/fprettify-%{version}.dist-info
 
 %changelog
 * Mon Jul 29 2024 Miroslav Suchý <msuchy@redhat.com> - 0.3.7-12

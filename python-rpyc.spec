@@ -24,7 +24,6 @@ so that remote objects can be manipulated as if they were local.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Obsoletes:      python2-%{modname} < 4.0.1-4
 %{?python_provide:%python_provide python3-%{modname}}
 
@@ -33,11 +32,14 @@ Obsoletes:      python2-%{modname} < 4.0.1-4
 %prep
 %setup -q -n %{modname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 # The binaries should not have .py extension
 mv %{buildroot}%{_bindir}/rpyc_classic.py %{buildroot}%{_bindir}/rpyc_classic
 mv %{buildroot}%{_bindir}/rpyc_registry.py %{buildroot}%{_bindir}/rpyc_registry

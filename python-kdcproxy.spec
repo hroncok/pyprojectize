@@ -18,7 +18,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-dns
 BuildRequires:  python3-pyasn1
 BuildRequires:  python3-pytest
-BuildRequires:  python3-setuptools
 
 %description
 This package contains a Python WSGI module for proxying KDC requests over
@@ -40,11 +39,14 @@ minimal configuration.
 %prep
 %autosetup -S git -n %{realname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} -m pytest
@@ -53,7 +55,7 @@ minimal configuration.
 %doc README
 %license COPYING
 %{python3_sitelib}/%{realname}/
-%{python3_sitelib}/%{realname}-%{version}-*.egg-info
+%{python3_sitelib}/%{realname}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.0-17

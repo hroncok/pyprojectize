@@ -20,7 +20,6 @@ Patch0:         https://patch-diff.githubusercontent.com/raw/vpelletier/python-l
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-Cython
 BuildRequires:  python3-wheel
 BuildRequires:  libusb1-devel
@@ -48,11 +47,14 @@ Summary: %{summary}
 %autosetup -p1 -n libusb1-%{version}
 rm -rf libusb1.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{python3} setup.py test
@@ -62,7 +64,7 @@ rm -rf libusb1.egg-info
 %doc README.rst PKG-INFO
 %pycached %{python3_sitelib}/libusb1.py
 %{python3_sitelib}/usb1/
-%{python3_sitelib}/libusb1-*.egg-info
+%{python3_sitelib}/libusb1.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 3.1.0-5

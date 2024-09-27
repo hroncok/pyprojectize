@@ -10,7 +10,6 @@ Source0:        https://code.x2go.org/releases/source/%{name}/%{name}-%{version}
 BuildArch:      noarch
 %if 0%{?fedora} || 0%{?rhel} >= 8
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-distutils-extra
 %else
 BuildRequires:  python2-devel
@@ -63,12 +62,16 @@ notification area and allows multiple X2Go session handling.
 %autosetup -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 %if 0%{?fedora} || 0%{?rhel} >= 8
 # Fix shebang of pyhoca-gui executable.
 %py3_shebang_fix %{name}
 %{__python3} setup.py build_i18n
-%py3_build
+%pyproject_wheel
 %else
 %{__python2} setup.py build_i18n
 %py2_build
@@ -77,7 +80,7 @@ notification area and allows multiple X2Go session handling.
 
 %install
 %if 0%{?fedora} || 0%{?rhel} >= 8
-%py3_install
+%pyproject_install
 %else
 %py2_install
 %endif

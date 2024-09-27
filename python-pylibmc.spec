@@ -17,7 +17,6 @@ Patch01:        292.patch
 
 BuildRequires:  gcc
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  libmemcached-devel
 BuildRequires:  zlib-devel
 
@@ -42,11 +41,14 @@ so that applications can drop-in replace it.
 %prep
 %autosetup -n %{srcname}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # there is an asterisk in the name of the file,
 # because sometimes the suffix of the architecture is added
@@ -54,7 +56,7 @@ chmod 755 $RPM_BUILD_ROOT%{python3_sitearch}/_pylibmc.cpython-%{python3_version_
 
 %files -n python3-%{srcname}
 %doc docs/ LICENSE README.rst
-%{python3_sitearch}/%{srcname}-%{version}*.egg-info
+%{python3_sitearch}/%{srcname}-%{version}*.dist-info
 %{python3_sitearch}/%{srcname}/
 %{python3_sitearch}/*.so
 

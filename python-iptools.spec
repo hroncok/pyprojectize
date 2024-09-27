@@ -13,7 +13,6 @@ Source0:        https://github.com/bd808/%{name}/archive/v%{version}/%{name}-%{v
 BuildArch:      noarch
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-nose
-BuildRequires:  python%{python3_pkgversion}-setuptools
 
 %global _description\
 A few useful functions and objects for manipulating IPv4 and IPv6 addresses\
@@ -34,12 +33,16 @@ Summary:        A few useful functions and objects for manipulating IP addresses
 find -name .gitignore -delete
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -50,7 +53,7 @@ find -name .gitignore -delete
 %license LICENSE
 %doc AUTHORS CHANGES docs README.md
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 
 
 %changelog

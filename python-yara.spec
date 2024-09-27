@@ -50,7 +50,6 @@ BuildRequires:  /usr/bin/sphinx-build
 
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-pytest
-BuildRequires:  python%{python3_pkgversion}-setuptools
 
 
 %if 0%{?with_python2}  > 0
@@ -98,12 +97,14 @@ Summary:        Python2 binding for the YARA pattern matching tool
 
 
 #====================================================================
+%generate_buildrequires
+%pyproject_buildrequires
 %build
 %if 0%{?with_python2}  > 0
 %py2_build "--dynamic-linking"
 %endif
 
-%py3_build "--dynamic-linking"
+%pyproject_wheel -C--global-option='"--dynamic-linking"'
 
 
 
@@ -113,7 +114,7 @@ Summary:        Python2 binding for the YARA pattern matching tool
 %py2_install
 %endif
 
-%py3_install
+%pyproject_install
 
 
 #====================================================================

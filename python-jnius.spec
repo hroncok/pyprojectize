@@ -20,7 +20,6 @@ BuildRequires:  make
 BuildRequires:  clang
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(cython)
 BuildRequires:  python3dist(pytest)
 
@@ -61,8 +60,12 @@ BuildArch:      noarch
 %autosetup -p1 -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-CC=%{_bindir}/clang %py3_build
+CC=%{_bindir}/clang %pyproject_wheel
 
 make %{_smp_mflags} -C docs SPHINXBUILD='sphinx-build-3 %{_smp_mflags}' html
 
@@ -73,7 +76,7 @@ ant all
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -94,7 +97,7 @@ popd
 %doc *.md
 %{python3_sitearch}/%{modname}/
 %{python3_sitearch}/%{modname}_config.py*
-%{python3_sitearch}/%{srcname}-%{version}-py*.egg-info/
+%{python3_sitearch}/%{srcname}-%{version}.dist-info/
 %{python3_sitearch}/__pycache__/%{modname}_config.cpython-*.pyc
 %exclude %{python3_sitearch}/__pycache__
 %exclude %{python3_sitearch}/setup_sdist.py

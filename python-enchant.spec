@@ -21,7 +21,6 @@ library by Dom Lachowicz.
 Summary:        Python 3 bindings for Enchant spellchecking library
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       enchant2
 
@@ -38,11 +37,14 @@ rm -rf py%{srcname}.egg-info
 
 find . -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python3}|'
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Directories used in windows build
 rm -rf $RPM_BUILD_ROOT/%{python3_sitelib}/%{srcname}/lib
@@ -69,7 +71,7 @@ rm -rf $RPM_BUILD_ROOT/%{python3_sitelib}/%{srcname}/share
 %{python3_sitelib}/%{srcname}/checker/__pycache__/*.py[co]
 %{python3_sitelib}/%{srcname}/tokenize/*.py
 %{python3_sitelib}/%{srcname}/tokenize/__pycache__/*.py[co]
-%{python3_sitelib}/py%{srcname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/py%{srcname}-%{version}.dist-info
 
 
 %changelog

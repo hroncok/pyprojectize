@@ -10,7 +10,6 @@ URL:            http://arp242.net/code/battray/
 Source0:        https://github.com/Carpetsmoker/battray/archive/version-%{version}/%{name}-version-%{version}.tar.bz2
 
 BuildArch:      noarch
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-devel
 Requires:       python3
 Requires:       python3-notify2
@@ -26,13 +25,16 @@ low, dim the screen when you switch from AC to battery, etc.
 %prep
 %setup -q -n %{name}-version-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %check
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %{python3_sitelib}/*

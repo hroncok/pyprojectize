@@ -31,7 +31,6 @@ BuildRequires:  python3-click
 BuildRequires:  python3-click-plugins
 BuildRequires:  python3-colorama
 BuildRequires:  python3-requests
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-xlsxwriter
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -68,13 +67,16 @@ dos2unix docs/examples/{basic-search.rst,cert-stream.rst,query-summary.rst}
 echo %{api_key} > SHODAN-API-KEY
 %endif
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 PYTHONPATH=${PWD} sphinx-build-3 docs html
 rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with api_key}
 %check
@@ -85,7 +87,7 @@ rm -rf html/.{doctrees,buildinfo}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-*.egg-info/
+%{python3_sitelib}/%{pypi_name}.dist-info/
 
 %files -n %{pypi_name}
 %{_bindir}/%{pypi_name}

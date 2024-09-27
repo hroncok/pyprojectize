@@ -39,7 +39,6 @@ XML and HTML manipulation.
 %package -n python3-pyquery
 Summary:        A jQuery-like library for python3
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 # test deps
 BuildRequires:  python3-cssselect
@@ -64,12 +63,16 @@ XML and HTML manipulation.
 %autosetup -n %{real_name}-%{version} -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -81,7 +84,7 @@ nosetests-%{python3_version}
 %files -n python3-pyquery
 %doc CHANGES.rst README.rst
 %{python3_sitelib}/pyquery/
-%{python3_sitelib}/pyquery*.egg-info/
+%{python3_sitelib}/pyquery*.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.4.3-20

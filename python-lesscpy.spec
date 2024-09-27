@@ -29,7 +29,6 @@ Summary:    %summary
 Requires:   python3-ply
 Requires:   python3-six
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-ply
 BuildRequires: python3-pytest
 BuildRequires: python3-six
@@ -44,14 +43,17 @@ supported (JavaScript evaluation).
 %prep
 %autosetup -p1 -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 
-%py3_build
+%pyproject_wheel
 
 
 %install
 
-%py3_install
+%pyproject_install
 # link for backwards compatibility. consider removal in Fedora 30+
 ln -s ./lesscpy %{buildroot}/%{_bindir}/py3-lesscpy
 
@@ -65,7 +67,7 @@ ln -s ./lesscpy %{buildroot}/%{_bindir}/py3-lesscpy
 %{_bindir}/lesscpy
 %{_bindir}/py3-lesscpy
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}*.egg-info
+%{python3_sitelib}/%{pypi_name}*.dist-info
 
 
 %changelog

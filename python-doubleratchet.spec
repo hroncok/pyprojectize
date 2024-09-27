@@ -9,7 +9,6 @@ Source0:        https://github.com/Syndace/%{name}/archive/v%{version}.tar.gz
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-cryptography
 # For tests
 BuildRequires:  python3-pytest
@@ -44,12 +43,16 @@ class.
 %autosetup -n %{name}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -62,7 +65,7 @@ class.
 %doc README.md
 # For noarch packages: sitelib
 %{python3_sitelib}/doubleratchet/
-%{python3_sitelib}/DoubleRatchet-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/DoubleRatchet-%{version}.dist-info/
 
 
 

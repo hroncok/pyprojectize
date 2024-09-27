@@ -10,7 +10,6 @@ Source0:	%{pypi_source %{name}}
 
 BuildArch:	noarch
 
-BuildRequires:	python3-setuptools
 BuildRequires:	python3-devel
 
 %description
@@ -22,11 +21,14 @@ Goobook is a command-line interface to Google contacts. It includes
 %prep
 %setup -q -n %{name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Remove shebang
 for lib in %{buildroot}%{python3_sitelib}/goobook/*.py; do

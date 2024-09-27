@@ -12,7 +12,6 @@ Source0:            https://github.com/demianbrecht/%{modname}/archive/refs/tags
 BuildArch:          noarch
 
 BuildRequires:      python3-devel
-BuildRequires:      python3-setuptools
 
 
 %global _description\
@@ -92,11 +91,14 @@ rm -rf %{modname}.egg-info
          -e 's/^from mock import /from unittest.mock import /' \
       %{modname}/test.py tests.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{python3} -m unittest discover -v

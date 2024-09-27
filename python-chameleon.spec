@@ -13,7 +13,6 @@ Source0:        https://github.com/malthe/chameleon/archive/%{version}/chameleon
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-lxml
 
 %generate_buildrequires
@@ -44,10 +43,10 @@ Requires:   python3-lxml
 %autosetup -n chameleon-%{version}
 
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # No need to ship tests as part of the module
 rm -rf  %{buildroot}%{python3_sitelib}/chameleon/tests

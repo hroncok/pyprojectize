@@ -12,7 +12,6 @@ Patch2:         427.patch
 
 BuildRequires:  bluez-libs-devel gcc
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
                    
 %description
 PyBluez is an effort to create python wrappers around system Bluetooth
@@ -34,13 +33,16 @@ applications.
 %patch -P1 -p0
 %patch -P2 -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
 # This file shouldn't be executable - it's going into %doc
 chmod a-x examples/bluezchat/bluezchat.py
-%py3_install
+%pyproject_install
 
 %files -n python3-bluez
 %{!?_licensedir:%global license %%doc}

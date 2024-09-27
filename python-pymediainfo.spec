@@ -19,7 +19,6 @@ BuildRequires:  libmediainfo
 %package     -n python3-%{srcname}
 Summary:        Python3 wrapper around the MediaInfo library
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 BuildRequires:  python3-pytest-runner
 BuildRequires:  python3-setuptools_scm
@@ -34,12 +33,16 @@ This small package is a Python3 wrapper around the MediaInfo library.
 %autosetup -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check

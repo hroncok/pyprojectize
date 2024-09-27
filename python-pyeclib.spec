@@ -12,7 +12,6 @@ Source0:        pyeclib-%{version}.tar.gz
 Patch1:         pyeclib-1.6.0-noexplib.patch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  liberasurecode-devel >= 1.5.0
 
 %description
@@ -33,11 +32,14 @@ or through the C interface liberasurecode.
 %setup -q -n pyeclib-%{version}
 %patch -P1 -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
  
 %files -n python3-pyeclib
 %license License.txt

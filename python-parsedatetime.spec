@@ -15,7 +15,6 @@ Source0:        https://github.com/bear/%{realname}/archive/v%{version}.tar.gz#/
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if %{with tests}
 BuildRequires:  python3-pytest
 %endif
@@ -37,12 +36,16 @@ strings.
 %autosetup -n %{realname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 # It makes no sense to ship all these tests in the package
 # just use them during the build
 rm -rf %{buildroot}%{python3_sitelib}/%{realname}/tests
@@ -56,7 +59,7 @@ py.test-3 -x tests/*.py
 %license LICENSE.txt
 %doc AUTHORS.txt CHANGES.txt README.rst
 %{python3_sitelib}/%{realname}
-%{python3_sitelib}/%{realname}*.egg-info
+%{python3_sitelib}/%{realname}*.dist-info
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 2.6-15

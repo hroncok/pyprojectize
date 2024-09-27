@@ -11,7 +11,6 @@ Source0:        %{url}/archive/v%{version}/%{pypi_name}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(wheel)
 
 Requires:       python3-%{pypi_name} = %{?epoch:%{epoch}:}%{version}-%{release}
@@ -35,11 +34,14 @@ broker.
 rm -rf %{pypi_name}.egg-info
 sed -i -e '/^#!\//, 1d' metrics2mqtt/base.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %{_bindir}/%{pypi_name}
@@ -48,7 +50,7 @@ sed -i -e '/^#!\//, 1d' metrics2mqtt/base.py
 %doc README.md
 %license LICENSE
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.18-14

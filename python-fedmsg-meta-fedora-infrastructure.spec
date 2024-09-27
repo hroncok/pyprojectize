@@ -13,7 +13,6 @@ Source0:            http://pypi.python.org/packages/source/f/%{modname}/%{modnam
 BuildArch:          noarch
 
 BuildRequires:      python3-devel
-BuildRequires:      python3-setuptools
 BuildRequires:      python3-fedmsg
 BuildRequires:      python3-fedora
 BuildRequires:      python3-dateutil
@@ -51,11 +50,14 @@ Fedora Infrastructure <http://fedoraproject.org/wiki/Infrastructure>.
 # Remove bundled egg-info in case it exists
 rm -rf %{modname}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 FEDMSG_META_NO_NETWORK=True %{__python3} setup.py test

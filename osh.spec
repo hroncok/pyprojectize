@@ -20,7 +20,6 @@ BuildRequires:  python3-kobo-hub
 BuildRequires:  python3-kobo-rpmlib
 BuildRequires:  python3-psycopg2
 BuildRequires:  python3-qpid-proton
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
 BuildRequires:  systemd-rpm-macros
 
@@ -141,6 +140,9 @@ OpenScanHub worker devel configurations.
 %prep
 %setup -q
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 
 # Add -s to the shebang in osh/client/osh-cli:
@@ -155,11 +157,11 @@ PYTHONPATH=. osh/hub/manage.py collectstatic --noinput
 # set path to python sitelib in the example httpd config
 sed 's|@PYTHON3_SITELIB@|%{python3_sitelib}|' osh/hub/osh-hub-httpd.conf.in > osh/hub/osh-hub-httpd.conf
 
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 # install the files collected by `manage.py collectstatic`
 cp -a {,%{buildroot}%{python3_sitelib}/}osh/hub/static/
@@ -200,7 +202,7 @@ ln -s %{_sysconfdir}/osh/hub/settings_local.py %{buildroot}%{python3_sitelib}/os
 %{bash_completions_dir}
 %{zsh_completions_dir}
 %{python3_sitelib}/osh/client
-%{python3_sitelib}/osh-*-py%{python3_version}.egg-info
+%{python3_sitelib}/osh-*.dist-info
 
 %files common
 %dir %{_sysconfdir}/osh

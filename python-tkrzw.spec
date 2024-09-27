@@ -11,7 +11,6 @@ Source0:	https://dbmx.net/tkrzw/pkg-python/%{module}-python-%{version}.tar.gz
 # https://github.com/estraier/tkrzw-python/issues/6
 Patch0:		%{name}-%{version}.patch
 BuildRequires:	gcc-c++
-BuildRequires:	python3-setuptools
 # python3-devel
 BuildRequires:	pkgconfig(python3)
 # python3-sphinx
@@ -56,13 +55,17 @@ This package contains API documentation of it.
 %autosetup -n %{module}-python-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 %make_build apidoc
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -72,7 +75,7 @@ export PYTHONPATH=%{buildroot}%{python3_sitearch}
 
 %files -n python3-%{module}
 %license COPYING
-%{python3_sitearch}/%{module}-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/%{module}-%{version}.dist-info
 %if 0%{?epel} && 0%{?epel} < 9
 %{python3_sitearch}/tkrzw.cpython-%{python3_version_nodots}m-*-linux-gnu*.so
 %else

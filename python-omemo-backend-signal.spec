@@ -18,7 +18,6 @@ BuildRequires:  python3-doubleratchet
 BuildRequires:  python3-omemo
 BuildRequires:  python3-cryptography
 BuildRequires:  python3-protobuf
-BuildRequires:  python3-setuptools
 # For tests
 #BuildRequires:  python3-pynacl
 
@@ -47,12 +46,16 @@ extension of XMPP protocol.
 %autosetup -n %{name}-%{version_no_tilde}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -65,7 +68,7 @@ extension of XMPP protocol.
 %doc README.md
 # For noarch packages: sitelib
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version_main}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version_main}.dist-info/
 
 
 

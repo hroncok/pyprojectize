@@ -11,7 +11,6 @@ Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-zeroconf
 BuildRequires:  python3-requests
 BuildRequires:  python3-pytest
@@ -51,11 +50,14 @@ Current methods of scanning:
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{pytest} -v tests --ignore "tests/test_xboxone.py"
@@ -64,7 +66,7 @@ Current methods of scanning:
 %doc README.md
 %license LICENSE.md
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}*.egg-info
+%{python3_sitelib}/%{srcname}*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 3.0.0-10

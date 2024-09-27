@@ -19,7 +19,6 @@ where you can provide it with facets/options and consume its events.
 
 %package -n python3-%{pypi_name}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  web-assets-devel
 
 Requires:       python3-XStatic
@@ -46,18 +45,21 @@ Xstatic-Magic-Search common files
 # patch to use webassets dir
 sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/magic_search'|" xstatic/pkg/magic_search/__init__.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 mkdir -p %{buildroot}/%{_jsdir}/magic_search
 mv %{buildroot}/%{python3_sitelib}/xstatic/pkg/magic_search/data/magic_search.* %{buildroot}/%{_jsdir}/magic_search
 
 %files -n python3-%{pypi_name}
 %doc README.txt
 %{python3_sitelib}/xstatic/pkg/magic_search
-%{python3_sitelib}/XStatic_Magic_Search-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/XStatic_Magic_Search-%{version}.dist-info
 %{python3_sitelib}/XStatic_Magic_Search-%{version}-py%{python3_version}-nspkg.pth
 
 %files -n XStatic-Magic-Search-common

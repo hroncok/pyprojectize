@@ -9,7 +9,6 @@ Source0:        https://github.com/puddletag/puddletag/archive/refs/tags/%{versi
 Patch0:         puddletag-2.4.0-req.patch
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Buildrequires:  desktop-file-utils
 Requires:       PyQt5
 Requires:       python3-pyparsing >= 1.5.5
@@ -40,11 +39,14 @@ WavPack (wv).
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %install
-%{py3_install}
+%{pyproject_install}
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 find %{buildroot} -name exampletags\* -delete
 chmod 0644 %{buildroot}%{python3_sitelib}/puddlestuff/data/{menus,shortcuts}
@@ -55,7 +57,7 @@ chmod 0644 %{buildroot}%{python3_sitelib}/puddlestuff/data/{menus,shortcuts}
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*
 %{python3_sitelib}/puddlestuff/
-%{python3_sitelib}/%{name}-%{version}-py*.egg-info
+%{python3_sitelib}/%{name}-%{version}.dist-info
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
 

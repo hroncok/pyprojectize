@@ -89,7 +89,6 @@ etckeeper with bzr backend, install this package.
 %package brz
 Summary:  Support for bzr with etckeeper (via breezy)
 BuildRequires: python3-devel
-BuildRequires: (python3-setuptools if python3-devel >= 3.12)
 BuildRequires: brz
 Requires: %{name} = %{version}-%{release}
 Requires: brz
@@ -104,7 +103,6 @@ etckeeper with (bzr) bazaar repositories, install this package.
 Summary:  DNF plugin for etckeeper support
 %if 0%{?dnf_uses_python3}
 BuildRequires: python3-devel
-BuildRequires: (python3-setuptools if python3-devel >= 3.12)
 BuildRequires: python3-dnf
 Requires: python3-dnf
 %else
@@ -148,6 +146,10 @@ mkdir bzr-plugin ; mv etckeeper-bzr bzr-plugin
 mkdir brz-plugin ; mv etckeeper-brz brz-plugin
 mkdir dnf-plugin ; mv etckeeper-dnf dnf-plugin
 cp -av %{SOURCE1} .
+
+
+%generate_buildrequires
+%pyproject_buildrequires
 
 
 %build
@@ -263,7 +265,7 @@ fi
 %files bzr
 %{python2_sitelib}/bzrlib/plugins/%{name}
 # exclude egg-info dir, doesn't contain meaningful information
-%exclude %{python2_sitelib}/bzr_%{name}-*.egg-info
+%exclude %{python2_sitelib}/bzr_%{name}.dist-info
 %endif # with_bzr
 
 
@@ -275,7 +277,7 @@ fi
 %dir %{python3_sitelib}/breezy/plugins/
 %{python3_sitelib}/breezy/plugins/%{name}/
 # exclude egg-info dir, doesn't contain meaningful information
-%exclude %{python3_sitelib}/brz_%{name}-*.egg-info
+%exclude %{python3_sitelib}/brz_%{name}.dist-info
 %endif # with_brz
 
 
@@ -286,12 +288,12 @@ fi
 %{python3_sitelib}/dnf-plugins/__pycache__/%{name}.*
 %exclude %{python3_sitelib}/dnf-plugins/__pycache__/__init__.*
 # exclude egg-info dir, doesn't contain meaningful information
-%exclude %{python3_sitelib}/dnf_%{name}-*.egg-info
+%exclude %{python3_sitelib}/dnf_%{name}.dist-info
 %else
 %{python2_sitelib}/dnf-plugins/%{name}.py*
 %exclude %{python2_sitelib}/dnf-plugins/__init__.py*
 # exclude egg-info dir, doesn't contain meaningful information
-%exclude %{python2_sitelib}/dnf_%{name}-*.egg-info
+%exclude %{python2_sitelib}/dnf_%{name}.dist-info
 %endif # dnf_uses_python3
 
 

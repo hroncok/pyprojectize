@@ -16,7 +16,6 @@ Source0:        %{url}/archive/v%{version}/bump2version-%{version}.tar.gz
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if %{with tests}
 BuildRequires:  python3-pytest
 BuildRequires:  python3-testfixtures
@@ -37,8 +36,12 @@ commits and tags:
 %autosetup -n bump2version-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %if %{with tests}
@@ -48,7 +51,7 @@ commits and tags:
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files

@@ -13,7 +13,6 @@ Source0:        https://codeberg.org/poezio/%{srcname}/archive/slix-%{version}.t
 
 BuildRequires:  make
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-Cython
 BuildRequires:  gcc
 BuildRequires:  libidn-devel
@@ -75,8 +74,12 @@ This package contains documentation in reST and HTML formats.
 sed -i "s|html_theme = 'furo'|html_theme = 'sphinx_rtd_theme'|" docs/conf.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 # Build sphinx documentation
 pushd docs/
@@ -85,7 +88,7 @@ popd # docs
 
 
 %install
-%py3_install
+%pyproject_install
 
 # Install html docs
 mkdir -p %{buildroot}%{_pkgdocdir}/
@@ -107,7 +110,7 @@ chmod 755 %{buildroot}%{python3_sitearch}/%{srcname}/stringprep.cpython-*.so
 %license LICENSE
 %doc CONTRIBUTING.rst README.rst
 # For arch-specific packages: sitearch
-%{python3_sitearch}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitearch}/%{srcname}-%{version}.dist-info/
 %{python3_sitearch}/%{srcname}/
 
 

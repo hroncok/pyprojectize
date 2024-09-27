@@ -14,7 +14,6 @@ BuildRequires:	perl(XML::Parser)
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-gobject
 BuildRequires:  intltool
-BuildRequires:	python%{python3_pkgversion}-setuptools
 BuildRequires:  libappstream-glib
 
 Requires:       python%{python3_pkgversion}
@@ -45,11 +44,14 @@ based plugin system.
 %prep
 %setup -q
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # the script starts with -O, the macros add -sP.  execve(2) treats everything
 # after the interpreter as a single argument, so the flags need to be combined

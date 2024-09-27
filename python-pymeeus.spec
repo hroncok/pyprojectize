@@ -20,7 +20,6 @@ Inc. (1998)" by Jean Meeus.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -42,13 +41,16 @@ Documentation for %{name}.
 %autosetup -n PyMeeus-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 PYTHONPATH=${PWD} sphinx-build-3 docs/source html
 rm -rf html/.{doctrees,buildinfo,nojekyll}
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v tests
@@ -57,7 +59,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v tests
 %license LICENSE.txt COPYING.LESSER
 %doc docs/README.txt README.rst
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/PyMeeus-%{version}-py*.egg-info
+%{python3_sitelib}/PyMeeus-%{version}.dist-info
 
 %files -n python-%{pypi_name}-doc
 %doc html

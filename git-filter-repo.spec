@@ -18,7 +18,6 @@ BuildArch:      noarch
 BuildRequires:  git-core >= 2.26.0
 BuildRequires:  python3-rpm-macros
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 # test deps
 BuildRequires:  perl-interpreter
 BuildRequires:  rsync
@@ -58,11 +57,14 @@ EOF
 # git htmldir
 sed -Ei 's,(a href=")(git),\1%{_docdir}/git/\2,g' Documentation/html/git-filter-repo.html
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install -- --install-scripts %{gitexecdir}
+%pyproject_install}
 
 install -d -m 0755 %{buildroot}%{_mandir}/man1
 install -m 0644 Documentation/man1/git-filter-repo.1 %{buildroot}%{_mandir}/man1/git-filter-repo.1
@@ -75,7 +77,7 @@ t/run_tests
 %doc README.md Documentation/*.md Documentation/html/*.html contrib/filter-repo-demos
 %{gitexecdir}/git-filter-repo
 %pycached %{python3_sitelib}/git_filter_repo.py
-%{python3_sitelib}/git_filter_repo-%{version}-*.egg-info/
+%{python3_sitelib}/git_filter_repo-%{version}.dist-info/
 %{_mandir}/man1/git-filter-repo.1*
 
 %changelog

@@ -10,7 +10,6 @@ URL: https://pytest-benchmark.readthedocs.io
 Source: https://github.com/ionelmc/%{srcname}/archive/v%{version}/%{srcname}-%{version}.tar.gz
 BuildArch: noarch
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 # Tests
 #BuildRequires: python3-cpuinfo
 #BuildRequires: python3-pytest
@@ -44,11 +43,14 @@ Requires: python3-cpuinfo
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # Tests disabled (missing dependency: aspectlib)
@@ -60,7 +62,7 @@ Requires: python3-cpuinfo
 %{_bindir}/py.test-benchmark
 %{_bindir}/pytest-benchmark
 %{python3_sitelib}/pytest_benchmark
-%{python3_sitelib}/pytest_benchmark-%{version}-py*.egg-info
+%{python3_sitelib}/pytest_benchmark-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 4.0.0-9

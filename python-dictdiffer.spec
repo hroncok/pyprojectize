@@ -54,7 +54,6 @@ Summary: Dictdiffer is a module that helps you to diff and patch dictionaries
 %if 0%{?rhel} < 8
 BuildRequires: python%{python3_pkgversion}-devel
 BuildRequires: python%{python3_pkgversion}-pytest-runner
-BuildRequires: python%{python3_pkgversion}-setuptools
 BuildRequires: python%{python3_pkgversion}-setuptools_scm
 %else
 BuildRequires: python3-devel
@@ -64,7 +63,6 @@ BuildRequires: python3-pytest-runner
 BuildRequires: python3-wheel
 BuildRequires: python3-pip
 %endif
-BuildRequires: python3-setuptools
 BuildRequires: python3-setuptools_scm
 %endif
 %if 0%{?fedora}
@@ -124,13 +122,16 @@ sed -Ei '/--(pydocstyle|pycodestyle)/d' pytest.ini
 # python-check-manifest package does not exist
 sed -i -e /check-manifest/d setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if 0%{?with_python2}
 %py2_build
 %endif
 
 %if 0%{?with_python3}
-%py3_build
+%pyproject_wheel
 %endif
 
 %install
@@ -139,7 +140,7 @@ sed -i -e /check-manifest/d setup.py
 %endif
 
 %if 0%{?with_python3}
-%py3_install
+%pyproject_install
 %endif
 
 %if 0%{?fedora}
@@ -167,14 +168,14 @@ PYTHONPATH=%{buildroot}/%{python3_sitelib} sphinx-build docs/ html
 %files -n python2-%{library}
 %license LICENSE
 %{python2_sitelib}/%{library}/*
-%{python2_sitelib}/%{library}-*.egg-info
+%{python2_sitelib}/%{library}.dist-info
 %endif
 
 %if 0%{?with_python3}
 %files -n python3-%{library}
 %license LICENSE
 %{python3_sitelib}/%{library}/*
-%{python3_sitelib}/%{library}-*.egg-info
+%{python3_sitelib}/%{library}.dist-info
 %endif
 
 %if 0%{?fedora}

@@ -14,7 +14,6 @@ BuildArch:      noarch
 
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-rpm-macros
-BuildRequires:  python%{python3_pkgversion}-setuptools
 
 %description
 This package provides a Python API client for HashiCorp Vault.
@@ -29,17 +28,20 @@ rm -rf %{pypi_name}.egg-info
 sed -e "s/requests>=2.21.0/requests>=2.20.0/" -i setup.py
 %endif
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %license LICENSE.txt
 %doc README.md CHANGELOG.md
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-*.egg-info/
+%{python3_sitelib}/%{pypi_name}.dist-info/
 
 %changelog
 * Thu Jul 21 2022 Maxwell G <gotmax@e.email> - 0.11.2-2

@@ -11,7 +11,6 @@ Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires:  gcc
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(cython)
 BuildRequires:  python3dist(pytest)
 
@@ -36,12 +35,16 @@ Summary:        %{summary}
 sed -r -i '1{/^#!/d}' %{srcname}.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -53,7 +56,7 @@ sed -r -i '1{/^#!/d}' %{srcname}.py
 %doc changelog.txt README.rst
 %pycached %{python3_sitearch}/%{srcname}.py
 %{python3_sitearch}/c%{srcname}%{python3_ext_suffix}
-%{python3_sitearch}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitearch}/%{srcname}-%{version}.dist-info/
 
 
 %changelog

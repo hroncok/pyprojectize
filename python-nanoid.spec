@@ -12,7 +12,6 @@ Source1:        https://raw.githubusercontent.com/puyuan/py-nanoid/master/LICENS
 BuildArch:      noarch
  
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 Nano ID is a tiny, secure, URL-friendly, unique string ID generator for
@@ -33,18 +32,21 @@ of symbols and a larger alphabet than UUID (A-Za-z0-9_-).
 rm -rf %{pypi_name}.egg-info
 cp -a %{SOURCE1} LICENSE 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %doc README.md
 # License file missing: https://github.com/puyuan/py-nanoid/pull/19
 %license LICENSE
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py*.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.0.0-16

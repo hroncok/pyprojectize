@@ -18,7 +18,6 @@ BuildArch:      noarch
 
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 # only require legacy-cgi on on systems where it's present
 %if 0%{?fedora} > 40 || 0%{?rhel} > 9
 BuildRequires:  python3dist(legacy-cgi)
@@ -57,11 +56,14 @@ Requires:       python3-cgi
 # Remove an empty unneeded file that is there for scm purposes.
 rm docs/_static/.empty
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %if 0%{?with_tests}
@@ -72,7 +74,7 @@ rm docs/_static/.empty
 %license docs/license.txt
 %doc docs/*
 %{python3_sitelib}/webob/
-%{python3_sitelib}/WebOb-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/WebOb-%{version}.dist-info
 
 %changelog
 * Sat Aug 17 2024 Ján ONDREJ (SAL) <ondrejj(at)salstar.sk> - 1.8.8-2

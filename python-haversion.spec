@@ -24,7 +24,6 @@ BuildRequires:  python3dist(awesomeversion)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(pytest-runner)
 BuildRequires:  python3dist(semantic-version)
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(aresponses)
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -36,11 +35,14 @@ A Python module to get the version number of Home Assistant.
 rm -rf %{pypi_name}.egg-info
 sed -i -e 's/main/%{version}/g' setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v tests -k "not test_stable_version and not test_etag" 
@@ -49,7 +51,7 @@ sed -i -e 's/main/%{version}/g' setup.py
 %doc README.md
 %license LICENSE
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-*-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-*.dist-info/
 
 %changelog
 %autochangelog

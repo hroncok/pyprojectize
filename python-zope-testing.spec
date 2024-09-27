@@ -23,7 +23,6 @@ Summary:        Zope Testing Framework
 %{?python_provide:%python_provide python%{python3_pkgversion}-zope-testing}
 
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 
 %description -n python%{python3_pkgversion}-zope-testing
 This package provides a number of testing frameworks. It includes a
@@ -34,11 +33,14 @@ flexible test runner, and supports both doctest and unittest.
 
 rm -rf %{modname}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %install
-%{py3_install}
+%{pyproject_install}
 # __init__.py* are not needed since .pth file is used
 rm -f %{buildroot}%{python3_sitelib}/zope/__init__.py*
 
@@ -50,7 +52,7 @@ rm -f %{buildroot}%{python3_sitelib}/zope/__init__.py*
 %license COPYRIGHT.txt LICENSE.txt
 %{python3_sitelib}/zope/testing/
 %exclude %{python3_sitelib}/zope/testing/*.txt
-%{python3_sitelib}/%{modname}-*.egg-info
+%{python3_sitelib}/%{modname}.dist-info
 %{python3_sitelib}/%{modname}-*-nspkg.pth
 
 %changelog

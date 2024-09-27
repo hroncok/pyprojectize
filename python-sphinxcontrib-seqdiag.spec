@@ -14,7 +14,6 @@ BuildArch:      noarch
 %package -n python3-%{pypi_name}
 Summary:        Sphinx "seqdiag" extension
 
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-devel
 
 Requires:       python3-blockdiag >= 1.5.0
@@ -30,17 +29,20 @@ A sphinx extension for embedding sequence diagram using seqdiag_.
 %prep
 %setup -q -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/sphinxcontrib
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{python3_sitelib}/*-nspkg.pth
 %exclude %{python3_sitelib}/tests/
 

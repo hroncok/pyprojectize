@@ -52,7 +52,6 @@ Requires:       %{name}-conf = %{version}-%{release}
 Summary:        %{summary}
 %{?python_provide:%python_provide python%{python3_pkgversion}-multilib}
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-six
 Requires:       python%{python3_pkgversion}-six
 Requires:       python%{python3_pkgversion}
@@ -64,17 +63,20 @@ Requires:       %{name}-conf = %{version}-%{release}
 %prep
 %setup -q
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if 0%{?with_python2}
 %py2_build
 %endif
-%py3_build
+%pyproject_wheel
 
 %install
 %if 0%{?with_python2}
 %py2_install
 %endif
-%py3_install
+%pyproject_install
 
 %check
 # testing requires complete composes available locally, which no buildsystem

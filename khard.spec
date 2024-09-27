@@ -10,7 +10,6 @@ Source0:        %{pypi_source}
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
 Requires:       python3-atomicwrites
 Requires:       python3-configobj
@@ -27,12 +26,16 @@ removes carddav address book entries at your local machine.
 %setup -q
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 mkdir -p %{buildroot}%{_datadir}/khard/examples/
 mkdir -p %{buildroot}%{_datadir}/khard/examples/davcontroller/
 install -p -m 0644 misc/davcontroller/davcontroller.py %{buildroot}%{_datadir}/khard/examples/davcontroller/davcontroller.py

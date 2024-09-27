@@ -17,7 +17,6 @@ BuildArch:      noarch
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  %{py3_dist requests}
 BuildRequires:  %{py3_dist responses}
-BuildRequires:  %{py3_dist setuptools}
 
 %description
 python-freeipa is lightweight FreeIPA client.
@@ -39,11 +38,14 @@ rm -rf %{pypi_name}.egg-info
 # Fix version
 sed -e "s/version='1.0.6',/version='%{version}',/" -i setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %python3 setup.py test
@@ -52,7 +54,7 @@ sed -e "s/version='1.0.6',/version='%{version}',/" -i setup.py
 %license LICENSE.md
 %doc README.rst
 %{python3_sitelib}/python_freeipa/
-%{python3_sitelib}/python_freeipa-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/python_freeipa-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.8-3

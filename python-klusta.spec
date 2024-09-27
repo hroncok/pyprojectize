@@ -32,7 +32,6 @@ graph formed by the recording sites in the probe.
 Summary:        %{sum}
 BuildRequires:  python3-devel
 BuildRequires:  %{py3_dist numpy six pytest h5py scipy tqdm responses click}
-BuildRequires:  %{py3_dist setuptools}
 Requires:       %{py3_dist numpy scipy six h5py tqdm click}
 %{?python_provide:%python_provide python3-%{srcname}}
 
@@ -56,11 +55,14 @@ graph formed by the recording sites in the probe.
 %autosetup -n %{srcname}-%{version}
 rm -fr *egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -68,7 +70,7 @@ rm -fr *egg-info
 %files -n python3-%{srcname}
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 %{python3_sitelib}/%{srcname}/
 %{_bindir}/%{srcname}
 

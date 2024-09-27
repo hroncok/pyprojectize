@@ -42,7 +42,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-pytest
 BuildRequires:  python3-pytest-asyncio
 BuildRequires:  python3-pytest-runner
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{pkgname}}
 
 
@@ -54,12 +53,16 @@ BuildRequires:  python3-setuptools
 rm -rf %{eggname}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %if %{with tests}
@@ -72,7 +75,7 @@ rm -rf %{eggname}.egg-info
 %license LICENSE
 %doc README.rst authors.txt changes.md
 %{python3_sitelib}/%{libname}
-%{python3_sitelib}/%{eggname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{eggname}-%{version}.dist-info
 
 
 %changelog

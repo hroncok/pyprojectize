@@ -24,7 +24,6 @@ dark/light terminals. Works on Linux, OS X, and Windows.
 %package -n python3-%{srcname}
 Summary:        Yet another ANSI color text library for Python
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
@@ -37,11 +36,14 @@ dark/light terminals. Works on Linux, OS X, and Windows.
 cp %{SOURCE1} .
 rm -rf colorclass.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test

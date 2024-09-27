@@ -19,7 +19,6 @@ with your Django Model classes and working with trees of Model instances.\
 Summary:    %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Obsoletes: python2-django-mptt < 0.9.0-2
 Obsoletes: python-django-mptt < 0.9.0-2
 
@@ -33,12 +32,16 @@ rm -vr *.egg-info/
 rm mptt/locale/*/LC_MESSAGES/django.po
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %find_lang django
@@ -53,7 +56,7 @@ rm mptt/locale/*/LC_MESSAGES/django.po
 %files -n python3-django-mptt -f django.lang
 %license LICENSE
 %doc README.rst NOTES
-%{python3_sitelib}/django_mptt-*.egg-info/
+%{python3_sitelib}/django_mptt.dist-info/
 %{python3_sitelib}/mptt/
 
 %changelog

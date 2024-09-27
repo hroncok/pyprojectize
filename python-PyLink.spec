@@ -25,7 +25,6 @@ Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{modname}}
 %{?python_provide:%python_provide python3-pylink}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Requires:       python3-pyserial
 
 %description -n python3-%{modname}
@@ -42,11 +41,14 @@ Python 3 version.
 %autosetup -n %{modname}-%{version}
 rm -rf *.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # No network things available
@@ -54,7 +56,7 @@ rm -rf *.egg-info
 %files -n python3-%{modname}
 %license LICENSE
 %doc AUTHORS CHANGES.rst README.rst
-%{python3_sitelib}/%{modname}*.egg-info/
+%{python3_sitelib}/%{modname}*.dist-info/
 %{python3_sitelib}/pylink/
 
 %changelog

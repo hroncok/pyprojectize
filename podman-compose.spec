@@ -8,7 +8,6 @@ Source0:	https://github.com/containers/podman-compose/archive/v%{version}/%{name
 
 BuildArch:      noarch
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-pyyaml
 Requires:       python%{python3_pkgversion}
 Requires:       python%{python3_pkgversion}-pyyaml
@@ -22,11 +21,14 @@ unmodified and rootless.
 %prep
 %autosetup -p0
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
  
 %install
-%py3_install 
+%pyproject_install
 
 #Drop spurious shebang
 sed -i /python3/d %{buildroot}%{python3_sitelib}/podman_compose.py

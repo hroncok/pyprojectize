@@ -51,7 +51,6 @@ BuildRequires:  procps-ng
 BuildRequires:  openssl
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-numpy
 BuildRequires:  python3-libsbml
 
@@ -86,6 +85,9 @@ sed -i 's/-O3//' CMakeLists.txt
 
 %global py_setup setup.cmake.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 # On armv7 we get a failure with LTO.
 # Disable LTO for armv7
@@ -111,7 +113,7 @@ CXXFLAGS="%optflags -DH5_USE_110_API" \
 %cmake_build
 
 pushd %{__cmake_builddir}/python
-%py3_build
+%pyproject_wheel
 popd
 
 %install
@@ -119,7 +121,7 @@ install -vD %{__cmake_builddir}/moose.bin %{buildroot}%{_bindir}/moose
 install -vDt %{buildroot}%{_libdir}/ %{__cmake_builddir}/libmoose.so
 
 pushd %{__cmake_builddir}/python
-%py3_install \--install-lib=%{python3_sitearch}
+%pyproject_install}
 # this is necessary for the dependency generator to work
 chmod +x %{buildroot}%{python3_sitearch}/moose/_moose*.so
 popd
@@ -147,7 +149,7 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} %{__python3} -c \
 %files -n python3-%{name}
 %{python3_sitearch}/moose
 %{python3_sitearch}/rdesigneur
-%{python3_sitearch}/pymoose-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/pymoose-%{version}.dist-info
 %license LICENSE
 %doc README.md
 

@@ -13,7 +13,6 @@ Source0:        https://files.pythonhosted.org/packages/df/ea/0b20b8e09a6ba1df6d
 BuildArch:      noarch
  
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-click >= 0.5
 
 %description
@@ -31,17 +30,20 @@ Multithreaded support for python 3 click (CLI creation kit) applications.
 %prep
 %setup -q -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{pyname}
-%{python3_sitelib}/%{pyname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pyname}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.5.0-11

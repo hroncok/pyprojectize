@@ -28,7 +28,6 @@ mocking the datetime module.
 Summary:            %{sum}
 
 BuildRequires:      python3-devel
-BuildRequires:      python3-setuptools
 BuildRequires:      python3-six
 BuildRequires:      python3-dateutil >= 2.7
 BuildRequires:      python3-pytest
@@ -48,11 +47,14 @@ mocking the datetime module. This is the Python 3 library.
 # Remove bundled egg-info in case it exists
 rm -rf %{modname}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # Ignore two tests that are broken when run on systems in certain timezones.

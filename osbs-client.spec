@@ -40,7 +40,6 @@ Requires:       python3-requests
 Requires:       python3-requests-kerberos
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if 0%{?with_check}
 BuildRequires:  git-core
 BuildRequires:  python3-dateutil
@@ -95,12 +94,15 @@ This package contains osbs Python 3 bindings.
 # Remove this test, it tries to hit httpbin.org which fails the build in koji
 rm -f tests/test_http.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %if 0%{?with_check}

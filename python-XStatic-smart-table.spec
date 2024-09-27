@@ -22,7 +22,6 @@ nor has any extra requirements.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       python3-XStatic
 Requires:       xstatic-smart-table-common
@@ -62,11 +61,14 @@ sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/angular_smart_table'|" xstatic/pk
 # fix assets detection when you use XStatic
 sed -i 's/smart-table.min.js/smart-table.js/' xstatic/pkg/angular_smart_table/__init__.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 mkdir -p %{buildroot}%{_jsdir}/angular_smart_table
 mv %{buildroot}%{python3_sitelib}/xstatic/pkg/angular_smart_table/data/smart-table.js %{buildroot}%{_jsdir}/angular_smart_table
@@ -77,7 +79,7 @@ chmod 644 %{buildroot}%{_jsdir}/angular_smart_table/smart-table.js
 %files -n python3-%{pypi_name}
 %doc README.txt
 %{python3_sitelib}/xstatic/pkg/angular_smart_table
-%{python3_sitelib}/XStatic_smart_table-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/XStatic_smart_table-%{version}.dist-info
 %{python3_sitelib}/XStatic_smart_table-%{version}-py%{python3_version}-nspkg.pth
 
 %files -n xstatic-smart-table-common

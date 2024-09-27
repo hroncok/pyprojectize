@@ -13,7 +13,6 @@ Source: https://github.com/guessit-io/%{srcname}/archive/v%{version}/%{srcname}-
 # Disable some tests: https://github.com/guessit-io/guessit/issues/724
 BuildArch: noarch
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 %if %{with tests}
 BuildRequires: python3-pytest
 BuildRequires: python3-pytest-mock
@@ -51,11 +50,14 @@ Summary: Documentation for %{srcname} python library
 %prep
 %autosetup -p1 -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 # Remove shebang from Python3 libraries
 for lib in `find %{buildroot}%{python3_sitelib} -name "*.py"`; do
  sed '1{\@^#!/usr/bin/env python@d}' $lib > $lib.new &&
@@ -72,7 +74,7 @@ done
 %license LICENSE
 %{_bindir}/%{srcname}
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-%{version}-py*.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 %files doc
 %doc README.md AUTHORS.md CONTRIBUTING.md CHANGELOG.md docs

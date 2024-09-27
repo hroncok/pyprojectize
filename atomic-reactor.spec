@@ -23,7 +23,6 @@ Requires:       python3-atomic-reactor = %{version}-%{release}
 Requires:       git >= 1.7.10
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if 0%{?with_check}
 BuildRequires:  python3-pytest
 BuildRequires:  python3-pytest-capturelog
@@ -78,11 +77,14 @@ you started hooking Docker into your infrastructure.
 %if 0%{fedora} >= 36
 %endif
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 mkdir -p %{buildroot}%{_mandir}/man1
 cp -a docs/manpage/atomic-reactor.1 %{buildroot}%{_mandir}/man1/
@@ -116,7 +118,7 @@ cp -a docs/manpage/atomic-reactor.1 %{buildroot}%{_mandir}/man1/
 %{python3_sitelib}/atomic_reactor/utils
 %{python3_sitelib}/atomic_reactor/__pycache__/*.py*
 
-%{python3_sitelib}/atomic_reactor-%{version}-py3.*.egg-info
+%{python3_sitelib}/atomic_reactor-%{version}-py3.*.dist-info
 
 
 %changelog

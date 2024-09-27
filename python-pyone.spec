@@ -19,7 +19,6 @@ BuildRequires:  python3-coverage
 BuildRequires:  python3-dicttoxml
 BuildRequires:  python3-lxml
 BuildRequires:  python3-requests
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-six
 BuildRequires:  python3-tblib
 BuildRequires:  python3-xmltodict
@@ -50,18 +49,21 @@ OpenNebula release cycles from here <
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
 install -pm 0644 %{SOURCE1} LICENSE
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 6.0.2-12

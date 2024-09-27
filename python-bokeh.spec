@@ -80,7 +80,6 @@ BuildArch:      noarch
 %package -n python3-%{pypi_name}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 ###### Bundles various js bits #####
 # From: https://github.com/bokeh/bokeh/blob/0b9526ef553d938bf5de187e2511564c648c13bd/bokehjs/package-lock.json
@@ -202,11 +201,14 @@ BuildRequires:  %{py3_dist typing_extensions} >= 3.7.4
 %autosetup -n %{pypi_name}-%{version} -p1
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Remove zero length file
 rm -f %{buildroot}/%{python3_sitelib}/bokeh/server/static/.keep
@@ -222,7 +224,7 @@ rm -f %{buildroot}/%{python3_sitelib}/bokeh/server/static/.keep
 %license LICENSE.txt
 %doc README.md
 %{_bindir}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %{python3_sitelib}/%{pypi_name}
 
 %changelog

@@ -25,7 +25,6 @@ BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-flake8
 BuildRequires:  python%{python3_pkgversion}-mock
 BuildRequires:  python%{python3_pkgversion}-pytest
-BuildRequires:  python%{python3_pkgversion}-setuptools
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %if %{undefined __pythondist_requires}
@@ -41,12 +40,16 @@ Flake8 plugins that intend to support Flake8 2.x and 3.x simultaneously.
 %autosetup -p1 -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -60,7 +63,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} \
 %license LICENSE
 %doc AUTHORS.rst CHANGELOG.rst README.rst
 %{python3_sitelib}/flake8_polyfill/
-%{python3_sitelib}/flake8_polyfill-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/flake8_polyfill-%{version}.dist-info/
 
 
 %changelog

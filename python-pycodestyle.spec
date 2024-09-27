@@ -48,7 +48,6 @@ Summary:    Python style guide checker
 Conflicts:      python-pycodestyle < %{version}-%{release}
 
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-sphinx
 BuildRequires:  python%{python3_pkgversion}-sphinx_rtd_theme
 BuildRequires:  python%{python3_pkgversion}-pytest
@@ -70,11 +69,15 @@ This is a version for Python %{python3_pkgversion}.
 sed --in-place "s:#!\s*/usr.*::" pycodestyle.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 %if %{with python2}
 %py2_build
 %endif
-%py3_build
+%pyproject_wheel
 
 make -C docs man SPHINXBUILD=sphinx-build-%{python3_version}
 
@@ -86,7 +89,7 @@ mv %{buildroot}%{_bindir}/pycodestyle %{buildroot}%{_bindir}/pycodestyle-%{pytho
 ln -s ./pycodestyle-%{python2_version} %{buildroot}%{_bindir}/pycodestyle-2
 %endif
 
-%py3_install
+%pyproject_install
 mv %{buildroot}%{_bindir}/pycodestyle %{buildroot}%{_bindir}/pycodestyle-%{python3_version}
 ln -s ./pycodestyle-%{python3_version} %{buildroot}%{_bindir}/pycodestyle-3
 ln -s ./pycodestyle-3 %{buildroot}%{_bindir}/pycodestyle
@@ -110,7 +113,7 @@ install -D docs/_build/man/%{module_name}.1 %{buildroot}%{_mandir}/man1/%{module
 %{_bindir}/pycodestyle-2
 %{_bindir}/pycodestyle-2.7
 %{python2_sitelib}/%{module_name}.py*
-%{python2_sitelib}/%{module_name}-%{version}-*.egg-info
+%{python2_sitelib}/%{module_name}-%{version}.dist-info
 %endif
 
 %files -n python%{python3_pkgversion}-pycodestyle
@@ -121,7 +124,7 @@ install -D docs/_build/man/%{module_name}.1 %{buildroot}%{_mandir}/man1/%{module
 %{_bindir}/pycodestyle-3
 %{_bindir}/pycodestyle-%{python3_version}
 %pycached %{python3_sitelib}/%{module_name}.py
-%{python3_sitelib}/%{module_name}-%{version}-*.egg-info/
+%{python3_sitelib}/%{module_name}-%{version}.dist-info/
 
 %changelog
 %autochangelog

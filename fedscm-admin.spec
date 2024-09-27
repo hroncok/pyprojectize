@@ -11,7 +11,6 @@ BuildArch:      noarch
 
 BuildRequires:  help2man
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 # For tests
 BuildRequires:  python3dist(click)
 BuildRequires:  python3dist(python-bugzilla)
@@ -32,8 +31,11 @@ CLI tool to process Fedora SCM requests.
 %autosetup -n %{distname}-%{version}
 rm -vr *.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %check
 #export FEDSCM_ADMIN_TEST_CONFIG=true
@@ -49,7 +51,7 @@ export FEDSCM_ADMIN_CONFIG=%{buildroot}/%{_sysconfdir}/fedscm-admin/config.ini
 export PYTHONPATH=%{buildroot}/%{python3_sitelib}
 export LC_ALL=C.UTF-8
 export LANG=C.UTF-8
-%py3_install
+%pyproject_install
 
 cat >append-to-manual <<EOF
 [see also]
@@ -63,7 +65,7 @@ unset FEDSCM_ADMIN_CONFIG
 %files
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/%{distname}-*.egg-info/
+%{python3_sitelib}/%{distname}.dist-info/
 %{python3_sitelib}/%{distname}/
 %{_bindir}/fedscm-admin
 %dir %{_sysconfdir}/fedscm-admin

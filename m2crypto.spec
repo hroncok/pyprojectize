@@ -39,7 +39,6 @@ Summary:        Support for using OpenSSL in Python 3 scripts
 %{?python_provide:%python_provide python%{python3_pkgversion}-m2crypto}
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-pytest
-BuildRequires:  python%{python3_pkgversion}-setuptools
 
 %description -n python%{python3_pkgversion}-m2crypto
 This package allows you to call OpenSSL functions from Python 3 scripts.
@@ -50,6 +49,9 @@ This package allows you to call OpenSSL functions from Python 3 scripts.
 # remove outdated generated files
 rm -f src/M2Crypto/m2crypto.py src/SWIG/_m2crypto_wrap.c
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %set_build_flags
 if pkg-config openssl ; then
@@ -57,7 +59,7 @@ if pkg-config openssl ; then
 	LDFLAGS="$LDFLAGS`pkg-config --libs-only-L openssl`" ; export LDFLAGS
 fi
 
-%py3_build
+%pyproject_wheel
 
 %install
 %set_build_flags
@@ -66,7 +68,7 @@ if pkg-config openssl ; then
 	LDFLAGS="$LDFLAGS`pkg-config --libs-only-L openssl`" ; export LDFLAGS
 fi
 
-%py3_install
+%pyproject_install
 
 %check
 # FIXME: Make the tests pass on RHEL 9 again...
@@ -76,7 +78,7 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} %{__python3} -munittest discover -v t
 %doc CHANGES README.rst
 %license LICENCE
 %{python3_sitearch}/M2Crypto
-%{python3_sitearch}/M2Crypto-*.egg-info/
+%{python3_sitearch}/M2Crypto.dist-info/
 
 %changelog
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.41.0^git20240613.3156614-2

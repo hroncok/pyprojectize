@@ -28,7 +28,6 @@ Summary:        %{summary}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-pytest >= 3.6
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-tornado >= 4.1
 
 %description -n python3-%{srcname} %{_description}
@@ -38,12 +37,16 @@ BuildRequires:  python3-tornado >= 4.1
 %autosetup -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -55,7 +58,7 @@ PYTHONPATH="%{buildroot}%{python3_sitelib}" PYTHONDONTWRITEBYTECODE=1 \
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{srcname_}
-%{python3_sitelib}/%{srcname_}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{srcname_}-%{version}.dist-info
 
 
 %changelog

@@ -34,7 +34,6 @@ Summary: %{summary}
 BuildRequires: gcc
 BuildRequires: libzstd-devel
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-cffi
 %if %{with check}
 BuildRequires: python3-hypothesis
@@ -51,11 +50,14 @@ Provides: bundled(zstd) = 1.5.5
 %autosetup -p1 -n %{pypi_name}-%{version}
 rm -r %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with check}
 %check
@@ -69,7 +71,7 @@ mv zstandard{.src,}
 %files -n python3-%{pypi_name}
 %license LICENSE zstd/COPYING
 %doc README.rst
-%{python3_sitearch}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/%{pypi_name}-%{version}.dist-info
 %{python3_sitearch}/%{pypi_name}
 
 %changelog

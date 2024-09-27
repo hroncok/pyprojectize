@@ -24,7 +24,6 @@ Conflicts:      python3-uri-templates
 %{?python_provide:%python_provide python3-%{modname}}
 %{?python_provide:%python_provide python3-%{altname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 
 %description -n python3-%{modname}
@@ -35,11 +34,14 @@ Python 3 version.
 %prep
 %autosetup -n uritemplate-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} -v
@@ -47,7 +49,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} -v
 %files -n python3-%{modname}
 %license LICENSE LICENSE.APACHE LICENSE.BSD
 %doc HISTORY.rst README.rst
-%{python3_sitelib}/%{modname}-*.egg-info/
+%{python3_sitelib}/%{modname}.dist-info/
 %{python3_sitelib}/%{modname}/
 
 %changelog

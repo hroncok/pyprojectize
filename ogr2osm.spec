@@ -10,7 +10,6 @@ Source0:        https://github.com/roelderickx/ogr2osm/archive/v%{version}.tar.g
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Requires:       python3-gdal
 Requires:       python3-lxml
 Requires:       python3-protobuf
@@ -27,18 +26,22 @@ source to the .pbf or .osm output.
 %autosetup -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install 
+%pyproject_install
 
 
 %files
 %{_bindir}/%{name}
 %{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}-*.egg-info
+%{python3_sitelib}/%{name}.dist-info
 %doc README.md
 %license LICENSE
 

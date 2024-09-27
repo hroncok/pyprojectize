@@ -8,7 +8,6 @@ URL:            https://github.com/stratis-storage/stratis-cli
 Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  %{_bindir}/a2x
 %if 0%{?rhel}
 BuildRequires:  python3-dateutil
@@ -38,12 +37,15 @@ interacts with stratisd via D-Bus.
 %prep
 %autosetup
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 a2x -f manpage docs/stratis.txt
 
 %install
-%py3_install
+%pyproject_install
 # Do not install tab-completion files for RHEL
 %if !0%{?rhel}
 %{__install} -Dpm0644 -t %{buildroot}%{_datadir}/bash-completion/completions \
@@ -72,7 +74,7 @@ a2x -f manpage docs/stratis.txt
 %{_datadir}/fish/vendor_completions.d/stratis.fish
 %endif
 %{python3_sitelib}/stratis_cli/
-%{python3_sitelib}/stratis_cli-*.egg-info/
+%{python3_sitelib}/stratis_cli.dist-info/
 
 %changelog
 * Sat Jul 20 2024 Fedora Release Engineering <releng@fedoraproject.org> - 3.6.2-4

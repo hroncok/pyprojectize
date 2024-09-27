@@ -31,7 +31,6 @@ nonetheless, here's what's on offer:\
 %package -n python3-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 BuildRequires:  python3dist(decorator)
 BuildRequires:  python3dist(appdirs)
@@ -48,11 +47,14 @@ Python 3 version.
 %autosetup -n %{srcname}-%{version}
 rm -vrf *.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest
@@ -60,7 +62,7 @@ rm -vrf *.egg-info
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.rst PKG-INFO
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 %{python3_sitelib}/%{srcname}/
 
 %changelog

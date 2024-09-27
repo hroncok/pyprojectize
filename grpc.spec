@@ -239,7 +239,6 @@ BuildRequires:  gdb
 # ~~~~ Python ~~~~
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 # grpcio (setup.py) setup_requires (with
 #     GRPC_PYTHON_ENABLE_DOCUMENTATION_BUILD, which is NOT enabled):
@@ -658,7 +657,7 @@ Python language bindings for gRPC (HTTP/2-based RPC framework).
 
 
 %global grpcio_egg %{python3_sitearch}/grpcio-%{pyversion}-py%{python3_version}.egg-info
-%{?python_extras_subpkg:%python_extras_subpkg -n python3-grpcio -i %{grpcio_egg} protobuf}
+%pyproject_extras_subpkg -n python3-grpcio protobuf
 
 
 %package -n python3-grpcio-tools
@@ -894,6 +893,10 @@ sed -r -i 's/(std=c\+\+)14/\1%{cpp_std}/g' \
     examples/cpp/*/CMakeLists.txt \
     tools/run_tests/artifacts/artifact_targets.py \
     tools/distrib/python/grpcio_tools/setup.py
+
+
+%generate_buildrequires
+%pyproject_buildrequires
 
 
 %build
@@ -1704,38 +1707,38 @@ fi
 %files -n python3-grpcio
 %license LICENSE NOTICE.txt LICENSE-utf8_range
 %{python3_sitearch}/grpc/
-%{python3_sitearch}/grpcio-%{pyversion}-py%{python3_version}.egg-info/
+%{python3_sitearch}/grpcio-%{pyversion}.dist-info/
 
 
 %files -n python3-grpcio-tools
 %license LICENSE NOTICE.txt LICENSE-utf8_range
 %{python3_sitearch}/grpc_tools/
-%{python3_sitearch}/grpcio_tools-%{pyversion}-py%{python3_version}.egg-info/
+%{python3_sitearch}/grpcio_tools-%{pyversion}.dist-info/
 
 
 %files -n python3-grpcio-channelz
 %{python3_sitelib}/grpc_channelz/
-%{python3_sitelib}/grpcio_channelz-%{pyversion}-py%{python3_version}.egg-info/
+%{python3_sitelib}/grpcio_channelz-%{pyversion}.dist-info/
 
 
 %files -n python3-grpcio-health-checking
 %{python3_sitelib}/grpc_health/
-%{python3_sitelib}/grpcio_health_checking-%{pyversion}-py%{python3_version}.egg-info/
+%{python3_sitelib}/grpcio_health_checking-%{pyversion}.dist-info/
 
 
 %files -n python3-grpcio-reflection
 %{python3_sitelib}/grpc_reflection/
-%{python3_sitelib}/grpcio_reflection-%{pyversion}-py%{python3_version}.egg-info/
+%{python3_sitelib}/grpcio_reflection-%{pyversion}.dist-info/
 
 
 %files -n python3-grpcio-status
 %{python3_sitelib}/grpc_status/
-%{python3_sitelib}/grpcio_status-%{pyversion}-py%{python3_version}.egg-info/
+%{python3_sitelib}/grpcio_status-%{pyversion}.dist-info/
 
 
 %files -n python3-grpcio-testing
 %{python3_sitelib}/grpc_testing/
-%{python3_sitelib}/grpcio_testing-%{pyversion}-py%{python3_version}.egg-info/
+%{python3_sitelib}/grpcio_testing-%{pyversion}.dist-info/
 
 
 %changelog

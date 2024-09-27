@@ -142,7 +142,6 @@ BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-hatchling
 BuildRequires:  python3-pip
 %else
-BuildRequires:  python3-setuptools
 %endif
 
 Requires:       mock
@@ -192,6 +191,9 @@ Common files for python2-%{name} and python3-%{name}.
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if 0%{?with_python2}
 %{__python2} setup.py build
@@ -201,7 +203,7 @@ Common files for python2-%{name} and python3-%{name}.
 %if 0%{?with_hatchling}
 %pyproject_wheel
 %else
-%py3_build
+%pyproject_wheel
 %endif
 %endif
 
@@ -215,7 +217,7 @@ Common files for python2-%{name} and python3-%{name}.
 %if 0%{?with_hatchling}
 %pyproject_install
 %else
-%py3_install
+%pyproject_install
 %endif
 %endif
 
@@ -257,7 +259,7 @@ example_cli_dir=$RPM_BUILD_ROOT%{_datadir}/%{name}/examples/cli
 %endif
 # For noarch packages: sitelib
 %{python2_sitelib}/pyrpkg
-%{python2_sitelib}/%{name}-%{version}-py*.egg-info
+%{python2_sitelib}/%{name}-%{version}.dist-info
 %endif
 
 %if 0%{?with_python3}
@@ -268,7 +270,7 @@ example_cli_dir=$RPM_BUILD_ROOT%{_datadir}/%{name}/examples/cli
 %if 0%{?with_hatchling}
 %{python3_sitelib}/%{name}-%{version}.dist-info
 %else
-%{python3_sitelib}/%{name}-%{version}-py*.egg-info
+%{python3_sitelib}/%{name}-%{version}.dist-info
 %endif
 %endif
 

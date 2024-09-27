@@ -23,7 +23,6 @@ networking.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{name}}
 
 %description -n python3-%{name}
@@ -36,17 +35,20 @@ networking.
 %prep
 %autosetup -n %{name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{name}
 %doc CHANGES.txt README.md THANKS.txt TODO.txt examples/ docs/
 %license LICENSE.rst
 %{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}*.egg-info
+%{python3_sitelib}/%{name}*.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 4.4.12-18

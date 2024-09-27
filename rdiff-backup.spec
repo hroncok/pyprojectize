@@ -10,7 +10,6 @@ Source0: https://github.com/%{name}/%{name}/releases/download/v%{gittag}/%{name}
 
 License: GPL-2.0-or-later
 BuildRequires: python3-devel >= 3.6, librsync-devel >= 1.0.0
-BuildRequires: python3-setuptools
 BuildRequires: python3-setuptools_scm
 BuildRequires: gcc
 
@@ -34,11 +33,14 @@ differences from the previous backup will be transmitted.
 %prep
 %autosetup -n %{name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Remove doc files so we package them with rpmbuild
 rm -rf $RPM_BUILD_ROOT/usr/share/doc/*
@@ -50,7 +52,7 @@ rm -rf $RPM_BUILD_ROOT/usr/share/doc/*
 %{_bindir}/rdiff-backup-delete
 %{_mandir}/man1/rdiff-backup*
 %{python3_sitearch}/rdiff_backup/
-%{python3_sitearch}/rdiff_backup-*.egg-info
+%{python3_sitearch}/rdiff_backup.dist-info
 %{python3_sitearch}/rdiffbackup/
 %{_datadir}/bash-completion/completions/rdiff-backup
 %doc CHANGELOG.adoc README.adoc

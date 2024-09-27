@@ -17,7 +17,6 @@ Source0:        https://pypi.python.org/packages/source/j/%{srcname}/%{srcname}-
 BuildRequires:  python3-devel
 BuildRequires:  python3-inflect
 BuildRequires:  python3-jinja2
-BuildRequires:  python3-setuptools
 
 
 %description
@@ -40,12 +39,16 @@ Requires:       python3-inflect
 %autosetup -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -56,7 +59,7 @@ Requires:       python3-inflect
 %license LICENSE
 %doc AUTHORS.rst CONTRIBUTING.rst HISTORY.rst README.rst
 %{python3_sitelib}/jinja2_pluralize
-%{python3_sitelib}/jinja2_pluralize-%{version}-*.egg-info
+%{python3_sitelib}/jinja2_pluralize-%{version}.dist-info
 
 
 %changelog

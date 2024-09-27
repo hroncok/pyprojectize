@@ -24,7 +24,6 @@ system. For use with a boot-server configured with Cobbler.
 %package -n python%{python3_pkgversion}-koan
 Summary:        koan python%{python3_pkgversion} module
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 %{?python_enable_dependency_generator}
 %if 0%{?el7}
 Requires:       python%{python3_pkgversion}-distro
@@ -42,11 +41,14 @@ koan python%{python3_pkgversion} module.
 %autosetup -p1
 %py3_shebang_fix bin
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %license COPYING
@@ -57,7 +59,7 @@ koan python%{python3_pkgversion} module.
 %files -n python%{python3_pkgversion}-koan
 %license COPYING
 %{python3_sitelib}/koan/
-%{python3_sitelib}/koan*.egg-info
+%{python3_sitelib}/koan*.dist-info
 
 %changelog
 * Fri Jul 26 2024 Miroslav Suchý <msuchy@redhat.com> - 3.0.1-13

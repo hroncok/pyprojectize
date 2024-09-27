@@ -13,7 +13,6 @@ BuildArch:      noarch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(pytest)
-BuildRequires:  python3dist(setuptools)
 
 %description
 Bracex is a brace expanding library (à la Bash) for Python.
@@ -32,11 +31,14 @@ Brace expanding is used to generate arbitrary strings.
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{python3} setup.py test
@@ -45,7 +47,7 @@ rm -rf %{pypi_name}.egg-info
 %license LICENSE.md docs/src/markdown/about/license.md
 %doc README.md
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.1.1-15

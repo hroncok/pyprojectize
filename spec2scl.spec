@@ -12,7 +12,6 @@ Source0:        %{pypi_source}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  %{py3_dist setuptools}
 BuildRequires:  %{py3_dist flexmock} >= 0.9.3
 BuildRequires:  %{py3_dist jinja2}
 BuildRequires:  %{py3_dist pytest pytest-runner}
@@ -27,11 +26,14 @@ spec2scl is a tool to convert RPM specfiles to SCL-style specfiles.
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 install -D -m 644 spec2scl.1 %{buildroot}%{_mandir}/man1/spec2scl.1
 
 %check
@@ -45,7 +47,7 @@ PYTHONPATH=$(pwd) py.test-%{python3_version}
 %{_bindir}/%{pypi_name}
 %{_mandir}/man1/spec2scl.1*
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Sat Jul 20 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.2.2-18

@@ -37,7 +37,6 @@ BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-distro
 BuildRequires:  python%{python3_pkgversion}-pytest
 BuildRequires:  python%{python3_pkgversion}-PyYAML
-BuildRequires:  python%{python3_pkgversion}-setuptools
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 Obsoletes:      python2-%{srcname} < 1.1.10-3
 
@@ -64,15 +63,19 @@ release your code for others to use.
 find test -type f | xargs sed -i '1{s@^#!/usr/bin/env python@#!%{__python3}@}'
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %make_build -C doc html man SPHINXBUILD=sphinx-build-%{python3_version}
 rm doc/_build/html/.buildinfo
 
 
 %install
-%py3_install
+%pyproject_install
 
 # backwards compatibility symbolic links
 pushd %{buildroot}%{_bindir}
@@ -97,7 +100,7 @@ export LANG=en_US.UTF-8
 %files -n python%{python3_pkgversion}-%{srcname}
 %doc README.md
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 %{_bindir}/rosversion
 %{_bindir}/python3-rosversion
 %{_mandir}/man1/rosversion.1.*

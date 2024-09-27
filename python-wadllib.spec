@@ -19,7 +19,6 @@ Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3dist(lazr-uri)
 
 # doctests use the cgi module removed from Python 3.13
@@ -32,11 +31,14 @@ BuildRequires:  (python3dist(legacy-cgi) if python3 >= 3.13)
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -45,7 +47,7 @@ BuildRequires:  (python3dist(legacy-cgi) if python3 >= 3.13)
 %license COPYING.txt
 # README is installed in sitelib and used at runtime
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 %autochangelog

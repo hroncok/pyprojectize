@@ -23,7 +23,6 @@ and are the same ones that drive the popular XEphem astronomy application.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 
 Provides:       python3-pyephem = %{version}-%{release}
@@ -46,13 +45,16 @@ Documentation for %{pypi_name}.
 %prep
 %autosetup -n %{pypi_name}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 PYTHONPATH=${PWD} sphinx-build-3 ephem/doc html
 rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 cd %{buildroot}%{python3_sitearch}/%{pypi_name}
@@ -68,7 +70,7 @@ rm -rf %{buildroot}%{python3_sitearch}/%{pypi_name}/{.benchmarks,.hypothesis,.py
 %license LICENSE
 %doc README.rst
 %{python3_sitearch}/%{pypi_name}/
-%{python3_sitearch}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/%{pypi_name}-%{version}.dist-info
 %exclude %{python3_sitearch}/%{pypi_name}/tests
 %exclude %{python3_sitearch}/%{pypi_name}/doc
 

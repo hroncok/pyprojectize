@@ -26,7 +26,6 @@ Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(toml)
 BuildRequires:  python3dist(pint)
 BuildRequires:  python3dist(pytest)
@@ -38,11 +37,14 @@ BuildRequires:  python3dist(pytest-cov)
 %autosetup -n %{pypi_name}-%{version}
 sed -i '1{/^#!/d}' vulture/*.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 mv %{buildroot}%{_bindir}/%{pypi_name} %{buildroot}%{_bindir}/%{pypi_name}-%{python3_version}
 ln -s %{_bindir}/vulture-%{python3_version} %{buildroot}/%{_bindir}/vulture-3
 ln -s %{_bindir}/vulture-%{python3_version} %{buildroot}/%{_bindir}/vulture
@@ -57,7 +59,7 @@ ln -s %{_bindir}/vulture-%{python3_version} %{buildroot}/%{_bindir}/vulture
 %{_bindir}/%{pypi_name}-3
 %{_bindir}/%{pypi_name}-%{python3_version}
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Wed Sep 18 2024 Fabian Affolter <mail@fabian-affolter.ch> - 2.12-1

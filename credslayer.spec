@@ -13,7 +13,6 @@ Source0:        %{url}/archive/v%{version}/%{pypi_name}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 BuildRequires:  python3-pyshark
 BuildRequires:  wireshark-cli
@@ -50,13 +49,16 @@ Documentation for %{pypi_name}.
 %autosetup -n CredSLayer-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 PYTHONPATH=%{PWD} sphinx-build-3 docs html
 rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %if %{with local}
@@ -70,7 +72,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v tests/tes
 %doc README.md
 %license LICENSE
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/CredSLayer-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/CredSLayer-%{version}.dist-info
 
 %files -n python-%{pypi_name}-doc
 %doc html

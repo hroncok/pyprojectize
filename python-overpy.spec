@@ -22,7 +22,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 #for tests
 BuildRequires:  python3-pytest
@@ -45,8 +44,11 @@ Documentation for %{name}.
 %autosetup -n %{github_name}-%{version}
 rm -rf %{pretty_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 # Generate html docs
 PYTHONPATH=${PWD} sphinx-build-3 docs/source html
@@ -54,7 +56,7 @@ PYTHONPATH=${PWD} sphinx-build-3 docs/source html
 rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest
@@ -62,7 +64,7 @@ rm -rf html/.{doctrees,buildinfo}
 %files -n python3-%{pretty_name}
 %license LICENSE
 %doc README.rst CHANGELOG.rst examples/
-%{python3_sitelib}/%{pretty_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pretty_name}-%{version}.dist-info
 %{python3_sitelib}/%{pretty_name}
 
 %files -n python-%{pretty_name}-doc

@@ -10,7 +10,6 @@ URL:            https://github.com/pickleshare/pickleshare
 Source0:        https://files.pythonhosted.org/packages/source/p/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
 BuildArch:      noarch
  
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-devel
 
 %description
@@ -51,20 +50,23 @@ rm -rf %{pypi_name}.egg-info
 # fix interpreter
 sed -i 's/\/usr\/bin\/env python/\/usr\/bin\/python/' pickleshare.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
 # Must do the subpackages' install first because the scripts in /usr/bin are
 # overwritten with every setup.py install.
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name} 
 %license LICENSE
 
 %{python3_sitelib}/__pycache__/*
 %{python3_sitelib}/%{pypi_name}.py
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.7.5-17

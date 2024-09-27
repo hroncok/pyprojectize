@@ -33,11 +33,14 @@ Summary:        %{summary}
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %python3 -m pytest -vv
@@ -45,7 +48,7 @@ Summary:        %{summary}
 %files -n python%{python3_pkgversion}-%{srcname}
 %doc CHANGES.md README.md
 %license LICENSE
-%{python3_sitelib}/ntlm_auth-*.egg-info/
+%{python3_sitelib}/ntlm_auth.dist-info/
 %{python3_sitelib}/ntlm_auth/
 
 %changelog

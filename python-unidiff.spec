@@ -21,7 +21,6 @@ python-unidiff is a Python library to parse and interact with unified diffs
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{modname}}
 Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 
 %description -n python%{python3_pkgversion}-%{modname}
 python-unidiff is a Python library to parse and interact with unified diffs 
@@ -31,11 +30,14 @@ python-unidiff is a Python library to parse and interact with unified diffs
 %autosetup -n %{modname}-%{version} -p1
 rm -r unidiff.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} -m unittest discover -s tests/
@@ -45,7 +47,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} -m unittest discover -s t
 %doc README.rst HISTORY
 %{_bindir}/%{modname}
 %{python3_sitelib}/%{modname}
-%{python3_sitelib}/%{modname}*.egg-info
+%{python3_sitelib}/%{modname}*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.7.5-5

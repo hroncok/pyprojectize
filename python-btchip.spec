@@ -27,7 +27,6 @@ hardware wallets.}
 %package -n python3-%{libname}
 Summary: %{summary}
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 Requires: python3-hidapi hidapi >= 0.7.99
 Requires: python3-mnemonic python-%{libname}-common
 
@@ -51,12 +50,15 @@ cp %{SOURCE2} .
 # This makes package compatible with python-packaging>=22.0.0
 sed -i 's/1.6.12-4build1/1.6.12/' setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 mkdir -p %{buildroot}%{_udevrulesdir}
 install -m644 %{SOURCE1} %{buildroot}%{_udevrulesdir}/20-ledger.rules
 
@@ -68,7 +70,7 @@ install -m644 %{SOURCE1} %{buildroot}%{_udevrulesdir}/20-ledger.rules
 %files -n python3-%{libname}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/btchip_python-*.egg-info/
+%{python3_sitelib}/btchip_python.dist-info/
 %{python3_sitelib}/btchip/
 
 %files -n python-%{libname}-common

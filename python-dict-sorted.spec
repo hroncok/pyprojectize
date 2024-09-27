@@ -21,7 +21,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3dist(six) >= 1.3
 
 %description -n python3-%{srcname}
@@ -39,12 +38,15 @@ BuildRequires:  %{_bindir}/sphinx-build
 %prep
 %autosetup -n %{srcname}-releases-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 sphinx-build -W -b html -d docs/_build/.doctrees/ docs/ docs/_build/html/
 
 %install
-%py3_install
+%pyproject_install
 rm -f docs/_build/html/.buildinfo
 
 %check
@@ -52,7 +54,7 @@ rm -f docs/_build/html/.buildinfo
 
 %files -n python3-%{srcname}
 %license LICENSE
-%{python3_sitelib}/%{eggname}-*.egg-info/
+%{python3_sitelib}/%{eggname}.dist-info/
 %{python3_sitelib}/%{modname}/
 
 %files doc

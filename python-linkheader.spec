@@ -18,7 +18,6 @@ Parse and format link headers according to RFC 5988 "Web Linking".
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -27,16 +26,19 @@ Parse and format link headers according to RFC 5988 "Web Linking".
 %prep
 %autosetup -n LinkHeader-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %{python3_sitelib}/__pycache__/*
 %{python3_sitelib}/link_header.py
-%{python3_sitelib}/LinkHeader-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/LinkHeader-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.4.3-16

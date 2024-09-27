@@ -13,7 +13,6 @@ BuildArch: noarch
 BuildRequires: python3-devel
 BuildRequires: libappstream-glib
 BuildRequires: desktop-file-utils
-BuildRequires: python3-setuptools
 
 Requires: python3-gobject
 Requires: gtk3
@@ -44,11 +43,14 @@ for file in doc/man/man1/*.1; do
     mv $file.new $file
 done
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 rm -rf %{buildroot}%{_datadir}/doc/gjots2-%{version}/
 
@@ -84,7 +86,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.metainf
 %{_bindir}/gjots2emacs
 %{_bindir}/gjots2lpr
 %{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{name}-%{version}.dist-info
 %{_datadir}/%{name}/
 %{_datadir}/pixmaps/gjots2.png
 %{_datadir}/metainfo/gjots2.metainfo.xml

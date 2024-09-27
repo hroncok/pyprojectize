@@ -12,7 +12,6 @@ BuildArch:      noarch
 
 BuildRequires: make
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(sphinx)
 
 %description
@@ -50,8 +49,12 @@ done
 sed -i.python -e 's|#!/usr/bin/env python|#!/usr/bin/python3|' smartypants
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 # generate html documentation
 cd docs
 make html
@@ -60,7 +63,7 @@ rm -rf _build/html/.{doctrees,buildinfo}
 
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -73,7 +76,7 @@ rm -rf _build/html/.{doctrees,buildinfo}
 %{_bindir}/%{pypi_name}
 %{python3_sitelib}/__pycache__/*
 %{python3_sitelib}/%{pypi_name}.py
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %files -n python-%{pypi_name}-doc
 %doc docs/_build/html

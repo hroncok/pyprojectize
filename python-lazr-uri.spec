@@ -19,7 +19,6 @@ Summary:        %{summary}
 %{?python_provide:%python_provide python3-lazr-uri}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description -n python3-lazr-uri  %_description
 
@@ -27,11 +26,14 @@ BuildRequires:  python3-setuptools
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -41,7 +43,7 @@ BuildRequires:  python3-setuptools
 %doc README.rst
 %{python3_sitelib}/lazr/
 %{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}-*.pth
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 %autochangelog

@@ -17,7 +17,6 @@ BuildArch:      noarch
 BuildRequires:  python3-sphinx
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3dist(sphinx) >= 1.3.5
 # The documentation runs commands like 'python -V' and 'python --help'.
 # Any python version is fine.
@@ -46,8 +45,11 @@ up to date.
 %autosetup -n %{srcname}-%{version} -p1
 sed -r -i s/python/python3/ src/sphinxcontrib/programoutput/tests/{test_directive.py,test_command.py,test_cache.py}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 rm build/lib/sphinxcontrib/__init__.py
 
 # workaround https://github.com/python/cpython/issues/94741
@@ -58,7 +60,7 @@ rm build/lib/sitecustomize.py build/lib/__pycache__/sitecustomize.*.pyc
 rm -r build/html/.buildinfo build/html/.doctrees
 
 %install
-%py3_install
+%pyproject_install
 mkdir -p %{buildroot}%{_pkgdocdir}
 cp -rv build/html %{buildroot}%{_pkgdocdir}/
 ln -vsf %{_jsdir}/jquery/latest/jquery.min.js %{buildroot}%{_pkgdocdir}/html/_static/jquery.js

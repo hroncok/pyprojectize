@@ -20,7 +20,6 @@ Patch:            https://github.com/Cornices/cornice/pull/575.patch
 BuildRequires: %{py3_dist colander}
 BuildRequires: %{py3_dist coverage}
 BuildRequires: %{py3_dist pyramid} >= 1.7
-BuildRequires: %{py3_dist setuptools}
 BuildRequires: %{py3_dist simplejson}
 BuildRequires: %{py3_dist sphinx}
 BuildRequires: %{py3_dist venusian}
@@ -53,12 +52,16 @@ Requires:   %{py3_dist venusian}
 %autosetup -p1 -n %{module}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check

@@ -9,7 +9,6 @@ Source0:        https://www.finnie.org/software/%{name}/%{name}-%{version}.tar.g
 BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3-pytest
-BuildRequires:  python3-setuptools
 BuildRequires:  systemd
 
 %description
@@ -20,11 +19,14 @@ a 2ping client to determine which direction packet loss occurs.
 %prep
 %autosetup
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 install -Dp -m 0644 2ping.service %{buildroot}/%{_unitdir}/2ping.service
 install -Dp -m 0644 doc/2ping.1 %{buildroot}/%{_mandir}/man1/2ping.1
 install -Dp -m 0644 doc/2ping.1 %{buildroot}/%{_mandir}/man1/2ping6.1

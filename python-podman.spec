@@ -67,7 +67,7 @@ Summary: %{summary}
 %build
 export PBR_VERSION="0.0.0"
 %if %{defined rhel8_py}
-%py3_build
+%pyproject_wheel
 %else
 %pyproject_wheel
 %endif
@@ -75,7 +75,7 @@ export PBR_VERSION="0.0.0"
 %install
 export PBR_VERSION="0.0.0"
 %if %{defined rhel8_py}
-%py3_install
+%pyproject_install
 %else
 %pyproject_install
 %pyproject_save_files %{pypi_name}
@@ -88,8 +88,8 @@ export PBR_VERSION="0.0.0"
 
 %if %{defined rhel8_py}
 %files -n python%{python3_pkgversion}-%{pypi_name}
-%dir %{python3_sitelib}/%{pypi_name}-*-py%{python3_version}.egg-info
-%{python3_sitelib}/%{pypi_name}-*-py%{python3_version}.egg-info/*
+%dir %{python3_sitelib}/%{pypi_name}-*.dist-info
+%{python3_sitelib}/%{pypi_name}-*.dist-info/*
 %dir %{python3_sitelib}/%{pypi_name}
 %{python3_sitelib}/%{pypi_name}/*
 %else

@@ -13,7 +13,6 @@ URL:            https://gcovr.com/
 Source0:        https://github.com/gcovr/%{name}/archive/%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  %{py3_dist colorlog}
 %if %{with docs}
 BuildRequires:  %{py3_dist lxml}
@@ -54,12 +53,16 @@ Documentation of gcovr.
 %autosetup
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with docs}
 # the documentation can only be build **after** gcovr is installed

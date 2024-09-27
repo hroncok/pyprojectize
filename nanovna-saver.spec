@@ -9,7 +9,6 @@ URL:		https://github.com/NanoVNA-Saver/%{name}
 Source0:	%{URL}/archive/v%{version}/%{name}-%{version}.tar.gz
 BuildArch:	noarch
 BuildRequires:	coreutils
-BuildRequires:	python3-setuptools
 BuildRequires:	python3-devel
 BuildRequires:	python3-pyserial
 BuildRequires:	python3-numpy
@@ -35,11 +34,14 @@ generally display and analyze the resulting data.
 # fix version
 sed -i '/^\s*version\s=/ s/attr: NanoVNASaver.About.version/%{version}/' setup.cfg
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Drop tests
 rm -rf %{buildroot}%{python3_sitelib}/test
@@ -63,7 +65,7 @@ install -Dpm 0644 icon_48x48.png %{buildroot}%{_datadir}/icons/hicolor/48x48/app
 %doc README.rst docs/CODE_OF_CONDUCT.md docs/CONTRIBUTING.md AUTHORS.rst
 %{_bindir}/NanoVNASaver
 %{python3_sitelib}/NanoVNASaver
-%{python3_sitelib}/NanoVNASaver-%{version}-py*.egg-info
+%{python3_sitelib}/NanoVNASaver-%{version}.dist-info
 %{_mandir}/man1/NanoVNASaver.1*
 %{_datadir}/icons/hicolor/48x48/apps/NanoVNASaver_48x48.png
 %{_datadir}/applications/NanoVNASaver.desktop

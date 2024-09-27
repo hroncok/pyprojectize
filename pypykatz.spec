@@ -11,7 +11,6 @@ Source0:        %pypi_source
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 Mimikatz implementation in pure Python. It's optimized for offline parsing, 
@@ -24,18 +23,21 @@ find ./ -type f -name "*.py" -exec sed -i '/^#!\//, 1d' {} \;
 # Fix line endings
 sed -i "s|\r||g" README.md
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %doc README.md
 %license LICENSE
 %{_bindir}/*
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}*.egg-info
+%{python3_sitelib}/%{pypi_name}*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.3.15-14

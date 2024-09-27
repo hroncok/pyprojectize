@@ -9,7 +9,6 @@ URL:            https://github.com/systemd/systemd-coredump-python
 Source0:        https://github.com/systemd/systemd-coredump-python/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 BuildArch:      noarch
 
@@ -27,11 +26,14 @@ Conflicts:      systemd < 233
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # %%check
 # there are no useful checks, the stuff in tests/ is only useful for development so far
@@ -42,7 +44,7 @@ Conflicts:      systemd < 233
 %{python3_sitelib}/systemd_coredump_exception_handler.py
 %{python3_sitelib}/__pycache__/*
 %{python3_sitelib}/systemd_coredump.pth
-%{python3_sitelib}/systemd_coredump_python-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/systemd_coredump_python-%{version}.dist-info
 
 %changelog
 %autochangelog

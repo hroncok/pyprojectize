@@ -35,7 +35,6 @@ Currently, the following panels have been written and are working:\
 Summary:       %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 Obsoletes:     python-django-debug-toolbar < 1.9.1-3
 Obsoletes:     python2-django-debug-toolbar < 1.9.1-3
 
@@ -45,11 +44,14 @@ Obsoletes:     python2-django-debug-toolbar < 1.9.1-3
 %autosetup -n %{srcname}-%{version}
 rm -vr *.egg-info/
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # test needs config
@@ -59,7 +61,7 @@ rm -vr *.egg-info/
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/debug_toolbar/
-%{python3_sitelib}/django_debug_toolbar-*.egg-info/
+%{python3_sitelib}/django_debug_toolbar.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 3.2.1-14

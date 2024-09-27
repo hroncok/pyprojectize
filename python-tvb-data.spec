@@ -29,7 +29,6 @@ BuildArch:      noarch
 %package -n python3-%{pypi_name}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 # Not included in setup.py
 Requires:       %{py3_dist numpy}
@@ -60,17 +59,20 @@ rm -rf %{pypi_name}.egg-info
 # Upstream included a commit to prepare for 1.5.10 in the release tar
 sed -i 's/1.5.10/1.5.9/' setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{module_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{module_name}-%{version}.dist-info
 %{python3_sitelib}/%{module_name}
 
 %changelog

@@ -49,7 +49,6 @@ BuildRequires:  python2-Cython
 %if 0%{?with_python3}
 BuildRequires:  python%{python3_pkgversion}
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-Cython
 %endif
 
@@ -128,6 +127,9 @@ chmod 0644 lib/base64.{h,cpp}
 
 ./bootstrap.sh
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %configure --enable-shared \
   --disable-static \
@@ -152,7 +154,7 @@ cd pyaff
 %endif
 
 %if 0%{?with_python3}
-%py3_build
+%pyproject_wheel
 %endif
 
 
@@ -166,7 +168,7 @@ cd pyaff
 %endif
 
 %if 0%{?with_python3}
-%py3_install
+%pyproject_install
 %endif
 
 

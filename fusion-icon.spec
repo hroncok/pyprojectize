@@ -14,7 +14,6 @@ BuildArch:      noarch
 Patch1:         fusion-icon_0001-Fix-typeerror-in-python3.6.patch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  gobject-introspection-devel
 BuildRequires:  desktop-file-utils
 
@@ -41,11 +40,14 @@ appear.
 %prep
 %autosetup -p1 -n %{name}-v%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build -- --with-gtk=3.0
+%pyproject_wheel -C--global-option=--with-gtk=3.0
 
 %install
-%py3_install
+%pyproject_install
 
 mv %{buildroot}%{_datadir}/{metainfo,appdata}/
 
@@ -63,7 +65,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/fusion-icon.desktop
 %{_datadir}/appdata/fusion-icon.appdata.xml
 %{_datadir}/icons/hicolor/*/apps/fusion-icon.png
 %{_datadir}/icons/hicolor/scalable/apps/fusion-icon.svg
-%{python3_sitelib}/fusion_icon-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/fusion_icon-%{version}.dist-info
 %{python3_sitelib}/FusionIcon/interface_gtk/
 %{python3_sitelib}/FusionIcon/interface_qt/
 

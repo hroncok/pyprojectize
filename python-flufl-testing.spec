@@ -23,7 +23,6 @@ BuildArch:      noarch
 
 BuildRequires:  python-srpm-macros
 BuildRequires:  python%{python3_pkgversion}-devel >= 3.4
-BuildRequires:  python%{python3_pkgversion}-setuptools
 %if 0%{?with_python3_other}
 BuildRequires:  python%{python3_other_pkgversion}-devel >= 3.4
 BuildRequires:  python%{python3_other_pkgversion}-setuptools
@@ -52,15 +51,19 @@ Summary:        %{summary}
 %autosetup -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 %if 0%{?with_python3_other}
 %py3_other_build
 %endif
 
 
 %install
-%py3_install
+%pyproject_install
 %if 0%{?with_python3_other}
 %py3_other_install
 %endif
@@ -69,14 +72,14 @@ Summary:        %{summary}
 %files -n python%{python3_pkgversion}-%{pkgname}
 %doc README.rst NEWS.rst
 %{python3_sitelib}/flufl/
-%{python3_sitelib}/%{srcname}-%{version}*-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}*.dist-info/
 %{python3_sitelib}/%{srcname}-%{version}*-py%{python3_version}-nspkg.pth
 
 %if 0%{?with_python3_other}
 %files -n python%{python3_other_pkgversion}-%{pkgname}
 %doc README.rst NEWS.rst
 %{python3_other_sitelib}/flufl/
-%{python3_other_sitelib}/%{srcname}-%{version}*-py%{python3_other_version}.egg-info/
+%{python3_other_sitelib}/%{srcname}-%{version}*-py%{python3_other_version}.dist-info/
 %{python3_other_sitelib}/%{srcname}-%{version}*-py%{python3_version}-nspkg.pth
 %endif
 

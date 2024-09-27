@@ -25,7 +25,6 @@ is also locale-and-unicode aware.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-nose
 BuildRequires:  python3-mock
 BuildRequires:  python3-six
@@ -62,11 +61,14 @@ Command line tool for tabular formatter.
 %autosetup -p1 -n %{pypi_name}-%{version}
 sed -i 's/\"pathlib\"//g' setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 install -Dpm 0644 %{pypi_name}.1.txt %{buildroot}%{_mandir}/man1/%{pypi_name}.1
 
 %check
@@ -88,7 +90,7 @@ EXCLUDE_ARG="$EXCLUDE_ARG -e test_table_add_time"
 %files -n python3-%{pypi_name}
 %doc AUTHORS.md README.md
 %license LICENSE
-%{python3_sitelib}/%{pypi_name}-*.egg-info/
+%{python3_sitelib}/%{pypi_name}.dist-info/
 %{python3_sitelib}/%{pypi_name}/
 
 %files -n %{pypi_name}

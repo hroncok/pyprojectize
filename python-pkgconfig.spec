@@ -57,7 +57,6 @@ Python 2 version.
 Summary:        Python3 interface to the pkg-config command line tool
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Requires:       %{_bindir}/pkg-config
 
 %description -n python3-%{srcname}
@@ -81,30 +80,33 @@ Python 3 version.
 # https://github.com/sdispater/poetry/issues/866
 sed -i -e s/distutils.core/setuptools/ setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if %{with python2}
 %py2_build
 %endif
-%py3_build
+%pyproject_wheel
 
 %install
 %if %{with python2}
 %py2_install
 %endif
-%py3_install
+%pyproject_install
 
 %if %{with python2}
 %files -n python2-%{srcname}
 %license LICENSE
 %doc README.rst
-%{python2_sitelib}/%{srcname}-*.egg-info/
+%{python2_sitelib}/%{srcname}.dist-info/
 %{python2_sitelib}/%{srcname}/
 %endif
 
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 %{python3_sitelib}/%{srcname}/
 
 %changelog

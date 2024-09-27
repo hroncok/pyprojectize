@@ -90,8 +90,11 @@ Tests for the Oslo Metrics library.
 # Let RPM handle the dependencies
 rm -rf {test-,}requirements.txt
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %if 0%{?with_doc}
 # generate html docs
@@ -101,7 +104,7 @@ rm -rf doc/build/html/.{doctrees,buildinfo}
 %endif
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 %check
 %{__python3} setup.py test
@@ -110,7 +113,7 @@ rm -rf doc/build/html/.{doctrees,buildinfo}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/oslo_metrics
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %{_bindir}/oslo-metrics
 %exclude %{python3_sitelib}/oslo_metrics/tests/
 

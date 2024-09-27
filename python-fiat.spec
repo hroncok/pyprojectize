@@ -18,7 +18,6 @@ URL:            https://bitbucket.org/fenics-project/fiat
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(pytest-cases)
 BuildRequires:  python3dist(numpy)
@@ -56,11 +55,14 @@ Summary: %summary
 
 sed -r -i 's/np[.]float/float/g' test/unit/test_discontinuous_taylor.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %__python3 -m pytest -v test/ --skip-download
@@ -71,7 +73,7 @@ sed -r -i 's/np[.]float/float/g' test/unit/test_discontinuous_taylor.py
 %doc README.rst
 %doc AUTHORS
 %{python3_sitelib}/FIAT/
-%{python3_sitelib}/fenics_fiat-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/fenics_fiat-%{version}.dist-info/
 
 %changelog
 %autochangelog

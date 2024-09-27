@@ -19,7 +19,6 @@ allows for simple access to reddit's API.
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
 
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-devel
 BuildRequires:  python3-prawcore
 BuildRequires:  mock
@@ -50,15 +49,18 @@ allows for simple access to reddit's API.
 # The RPM package should not provide this feature
 sed -i -e '/"update_checker >=0.18"/d' setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 %if %{with docs}
 sphinx-build docs html
 rm -rf html/.{doctrees,buildinfo}
 %endif
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest
@@ -67,7 +69,7 @@ rm -rf html/.{doctrees,buildinfo}
 %doc AUTHORS.rst CHANGES.rst README.rst
 %license LICENSE.txt
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py*.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %if %{with docs}
 %files -n python-%{pypi_name}-doc

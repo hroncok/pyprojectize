@@ -16,7 +16,6 @@ BuildRequires:	python3-pytest
 BuildRequires:	python3-black
 %endif
 BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
 Requires:	python3-click
 Requires:	python3-libpagure
 Requires:	python3-requests
@@ -29,11 +28,14 @@ Cranc is a Pagure command line interface tool
 %prep
 %autosetup
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with tests}
 %check
@@ -45,7 +47,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} -m pytest -v
 %doc README.rst
 %license LICENSE
 # For noarch packages: sitelib
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{python3_sitelib}/cranc
 %{_bindir}/cranc
 

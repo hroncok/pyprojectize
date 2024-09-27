@@ -16,7 +16,6 @@ BuildArch:      noarch
 
 # Python 3
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 # unit test requirements
 BuildRequires:  python%{python3_pkgversion}-dateutil
 BuildRequires:  python%{python3_pkgversion}-six
@@ -53,12 +52,16 @@ as well as in-place editing.
 %autosetup -p1 -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
  
 %check

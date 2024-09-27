@@ -24,7 +24,6 @@ Summary:        A set of high-level abstractions for Django forms
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-sphinx
 BuildRequires:  python3-django >= 1.7
 # Required for testing
@@ -57,8 +56,11 @@ This is the associated documentation.
 %prep
 %setup -q -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %if 0%{?skip_tests} == 0
 %check
@@ -66,7 +68,7 @@ PYTHONPATH=. DJANGO_SETTINGS_MODULE=tests.settings python3-coverage run %{python
 %endif
 
 %install
-%{py3_install}
+%{pyproject_install}
 %find_lang django py3lang
 # generate html docs
 sphinx-build-3 docs html
@@ -78,7 +80,7 @@ rm -rf html/.{doctrees,buildinfo}
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/formtools
-%{python3_sitelib}/django_formtools-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/django_formtools-%{version}.dist-info
 
 %files -n python3-%{pypi_name}-doc
 %doc html

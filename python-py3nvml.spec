@@ -12,7 +12,6 @@ Source0:        %{url}/archive/%{version}/%{pypi_name}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 %global _description \
 Python 3 compatible bindings to the NVIDIA Management Library. Can be used to \
@@ -47,8 +46,12 @@ This package contains the documentation for %{pypi_name}.
 rm -rf %{pypi_name}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 # Generate html docs
 PYTHONPATH=${PWD} sphinx-build-3 docs html
@@ -58,14 +61,14 @@ rm -rf html/.{doctrees,buildinfo}
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{pypi_name}
 %doc README.rst
 %license LICENSE
 %{_bindir}/py3smi
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %{python3_sitelib}/%{pypi_name}/
 
 %files -n python3-%{pypi_name}-doc

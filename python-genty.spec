@@ -10,7 +10,6 @@ Source0:        %pypi_source
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(six)
 
 %description
@@ -37,12 +36,16 @@ Genty makes this a breeze.
 sed -i 's/from mock/from unittest.mock/' test/test_genty.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -53,7 +56,7 @@ sed -i 's/from mock/from unittest.mock/' test/test_genty.py
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 
 %changelog

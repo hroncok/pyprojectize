@@ -21,7 +21,6 @@ Source0:        https://releases.pagure.org/%{srcname}/%{srcname}-%{version}.tar
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description %{desc}
 
@@ -40,12 +39,16 @@ This package provides the Python 3 version.
 %autosetup -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{srcname}

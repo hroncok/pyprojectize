@@ -27,7 +27,6 @@ BuildArch:      noarch
 BuildRequires:  python2-devel python2-redis
 %endif
 BuildRequires:  python3-devel python3-redis
-BuildRequires:  python3-setuptools
 BuildRequires:  redis-devel gcc
 BuildRequires:  redis >= 4
 Requires:       redis >= 4
@@ -60,17 +59,20 @@ unit test, and a disposable ephemeral Redis sub-process.
 %autosetup -n %{srcname}-%{version} -p1
 cp %{S:1} %{S:2} .
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if !%{disable_python2}
 %py2_build
 %endif
-%py3_build
+%pyproject_wheel
 
 %install
 %if !%{disable_python2}
 %py2_install
 %endif
-%py3_install
+%pyproject_install
 
 %check
 %if !%{disable_python2}

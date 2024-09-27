@@ -19,7 +19,6 @@ BuildRequires:  /usr/bin/git
 BuildRequires:  desktop-file-utils
 BuildRequires:  libappstream-glib
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  qt5-linguist
 BuildRequires:  /usr/bin/pyuic5
 BuildRequires:  /usr/bin/pyrcc5
@@ -53,16 +52,20 @@ compatible GCode. It has the following features:
 %autosetup -S git
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 # regenerate *images5_rc.py and *ui5.py files
 python3 ./make_py_uic.py 5
 # regenerate translation files
 lrelease-qt5 i18n/*.ts
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdata.xml
 %find_lang %{name} --with-qt --without-mo

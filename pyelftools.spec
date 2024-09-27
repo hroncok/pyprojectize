@@ -20,7 +20,6 @@ Provides:       bundled(python3-construct) = 2.6
 BuildRequires:  %{_bindir}/llvm-dwarfdump
 BuildRequires:  %{_bindir}/readelf
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildArch:      noarch
 %{?python_provide:%python_provide python3-%{name}}
 %description -n python3-%{name} %_description
@@ -32,11 +31,14 @@ rm test/external_tools/llvm-dwarfdump
 rm test/external_tools/readelf
 %endif
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %install
-%{py3_install}
+%{pyproject_install}
 pushd %{buildroot}%{_bindir}
 mv readelf.py pyreadelf-%{python3_version}
 ln -s pyreadelf-%{python3_version} pyreadelf-3
@@ -58,7 +60,7 @@ popd
 %{_bindir}/pyreadelf-%{python3_version}
 %{_bindir}/pyreadelf-3
 %{python3_sitelib}/elftools
-%{python3_sitelib}/pyelftools-*.egg-info
+%{python3_sitelib}/pyelftools.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.31-3

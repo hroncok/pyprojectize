@@ -29,7 +29,6 @@ BuildRequires:  valgrind
 %endif
 BuildRequires:  zstd
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-koji
 BuildRequires:  python%{python3_pkgversion}-rpm
 BuildRequires:  python%{python3_pkgversion}-cryptography
@@ -57,12 +56,16 @@ for lib in rpm_head_signing/*.py; do
 done
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %if %{with tests}

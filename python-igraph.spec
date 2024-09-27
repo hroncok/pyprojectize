@@ -14,7 +14,6 @@ BuildRequires:  gcc-c++
 BuildRequires:  libxml2-devel
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  cmake
 
 %description
@@ -52,16 +51,19 @@ documentation needed to develop application with %{name}.
 %prep
 %setup -q
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build -- --use-pkg-config
+%pyproject_wheel -C--global-option=--use-pkg-config
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-igraph
 %license LICENSE
 %{python3_sitearch}/igraph
-%{python3_sitearch}/igraph-%{version}-py*.egg-info
+%{python3_sitearch}/igraph-%{version}.dist-info
 %{_bindir}/igraph
 
 %files -n python3-igraph-devel

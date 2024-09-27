@@ -42,7 +42,6 @@ Patch9:         ufw-0.35-distutils-setuptools.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  iptables
 BuildRequires:  gettext
 BuildRequires:  systemd
@@ -76,11 +75,14 @@ rm -f profiles/*.additional-profiles
 %patch -P8 -p1 -b .no-pointless-env
 %patch -P9 -p1 -b .distutils-setuptools
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 install -D -p -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/ufw.service
 %find_lang %{name}
 
@@ -98,7 +100,7 @@ install -D -p -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/ufw.service
 %doc ChangeLog README TODO AUTHORS
 %{_sbindir}/ufw
 %{_libexecdir}/ufw/
-%{python3_sitelib}/ufw-%{version}-py*.egg-info
+%{python3_sitelib}/ufw-%{version}.dist-info
 %{python3_sitelib}/ufw/
 %{_datadir}/ufw/
 %{_unitdir}/ufw.service

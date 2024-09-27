@@ -16,7 +16,6 @@ BuildArch:      noarch
 
 BuildRequires:  python3-sphinx
 
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-devel
 BuildRequires:  python3-six
 BuildRequires:  python3-sphinx
@@ -46,13 +45,16 @@ program and option directives.
 rm -rf %{pypi_name}.egg-info
 cp %SOURCE1 .
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
 # Must do the subpackages' install first because the scripts in /usr/bin are
 # overwritten with every setup.py install.
-%py3_install
+%pyproject_install
 
 
 %check
@@ -63,7 +65,7 @@ cp %SOURCE1 .
 %license LICENSE
 %{python3_sitelib}/sphinxcontrib
 %{python3_sitelib}/sphinxcontrib_autoprogram-%{version}-py%{python3_version}-nspkg.pth
-%{python3_sitelib}/sphinxcontrib_autoprogram-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/sphinxcontrib_autoprogram-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.1.9-4

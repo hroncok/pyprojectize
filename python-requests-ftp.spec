@@ -66,7 +66,6 @@ Summary:        FTP transport adapter for python3-requests
 %{?python_provide:%python_provide python3-%{srcname}}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       python3-requests
 
@@ -81,13 +80,16 @@ This is the Python 3 version of the transport adapter module.
 %autosetup -n %{srcname}-%{version} -p1
 rm -rf requests_ftp.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if %{with python2}
 %py2_build
 %endif
 
 %if %{with python3}
-%py3_build
+%pyproject_wheel
 %endif
 
 %install
@@ -96,7 +98,7 @@ rm -rf requests_ftp.egg-info
 %endif
 
 %if %{with python3}
-%py3_install
+%pyproject_install
 %endif
 
 %if %{with python2}
@@ -104,7 +106,7 @@ rm -rf requests_ftp.egg-info
 %doc README.rst
 %license LICENSE
 %{python2_sitelib}/requests_ftp/
-%{python2_sitelib}/requests_ftp*.egg-info*
+%{python2_sitelib}/requests_ftp*.dist-info*
 %endif
 
 %if %{with python3}
@@ -112,7 +114,7 @@ rm -rf requests_ftp.egg-info
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/requests_ftp/
-%{python3_sitelib}/requests_ftp*.egg-info*
+%{python3_sitelib}/requests_ftp*.dist-info*
 %endif
 
 %changelog

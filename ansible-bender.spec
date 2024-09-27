@@ -17,7 +17,6 @@ Source0:        %{pypi_source}
 BuildArch:      noarch
 
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-setuptools_scm
 %if %{with check}
 # These are required for tests:
@@ -51,12 +50,16 @@ tl;dr Ansible is the frontend, buildah is the backend.
 %autosetup
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %if %{with check}
@@ -74,7 +77,7 @@ tl;dr Ansible is the frontend, buildah is the backend.
 
 
 %files
-%{python3_sitelib}/ansible_bender-*.egg-info/
+%{python3_sitelib}/ansible_bender.dist-info/
 %{python3_sitelib}/ansible_bender/
 %{_bindir}/ansible-bender
 %license LICENSE

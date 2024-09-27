@@ -25,7 +25,6 @@ Summary:        YAQL library has a out of the box large set of commonly used fun
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-tools
 BuildRequires:  python3-pbr
 BuildRequires:  python3-sphinx
@@ -59,8 +58,11 @@ rm -rf %{pypi_name}.egg-info
 # Let RPM handle the dependencies
 rm -f test-requirements.txt requirements.txt
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %if 0%{?with_docs}
 # generate html docs
@@ -70,7 +72,7 @@ rm -rf html/.{doctrees,buildinfo}
 %endif
 
 %install
-%py3_install
+%pyproject_install
 mv %{buildroot}/%{_bindir}/%{pypi_name} %{buildroot}/%{_bindir}/python3-%{pypi_name}
 
 pushd %{buildroot}%{_bindir}
@@ -93,7 +95,7 @@ rm -fr %{buildroot}%{python3_sitelib}/yaql/tests
 %{_bindir}/%{pypi_name}-3*
 %{_bindir}/%{pypi_name}
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %if 0%{?with_docs}
 %files -n python-%{pypi_name}-doc

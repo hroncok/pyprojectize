@@ -14,7 +14,6 @@ BuildArch:      noarch
  
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(pytest)
-BuildRequires:  python3dist(setuptools)
 
 %?python_enable_dependency_generator
 
@@ -43,11 +42,14 @@ you're careful. Backcall helps with that.
 %autosetup -n %{pypi_name}-%{version}
 cp -p %{SOURCE1} .
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} -m pytest -vv tests
@@ -56,7 +58,7 @@ cp -p %{SOURCE1} .
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 %autochangelog

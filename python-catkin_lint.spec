@@ -31,7 +31,6 @@ BuildRequires:  python%{python3_pkgversion}-lxml
 BuildRequires:  python%{python3_pkgversion}-nose2
 BuildRequires:  python%{python3_pkgversion}-rosdistro
 BuildRequires:  python%{python3_pkgversion}-rospkg
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-setuptools_scm
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
@@ -56,9 +55,13 @@ package, and it will detect and report a number of common problems.
 %autosetup -p1 -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 SETUPTOOLS_SCM_PRETEND_VERSION=%{version} \
-  %py3_build
+  %pyproject_wheel
 mv build/scripts-%{python3_version}/%{srcname} build/scripts-%{python3_version}/%{srcname}-%{python3_version}
 ln -s %{srcname}-%{python3_version} build/scripts-%{python3_version}/%{srcname}-3
 ln -s %{srcname}-%{python3_version} build/scripts-%{python3_version}/%{srcname}
@@ -66,7 +69,7 @@ ln -s %{srcname}-%{python3_version} build/scripts-%{python3_version}/%{srcname}
 
 %install
 SETUPTOOLS_SCM_PRETEND_VERSION=%{version} \
-  %py3_install
+  %pyproject_install
 
 install -p -D -m0644 shell/bash/%{srcname} %{buildroot}%{_sysconfdir}/bash_completion.d/%{srcname}
 
@@ -79,7 +82,7 @@ install -p -D -m0644 shell/bash/%{srcname} %{buildroot}%{_sysconfdir}/bash_compl
 %license LICENSE
 %doc changelog.txt README.rst
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 %{_bindir}/%{srcname}
 %{_bindir}/%{srcname}-3
 %{_bindir}/%{srcname}-%{python3_version}

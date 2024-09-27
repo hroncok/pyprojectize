@@ -12,7 +12,6 @@ Source0:        %{url}/archive/%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-click
 BuildRequires:  python3-pytest
 BuildRequires:  python3-prompt-toolkit
@@ -30,11 +29,14 @@ Summary:        %{summary}
 %prep
 %autosetup -p1 -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest
@@ -43,7 +45,7 @@ Summary:        %{summary}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/click_repl/
-%{python3_sitelib}/click_repl-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/click_repl-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.2.0-12

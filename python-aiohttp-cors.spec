@@ -37,7 +37,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 # For tes suite
 BuildRequires: python3-pytest
@@ -77,11 +76,14 @@ rm setup.cfg
 # tox.ini has this repeated, but we don't need it
 rm tox.ini
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{python3} -m pytest -v --ignore tests/integration/test_real_browser.py
@@ -90,7 +92,7 @@ rm tox.ini
 %license LICENSE
 %doc README.rst CHANGES.rst
 %{python3_sitelib}/aiohttp_cors
-%{python3_sitelib}/aiohttp_cors-*.egg-info/
+%{python3_sitelib}/aiohttp_cors.dist-info/
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 0.7.0-25

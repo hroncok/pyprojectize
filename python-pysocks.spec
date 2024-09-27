@@ -34,7 +34,6 @@ Acts as a drop-in replacement to the socket module. Featuring:\
 %package -n python%{python3_pkgversion}-%{modname}
 Summary:            %{sum}
 BuildRequires:      python%{python3_pkgversion}-devel
-BuildRequires:      python%{python3_pkgversion}-setuptools
 # for tests
 %if 0%{?with_python3_tests}
 BuildRequires:      python%{python3_pkgversion}-pytest
@@ -75,12 +74,15 @@ This package is for Python3 version %{python3_other_version} only.
 # drop useless 3rdparty code
 rm -rfv test/bin
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 %{?python3_other_pkgversion: %py3_other_build}
 
 %install
-%py3_install
+%pyproject_install
 %{?python3_other_pkgversion: %py3_other_install}
 
 %check

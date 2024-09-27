@@ -8,7 +8,7 @@ Source:         https://github.com/open-iscsi/targetd/archive/v%{version}/target
 Source1:        targetd.service
 BuildArch:      noarch
 BuildRequires:  systemd-rpm-macros
-BuildRequires:  python3-devel python3-setuptools
+BuildRequires:  python3-devel
 Requires:       python3-PyYAML python3-setproctitle python3-rtslib target-restore
 Requires:       nfs-utils, btrfs-progs, python3-blockdev, libblockdev-lvm
 
@@ -21,8 +21,11 @@ those volumes over iSCSI.
 %prep
 %setup -q
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
 mkdir -p %{buildroot}%{_mandir}/man8/
@@ -33,7 +36,7 @@ install -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/targetd.service
 install -m 644 targetd.yaml %{buildroot}%{_sysconfdir}/target/targetd.yaml
 install -m 644 targetd.8 %{buildroot}%{_mandir}/man8/
 install -m 644 targetd.yaml.5 %{buildroot}%{_mandir}/man5/
-%py3_install
+%pyproject_install
 
 %post
 %systemd_post targetd.service
@@ -48,7 +51,7 @@ install -m 644 targetd.yaml.5 %{buildroot}%{_mandir}/man5/
 %{_bindir}/targetd
 %{_unitdir}/targetd.service
 %{python3_sitelib}/targetd/
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %license LICENSE
 %doc README.md API.md client
 %{_mandir}/man8/targetd.8*

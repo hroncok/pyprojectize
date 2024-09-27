@@ -35,7 +35,6 @@ authentication, proxies and more.
 Summary:        %{summary}
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{pypi_name}}
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python3dist(setuptools)
 %if %{with check}
 BuildRequires:  python3dist(pycurl)
 BuildRequires:  python3dist(six)
@@ -48,12 +47,15 @@ This package provides the Python 3 version.
 %prep
 %autosetup -n %{pypi_name}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 sed -e "s|/usr/bin/python|%{__python3}|" -i scripts/*
 
 %install
-%py3_install
+%pyproject_install
 rm -rf %{buildroot}%{_docdir}/urlgrabber-%{version}
 
 %if %{with check}
@@ -69,7 +71,7 @@ export URLGRABBER_EXT_DOWN="%{buildroot}%{_libexecdir}/urlgrabber-ext-down"
 %{_bindir}/urlgrabber
 %{_libexecdir}/urlgrabber-ext-down
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 4.1.0-19

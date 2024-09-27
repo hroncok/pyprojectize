@@ -24,7 +24,6 @@ BuildArch:      noarch
 %package -n     python3-%{pypi_name}
 Summary:        %{sum}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 BuildRequires:  python3-lxml
 Requires:       python3-jdcal
@@ -38,12 +37,16 @@ Requires:       python3-jdcal
 %setup -q -n %{pypi_name}-1.1-de1a42079e168f8d3b2ff987785b353e0a892ee3
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -55,7 +58,7 @@ py.test-%{python3_version}
 %files -n python3-%{pypi_name}
 %license LICENCE.rst
 %doc README.rst
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 %{python3_sitelib}/%{pypi_name}/
 
 %changelog

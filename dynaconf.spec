@@ -19,7 +19,6 @@ BuildArch:      noarch
 
 %package -n python3-%{srcname}
 Summary:        %{summary}
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-devel
 
 %{?python_provide:%python_provide python3-%{srcname}}
@@ -30,20 +29,23 @@ BuildRequires:  python3-devel
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.md
 # Trailing slash is to ensure setuptools behavior instead of distutils since
-# the project can use either and .egg-info could end up being a file or a
+# the project can use either and .dist-info could end up being a file or a
 # directory.
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 %{_bindir}/%{srcname}
 
 %changelog

@@ -25,7 +25,6 @@ Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 BuildRequires:  python3-numpy
 BuildRequires:  python3-pyparsing >= 2.1.6
@@ -41,12 +40,16 @@ BuildRequires:  python3-hypothesis
 rm -rf %{srcname}.egg-info PKG-INFO
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -57,7 +60,7 @@ pytest-3 -v
 %doc README.rst AUTHORS.txt CHANGES.txt
 %license LICENSE
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 
 %changelog

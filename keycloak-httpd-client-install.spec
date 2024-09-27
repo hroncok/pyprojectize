@@ -28,7 +28,6 @@ BuildRequires:  python2-devel
 
 %if 0%{?with_python3}
 BuildRequires:  python3-devel
-BuildRequires:  (python3-setuptools if python3-devel >= 3.12)
 %endif
 
 Requires:       %{_bindir}/keycloak-httpd-client-install
@@ -82,6 +81,9 @@ of a Keycloak server.
 %prep
 %autosetup -n %{name}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if %{with python2}
 %py2_build
@@ -89,7 +91,7 @@ of a Keycloak server.
 # ^^^ with_python2
 
 %if 0%{?with_python3}
-%py3_build
+%pyproject_wheel
 %endif
 
 %install
@@ -110,7 +112,7 @@ of a Keycloak server.
 rm %{buildroot}%{_bindir}/keycloak-httpd-client-install
 %endif
 # ^^^ with_python2
-%py3_install
+%pyproject_install
 %endif
 
 install -d -m 755 %{buildroot}/%{_mandir}/man8

@@ -52,7 +52,6 @@ Summary:        A python client implementation of the STOMP protocol
 %{?python_provide:%python_provide python3-stomper}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-nose
 
 %description -n python3-stomper
@@ -67,12 +66,15 @@ create and parse STOMP messages in a programatic fashion.
 # https://github.com/oisinmulvihill/stomper/issues/16
 sed -i "s/'future'//" setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if %{with python2}
 %{py2_build}
 %endif
 %if %{with python3}
-%{py3_build}
+%{pyproject_wheel}
 %endif
 
 %install
@@ -80,7 +82,7 @@ sed -i "s/'future'//" setup.py
 %{py2_install}
 %endif
 %if %{with python3}
-%{py3_install}
+%{pyproject_install}
 %endif
 
 %check

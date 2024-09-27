@@ -21,7 +21,6 @@ hassle-free experience that is less prone to errors.
 %package -n python3-%{pypi_name}
 Summary:        Higher level Python Zookeeper client
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 # For building documentation
 BuildRequires:  python3-sphinx
 Requires:       python3-six
@@ -54,12 +53,16 @@ sphinx-build docs html
 rm -rf html/.{doctrees,buildinfo}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 #delete tests
 rm -fr %{buildroot}%{python3_sitelib}/%{pypi_name}/tests/
@@ -67,7 +70,7 @@ rm -fr %{buildroot}%{python3_sitelib}/%{pypi_name}/tests/
 %files -n python3-%{pypi_name}
 %doc README.md LICENSE
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %files doc
 %doc html

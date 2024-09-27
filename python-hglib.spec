@@ -44,17 +44,20 @@ hg.
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if 0%{?with_python2}
 %{py2_build}
 %endif
-%{py3_build}
+%{pyproject_wheel}
 
 %install
 %if 0%{?with_python2}
 %{py2_install}
 %endif
-%{py3_install}
+%{pyproject_install}
 
 %check
 %if 0%{?with_python2}
@@ -66,7 +69,7 @@ hg.
 %files -n python2-hglib
 %license LICENSE
 %{python2_sitelib}/hglib
-%{python2_sitelib}/python_hglib-*-py*.egg-info
+%{python2_sitelib}/python_hglib-*.dist-info
 %endif
 
 %files -n python3-hglib

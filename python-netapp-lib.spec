@@ -22,7 +22,6 @@ Source0:        %{pypi_source}
 BuildArch:      noarch
 
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 
 %description %{common_description}
 
@@ -38,11 +37,14 @@ Summary:        %{summary}
 %autosetup -n %{srcname}-%{version}
 rm -rf %{eggname}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Note that there is no %%files section for the unversioned python module
 %files -n python%{python3_pkgversion}-%{srcname}
@@ -50,7 +52,7 @@ rm -rf %{eggname}.egg-info
 %license LICENSE.txt
 %exclude /usr/LICENSE.txt
 %{python3_sitelib}/%{libname}/
-%{python3_sitelib}/%{eggname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{eggname}-%{version}.dist-info/
 
 
 %changelog

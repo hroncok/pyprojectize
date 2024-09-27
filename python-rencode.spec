@@ -21,7 +21,6 @@ BuildRequires:  gcc
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-Cython
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-wheel
 
 
@@ -53,12 +52,15 @@ rm -f ./rencode/rencode.c
 
 %patch -P1 -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -70,7 +72,7 @@ popd
 
 %files -n python%{python3_pkgversion}-rencode
 %{python3_sitearch}/rencode
-%{python3_sitearch}/rencode*.egg-info
+%{python3_sitearch}/rencode*.dist-info
 %doc README.md
 %license COPYING
 

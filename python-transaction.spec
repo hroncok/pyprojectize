@@ -10,7 +10,6 @@ Source0:        %pypi_source transaction
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 BuildRequires:  python3-zope-interface
 
@@ -37,12 +36,16 @@ Requires:       python3-zope-interface
 rm -rf %{modname}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -52,7 +55,7 @@ rm -rf %{modname}.egg-info
 %files -n python3-transaction
 %doc README.rst LICENSE.txt COPYRIGHT.txt
 %{python3_sitelib}/transaction/
-%{python3_sitelib}/transaction-*.egg-info
+%{python3_sitelib}/transaction.dist-info
 
 
 %changelog

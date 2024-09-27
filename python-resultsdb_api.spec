@@ -25,7 +25,6 @@ Requires:       python3-requests
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-pytest-cov
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-simplejson
 BuildRequires:  python3-pytest
 BuildRequires:  python3-requests
@@ -37,11 +36,14 @@ Python3 interface to resultsdb.
 %prep
 %autosetup -p1 -n resultsdb_api-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest
@@ -51,7 +53,7 @@ Python3 interface to resultsdb.
 %license LICENSE
 %{python3_sitelib}/resultsdb_api.*
 %{python3_sitelib}/__pycache__/resultsdb_api.*
-%{python3_sitelib}/resultsdb_api-%{version}*.egg-info
+%{python3_sitelib}/resultsdb_api-%{version}*.dist-info
 
 %changelog
 * Fri Jul 26 2024 Miroslav Suchý <msuchy@redhat.com> - 2.1.5-14

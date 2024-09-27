@@ -16,7 +16,6 @@ BuildArch:  noarch
 
 BuildRequires: make
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if %{with docs}
 BuildRequires:  python3-sphinx
 %endif
@@ -43,9 +42,12 @@ Python 3 version.
 %prep
 %setup -q
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 
-%py3_build
+%pyproject_wheel
 
 %if %{with docs}
 export PYTHONPATH=`pwd`
@@ -58,7 +60,7 @@ unset PYTHONPATH
 
 %install
 
-%py3_install
+%pyproject_install
 
 %if %{with docs}
 install -d "$RPM_BUILD_ROOT%{_mandir}/man1"

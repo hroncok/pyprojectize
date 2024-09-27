@@ -9,7 +9,6 @@ URL:            http://pypi.python.org/pypi/pyacoustid
 Source0:        https://files.pythonhosted.org/packages/source/p/%{oname}/%{oname}-%{version}.tar.gz
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 Chromaprint and its associated Acoustid Web service make up a
@@ -33,17 +32,20 @@ which provides fingerprint look ups.
 %prep
 %setup -q -n %{oname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 %files -n python3-acoustid
 %doc README.rst aidmatch.py fpcalc.py
 %{python3_sitelib}/acoustid.py
 %{python3_sitelib}/chromaprint.py
-%{python3_sitelib}/pyacoustid-%{version}-*.egg-info/
+%{python3_sitelib}/pyacoustid-%{version}.dist-info/
 %{python3_sitelib}/__pycache__/acoustid.*.py*
 %{python3_sitelib}/__pycache__/chromaprint.*.py*
 

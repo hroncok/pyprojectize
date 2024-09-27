@@ -9,7 +9,6 @@ Source0:        %{pypi_source kgb}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 # required for tests
 BuildRequires:  python3-pytest
 
@@ -62,7 +61,7 @@ Unit tests for python3-kgb
 
 %build
 %if 0%{?el8}
-%py3_build
+%pyproject_wheel
 %else
 %pyproject_wheel
 %endif
@@ -70,7 +69,7 @@ Unit tests for python3-kgb
 
 %install
 %if 0%{?el8}
-%py3_install
+%pyproject_install
 %else
 %pyproject_install
 %endif
@@ -84,7 +83,7 @@ Unit tests for python3-kgb
 %{python3_sitelib}/kgb/
 %exclude %{python3_sitelib}/kgb/tests/
 %if 0%{?el8}
-%{python3_sitelib}/kgb-%{version}-py*.egg-info/
+%{python3_sitelib}/kgb-%{version}.dist-info/
 %else
 %{python3_sitelib}/kgb-%{version}.dist-info/
 %endif

@@ -19,7 +19,6 @@ BuildRequires:  admesh-devel >= 0.98
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-pytest
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-Cython
 BuildRequires:  python3-pytest-runner
 
@@ -45,12 +44,15 @@ format and partially repair them if necessary.
 %setup -q -n %{pypi_name}-%{version}
 cp %{SOURCE1} test/
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitearch} py.test-3 -v \
@@ -62,7 +64,7 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} py.test-3 -v \
 %doc README.rst
 %license COPYING
 %attr(0755,root,root) %{python3_sitearch}/%{pypi_name}.*.so
-%{python3_sitearch}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/%{pypi_name}-%{version}.dist-info
 
 
 %changelog

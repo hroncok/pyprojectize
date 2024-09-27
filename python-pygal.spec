@@ -13,7 +13,6 @@ Source0:            https://pypi.io/packages/source/p/%{modname}/%{modname}-%{ve
 BuildArch:          noarch
 
 BuildRequires:      python3-devel
-BuildRequires:      python3-setuptools
 BuildRequires:      python3-pyquery
 BuildRequires:      python3-flask
 BuildRequires:      python3-pytest-runner
@@ -45,12 +44,15 @@ A python svg graph plotting library
 # Remove bundled egg-info in case it exists
 rm -rf %{modname}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check

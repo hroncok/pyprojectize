@@ -22,7 +22,6 @@ Every output module supports the Qt, GTK, and ncurses interfaces.
 %package -n python3-%{module}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3-yui
 %{?python_provide:%python_provide python3-%{module}}
 Requires:       python3-yui
@@ -41,17 +40,20 @@ Every output module supports the Qt, GTK, and ncurses interfaces.
 
 sed -i 's|0.0.1|%{version}|' manatools/version.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{module}
 %doc README.md NEWS
 %license LICENSE
 %{python3_sitelib}/%{module}/
-%{python3_sitelib}/python_manatools-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/python_manatools-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.0.4-11

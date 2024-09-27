@@ -16,7 +16,6 @@ URL:            https://github.com/noumar/iso639/
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 
 BuildRequires:  python3-devel
-BuildRequires:  %{py3_dist setuptools}
 # Required for tests
 # BuildRequires:  %%{py3_dist pycountry}
 BuildArch:      noarch
@@ -37,12 +36,16 @@ Summary:        %{summary}
 %autosetup -n iso639-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check

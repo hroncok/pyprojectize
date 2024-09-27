@@ -9,7 +9,6 @@ Source0: https://pypi.python.org/packages/source/A/ATpy/%{name}-%{version}.tar.g
 
 BuildArch: noarch
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 %global _description\
 ATpy is a high-level Python package providing a way to manipulate tables of\
@@ -32,16 +31,19 @@ and ASCII tables) with a very simple API.
 %prep
 %setup -q
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-ATpy
 %doc CHANGES README.md
 %license LICENSE
-%{python3_sitelib}/ATpy-*.egg-info
+%{python3_sitelib}/ATpy.dist-info
 %{python3_sitelib}/atpy
 
 %changelog

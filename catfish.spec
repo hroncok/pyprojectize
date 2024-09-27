@@ -28,7 +28,6 @@ BuildRequires:	intltool
 
 BuildRequires:	python3-devel
 BuildRequires:	python3-distutils-extra
-BuildRequires:	python3-setuptools
 BuildRequires:	/usr/bin/appstream-util
 
 # python module
@@ -75,6 +74,9 @@ chmod 0755 bin/%{name}
 
 popd
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 TOPDIR=$(pwd)
 
@@ -85,7 +87,7 @@ grep -rl "/usr/bin/env" . | \
 	xargs sed -i -e "\@/usr/bin/env[ ][ ]*python@d"
 
 
-#%%py3_build
+#%%pyproject_wheel
 # separation of build / install --skip-build not supported
 # (separation causes some error for creating additional files
 #  such as desktop file, also installation directory gets wrong)
@@ -100,7 +102,7 @@ popd
 %install
 cp -a %{name}-%{mainver}*/[A-Z]* .
 
-#%%py3_install
+#%%pyproject_install
 cp -a _TMPINSTDIR/python3/* %{buildroot}
 
 # Explicitly set GDK_BACKEND
@@ -169,7 +171,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{name}.appdat
 %{_metainfodir}/%{name}.appdata.xml
 %{python3_sitelib}/%{name}/
 %{python3_sitelib}/%{name}_lib/
-%{python3_sitelib}/%{name}-%{version}-py3*.egg-info
+%{python3_sitelib}/%{name}-%{version}-py3*.dist-info
 
 
 %changelog

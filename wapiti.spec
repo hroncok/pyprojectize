@@ -17,7 +17,6 @@ BuildArch:      noarch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-responses
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest-runner
 
 %if %{with tests}
@@ -37,11 +36,14 @@ fuzzer, injecting payloads to see if a script is vulnerable.
 %autosetup -n %{name}3-%{version}
 find -name '*.py' | xargs sed -i '/^#!\//, 1d'
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 rm -rf %{buildroot}%{_defaultdocdir}/%{name}/
 
 %if %{with tests}
@@ -55,7 +57,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v tests
 %{_mandir}/man*/%{name}*.*
 %{_bindir}/%{name}*
 %{python3_sitelib}/wapitiCore/
-%{python3_sitelib}/%{name}3-%{version}-py*.egg-info
+%{python3_sitelib}/%{name}3-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 3.0.2-18

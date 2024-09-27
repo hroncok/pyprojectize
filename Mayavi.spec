@@ -14,7 +14,6 @@ BuildRequires:  gcc
 BuildRequires:  make
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-Cython
-BuildRequires:  python%{python3_pkgversion}-setuptools
 # For tests
 BuildRequires:  python%{python3_pkgversion}-pytest
 BuildRequires:  python%{python3_pkgversion}-apptools
@@ -103,16 +102,19 @@ done
 find examples -type f -exec chmod 0644 {} ";"
 chmod 0644 mayavi/tests/data/cellsnd.ascii.inp
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 # Recythonize the sources
 find -name '*.pyx' -exec cython --verbose {} \;
 
-%py3_build
+%pyproject_wheel
 # Need xvfb-run for html doc building
 SPHINXBUILD=/usr/bin/sphinx-build-3 xvfb-run %{__python3} setup.py build_docs
 
 %install
-%py3_install
+%pyproject_install
 
 # fix wrong-file-end-of-line-encoding
 for file in docs/build/mayavi/html/_downloads/wx_mayavi*.py; do
@@ -151,7 +153,7 @@ xvfb-run env %pytest -v mayavi
 %doc docs/*.txt README-tvtk.txt
 %dir %{python3_sitearch}/mayavi
 %{python3_sitearch}/mayavi/[_a-gi-z]*
-%{python3_sitearch}/mayavi*.egg-info
+%{python3_sitearch}/mayavi*.dist-info
 %{python3_sitearch}/tvtk/
 
 %files doc

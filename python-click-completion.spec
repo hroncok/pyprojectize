@@ -10,7 +10,6 @@ Source0:        %{url}/archive/v%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %{?python_enable_dependency_generator}
 
@@ -44,12 +43,16 @@ sed -i 's|^#!/usr/bin/env python||' examples/click-completion-*
 chmod -x examples/click-completion-*
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 
 %files -n python3-%{pkgname}

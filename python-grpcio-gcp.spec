@@ -11,7 +11,6 @@ URL:            https://github.com/GoogleCloudPlatform/grpc-gcp-python/
 Source0:        %{url}/archive/v%{version}/%{srcname}-%{version}.tar.gz
 
 BuildRequires:  python3-devel
-BuildRequires:  %{py3_dist setuptools}
 BuildArch:      noarch
 
 %description
@@ -33,16 +32,20 @@ Summary:        %{summary}
 rm -rf *.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 pushd src/
 ln -s ../template/version.py .
-%py3_build
+%pyproject_wheel
 popd
 
 
 %install
 pushd src/
-%py3_install
+%pyproject_install
 popd
 
 
@@ -50,7 +53,7 @@ popd
 %doc src/{CHANGELOG.rst,README.md}
 %license src/LICENSE
 %{python3_sitelib}/grpc_gcp/
-%{python3_sitelib}/grpcio_gcp-*.egg-info/
+%{python3_sitelib}/grpcio_gcp.dist-info/
 
 
 %changelog

@@ -10,7 +10,6 @@ Patch0:         python-mpd-py3-exceptions.patch
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 An MPD (Music Player Daemon) client library written in pure Python.
@@ -28,12 +27,16 @@ An MPD (Music Player Daemon) client library written in pure Python.
 %autosetup
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-mpd

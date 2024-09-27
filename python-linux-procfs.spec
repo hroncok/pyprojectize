@@ -12,7 +12,6 @@ Source: https://cdn.kernel.org/pub/software/libs/python/%{name}/%{name}-%{versio
 URL: https://rt.wiki.kernel.org/index.php/Tuna
 BuildArch: noarch
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 # Patches
 
@@ -32,19 +31,22 @@ Requires: python3-six
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
 rm -rf %{buildroot}
-%py3_install
+%pyproject_install
 
 %files -n python3-linux-procfs
 %defattr(0755,root,root,0755)
 %{_bindir}/pflags
 %{python3_sitelib}/procfs/
 %defattr(0644,root,root,0755)
-%{python3_sitelib}/python_linux_procfs*.egg-info
+%{python3_sitelib}/python_linux_procfs*.dist-info
 %license COPYING
 
 %changelog

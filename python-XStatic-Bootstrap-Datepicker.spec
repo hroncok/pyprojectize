@@ -23,7 +23,6 @@ nor has any extra requirements.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       python3-XStatic
 Requires:       xstatic-bootstrap-datepicker-common
@@ -61,11 +60,14 @@ This package contains the javascript files.
 # patch to use webassets dir
 sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/bootstrap_datepicker'|" xstatic/pkg/bootstrap_datepicker/__init__.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 mkdir -p %{buildroot}%{_jsdir}/bootstrap_datepicker
 mv %{buildroot}%{python3_sitelib}/xstatic/pkg/bootstrap_datepicker/data/* %{buildroot}%{_jsdir}/bootstrap_datepicker
@@ -76,7 +78,7 @@ chmod 644 %{buildroot}%{_jsdir}/bootstrap_datepicker/bootstrap-datepicker.js
 %files -n python3-%{pypi_name}
 %doc README.txt
 %{python3_sitelib}/xstatic/pkg/bootstrap_datepicker
-%{python3_sitelib}/XStatic_Bootstrap_Datepicker-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/XStatic_Bootstrap_Datepicker-%{version}.dist-info
 %{python3_sitelib}/XStatic_Bootstrap_Datepicker-%{version}-py%{python3_version}-nspkg.pth
 
 %files -n xstatic-bootstrap-datepicker-common

@@ -28,7 +28,6 @@ BuildRequires:  python2-setuptools
 Requires:       python2-%{name} = %{version}-%{release}
 %else
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Requires:       python3-%{name} = %{version}-%{release}
 %endif
 
@@ -65,18 +64,21 @@ find . -type f -name '*.py' -exec sed -i -e 's/of ubuntu/of %{osname}/Ig' \
 
 %patch -P1 -p1 -b .sip_namespace
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if %without python3
 %py2_build
 %else
-%py3_build
+%pyproject_wheel
 %endif
 
 %install
 %if %without python3
 %py2_install
 %else
-%py3_install
+%pyproject_install
 %endif
 desktop-file-install --dir=%{buildroot}%{_datadir}/applications %{name}.desktop
 DESTDIR="%{buildroot}" appstream-util install %{name}.appdata.xml
@@ -98,11 +100,11 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/appdata/*.appdata.
 
 %if %without python3
 %files -n python2-%{name}
-%{python2_sitelib}/%{name}-%{version}-py%{python2_version}.egg-info
+%{python2_sitelib}/%{name}-%{version}-py%{python2_version}.dist-info
 %{python2_sitelib}/%{name}/
 %else
 %files -n python3-%{name}
-%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{name}-%{version}.dist-info
 %{python3_sitelib}/%{name}/
 %endif
 %license LICENSE

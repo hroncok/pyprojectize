@@ -12,7 +12,6 @@ Source0:        https://github.com/%{author}/%{pypi_name}/archive/refs/tags/%{ve
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-ply
 
 %description
@@ -27,11 +26,14 @@ phply is a parser for the PHP programming language written using PLY
 %prep
 %setup -q -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 rm -rf %{buildroot}/%{python3_sitelib}/tests
 
 %check
@@ -43,7 +45,7 @@ rm -rf %{buildroot}/%{python3_sitelib}/tests
 %{_bindir}/phplex
 %{_bindir}/phpparse
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}-nspkg.pth
 
 %changelog

@@ -41,7 +41,6 @@ Summary: %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-twisted
 BuildRequires:  python3-wrapt
 # crochet/_eventloop.py and crochet/tests/test_api.py imports imp
@@ -57,14 +56,18 @@ Requires:       (python3-zombie-imp if python3 >= 3.12)
 %autosetup -p1 -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 make %{?_smp_mflags} -C docs html
 rm docs/_build/html/.buildinfo
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -75,7 +78,7 @@ rm docs/_build/html/.buildinfo
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/crochet/
-%{python3_sitelib}/crochet-*.egg-info/
+%{python3_sitelib}/crochet.dist-info/
 
 
 %files doc

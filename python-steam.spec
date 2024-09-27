@@ -13,7 +13,6 @@ URL:        https://github.com/ValvePython/steam
 Source0:    %{url}/archive/v%{version}/%{pypi_name}-%{version}.tar.gz
 
 BuildRequires: python3-devel
-BuildRequires: python3dist(setuptools)
 BuildRequires: python3-pyyaml >= 5.4
 
 BuildRequires: python3dist(cachetools) >= 3.0.0
@@ -64,12 +63,16 @@ Summary:    %{summary}
 %autosetup -n %{pypi_name}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -80,7 +83,7 @@ Summary:    %{summary}
 %license LICENSE
 %doc README.rst CHANGES.md
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-*.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 
 %changelog

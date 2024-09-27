@@ -12,7 +12,6 @@ Source0:        %{url}/archive/%{version}/%{pypi_name}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 A HEX bad char generator to instruct encoders such as shikata-ga-nai to
@@ -30,11 +29,14 @@ transform those to other chars.
 %autosetup -n %{pypi_name}-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %{_bindir}/%{pypi_name}
@@ -42,7 +44,7 @@ rm -rf %{pypi_name}.egg-info
 %files -n python3-%{pypi_name}
 %doc README.md
 %license LICENSE.txt
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Wed Jul 17 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.4.0-13

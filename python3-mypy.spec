@@ -12,7 +12,6 @@ URL:            https://github.com/python/mypy
 Source0:        https://github.com/python/mypy/archive/v%{version}/mypy-%{version}.tar.gz
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-typing-extensions
 BuildRequires:  (python3-tomli if python3 < 3.11)
 Requires:  python3-typing-extensions
@@ -38,11 +37,14 @@ running them!
 %autosetup -n mypy-%{version} -p1
 rm -vrf *.egg-info/
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Generate man pages
 mkdir -p %{buildroot}%{_mandir}/man1
@@ -69,7 +71,7 @@ end
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/mypy
-%{python3_sitelib}/mypy-*.egg-info
+%{python3_sitelib}/mypy.dist-info
 %{python3_sitelib}/mypyc
 %{_bindir}/mypy
 %{_bindir}/mypyc

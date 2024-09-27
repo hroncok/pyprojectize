@@ -30,7 +30,6 @@ Has tests for numerous encodings.
 Summary:            %{sum}
 BuildRequires: make
 BuildRequires:      python3-devel
-BuildRequires:      python3-setuptools
 BuildRequires:      python3-chardet >= 2.0.0
 BuildRequires:      python3-hypothesis
 
@@ -67,14 +66,18 @@ sed -i -e 's|average_size=|max_size=|' tests/test_check.py
 rm -rf %{modname}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 make -C docs html PYTHONPATH=$(pwd)
 
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test

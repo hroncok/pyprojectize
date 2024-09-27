@@ -25,7 +25,6 @@ dates.  Unicode-aware.
 %package -n python%{python3_pkgversion}-%{srcname}
 Summary:        %{sum}
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-pytest
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
@@ -63,7 +62,7 @@ dates.  Unicode-aware.
 
 
 %build
-%py3_build
+%pyproject_wheel
 %if 0%{?with_python3_other}
 %py3_other_build
 %endif
@@ -72,7 +71,7 @@ dates.  Unicode-aware.
 %if 0%{?with_python3_other}
 %py3_other_install
 %endif
-%py3_install
+%pyproject_install
 
 # remove .py extension from binary
 mv $RPM_BUILD_ROOT%{_bindir}/runxlrd.py $RPM_BUILD_ROOT%{_bindir}/runxlrd

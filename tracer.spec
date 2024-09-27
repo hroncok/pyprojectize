@@ -103,7 +103,6 @@ BuildRequires:  python3-six
 BuildRequires:  python3-dbus
 BuildRequires:  python3-rpm
 BuildRequires:  python3-distro
-BuildRequires:  python3-setuptools
 Requires:       python3-rpm
 Requires:       python3-psutil
 Requires:       python3-dbus
@@ -134,13 +133,16 @@ sed -i -e '1s|^#!.*$|#!%{__python2}|' bin/%{name}.py
 sed -i -e '1s|^#!.*$|#!%{__python3}|' bin/%{name}.py
 %endif
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if %{with python2}
 %py2_build
 %endif
 
 %if %{with python3}
-%py3_build
+%pyproject_wheel
 %endif
 make %{?_smp_mflags} man
 
@@ -154,7 +156,7 @@ python2 -m pytest -v tests
 %install
 # @TODO use following macros
 # %%py2_install
-# %%py3_install
+# %%pyproject_install
 
 mkdir -p %{buildroot}%{_datadir}/%{name}/
 cp -a data/* %{buildroot}%{_datadir}/%{name}/

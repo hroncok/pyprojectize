@@ -23,7 +23,6 @@ and converted back to the binary equivalent at any time.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -52,20 +51,23 @@ sed -i -e '/^#!\//, 1d' mrcrowbar/lib/games/{boppin.py,keen.py,sam.py,titus.py}
 sed -i -e '/^#!\//, 1d' mrcrowbar/lib/hardware/{ibm_pc.py,megadrive.py}
 sed -i -e '/^#!\//, 1d' mrcrowbar/lib/os/{dos.py,win16.py}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 PYTHONPATH=${PWD} sphinx-build-3 doc/source html
 rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %doc CHANGELOG.rst README.rst
 %license LICENSE
 %{_bindir}/mrc*
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %files -n python-%{pypi_name}-doc
 %doc html

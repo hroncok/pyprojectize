@@ -12,7 +12,6 @@ Source0:            %pypi_source kajiki
 BuildArch:          noarch
 
 BuildRequires:      python3-devel
-BuildRequires:      python3-setuptools
 BuildRequires:      python3-babel
 BuildRequires:      python3-pytz
 BuildRequires:      python3-pytest
@@ -44,11 +43,14 @@ speed! Don't delay! Pick up your copy of Kajiki today!
 %prep
 %autosetup -n kajiki-%{version} -p 1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-kajiki
 %doc README.rst LICENSE.rst CHANGES.rst PKG-INFO

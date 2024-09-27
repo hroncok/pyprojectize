@@ -12,7 +12,6 @@ BuildArch:      noarch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(cryptography)
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  make help2man
 BuildRequires:  systemd systemd-rpm-macros
 
@@ -59,11 +58,14 @@ UKI (unified kernel image) updates.
 %prep
 %autosetup -n virt_firmware-%{pypi_version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 # manpages
 install -m 755 -d      %{buildroot}%{_mandir}/man1
 install -m 644 man/*.1 %{buildroot}%{_mandir}/man1
@@ -106,7 +108,7 @@ install -m 755 systemd/99-uki-uefi-setup.install %{buildroot}%{_prefix}/lib/kern
 %dir %{python3_sitelib}/virt
 %{python3_sitelib}/virt/firmware
 %{python3_sitelib}/virt/peutils
-%{python3_sitelib}/virt_firmware-%{pypi_version}-py%{python3_version}.egg-info
+%{python3_sitelib}/virt_firmware-%{pypi_version}.dist-info
 
 %files -n python3-virt-firmware-tests
 %{_datadir}/%{name}/tests

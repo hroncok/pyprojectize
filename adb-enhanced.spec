@@ -12,7 +12,6 @@ Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %if %{with tests}
 BuildRequires:  python3-pytest
@@ -26,11 +25,14 @@ battery saver mode, data saver mode, doze mode, permission grant/revocation.
 %prep
 %autosetup
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with tests}
 %check
@@ -42,7 +44,7 @@ battery saver mode, data saver mode, doze mode, permission grant/revocation.
 %license LICENSE
 %{_bindir}/adbe
 %{python3_sitelib}/adbe/
-%{python3_sitelib}/adb_enhanced*.egg-info/
+%{python3_sitelib}/adb_enhanced*.dist-info/
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 2.5.14-11

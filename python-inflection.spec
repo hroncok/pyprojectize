@@ -22,7 +22,6 @@ Inflection is a port of Ruby on Rails’ inflector to Python.}
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(pytest)
 
 %description -n python3-%{srcname} %{_description}
@@ -33,11 +32,14 @@ Python 3 version.
 %autosetup -n %{srcname}-%{version} -p1
 rm -vr *.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %python3 -m pytest -v
@@ -45,7 +47,7 @@ rm -vr *.egg-info
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/inflection-*.egg-info/
+%{python3_sitelib}/inflection.dist-info/
 %{python3_sitelib}/inflection/
 
 %changelog

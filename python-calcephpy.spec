@@ -30,7 +30,6 @@ Summary:        %{summary}
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if 0%{?rhel} == 7
 BuildRequires:  python36-Cython
 %else
@@ -50,13 +49,17 @@ BuildRequires:  python3-Cython
 rm -r %{srcname}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 export CPPFLAGS="$CXXFLAGS"
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n       python3-%{srcname}

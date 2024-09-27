@@ -23,7 +23,6 @@ URL: https://gitlab.com/tgc-dk/pysword
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 %{desc}
@@ -40,17 +39,20 @@ Obsoletes:      python-%{srcname} < 0.2.7-7
 %autosetup -n %{srcname}-%{version}
 %autosetup -N -T -D -a 1 -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/pysword/
-%{python3_sitelib}/pysword-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/pysword-%{version}.dist-info/
 
 %changelog
 * Thu Aug 22 2024 Tim.Bentley <tim.bentley@openlp.org> - 0.2.8-10

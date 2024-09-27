@@ -18,7 +18,6 @@ BuildRequires:  gcc
 BuildRequires:  python3-devel
 BuildRequires:  ghostscript
 BuildRequires:  python3dist(sphinx)
-BuildRequires:  python3dist(setuptools)
 
 #BuildRequires:  texlive-collection-latexextra
 BuildRequires:  texlive-lib-devel
@@ -52,12 +51,15 @@ BuildArch: noarch
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 # Set the extensions to be built
 %{__sed} -i 's|^build_t1code =.*|build_t1code = 1|' setup.cfg
 %{__sed} -i 's|^build_pykpathsea =.*|build_pykpathsea = 1|' setup.cfg
 
-%{py3_build}
+%{pyproject_wheel}
 
 # turn on ipc in config file
 %{__sed} -i 's|^texipc =.*|texipc = 1|' pyx/data/pyxrc
@@ -80,7 +82,7 @@ popd
 
 %install
 rm -rf %{buildroot}
-%{py3_install}
+%{pyproject_install}
 
 %{__mkdir} %{buildroot}%{_sysconfdir}
 %{__cp} -a pyx/data/pyxrc %{buildroot}%{_sysconfdir}/pyxrc

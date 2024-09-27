@@ -13,7 +13,6 @@ Source0:        %pypi_source %{srcname}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 This library is a very thin wrapper around lib2to3 to utilize it
@@ -42,11 +41,14 @@ dependency on python-six.
 %prep
 %setup -q -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-modernize
 %doc README.rst

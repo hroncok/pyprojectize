@@ -20,7 +20,6 @@ for generating documentation from Flask routing tables.
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{upstream_name}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Requires:       python3-sphinx
 Requires:       python3-six
 
@@ -34,11 +33,14 @@ for generating documentation from Flask routing tables.
 %patch -P4 -p2
 rm -r *.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 %files -n python3-%{upstream_name}
 %doc README.rst

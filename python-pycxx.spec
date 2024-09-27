@@ -21,7 +21,6 @@ URL:            http://CXX.sourceforge.net/
 
 BuildArch:      noarch
 
-BuildRequires:  python3-setuptools
 
 Source0:        http://downloads.sourceforge.net/cxx/%{modname}-%{version}.tar.gz
 # Patch0:  remove unnecessary 'Src/' directory from include path in sources
@@ -67,6 +66,10 @@ for Python 3.  There is no non-devel package needed.
 
 %prep
 %autosetup -p1 -n %{modname}-%{version}
+
+
+%generate_buildrequires
+%pyproject_buildrequires
 
 
 %build

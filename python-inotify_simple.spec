@@ -39,7 +39,6 @@ BuildRequires: python2-setuptools
 %endif
 %if %{with python3}
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 %endif
 
 
@@ -70,21 +69,25 @@ Summary:        %{sum Python 3}
 %autosetup -n %sname-%version -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 %{?with_python2:%py2_build}
-%{?with_python3:%py3_build}
+%{?with_python3:%pyproject_wheel}
 
 
 %install
 %{?with_python2:%py2_install}
-%{?with_python3:%py3_install}
+%{?with_python3:%pyproject_install}
 
 
 %if %{with python2}
 %files -n python2-%sname
 %license LICENSE
 %python2_sitelib/%sname.py*
-%python2_sitelib/%sname-%{version}*.egg-info
+%python2_sitelib/%sname-%{version}*.dist-info
 %endif
 
 
@@ -92,7 +95,7 @@ Summary:        %{sum Python 3}
 %files -n python3-%sname
 %license LICENSE
 %python3_sitelib/%sname.py
-%python3_sitelib/%sname-%{version}*.egg-info
+%python3_sitelib/%sname-%{version}*.dist-info
 %python3_sitelib/__pycache__/inotify_simple*
 %endif
 

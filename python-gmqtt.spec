@@ -18,7 +18,6 @@ Asynchronous Python MQTT client implementation.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %if %{with network}
 BuildRequires:  python3-pytest
@@ -33,11 +32,14 @@ Asynchronous Python MQTT client implementation.
 %autosetup -n %{pypi_name}-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Requires access to a third-party MQTT Broker
 %if %{with network}
@@ -49,7 +51,7 @@ rm -rf %{pypi_name}.egg-info
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py*.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 %autochangelog

@@ -419,7 +419,6 @@ BuildRequires:    libcmocka-devel
 # For lib389 and related components.
 BuildRequires:    python%{python3_pkgversion}
 BuildRequires:    python%{python3_pkgversion}-devel
-BuildRequires:    python%{python3_pkgversion}-setuptools
 BuildRequires:    python%{python3_pkgversion}-ldap
 BuildRequires:    python%{python3_pkgversion}-pyasn1
 BuildRequires:    python%{python3_pkgversion}-pyasn1-modules
@@ -624,6 +623,9 @@ A cockpit UI Plugin for configuring and administering the 389 Directory Server
 
 cp %{SOURCE2} README.devel
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 
 %if %{with clang}
@@ -719,7 +721,7 @@ autoreconf -fiv
 # lib389
 make src/lib389/setup.py
 pushd ./src/lib389
-%py3_build
+%pyproject_wheel
 popd
 # argparse-manpage dynamic man pages have hardcoded man v1 in header,
 # need to change it to v8
@@ -756,7 +758,7 @@ cp -r %{_builddir}/%{name}-%{version}/man/man3 $RPM_BUILD_ROOT/%{_mandir}/man3
 
 # lib389
 pushd src/lib389
-%py3_install
+%pyproject_install
 popd
 
 # Register CLI tools for bash completion

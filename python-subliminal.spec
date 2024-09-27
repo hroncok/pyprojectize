@@ -12,7 +12,6 @@ Patch0:         python-subliminal_doc-inventories.patch
 BuildArch:      noarch
 BuildRequires: make
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 # Doc building
 BuildRequires:  python3-appdirs
 BuildRequires:  python3-docs
@@ -83,11 +82,14 @@ Summary:        %summary
 %prep
 %autosetup -p1 -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 pushd docs
 # Add folder containing subliminal script to PATH
@@ -107,7 +109,7 @@ install -D -m 0644 docs/_build/man/%{srcname}.1 %{buildroot}%{_mandir}/man1/%{sr
 %license LICENSE
 %{_bindir}/subliminal
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-%{version}-py*.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 %files doc
 %doc README.rst docs/_build/html docs/_build/text

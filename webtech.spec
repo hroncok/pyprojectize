@@ -10,7 +10,6 @@ Source0:        https://github.com/ShielderSec/webtech/archive/%{version}/%{name
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       %{py3_dist requests}
 
@@ -24,17 +23,20 @@ minimize the requests you need to make to a target website.
 %autosetup -n %{name}-%{version}
 sed -i -e '/^#!\//, 1d' webtech/*.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %doc README.md
 %license LICENSE
 %{_bindir}/%{name}
-%{python3_sitelib}/%{name}-*.egg-info/
+%{python3_sitelib}/%{name}.dist-info/
 %{python3_sitelib}/%{name}/
 
 %changelog

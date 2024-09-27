@@ -26,7 +26,6 @@ BuildRequires:  python3dist(pytest-xprocess)
 BuildRequires:  python3dist(pytest-asyncio)
 BuildRequires:  python3dist(redis)
 BuildRequires:  redis
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(sphinx)
 
 %description
@@ -54,16 +53,19 @@ rm -rf %{srcname}.egg-info
 # Patch out too tight cachilib upper pin
 sed -i 's/cachelib >= 0.9.0, < 0.10.0"/cachelib >= 0.9.0"/' setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 
-%py3_build
+%pyproject_wheel
 # generate html docs
 PYTHONPATH=${PWD} sphinx-build-3 docs html
 # remove the sphinx-build leftovers
 rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 redis-server &
@@ -74,7 +76,7 @@ kill %1
 %license LICENSE docs/license.rst
 %doc README.rst
 %{python3_sitelib}/flask_caching
-%{python3_sitelib}/Flask_Caching-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/Flask_Caching-%{version}.dist-info
 
 %files -n python-%{srcname}-doc
 %doc html

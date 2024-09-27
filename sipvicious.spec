@@ -12,7 +12,6 @@ Source0:        %{url}/archive/v%{version}/%{pypi_name}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       python3-%{pypi_name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
@@ -36,11 +35,14 @@ Python module of %{pypi_name}.
 %autosetup -n %{pypi_name}-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 # https://github.com/EnableSecurity/sipvicious/issues/77
 mkdir -p %{buildroot}/%{_mandir}/man1/
 mv %{buildroot}/usr/man/man1/sv*.* %{buildroot}/%{_mandir}/man1/ 
@@ -58,7 +60,7 @@ mv %{buildroot}/usr/man/man1/sv*.* %{buildroot}/%{_mandir}/man1/
 %doc Changelog README.md THANKS TODO
 %license LICENSE
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Thu Jul 25 2024 Miroslav Suchý <msuchy@redhat.com> - 0.3.3-13

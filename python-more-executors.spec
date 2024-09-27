@@ -21,7 +21,6 @@ the behavior of Future objects.
 %package -n python3-%{srcname}
 Summary:	%{summary}
 BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
 
 # dependencies for test suite
 BuildRequires:	python3dist(pytest)
@@ -31,7 +30,7 @@ BuildRequires:	python3dist(mypy)
 
 %{?python_provide:%python_provide python3-%{srcname}}
 
-%{?python_extras_subpkg:%python_extras_subpkg -n python3-%{srcname} -i %{python3_sitelib}/*.egg-info prometheus}
+%pyproject_extras_subpkg -n python3-%{srcname} prometheus
 
 %description -n python3-%{srcname}
 This library is intended for use with the concurrent.futures module.
@@ -41,11 +40,14 @@ the behavior of Future objects.
 %prep
 %autosetup -n %{srcname}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} -m pytest -v
@@ -54,7 +56,7 @@ the behavior of Future objects.
 %doc README.md
 %license LICENSE
 
-%{python3_sitelib}/%{srcname_py}*.egg-info/
+%{python3_sitelib}/%{srcname_py}*.dist-info/
 %{python3_sitelib}/%{srcname_py}/
 
 %changelog

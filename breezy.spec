@@ -80,7 +80,7 @@ find . -name '*_pyx.c' -exec rm \{\} \;
 
 
 %build
-%py3_build
+%pyproject_wheel
 
 chmod a-x contrib/bash/brzbashprompt.sh
 
@@ -98,7 +98,7 @@ popd
 %{cargo_license} > LICENSE.dependencies
 
 %install
-%py3_install
+%pyproject_install
 chmod -R a+rX contrib
 chmod 0644 contrib/debian/init.d
 chmod 0644 contrib/bzr_ssh_path_limiter  # note the bzr here
@@ -138,7 +138,7 @@ mv %{buildroot}%{buildroot}%{_datadir}/locale %{buildroot}%{_datadir}
 %{_bindir}/git-remote-bzr
 %{_mandir}/man1/*
 %{python3_sitearch}/%{name}/
-%{python3_sitearch}/*.egg-info/
+%{python3_sitearch}/*.dist-info/
 %{bash_completions_dir}/brz
 %{_datadir}/pixmaps/brz.png
 

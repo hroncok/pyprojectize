@@ -32,7 +32,6 @@ BuildRequires:	python2-setuptools_scm
 %endif
 %if %{with python3}
 BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
 BuildRequires:	python3-wheel
 BuildRequires:	python3-setuptools_scm
 %endif
@@ -83,6 +82,9 @@ cp -a python2 python3
 # for documents
 cp python2/*.md python2/LICENSE .
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if %{with python2}
 pushd python2
@@ -92,7 +94,7 @@ popd
 
 %if %{with python3}
 pushd python3
-%py3_build
+%pyproject_wheel
 popd
 %endif
 
@@ -100,7 +102,7 @@ popd
 %install
 %if %{with python3}
 pushd python3
-%py3_install
+%pyproject_install
 for lib in %{buildroot}%{python3_sitelib}/nototools/*.py; do
  sed '1{\@^#!/usr/bin/env python@d}' $lib > $lib.new &&
  touch -r $lib $lib.new &&
@@ -161,14 +163,14 @@ popd
 %if %{with python2}
 %files -n python2-nototools
 %{python2_sitelib}/%{name}
-%{python2_sitelib}/%{srcname}-%{version}-py2.7.egg-info
+%{python2_sitelib}/%{srcname}-%{version}-py2.7.dist-info
 %{python2_sitelib}/third_party
 %endif
 
 %if %{with python3}
 %files -n python3-nototools
 %{python3_sitelib}/%{name}
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 %{python3_sitelib}/third_party
 %endif
 

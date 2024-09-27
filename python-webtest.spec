@@ -16,7 +16,6 @@ Source0:        https://github.com/Pylons/webtest/archive/%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %if 0%{?with_tests}
 BuildRequires:  python3-pytest
@@ -68,15 +67,18 @@ with any WSGI-compatible framework.
 # Remove bundled egg info if it exists.
 rm -rf *.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 # remove files not needed in documentation
 rm -f docs/Makefile docs/conf.py docs/changelog.rst
 #cp -a CHANGELOG.rst docs/
 
 %install
 %{__rm} -rf %{buildroot}
-%py3_install
+%pyproject_install
 
 
 %if 0%{?with_tests}
@@ -87,7 +89,7 @@ rm -f docs/Makefile docs/conf.py docs/changelog.rst
 %files -n python3-webtest
 %doc docs/* CHANGELOG.rst
 %{python3_sitelib}/webtest
-%{python3_sitelib}/WebTest-*.egg-info
+%{python3_sitelib}/WebTest.dist-info
 
 %changelog
 * Tue Sep 03 2024 Ján ONDREJ (SAL) <ondrejj(at)salstar.sk> - 3.0.1-1

@@ -20,7 +20,6 @@ Source0:        %{pypi_source}
 BuildRequires:  python3-devel
 BuildRequires:  python3-docs
 BuildRequires:  sed
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(sphinx)
 
 %description
@@ -46,15 +45,18 @@ sed -r \
     -e 's|http://docs.python.org|%{_docdir}/python3-docs/html|' \
     -i docs/source/conf.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 # generate html docs
 PYTHONPATH=${PWD} sphinx-build-3 docs/source html
 # remove the sphinx-build leftovers
 rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 for test in test/*; do
@@ -64,7 +66,7 @@ done
 %files -n python3-%{pypi_name}
 %license LICENSE
 %{python3_sitearch}/%{pypi_name}
-%{python3_sitearch}/%{pypi_name}-%{pypi_version}-py%{python3_version}.egg-info
+%{python3_sitearch}/%{pypi_name}-%{pypi_version}.dist-info
 
 %files -n python-%{pypi_name}-doc
 %doc html

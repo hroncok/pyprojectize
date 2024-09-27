@@ -84,11 +84,11 @@ find tests/ -type f | xargs sed -i s/assertItemsEqual/assertCountEqual/
 
 
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install -- --init-system=systemd
+%pyproject_install
 
 # Generate cloud-config file
 python3 tools/render-template --variant %{?rhel:rhel}%{!?rhel:fedora} > $RPM_BUILD_ROOT/%{_sysconfdir}/cloud/cloud.cfg

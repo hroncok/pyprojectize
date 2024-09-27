@@ -13,7 +13,6 @@ Source0:	https://files.pythonhosted.org/packages/source/F/%{srcname}/%{srcname}-
 
 BuildArch:	noarch
 BuildRequires:	python%{python3_pkgversion}-devel
-BuildRequires:	python%{python3_pkgversion}-setuptools
 
 %global _description\
 Flask-Admin is advanced, extensible and simple to use administrative interface\
@@ -54,12 +53,16 @@ rm -rf examples
 rm flask_admin/translations/README.md
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # Tests are not included as they require mongod running
@@ -78,7 +81,7 @@ rm flask_admin/translations/README.md
 %{python3_sitelib}/flask_admin/model/
 %{python3_sitelib}/flask_admin/templates/
 %{python3_sitelib}/flask_admin/form/
-%{python3_sitelib}/*.egg-info/
+%{python3_sitelib}/*.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.6.1-6

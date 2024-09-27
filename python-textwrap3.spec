@@ -23,7 +23,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-coverage
 BuildRequires:  python3-pytest
 BuildRequires:  python3-pytest-cov
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-tox
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -36,11 +35,14 @@ in a compatible way to all Python versions typically in current use.
 %autosetup -n %{pypi_name}-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v test
@@ -50,7 +52,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v test
 # Missing license file: https://github.com/jonathaneunice/textwrap3/issues/1
 %{python3_sitelib}/__pycache__/*
 %{python3_sitelib}/%{pypi_name}.py
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.9.2-16

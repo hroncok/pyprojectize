@@ -10,7 +10,6 @@ Source1:        https://raw.githubusercontent.com/Blosc/python-blosc/f3c5e341a25
 BuildRequires:  gcc
 BuildRequires:  blosc-devel >= 1.16.0
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-numpy
 BuildRequires:  python%{python3_pkgversion}-psutil
 BuildRequires:  python%{python3_pkgversion}-cpuinfo
@@ -34,13 +33,16 @@ Requires:       blosc%{_isa} >= 1.16.0
 # Overwrite setup.py with the last version that does not use skbuild and cmake
 cp %{SOURCE1} .
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 export BLOSC_DIR=%{_libdir}/blosc CFLAGS="%{optflags}"
 export DISABLE_BLOSC_AVX2=1
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 cd / # avoid interference with build dir
@@ -48,7 +50,7 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} %__python3 -c 'import sys, blosc; sys
 
 %files -n python%{python3_pkgversion}-blosc
 %{python3_sitearch}/blosc/
-%{python3_sitearch}/blosc-%{version}*-py*.egg-info
+%{python3_sitearch}/blosc-%{version}*.dist-info
 %license LICENSE.txt
 %doc README.rst RELEASE_NOTES.rst
 

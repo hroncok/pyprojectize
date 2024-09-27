@@ -22,7 +22,6 @@ Time-handling functionality from netcdf4-python.
 Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-Cython
-BuildRequires:  python%{python3_pkgversion}-setuptools
 # For tests
 BuildRequires:  python%{python3_pkgversion}-pytest
 BuildRequires:  python%{python3_pkgversion}-numpy
@@ -38,11 +37,14 @@ sed -i -e '/--cov/d' setup.cfg
 # https://github.com/Unidata/cftime/commit/c640b72781f1ac038cfa9c23f58e4a5591721275#commitcomment-138887748
 sed -i -e 's/1.26.0b1/1.24.4/' requirements.txt
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitearch} py.test-%{python3_version} -v
@@ -50,7 +52,7 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} py.test-%{python3_version} -v
 %files -n python%{python3_pkgversion}-%{srcname}
 %license LICENSE
 %doc README.md
-%{python3_sitearch}/%{srcname}-*.egg-info/
+%{python3_sitearch}/%{srcname}.dist-info/
 %{python3_sitearch}/%{srcname}/
 
 %changelog

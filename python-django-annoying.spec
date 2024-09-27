@@ -25,7 +25,6 @@ eliminera irriterande saker i Django-ramverket.
 Summary:        Annoying things elimination in the Django framework
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Requires:       python3-django
 
 Obsoletes:      python2-%{pypi_name} < 0.9.0-5
@@ -46,16 +45,19 @@ Detta paket tillhandahåller ett Python 3-bygge av %{pypi_name}.
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %doc PKG-INFO
 %{python3_sitelib}/annoying/
-%{python3_sitelib}/*.egg-info/
+%{python3_sitelib}/*.dist-info/
 
 
 %changelog

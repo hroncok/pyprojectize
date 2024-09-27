@@ -12,7 +12,6 @@ Patch0:         academic-admin-0.8.1-dependencies.patch
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-toml
 BuildRequires:  python3-requests
 BuildRequires:  python3-bibtexparser
@@ -25,16 +24,19 @@ An admin tool for the Academic website builder.
 %prep
 %autosetup -n %{srcname}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n academic-admin
 %doc README.md
 %license LICENSE.md
-%{python3_sitelib}/academic-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/academic-%{version}.dist-info/
 %{python3_sitelib}/academic/
 %{_bindir}/*
 

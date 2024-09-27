@@ -24,7 +24,6 @@ BuildRequires:  python3dist(hacking)
 BuildRequires:  python3dist(mock)
 BuildRequires:  python3dist(pbr)
 BuildRequires:  python3dist(pbr)
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(six)
 BuildRequires:  python3dist(stestr)
 %{?python_provide:%python_provide python3-%{pypi_name}}
@@ -44,13 +43,16 @@ Documentation for pymochad.
 %autosetup -n %{pypi_name}-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 PYTHONPATH=${PWD} sphinx-build-3 doc/source html
 rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v pymochad/tests
@@ -59,7 +61,7 @@ rm -rf html/.{doctrees,buildinfo}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %files -n python-%{pypi_name}-doc
 %doc html

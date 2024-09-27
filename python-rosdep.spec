@@ -44,7 +44,6 @@ BuildRequires:  python%{python3_pkgversion}-pytest
 BuildRequires:  python%{python3_pkgversion}-PyYAML >= 3.1
 BuildRequires:  python%{python3_pkgversion}-rosdistro >= 0.7.5
 BuildRequires:  python%{python3_pkgversion}-rospkg >= 1.4.0
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  rubygems
 Requires:       python-srpm-macros
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
@@ -80,8 +79,12 @@ specify a dependency on 'boost'.
 %autosetup -p1 -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 PYTHONPATH=$PWD/src %make_build -C doc man html SPHINXBUILD=sphinx-build-%{python3_version}
 rm doc/_build/html/.buildinfo
@@ -115,7 +118,7 @@ install -D -p -m 0644 /dev/null %{buildroot}%{_sysconfdir}/ros/rosdep/sources.li
 %files -n python%{python3_pkgversion}-%{srcname} -f py3_bins
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 %{python3_sitelib}/%{srcname}2/
 %{_mandir}/man1/%{srcname}.1.gz
 %dir %{_sysconfdir}/ros/rosdep/

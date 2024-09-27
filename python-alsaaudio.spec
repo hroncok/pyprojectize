@@ -10,7 +10,6 @@ Source0:	https://github.com/larsimmisch/pyalsaaudio/archive/%{version}/%{name}-%
 BuildRequires:  gcc
 BuildRequires:	alsa-lib-devel
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 The package contains python2 and python3 bindings for the ALSA sound API.
@@ -26,11 +25,15 @@ The python3-AlsaAudio package contains python3 bindings for the ALSA sound API.
 %setup -q -n pyalsaaudio-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-alsaaudio

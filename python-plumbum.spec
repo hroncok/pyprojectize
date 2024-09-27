@@ -16,7 +16,6 @@ BuildRequires:  python2-devel
 %endif # if with_python2
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
 BuildRequires:  python3-setuptools_scm+toml
 
@@ -57,15 +56,18 @@ pythonic and cross-platform.
 %setup -q -n %{pypi_name}-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if 0%{?with_python2}
 %{py2_build}
 %endif # with_python2
 
-%{py3_build}
+%{pyproject_wheel}
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 %if 0%{?with_python2}
 %{py2_install}
@@ -75,13 +77,13 @@ rm -rf %{pypi_name}.egg-info
 %files -n python2-%{pypi_name}
 %doc LICENSE README.rst
 %{python2_sitelib}/%{pypi_name}
-%{python2_sitelib}/%{pypi_name}-%{version}-py?.?.egg-info
+%{python2_sitelib}/%{pypi_name}-%{version}-py?.?.dist-info
 %endif # with_python2
 
 %files -n python3-%{pypi_name}
 %doc LICENSE README.rst
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 
 %changelog

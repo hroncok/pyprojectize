@@ -24,7 +24,6 @@ other HTTP libraries.
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 # This is listed as a test requirement, but doesn't seem to actually be used.
 #BuildRequires:  python3-pytest-forked
@@ -48,12 +47,16 @@ sed -i '/TODO remove after dropping Python2 support/d' requirements.txt
 sed -i '/--cov/d' setup.cfg
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -72,7 +75,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} pytest -k "not test_unknown_server \
 
 %files -n python3-%{srcname}
 %doc README.md
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 %{python3_sitelib}/%{srcname}/
 
 %changelog

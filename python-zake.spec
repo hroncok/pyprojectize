@@ -28,7 +28,6 @@ Summary:        Testing utilities for the kazoo library
 BuildRequires:       python3-devel
 BuildRequires:       python3-kazoo
 BuildRequires:       python3-six
-BuildRequires:       python3-setuptools
 
 %description -n python3-%{pypi_name}
 It is a python package that works to provide a nice set of testing
@@ -42,17 +41,20 @@ It includes the following functionality:
 %autosetup -n %{pypi_name}-%{version}
 cp -p %{SOURCE1} .
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 0.2.2-35

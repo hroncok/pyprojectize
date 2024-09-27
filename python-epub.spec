@@ -25,7 +25,6 @@ BuildRequires:  python3-sphinx
 BuildRequires:  python3-sphinx
 %endif
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 Epub is a Python library for reading e-book files in the EPUB (version 2)
@@ -49,14 +48,17 @@ This package contains the documentation for %{name}.
 %autosetup -p1 -n exirel-%{srcname}-%{shortcommit}
 touch test/__init__.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %make_build -C docs html
 rm -f docs/_build/html/.buildinfo
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test

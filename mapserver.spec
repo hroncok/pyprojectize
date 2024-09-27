@@ -132,7 +132,6 @@ Provides: %{name}-python%{?_isa} = %{version}-%{release}
 Obsoletes: %{name}-python < %{version}-%{release}
 Summary:        Python/Mapscript map making extensions to Python
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Requires:       %{name} = %{version}-%{release}
 Requires:       python3
 
@@ -173,6 +172,10 @@ ln -sf /usr/share/fonts/dejavu-sans-fonts/DejaVuSans-Bold.ttf tests/vera/VeraBd.
 
 # Force swig to regenerate the wrapper
 rm -rf mapscript/perl/mapscript_wrap.c
+
+
+%generate_buildrequires
+%pyproject_buildrequires
 
 
 %build
@@ -241,7 +244,7 @@ export CXXFLAGS="%{optflags} -fno-strict-aliasing"
 # cmake tries to invoke pip and download things. we'll just use setuptools.
 mkdir -p %{buildroot}%{python3_sitearch}
 pushd redhat-linux-build/src/mapscript/python
-%py3_install
+%pyproject_install
 popd
 
 mkdir -p %{buildroot}%{_datadir}/%{name}

@@ -11,7 +11,6 @@ URL:            https://pypi.org/project/sphinxcontrib-svg2pdfconverter/
 Source0:        https://files.pythonhosted.org/packages/source/s/%{srcname}/%{srcname}-%{version}.tar.gz
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(sphinx)
 BuildArch:      noarch
 
@@ -81,12 +80,16 @@ This package contains converter using CairoSVG.
 %autosetup -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 #check
@@ -98,7 +101,7 @@ This package contains converter using CairoSVG.
 %license LICENSE.txt
 %doc README.rst
 %{python3_sitelib}/sphinxcontrib_svg2pdfconverter*nspkg.pth
-%{python3_sitelib}/sphinxcontrib_svg2pdfconverter-*.egg-info
+%{python3_sitelib}/sphinxcontrib_svg2pdfconverter.dist-info
 
 
 %files -n python3-sphinxcontrib-inkscapeconverter

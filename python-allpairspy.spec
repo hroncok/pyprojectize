@@ -22,7 +22,6 @@ Summary:        %{summary}
 BuildRequires:  python3-devel
 BuildRequires:  python3-six
 BuildRequires:  python3-pytest
-BuildRequires:  python3-setuptools
 
 %description -n python3-allpairspy
 %{summary}.
@@ -34,11 +33,14 @@ rm -rf allpairspy.egg-info
 chmod -R -x+X .
 install -m 644 %{SOURCE1} .
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{pytest}
@@ -47,7 +49,7 @@ install -m 644 %{SOURCE1} .
 %files -n python3-allpairspy
 %doc README.rst
 %license LICENSE.txt
-%{python3_sitelib}/allpairspy-*.egg-info/
+%{python3_sitelib}/allpairspy.dist-info/
 %{python3_sitelib}/allpairspy/
 
 %changelog

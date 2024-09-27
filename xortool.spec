@@ -11,7 +11,6 @@ Source0:        https://github.com/hellman/xortool/archive/v%{version}/%{pypi_na
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-wheel
 
 %description
@@ -22,18 +21,21 @@ equal chars) and to guess the key (base on knowledge of most frequent char).
 %autosetup -n %{pypi_name}-%{version}
 sed -i -e '/^#!\//, 1d' xortool/*.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %doc README.md
 %license LICENSE
 %{_bindir}/%{name}
 %{_bindir}/%{name}-xor
-%{python3_sitelib}/*.egg-info/
+%{python3_sitelib}/*.dist-info/
 %{python3_sitelib}/%{pypi_name}/
 
 %changelog

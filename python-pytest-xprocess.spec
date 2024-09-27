@@ -14,7 +14,6 @@ BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(psutil)
 BuildRequires:  python3dist(pytest)
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(setuptools-scm)
 
 %description
@@ -48,11 +47,14 @@ rm -rf %{pypi_name}.egg-info
 # Remove executable bit from README
 chmod -x README.rst
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest
@@ -61,7 +63,7 @@ chmod -x README.rst
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/xprocess/
-%{python3_sitelib}/pytest_xprocess-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/pytest_xprocess-%{version}.dist-info
 
 %changelog
 %autochangelog

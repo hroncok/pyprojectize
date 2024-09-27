@@ -104,7 +104,6 @@ ExcludeArch:  %{ix86}
 %global toolz %(echo "%tools %?tools2 %?tools3 %?tools4 %?tools5" | grep . | tr '\\n' ', ')
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-docutils
 # for tests
 BuildRequires: python3-pytest
@@ -136,12 +135,15 @@ sed -i '1{\@/usr/bin/env@d}' diffoscope/main.py
 # They conflict, and python3-file-magic is required by rpmlint.
 sed -i s/python-magic/file-magic/ setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 make -C doc
 
 %install
-%py3_install
+%pyproject_install
 echo %{buildroot}%{python3_sitelib}
 install -Dm0644 -t %{buildroot}%{_mandir}/man1/ doc/diffoscope.1
 install -Dm0644 -t %{buildroot}/usr/share/zsh/site-functions/ debian/zsh-completion/_diffoscope

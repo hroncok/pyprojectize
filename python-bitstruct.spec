@@ -34,7 +34,6 @@ BuildRequires:  make
 BuildRequires:  python3-sphinx
 BuildRequires:  python3-sphinx_rtd_theme
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  gcc
 
 %description    doc
@@ -52,14 +51,18 @@ Summary:        %{summary}
 %autosetup -p1 -n %{pypi_name}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 %make_build
 %{_bindir}/find docs/_build -name '.*' -print0 | %{_bindir}/xargs -0 %{__rm} -frv
 
 
 %install
-%py3_install
+%pyproject_install
 %{__mkdir} -p %{buildroot}/%{_pkgdocdir}
 
 

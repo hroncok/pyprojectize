@@ -24,7 +24,6 @@ Slacker is a full-featured Python interface for the Slack API.
 %package -n python3-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-requests
 BuildRequires:  python3-responses
 %if %{?with_tests}
@@ -46,11 +45,14 @@ Documentation files for %{name}.
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{?with_tests: %{__python3} setup.py test}
@@ -59,7 +61,7 @@ Documentation files for %{name}.
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py*.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 
 %files -n python3-%{srcname}-doc
 %license LICENSE

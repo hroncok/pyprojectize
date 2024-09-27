@@ -28,7 +28,6 @@ BuildRequires: lua-devel
 Summary:	%{summary}
 BuildRequires:	python3-devel
 BuildRequires:	python3-Cython
-BuildRequires:	python3-setuptools
 %{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname} %_description
@@ -39,12 +38,16 @@ BuildRequires:	python3-setuptools
 %autosetup -n %{srcname}-%{commit}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -55,7 +58,7 @@ BuildRequires:	python3-setuptools
 %license LICENSE.txt
 %doc README.rst CHANGES.rst INSTALL.rst
 %{python3_sitearch}/%{srcname}/
-%{python3_sitearch}/%{srcname}-*.egg-info
+%{python3_sitearch}/%{srcname}.dist-info
 
 
 %changelog

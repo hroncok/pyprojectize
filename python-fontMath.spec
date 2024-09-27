@@ -20,7 +20,6 @@ Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 BuildRequires:  python3-pytest-runner
 BuildRequires:  python3-fonttools
@@ -33,11 +32,15 @@ A set of objects for performing math operations on font data.
 %autosetup -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
  
 %check
 export LC_ALL=C.UTF-8
@@ -46,7 +49,7 @@ export LC_ALL=C.UTF-8
 %files -n python3-%{srcname}
 %license License.txt
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-%{version}*.egg-info
+%{python3_sitelib}/%{srcname}-%{version}*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.6.0-15

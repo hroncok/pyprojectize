@@ -31,7 +31,6 @@ Summary:	%{summary} for Python3
 Conflicts:	python2-%{pname} < 0.6.3-7
 
 BuildRequires:	python%{python3_pkgversion}-devel
-BuildRequires:	python%{python3_pkgversion}-setuptools
 %if 0%{?fedora} || 0%{?rhel} > 7
 BuildRequires:	python%{python3_pkgversion}-pytest
 %else
@@ -52,12 +51,16 @@ popd
 %{__sed} -i '/compat/d' setup.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 %check
 %if 0%{?fedora} || 0%{?rhel} > 7
@@ -77,7 +80,7 @@ popd
 %{_bindir}/%{pname}-u2fast
 %{_bindir}/%{pname}-u2json
 %{_bindir}/%{pname}-u2spewfoo
-%{python3_sitelib}/%{pname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pname}-%{version}.dist-info
 %{python3_sitelib}/%{pname}
 %doc README.rst
 

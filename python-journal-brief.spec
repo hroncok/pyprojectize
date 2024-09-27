@@ -16,7 +16,6 @@ BuildArch:	noarch
 BuildRequires:	glibc-langpack-en
 BuildRequires:	python3-devel
 BuildRequires:	python3-PyYAML
-BuildRequires:	python3-setuptools
 %if 0%{?with_check}
 BuildRequires:	python3-pytest python3-flexmock
 %endif # with_check
@@ -51,12 +50,15 @@ journal entries.
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %if 0%{?with_check}

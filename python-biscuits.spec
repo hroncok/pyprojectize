@@ -14,7 +14,6 @@ BuildRequires:  gcc
 BuildRequires:  python3-Cython
 BuildRequires:  python3-devel
 BuildRequires:  python3-pytest
-BuildRequires:  python3dist(setuptools)
 
 
 %description
@@ -36,13 +35,17 @@ Low level API for handling cookies.
 sed -i 's/python /python3 /g' Makefile
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 make compile
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -52,7 +55,7 @@ make compile
 %files -n python3-%{pypi_name}
 %doc README.md
 %{python3_sitearch}/biscuits.cpython-%{python3_version_nodots}*.so
-%{python3_sitearch}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/%{pypi_name}-%{version}.dist-info
 
 
 %changelog

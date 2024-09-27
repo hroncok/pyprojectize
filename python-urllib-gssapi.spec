@@ -17,7 +17,6 @@ BuildRequires:  git-core
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-gssapi
-BuildRequires:  python3-setuptools
 
 %global _description\
 urllib_gssapi is a backend for urllib.  It provides GSSAPI/SPNEGO\
@@ -35,12 +34,15 @@ Requires:       python3-gssapi
 %prep
 %autosetup -S git -n %{s_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %py3_check_import %{s_name}

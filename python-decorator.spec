@@ -11,7 +11,6 @@ Source0:        %pypi_source decorator
 
 BuildArch:      noarch
 
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-devel
 
 %description
@@ -33,11 +32,14 @@ etc.  The core of this module is a decorator factory called decorator.
 %prep
 %autosetup -p1 -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Remove this when https://github.com/micheles/decorator/issues/32 is fixed.
 find %{buildroot} -name SOURCES.txt~ -exec rm -f {} \;
@@ -49,7 +51,7 @@ find %{buildroot} -name SOURCES.txt~ -exec rm -f {} \;
 %doc README.rst CHANGES.md
 %license LICENSE.txt
 %{python3_sitelib}/decorator.py
-%{python3_sitelib}/decorator-*.egg-info/
+%{python3_sitelib}/decorator.dist-info/
 %{python3_sitelib}/__pycache__/*
 
 %changelog

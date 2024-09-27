@@ -22,7 +22,6 @@ Patch3:             pointer_types.patch
 Summary:            %{summary}
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{modname}}
 BuildRequires:      python%{python3_pkgversion}-devel
-BuildRequires:      python%{python3_pkgversion}-setuptools
 BuildRequires:      krb5-devel
 BuildRequires:      bison
 BuildRequires:      gcc
@@ -35,18 +34,21 @@ Python %{python3_version} version.
 %prep
 %autosetup -p1 -n python-%{modname}-%{commit}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 export CFLAGS="$CFLAGS -fcommon"
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python%{python3_pkgversion}-%{modname}
 %doc README.md
 %license LICENSE.txt
 %{python3_sitearch}/%{modname}*.so
-%{python3_sitearch}/python_%{modname}*.egg-info
+%{python3_sitearch}/python_%{modname}*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.2-25.20181207git94e50ed

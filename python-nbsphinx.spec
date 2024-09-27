@@ -11,7 +11,6 @@ Patch0:         allow-errors-in-notebooks-with-external-images.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-ipykernel
 BuildRequires:  python3-ipython-sphinx
 BuildRequires:  python3-jupyter-client
@@ -62,8 +61,11 @@ sed -i "/\['jupytext.reads', {'fmt'/d" doc/conf.py
 # its absence doesn't break the nbsphinx' docs
 sed -i "/'sphinx_codeautolink',  # automatic links from code to documentation/d" doc/conf.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 # fake the git tag for docs to put the right version in
 git tag %{version}
 # ignore errors - nbsphinx cannot load images from Internet
@@ -74,14 +76,14 @@ PYTHONPATH=build/lib sphinx-build-3 doc html
 rm -rf html/{.doctrees,.buildinfo,conf.py,_sources}
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-nbsphinx
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/nbsphinx
-%{python3_sitelib}/nbsphinx-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/nbsphinx-%{version}.dist-info/
 
 %files -n python-nbsphinx-doc
 %license LICENSE

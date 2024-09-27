@@ -31,7 +31,6 @@ BuildRequires:  python3-cryptography >= 1.6
 BuildRequires:  python3-devel
 BuildRequires:  python3-kitchen
 BuildRequires:  python3-moksha-hub >= 1.3.2
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-six
 BuildRequires:  python3-sqlalchemy
 BuildRequires:  python3-pytest
@@ -95,8 +94,12 @@ with zeromq.
 %autosetup -p1 -n %{modname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 make %{?_smp_mflags} -C doc SPHINXBUILD=sphinx-build-3 html PYTHONPATH=$(pwd)
 rm doc/_build/html/.buildinfo
@@ -110,7 +113,7 @@ rm -f %{buildroot}%{_sysconfdir}/fedmsg.d/*.py{c,o}
 
 
 %install
-%py3_install
+%pyproject_install
 
 # fedmsg provides a huge number of scripts and we need to move them all so the Python 2
 # version is the un-versioned entry.
@@ -226,7 +229,7 @@ chmod 0644 %{buildroot}/%{_sysconfdir}/logrotate.d/%{modname}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{modname}/
-%{python3_sitelib}/%{modname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{modname}-%{version}.dist-info/
 %{_bindir}/fedmsg-announce
 %{_bindir}/fedmsg-announce-3*
 %{_bindir}/fedmsg-collectd

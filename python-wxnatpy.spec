@@ -28,7 +28,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-wxpython4
 BuildRequires:  python3-xnat
 BuildRequires:  python3-fsleyes-widgets
@@ -44,11 +43,14 @@ rm -rf %{pypi_name}.egg-info
 
 find . -type f -name "*.py" -exec sed -i '/^#![  ]*\/usr\/bin\/env.*$/ d' {} 2>/dev/null ';'
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 #%check
 #%{__python3} setup.py test
@@ -57,7 +59,7 @@ find . -type f -name "*.py" -exec sed -i '/^#![  ]*\/usr\/bin\/env.*$/ d' {} 2>/
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/wxnat/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 0.4.0-12

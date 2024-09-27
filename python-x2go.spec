@@ -81,7 +81,6 @@ Python applications by providing a Python-based X2Go client API.
 %package -n python%{python3_pkgversion}-x2go
 Summary:        Python module providing X2Go client API
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 # For doc build
 BuildRequires:  /usr/bin/sphinx-build-3
 BuildRequires:  python%{python3_pkgversion}-gevent
@@ -114,16 +113,20 @@ Python applications by providing a Python-based X2Go client API.
 %setup -q
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 %if 0%{with python2}
 %py2_build
 %endif
-%py3_build
+%pyproject_wheel
 make -C docs SPHINXBUILD=/usr/bin/sphinx-build-3 html
 
 
 %install
-%py3_install
+%pyproject_install
 %if 0%{with python2}
 %py2_install
 %endif

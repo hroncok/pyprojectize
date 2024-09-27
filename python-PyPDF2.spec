@@ -35,7 +35,6 @@ It is therefore a useful tool for websites that manage or manipulate PDFs.
 %package -n python3-%{srcname}
 Summary:        %{sum}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{srcname}}
 
 
@@ -70,12 +69,16 @@ sed -i -e '/^#!\//, 1d' PyPDF2/pagerange.py
 chmod a-x Scripts/* Sample_Code/* LICENSE README.md CHANGELOG
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check

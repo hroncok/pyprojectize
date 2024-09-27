@@ -19,7 +19,6 @@ for the newer msgctxt keyword.
 %package -n	python3-%{module}
 Summary:	Python 3 Gettext po to mo file compiler
 BuildRequires:	python3-devel
-BuildRequires:	python3dist(setuptools)
 %{?python_provide:%python_provide python3-%{module}}
 
 %description -n	python3-%{module}
@@ -33,17 +32,20 @@ for the newer msgctxt keyword.
 # Remove bundled egg-info
 rm -rf python_gettext.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{module}
 %doc CHANGES.rst README.rst
 %license LICENSE.rst
 %{python3_sitelib}/pythongettext/
-%{python3_sitelib}/python_gettext-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/python_gettext-%{version}.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 4.0-15

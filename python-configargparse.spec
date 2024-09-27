@@ -25,7 +25,6 @@ Summary:        %{summary}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-pytest
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pyyaml
 %{?python_provide:%python_provide python3-configargparse}
 
@@ -41,11 +40,14 @@ argparse to add these features.
 %prep
 %autosetup -p0 -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # the compared outputs of testBasicCase2 and testMutuallyExclusiveArgs don't
@@ -58,7 +60,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -k "not Test
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/configargparse.py*
-%{python3_sitelib}/%{srcname}*.egg-info
+%{python3_sitelib}/%{srcname}*.dist-info
 %{python3_sitelib}/__pycache__/configargparse*
 
 %changelog

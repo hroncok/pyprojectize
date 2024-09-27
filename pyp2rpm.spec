@@ -10,7 +10,6 @@ Source0:        https://files.pythonhosted.org/packages/source/p/%{name}/%{name}
 BuildArch:      noarch
  
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(virtualenv-api)
 BuildRequires:  python3dist(jinja2)
 BuildRequires:  python3dist(click)
@@ -41,11 +40,14 @@ Fedora Python Packaging Guidelines.
 %prep
 %autosetup -p1 -n %{name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # TestMetadataExtractor requires Python 2 setuptools
@@ -56,7 +58,7 @@ PYTHONPATH="." py.test-3 -vv -m "not webtest" -k "not TestMetadataExtractor"
 %doc README.md
 %{_bindir}/pyp2rpm
 %{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{name}-%{version}.dist-info/
 
 
 %changelog

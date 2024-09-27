@@ -14,7 +14,6 @@ Patch0:         python-winrm-mock.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(xmltodict)
 BuildRequires:  python3dist(requests) >= 2.9.1
@@ -37,11 +36,14 @@ Python 3 version.
 %prep
 %autosetup -p1 -n pywinrm-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %python3 -m pytest -vv winrm/tests
@@ -49,7 +51,7 @@ Python 3 version.
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.md CHANGELOG.md
-%{python3_sitelib}/pywinrm-*.egg-info/
+%{python3_sitelib}/pywinrm.dist-info/
 %{python3_sitelib}/winrm/
 
 %changelog

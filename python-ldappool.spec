@@ -44,11 +44,14 @@ BuildRequires:  python3-testresources
 %prep
 %autosetup -p1 -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 PYTHON=python3 stestr-3 run
@@ -59,7 +62,7 @@ PYTHON=python3 stestr-3 run
 %files -n python3-%{srcname}
 %doc README.rst
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 3.0.0-12

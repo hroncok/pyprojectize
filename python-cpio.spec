@@ -12,7 +12,6 @@ Patch1:         cpioarchive_bytes_str_compatibility.patch
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %global _description\
 This is a Python module for accessing cpio archives.
@@ -29,18 +28,21 @@ Summary: %summary
 %patch -P0
 %patch -P1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-cpio
 %license COPYING.lib
 %doc AUTHORS ChangeLog README TODO
 %{python3_sitelib}/cpioarchive.py*
 %{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 
 
 %changelog

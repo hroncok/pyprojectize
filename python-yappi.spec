@@ -21,7 +21,6 @@ support to profile python programs.
 Summary:        Yet Another Python Profiler, supports Multithread/CPU time profiling.
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description -n python3-%{srcname}
 Yappi, Yet Another Python Profiler, provides multithreading and cpu-time
@@ -30,11 +29,14 @@ support to profile python programs.
 %prep
 %autosetup -n %{srcname}-%{version} -S git
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 mv %{buildroot}%{_bindir}/%{srcname} %{buildroot}%{_bindir}/%{srcname}-%{python3_version}
 ln -s %{srcname}-%{python3_version} %{buildroot}%{_bindir}/%{srcname}-3
 ln -s %{srcname}-3 %{buildroot}%{_bindir}/%{srcname}
@@ -50,7 +52,7 @@ export PYTHONPATH=%{buildroot}/%{python3_sitearch}
 %{python3_sitearch}/%{srcname}.py*
 %{python3_sitearch}/_%{srcname}*.so
 %{python3_sitearch}/__pycache__/%{srcname}*
-%{python3_sitearch}/%{srcname}-*.egg-info
+%{python3_sitearch}/%{srcname}.dist-info
 %{_bindir}/%{srcname}
 %{_bindir}/%{srcname}-3*
 

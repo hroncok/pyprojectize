@@ -14,7 +14,6 @@ Patch0:         mopidympd330-fix-tests.patch
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 BuildRequires:  mopidy
 Requires:       mopidy
@@ -28,11 +27,14 @@ available from MPD clients.
 %autosetup -n %{srcname}-%{version} -p1
 rm MANIFEST.in
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -40,7 +42,7 @@ rm MANIFEST.in
 %files
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/Mopidy_MPD-*.egg-info/
+%{python3_sitelib}/Mopidy_MPD.dist-info/
 %{python3_sitelib}/mopidy_mpd/
 
 

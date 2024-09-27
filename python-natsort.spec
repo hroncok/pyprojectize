@@ -19,7 +19,6 @@ BuildRequires:  python3dist(hypothesis)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(pytest-mock)
 BuildRequires:  python3dist(semver)
-BuildRequires:  python3dist(setuptools)
 %{?python_enable_dependency_generator}
 
 %global _description \
@@ -43,11 +42,14 @@ Summary:	%{summary}
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest
@@ -56,7 +58,7 @@ Summary:	%{summary}
 %license LICENSE
 %doc README.rst
 %{_bindir}/%{srcname}
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 %{python3_sitelib}/%{srcname}/
 
 %changelog

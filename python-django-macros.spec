@@ -16,7 +16,6 @@ BuildArch:      noarch
 
 BuildRequires:  dos2unix
 BuildRequires:  python3-devel
-BuildRequires:  %{py3_dist setuptools}
 
 %description
 Macros accepting positional and keyword arguments, and repeated block
@@ -72,17 +71,20 @@ något för dig.
 %autosetup -n %srcname-%version
 dos2unix -- README.rst 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%srcname
 %doc README.rst
 %license LICENSE
 %python3_sitelib/macros
-%python3_sitelib/django_macros-%version-py%python3_version.egg-info
+%python3_sitelib/django_macros-%version-py%python3_version.dist-info
 
 
 %changelog

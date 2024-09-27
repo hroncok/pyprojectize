@@ -20,7 +20,6 @@ BuildArch:      noarch
 # required for py3_build macro
 BuildRequires:  python3-devel
 
-BuildRequires:  python3-setuptools
 
 # required by unittests
 BuildRequires:  nmap-ncat
@@ -61,13 +60,17 @@ Summary:        %{summary}
 %autosetup -p1 -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 sed -i '1,1s@^#!.*$@#!%{__python3}@' examples/*.py
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # tests fail on el9: https://github.com/ronf/asyncssh/issues/566
@@ -77,7 +80,7 @@ sed -i '1,1s@^#!.*$@#!%{__python3}@' examples/*.py
 %license LICENSE COPYRIGHT
 %doc README.rst examples
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-*-py*.egg-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 
 
 %changelog

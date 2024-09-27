@@ -11,7 +11,6 @@ Source:         https://github.com/jborean93/ntlm-auth/archive/v%{version}/%{src
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  %{py3_dist setuptools}
 # For tests
 BuildRequires:  %{py3_dist pytest}
 BuildRequires:  %{py3_dist requests}
@@ -36,11 +35,14 @@ Provides:       python3-ntlm3 = %{version}-%{release}
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # see https://github.com/jborean93/ntlm-auth/issues/22
@@ -67,7 +69,7 @@ export OPENSSL_CONF=${PWD}/openssl.cnf
 %files -n python3-%{srcname}
 %doc CHANGES.md README.md
 %license LICENSE
-%{python3_sitelib}/ntlm_auth-*.egg-info/
+%{python3_sitelib}/ntlm_auth.dist-info/
 %{python3_sitelib}/ntlm_auth/
 
 %changelog

@@ -12,7 +12,6 @@ Source:         %{pypi_source}
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %global _description %{expand:
 A more Pythonic version of doxypy, a Doxygen filter for Python.}
@@ -33,17 +32,20 @@ Recommends:     python3-%{srcname}
 find . -name \*.py -exec sed -i '/#!\/usr\/bin\/env /d' '{}' \;
 find . -name \*.py -exec sed -i '/#!\/usr\/bin\/python/d' '{}' \;
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %license LICENSE.txt
 %doc README.rst
 %attr(644, -, -) %{python3_sitelib}/%{srcname}/*.py
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 %{python3_sitelib}/%{srcname}/
 %{_bindir}/%{srcname}
 

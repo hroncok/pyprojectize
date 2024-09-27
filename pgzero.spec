@@ -16,7 +16,6 @@ Source0:        https://files.pythonhosted.org/packages/source/p/%{name}/%{name}
 BuildArch:      noarch
  
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pygame
 BuildRequires:  python3-numpy
 
@@ -38,11 +37,14 @@ rm -rf %{name}.egg-info
 # Remove version limit for pygame dependency
 sed -i "s/\(pygame.*\), <2.0.*/\1'/" setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # Some tests cannot be run in a headles environment without display
@@ -56,7 +58,7 @@ rm test/test_screen.py test/test_actor.py test/test_sound_formats.py
 %{python3_sitelib}/%{name}
 %{python3_sitelib}/pgzrun.py
 %{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{name}-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.2.1-14

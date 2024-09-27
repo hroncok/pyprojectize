@@ -27,7 +27,6 @@ Converts and manipulates common color representation (RGB, HSL, web, etc.)
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-d2to1
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -46,16 +45,19 @@ Converts and manipulates common color representation (RGB, HSL, web, etc.)
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %doc README.rst TODO.rst
 %license LICENSE
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{python3_sitelib}/%{pypi_name}.py
 %{python3_sitelib}/__pycache__/*
 

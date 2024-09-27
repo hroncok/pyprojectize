@@ -18,7 +18,6 @@ devices hooked up to a regular CCU or Homegear.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(pytest)
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -31,11 +30,14 @@ devices hooked up to a regular CCU or Homegear.
 rm -rf %{pypi_name}.egg-info
 sed -i 's/\r$//' README.rst
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v tests
@@ -44,7 +46,7 @@ sed -i 's/\r$//' README.rst
 %license LICENSE.txt
 %doc README.rst
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.78-3

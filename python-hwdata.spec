@@ -35,14 +35,17 @@ This is the Python 3 build of the module.
 rm -rf %{py3dir}
 cp -a . %{py3dir}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 pushd %{py3dir}
-%py3_build
+%pyproject_wheel
 popd
 
 %install
 pushd %{py3dir}
-%py3_install
+%pyproject_install
 popd
 
 %check

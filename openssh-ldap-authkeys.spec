@@ -27,7 +27,6 @@ BuildArch:	noarch
 
 BuildRequires:	systemd-rpm-macros
 BuildRequires:	python%{python3_pkgversion}-devel
-BuildRequires:	python%{python3_pkgversion}-setuptools
 
 # This is only for cases that we don't have a dependency generator active...
 %if ! (%{defined python_enable_dependency_generator} || %{defined python_disable_dependency_generator})
@@ -123,8 +122,12 @@ fi
 %endif
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 # Build SELinux policy module
 pushd selinux
@@ -133,7 +136,7 @@ popd
 
 
 %install
-%py3_install
+%pyproject_install
 
 # Make ghost entries for config files
 touch %{buildroot}%{_sysconfdir}/%{name}/olak.yml

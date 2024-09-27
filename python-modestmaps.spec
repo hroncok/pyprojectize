@@ -26,7 +26,6 @@ additional functionality.
 Summary:        %{summary}
 
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 Requires:       python%{python3_pkgversion}-imaging
 
 %{?python_provide:%python_provide python%{python3_pkgversion}-modestmaps}
@@ -40,16 +39,19 @@ additional functionality.
 %prep
 %autosetup -p1 -n %{pkgname}-py-%{commit}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python%{python3_pkgversion}-%{pkgname}
 %doc CHANGELOG
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.4.7-22

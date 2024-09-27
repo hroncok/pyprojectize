@@ -17,7 +17,6 @@ Source0: %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires: desktop-file-utils
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 Requires: gtk3
 Requires: hicolor-icon-theme
@@ -35,12 +34,16 @@ Manager to allow higher control and monitoring.
 %autosetup -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 sed -i 's|/usr/bin/env python3|%{__python3}|' \
     %{buildroot}%{python3_sitelib}/%{name}/*.py
@@ -64,7 +67,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_datadir}/%{name}/
 %{_datadir}/applications/%{srcname}.desktop
 %{_datadir}/glib-2.0/schemas/%{uuid}.gschema.xml
-%{python3_sitelib}/%{name}-*.egg-info/
+%{python3_sitelib}/%{name}.dist-info/
 %{python3_sitelib}/%{name}/
 
 

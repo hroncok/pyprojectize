@@ -47,7 +47,6 @@ Summary:        HTTP request mock tool for Python 3
 Requires:       python3-six
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if %{run_tests}
 BuildRequires:  python3-httplib2
 BuildRequires:  python3-mock
@@ -78,11 +77,14 @@ Don't worry, HTTPretty is here for you.
 sed -i 's/^with-randomly = 1$//' setup.cfg
 sed -i 's/^rednose = 1$//' setup.cfg
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %if %{run_tests}
@@ -93,7 +95,7 @@ sed -i 's/^rednose = 1$//' setup.cfg
 %doc README.rst
 %license COPYING
 %{python3_sitelib}/httpretty
-%{python3_sitelib}/httpretty-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/httpretty-%{version}.dist-info
 
 
 %changelog

@@ -45,7 +45,6 @@ BuildArch: noarch
 
 %if 0%{?fedora} || 0%{?rhel} > 7
 BuildRequires: python3
-BuildRequires: python3-setuptools
 BuildRequires: python3-devel
 BuildRequires: python3-mock
 BuildRequires: python3-pytest
@@ -97,6 +96,9 @@ as well as unpacked one.
 version=%version
 version=${version//.${version#*.*.}/}
 sed -i 's/version=.*/version="'$version'",/' setup.py
+
+%generate_buildrequires
+%pyproject_buildrequires
 
 %check
 PYTHON=%{python} ./unittests

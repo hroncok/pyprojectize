@@ -53,12 +53,15 @@ Summary:        %{summary}
 sed -i 's/def \(test_address_as_instance_of_url_combined_with_pass_through\)(/def skip_\1(/' tests/test_aioresponses.py
 sed -i 's/def \(test_pass_through_with_origin_params\)(/def skip_\1(/' tests/test_aioresponses.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -67,7 +70,7 @@ sed -i 's/def \(test_pass_through_with_origin_params\)(/def skip_\1(/' tests/tes
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-*-py*.egg-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 
 
 %changelog

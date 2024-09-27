@@ -21,7 +21,6 @@ BuildRequires:  libappstream-glib
 
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-qt5-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  libopenshot >= %{minlibver}
 BuildRequires:  libopenshot-audio >= %{minlibver}
 BuildRequires:  desktop-file-utils
@@ -76,12 +75,16 @@ Requires:       %{name} = %{version}-%{release}
 %autosetup -p1 -n %{distname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 # We strip bad shebangs (/usr/bin/env) instead of fixing them
 # since these files are not executable anyways

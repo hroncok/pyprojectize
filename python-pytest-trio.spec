@@ -27,7 +27,6 @@ Summary:        %{summary}
 BuildRequires:  python3-devel
 BuildRequires:  python3-pytest
 BuildRequires:  python3-hypothesis
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-trio
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -51,15 +50,18 @@ rm -rf %{pypi_name}.egg-info
 sed -i /RemovedInPytest4Warning/d pytest_trio/_tests/conftest.py
 sed -i s/--cov// pytest.ini
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 #   An error happened in rendering the page history.
 #   Reason: UndefinedError("'logo' is undefined")
 # PYTHONPATH=${PWD} sphinx-build-3 docs/source html
 # rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 
 # https://github.com/python-trio/pytest-trio/issues/84
 %check
@@ -69,7 +71,7 @@ sed -i s/--cov// pytest.ini
 %license LICENSE.MIT LICENSE LICENSE.APACHE2
 %doc README.rst
 %{python3_sitelib}/pytest_trio/
-%{python3_sitelib}/pytest_trio-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/pytest_trio-%{version}.dist-info
 
 #%%files -n python-%%{pypi_name}-doc
 #%%doc html

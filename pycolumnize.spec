@@ -18,7 +18,6 @@ A string with embedded newline characters is returned.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(mock)
 %{?python_provide:%python_provide python3-%{pypi_name}}
@@ -33,11 +32,14 @@ A string with embedded newline characters is returned.
 # Remove the dependency on nose
 sed -i /nose/d setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v test_columnize.py
@@ -45,7 +47,7 @@ sed -i /nose/d setup.py
 %files -n python3-%{pypi_name}
 %doc ChangeLog README.rst SECURITY.md THANKS
 %license LICENSE
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 %{python3_sitelib}/__pycache__/%{pypi_name}*
 %{python3_sitelib}/%{pypi_name}.py*
 

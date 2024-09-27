@@ -20,7 +20,6 @@ Summary:        JSON Matching Expressions
 %{?python_provide:%python_provide python-%{pypi_name}}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 BuildRequires:  python3-pytest
 %if %{undefined rhel}
@@ -37,11 +36,14 @@ a JSON document.
 %setup -q -n jmespath.py-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # RHEL does not have python3-hypothesis. Only one file in the upstream repo
@@ -53,7 +55,7 @@ rm -rf %{pypi_name}.egg-info
 %license LICENSE.txt
 %{_bindir}/jp.py
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.1-8

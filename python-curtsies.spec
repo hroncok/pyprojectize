@@ -12,7 +12,6 @@ BuildRequires: python3-cwcwidth
 BuildRequires: python3-devel
 BuildRequires: python3-nose
 BuildRequires: python3-pyte
-BuildRequires: python3-setuptools
 %global _description\
 Curtsies is curses-like terminal wrapper, can be to annotate portions\
 of strings with terminal colors and formatting.\
@@ -32,11 +31,14 @@ Requires:       python3-cwcwidth
 %prep
 %autosetup -p1 -n curtsies-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 %check
 nosetests .
@@ -45,7 +47,7 @@ nosetests .
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/curtsies
-%{python3_sitelib}/curtsies-*-py*.egg-info
+%{python3_sitelib}/curtsies-*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.4.2-6

@@ -159,8 +159,11 @@ Contains depsolving capabilities for package managers.
 %prep
 %forgeautosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 make man
 
 # SELinux
@@ -171,7 +174,7 @@ bzip2 -9 osbuild.pp
 %selinux_relabel_pre -s %{selinuxtype}
 
 %install
-%py3_install
+%pyproject_install
 
 mkdir -p %{buildroot}%{pkgdir}/stages
 install -p -m 0755 $(find stages -type f -not -name "test_*.py") %{buildroot}%{pkgdir}/stages/
@@ -264,7 +267,7 @@ exit 0
 %files -n       python3-%{pypi_name}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{pypi_name}-*.egg-info/
+%{python3_sitelib}/%{pypi_name}.dist-info/
 %{python3_sitelib}/%{pypi_name}/
 
 %files lvm2

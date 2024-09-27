@@ -18,7 +18,6 @@ methods to support most USB operations.
 Summary:       %summary
 %{?python_provide:%python_provide python3-pyusb}
 BuildRequires: python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
 Requires:       libusb1
 
@@ -30,11 +29,14 @@ methods to support most USB operations.
 %autosetup
 sed -i -e 's/\r//g' README.rst
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 cd tests

@@ -13,7 +13,6 @@ URL:            https://github.com/Rockhopper-Technologies/prefixed
 Source0:        %{pypi_source}
 BuildArch:      noarch
 
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3-devel
 
 %description %{desc}
@@ -26,11 +25,14 @@ Summary:        %{summary}
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} -m unittest

@@ -29,7 +29,6 @@ Requires:       python3-colorlog
 %endif
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pykwalify
 BuildRequires:  %{pyyaml}
 BuildRequires:  %{jinja}
@@ -75,8 +74,11 @@ sed -i 's/^odcs.*$//' requirements.txt
 sed -i 's/^colorlog.*$//' requirements.txt
 %endif
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
 mkdir -p %{buildroot}/%{_sysconfdir}/bash_completion.d
@@ -85,7 +87,7 @@ cp support/completion/bash/cekit %{buildroot}/%{_sysconfdir}/bash_completion.d/c
 mkdir -p %{buildroot}/%{_datadir}/zsh/site-functions
 cp support/completion/zsh/_cekit %{buildroot}/%{_datadir}/zsh/site-functions/_cekit
 
-%py3_install
+%pyproject_install
 
 %files -n %{modname}-bash-completion
 %doc README.rst
@@ -102,7 +104,7 @@ cp support/completion/zsh/_cekit %{buildroot}/%{_datadir}/zsh/site-functions/_ce
 %license LICENSE
 
 %{python3_sitelib}/cekit/
-%{python3_sitelib}/cekit-*.egg-info/
+%{python3_sitelib}/cekit.dist-info/
 
 %{_bindir}/cekit
 %{_bindir}/cekit-cache

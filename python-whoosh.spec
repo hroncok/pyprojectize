@@ -20,7 +20,6 @@ BuildRequires:  python%{python3_pkgversion}-sphinx
 %endif
 
 BuildRequires: python%{python3_pkgversion}-devel
-BuildRequires: python%{python3_pkgversion}-setuptools
 BuildRequires: python%{python3_pkgversion}-pytest
 
 %description
@@ -44,8 +43,11 @@ works can be extended or replaced to meet your needs exactly.
 # pytest 4
 sed -i 's/\[pytest\]/\[tool:pytest\]/' setup.cfg
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %if %{with docs}
 sphinx-build docs/source docs/html
@@ -54,7 +56,7 @@ rm -rf docs/html/.doctrees
 %endif
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -66,7 +68,7 @@ rm -rf docs/html/.doctrees
 %doc docs/html/
 %endif
 %{python3_sitelib}/whoosh/
-%{python3_sitelib}/*.egg-info/
+%{python3_sitelib}/*.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 2.7.4-34

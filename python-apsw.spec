@@ -31,7 +31,6 @@ Source:             https://github.com/rogerbinns/apsw/releases/download/%{pkg_v
 
 BuildRequires:      gcc
 BuildRequires:      python%{python3_pkgversion}-devel
-BuildRequires:      python%{python3_pkgversion}-setuptools
 BuildRequires:      sqlite-devel >= %{sqlite_version}
 
 Requires:           sqlite >= %{sqlite_version}
@@ -56,11 +55,14 @@ complete SQLite API into Python.
 %autosetup -n apsw-%{pkg_version} -p1
 rm -f doc/.buildinfo
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build -- --enable=load_extension
+%pyproject_wheel -C--global-option=--enable=load_extension
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py build_test_extension
@@ -69,7 +71,7 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} %{__python3} setup.py test
 %files -n python%{python3_pkgversion}-apsw
 %doc doc/*
 %{python3_sitearch}/apsw
-%{python3_sitearch}/apsw*.egg-info
+%{python3_sitearch}/apsw*.dist-info
 
 
 %changelog

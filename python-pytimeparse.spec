@@ -31,7 +31,6 @@ BuildRequires:  python2-setuptools
 %if %{with python3}
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(nose)
-BuildRequires:  python3dist(setuptools)
 %endif
 
 %description
@@ -67,13 +66,16 @@ rm -rf %{pypi_name}.egg-info
 # Remove shebangs from Python scripts
 find . -name '*.py' -exec sed -i '1 { /^#!/ d }' {} \+
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if %{with python2}
 %py2_build
 %endif
 
 %if %{with python3}
-%py3_build
+%pyproject_wheel
 %endif
 
 %install
@@ -82,7 +84,7 @@ find . -name '*.py' -exec sed -i '1 { /^#!/ d }' {} \+
 %endif
 
 %if %{with python3}
-%py3_install
+%pyproject_install
 %endif
 
 %check
@@ -99,7 +101,7 @@ find . -name '*.py' -exec sed -i '1 { /^#!/ d }' {} \+
 %license LICENSE.rst
 %doc README.rst
 %{python2_sitelib}/%{pypi_name}
-%{python2_sitelib}/%{pypi_name}-%{version}-py?.?.egg-info
+%{python2_sitelib}/%{pypi_name}-%{version}-py?.?.dist-info
 %endif
 
 %if %{with python3}
@@ -107,7 +109,7 @@ find . -name '*.py' -exec sed -i '1 { /^#!/ d }' {} \+
 %license LICENSE.rst
 %doc README.rst
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %endif
 
 %changelog

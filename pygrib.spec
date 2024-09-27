@@ -34,7 +34,6 @@ BuildRequires: python3-Cython
 # no longer needed as direct BR without gribapi
 # (but still an indirect dependency through cartopy)
 # BuildRequires: python3-pyproj
-BuildRequires: python3-setuptools
 
 # these are used for pytest testing in the check section
 BuildRequires: python3-pytest
@@ -80,16 +79,19 @@ Requires:  python3-pyproj
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 
-%py3_build
+%pyproject_wheel
 
 %install
 
 # this setting triggers installation of man pages by the setup.py file
 export MAN_DIR=/usr/share/man/
 
-%py3_install
+%pyproject_install
 
 # copy documentation
 mkdir -p %{buildroot}%{_datadir}/doc/%{name}
@@ -155,7 +157,7 @@ cd  $TESTROOT/test
 %doc LICENSE PKG-INFO README.md
 %doc %{_datadir}/doc/%{name}/
 %{python3_sitearch}/%{name}
-%{python3_sitearch}/%{name}-*-py*.egg-info
+%{python3_sitearch}/%{name}-*.dist-info
 %{_bindir}/cnv*
 %{_bindir}/grib_*
 %{_mandir}/man1/cnv*

@@ -11,7 +11,6 @@ URL:            http://www.alcyone.com/software/empy/
 Source:         http://www.alcyone.com/software/%{srcname}/%{srcname}-%{version}.tar.gz
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  (python3-setuptools if python3-devel >= 3.12)
 
 %description
 EmPy is a system for embedding Python expressions and statements in template
@@ -28,11 +27,14 @@ text; it takes an EmPy source file, processes it, and produces output.
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %{_bindir}/em.py
@@ -41,7 +43,7 @@ text; it takes an EmPy source file, processes it, and produces output.
 %{python3_sitelib}/emdoc.py
 %{python3_sitelib}/emhelp.py
 %{python3_sitelib}/emlib.py
-%{python3_sitelib}/empy-*.egg-info
+%{python3_sitelib}/empy.dist-info
 
 
 %changelog

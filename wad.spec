@@ -27,11 +27,14 @@ applications, tools and libraries.
 rm -rf %{pypi_name}.egg-info
 mv wad/etc/README.md wad/etc/README-wappalyzer.md
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v %{name}/tests
@@ -41,7 +44,7 @@ mv wad/etc/README.md wad/etc/README-wappalyzer.md
 %doc README.md wad/etc/README-wappalyzer.md
 %{_bindir}/wad
 %{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}-%{version}-py*.egg-info/
+%{python3_sitelib}/%{name}-%{version}.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.4.6-16

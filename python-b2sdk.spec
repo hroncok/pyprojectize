@@ -24,7 +24,6 @@ FUSE filesystems, storage backend drivers for backup applications etc).}
 %package -n python3-b2sdk
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
 
 %description -n python3-b2sdk %_description
@@ -34,12 +33,16 @@ BuildRequires:  python3-setuptools_scm
 rm -rf b2sdk.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 rm -rf %{buildroot}%{python3_sitelib}/test
 
 
@@ -47,7 +50,7 @@ rm -rf %{buildroot}%{python3_sitelib}/test
 %doc CHANGELOG.md
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/b2sdk-*.egg-info/
+%{python3_sitelib}/b2sdk.dist-info/
 %{python3_sitelib}/b2sdk/
 
 

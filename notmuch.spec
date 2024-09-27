@@ -88,7 +88,6 @@ BuildRequires:  python3-sphinx
 %endif
 
 %if 0%{?with_python3CFFI}
-BuildRequires:  python3-setuptools
   %if %{with tests}
 BuildRequires:  python3-pytest
 # Not available on *EL, skip some tests there:
@@ -233,6 +232,9 @@ interface, utilizing the notmuch framework.
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -p1
+
+%generate_buildrequires
+%pyproject_buildrequires
 
 %build
 # DEBUG mtime/stat

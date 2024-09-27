@@ -14,7 +14,6 @@ Source0:    %{forgesource}
 
 BuildRequires: desktop-file-utils
 BuildRequires: python3-devel >= 3.4
-BuildRequires: python3-setuptools
 BuildRequires: systemd-rpm-macros
 
 Requires:   gtk-layer-shell
@@ -52,12 +51,16 @@ you may need, there's an executor for that.
 %forgeautosetup -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 # Remove shebang from Python libraries
 for lib in %{buildroot}%{python3_sitelib}/%{sys_name}/{/,modules}/*.py; do
@@ -103,7 +106,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_datadir}/applications/*.desktop
 %{_datadir}/pixmaps/*.svg
 %{_userunitdir}/%{name}.service
-%{python3_sitelib}/%{sys_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{sys_name}-%{version}.dist-info/
 %{python3_sitelib}/%{sys_name}/
 
 

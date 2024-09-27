@@ -11,7 +11,6 @@ Source0:        https://github.com/hackebrot/%{pkgname}/archive/%{version}.tar.g
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 A lightweight YAML Parser for Python
@@ -41,13 +40,16 @@ Please see the examples below to get an idea of what Poyo understands.
 %prep
 %autosetup -n %{pkgname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 
-%{py3_build}
+%{pyproject_wheel}
 
 %install
 
-%{py3_install}
+%{pyproject_install}
 
 %check
 

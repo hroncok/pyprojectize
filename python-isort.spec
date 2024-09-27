@@ -18,7 +18,6 @@ BuildArch:          noarch
 Summary:            %{summary}
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{modname}}
 BuildRequires:      python%{python3_pkgversion}-devel
-BuildRequires:      python%{python3_pkgversion}-setuptools
 BuildRequires:      python%{python3_pkgversion}-pytest
 
 %description -n python%{python3_pkgversion}-%{modname}
@@ -33,11 +32,14 @@ Python %{python3_pkgversion} version.
 #sed -i -e '1{\@^#!.*@d}' %{modname}/main.py
 #chmod -x LICENSE
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 mv %{buildroot}%{_bindir}/%{modname}{,-%{python3_version}}
 ln -s %{modname}-%{python3_version} %{buildroot}%{_bindir}/%{modname}-%{python3_pkgversion}
 ln -s %{modname}-3 %{buildroot}%{_bindir}/%{modname}
@@ -54,7 +56,7 @@ ln -s %{modname}-3 %{buildroot}%{_bindir}/%{modname}
 %{_bindir}/%{modname}-%{python3_version}
 %{_bindir}/%{modname}-identify-imports
 %{python3_sitelib}/%{modname}/
-%{python3_sitelib}/%{modname}-*.egg-info/
+%{python3_sitelib}/%{modname}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 5.13.2-5

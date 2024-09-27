@@ -18,7 +18,6 @@ Summary:        %{summary}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(pytest)
-BuildRequires:  python3dist(setuptools)
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -28,11 +27,14 @@ Pytest plugin to treat skipped tests a test failures.
 %autosetup -n %{pypi_name}-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v tests
@@ -42,7 +44,7 @@ rm -rf %{pypi_name}.egg-info
 %license LICENSE
 %{python3_sitelib}/__pycache__/*
 %{python3_sitelib}/pytest_error_for_skips.py
-%{python3_sitelib}/pytest_error_for_skips-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/pytest_error_for_skips-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.0.2-14

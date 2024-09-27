@@ -25,7 +25,6 @@ Provides: python3-mysql = %{version}-%{release}
 Obsoletes: python3-mysql < 2.0.0-1
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if %{with mysqldb}
 BuildRequires:  python3-pytest
 %endif
@@ -47,13 +46,16 @@ Documentation for %{name}.
 %autosetup -n %{pypi_name}-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 PYTHONPATH=${PWD} sphinx-build-3 doc html
 rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with mysqldb}
 %check
@@ -64,7 +66,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v tests
 %doc README.md HISTORY.rst
 %license LICENSE
 %{python3_sitearch}/MySQLdb/
-%{python3_sitearch}/%{pypi_name}-%{version}-py*.egg-info/
+%{python3_sitearch}/%{pypi_name}-%{version}.dist-info/
 
 %files -n python-%{pypi_name}-doc
 %doc html

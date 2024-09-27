@@ -16,7 +16,6 @@ Source0: %{URL}archive/%{version}/%{name}-%{version}.tar.gz
 
 BuildArch: noarch
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 Requires: whois
 
@@ -35,12 +34,16 @@ Summary: %{summary}
 %setup -q
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -51,7 +54,7 @@ Summary: %{summary}
 %license license
 %doc README.md
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-*.egg-info
+%{python3_sitelib}/%{pypi_name}.dist-info
 
 
 %changelog

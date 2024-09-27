@@ -11,7 +11,6 @@ URL:            https://github.com/zeek/pysubnettree
 Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  gcc-c++
 
 %description
@@ -22,11 +21,14 @@ Python objects. Lookups are performed by longest-prefix matching.
 %prep
 %autosetup
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %doc CHANGES README
@@ -34,7 +36,7 @@ Python objects. Lookups are performed by longest-prefix matching.
 %{python3_sitearch}/SubnetTree.py
 %{python3_sitearch}/_SubnetTree.cpython*.so
 %{python3_sitearch}/__pycache__/*
-%{python3_sitearch}/%{name}-%{version}-py*.egg-info/
+%{python3_sitearch}/%{name}-%{version}.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.35-12

@@ -23,7 +23,6 @@ Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{modulename}}
 Requires:       python3-pytest
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
 BuildRequires:  python3-pytest
 
@@ -34,11 +33,14 @@ Python 3 version.
 %prep
 %autosetup -n %{modulename}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -47,7 +49,7 @@ Python 3 version.
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/ptr.py
-%{python3_sitelib}/%{_modulename}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{_modulename}-%{version}.dist-info/
 %{python3_sitelib}/__pycache__/ptr.*
 
 %changelog

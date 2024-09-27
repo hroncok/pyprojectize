@@ -19,7 +19,6 @@ Patch0: 0000-python-3.13.patch
 BuildArch: noarch
 
 BuildRequires: python3-devel
-BuildRequires: python3dist(setuptools)
 BuildRequires: python3dist(pygments) >= 2.4.2
 BuildRequires: python3dist(ruamel-yaml) >= 0.15
 BuildRequires: python3dist(xmltodict) >= 0.12
@@ -46,12 +45,16 @@ tools and file types into structured JSON, for easier further processing.
 %autosetup -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 install -m 755 -d %{buildroot}%{_mandir}/man1
 install -m 644 -p man/jc.1 %{buildroot}%{_mandir}/man1/
@@ -79,7 +82,7 @@ TZ="America/Los_Angeles" ./runtests.sh
 %doc docs/
 %license LICENSE.md
 %{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{name}-%{version}.dist-info
 
 
 %changelog

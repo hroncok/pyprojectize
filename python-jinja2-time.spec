@@ -19,7 +19,6 @@ Jinja2 Extension for Dates and Times
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{pkgname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-arrow
 BuildRequires:  python3-jinja2
 
@@ -30,13 +29,16 @@ Jinja2 Extension for Dates and Times.
 %prep
 %autosetup -n %{pkgname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 
-%{py3_build}
+%{pyproject_wheel}
 
 %install
 
-%{py3_install}
+%{pyproject_install}
 
 %check
 

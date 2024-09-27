@@ -18,7 +18,6 @@ A set of third-party serializers for Betamax.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-PyYAML
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -28,16 +27,19 @@ A set of third-party serializers for Betamax.
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %doc AUTHORS.rst HISTORY.rst README.rst
 %license LICENSE
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{python3_sitelib}/betamax_serializers/
 
 %changelog

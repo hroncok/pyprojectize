@@ -19,7 +19,6 @@ BuildArch:      noarch
 #BuildRequires:  %{_bindir}/tox
 BuildRequires:  python3-devel
 
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-devel
 BuildRequires:  python3-fasteners
 BuildRequires:  python3-pyasn1 >= 0.1.7
@@ -68,11 +67,15 @@ find docs tests -type f \( -name '*.py' -o -name '*.py.doc' \) -exec \
 sed -r -i 's/\bmock.*//' tox.ini
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 #tox -v --sitepackages -e py%%{python3_version_nodots}
@@ -86,7 +89,7 @@ rm -r $(find %{_buildrootdir} -type d -name 'tests') || /bin/true
 %license LICENSE 
 %doc CHANGELOG.md CONTRIBUTING.md README.md 
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}*.egg-info
+%{python3_sitelib}/%{srcname}*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 4.1.3-27

@@ -24,7 +24,6 @@ BuildRequires:  python3dist(mock)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(pytest-runner)
 BuildRequires:  python3dist(requests)
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(websocket-client)
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -43,13 +42,16 @@ Documentation for python-%{pypi_name}.
 %autosetup -n %{pypi_name}-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 PYTHONPATH=${PWD} sphinx-build-3 docs html
 rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v tests
@@ -59,7 +61,7 @@ rm -rf html/.{doctrees,buildinfo}
 %doc README.rst
 %{_bindir}/waterfurnace-debug
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %files -n python-%{pypi_name}-doc
 %doc html

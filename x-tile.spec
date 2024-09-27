@@ -15,7 +15,6 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  python3-devel
-BuildRequires:  %{py3_dist setuptools}
 Requires:       %{py3_dist pygobject}
 Requires:       %{py3_dist pycairo}
 Requires:       gtk3
@@ -38,13 +37,17 @@ filter to check some windows by default, command line interface.
 rm -rf *.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 mkdir -p build/scripts-%{python3_version}/
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 install -Dpm 0755 %{name} $RPM_BUILD_ROOT%{_bindir}/%{name}
 install -Dpm 0644 %{SOURCE1} $RPM_BUILD_ROOT%{_metainfodir}/%{name}.appdata.xml
 
@@ -59,7 +62,7 @@ appstream-util validate-relax --nonet $RPM_BUILD_ROOT%{_metainfodir}/%{name}.app
 %files -f %{name}.lang
 %license license
 %{_bindir}/%{name}
-%{python3_sitelib}/X_Tile-*.egg-info
+%{python3_sitelib}/X_Tile.dist-info
 %{_datadir}/%{name}/
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.*

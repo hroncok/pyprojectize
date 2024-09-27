@@ -20,7 +20,6 @@ Python API wrapper for Kismet RESTful API interface.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 %{?python_provide:%python_provide python3-%{pkg_name}}
 
 %description -n python3-%{pkg_name}
@@ -30,17 +29,20 @@ Python API wrapper for Kismet RESTful API interface.
 %autosetup -n python-kismet-rest-%{rel_version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pkg_name}
 %doc CHANGELOG.rst README.rst
 %license LICENSE
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Mon Jul 29 2024 Miroslav Suchý <msuchy@redhat.com> - 2019.5.2-15

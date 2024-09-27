@@ -34,7 +34,6 @@ BuildRequires: systemd
 BuildRequires: util-linux
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 BuildRequires: python3-copr
 BuildRequires: python3-copr-common >= %copr_common_version
@@ -129,13 +128,17 @@ only.
 %setup -q -a 1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 make -C docs %{?_smp_mflags} html
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 install -d %{buildroot}%{_sharedstatedir}/copr/public_html/results

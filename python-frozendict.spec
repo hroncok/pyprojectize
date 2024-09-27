@@ -22,13 +22,15 @@ replacement for dictionaries where immutability is desired.}
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-wheel
 
 %description -n python3-%{srcname} %{_description}
 
 %prep
 %autosetup -n %{srcname}-%{version} -p1
+
+%generate_buildrequires
+%pyproject_buildrequires
 
 %build
 # Build the python only version (no python 3.11 support)
@@ -37,12 +39,12 @@ export FROZENDICT_PURE_PY=1
 
 %install
 export FROZENDICT_PURE_PY=1
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %license LICENSE.txt
 %doc README.md
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 %{python3_sitelib}/%{srcname}/
 
 %changelog

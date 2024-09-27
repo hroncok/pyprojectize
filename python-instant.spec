@@ -20,7 +20,6 @@ and Distutils.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %{?python_provide:%python_provide python3-%{srcname}}
 
@@ -35,11 +34,14 @@ and Distutils.
 find -type f -exec sed -i '1s=^#!/usr/bin/\(python\|env python\)[23]\?=#!%{__python3}=' {} +
 chmod 0644 test/*
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %doc AUTHORS ChangeLog README TODO doc/sphinx/ test/
@@ -47,7 +49,7 @@ chmod 0644 test/*
 %{_mandir}/man*/*.1*
 %{_bindir}/instant*
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}*.egg-info
+%{python3_sitelib}/%{srcname}*.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 2016.1.0-30

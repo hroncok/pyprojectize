@@ -31,7 +31,6 @@ BuildRequires:  python%{python3_pkgversion}-nose
 BuildRequires:  python%{python3_pkgversion}-pbr >= 0.8.2
 BuildRequires:  python%{python3_pkgversion}-requests
 BuildRequires:  python%{python3_pkgversion}-requests-mock
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-six >= 1.3.0
 BuildRequires:  python%{python3_pkgversion}-testscenarios
 BuildRequires:  python%{python3_pkgversion}-testtools
@@ -61,10 +60,14 @@ build nodes.
 sed -i '1{s|^#!/usr/bin/env python||}' jenkins/__init__.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 export PBR_VERSION=%{version}
 
-%py3_build
+%pyproject_wheel
 
 PYTHONDONTWRITEBYTECODE=1 \
   PYTHONPATH=$PWD \
@@ -75,7 +78,7 @@ rm doc/build/html/.buildinfo
 %install
 export PBR_VERSION=%{version}
 
-%py3_install
+%pyproject_install
 
 install -D -m0644 -p doc/build/man/pythonjenkins.1 %{buildroot}%{_mandir}/man1/pythonjenkins.1
 
@@ -88,7 +91,7 @@ install -D -m0644 -p doc/build/man/pythonjenkins.1 %{buildroot}%{_mandir}/man1/p
 %doc README.rst doc/build/html
 %license COPYING
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/python_jenkins-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/python_jenkins-%{version}.dist-info/
 %{_mandir}/man1/pythonjenkins.1.*
 
 

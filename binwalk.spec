@@ -12,7 +12,6 @@ Patch2:         version-oops.patch
 Patch3:         requires-zombie-imp.patch
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 # https://github.com/ReFirmLabs/binwalk/issues/507
 BuildRequires:  (python3-zombie-imp if python3-devel >= 3.12)
 # For tests
@@ -34,11 +33,14 @@ it is compatible with magic signatures created for the Unix file utility.
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} setup.py test
@@ -48,7 +50,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} setup.py test
 %license LICENSE
 %{_bindir}/%{name}
 %{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}-%{version}*.egg-info
+%{python3_sitelib}/%{name}-%{version}*.dist-info
 
 %changelog
 * Wed Jul 31 2024 Scott Talbert <swt@techie.net> - 2.3.4-9

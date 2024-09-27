@@ -26,7 +26,6 @@ Source:         %pypi_source
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  %{py3_dist setuptools}
 
 
 %description %{srcdesc}
@@ -44,19 +43,23 @@ Summary:        %{summary}
 %autosetup -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{srcname}
 %license LICENSE
 %doc PKG-INFO README.md
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 
 
 %changelog

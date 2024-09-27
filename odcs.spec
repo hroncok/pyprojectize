@@ -25,7 +25,6 @@ BuildRequires:    python3-productmd
 BuildRequires:    python3-filelock
 BuildRequires:    python3-funcsigs
 BuildRequires:    python3-openidc-client
-BuildRequires:    python3-setuptools
 BuildRequires:    python3-flask-sqlalchemy
 BuildRequires:    python3-flask-migrate
 BuildRequires:    python3-jwt
@@ -120,12 +119,15 @@ Command line client for sending requests to ODCS.
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 export PYTHONPATH=%{buildroot}%{python3_sitelib}
 mkdir -p %{buildroot}%{_mandir}/man1
@@ -174,7 +176,7 @@ nosetests-%{python3_version} -v
 %dir %{python3_sitelib}/odcs/
 %{python3_sitelib}/odcs/__init__.py*
 %{python3_sitelib}/odcs/common/
-%{python3_sitelib}/odcs-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/odcs-%{version}.dist-info/
 %exclude %{python3_sitelib}/odcs/__pycache__
 
 %files -n python3-odcs-client

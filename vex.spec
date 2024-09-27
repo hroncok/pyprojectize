@@ -11,7 +11,6 @@ BuildArch:      noarch
 Requires:       python3-virtualenv
 Requires:       python3-setuptools
 
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-devel
 BuildRequires:  python3-pytest
 
@@ -33,11 +32,14 @@ rm -rf %{name}/shell_configs/fish.orig
 # Port from mock to unittest.mock
 sed -i "s/^from mock import /from unittest.mock import /" vex/tests/test_config.py vex/tests/test_main.py vex/tests/test_run.py vex/tests/test_shell_config.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} -m pytest %{name}/tests/
@@ -47,7 +49,7 @@ sed -i "s/^from mock import /from unittest.mock import /" vex/tests/test_config.
 %license LICENSE
 %{_bindir}/%{name}
 %{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{name}-%{version}.dist-info
 
 %changelog
 %autochangelog

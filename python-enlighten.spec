@@ -38,7 +38,6 @@ BuildRequires:  python2-prefixed
 %endif
 
 %if %{with python3}
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-blessed
 BuildRequires:  python%{python3_pkgversion}-prefixed
@@ -107,13 +106,16 @@ rm -rf benchmarks
 # Remove Python byte cache from previous Python versions shipped in upstream tarball
 find -name '*.pyc' -delete
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if %{with python2}
 %py2_build
 %endif
 
 %if %{with python3}
-%py3_build
+%pyproject_wheel
 %endif
 
 %if 0%{?with_python3_other}
@@ -127,7 +129,7 @@ find -name '*.pyc' -delete
 %endif
 
 %if %{with python3}
-%py3_install
+%pyproject_install
 %endif
 
 %if %{with python2}

@@ -9,7 +9,6 @@ URL:		https://pypi.python.org/pypi/diceware
 Source0:	https://files.pythonhosted.org/packages/source/d/%{name}/%{name}-%{version}.tar.gz
 
 BuildArch:	noarch
-BuildRequires:	python3-setuptools
 BuildRequires:	python3-devel
 BuildRequires:	python3-pytest
 BuildRequires:	python3-pytest-runner
@@ -36,12 +35,16 @@ This package provides documentation for Diceware.
 %autosetup
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 mkdir -p %{buildroot}%{_mandir}/man1
 rst2man docs/manpage.rst %{buildroot}%{_mandir}/man1/diceware.1
 

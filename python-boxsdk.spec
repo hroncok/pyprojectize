@@ -20,7 +20,6 @@ BuildArch:          noarch
 Summary:            %{summary}
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{modname}}
 BuildRequires:      python%{python3_pkgversion}-devel
-BuildRequires:      python%{python3_pkgversion}-setuptools
 BuildRequires:      python%{python3_pkgversion}-requests
 BuildRequires:      python%{python3_pkgversion}-six
 BuildRequires:      python%{python3_pkgversion}-wrapt
@@ -48,11 +47,14 @@ Python %{python3_version} version.
 %prep
 %autosetup -n box-python-sdk-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with tests}
 %check
@@ -63,7 +65,7 @@ pytest-3
 %doc *.md
 %license LICENSE
 %{python3_sitelib}/boxsdk/
-%{python3_sitelib}/%{modname}-*.egg-info/
+%{python3_sitelib}/%{modname}.dist-info/
 
 %changelog
 * Thu Aug 22 2024 Gwyn Ciesla <gwync@protonmail.com> - 3.13.0-1

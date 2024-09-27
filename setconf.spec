@@ -13,7 +13,6 @@ Patch0:         setconf-0.7.6-rm_sb.patch
 Patch2:         setconf-0.7.7-add_man.patch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 BuildArch:      noarch
 
@@ -24,8 +23,11 @@ changing settings in configuration text files.
 %prep
 %autosetup -n %{name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %check
 %{__python3} setconf.py --test
@@ -34,12 +36,12 @@ chmod a+x testcases/py3_test.sh
 cd testcases/ && ./py3_test.sh
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %license COPYING
 %doc README.md
-%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{name}-%{version}.dist-info/
 %{python3_sitelib}/%{name}.py
 %{python3_sitelib}/__pycache__/%{name}.*.pyc
 %{_mandir}/man1/%{name}.1*

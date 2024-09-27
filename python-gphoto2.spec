@@ -25,7 +25,6 @@ a rather un-Pythonic manner.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -41,18 +40,21 @@ sed -e '1d' -i examples/*.py
 # Examples don't need to be executable
 chmod -x examples/*.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 # Data files are goining to the wrong location
 rm -rf %{buildroot}%{_datadir}/%{name}
 
 %files -n python3-%{pypi_name}
 %doc CHANGELOG.txt README.rst examples
 %license LICENSE.txt
-%{python3_sitearch}/*.egg-info
+%{python3_sitearch}/*.dist-info
 %{python3_sitearch}/%{pypi_name}/
 
 %changelog

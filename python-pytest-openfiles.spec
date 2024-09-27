@@ -20,7 +20,6 @@ BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3-psutil
 BuildRequires:  python3-pytest
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
 
 %description
@@ -48,11 +47,14 @@ no longer needed.
 %prep
 %autosetup -n %{upname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 # Remove source tests directory installed by mistake
 rm -fr %{buildroot}%{python3_sitelib}/tests
 

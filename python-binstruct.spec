@@ -33,7 +33,6 @@ Summary:	%{summary}
 BuildRequires:	python3-devel
 BuildRequires:	python3-nose
 BuildRequires:	python3-pytest
-BuildRequires:	python3-setuptools
 
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -47,12 +46,16 @@ BuildRequires:	python3-setuptools
 	%{_bindir}/xargs -0 --max-args=1 %{_bindir}/dos2unix -ascii -k -s
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -63,7 +66,7 @@ BuildRequires:	python3-setuptools
 %license LICENSE.txt
 %doc PKG-INFO README.rst
 %{python3_sitelib}/%{pypi_name}.py
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %{python3_sitelib}/__pycache__/%{pypi_name}.cpython-%{python3_version_nodots}*.pyc
 
 

@@ -16,7 +16,6 @@ Source0:        https://gitlab.com/vedvyas/doxytag2zealdb/-/archive/v%{version}/
 BuildArch:      noarch
 
 BuildRequires:  python3-devel >= 3.6
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(docopt) >= 0.6.2
 BuildRequires:  python3dist(lxml) >= 3.6.0
 BuildRequires:  python3dist(beautifulsoup4) >= 4.4.1
@@ -51,12 +50,16 @@ This package contains the python modules for the doxytag2zealdb program.
 sed -i "/'future'/d" setup.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 # Fixup the script's executable features
 chmod +x %{buildroot}%{python3_sitelib}/%{shortname}/doxytag2zealdb.py
@@ -74,7 +77,7 @@ chmod +x %{buildroot}%{python3_sitelib}/%{shortname}/doxytag2zealdb.py
 %doc CONTRIBUTORS
 %doc README.md
 %{python3_sitelib}/%{shortname}
-%{python3_sitelib}/%{shortname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{shortname}-%{version}.dist-info
 
 
 

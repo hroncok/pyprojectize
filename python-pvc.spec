@@ -40,7 +40,6 @@ Summary:        Python vSphere Client with a dialog interface
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 BuildRequires: make
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-humanize
 BuildRequires:  python%{python3_pkgversion}-pyvmomi
 BuildRequires:  python%{python3_pkgversion}-requests
@@ -64,15 +63,18 @@ Requires:       python%{python3_pkgversion}-vconnector
 # dependency checker does not like dashes in version specifier
 sed -i 's/5.5.0-2014.1.1/5.5.0.2014.1.1/' setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 PYTHONPATH=../src %make_build -C docs html \
  SPHINXBUILD=sphinx-build-%{python3_version} \
  SPHINXOPTS=%{_smp_mflags}
 rm -rf docs/_build/html/.{doctrees,buildinfo}
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 
 %files doc
@@ -83,7 +85,7 @@ rm -rf docs/_build/html/.{doctrees,buildinfo}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 %{_bindir}/%{srcname}-tui
 
 

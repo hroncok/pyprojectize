@@ -10,7 +10,6 @@ URL:            https://nagiosplugin.readthedocs.io
 Source:         %{pypi_source}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(pytest)
 
 BuildArch:      noarch
@@ -41,11 +40,14 @@ Summary:        %{summary}
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest
@@ -53,7 +55,7 @@ Summary:        %{summary}
 %files -n python3-%{srcname}
 %license LICENSE.txt
 %doc README.txt
-%{python3_sitelib}/nagiosplugin-*.egg-info/
+%{python3_sitelib}/nagiosplugin.dist-info/
 %{python3_sitelib}/nagiosplugin/
 
 %changelog

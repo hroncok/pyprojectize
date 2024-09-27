@@ -31,7 +31,6 @@ BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-docutils
 BuildRequires:  python%{python3_pkgversion}-pyparsing
 BuildRequires:  python%{python3_pkgversion}-pytest
-BuildRequires:  python%{python3_pkgversion}-setuptools
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %if %{undefined __pythondist_requires}
@@ -53,8 +52,12 @@ Suggests:       %{name}-doc = %{version}-%{release}
 %autosetup -p1 -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 PYTHONPATH=$PWD/build/lib \
   PYTHONDONTWRITEBYTECODE=1 \
@@ -63,7 +66,7 @@ rm doc/_build/html/.buildinfo
 
 
 %install
-%py3_install
+%pyproject_install
 
 # backwards compatibility symbolic links
 pushd %{buildroot}%{_bindir}
@@ -87,7 +90,7 @@ popd
 %license LICENSE
 %doc CHANGELOG.rst README.rst
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 %{_bindir}/catkin_create_pkg
 %{_bindir}/catkin_find_pkg
 %{_bindir}/catkin_generate_changelog

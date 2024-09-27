@@ -21,7 +21,6 @@ Summary:        A Python library for Pagure APIs
 %{?python_provide:%python_provide python3-libpagure}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:  python3-requests
 
@@ -31,11 +30,14 @@ A Python library for Pagure APIs
 %prep
 %setup -q -n %{modname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-libpagure
 %doc README.md

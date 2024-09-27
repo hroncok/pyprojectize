@@ -27,7 +27,6 @@ Summary:	%{common_sum}
 
 BuildRequires:	python3-devel >= 3.4
 BuildRequires:	python3-pillow
-BuildRequires:	python3-setuptools
 BuildRequires:	python3-six
 BuildRequires:	python3-xlib >= 0.17
 
@@ -59,8 +58,12 @@ This package contains the Documentation-files for python3-%{upname}.
 %{__rm} -fr *.egg*
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 sphinx-build-3 docs docs/build-%{python3_version}/html
 %fdupes -s docs/build-%{python3_version}
 for f in .buildinfo .doctrees .inv ; do
@@ -70,7 +73,7 @@ done
 
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with test}
 %check
@@ -82,7 +85,7 @@ done
 %license COPYING*
 %doc README.rst
 %{python3_sitelib}/%{upname}
-%{python3_sitelib}/%{upname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{upname}-%{version}.dist-info
 
 %files -n python3-%{upname}-doc
 %doc CHANGES.rst docs/build-%{python3_version}/html

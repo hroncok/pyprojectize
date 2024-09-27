@@ -16,7 +16,6 @@ Source2:        lecm.1.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       acme-tiny
 Requires:       python3-prettytable
@@ -38,12 +37,16 @@ and renewal of Let's Encrypt SSL certificates.
 sed -i '/acme-tiny/d' requirements.txt
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 mkdir -p %{buildroot}%{_sysconfdir}/cron.d/
 install -p -m 0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/cron.d/lecm
@@ -58,7 +61,7 @@ install -p -m 0644 sample/*.conf %{buildroot}%{_datadir}/%{srcname}/sample/
 %files
 %doc README.rst
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{_bindir}/%{srcname}
 %{_datadir}/%{srcname}
 %{_mandir}/man1/%{srcname}.1.gz

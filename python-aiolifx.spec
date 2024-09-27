@@ -18,7 +18,6 @@ over your LAN.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -33,18 +32,21 @@ sed -i -e '/^#!\//, 1d' aiolifx/{__main__.py,aiolifx.py,update-products.py}
 # Remove script to maintain parts of the source
 rm -rf aiolifx/update-products.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %license LICENSE.txt
 %doc README.md
 %{_bindir}/%{pypi_name}
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 %autochangelog

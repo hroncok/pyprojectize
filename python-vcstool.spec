@@ -34,7 +34,6 @@ BuildRequires:  git
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-pytest
 BuildRequires:  python%{python3_pkgversion}-PyYAML
-BuildRequires:  python%{python3_pkgversion}-setuptools
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %if %{undefined __pythondist_requires}
@@ -66,8 +65,12 @@ The biggest differences between the two are:
 %autosetup -p1 -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
@@ -110,7 +113,7 @@ ln -s vcs %{buildroot}%{_datadir}/bash-completion/completions/vcs-%{python3_vers
 %license LICENSE
 %doc CONTRIBUTING.md README.rst
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 %{_datadir}/%{srcname}-completion
 %{_datadir}/bash-completion/completions/vcs
 %{_datadir}/bash-completion/completions/vcs-3

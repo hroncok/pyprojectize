@@ -88,7 +88,6 @@ BuildRequires: python3dist(click-plugins)
 BuildRequires: python3dist(pygit2)
 BuildRequires: python3dist(rpm)
 BuildRequires: python3dist(rpmautospec-core)
-BuildRequires: python3dist(setuptools)
 %{?python_provide:%python_provide python3-%{srcname}}
 %endif
 
@@ -143,7 +142,7 @@ sed -i -e '/pytest-cov/d; /addopts.*--cov/d' pyproject.toml
 %if %{with poetry}
 %pyproject_wheel
 %else
-%py3_build
+%pyproject_wheel
 %endif
 
 %install
@@ -153,7 +152,7 @@ sed -i -e '/pytest-cov/d; /addopts.*--cov/d' pyproject.toml
 # Work around poetry not listing license files as such in package metadata.
 sed -i -e 's|^\(.*/LICENSE\)|%%license \1|g' %{pyproject_files}
 %else
-%py3_install
+%pyproject_install
 cat << EOF > %{pyproject_files}
 %{python3_sitelib}/%{srcname}/
 %{python3_sitelib}/*.egg-info/

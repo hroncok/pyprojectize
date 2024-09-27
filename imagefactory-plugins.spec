@@ -57,7 +57,6 @@ Patch5: 0002-Python-3.12-adjust-for-removal-of-SafeConfigParser.patch
 
 BuildArch: noarch
 BuildRequires: python3
-BuildRequires: python3-setuptools
 BuildRequires: python3-devel
 Requires: imagefactory
 
@@ -240,11 +239,14 @@ rmdir ../imagefactory_plugins/
 %patch -P4 -p2
 %patch -P5 -p2
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # TODO: Cleaner negative conditional
 %if 0%{?build_mock}
@@ -347,7 +349,7 @@ rm -rf %{buildroot}%{python3_sitelib}/imagefactory_plugins/EC2
 %dir %{python3_sitelib}/imagefactory_plugins
 %{python3_sitelib}/imagefactory_plugins/__init__.py*
 %{python3_sitelib}/imagefactory_plugins/__pycache__/*.py*
-%{python3_sitelib}/imagefactory_plugins*.egg-info
+%{python3_sitelib}/imagefactory_plugins*.dist-info
 
 %files ovfcommon
 %dir %{python3_sitelib}/imagefactory_plugins/ovfcommon

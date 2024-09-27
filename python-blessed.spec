@@ -65,7 +65,6 @@ BuildRequires:  python2-backports-functools_lru_cache
 
 %if %{with python3}
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-six
 BuildRequires:  python%{python3_pkgversion}-wcwidth
 BuildRequires:  python%{python3_pkgversion}-pytest
@@ -128,13 +127,17 @@ Requires:       python%{python3_other_pkgversion}-wcwidth
 rm -rf %{pypi_name}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 %if %{with python2}
 %py2_build
 %endif
 
 %if %{with python3}
-%py3_build
+%pyproject_wheel
 %endif
 
 %if 0%{?with_python3_other}
@@ -148,7 +151,7 @@ rm -rf %{pypi_name}.egg-info
 %endif
 
 %if %{with python3}
-%py3_install
+%pyproject_install
 %endif
 
 %if %{with python2}
@@ -179,7 +182,7 @@ export TERM=xterm-256color
 %license LICENSE
 %doc README.rst docs/*.rst
 %{python2_sitelib}/%{pypi_name}
-%{python2_sitelib}/%{pypi_name}-*.egg-info
+%{python2_sitelib}/%{pypi_name}.dist-info
 %endif
 
 %if %{with python3}
@@ -187,7 +190,7 @@ export TERM=xterm-256color
 %license LICENSE
 %doc README.rst docs/*.rst
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-*.egg-info
+%{python3_sitelib}/%{pypi_name}.dist-info
 %endif
 
 %if 0%{?with_python3_other}
@@ -195,7 +198,7 @@ export TERM=xterm-256color
 %license LICENSE
 %doc README.rst docs/*.rst
 %{python3_other_sitelib}/%{pypi_name}
-%{python3_other_sitelib}/%{pypi_name}-*.egg-info
+%{python3_other_sitelib}/%{pypi_name}.dist-info
 %endif
 
 

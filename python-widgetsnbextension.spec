@@ -36,7 +36,7 @@ Interactive HTML widgets for Jupyter notebooks.
 %pyproject_buildrequires
 
 %build
-%py3_build
+%pyproject_wheel
 %pyproject_wheel
 
 %install

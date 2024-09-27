@@ -25,7 +25,6 @@ Lambda, Amazon Kinesis, Amazon S3, and more.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -40,17 +39,20 @@ Lambda, Amazon Kinesis, Amazon S3, and more.
 %autosetup -n aws-iot-device-sdk-python-%{version}
 chmod -x {LICENSE.txt,README.rst,samples/*/*.py}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %license LICENSE.txt
 %doc README.rst samples/
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Wed Aug 07 2024 Miroslav Suchý <msuchy@redhat.com> - 1.4.9-15

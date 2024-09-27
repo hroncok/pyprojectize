@@ -11,7 +11,6 @@ Source0:        %{url}/archive/v%{version}/%{pypi_name}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Requires:       python3-django
 Requires:	python3-coverage
 Requires:	python3-pytest-cov
@@ -38,17 +37,20 @@ so it plays nice with any other form application.
 %prep
 %setup -q -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
  
 %files -n python3-%{pypi_name}
 %license LICENSE.txt
 %doc README.rst
 %{python3_sitelib}/crispy_forms/
-%{python3_sitelib}/django_crispy_forms-*.egg-info
+%{python3_sitelib}/django_crispy_forms.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.14.0-9

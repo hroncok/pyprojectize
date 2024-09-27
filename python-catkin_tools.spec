@@ -35,7 +35,6 @@ BuildRequires:  python%{python3_pkgversion}-mock
 BuildRequires:  python%{python3_pkgversion}-osrf-pycommon >= 0.1.1
 BuildRequires:  python%{python3_pkgversion}-pytest
 BuildRequires:  python%{python3_pkgversion}-PyYAML
-BuildRequires:  python%{python3_pkgversion}-setuptools
 Requires:       cmake
 Requires:       make
 Conflicts:      python2-%{srcname} < 0.4.4-7
@@ -60,15 +59,19 @@ Provides command line tools for working with catkin
 %autosetup -p1 -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %make_build -C docs html man SPHINXBUILD=sphinx-build-%{python3_version}
 rm docs/_build/html/.buildinfo
 
 
 %install
-%py3_install
+%pyproject_install
 
 install -p -m0644 -D docs/_build/man/%{srcname}.1 %{buildroot}%{_mandir}/man1/%{srcname}.1
 
@@ -85,7 +88,7 @@ install -p -m0644 -D docs/_build/man/%{srcname}.1 %{buildroot}%{_mandir}/man1/%{
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 %{_bindir}/catkin
 %{_mandir}/man1/%{srcname}.1.*
 %{_datadir}/zsh/site-functions/_catkin

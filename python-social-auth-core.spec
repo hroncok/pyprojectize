@@ -34,7 +34,6 @@ Source0:        %{pypi_source}
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 # Requirements for running social-core
 BuildRequires:  python3dist(requests)
@@ -77,11 +76,14 @@ is the package you need.
 
 rm -rf %{egginfo_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 rm -r %{buildroot}%{python3_sitelib}/%{module_name}/tests/
 
@@ -92,7 +94,7 @@ rm -r %{buildroot}%{python3_sitelib}/%{module_name}/tests/
 %license LICENSE
 %doc README.md CHANGELOG.md
 %{python3_sitelib}/%{module_name}/
-%{python3_sitelib}/%{egginfo_name}-%{version}-py*.egg-info
+%{python3_sitelib}/%{egginfo_name}-%{version}.dist-info
 
 %changelog
 * Mon Aug 19 2024 Chenxiong Qi <qcxhome@gmail.com> - 4.5.4-2

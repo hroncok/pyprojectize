@@ -22,7 +22,6 @@ BuildArch:      noarch
 %package -n     python3-%{pkg_name}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 Requires:       python3-setuptools
 %{?python_provide:%python_provide python3-%{pkg_name}}
@@ -37,12 +36,16 @@ sed -i "s/setup(/setup_method(/" test.py
 sed -i "s/teardown(/teardown_method(/" test.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest test.py
@@ -51,7 +54,7 @@ sed -i "s/teardown(/teardown_method(/" test.py
 %files -n python3-%{pkg_name}
 %license LICENSE
 %doc README.rst CHANGES
-%{python3_sitelib}/%{pkg_name}-%{pypi_version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pkg_name}-%{pypi_version}.dist-info
 %{python3_sitelib}/%{pkg_name}/
 
 

@@ -41,7 +41,6 @@ BuildRequires:  hdf5-devel
 # hdf5-mpich-devel?
 BuildRequires:  zlib-devel
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  pybind11-devel
 BuildRequires:  python3dist(numpy)
 BuildRequires:  python3dist(fenics-ffc) >= %{fenics_version}
@@ -113,6 +112,9 @@ sed -r -i 's|boost/detail/endian.hpp|boost/endian/arithmetic.hpp|' \
   dolfin/io/VTKFile.cpp \
   dolfin/io/VTKWriter.cpp
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 # %%_mpich_load
 mkdir -p build && cd build
@@ -135,14 +137,14 @@ sed -r -i "s|Cflags:.*|\\0 -I${ffc_path} ${eigen_options}|" \
 %make_install
 
 cd ../python
-VERBOSE=1 CMAKE_PREFIX_PATH=%{buildroot}/usr/share/dolfin/cmake CMAKE_SKIP_INSTALL_RPATH=yes CMAKE_SKIP_RPATH=yes %py3_build
+VERBOSE=1 CMAKE_PREFIX_PATH=%{buildroot}/usr/share/dolfin/cmake CMAKE_SKIP_INSTALL_RPATH=yes CMAKE_SKIP_RPATH=yes %pyproject_wheel
 
 %install
 cd build
 %make_install
 
 cd ../python
-VERBOSE=1 CMAKE_PREFIX_PATH=%{buildroot}/usr/share/dolfin/cmake CMAKE_SKIP_INSTALL_RPATH=yes CMAKE_SKIP_RPATH=yes %py3_install
+VERBOSE=1 CMAKE_PREFIX_PATH=%{buildroot}/usr/share/dolfin/cmake CMAKE_SKIP_INSTALL_RPATH=yes CMAKE_SKIP_RPATH=yes %pyproject_install
 
 sed -r -i '1 {s|#!/usr/bin/env python.*|#!%{__python3}|}' \
     %{buildroot}%{_bindir}/dolfin-order \
@@ -188,7 +190,7 @@ ctest -V %{?_smp_mflags}
 %{python3_sitearch}/dolfin/
 %{python3_sitearch}/dolfin_utils/
 %{python3_sitearch}/fenics/
-%{python3_sitearch}/fenics_dolfin-%{fenics_version}*-py%{python3_version}.egg-info/
+%{python3_sitearch}/fenics_dolfin-%{fenics_version}*.dist-info/
 
 %changelog
 %autochangelog

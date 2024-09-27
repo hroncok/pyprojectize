@@ -35,7 +35,6 @@ BuildRequires:  python3-ansicolors
 BuildRequires:  python3-coverage
 BuildRequires:  python3-pytest
 BuildRequires:  python3-pytest-cov
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-textwrap3
 BuildRequires:  python3-tox
 %{?python_provide:%python_provide python3-%{pypi_name}}
@@ -51,11 +50,14 @@ and display style, they have no logical length.
 %autosetup -n %{pypi_name}-%{version} -p1
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v test
@@ -64,7 +66,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v test
 %license LICENSE.txt
 %doc README.rst
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 0.8.4-18

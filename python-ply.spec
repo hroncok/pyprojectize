@@ -32,7 +32,6 @@ essential features:
 Summary:        Python Lex-Yacc
 %{?python_provide:%python_provide python3-%{modname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description -n python3-%{modname}
 PLY is a straightforward lex/yacc implementation. Here is a list of its 
@@ -61,11 +60,14 @@ rm -rf *.egg-info
 # extract license block from beginning of README.md
 grep -B1000 "POSSIBILITY OF SUCH DAMAGE" README.md > LICENSE
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with tests}
 %check
@@ -80,7 +82,7 @@ popd
 %doc CHANGES README.md
 %license LICENSE
 %{python3_sitelib}/%{modname}/
-%{python3_sitelib}/%{modname}-%{version}-*.egg-info/
+%{python3_sitelib}/%{modname}-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 3.11-25

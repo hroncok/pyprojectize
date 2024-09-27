@@ -17,7 +17,6 @@ BuildRequires: gcc
 BuildRequires: gcc-c++
 BuildRequires: ninja-build
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 %description
 This project aims to be the best, clearest QR Code generator library in
@@ -84,6 +83,9 @@ comments.
 # Unpacking CMake build script and assets...
 tar -xf %{SOURCE1} %{cmakename}-%{version}-%{cmakesuffix}/cmake %{cmakename}-%{version}-%{cmakesuffix}/CMakeLists.txt --strip=1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 # Building C and C++ versions...
 %cmake -G Ninja \
@@ -93,7 +95,7 @@ tar -xf %{SOURCE1} %{cmakename}-%{version}-%{cmakesuffix}/cmake %{cmakename}-%{v
 
 # Building Python version...
 pushd python
-%py3_build
+%pyproject_wheel
 popd
 
 %check
@@ -105,7 +107,7 @@ popd
 
 # Installing Python version...
 pushd python
-%py3_install
+%pyproject_install
 popd
 
 # Installing a legacy symlink for compatibility...
@@ -135,7 +137,7 @@ ln -s qrcodegen.hpp %{buildroot}%{_includedir}/qrcodegencpp/QrCode.hpp
 %license Readme.markdown
 %{python3_sitelib}/qrcodegen.py
 %{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/qrcodegen-*.egg-info/
+%{python3_sitelib}/qrcodegen.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.8.0-11

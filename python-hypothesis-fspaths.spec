@@ -18,7 +18,6 @@ Anything the built-in Python function open() accepts can be generated.
 %package -n python3-%{pypi_name}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 BuildRequires:  python3-pytest-runner
 BuildRequires:  python3-hypothesis
@@ -31,11 +30,14 @@ Anything the built-in Python function open() accepts can be generated.
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -43,7 +45,7 @@ Anything the built-in Python function open() accepts can be generated.
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{modulename}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{modulename}-%{version}.dist-info
 %{python3_sitelib}/%{modulename}.py
 %{python3_sitelib}/__pycache__/%{modulename}.*.py*
 

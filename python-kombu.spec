@@ -41,7 +41,6 @@ Requires:       python3-amqp
 Requires:       python3-vine
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if %{with tests}
 BuildRequires:  python3-amqp
 BuildRequires:  python3-pymongo
@@ -73,11 +72,14 @@ also provide proven and tested solutions to common messaging problems.
 %prep
 %autosetup -n %{srcname}-%{upstream_version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %if %{with tests}
@@ -88,7 +90,7 @@ also provide proven and tested solutions to common messaging problems.
 %doc AUTHORS FAQ READ* THANKS TODO examples/
 %license LICENSE
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}*.egg-info
+%{python3_sitelib}/%{srcname}*.dist-info
 
 %changelog
 %autochangelog

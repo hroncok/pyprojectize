@@ -27,7 +27,6 @@ Summary:        Python function signatures from PEP362 for Python 2.6, 2.7 and 3
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if %{with doc}
 BuildRequires:  python3-sphinx
 %endif
@@ -53,8 +52,11 @@ rm -rf %{pypi_name}.egg-info
 sed -i '/extras_require/,+3d' setup.py
 %endif
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %if %{with doc}
 # generate html docs
@@ -66,7 +68,7 @@ rm -rf html/.{doctrees,buildinfo}
 %install
 # Must do the subpackages' install first because the scripts in /usr/bin are
 # overwritten with every setup.py install.
-%py3_install
+%pyproject_install
 
 
 %check
@@ -78,7 +80,7 @@ rm -rf html/.{doctrees,buildinfo}
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py?.*.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}-py?.*.dist-info/
 
 %if %{with doc}
 %files -n python-%{pypi_name}-doc

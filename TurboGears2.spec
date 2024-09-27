@@ -12,7 +12,7 @@ BuildArch:      noarch
 BuildRequires:  python3-backlash
 BuildRequires:  python3-chameleon
 BuildRequires:  python3-crank >= 0.8.0
-BuildRequires:  python3-devel python3-setuptools
+BuildRequires:  python3-devel
 BuildRequires:  python3-formencode
 BuildRequires:  python3-genshi >= 0.5.1
 BuildRequires:  python3-jinja2
@@ -71,11 +71,15 @@ Requires:       python3-zope-sqlalchemy >= 0.4
 %autosetup -n %{name}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 rm -fr %{buildroot}%{python3_sitelib}/tests
 
 # Tests cannot be included because some test dependencies
@@ -85,7 +89,7 @@ rm -fr %{buildroot}%{python3_sitelib}/tests
 
 %files -n python3-%{name}
 %doc README.rst
-%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{name}-%{version}.dist-info/
 %{python3_sitelib}/tg/
 
 %changelog

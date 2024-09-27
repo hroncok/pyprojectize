@@ -11,7 +11,6 @@ Patch:          0001-Use-configparser.ConfigParser-instead-of-SafeConfigP.patch
 Patch:          0002-setup.py-specify-cython-language_level.patch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-Cython
 BuildRequires:  gcc
 # For tests:
@@ -44,11 +43,14 @@ Requires:       python3-numpy
 # It wants to add coverage and flakes, which is not useful for us
 rm pytest.ini
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 OPTIONS=(
@@ -64,7 +66,7 @@ OPTIONS=(
 %license LICENSE
 %doc README.md
 %{python3_sitearch}/ndindex/
-%{python3_sitearch}/ndindex-%{version}-py%{python3_version}.egg-info/
+%{python3_sitearch}/ndindex-%{version}.dist-info/
 
 %changelog
 %autochangelog

@@ -32,7 +32,6 @@ This library should be API compatible with librabbitmq.
 %package -n python3-%{srcname}
 Summary:        Client library for AMQP
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if %{with tests}
 BuildRequires:  python3-pytest
 BuildRequires:  python3-vine >= 5.1.0
@@ -62,11 +61,14 @@ Documentation for python-amqp
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with sphinx_docs}
 # docs generation requires everything to be installed first
@@ -93,7 +95,7 @@ popd
 %doc Changelog README.rst
 %license LICENSE
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 %files doc
 %license LICENSE

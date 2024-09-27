@@ -14,7 +14,6 @@ Source0:        https://codeberg.org/poezio/%{name}/archive/v%{version}.tar.gz
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 #BuildRequires:  python3-pytest
 
 %description
@@ -33,12 +32,16 @@ are offline.
 find ./%{srcname}/ -type f '(' -name __init__.py -o -name version.py ')' -ls -exec sed -i 's@#!/usr/bin/env python3@@' '{}' \;
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -51,7 +54,7 @@ find ./%{srcname}/ -type f '(' -name __init__.py -o -name version.py ')' -ls -ex
 %doc README.rst ChangeLog CONTRIBUTING.rst
 # For noarch packages: sitelib
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 
 
 

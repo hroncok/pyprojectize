@@ -15,7 +15,6 @@ development.
 %package -n python%{python3_pkgversion}-pycmd
 Summary:        Tools for managing/searching Python related files
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-py >= 1.4.0
 Requires:       python%{python3_pkgversion}-setuptools
 Requires:       python%{python3_pkgversion}-py >= 1.4.0
@@ -31,12 +30,16 @@ development.
 %setup -q
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 # remove shebangs from all scripts
 find %{buildroot}%{python3_sitelib} -name '*.py' \

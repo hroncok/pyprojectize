@@ -12,7 +12,6 @@ Source0:        https://files.pythonhosted.org/packages/source/p/%{srcname}/%{sr
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 %{sum}
@@ -30,13 +29,16 @@ Requires:       python3-pygments >= 1.5
 # Remove bundled egg-info
 rm -rf %{srcname}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
 # Must do the subpackages' install first because the scripts in /usr/bin are
 # overwritten with every setup.py install.
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %doc README.rst AUTHORS.rst HISTORY.rst

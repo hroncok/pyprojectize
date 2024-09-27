@@ -18,7 +18,6 @@ PyFtdi aims at providing a user-space driver for modern FTDI devices.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -27,18 +26,21 @@ PyFtdi aims at providing a user-space driver for modern FTDI devices.
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{pypi_name}
 %doc README.md
 %{_bindir}/*.py
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}*.egg-info/
+%{python3_sitelib}/%{pypi_name}*.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.55.4-4

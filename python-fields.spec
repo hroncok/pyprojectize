@@ -38,7 +38,6 @@ HTML API documentation for the '%{srcname}' Python module.
 Summary:        %{summary}
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-pytest
 BuildRequires:  python%{python3_pkgversion}-pytest-benchmark
 
@@ -61,13 +60,16 @@ Features:
 %autosetup -p1
 sed -i 's/\[pytest\]/\[tool:pytest\]/' setup.cfg
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 PYTHONPATH=$PWD/src sphinx-build -b html docs docs/_build/html
 rm -rf docs/_build/html/.buildinfo docs/_build/html/.doctrees
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # Perf tests require unmaintained 'characteristic' module
@@ -83,7 +85,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} \
 %license LICENSE
 %doc AUTHORS.rst CHANGELOG.rst README.rst
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 5.0.0-21

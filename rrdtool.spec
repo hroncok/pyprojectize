@@ -99,7 +99,7 @@ The Perl RRDtool bindings
 %package -n python3-rrdtool
 %{?python_provide:%python_provide python3-rrdtool}
 Summary: Python RRDtool bindings
-BuildRequires: python3-devel, python3-setuptools
+BuildRequires: python3-devel
 %{?__python3:Requires: %{__python3}}
 Requires: %{name} = %{version}-%{release}
 
@@ -196,6 +196,9 @@ perl -pi.orig -e 's|1.299907080300|1.29990708|' \
 # workaround needed due to https://bugzilla.redhat.com/show_bug.cgi?id=211069
 cp -p /usr/lib/rpm/redhat/config.{guess,sub} php4/
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 ./bootstrap
 %configure \
@@ -269,7 +272,7 @@ find examples/ -name "*.pl" \
 
 # Rebuild python
 pushd bindings/python
-%py3_build
+%pyproject_wheel
 popd
 
 %install
@@ -313,7 +316,7 @@ find examples/ -type f -exec chmod 0644 {} \;
 
 # Reinstall python
 pushd bindings/python
-%py3_install
+%pyproject_install
 popd
 
 # Clean up the buildroot
@@ -376,7 +379,7 @@ LD_LIBRARY_PATH=%{buildroot}%{_libdir} php -n \
 %files -n python3-rrdtool
 %doc bindings/python/COPYING bindings/python/README.md
 %{python3_sitearch}/rrdtool*.so
-%{python3_sitearch}/rrdtool-*.egg-info
+%{python3_sitearch}/rrdtool.dist-info
 
 %if %{with_php}
 %files php

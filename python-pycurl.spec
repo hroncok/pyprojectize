@@ -29,7 +29,6 @@ BuildRequires:  libcurl-full
 BuildRequires:  make
 BuildRequires:  openssl-devel
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %if %{with tests}
 BuildRequires:  python3-flaky
@@ -68,12 +67,15 @@ Requires:       libcurl%{?_isa} >= %{libcurl_ver}
 sed -e 's|python |%{python3} |' -i tests/ext/test-suite.sh
 %py3_shebang_fix tests/*.py setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build -- --with-openssl
+%pyproject_wheel -C--global-option=--with-openssl
 
 %install
 export PYCURL_SSL_LIBRARY=openssl
-%py3_install
+%pyproject_install
 rm -rf %{buildroot}%{_datadir}/doc/pycurl
 
 %if %{with tests}
@@ -97,7 +99,7 @@ export PYTEST_ADDOPTS="--ignore examples -m 'not online' -k 'not (test_http_vers
 %doc ChangeLog README.rst examples doc
 %{python3_sitearch}/curl/
 %{python3_sitearch}/%{modname}.*.so
-%{python3_sitearch}/%{modname}-%{version}-*.egg-info
+%{python3_sitearch}/%{modname}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 7.45.3-4

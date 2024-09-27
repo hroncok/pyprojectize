@@ -25,7 +25,6 @@ versions.
 Summary:            Standalone WebOb port of the Werkzeug Debugger with Python3 support meant to replace WebError in TurboGears2
 %{?python_provide:%python_provide python3-backslash}
 BuildRequires:      python3-devel
-BuildRequires:      python3-setuptools
 Requires:           open-sans-fonts
 
 %description -n python3-backlash %_description
@@ -38,12 +37,16 @@ Requires:           open-sans-fonts
 rm -rf %{modname}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 ln -sfv /usr/share/fonts/open-sans/OpenSans-Regular.ttf %{buildroot}/%{python3_sitelib}/%{modname}/statics/opensans.ttf
 
 

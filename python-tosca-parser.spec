@@ -23,7 +23,6 @@ Summary:        Parser for TOSCA Simple Profile in YAML
 BuildRequires:  python3-devel
 BuildRequires:  python3-pbr >= 1.3
 BuildRequires:  python3-PyYAML
-BuildRequires:  python3-setuptools
 # Required for testing
 BuildRequires:  python3-six
 BuildRequires:  python3-dateutil
@@ -66,8 +65,11 @@ This package contains its documentation
 # Let's manage requirements using rpm.
 rm -f *requirements.txt
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 sphinx-build-3 doc/source html
 # remove the sphinx-build leftovers
 rm -rf html/.{doctrees,buildinfo}
@@ -80,7 +82,7 @@ PYTHON=python3 %{__python3} setup.py test || true
 rm -rf .testrepository
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 # Set executable permission on test scripts
 find %{buildroot}/%{python3_sitelib}/toscaparser/tests -name '*.sh' -execdir chmod +x '{}' \;
@@ -92,7 +94,7 @@ find %{buildroot}/%{python3_sitelib}/toscaparser/tests -name '*.py' -exec sed -i
 %license LICENSE
 %{_bindir}/tosca-parser
 %{python3_sitelib}/toscaparser
-%{python3_sitelib}/tosca_parser-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/tosca_parser-%{version}.dist-info
 
 %files -n python-%{pypi_name}-doc
 %doc html README.rst

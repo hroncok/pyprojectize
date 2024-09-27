@@ -12,7 +12,6 @@ Source0:        https://files.pythonhosted.org/packages/source/p/%{srcname}/%{sr
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 BuildRequires:  python3-six
 
@@ -38,11 +37,14 @@ sed -i "s/'pytest<4.0.0'/'pytest'/" setup.py
 # This is not needed when building from the sdist
 sed -i -e '/setuptools-git/d' common_setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test

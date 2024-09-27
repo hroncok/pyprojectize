@@ -22,7 +22,6 @@ ExclusiveArch:  %{ix86} x86_64 noarch
 %if 0%{?with_python3}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-m2crypto
 BuildRequires:  python3-munch
 BuildRequires:  python3-solv
@@ -30,7 +29,6 @@ BuildRequires:  python3-libmodulemd
 BuildRequires:  python3-openidc-client
 BuildRequires:  python3-ldap3
 BuildRequires:  python3-koji
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-click
 BuildRequires:  python3-flask-sqlalchemy
 BuildRequires:  python3-flask-migrate
@@ -212,9 +210,12 @@ sed -i '/koji/d' requirements.txt
 sed -i '/futures/d' requirements.txt
 sed -i '/enum34/d' requirements.txt
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if 0%{?with_python3}
-%py3_build
+%pyproject_wheel
 %else
 %py2_build
 %endif
@@ -222,7 +223,7 @@ sed -i '/enum34/d' requirements.txt
 
 %install
 %if 0%{?with_python3}
-%py3_install
+%pyproject_install
 %else
 %py2_install
 %endif

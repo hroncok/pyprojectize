@@ -18,7 +18,6 @@ Source12:        %{testurl}/fixtures/example.html#/%{commit0}_example.html
 Source13:        %{testurl}/fixtures/example2.css#/%{commit0}_example2.css
 
 BuildArch:      noarch
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-devel
 BuildRequires:  python3
 BuildRequires:  python3-pytest
@@ -45,11 +44,14 @@ This is an adapted version of Ruby PDFKit.
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 mkdir -p tests/fixtures
@@ -65,7 +67,7 @@ find tests -type f |\
 %license LICENSE
 %doc README.rst HISTORY.rst
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.6.1-16

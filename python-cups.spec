@@ -27,7 +27,6 @@ BuildRequires: cups-devel
 BuildRequires: python3-devel
 # distutils are removed from python3 project, use the one
 # from setuptools
-BuildRequires: python3-setuptools
 
 %description
 This package provides Python bindings for CUPS API,
@@ -52,12 +51,15 @@ Documentation for python-cups.
 %prep
 %autosetup -S git -n pycups-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
 make install-rpmhook DESTDIR="%{buildroot}"
-%py3_install
+%pyproject_install
 export PYTHONPATH=%{buildroot}%{python3_sitearch}
 %{__python3} -m pydoc -w cups
 %{_bindir}/mkdir html
@@ -67,7 +69,7 @@ export PYTHONPATH=%{buildroot}%{python3_sitearch}
 %doc README NEWS TODO
 %license COPYING
 %{python3_sitearch}/cups.cpython-3*.so
-%{python3_sitearch}/pycups*.egg-info
+%{python3_sitearch}/pycups*.dist-info
 %{_rpmconfigdir}/fileattrs/psdriver.attr
 %{_rpmconfigdir}/postscriptdriver.prov
 

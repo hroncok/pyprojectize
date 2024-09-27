@@ -48,7 +48,6 @@ BuildRequires: python3-scipy
 BuildRequires: python3-numpy >= 1:1.10.0
 BuildRequires: python3-matplotlib
 BuildRequires: python3-biopython
-BuildRequires: python3-setuptools
 
 Requires: python3-scipy
 Requires: python3-biopython
@@ -75,11 +74,14 @@ visual analysis.
 find prody/proteins/ccealign -name '*.h' -exec chmod 0644 '{}' \;
 find prody/proteins/ccealign -name '*.cpp' -exec chmod 0644 '{}' \;
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 mkdir -p $RPM_BUILD_ROOT%{_bindir}
 rm -f $RPM_BUILD_ROOT%{_bindir}/*
@@ -129,7 +131,7 @@ popd
 %{_bindir}/evol-%{python3_version}
 %{_bindir}/python%{python3_version}-evol
 %{python3_sitearch}/prody/
-%{python3_sitearch}/%{name}-*.egg-info
+%{python3_sitearch}/%{name}.dist-info
 
 %changelog
 %autochangelog

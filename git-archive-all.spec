@@ -10,7 +10,6 @@ URL:            https://github.com/Kentzo/git-archive-all
 Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 # git-submodule is in git, not in git-core
 Requires:       git
 
@@ -23,17 +22,20 @@ BuildArch:      noarch
 %autosetup
 #sed -i -e '1{\@^#! /usr/bin/env python@d}' %{modname}.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %license LICENSE.txt
 %doc README.rst
 %{_bindir}/%{name}
-%{python3_sitelib}/%{modname}-*.egg-info/
+%{python3_sitelib}/%{modname}.dist-info/
 %{python3_sitelib}/%{modname}.py
 %{python3_sitelib}/__pycache__/%{modname}.*
 

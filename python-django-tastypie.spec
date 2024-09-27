@@ -15,7 +15,6 @@ Source0:        https://github.com/%{pypi_name}/%{pypi_name}/archive/v%{version}
 BuildArch:      noarch
 # Let's keep Requires and BuildRequires sorted alphabetically
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-sphinx
 
 %description
@@ -60,11 +59,11 @@ sphinx-build-3 docs docs/_build/html
 #popd
 rm -rf docs/_build/html/.??*
 
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %doc README.rst AUTHORS LICENSE

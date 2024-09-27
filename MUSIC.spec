@@ -67,7 +67,6 @@ BuildRequires:  hwloc-devel
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(looseversion)
 BuildRequires:  python3dist(cython)
-BuildRequires:  python3dist(setuptools)
 # Currently bundles a modified version of rudeconfig which cannot be unbundled
 # until MUSIC upstream sends their changes upstream to rudeconfig.
 # https://github.com/INCF/MUSIC/issues/56
@@ -165,6 +164,9 @@ cp %{name}-%{version}/README .
     cp -a %{name}-%{version} %{name}-%{version}-openmpi
 %endif
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 
 %global do_build %{expand:
@@ -187,7 +189,7 @@ MPI_LDFLAGS="$LDFLAGS $(pkg-config --libs $MPI_VARIANT | sed 's|-Lsystem/lib||')
 
 # Make python bits ourselves
 pushd pymusic
-%{py3_build}
+%{pyproject_wheel}
 popd
 
 popd
@@ -331,7 +333,7 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 %license LICENSE
 %doc README
 %{_libdir}/python%{python3_version}/site-packages/mpich/%{lname}
-%{_libdir}/python%{python3_version}/site-packages/mpich/%{lname}-%{version}-py%{python3_version}.egg-info
+%{_libdir}/python%{python3_version}/site-packages/mpich/%{lname}-%{version}.dist-info
 %endif
 
 %if %{with openmpi}
@@ -378,7 +380,7 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 %license LICENSE
 %doc README
 %{_libdir}/python%{python3_version}/site-packages/openmpi/%{lname}
-%{_libdir}/python%{python3_version}/site-packages/openmpi/%{lname}-%{version}-py%{python3_version}.egg-info
+%{_libdir}/python%{python3_version}/site-packages/openmpi/%{lname}-%{version}.dist-info
 %endif
 
 %changelog

@@ -15,7 +15,6 @@ BuildArch:      noarch
 BuildRequires:  langpacks-pt_BR
 
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 # BuildRequires:  python%{python3_pkgversion}-nose
 BuildRequires:  python%{python3_pkgversion}-test
 BuildRequires:  python%{python3_pkgversion}-chardet
@@ -60,8 +59,11 @@ python-3 version of the kitchen library.
 # Remove bundled egg info, if any.
 rm -rf *.egg*
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 # Build docs
 %if 0%{?rhel}
@@ -71,7 +73,7 @@ rm -rf html/.buildinfo
 %endif
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 # %check
 # # In current mock, the PATH isn't being reset.  This causes failures in some

@@ -35,7 +35,6 @@ BuildRequires: gettext-devel
 BuildRequires: glibc-langpack-en
 BuildRequires: libtool
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 Requires: %{name}-common = %{version}-%{release}
 
 %description
@@ -97,17 +96,20 @@ regexps of any length, any number of errors, and non-uniform costs.
 touch ChangeLog
 autoreconf -vif
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %configure --disable-static --disable-rpath
 %make_build
 pushd python
-%py3_build
+%pyproject_wheel
 popd
 
 %install
 %make_install
 pushd python
-%py3_install
+%pyproject_install
 popd
 rm $RPM_BUILD_ROOT%{_libdir}/*.la
 %find_lang %{name}
@@ -132,7 +134,7 @@ rm $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %files -n python3-%{name}
 %attr(0755,root,root) %{python3_sitearch}/tre%{python3_ext_suffix}
-%{python3_sitearch}/tre-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/tre-%{version}.dist-info
 
 %files -n agrep
 %{_bindir}/agrep

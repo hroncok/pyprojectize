@@ -62,7 +62,7 @@ rm -rf src/%{pypi_name}.egg-info
 %if %{with pyproject}
 %pyproject_wheel
 %else
-%py3_build
+%pyproject_wheel
 %endif
 
 
@@ -71,7 +71,7 @@ rm -rf src/%{pypi_name}.egg-info
 %pyproject_install
 %pyproject_save_files %{pypi_name}
 %else
-%py3_install
+%pyproject_install
 %endif
 
 %check
@@ -82,7 +82,7 @@ rm -rf src/%{pypi_name}.egg-info
 %else
 %files -n python3-%{pypi_name}
 %{python3_sitearch}/%{pypi_name}/
-%{python3_sitearch}/%{pypi_name}-%{version}*.egg-info/
+%{python3_sitearch}/%{pypi_name}-%{version}*.dist-info/
 %license LICENSE
 %endif
 %doc README.rst

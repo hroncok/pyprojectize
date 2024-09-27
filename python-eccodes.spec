@@ -22,7 +22,6 @@ Patch3:         python-eccodes-disable-findlibs.patch
 # note that the fast bindings are arch dependent
 BuildRequires:  eccodes-devel
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 # needed to build the fast bindings
 BuildRequires:  python3-cffi
 # needed for checks/tests
@@ -65,11 +64,14 @@ Summary: %summary
 %prep
 %autosetup -n eccodes-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # NOTE:
 # this package includes 2 c header files named gribapi/eccodes.h and
@@ -100,7 +102,7 @@ rm -rf %sphinx_doc_path/.doctrees
 %doc README.rst
 %doc %sphinx_doc_path
 %license LICENSE
-%{python3_sitearch}/eccodes-*-py*.egg-info
+%{python3_sitearch}/eccodes-*.dist-info
 %{python3_sitearch}/eccodes
 %{python3_sitearch}/gribapi
 

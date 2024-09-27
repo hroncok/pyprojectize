@@ -46,7 +46,6 @@ BuildRequires:  libev-devel
 
 %if 0%{?with_python3}
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 %endif # if with_python3
 
 # html doc generation
@@ -83,10 +82,14 @@ to libev library to be called from Python scripts.
 %endif
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 
 %if 0%{?with_python3}
-%py3_build
+%pyproject_wheel
 %endif # with_python3
 
 
@@ -94,7 +97,7 @@ to libev library to be called from Python scripts.
 %install
 
 %if 0%{?with_python3}
-%py3_install
+%pyproject_install
 %endif # with_python3
 
 

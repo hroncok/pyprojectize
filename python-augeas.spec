@@ -8,7 +8,6 @@ Source0:	https://github.com/hercules-team/%{name}/archive/v%{version}/%{name}-%{
 Patch0:		%{name}-test-package-installation.patch
 BuildArch:	noarch
 
-BuildRequires:	python3-setuptools
 BuildRequires:	python3-devel
 BuildRequires:	augeas
 BuildRequires:	python3-pytest
@@ -31,11 +30,14 @@ python3-augeas is a set of Python bindings around augeas.
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 %check
 pytest-3
@@ -45,7 +47,7 @@ pytest-3
 %doc AUTHORS README.txt
 %{python3_sitelib}/augeas.py
 %{python3_sitelib}/augeas/
-%{python3_sitelib}/python_augeas-*.egg-info
+%{python3_sitelib}/python_augeas.dist-info
 %{python3_sitelib}/__pycache__/*
 
 

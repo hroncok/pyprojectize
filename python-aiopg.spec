@@ -21,7 +21,6 @@ database driver.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if %{with docker}
 BuildRequires:  python3-sqlalchemy
 BuildRequires:  python3-pytest
@@ -42,11 +41,14 @@ rm -rf %{pypi_name}.egg-info
 # Use a different module
 sed -i -e 's/"psycopg2-binary>=2.8.4"/"psycopg2"/g' setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with docker}
 %check
@@ -57,7 +59,7 @@ sed -i -e 's/"psycopg2-binary>=2.8.4"/"psycopg2"/g' setup.py
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py*.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.3.4-9

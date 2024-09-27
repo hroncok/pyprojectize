@@ -33,7 +33,6 @@ of code changes.
 %package -n python3-%{pkgname}
 Summary:        Version control extension for the Django web framework
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Requires:       python3-django
 %{?python_provide:%python_provide python3-%{pkgname}}
 
@@ -61,12 +60,15 @@ of code changes.
 %prep
 %autosetup -n %{pkgname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 # Language files; not under /usr/share, need to be handled manually
 (cd $RPM_BUILD_ROOT && find . -name 'django*.mo') | %{__sed} -e 's|^.||' | %{__sed} -e \
@@ -86,7 +88,7 @@ find $RPM_BUILD_ROOT -name "*.po" | xargs rm -f
 %{python3_sitelib}/reversion/management/
 %{python3_sitelib}/reversion/templates/
 %{python3_sitelib}/reversion/migrations/
-%{python3_sitelib}/django_reversion-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/django_reversion-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 4.0.0-12

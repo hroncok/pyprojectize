@@ -14,7 +14,6 @@ BuildArch: noarch
 BuildRequires: desktop-file-utils
 BuildRequires: libappstream-glib
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 Requires: gnu-free-sans-fonts
 Requires: hicolor-icon-theme
 Requires: python3-pygame
@@ -31,11 +30,14 @@ randomly generated playing fields.
 
 rm -f src/slingshot/data/FreeSansBold.ttf
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 rm -rf $RPM_BUILD_ROOT/slingshot
 rm -rf $RPM_BUILD_ROOT/home
@@ -62,7 +64,7 @@ ln -s %{_datadir}/fonts/gnu-free/FreeSansBold.ttf $RPM_BUILD_ROOT%{python3_sitel
 
 %files
 %{_bindir}/slingshot
-%{python3_sitelib}/%{name}-*.egg-info
+%{python3_sitelib}/%{name}.dist-info
 %{python3_sitelib}/%{name}/
 %doc README
 %license LICENSE

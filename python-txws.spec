@@ -36,7 +36,6 @@ for adding WebSockets server support to your favorite Twisted applications.}
 %package -n python3-%{pkgname}
 Summary:          %{summary}
 BuildRequires:    python3-devel
-BuildRequires:    %{py3_dist setuptools}
 %if %{with tests}
 BuildRequires:    %{py3_dist Twisted six}
 %endif
@@ -48,11 +47,14 @@ BuildRequires:    %{py3_dist Twisted six}
 %autosetup -p1 -n %{srcname}-%{version}
 rm -rf %{eggname}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %if %{with tests}
@@ -64,7 +66,7 @@ PYTHONPATH=$(pwd) trial-3 tests
 %doc README.rst
 %{python3_sitelib}/%{libname}.py
 %{python3_sitelib}/__pycache__/%{libname}.cpython-%{python3_version_nodots}*.py*
-%{python3_sitelib}/%{eggname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{eggname}-%{version}.dist-info
 
 
 %changelog

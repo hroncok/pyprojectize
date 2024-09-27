@@ -43,13 +43,11 @@ BuildArch: noarch
 
 BuildRequires: python3
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 # test dependencies
 BuildRequires: python3-requests
 BuildRequires: python3-m2crypto
 # currently an undeclared dependency of m2crypto in F39/Rawhide:
 # https://bugzilla.redhat.com/show_bug.cgi?id=2259967
-BuildRequires: python3-setuptools
 BuildRequires: python3-libvirt
 BuildRequires: python3-lxml
 BuildRequires: python3-libguestfs
@@ -85,11 +83,14 @@ installations, with minimal input from the user.
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 mkdir -p $RPM_BUILD_ROOT%{_localstatedir}/lib/oz/
 mkdir -p $RPM_BUILD_ROOT%{_localstatedir}/lib/oz/isocontent/
@@ -133,7 +134,7 @@ libvirtd -d
 %{_bindir}/oz-cleanup-cache
 %{_mandir}/man1/*
 %{python3_sitelib}/oz
-%{python3_sitelib}/%{name}*.egg-info
+%{python3_sitelib}/%{name}*.dist-info
 
 %changelog
 * Mon Sep 02 2024 Miroslav Suchý <msuchy@redhat.com> - 0.18.1-16

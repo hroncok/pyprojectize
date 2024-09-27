@@ -14,7 +14,6 @@ Source0:        https://pypi.python.org/packages/source/r/%{modname}/%{modname}-
 BuildArch:      noarch
 
 BuildRequires:      python3-devel
-BuildRequires:      python3-setuptools
 BuildRequires:      python3-pytest
 BuildRequires:      python3-coverage
 BuildRequires:      python3-zope-interface
@@ -55,12 +54,16 @@ considered to be the domain of the WSGI application.
 rm -rf %{modname}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 #PYTHONPATH=$(pwd) %%{__python3} setup.py test

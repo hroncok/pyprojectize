@@ -15,7 +15,6 @@ Patch2:     0003-plugin_e2ee-ignore-incorrect-mypy-error.patch
 Patch3:     0004-plugin_e2ee-pass-on-own-key-information-to-plugin.patch
 
 BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
 BuildRequires:	gcc
 # For tests
 BuildRequires:  python3-pytest
@@ -63,8 +62,12 @@ This package contains documentation in HTML format.
 %patch 3 -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 # Remove the sphinx readthedocs theme before the build
 rm -rf doc/source/theme/sphinx_rtd_theme/
 # Build sphinx documentation
@@ -74,7 +77,7 @@ popd # doc/
 
 
 %install
-%py3_install
+%pyproject_install
 
 # Remove sources from doc subpackage, but not from html/ subdirectory
 rm -rf %{buildroot}%{_pkgdocdir}/source/
@@ -106,7 +109,7 @@ rm -f %{buildroot}%{_pkgdocdir}/html/.buildinfo
 # be splitted in a separate subpackage.
 %{python3_sitearch}/%{name}_plugins/
 %{python3_sitearch}/%{name}_themes/
-%{python3_sitearch}/%{name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitearch}/%{name}-%{version}.dist-info/
 
 
 %files doc

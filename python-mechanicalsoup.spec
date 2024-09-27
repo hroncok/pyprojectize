@@ -26,7 +26,6 @@ BuildRequires:  python3dist(pytest-httpbin)
 BuildRequires:  python3dist(pytest-mock)
 BuildRequires:  python3dist(requests)
 BuildRequires:  python3dist(requests-mock)
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(six)
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -40,12 +39,15 @@ rm -rf %{pypi_name}.egg-info
 # No linting
 sed -i -e 's/--flake8//g' setup.cfg
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v tests
@@ -54,7 +56,7 @@ sed -i -e 's/--flake8//g' setup.cfg
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/MechanicalSoup-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/MechanicalSoup-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.3.0-3

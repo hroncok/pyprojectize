@@ -24,7 +24,6 @@ or relative (i.e. run this test before this other test).
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -47,13 +46,16 @@ Documentation for %{name}.
 %autosetup -p1 -n %{pypi_name}-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 PYTHONPATH=${PWD} sphinx-build-3 docs/source/ html
 rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=%{buildroot}%{python3_sitelib} \
@@ -63,7 +65,7 @@ PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=%{buildroot}%{python3_sitelib} \
 %doc README.md
 %license LICENSE
 %{python3_sitelib}/pytest_ordering/
-%{python3_sitelib}/pytest_ordering-%{version}-py*.egg-info/
+%{python3_sitelib}/pytest_ordering-%{version}.dist-info/
 
 %files -n %{name}-doc
 %doc html

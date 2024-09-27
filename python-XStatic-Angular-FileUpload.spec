@@ -62,7 +62,6 @@ Summary: Angular-FileUpload JavaScript library (XStatic packaging standard)
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       python3-XStatic
 Requires:       xstatic-angular-fileupload-common
@@ -81,12 +80,15 @@ cp %{SOURCE1} .
 # patch to use webassets dir
 sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/angular_fileupload'|" xstatic/pkg/angular_fileupload/__init__.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if %{with python2}
 %py2_build
 %endif
 %if %{with python3}
-%py3_build
+%pyproject_wheel
 %endif
 
 %install
@@ -112,7 +114,7 @@ rmdir %{buildroot}/%{python3_sitelib}/xstatic/pkg/angular_fileupload/data/
 %doc README.txt
 %license LICENSE
 %{python2_sitelib}/xstatic/pkg/angular_fileupload
-%{python2_sitelib}/XStatic_Angular_FileUpload-%{version}-py?.?.egg-info
+%{python2_sitelib}/XStatic_Angular_FileUpload-%{version}-py?.?.dist-info
 %{python2_sitelib}/XStatic_Angular_FileUpload-%{version}-py?.?-nspkg.pth
 %endif
 
@@ -126,7 +128,7 @@ rmdir %{buildroot}/%{python3_sitelib}/xstatic/pkg/angular_fileupload/data/
 %doc README.txt
 %license LICENSE
 %{python3_sitelib}/xstatic/pkg/angular_fileupload
-%{python3_sitelib}/XStatic_Angular_FileUpload-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/XStatic_Angular_FileUpload-%{version}.dist-info
 %{python3_sitelib}/XStatic_Angular_FileUpload-%{version}-py%{python3_version}-nspkg.pth
 %endif
 

@@ -28,7 +28,6 @@ Summary:    A modular RPC library
 
 BuildRequires:  git
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-gevent
 BuildRequires:  python3-msgpack
 BuildRequires:  python3-pika
@@ -70,8 +69,11 @@ Tests for  python2-tinyrpc library
 # requirements.txt is wrong, let's manage deps manually
 rm -f requirements.txt
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 # generate html docs
 sphinx-build docs build/sphinx/html
@@ -79,7 +81,7 @@ sphinx-build docs build/sphinx/html
 rm -rf build/sphinx/html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 # Copy tests
 mkdir -p %{buildroot}%%{python3_sitelib}/%{library}/tests
 cp -r tests %{buildroot}%{python3_sitelib}/%{library}/tests
@@ -95,7 +97,7 @@ py.test-3 -rs
 %files -n python3-%{library}
 %license LICENSE
 %{python3_sitelib}/%{module}
-%{python3_sitelib}/%{module}-*.egg-info
+%{python3_sitelib}/%{module}.dist-info
 %exclude %{python3_sitelib}/%{module}/tests
 
 %files -n python3-%{library}-tests

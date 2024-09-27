@@ -15,7 +15,6 @@ Source1:        mopidy.conf
 BuildArch:      noarch
 BuildRequires:  make
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-graphviz
 BuildRequires:  python3-tornado
 BuildRequires:  python3-Pykka >= 2.0.1
@@ -52,15 +51,18 @@ Documentation for Mopidy, an extensible music server written in Python.
 %autosetup -n %{srcname}-%{version} -p1
 rm MANIFEST.in
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 cd docs
 PYTHONPATH=.. make SPHINXBUILD=sphinx-build-3 html man
 rm _build/html/.buildinfo
 
 %install
-%py3_install
+%pyproject_install
 
 install -d -m 0755 %{buildroot}%{homedir}
 install -d -m 0755 %{buildroot}%{_var}/cache/%{name}
@@ -102,7 +104,7 @@ exit 0
                      %dir %{_datadir}/%{name}/conf.d
 # Note: users are expected to put streaming service credentials here
 %attr(0640,%name,%name) %ghost %config(noreplace) %{_sysconfdir}/%{name}/%{name}.conf
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 %{python3_sitelib}/%{name}/
 %{_bindir}/%{name}
 %{_sbindir}/mopidyctl

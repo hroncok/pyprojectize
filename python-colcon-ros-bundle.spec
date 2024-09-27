@@ -31,7 +31,6 @@ BuildRequires:  python%{python3_pkgversion}-colcon-bundle >= 0.0.18
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-pytest
 BuildRequires:  python%{python3_pkgversion}-rosdep >= 0.14.0
-BuildRequires:  python%{python3_pkgversion}-setuptools >= 30.3.0
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %if !0%{?rhel} || 0%{?rhel} >= 8
@@ -59,12 +58,16 @@ its dependencies installed in the root filesystem.
 %autosetup -p1 -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -77,7 +80,7 @@ its dependencies installed in the root filesystem.
 %license LICENSE
 %doc NOTICE README.md
 %{python3_sitelib}/colcon_ros_bundle/
-%{python3_sitelib}/colcon_ros_bundle-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/colcon_ros_bundle-%{version}.dist-info/
 
 
 %changelog

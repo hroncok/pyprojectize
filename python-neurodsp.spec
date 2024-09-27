@@ -44,7 +44,6 @@ BuildArch:      noarch
 %package -n python3-%{pypi_name}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  %{py3_dist setuptools}
 BuildRequires:  %{py3_dist numpy}
 BuildRequires:  %{py3_dist scipy}
 BuildRequires:  %{py3_dist matplotlib}
@@ -64,12 +63,15 @@ rm -rf %{pypi_name}.egg-info
 
 find . -type f -name "*.py" -exec sed -i '/^#![  ]*\/usr\/bin\/env.*$/ d' {} 2>/dev/null ';'
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 # cannot build the docs, as it downloads additional datasets (through mne).
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %if %{with tests}
@@ -80,7 +82,7 @@ find . -type f -name "*.py" -exec sed -i '/^#![  ]*\/usr\/bin\/env.*$/ d' {} 2>/
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.rst paper/*
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %{python3_sitelib}/%{pypi_name}
 
 %changelog

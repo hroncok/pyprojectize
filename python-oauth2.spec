@@ -20,7 +20,6 @@ BuildArch:		noarch
 BuildRequires:		python2-devel, python2-setuptools
 %endif
 BuildRequires:		python3-devel
-BuildRequires:		python3-setuptools
 # These are the test requires, but since we don't run the tests, we disable them here.
 # BuildRequires:	python2-mock, python2-httplib2, python2-coverage
 %if 0%{?with_py2}
@@ -95,17 +94,20 @@ number of notable differences exist between this code and its forefathers:
 %setup -q -n oauth2-%{version}.%{reltag}
 %patch -P1 -p1 -b .CVE-2013-4346
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if 0%{?with_py2}
 %py2_build
 %endif
-%py3_build
+%pyproject_wheel
 
 %install
 %if 0%{?with_py2}
 %py2_install
 %endif
-%py3_install
+%pyproject_install
 
 # Do not package the "tests"
 %if 0%{?with_py2}

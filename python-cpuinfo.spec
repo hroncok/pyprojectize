@@ -20,7 +20,6 @@ BuildArch:      noarch
 # ExclusiveArch:  %%{ix86} x86_64 %%{power64} s390x noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 Py-cpuinfo gets CPU info with pure Python. Py-cpuinfo should work without
@@ -58,11 +57,15 @@ rm -rf *.egg-info
 sed -i -e '/^#!\//, 1d' cpuinfo/cpuinfo.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -73,7 +76,7 @@ sed -i -e '/^#!\//, 1d' cpuinfo/cpuinfo.py
 %license LICENSE
 %{_bindir}/cpuinfo
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/py_%{srcname}-%{version}-py3.*.egg-info
+%{python3_sitelib}/py_%{srcname}-%{version}-py3.*.dist-info
 
 
 %changelog

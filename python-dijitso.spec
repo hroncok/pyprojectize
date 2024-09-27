@@ -13,7 +13,6 @@ ExcludeArch: i686
 
 BuildRequires:  gnupg2
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  gcc-c++
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(numpy)
@@ -49,11 +48,14 @@ BuildArch:      noarch
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -n dijitso-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # We test with both mpi implementations, just because we can :_]
@@ -72,7 +74,7 @@ BuildArch:      noarch
 %doc README.rst
 %{_bindir}/dijitso
 %{python3_sitelib}/dijitso
-%{python3_sitelib}/fenics_dijitso-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/fenics_dijitso-%{version}.dist-info/
 %{_mandir}/man1/dijitso.1*
 
 %changelog

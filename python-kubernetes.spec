@@ -100,8 +100,11 @@ sed -i 's/^nose.*//g' test-requirements.txt
 sed -i 's/websocket-client.*/websocket-client>=0.43.0/g' requirements.txt
 %endif
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 #11.0 adds spinx-markdown-tables as a requirement
 #It is not packaged in Fedora
@@ -120,7 +123,7 @@ sed -i 's/websocket-client.*/websocket-client>=0.43.0/g' requirements.txt
 #rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 cp -pr kubernetes/test %{buildroot}%{python3_sitelib}/%{library}/
 cp -pr kubernetes/e2e_test %{buildroot}%{python3_sitelib}/%{library}/
 
@@ -136,7 +139,7 @@ cp -pr kubernetes/e2e_test %{buildroot}%{python3_sitelib}/%{library}/
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/%{library}
-%{python3_sitelib}/%{library}-*.egg-info
+%{python3_sitelib}/%{library}.dist-info
 %exclude %{python3_sitelib}/%{library}/test
 %exclude %{python3_sitelib}/%{library}/e2e_test
 

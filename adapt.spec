@@ -14,7 +14,6 @@ BuildArch:      noarch
 BuildRequires:  libicu-devel
 BuildRequires:  pulseaudio-libs-devel
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %if 0%{?with_tests}
 BuildRequires:  python3dist(six)
@@ -38,11 +37,14 @@ A python3 library for Adapt Intent Parser.
 %autosetup -p1 -n %{name}-release-v%{version}
 rm -rf adapt-parser.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %if %{with_tests}

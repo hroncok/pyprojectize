@@ -18,7 +18,6 @@ Patch:          Remove-the-import-of-imp.find_module.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 
 
@@ -55,11 +54,14 @@ the plugins in it for some particular purpose or intent.
 %prep
 %autosetup -p1 -n straight.plugin-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 #%check
 #%{__python3} tests.py

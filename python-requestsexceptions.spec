@@ -33,17 +33,20 @@ BuildRequires:  python3-pbr
 %prep
 %autosetup -n %{pypi_name}-%{upstream_version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 1.4.0-21

@@ -24,7 +24,6 @@ Summary:        %{summary}
 
 BuildRequires: make
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 
 %bcond_without tests
 %if %{with tests}
@@ -56,8 +55,12 @@ Documentation for %{srcname} package.
 %autosetup
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %if %{with docs}
 pushd docs
@@ -68,7 +71,7 @@ popd
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %if %{with tests}
@@ -84,7 +87,7 @@ popd
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 
 
 %if %{with docs}

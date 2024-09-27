@@ -11,7 +11,6 @@ Source0:         %{pypi_source}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-numpy
 
 %global _description %{expand:
@@ -33,17 +32,20 @@ sed -i 's/\r//' README.txt
 #Remove unneeded shebang
 sed -i '1d' cma/{bbobbenchmarks.py,purecma.py,test.py}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-cma
 %doc README.txt
 %license LICENSE
 %{python3_sitelib}/cma/
-%{python3_sitelib}/cma-*.egg-info/
+%{python3_sitelib}/cma.dist-info/
 
 %changelog
 %autochangelog

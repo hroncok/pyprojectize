@@ -22,7 +22,6 @@ the matrix, such that no row and no column are used more than once.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
@@ -36,17 +35,20 @@ the matrix, such that no row and no column are used more than once.
 %prep
 %autosetup -n %{srcname}-release-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %doc CHANGELOG.md README.md
 %license LICENSE.md
 %{python3_sitelib}/%{srcname}.py*
-%{python3_sitelib}/%{srcname}*.egg-info
+%{python3_sitelib}/%{srcname}*.dist-info
 %{python3_sitelib}/__pycache__/%{srcname}*
 
 %changelog

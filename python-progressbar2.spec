@@ -37,7 +37,6 @@ Requires:       %{py3_dist python-utils}
 Requires:       %{py3_dist six}
 BuildRequires:  %{py3_dist python-utils}
 BuildRequires:  %{py3_dist six}
-BuildRequires:  %{py3_dist setuptools}
 BuildRequires:  %{py3_dist sphinx}
 BuildRequires:  %{py3_dist pytest}
 %if %{with tests}
@@ -65,11 +64,14 @@ rm -rfv tests/__pycache__/
 # do not run coverage in pytest
 sed -i -E '/--(no-)?cov/d' pytest.ini
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %if %{with tests}
@@ -79,7 +81,7 @@ PYTHONPATH=. %pytest tests
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.rst CHANGES.rst CONTRIBUTING.rst
-%{python3_sitelib}/%{srcname}-%{version}-py3.*.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}-py3.*.dist-info/
 %{python3_sitelib}/progressbar
 
 %changelog

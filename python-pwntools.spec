@@ -35,7 +35,6 @@ Patch3:         python-pwntools-4.11.1-weak-unicorn.patch
 
 BuildArch:      noarch
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 # Waiting on pwntools to support newer sphinx shipped by Fedora.
 # BuildRequires:  python%%{python3_pkgversion}-sphinx
 
@@ -52,7 +51,6 @@ BuildRequires:  python%{python3_pkgversion}-pyserial
 BuildRequires:  python%{python3_pkgversion}-pysocks
 BuildRequires:  python%{python3_pkgversion}-dateutil
 BuildRequires:  python%{python3_pkgversion}-requests
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-six
 BuildRequires:  python%{python3_pkgversion}-sortedcontainers
 BuildRequires:  python%{python3_pkgversion}-wheel
@@ -126,8 +124,12 @@ chmod -x docs/requirements.txt
 # pyproject_buildrequires
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 # Waiting on pwntools to support newer sphinx shipped by Fedora.
 # # Generate html documentation.
 # PYTHONPATH=${PWD} sphinx-build-2 docs/source html
@@ -135,7 +137,7 @@ chmod -x docs/requirements.txt
 # rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 
 mv %{buildroot}%{_bindir}/checksec %{buildroot}%{_bindir}/checksec-pwntools
 
@@ -155,7 +157,7 @@ export PYTHONPATH="${PYTHONPATH:-%{buildroot}%{python3_sitearch}:%{buildroot}%{p
 %files -n python%{python3_pkgversion}-%{srcname}
 %doc CHANGELOG.md CONTRIBUTING.md README.md TESTING.md docs/requirements.txt
 %license LICENSE-pwntools.txt
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 %{python3_sitelib}/pwn/
 %{python3_sitelib}/pwnlib/
 %{_bindir}/asm

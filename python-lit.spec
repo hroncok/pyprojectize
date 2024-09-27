@@ -40,7 +40,6 @@ Source0:  %{llvm_snapshot_source_prefix}llvm-%{llvm_snapshot_yyyymmdd}.src.tar.x
 BuildRequires: llvm-test
 %endif
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 %description
 lit is a tool used by the LLVM project for executing its test suites.
@@ -61,11 +60,14 @@ lit is a tool used by the LLVM project for executing its test suites.
 %autosetup -n lit-%{lit_version}%{?rc_ver:rc%{rc_ver}}%{?post_ver:.post%{post_ver}} -p4
 %endif
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Strip out #!/usr/bin/env python
 sed -i -e '1{\@^#!/usr/bin/env python@d}' %{buildroot}%{python3_sitelib}/lit/*.py

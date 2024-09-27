@@ -13,7 +13,6 @@ Source0:        %{pypi_source %{srcname}}
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 %{name} is a library to write SQL queries in a pythonic way.
@@ -34,12 +33,16 @@ Summary:        %{sum}
 rm -rf */*.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -48,7 +51,7 @@ rm -rf */*.egg-info
 
 %files -n python3-%{module_name}
 %doc {CHANGELOG,README}
-%{python3_sitelib}/%{srcname}*.egg-info/
+%{python3_sitelib}/%{srcname}*.dist-info/
 %{python3_sitelib}/%{module_name}/
 %exclude %{python3_sitelib}/*/tests
 

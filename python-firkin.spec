@@ -18,7 +18,6 @@ firkin is a Python module to convert between different measurement units.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 #BuildRequires:  python3-nose
 %{?python_provide:%python_provide python3-%{srcname}}
 
@@ -34,11 +33,14 @@ for file in README; do
     mv $file.new $file
 done
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 #%check
 #nosetests-%{python3_version} test/test_groups.py
@@ -46,7 +48,7 @@ done
 %files -n python3-%{srcname}
 %doc README PKG-INFO
 %{python3_sitelib}/firkin.p*
-%{python3_sitelib}/firkin*.egg-info
+%{python3_sitelib}/firkin*.dist-info
 %{python3_sitelib}/__pycache__/%{srcname}.*
 
 %changelog

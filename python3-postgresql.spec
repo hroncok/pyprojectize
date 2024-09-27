@@ -14,7 +14,6 @@ Patch1: python3-postgresql-c99-2.patch
 
 BuildRequires:  gcc
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 python-postgresql is a Python 3 package providing modules to work with
@@ -25,12 +24,16 @@ support a developer working with PostgreSQL databases.
 %autosetup -p1 -n fe-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
  
 %files

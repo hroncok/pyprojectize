@@ -18,7 +18,7 @@ devices and create uinput devices.
 %package -n	python3-libevdev
 Summary:	Python bindings to the libevdev evdev device wrapper library
 
-BuildRequires:	python3-devel python3-setuptools
+BuildRequires:	python3-devel
 Requires:	libevdev
 
 %{?python_provide:%python_provide python3-libevdev}
@@ -33,18 +33,22 @@ devices and create uinput devices.
 %autosetup -n %{name}-%{version} -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n	python3-libevdev
 %license COPYING
 %{python3_sitelib}/libevdev/
-%{python3_sitelib}/libevdev-%{version}-py*.egg-info
+%{python3_sitelib}/libevdev-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.11-10

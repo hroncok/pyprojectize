@@ -33,7 +33,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 BuildRequires: make
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-nose >= 1.1.2
 BuildRequires:  python3-sphinx >= 1.2.2
 BuildRequires:  python3-furo
@@ -65,8 +64,11 @@ sed -i '1{\@^#!/usr/bin/env python@d}' leather/*.py leather/**/*.py
 # Remove hidden files in examples
 rm examples/charts/.placeholder
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 pushd docs
     make html
     # Remove hidden file
@@ -75,7 +77,7 @@ popd
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -85,7 +87,7 @@ nosetests-%{python3_version} tests -v
 %files -n python3-%{pypi_name}
 %doc README.rst
 %license COPYING
-%{python3_sitelib}/%{dir_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{dir_name}-%{version}.dist-info/
 %{python3_sitelib}/%{dir_name}/
 
 

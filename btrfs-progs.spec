@@ -27,7 +27,6 @@ BuildRequires:  python3-sphinx
 BuildRequires:  python3dist(sphinx-rtd-theme)
 BuildRequires:  systemd
 BuildRequires:  python3-devel >= 3.4
-BuildRequires:  python3-setuptools
 
 %description
 The btrfs-progs package provides all the userspace programs needed to create,
@@ -91,13 +90,16 @@ btrfs filesystem-specific programs in Python.
 xzcat '%{SOURCE0}' | %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data=-
 %autosetup -n %{name}-v%{version_no_tilde} -S git_am
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 ./autogen.sh
 %configure CFLAGS="%{optflags} -fno-strict-aliasing" --with-crypto=libgcrypt --disable-python
 %make_build
 
 pushd libbtrfsutil/python
-%py3_build
+%pyproject_wheel
 popd
 
 %install
@@ -107,7 +109,7 @@ install -Dpm0644 btrfs-completion %{buildroot}%{_datadir}/bash-completion/comple
 rm -v %{buildroot}%{_libdir}/*.a
 
 pushd libbtrfsutil/python
-%py3_install
+%pyproject_install
 popd
 
 %files
@@ -147,7 +149,7 @@ popd
 %files -n python3-btrfsutil
 %license libbtrfsutil/COPYING
 %{python3_sitearch}/btrfsutil.*.so
-%{python3_sitearch}/btrfsutil-*.egg-info/
+%{python3_sitearch}/btrfsutil.dist-info/
 
 %changelog
 * Tue Sep 17 2024 Neal Gompa <ngompa@fedoraproject.org> - 6.11-1

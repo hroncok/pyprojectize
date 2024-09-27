@@ -12,7 +12,6 @@ Source0:        %{pypi_source}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  %{py3_dist setuptools}
 # For Tests
 BuildRequires:  iputils
 BuildRequires:  %{py3_dist pytest}
@@ -35,11 +34,14 @@ Requires:       %{py3_dist py}
 # Avoid circular dependency with PyVirtualDisplay
 rm -f tests/test_fast/test_deadlock.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest
@@ -48,7 +50,7 @@ rm -f tests/test_fast/test_deadlock.py
 %files -n python3-%{dist_name}
 %doc README.md
 %license LICENSE.txt
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 %{python3_sitelib}/%{dist_name}/
 
 %changelog

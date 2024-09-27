@@ -9,7 +9,7 @@ Source0:	https://github.com/EarToEarOak/RTLSDR-Scanner/archive/v%{version}.tar.g
 Source1:	rtlsdr-scanner.desktop
 # Icon taken from older release of rtlsdr-scanner
 Source2:	rtlsdr_scan.png
-BuildRequires:	python3-setuptools, python3-visvis
+BuildRequires:	python3-visvis
 BuildRequires:	python3-devel, desktop-file-utils
 Requires:	python3-wxpython4, python3-matplotlib, python3-matplotlib-wx, python3-numpy
 Requires:	python3-pillow, python3-pyserial, python3-pyrtlsdr, hicolor-icon-theme
@@ -48,11 +48,14 @@ mv rtlsdr_scanner/__main__.py rtlsdr_scan
 # drop python artefact from resources
 rm -f rtlsdr_scanner/res/__init__.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 install -Dpm 0755 ./rtlsdr_scan %{buildroot}%{_bindir}/rtlsdr_scan
 
@@ -76,7 +79,7 @@ desktop-file-install --add-category="Utility" \
 %{_datadir}/applications/rtlsdr-scanner.desktop
 %{_datadir}/%{name}
 %{python3_sitelib}/rtlsdr_scanner
-%{python3_sitelib}/rtlsdr_scanner-*.egg-info
+%{python3_sitelib}/rtlsdr_scanner.dist-info
 
 %files doc
 %doc doc/Manual.pdf

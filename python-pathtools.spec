@@ -21,7 +21,6 @@ Patch:		pathtools-0.1.2-version_imp.patch
 BuildArch:	noarch
 BuildRequires: make
 BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
 BuildRequires:	python3-sphinx
 
 %global _description\
@@ -51,8 +50,11 @@ sed -i "s/html_theme = 'flask'/html_theme = 'default'/" ./docs/source/conf.py
 # replace the marker from the imp-removal patch with the real version
 sed -i -e "s,||VERSION||,'%{version}',g" setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 pushd docs
 make SPHINXBUILD=sphinx-build-3 html
@@ -61,7 +63,7 @@ popd
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{upname}

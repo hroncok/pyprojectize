@@ -18,7 +18,6 @@ from network interfaces.
 %package -n python%{python3_pkgversion}-%{pypi_name}
 Summary:        Python %{python3_pkgversion} library to retrieve information about network interfaces
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{pypi_name}}
 
 %description -n python%{python3_pkgversion}-%{pypi_name}
@@ -30,17 +29,21 @@ from network interfaces.
 %setup -q -n %{pypi_name}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python%{python3_pkgversion}-%{pypi_name}
 %doc README.rst
-%{python3_sitearch}/%{pypi_name}-%{version}-*.egg-info/
+%{python3_sitearch}/%{pypi_name}-%{version}.dist-info/
 %{python3_sitearch}/%{pypi_name}*.so
 
 %changelog

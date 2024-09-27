@@ -13,7 +13,6 @@ Patch0001: 0001-switch-from-nose-to-pytest.patch
 BuildArch: noarch
 
 BuildRequires: python3-devel
-BuildRequires: python3dist(setuptools)
 # nose removal in https://github.com/bbangert/routes/pull/107
 BuildRequires: python3dist(pytest)
 BuildRequires: python3dist(webtest)
@@ -38,12 +37,15 @@ Summary: %{summary}
 %prep
 %autosetup -p1 -n Routes-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check

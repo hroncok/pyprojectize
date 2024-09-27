@@ -13,7 +13,6 @@ BuildArch:      noarch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(mypy-extensions) >= 0.3.0
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(typing-extensions) >= 3.7.4
 BuildRequires:  python3dist(pytest)
 
@@ -37,11 +36,14 @@ inspection of types defined in the standard "typing" module.
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -51,7 +53,7 @@ rm -rf %{pypi_name}.egg-info
 %doc README.md
 %{python3_sitelib}/__pycache__/%{pypi_srcname}.*.pyc
 %{python3_sitelib}/%{pypi_srcname}.py
-%{python3_sitelib}/%{pypi_srcname}-%{version}-py*.egg-info
+%{python3_sitelib}/%{pypi_srcname}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.0-6

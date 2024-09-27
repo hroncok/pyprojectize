@@ -23,7 +23,6 @@ changes to the repository (including hgrc).
 %package -n     python3-hgapi
 Summary:        Python 3 API to Mercurial using the command-line interface
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  mercurial
 Requires:       mercurial
 %{?python_provide:%python_provide python3-hgapi}
@@ -49,12 +48,15 @@ sed -i 's/\r$//' README.rst
 rm -rf %{py3dir}
 cp -a . %{py3dir}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -63,7 +65,7 @@ cp -a . %{py3dir}
 
 %files -n python3-hgapi
 %doc README.rst LICENSE
-%{python3_sitelib}/hgapi-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/hgapi-%{version}.dist-info
 %{python3_sitelib}/hgapi/
 
 %changelog

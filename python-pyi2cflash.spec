@@ -18,7 +18,6 @@ products, to store firmware, microcode or configuration parameters.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 #BuildRequires:  python3-pyftdi
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -29,11 +28,14 @@ products, to store firmware, microcode or configuration parameters.
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Not running tests as they try to create a device
 #%check
@@ -43,7 +45,7 @@ products, to store firmware, microcode or configuration parameters.
 %doc README.rst AUTHORS
 %license LICENSE
 %{python3_sitelib}/i2cflash/
-%{python3_sitelib}/%{pypi_name}*.egg-info
+%{python3_sitelib}/%{pypi_name}*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.2.2-16

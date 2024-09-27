@@ -25,7 +25,6 @@ BuildRequires:  python%{python3_pkgversion}-colcon-core >= 0.3.15
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-jinja2 >= 2.9.0
 BuildRequires:  python%{python3_pkgversion}-pytest
-BuildRequires:  python%{python3_pkgversion}-setuptools >= 30.3.0
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %if !0%{?rhel} || 0%{?rhel} >= 8
@@ -52,12 +51,16 @@ installed locally.
 %autosetup -p1 -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -70,7 +73,7 @@ installed locally.
 %license LICENSE
 %doc NOTICE README.md
 %{python3_sitelib}/colcon_bundle/
-%{python3_sitelib}/colcon_bundle-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/colcon_bundle-%{version}.dist-info/
 
 
 %changelog

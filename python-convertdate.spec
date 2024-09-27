@@ -19,7 +19,6 @@ Julian, Mayan and Persian.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 BuildRequires:  python3-pytz
 BuildRequires:  python3-ephem
@@ -34,11 +33,14 @@ Julian, Mayan and Persian.
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v tests -k "not testPersian"
@@ -47,7 +49,7 @@ Julian, Mayan and Persian.
 %doc HISTORY.rst README.md
 %license LICENSE
 %{_bindir}/censusgeocode
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{python3_sitelib}/%{pypi_name}/
 
 %changelog

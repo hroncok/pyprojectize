@@ -30,7 +30,6 @@ BuildRequires:  python3dist(freezegun)
 BuildRequires:  python3dist(netifaces)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(pytest-aiohttp)
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(urllib3)
 %{?python_provide:%python_provide python3-%{pkg_name}}
 
@@ -47,11 +46,14 @@ from Daikin. Currently the following Daikin WiFi modules are supported:
 %autosetup -n mustang51-%{pypi_name}-d768d0acee75
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v tests
@@ -61,7 +63,7 @@ rm -rf %{pypi_name}.egg-info
 %license LICENSE
 %{_bindir}/pydaikin
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Mon Jul 29 2024 Miroslav Suchý <msuchy@redhat.com> - 2.4.0-15

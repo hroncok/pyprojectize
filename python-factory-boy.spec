@@ -28,7 +28,6 @@ URL: https://github.com/rbarrois/factory_boy
 Source0: https://github.com/rbarrois/%{srcname}/archive/%{version}/%{srcname}-%{version}.tar.gz
 BuildArch: noarch
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 %if %{with tests}
 BuildRequires: python3-pytest
 BuildRequires: python3-faker >= 0.7.0
@@ -64,15 +63,18 @@ Documentation for the %{name} API
 %prep
 %autosetup -n %{srcname}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 # Clean the doc dir
 rm -f docs/Makefile
 rm -rf docs/_static
 find examples -type f -print0 | xargs -0 chmod 0644
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with tests}
 %check
@@ -82,7 +84,7 @@ SKIP_MONGOENGINE=1 %pytest
 %files -n python3-factory-boy
 %license LICENSE
 %{python3_sitelib}/factory
-%{python3_sitelib}/%{srcname}-%{version}-py*.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 %files doc
 %doc README.rst CODE_OF_CONDUCT.md CONTRIBUTING.rst CREDITS docs examples

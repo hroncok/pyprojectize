@@ -57,7 +57,6 @@ See https://fedoraproject.org/wiki/Changes/DeprecateNose}
 %package -n python3-%{modname}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-coverage >= 3.4-1
 Requires:       python3-setuptools
 %{?python_provide:%python_provide python3-%{modname}}
@@ -76,12 +75,15 @@ Provides:       deprecated()
 
 dos2unix examples/attrib_plugin.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
 mkdir -p %{buildroot}%{_mandir}/man1
-%py3_install
+%pyproject_install
 mv %{buildroot}%{_bindir}/nosetests{,-%{python3_version}}
 ln -sf nosetests-%{python3_version} %{buildroot}%{_bindir}/nosetests-3
 mv %{buildroot}%{_prefix}/man/man1/nosetests.1 %{buildroot}%{_mandir}/man1/nosetests-%{python3_version}.1
@@ -102,7 +104,7 @@ ln -sf nosetests-3.1 %{buildroot}%{_mandir}/man1/nosetests.1
 %{_mandir}/man1/nosetests.1*
 %{_mandir}/man1/nosetests-3.1*
 %{_mandir}/man1/nosetests-%{python3_version}.1*
-%{python3_sitelib}/nose-*.egg-info/
+%{python3_sitelib}/nose.dist-info/
 %{python3_sitelib}/nose/
 
 %changelog

@@ -22,7 +22,6 @@ overhead on a single server.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest-runner
 
 %if %{with network}
@@ -52,11 +51,14 @@ Utility to fetch your external IP address.
 rm -rf %{pypi_name}.egg-info
 sed -i -e '/^#!\//, 1d' ipgetter2/*.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with network}
 %check
@@ -68,7 +70,7 @@ sed -i -e '/^#!\//, 1d' ipgetter2/*.py
 %doc README.rst CONTRIBUTING.rst HISTORY.rst AUTHORS.rst
 %{python3_sitelib}/%{pypi_name}
 %exclude %{python3_sitelib}/tests
-%{python3_sitelib}/%{pypi_name}-%{version}-py*.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %files -n %{pypi_name}
 %{_bindir}/ipgetter2

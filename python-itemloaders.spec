@@ -29,7 +29,6 @@ BuildArch:	noarch
 Summary:	%{summary}
 
 BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
 BuildRequires:	python3-parsel
 BuildRequires:	python3-jmespath
 BuildRequires:	python3-w3lib
@@ -42,19 +41,22 @@ BuildRequires:	python3-w3lib
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/itemloaders
-%{python3_sitelib}/itemloaders-*.egg-info
+%{python3_sitelib}/itemloaders.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.0.4-14

@@ -42,7 +42,6 @@ BuildRequires:  python2-sphinx
 %if %{with python3}
 BuildRequires:  python3-devel
 BuildRequires:  python3-pytest
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-sphinx
 %endif
 
@@ -81,9 +80,13 @@ This package contains the documentation for %{name}.
 %autosetup -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 %{?with_python2:%py2_build}
-%{?with_python3:%py3_build}
+%{?with_python3:%pyproject_wheel}
 
 PYTHONPATH=$(pwd) ./build_docs.sh
 rm -f docs/_build/html/.buildinfo
@@ -91,7 +94,7 @@ rm -f docs/_build/html/.buildinfo
 
 %install
 %{?with_python2:%py2_install}
-%{?with_python3:%py3_install}
+%{?with_python3:%pyproject_install}
 
 
 %check

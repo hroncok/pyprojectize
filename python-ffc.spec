@@ -14,7 +14,6 @@ Patch0:         https://bitbucket.org/fenics-project/ffc/commits/8d80c72468282e3
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(numpy)
 BuildRequires:  python3dist(fenics-fiat) >= %{fenics_version}
@@ -47,11 +46,14 @@ Summary: %summary
 
 sed -r -i '1d' ffc/__main__.py ffc/main.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 OPTIONS=(
@@ -67,7 +69,7 @@ OPTIONS=(
 %{_bindir}/ffc
 %{_bindir}/ffc-3
 %{python3_sitelib}/ffc
-%{python3_sitelib}/fenics_ffc-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/fenics_ffc-%{version}.dist-info/
 %{_mandir}/man1/ffc.1*
 
 %changelog

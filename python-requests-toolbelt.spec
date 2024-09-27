@@ -23,7 +23,6 @@ Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 %{?python_provide:%python_provide python3-%{altname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-betamax
 BuildRequires:  python3-pyOpenSSL
 BuildRequires:  python3-pytest
@@ -43,11 +42,15 @@ sed -i -E -e 's/^(\s*)import mock/\1from unittest import mock/' \
     tests/*.py tests/*/*.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # Some tests are disabled due to compatibility issues with Python 3.10, once it is fixed it
@@ -59,7 +62,7 @@ py.test-%{python3_version} -v --ignore=tests/test_x509_adapter.py -k "not test_s
 %license LICENSE
 %doc README.rst HISTORY.rst
 %{python3_sitelib}/%{altname}/
-%{python3_sitelib}/%{altname}-*.egg-info/
+%{python3_sitelib}/%{altname}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.0-7

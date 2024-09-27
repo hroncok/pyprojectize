@@ -20,7 +20,6 @@ Requires:       python3-PyQt4
 Requires:       python3-pyzolib
 BuildRequires:  desktop-file-utils
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 IEP (pronounced as eep) is a cross-platform Python IDE focused on interactivity
@@ -44,11 +43,14 @@ for lib in `find iep -name '*.py'`; do
     mv $lib.new $lib
 done
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 install -D -m0644 iep/resources/appicons/ieplogo16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/iep.png
 install -D -m0644 iep/resources/appicons/ieplogo32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/iep.png
 install -D -m0644 iep/resources/appicons/ieplogo48.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/iep.png
@@ -70,7 +72,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/iep.desktop
 %license iep/license.txt
 %{_bindir}/iep
 %{python3_sitelib}/iep
-%{python3_sitelib}/iep-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/iep-%{version}.dist-info
 %{_datadir}/icons/hicolor/*/apps/iep.png
 %{_datadir}/appdata/iep.appdata.xml
 %{_datadir}/applications/iep.desktop

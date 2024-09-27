@@ -25,7 +25,6 @@ Summary:        %{summary}
 BuildRequires:  python3-devel
 BuildRequires:  %{py3_dist aiohttp}
 BuildRequires:  %{py3_dist attrs}
-BuildRequires:  %{py3_dist setuptools}
 BuildRequires:  %{py3_dist yarl}
 BuildRequires:  %{py3_dist pytest}
 BuildRequires:  %{py3_dist backoff}
@@ -41,11 +40,14 @@ programs to automate the behavior of WLED.
 %autosetup -n python-%{pypi_name}-%{version} -p1
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v tests
@@ -53,7 +55,7 @@ rm -rf %{pypi_name}.egg-info
 %license LICENSE.md
 %doc README.md
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.4.4-15

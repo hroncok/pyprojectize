@@ -15,7 +15,6 @@ BuildRequires: gcc
 BuildRequires: pkgconfig(cairo)
 BuildRequires: python3-devel
 BuildRequires: python3-pytest
-BuildRequires: python3-setuptools
 
 %description
 Python bindings for the cairo library.
@@ -39,11 +38,14 @@ libraries so that they interoperate with py3cairo.
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -52,7 +54,7 @@ libraries so that they interoperate with py3cairo.
 %license COPYING*
 %doc README.rst
 %{python3_sitearch}/cairo/
-%{python3_sitearch}/pycairo*.egg-info
+%{python3_sitearch}/pycairo*.dist-info
 
 %files -n python3-cairo-devel
 %dir %{_includedir}/pycairo

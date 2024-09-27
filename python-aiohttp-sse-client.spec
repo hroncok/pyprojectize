@@ -24,7 +24,6 @@ BuildRequires:  python3dist(attrs)
 BuildRequires:  python3dist(multidict)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(pytest-runner)
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(yarl)
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -44,13 +43,16 @@ Documentation for aiohttp-sse-client
 %autosetup -n %{pypi_name}-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 PYTHONPATH=${PWD} sphinx-build-3 docs html
 rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v tests
@@ -59,7 +61,7 @@ rm -rf html/.{doctrees,buildinfo}
 %license LICENSE
 %doc docs/readme.rst README.rst
 %{python3_sitelib}/aiohttp_sse_client
-%{python3_sitelib}/aiohttp_sse_client-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/aiohttp_sse_client-%{version}.dist-info
 
 %files -n python-%{pypi_name}-doc
 %doc html

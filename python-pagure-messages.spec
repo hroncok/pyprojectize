@@ -16,7 +16,6 @@ BuildArch:      noarch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(fedora-messaging)
-BuildRequires:  python3dist(setuptools)
 
 %description
 %{summary}.
@@ -35,17 +34,20 @@ Conflicts:      pagure < 5.13
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/pagure_messages
-%{python3_sitelib}/pagure_messages-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/pagure_messages-%{version}.dist-info
 
 %changelog
 * Fri Jul 26 2024 Miroslav Suchý <msuchy@redhat.com> - 0.0.6-14

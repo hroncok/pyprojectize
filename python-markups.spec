@@ -20,7 +20,6 @@ BuildRequires:  python3dist(docutils)
 BuildRequires:  python3dist(markdown)
 BuildRequires:  python3dist(pygments)
 BuildRequires:  python3dist(python-markdown-math)
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(textile)
 BuildRequires:  python3dist(sphinx)
 BuildRequires:  python3dist(pyyaml)
@@ -52,15 +51,18 @@ Documentation for markups
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 # generate html docs
 PYTHONPATH=${PWD} sphinx-build-3 docs html
 # remove the sphinx-build leftovers
 rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test -v
@@ -69,7 +71,7 @@ rm -rf html/.{doctrees,buildinfo}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/Markups-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/Markups-%{version}.dist-info
 
 %files -n python-%{pypi_name}-doc
 %doc html

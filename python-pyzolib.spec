@@ -21,7 +21,6 @@ framework.
 %package -n python%{python3_pkgversion}-pyzolib
 Summary:        Utilities for the Pyzo environment
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 
 %description -n python%{python3_pkgversion}-pyzolib %_description
 
@@ -30,18 +29,22 @@ BuildRequires:  python%{python3_pkgversion}-setuptools
 %autosetup -p1 -n pyzolib-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python%{python3_pkgversion}-pyzolib
 %doc
 %{python3_sitelib}/pyzolib/
-%{python3_sitelib}/pyzolib-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/pyzolib-%{version}.dist-info/
 
 
 %changelog

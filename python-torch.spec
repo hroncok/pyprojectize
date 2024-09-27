@@ -288,7 +288,6 @@ BuildRequires:  python3dist(jinja2)
 BuildRequires:  python3dist(networkx)
 BuildRequires:  python3dist(numpy)
 BuildRequires:  python3dist(pyyaml)
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(sphinx)
 BuildRequires:  python3dist(typing-extensions)
 
@@ -713,6 +712,9 @@ sed -i -e 's@HIP 1.0@HIP MODULE@'            cmake/public/LoadHIP.cmake
 
 %endif
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 
 #
@@ -955,7 +957,7 @@ done
 %{_bindir}/torchfrtrace
 %endif
 %{python3_sitearch}/%{pypi_name}
-%{python3_sitearch}/%{pypi_name}-*.egg-info
+%{python3_sitearch}/%{pypi_name}.dist-info
 %{python3_sitearch}/functorch
 %{python3_sitearch}/torchgen
 

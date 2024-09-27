@@ -25,7 +25,6 @@ universal tool to package Python modules.
 %package -n python3-%{mod_name}
 Summary:        General purpose template engine
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-jinja2
 BuildRequires:  python3-lxml
 BuildRequires:  python3-requests
@@ -48,15 +47,19 @@ universal tool to package Python modules.
 %setup -q -n %{mod_name}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 %if 0%{?with_python3}
-%py3_build
+%pyproject_wheel
 %endif
 
 
 %install
 %if 0%{?with_python3}
-%py3_install
+%pyproject_install
 %endif
 
 mkdir -p  %{buildroot}/%{_mandir}/man1/

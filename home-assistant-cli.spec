@@ -17,7 +17,6 @@ Patch0:          %{url}/pull/403.patch
 Patch1:          %{url}/pull/412.patch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-ruamel-yaml
 BuildRequires:  python3-aiohttp
 BuildRequires:  python3-regex
@@ -42,11 +41,14 @@ a local or a remote Home Assistant instance directly from the command-line.
 %autosetup -n %{name}-%{version} -p1
 sed -i "/>=0.3.2,<0.4/d" setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 PYTHONPATH=%{buildroot}/%{python3_sitelib}/ pytest-%{python3_version} -v tests \
@@ -57,7 +59,7 @@ PYTHONPATH=%{buildroot}/%{python3_sitelib}/ pytest-%{python3_version} -v tests \
 %license LICENSE.md
 %{_bindir}/hass-cli
 %{python3_sitelib}/homeassistant_cli/
-%{python3_sitelib}/homeassistant_cli*.egg-info/
+%{python3_sitelib}/homeassistant_cli*.dist-info/
 
 %changelog
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.6-11

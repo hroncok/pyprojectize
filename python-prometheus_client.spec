@@ -18,7 +18,6 @@ BuildArch:      noarch
 %package -n python3-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3dist(decorator)
 BuildRequires:  python3dist(pytest)
 %{?python_provide:%python_provide python3-%{srcname}}
@@ -42,11 +41,14 @@ BuildRequires:  python3dist(twisted)
 %autosetup -p1 -n client_python-%{version}
 sed -i -e '1{/^#!/d}' prometheus_client/__init__.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} -m pytest -v
@@ -55,10 +57,10 @@ sed -i -e '1{/^#!/d}' prometheus_client/__init__.py
 %license LICENSE
 %doc README.md MAINTAINERS.md
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 
 %files -n python3-%{srcname}+twisted
-%{?python_extras_subpkg:%ghost %{python3_sitelib}/%{srcname}-*.egg-info/}
+%{?python_extras_subpkg:%ghost %{python3_sitelib}/%{srcname}.dist-info/}
 
 %changelog
 %autochangelog

@@ -25,7 +25,6 @@ following tools and modules:
 %package -n python3-%{srcname}
 Summary:        Library with cross-python path, ini-parsing, io, code, log facilities
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
 Requires:       python3-setuptools
 %{?python_provide:%python_provide python3-%{srcname}}
@@ -54,12 +53,16 @@ find . \
    -exec chmod u=rw,go=r {} \;
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 # Remove bundled dist/egg-info directories, they shouldn't be shipped for
 # bundled modules and in some cases they could confuse automatic generators
@@ -74,7 +77,7 @@ rm -rf %{buildroot}%{python3_sitelib}/py/_vendored_packages/*.{dist,egg}-info
 %doc CHANGELOG.rst
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/py-*.egg-info/
+%{python3_sitelib}/py.dist-info/
 %{python3_sitelib}/py/
 
 

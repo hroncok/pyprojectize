@@ -33,7 +33,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 BuildRequires: make
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -61,8 +60,12 @@ chmod -x examples/{*.py,**/*.py,dbf2sqlite}
 %patch -P0 -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 # Build documentation
 pushd docs
@@ -72,7 +75,7 @@ popd
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -83,7 +86,7 @@ pytest-%{python3_version}
 %files -n python3-%{pypi_name}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 %{python3_sitelib}/%{pypi_name}/
 
 

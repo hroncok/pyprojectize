@@ -17,7 +17,6 @@ Patch:          0008-Fix-necompiler.getArguments-on-Python-3.13.0b1.patch
 BuildRequires:  gcc-c++
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-numpy
-BuildRequires:  python%{python3_pkgversion}-setuptools
 
 %global _description %{expand:
 The numexpr package evaluates multiple-operator array expressions many times
@@ -43,11 +42,14 @@ Requires:       python%{python3_pkgversion}-numpy >= 1.6
 # Reported upstream: https://github.com/pydata/numexpr/issues/486
 sed -i 's/unittest.makeSuite/unittest.defaultTestLoader.loadTestsFromTestCase/g' $(grep -rl makeSuite)
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 chmod 0755 %{buildroot}%{python3_sitearch}/numexpr/cpuinfo.py
 sed -i "1s|/usr/bin/env python$|%{python3}|" %{buildroot}%{python3_sitearch}/numexpr/cpuinfo.py
 
@@ -60,7 +62,7 @@ popd
 %license LICENSE.txt
 %doc ANNOUNCE.rst RELEASE_NOTES.rst README.rst
 %{python3_sitearch}/numexpr/
-%{python3_sitearch}/numexpr-%{version}-py*.egg-info
+%{python3_sitearch}/numexpr-%{version}.dist-info
 
 %changelog
 %autochangelog

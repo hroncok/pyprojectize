@@ -41,7 +41,6 @@ BuildRequires: python-six
 
 %if %{with python3}
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-pytest
 BuildRequires: python3-requests
 BuildRequires: python3-six
@@ -80,9 +79,13 @@ Summary: %{summary}
 grep '"%version"' setup.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 %if %{with python3}
-version="%version" %py3_build
+version="%version" %pyproject_wheel
 %endif
 
 %if %{with python2}
@@ -92,7 +95,7 @@ version="%version" %py2_build
 
 %install
 %if %{with python3}
-version=%version %py3_install
+version=%version %pyproject_install
 %endif
 
 %if %{with python2}

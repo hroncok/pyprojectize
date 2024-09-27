@@ -20,7 +20,6 @@ Summary:        %{summary}
 
 BuildRequires:  python3-Cython
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{name}}
 
 %description -n python3-%{name}
@@ -29,12 +28,15 @@ Pystatgrab contains Python bindings for libstatgrab.
 %prep
 %autosetup -n %{srcname}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 rm -rf statgrab.c
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 PYTHONPATH=%{buildroot}/%{python3_sitearch} %{__python3} test.py

@@ -9,7 +9,6 @@ Source0:        %{pypi_source colored-traceback}
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 Colored-traceback is a python library to color exception traces.
@@ -23,18 +22,21 @@ Colored-traceback is a python library to color exception traces.
 %prep
 %autosetup -n colored-traceback-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %py3_check_import colored_traceback
 
 %files -n python3-colored-traceback
 %doc README.rst
-%{python3_sitelib}/colored_traceback-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/colored_traceback-%{version}.dist-info/
 %{python3_sitelib}/colored_traceback/
 
 %changelog

@@ -39,12 +39,16 @@ chmod a-x examples/*.py
 sed -i '1{\@^#!/usr/bin/env python@d}' examples/*.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check

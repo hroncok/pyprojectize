@@ -70,7 +70,6 @@ Summary:        Python implementation of the Key Management Interoperability Pro
 
 BuildRequires:       python3-devel
 BuildRequires:       python3-six
-BuildRequires:       python3-setuptools
 
 Requires:     python3-cryptography
 Requires:     python3-requests
@@ -89,13 +88,16 @@ Structured InformationStandards`_ (OASIS).
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if %{with python2}
 %py2_build
 %endif
 
 %if %{with python3}
-%py3_build
+%pyproject_wheel
 %endif
 
 %install
@@ -104,7 +106,7 @@ Structured InformationStandards`_ (OASIS).
 %endif
 
 %if %{with python3}
-%py3_install
+%pyproject_install
 %endif
 
 %if %{with python2}
@@ -115,7 +117,7 @@ Structured InformationStandards`_ (OASIS).
 %{_bindir}/pykmip-server
 %endif
 %{python2_sitelib}/kmip
-%{python2_sitelib}/%{pypi_name}-%{version}-py?.?.egg-info
+%{python2_sitelib}/%{pypi_name}-%{version}-py?.?.dist-info
 %endif
 
 %if %{with python3}
@@ -124,7 +126,7 @@ Structured InformationStandards`_ (OASIS).
 %license LICENSE.txt
 %{_bindir}/pykmip-server
 %{python3_sitelib}/kmip
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %endif
 
 %changelog

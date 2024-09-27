@@ -10,7 +10,6 @@ URL:	        %{forgeurl}
 Source:         %{forgeurl}/archive/%{commit}/youtube-dl-%{commit}.tar.gz
 Source3:        %{name}.conf
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 Requires:       python%{python3_pkgversion}-setuptools
 # Tests failed because of no connection in Koji.
 BuildArch:      noarch
@@ -40,14 +39,17 @@ sed -i '/README.txt/d' setup.py
 # Remove interpreter shebang from module files.
 find youtube_dl -type f -exec sed -i -e '1{/^\#!\/usr\/bin\/env python$/d;};' {} +
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 make PYTHON=python3
 
 
 
 %install
-%py3_install
+%pyproject_install
 
 install -Dpm644 %{S:3} -t %{buildroot}%{_sysconfdir}
 install -Dpm644 youtube-dl.bash-completion %{buildroot}%{_datadir}/bash-completion/completions/youtube-dl
@@ -65,7 +67,7 @@ install -Dpm644 youtube-dl.fish %{buildroot}%{_datadir}/fish/vendor_functions.d/
 %files
 %doc AUTHORS ChangeLog README.md
 %{python3_sitelib}/youtube_dl/
-%{python3_sitelib}/youtube_dl*.egg-info
+%{python3_sitelib}/youtube_dl*.dist-info
 %license LICENSE
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*

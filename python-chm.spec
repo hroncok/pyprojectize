@@ -18,7 +18,6 @@ Source0:	%{url}/archive/v%{version}/%{pypi_name}-%{version}.tar.gz
 %{?python_enable_dependency_generator}
 
 BuildRequires:  python3-devel
-BuildRequires:	python3-setuptools
 BuildRequires:	chmlib
 BuildRequires:  chmlib-devel
 BuildRequires:	gcc-c++
@@ -39,17 +38,20 @@ Summary:        %{summary}
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc NEWS README
 %{python3_sitearch}/chm/
-%{python3_sitearch}/%{pypi_name}-%{version}-py*.egg-info
+%{python3_sitearch}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Fri Jul 26 2024 Miroslav Suchý <msuchy@redhat.com> - 0.8.6-15

@@ -23,7 +23,6 @@ characters.
 %package -n python3-unidecode
 Summary:	US-ASCII transliterations of Unicode text
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 %{?python_provide:%python_provide python3-unidecode}
 
@@ -37,12 +36,16 @@ characters.
 %setup -q -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-unidecode
@@ -50,7 +53,7 @@ characters.
 %doc README.rst ChangeLog
 %{_bindir}/unidecode
 %{python3_sitelib}/unidecode/
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 
 
 %changelog

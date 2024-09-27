@@ -63,14 +63,17 @@ Requires:       python3-netifaces                >= 0.10.4
 %prep
 %autosetup -n %{srcname}-%{upstream_version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %check
 #PYTHON=%{__python3} %{__python3} setup.py testr
 
 %install
-%py3_install
+%pyproject_install
 mv $RPM_BUILD_ROOT%{_bindir}/shade-inventory \
         $RPM_BUILD_ROOT%{_bindir}/shade-inventory-3
 ln -s shade-inventory-3 \

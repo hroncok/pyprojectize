@@ -46,10 +46,8 @@ Patch0:         73cb7a9170e33c55855b150a101a41ff6cd7c59f.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 # For making the build work from source
-BuildRequires:  python3dist(setuptools) >= 21.2.1
 BuildRequires:  python3dist(twisted) >= 17.9
 BuildRequires:  python3dist(jinja2) >= 2.1
 BuildRequires:  python3dist(zope-interface) >= 4.1.1
@@ -301,7 +299,7 @@ Provides web frontend for buildbot.
 %files www
 %license COPYING
 %{python3_sitelib}/buildbot_www/
-%{python3_sitelib}/buildbot_www-*.egg-info/
+%{python3_sitelib}/buildbot_www.dist-info/
 %{python3_sitelib}/buildbot_waterfall_view/
 %{python3_sitelib}/buildbot_waterfall_view-*egg-info/
 %{python3_sitelib}/buildbot_grid_view/
@@ -333,6 +331,9 @@ Summary:        Buildbot documentation
 cd ..
 cd buildbot_worker-%{version}
 %patch -P 0 -p2
+
+%generate_buildrequires
+%pyproject_buildrequires
 
 %build
 %py3_build

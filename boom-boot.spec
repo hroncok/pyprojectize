@@ -13,7 +13,6 @@ Source0:	%{url}/archive/%{version}/%{name}-%{version}.tar.gz
 BuildArch:	noarch
 
 BuildRequires:	make
-BuildRequires:	python3-setuptools
 BuildRequires:	python3-devel
 %if 0%{?sphinx_docs}
 BuildRequires:	python3-dbus
@@ -76,6 +75,9 @@ This package provides configuration files for boom.
 %prep
 %autosetup -p1 -n %{name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if 0%{?sphinx_docs}
 make %{?_smp_mflags} -C doc html
@@ -84,10 +86,10 @@ mv doc/_build/html doc/html
 rm -r doc/_build
 %endif
 
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Make configuration directories
 # mode 0700 - in line with /boot/grub2 directory:
@@ -119,7 +121,7 @@ rm doc/conf.py
 %license COPYING
 %doc README.md
 %{python3_sitelib}/boom/*
-%{python3_sitelib}/boom_boot-*.egg-info/
+%{python3_sitelib}/boom_boot.dist-info/
 %doc doc
 %doc examples
 %doc tests

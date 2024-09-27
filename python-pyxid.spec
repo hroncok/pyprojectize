@@ -24,7 +24,7 @@ stimulus/response testing experiments.
 %package -n python3-%{modname}
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{modname}}
-BuildRequires:  python3-devel python3-setuptools
+BuildRequires:  python3-devel
 Requires:       python3-pyserial
 
 %description -n python3-%{modname}
@@ -39,11 +39,14 @@ Python 3 version.
 %prep
 %autosetup -n %{modname}-%{commit}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{modname}

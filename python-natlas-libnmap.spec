@@ -19,7 +19,6 @@ namp scans and process the output in various ways.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -31,17 +30,20 @@ namp scans and process the output in various ways.
 rm -rf %{pypi_name}.egg-info
 sed -i -e '/^#!\//, 1d' libnmap/reportjson.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %license LICENSE.txt
 %doc README.md
 %{python3_sitelib}/libnmap
-%{python3_sitelib}/natlas_libnmap-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/natlas_libnmap-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.7.1-16

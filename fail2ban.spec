@@ -57,7 +57,6 @@ BuildRequires: python-setuptools
 BuildRequires: python-inotify
 %else
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 # For testcases
 BuildRequires: python3-inotify
 %endif
@@ -272,11 +271,15 @@ sed -i 's|^/run/|/var/run/|' %{name}.fc
 sed -i "/use_2to3/d" setup.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 %if 0%{?rhel} && 0%{?rhel} < 8
 %py2_build
 %else
-%py3_build
+%pyproject_wheel
 %endif
 make -f %SOURCE6
 
@@ -287,7 +290,7 @@ make -f %SOURCE6
 # Make symbolic link relative
 ln -fs python2 %{buildroot}%{_bindir}/fail2ban-python
 %else
-%py3_install
+%pyproject_install
 ln -fs python3 %{buildroot}%{_bindir}/fail2ban-python
 %endif
 

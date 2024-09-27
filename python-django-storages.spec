@@ -20,7 +20,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 %description -n python3-%{srcname} %{_description}
 
@@ -100,11 +99,14 @@ Requires:       python%{python3_version}dist(paramiko)
 %autosetup -n %{srcname}-%{version} -p1
 rm -vr *.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Tests require too many dependencies
 #%%check
@@ -115,27 +117,27 @@ rm -vr *.egg-info
 %license LICENSE
 %doc README.rst CHANGELOG.rst
 %{python3_sitelib}/storages/
-%{python3_sitelib}/django_storages-*.egg-info/
+%{python3_sitelib}/django_storages.dist-info/
 
 # Missing requirement azure-storage-blob
 #%%files -n python3-%%{srcname}+azure
-#%%{?python_extras_subpkg:%%ghost %%{python3_sitelib}/django_storages-*.egg-info}
+#%%{?python_extras_subpkg:%%ghost %%{python3_sitelib}/django_storages.dist-info}
 
 %files -n python3-%{srcname}+boto3
-%{?python_extras_subpkg:%ghost %{python3_sitelib}/django_storages-*.egg-info}
+%{?python_extras_subpkg:%ghost %{python3_sitelib}/django_storages.dist-info}
 
 %files -n python3-%{srcname}+dropbox
-%{?python_extras_subpkg:%ghost %{python3_sitelib}/django_storages-*.egg-info}
+%{?python_extras_subpkg:%ghost %{python3_sitelib}/django_storages.dist-info}
 
 # Missing requirement google-cloud-storage
 #%%files -n python3-%%{srcname}+google
-#%%{?python_extras_subpkg:%%ghost %%{python3_sitelib}/django_storages-*.egg-info}
+#%%{?python_extras_subpkg:%%ghost %%{python3_sitelib}/django_storages.dist-info}
 
 %files -n python3-%{srcname}+libcloud
-%{?python_extras_subpkg:%ghost %{python3_sitelib}/django_storages-*.egg-info}
+%{?python_extras_subpkg:%ghost %{python3_sitelib}/django_storages.dist-info}
 
 %files -n python3-%{srcname}+sftp
-%{?python_extras_subpkg:%ghost %{python3_sitelib}/django_storages-*.egg-info}
+%{?python_extras_subpkg:%ghost %{python3_sitelib}/django_storages.dist-info}
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.11.1-15

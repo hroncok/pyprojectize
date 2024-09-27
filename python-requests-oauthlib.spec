@@ -23,7 +23,6 @@ This project provides first-class OAuth library support for python-request.
 Summary:            OAuthlib authentication support for Requests.
 
 BuildRequires:      python3-devel
-BuildRequires:      python3-setuptools
 
 BuildRequires:      python3-oauthlib >= 0.6.2
 BuildRequires:      python3-requests >= 2.0.0
@@ -47,11 +46,15 @@ This project provides first-class OAuth library support for python-request.
 rm -rf %{distname}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %if %{with tests}

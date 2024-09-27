@@ -11,7 +11,6 @@ Source0:        https://github.com/gvalkov/%{name}/archive/refs/tags/v%{version}
 BuildRequires:  gcc
 BuildRequires:  kernel-headers
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 
 %global _description \
@@ -43,19 +42,21 @@ Summary:        %{summary}
 %autosetup
 
 #------------------------------------------------------------------------------
+%generate_buildrequires
+%pyproject_buildrequires
 %build
-%py3_build
+%pyproject_wheel
 
 #------------------------------------------------------------------------------
 %install
-%py3_install
+%pyproject_install
 
 #------------------------------------------------------------------------------
 %files -n python3-evdev
 %license LICENSE
 %doc README.rst
 %{python3_sitearch}/evdev/
-%{python3_sitearch}/evdev-%{version}-py%{python3_version}.egg-info/
+%{python3_sitearch}/evdev-%{version}.dist-info/
 
 
 #------------------------------------------------------------------------------

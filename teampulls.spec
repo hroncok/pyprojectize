@@ -9,7 +9,6 @@ URL:            https://github.com/brejoc/teampulls
 Source0:        https://files.pythonhosted.org/packages/source/t/%{name}/%{name}-%{version}.tar.gz
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 %description
 teampulls lists all of the pull requests for a list of users and repositories.
@@ -22,11 +21,14 @@ printed in red.
 # Remove bundled egg-info
 rm -rf %{name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 install -Dpm 0644 teampulls.toml %{buildroot}%{_sysconfdir}/teampulls.toml
 
 %files
@@ -35,7 +37,7 @@ install -Dpm 0644 teampulls.toml %{buildroot}%{_sysconfdir}/teampulls.toml
 %{_bindir}/teampulls
 
 %config(noreplace) %{_sysconfdir}/teampulls.toml
-%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{name}-%{version}.dist-info
 
 %changelog
 * Mon Jul 29 2024 Miroslav Suchý <msuchy@redhat.com> - 0.2.2-17

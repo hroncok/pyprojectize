@@ -24,7 +24,6 @@ BuildArch:      noarch
 %package -n python3-%{pretty_name}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytz
 BuildRequires:  python3-dateutil
 
@@ -38,11 +37,14 @@ BuildRequires:  python3-pytest-cov
 %prep
 %autosetup -n %{pretty_name}-%{commit}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 #skipping three tests
@@ -56,7 +58,7 @@ k="${k-}${k+ and }not test_unit_error"
 %files -n python3-%{pretty_name}
 %license LICENSE.txt
 %doc README.md
-%{python3_sitelib}/%{pretty_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pretty_name}-%{version}.dist-info
 %pycached %{python3_sitelib}/%{pretty_name}/main.py
 %pycached %{python3_sitelib}/%{pretty_name}/__init__.py
 

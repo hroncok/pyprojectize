@@ -23,7 +23,6 @@ what django.forms does for HTML forms.}
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Obsoletes:      python-%{srcname} < 1.2.3-5
 Obsoletes:      python2-%{srcname} < 1.2.3-5
 
@@ -33,17 +32,20 @@ Obsoletes:      python2-%{srcname} < 1.2.3-5
 %autosetup -n %{srcname}-%{version}
 rm -vr *.egg-info/
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.md CHANGELOG.md
 %{python3_sitelib}/django_tables2/
-%{python3_sitelib}/django_tables2-*.egg-info/
+%{python3_sitelib}/django_tables2.dist-info/
 
 %changelog
 %autochangelog

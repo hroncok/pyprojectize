@@ -30,7 +30,6 @@ BuildArch:      noarch
 %package -n python3-%{pkgname}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools >= 38.6.0
 %if %{with tests}
 BuildRequires:  python3-pytest
 BuildRequires:  python3-defusedxml
@@ -49,12 +48,16 @@ Requires:       python3-lxml
 rm -r source/%{eggname}.egg-info setup.cfg
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %if %{with tests}
@@ -68,7 +71,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} --verbose t
 %doc README.md
 %{python3_sitelib}/%{libname}.py
 %{python3_sitelib}/__pycache__/%{libname}.cpython-%{python3_version_nodots}*.py*
-%{python3_sitelib}/%{eggname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{eggname}-%{version}.dist-info
 
 
 %changelog

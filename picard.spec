@@ -16,7 +16,6 @@ BuildRequires:  gcc
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Requires:       hicolor-icon-theme
 Requires:       python3-qt5
 Requires:       python3-dateutil
@@ -39,12 +38,15 @@ track-oriented.
 %forgesetup
 %autosetup -n %{archivename}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %{__python3} setup.py config
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 desktop-file-install \
   --delete-original --remove-category="Application"   \

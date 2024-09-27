@@ -17,7 +17,6 @@ Source0:        %{pypi_source}
 BuildRequires:  gcc
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 BuildRequires:  libnl3-devel
 BuildRequires:  asciidoc
@@ -43,14 +42,18 @@ PCI locations.
 rm -rf %{pypi_name}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 a2x -d manpage -f manpage man/pethtool.8.asciidoc
 a2x -d manpage -f manpage man/pifconfig.8.asciidoc
 
 %install
-%py3_install
+%pyproject_install
 mkdir -p %{buildroot}%{_sbindir}
 mv %{buildroot}{%{_bindir},%{_sbindir}}/pifconfig
 mv %{buildroot}{%{_bindir},%{_sbindir}}/pethtool
@@ -74,7 +77,7 @@ export PYTHONPATH=%{buildroot}%{python3_sitearch}
 %{_sbindir}/pethtool
 %doc %{_mandir}/man8/*
 %{python3_sitearch}/%{pypi_name}.cpython-%{python3_version_nodots}*.so
-%{python3_sitearch}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitearch}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Mon Jul 29 2024 Miroslav Suchý <msuchy@redhat.com> - 0.15-12

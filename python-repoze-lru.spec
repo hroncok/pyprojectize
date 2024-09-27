@@ -12,7 +12,6 @@ Source0:        %pypi_source %{modname}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %global _description\
 repoze.lru is a LRU (least recently used) cache implementation. Keys and values\
@@ -37,11 +36,15 @@ and values that are used frequently.
 rm -rf %{modname}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test

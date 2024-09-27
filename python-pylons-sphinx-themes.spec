@@ -15,7 +15,6 @@ URL: https://github.com/Pylons/%{srcname}
 Source0: %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 
 %description
@@ -36,19 +35,23 @@ Summary: %{summary}
 %autosetup -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{srcname}
 %license LICENSE.txt
 %doc README.rst
 %{python3_sitelib}/pylons_sphinx_themes
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 
 
 %changelog

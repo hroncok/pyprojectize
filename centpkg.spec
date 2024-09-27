@@ -13,7 +13,6 @@ Source0:        %{url}/archive/%{version}/centpkg-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 # runtime requirements for test suite
 BuildRequires:  python3-cryptography
 BuildRequires:  python3-GitPython
@@ -42,13 +41,17 @@ Provides the centpkg-sig command for working with dist-git.
 %autosetup -p 1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 %{python3} doc/centpkg_man_page.py > centpkg.1
 
 
 %install
-%py3_install
+%pyproject_install
 install -D -p -m 0644 src/stream.conf      %{buildroot}%{_sysconfdir}/koji.conf.d/stream.conf
 install -D -p -m 0644 src/centpkg.conf     %{buildroot}%{_sysconfdir}/rpkg/centpkg.conf
 install -D -p -m 0644 src/centpkg-sig.conf %{buildroot}%{_sysconfdir}/rpkg/centpkg-sig.conf
@@ -67,7 +70,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %{python3} -m unittest discover --verb
 %config(noreplace) %{_sysconfdir}/rpkg/centpkg.conf
 %{_bindir}/%{name}
 %{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{name}-%{version}.dist-info
 %{_datadir}/bash-completion/completions/centpkg
 %{_mandir}/man1/centpkg.1*
 

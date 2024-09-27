@@ -80,7 +80,6 @@ BuildRequires:  python2-setuptools
 BuildRequires:  python%{python3_pkgversion}
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-pip
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-wheel
 BuildRequires:  python%{python3_pkgversion}-pytest
 %endif
@@ -184,6 +183,10 @@ popd
 %endif
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 V=1 CFLAGS="%{optflags}" \
 PREFIX="%{_prefix}" LIBDIRARCH="%{_lib}" INCDIR="%{_includedir}" \
@@ -202,7 +205,7 @@ pushd bindings/python
 
 %if %{with python3}
 # %%pyproject_wheel
-%py3_build
+%pyproject_wheel
 %endif
 popd
 
@@ -256,7 +259,7 @@ rm -rf %{buildroot}%{python2_sitelib}/capstone/include/capstone
 %endif
 
 %if %{with python3}
-%py3_install
+%pyproject_install
 # %%pyproject_install
 # %%pyproject_save_files capstone
 

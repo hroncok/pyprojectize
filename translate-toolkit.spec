@@ -18,7 +18,6 @@ Source8:        tmserver.1
 BuildArch:      noarch
 BuildRequires:  make
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 BuildRequires:  python3-aeidon
 BuildRequires:  python3-beautifulsoup4
@@ -85,14 +84,17 @@ the libraries in other localization tools.
 %prep
 %setup -q -n %{upstream_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 LANG=C.utf8
-%py3_build
+%pyproject_wheel
 make html -C docs/
 
 %install
 LANG=C.utf8
-%py3_install
+%pyproject_install
 
 # create manpages
 mkdir -p %{buildroot}%{_mandir}/man1

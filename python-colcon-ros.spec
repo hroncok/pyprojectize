@@ -22,7 +22,6 @@ BuildRequires:  python%{python3_pkgversion}-colcon-core >= 0.7.0
 BuildRequires:  python%{python3_pkgversion}-colcon-python-setup-py >= 0.2.4
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-pytest
-BuildRequires:  python%{python3_pkgversion}-setuptools >= 30.3.0
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %if %{undefined __pythondist_requires}
@@ -48,12 +47,16 @@ An extension for colcon-core to support ROS packages.
 %autosetup -p1 -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -64,7 +67,7 @@ An extension for colcon-core to support ROS packages.
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/colcon_ros/
-%{python3_sitelib}/colcon_ros-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/colcon_ros-%{version}.dist-info/
 
 
 %changelog

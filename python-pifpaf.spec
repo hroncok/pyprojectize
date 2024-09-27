@@ -60,7 +60,6 @@ stop daemons for a quick throw-away usage.
 Summary:          Pifpaf is a suite of fixtures to manage daemons
 %{?python_provide:%python_provide python3-pifpaf}
 
-BuildRequires:    python3-setuptools
 BuildRequires:    python3-devel
 BuildRequires:    python3-pbr
 
@@ -86,13 +85,16 @@ stop daemons for a quick throw-away usage.
 %prep
 %setup -q -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if %{with python2}
 %py2_build
 %endif
 
 %if %{with python3}
-%py3_build
+%pyproject_wheel
 %endif
 
 %install
@@ -101,7 +103,7 @@ stop daemons for a quick throw-away usage.
 %endif
 
 %if %{with python3}
-%py3_install
+%pyproject_install
 %endif
 
 

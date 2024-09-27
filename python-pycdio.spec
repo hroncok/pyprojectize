@@ -9,7 +9,6 @@ Source0:	%pypi_source pycdio
 
 BuildRequires:	gcc
 BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
 BuildRequires:	libcdio-devel
 BuildRequires:	swig
 
@@ -40,11 +39,14 @@ device-dependent properties of a CD-ROM can use this library.
 # fixes https://bugzilla.redhat.com/2155240
 sed -i 's/assertEquals/assertEqual/' test/test-cdtext.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 chmod 755 %{buildroot}/%{python3_sitearch}/*.so
 
 %if 0%{?fedora}
@@ -62,7 +64,7 @@ chmod 755 %{buildroot}/%{python3_sitearch}/*.so
 %{python3_sitearch}/iso9660.py
 %{python3_sitearch}/pycdio.py
 %{python3_sitearch}/pyiso9660.py
-%{python3_sitearch}/pycdio-%{version}-py3*.egg-info/
+%{python3_sitearch}/pycdio-%{version}-py3*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.1.0-16

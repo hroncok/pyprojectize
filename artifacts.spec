@@ -13,7 +13,6 @@ Source0:        %{url}/releases/download/%{date}/%{pypi_name}-%{date}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 BuildRequires:  python3-pyyaml
 
@@ -30,11 +29,14 @@ sure they follow the specification.
 %prep
 %autosetup -n %{pypi_name}-%{date}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 rm -rf %{buildroot}%{_defaultdocdir}/%{pypi_name}/LICENSE
 
 %check
@@ -45,7 +47,7 @@ PYTHONPATH=%{buildroot}/%{python3_sitelib}/ pytest-%{python3_version} -v tests
 %license LICENSE
 %{_bindir}/{stats,validator}
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{date}*.egg-info
+%{python3_sitelib}/%{pypi_name}-%{date}*.dist-info
 
 %changelog
 %autochangelog

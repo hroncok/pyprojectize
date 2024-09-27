@@ -19,7 +19,6 @@ common hardware interfaces and protocols used in the automotive systems.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
@@ -29,11 +28,14 @@ common hardware interfaces and protocols used in the automotive systems.
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Tests are failing at the moment due to a missing file
 #%check
@@ -42,7 +44,7 @@ common hardware interfaces and protocols used in the automotive systems.
 %files -n python3-%{srcname}
 %doc CONTRIBUTING.rst README.rst
 %license LICENSE.rst
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{python3_sitelib}/%{srcname}/
 %exclude %{python3_sitelib}/test/
 

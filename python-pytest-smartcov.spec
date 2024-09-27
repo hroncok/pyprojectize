@@ -20,7 +20,6 @@ Source0:        %{pypi_source}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 %description
 %{common_description}
@@ -36,18 +35,21 @@ Summary:        %{summary}
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %license LICENSE.txt
 %doc README.rst
 %{python3_sitelib}/__pycache__/*
 %{python3_sitelib}/smartcov.py
-%{python3_sitelib}/pytest_smartcov-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/pytest_smartcov-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.3-14

@@ -30,7 +30,6 @@ BuildRequires:  openssl-devel
 %package -n     python3-%{pypi_name}
 Summary:        Bindings for the scrypt key derivation function library
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Provides:       bundled(scrypt) = 1.2.0
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -45,18 +44,21 @@ rm -rf %{pypi_name}.egg-info
 # remove useless shebang
 sed -i '1d' scrypt/scrypt.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{pypi_name}
 %doc README.rst
 %{python3_sitearch}/%{pypi_name}
 %{python3_sitearch}/_%{pypi_name}*.so
-%{python3_sitearch}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.8.20-8

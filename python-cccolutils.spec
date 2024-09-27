@@ -11,7 +11,6 @@ Source0:        https://pagure.io/releases/cccolutils/CCColUtils-%{version}.tar.
 
 BuildRequires:  gcc
 BuildRequires:  krb5-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-devel
 
 %description
@@ -30,12 +29,16 @@ Python utilities for Kerberos Credential Cache Collections
 %autosetup -n CCColUtils-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -45,7 +48,7 @@ Python utilities for Kerberos Credential Cache Collections
 %files -n python3-cccolutils
 %license COPYING
 %{python3_sitearch}/cccolutils*.so
-%{python3_sitearch}/CCColUtils-*.egg-info
+%{python3_sitearch}/CCColUtils.dist-info
 
 
 %changelog

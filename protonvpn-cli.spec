@@ -14,7 +14,6 @@ Source:         %{url}/archive/v%{version}/%{github_name}-%{version}.tar.gz
 BuildArch:      noarch
 BuildRequires:  python3
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       openvpn
 %if 0%{?fedora} || 0%{?.el8}
@@ -41,16 +40,19 @@ browsing history).
 %prep
 %autosetup -n %{github_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 %{python3_sitelib}/%{srcname}/
 %{_bindir}/protonvpn
 

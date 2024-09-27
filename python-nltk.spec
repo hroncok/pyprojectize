@@ -26,7 +26,6 @@ research projects.
 %package -n python3-%{mod_name}
 Summary:        Natural Language Toolkit (Python 3)
 BuildRequires:  python3-devel >= 2.5
-BuildRequires:  python3-setuptools
 Requires:       python3-PyYAML >= 3.09
 Requires:       python3-numpy python3-matplotlib python3-tkinter
 
@@ -47,12 +46,15 @@ for f in $(grep -Frl '/usr/bin/env' %{mod_name}); do
   sed -i -e "s|^#!/usr/bin/env python$|#!%{__python3}|g" $f
 done
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -66,7 +68,7 @@ done
 %license LICENSE.txt
 %doc AUTHORS.md CONTRIBUTING.md ChangeLog README.md
 %{python3_sitelib}/%{mod_name}/
-%{python3_sitelib}/%{mod_name}-*.egg-info/
+%{python3_sitelib}/%{mod_name}.dist-info/
 
 
 %changelog

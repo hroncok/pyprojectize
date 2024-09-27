@@ -7,7 +7,6 @@ License: GPL-2.0-only
 BuildArch: noarch
 Url: https://github.com/sosreport/sos
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 Requires: python3-pexpect
 %if 0%{?rhel} && 0%{?rhel} < 10
 Requires: python3-setuptools
@@ -42,7 +41,7 @@ support technicians and developers.
 %if 0%{?fedora} >= 39
 %pyproject_wheel
 %else
-%py3_build
+%pyproject_wheel
 %endif
 
 %install

@@ -17,7 +17,6 @@ Source0:        https://github.com/%{owner}/%{srcname}/archive/%{gittag}/%{name}
 BuildArch:      noarch
 BuildRequires:  make
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 
 %description
@@ -59,15 +58,19 @@ Development documentation for %{srcname}
 %autosetup -n %{srcname}-%{gittag}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 pushd docs/
 make -e SPHINXBUILD=/usr/bin/sphinx-build-3 html
 popd
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{srcname}

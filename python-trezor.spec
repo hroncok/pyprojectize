@@ -18,7 +18,6 @@ BuildRequires:  pkgconfig(bash-completion)
 %package -n python3-trezor
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Requires:       %{py3_dist hidapi}
 Requires:       trezor-common >= 2.3.6
 
@@ -37,12 +36,16 @@ BuildRequires:  %{py3_dist construct-classes}
 rm -rf trezor.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 install -Dpm 644 bash_completion.d/trezorctl.sh %{buildroot}%{bash_completions_dir}/trezorctl
 
@@ -63,7 +66,7 @@ install -Dpm 644 bash_completion.d/trezorctl.sh %{buildroot}%{bash_completions_d
 %doc CHANGELOG.md
 %doc README.md
 %license COPYING
-%{python3_sitelib}/trezor-*.egg-info/
+%{python3_sitelib}/trezor.dist-info/
 %{python3_sitelib}/trezorlib/
 %{_bindir}/trezorctl
 %{bash_completions_dir}/trezorctl

@@ -10,7 +10,6 @@ URL:            https://github.com/kennethreitz/dj-database-url
 Source0:        https://github.com/kennethreitz/dj-database-url/archive/v%{version}.tar.gz#/dj-database-url-%{version}.tar.gz
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %global _description\
 This simple Django utility allows you to utilize the 12factor inspired\
@@ -32,11 +31,14 @@ DATABASE_URL environment variable to configure your Django application.
 %prep
 %autosetup -n dj-database-url-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} test_dj_database_url.py
@@ -46,7 +48,7 @@ DATABASE_URL environment variable to configure your Django application.
 %license LICENSE
 %{python3_sitelib}/%{srcname}.py*
 %{python3_sitelib}/__pycache__/%{srcname}.cpython-*.py*
-%{python3_sitelib}/%{srcname}-%{version}-py*.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.5.0-24

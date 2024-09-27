@@ -29,7 +29,6 @@ Requires:       python3-setuptools
 Requires:       python3-sqlalchemy >= 1.1
 Requires:       collectd-python
 
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-sqlalchemy >= 1.1
 BuildRequires:  python3-devel
 %if 0%{?with_checks} > 0
@@ -49,11 +48,14 @@ entrypoints and no code changes...
 %prep
 %setup -q -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %if 0%{?with_checks} > 0
@@ -63,7 +65,7 @@ entrypoints and no code changes...
 %files -n python3-%{pypi_name}
 %doc README.rst LICENSE examples/
 %{python3_sitelib}/sqlalchemy_collectd
-%{python3_sitelib}/sqlalchemy_collectd-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/sqlalchemy_collectd-%{version}.dist-info
 %{_bindir}/connmon
 
 %changelog

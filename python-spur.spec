@@ -19,7 +19,6 @@ BuildArch:      noarch
 %package -n python3-%{srcname}
 Summary:        %{sum}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if 0%{?rhel} < 9
 BuildRequires:  python3-nose
 %endif
@@ -35,12 +34,16 @@ BuildRequires:  python3dist(paramiko) >= 1.13.1
 sed -i -e "s/’/'/g" README.rst
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 # skip tests on EL9 due to deprecated python-nose

@@ -15,7 +15,6 @@ Patch1:         https://github.com/stalexan/netstat-monitor/pull/16.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-netaddr
 
 Requires:       python3-netaddr
@@ -31,11 +30,14 @@ what's displayed to just what's unexpected or interesting.
 %autosetup -p1
 sed -i -e '/^#!\//, 1d' netstat.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 mkdir -p %{buildroot}%{_datadir}/%{name}
 mv %{buildroot}/usr/sample-filters \
     %{buildroot}%{_datadir}/%{name}/sample-filters

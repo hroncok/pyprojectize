@@ -25,7 +25,6 @@ BuildRequires: pandoc
 BuildRequires: python3-cffi
 BuildRequires: python3-devel
 BuildRequires: python3-pypandoc
-BuildRequires: python3-setuptools
 BuildRequires: pkgconfig(ncurses)
 # for en_US.UTF-8 locale (we just want *some* UTF-8 one)
 BuildRequires: glibc-langpack-en
@@ -78,13 +77,16 @@ Python wrappers and a demonstration script for the notcurses library.
 
 %define __cmake_in_source_build 1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 # fedora requires -fPIC for static libraries
 %cmake -DUSE_QRCODEGEN=on -DDFSG_BUILD=on -DUSE_GPM=on \
  -DCMAKE_POSITION_INDEPENDENT_CODE=ON
 %cmake_build
 cd cffi
-CFLAGS="-I../include -L../" %py3_build
+CFLAGS="-I../include -L../" %pyproject_wheel
 
 %check
 #ctest -V %{?_smp_mflags}
@@ -92,7 +94,7 @@ CFLAGS="-I../include -L../" %py3_build
 %install
 %cmake_install
 cd cffi
-%py3_install
+%pyproject_install
 
 %files
 %doc CONTRIBUTING.md doc/CURSES.md doc/HACKING.md doc/HISTORY.md INSTALL.md doc/OTHERS.md README.md USAGE.md NEWS.md TERMINALS.md

@@ -26,7 +26,6 @@ Summary:            %{sum}
 Requires:           python3-dateutil
 Requires:           python3-setuptools
 BuildRequires:      python3-devel
-BuildRequires:      python3-setuptools
 BuildRequires:      python3-dateutil
 
 %{?python_provide:%python_provide python3-%{modname}}
@@ -41,12 +40,16 @@ generating vCard and vCalendar files.
 rm vobject/win32tz.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check

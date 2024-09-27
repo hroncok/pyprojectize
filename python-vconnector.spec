@@ -16,7 +16,6 @@ Source0:        %{pypi_source}#/%{srcname}-%{version}.tar.gz
 
 BuildArch:      noarch
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-docopt
 BuildRequires:  python%{python3_pkgversion}-tabulate
 BuildRequires:  python%{python3_pkgversion}-pyvmomi
@@ -56,11 +55,14 @@ Requires:       python%{python3_pkgversion}-docopt
 # fix shebang, https://fedoraproject.org/wiki/Features/SystemPythonExecutablesUseSystemPython
 sed -i 1s:python\$:%{__python3}: src/%{srcname}-cli
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 # W: no-manual-page-for-binary
 mkdir -p %{buildroot}%{_mandir}/man1
 help2man src/%{srcname}-cli >%{buildroot}%{_mandir}/man1/%{srcname}-cli.1
@@ -74,7 +76,7 @@ src/%{srcname}-cli -v
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 %{_bindir}/%{srcname}-cli
 %{_mandir}/man1/%{srcname}-cli.1*
 

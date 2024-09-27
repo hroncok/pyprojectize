@@ -22,7 +22,6 @@ Source0:	https://github.com/PyGreSQL/%{name}/archive/%{uversion}/%{name}-%{uvers
 BuildRequires:	gcc
 BuildRequires:	libpq-devel
 BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
 
 # For testsuite
 %if 0%{?runselftest:1}
@@ -54,12 +53,16 @@ Obsoletes: python3-PyGreSQL < %{uversion}-%{release}
 find -type f -exec chmod 644 {} +
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-pygresql
@@ -73,7 +76,7 @@ find -type f -exec chmod 644 {} +
 %{python3_sitearch}/pgdb/*.py
 %{python3_sitearch}/pgdb/__pycache__/*.py{c,o}
 %{python3_sitearch}/pgdb/py.typed
-%{python3_sitearch}/*.egg-info
+%{python3_sitearch}/*.dist-info
 
 
 %check

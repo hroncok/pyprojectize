@@ -21,7 +21,7 @@ Friedmann-Lemaître-Robertson-Walker metric.
 
 %package -n python3-pymilia
 Summary: Python wrappers for milia
-BuildRequires: python3-devel python3-setuptools 
+BuildRequires: python3-devel
 BuildRequires: python3-Cython
 
 # we don't want to provide private python extension libs
@@ -38,17 +38,20 @@ Friedmann-Lemaître-Robertson-Walker metric.
 %prep
 %setup -q
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-pymilia
 %doc README.txt NEWS.txt
 %license LICENSE.txt
 %{python3_sitearch}/milia/
-%{python3_sitearch}/*.egg-info
+%{python3_sitearch}/*.dist-info
 
 %changelog
 * Thu Jul 25 2024 Miroslav Suchý <msuchy@redhat.com> - 1.0.0-45

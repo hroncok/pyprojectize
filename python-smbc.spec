@@ -17,7 +17,6 @@ BuildRequires: gcc
 BuildRequires: git-core
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: libsmbclient-devel >= 3.2
 
 %description
@@ -43,11 +42,14 @@ Documentation for python-smbc.
 %prep
 %autosetup -n pysmbc-%{version} -S git
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 export PYTHONPATH=%{buildroot}%{python3_sitearch}
 %{_bindir}/pydoc3 -w smbc
 %{_bindir}/mkdir html

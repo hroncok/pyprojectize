@@ -29,7 +29,6 @@ Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{modname}}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description -n python3-%{modname} %{_description}
 
@@ -38,11 +37,14 @@ Python 3 version.
 %prep
 %autosetup -n %{modname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} test.py -v
@@ -51,7 +53,7 @@ Python 3 version.
 %license COPYING.LESSER
 %doc README
 
-%{python3_sitelib}/%{modname}-*.egg-info
+%{python3_sitelib}/%{modname}.dist-info
 %{python3_sitelib}/%{modname}.py
 %{python3_sitelib}/__pycache__/%{modname}.*
 

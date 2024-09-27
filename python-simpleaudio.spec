@@ -16,7 +16,6 @@ Source0: %pypi_source
 BuildRequires: alsa-lib-devel
 BuildRequires: gcc
 BuildRequires: python3-devel >= 3.3
-BuildRequires: python3-setuptools
 
 %description
 %{pypi_description}
@@ -33,18 +32,22 @@ Summary: %{summary}
 %autosetup -n %{pypi_name}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{pypi_name}
 %license LICENSE.txt
 %{python3_sitearch}/%{pypi_name}/
-%{python3_sitearch}/%{pypi_name}-*.egg-info/
+%{python3_sitearch}/%{pypi_name}.dist-info/
 
 
 %changelog

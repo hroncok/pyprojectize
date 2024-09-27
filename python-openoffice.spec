@@ -12,7 +12,6 @@ Patch0:         python-openoffice-2to3.patch
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 
 %global _description\
@@ -40,11 +39,14 @@ chmod a-x sample-scripts/*
 sed -i -e '1d' %{module}/streams.py
 sed -i -e '1d' %{module}/interact.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{module}
 %license COPYING LICENSE-gpl-3.0.txt

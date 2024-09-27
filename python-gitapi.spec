@@ -22,7 +22,6 @@ Pure-Python API to git, which uses the command-line interface.
 Summary:        Pure-Python API to git, which uses the command-line interface
 %{?python_provide:%python_provide python3-gitapi}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Requires:       git
 
 %description -n python3-gitapi
@@ -40,18 +39,22 @@ sed -i 's/\r$//' gitapi/testgitapi.py
 sed -i 's/\r$//' README.rst
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-gitapi
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/gitapi-%{version}a2-py%{python3_version}.egg-info/
+%{python3_sitelib}/gitapi-%{version}a2.dist-info/
 %{python3_sitelib}/gitapi/
 
 

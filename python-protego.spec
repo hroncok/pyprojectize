@@ -24,7 +24,6 @@ BuildArch:	noarch
 Summary:	%{summary}
 
 BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
 BuildRequires:	python3-pytest
 
 
@@ -34,12 +33,15 @@ BuildRequires:	python3-pytest
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest
@@ -48,7 +50,7 @@ BuildRequires:	python3-pytest
 %license LICENSE
 %doc README.rst
 %pycached %{python3_sitelib}/protego.py
-%{python3_sitelib}/Protego-*.egg-info
+%{python3_sitelib}/Protego.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.3.0-6

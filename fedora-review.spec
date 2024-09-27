@@ -37,7 +37,6 @@ Patch3:     %{name}-tmpfs-keep-mounted.patch
 BuildArch:  noarch
 
 BuildRequires:  mock >= 3.0
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-beautifulsoup4
 BuildRequires:  python3-bugzilla
 BuildRequires:  python3-packaging
@@ -112,12 +111,16 @@ Tests are packaged separately due to space concerns.
 %autosetup -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 pkg_dir="%{buildroot}/%{python3_sitelib}/FedoraReview"
 ln -s %{_datadir}/%{name}/scripts $pkg_dir/scripts
 ln -s %{_datadir}/%{name}/plugins $pkg_dir/plugins
@@ -144,7 +147,7 @@ mock --quiet -r fedora-38-x86_64 --uniqueext=hugo --init
 %doc README
 %license COPYING AUTHORS
 %{python3_sitelib}/FedoraReview
-%{python3_sitelib}/fedora_review-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/fedora_review-%{version}.dist-info
 %{_bindir}/fedora-review
 %{_bindir}/fedora-create-review
 %{_bindir}/koji-download-scratch

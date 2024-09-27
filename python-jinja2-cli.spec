@@ -18,7 +18,6 @@ Source0:        https://github.com/mattrobenolt/jinja2-cli/archive/0.8.2/jinja2-
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 BuildRequires:  python3-jinja2
 
@@ -42,12 +41,16 @@ Requires:       python3-toml
 %setup -qn %{pypi_name}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 # Remove tests from install (not good folder)
 rm -rf %{buildroot}%{python3_sitelib}/tests
@@ -62,7 +65,7 @@ py.test-%{python3_version}
 %license LICENSE
 %doc README.md
 %{_bindir}/jinja2
-%{python3_sitelib}/jinja2_cli-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/jinja2_cli-%{version}.dist-info/
 %{python3_sitelib}/jinja2cli/
 
 

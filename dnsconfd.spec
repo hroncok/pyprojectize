@@ -13,8 +13,6 @@ Source1:        dnsconfd.sysusers
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-rpm-macros
 BuildRequires:  python3-pip
 BuildRequires:  systemd
@@ -59,8 +57,11 @@ Dnsconfd management of unbound server
 %prep
 %autosetup -n %{name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %if %{defined fedora} && 0%{?fedora} < 40 || %{defined rhel} && 0%{?rhel} < 10
     echo '/var/run/dnsconfd(/.*)? gen_context(system_u:object_r:dnsconfd_var_run_t,s0)' >> distribution/dnsconfd.fc
@@ -70,7 +71,7 @@ make -f %{_datadir}/selinux/devel/Makefile %{modulename}.pp
 bzip2 -9 %{modulename}.pp
 
 %install
-%py3_install
+%pyproject_install
 mkdir   -m 0755 -p %{buildroot}%{_datadir}/dbus-1/system.d/
 mkdir   -m 0755 -p %{buildroot}%{_sysconfdir}/unbound/conf.d/
 mkdir   -m 0755 -p %{buildroot}%{_unitdir}

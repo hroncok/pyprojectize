@@ -30,7 +30,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-distro
 BuildRequires:  python3-rpm
 BuildRequires:  python3-progressbar2
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pip
 BuildRequires:  python3-cryptography
 BuildRequires:  python3-urllib3
@@ -65,8 +64,11 @@ introduction.
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 # write rpm macros
 cat << EOF > macros.osc
 %%osc_plugin_dir %{osc_plugin_dir}
@@ -86,7 +88,7 @@ PYTHONPATH=. argparse-manpage \
 
 
 %install
-%py3_install
+%pyproject_install
 
 mkdir -p %{buildroot}%{_localstatedir}/lib/osc-plugins
 # mkdir -p %{buildroot}%{_datadir}/bash-completion/completions/

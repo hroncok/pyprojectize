@@ -8,7 +8,7 @@ URL:            https://veusz.github.io/
 Source0:        https://github.com/veusz/veusz/releases/download/veusz-%{version}/veusz-%{version}.tar.gz
 
 BuildRequires:  gcc gcc-c++
-BuildRequires:  python3 python3-devel python3-setuptools
+BuildRequires:  python3 python3-devel
 BuildRequires:  python3-numpy
 BuildRequires:  qt5-qtbase-devel qt5-qtsvg-devel
 BuildRequires:  python3-qt5 python3-qt5-devel
@@ -47,8 +47,11 @@ find -name \*~ | xargs rm -f
 sed -i '/^#!/d' veusz/veusz_main.py
 sed -i '/^#!/d' veusz/veusz_listen.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
 rm -rf %{buildroot}
@@ -118,7 +121,7 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} \
 %{_datadir}/pixmaps/veusz.png
 %{_datadir}/icons/hicolor/*/apps/veusz.*
 %{_datadir}/veusz
-%{python3_sitearch}/veusz-*.egg-info
+%{python3_sitearch}/veusz.dist-info
 %{python3_sitearch}/veusz
 
 %changelog

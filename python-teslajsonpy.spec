@@ -20,7 +20,6 @@ Summary:        %{summary}
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(aiohttp)
 BuildRequires:  python3dist(backoff)
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(wrapt)
 BuildRequires:  python3dist(pytest)
 %{?python_provide:%python_provide python3-%{pypi_name}}
@@ -32,11 +31,14 @@ Async Python module to work with the Tesla API.
 %autosetup -n %{pypi_name}-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v tests -k "not test_values_on_init and not test_get_value_on_init \
@@ -47,7 +49,7 @@ rm -rf %{pypi_name}.egg-info
 %doc README.md
 %{python3_sitelib}/%{pypi_name}/
 %exclude %{python3_sitelib}/tests/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 0.11.0-14

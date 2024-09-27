@@ -15,7 +15,6 @@ Patch01:        71.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-openid
 
 %global _description\
@@ -45,15 +44,19 @@ rm -f docs/_static/._.DS_Store
 rm -f docs/._.DS_Store
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-flask-openid
 %doc docs README.rst LICENSE PKG-INFO
-%{python3_sitelib}/Flask_OpenID-*.egg-info/
+%{python3_sitelib}/Flask_OpenID.dist-info/
 %{python3_sitelib}/flask_openid.py
 %{python3_sitelib}/__pycache__/*
 

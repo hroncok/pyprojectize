@@ -21,7 +21,6 @@ Summary:        Full featured redis cache backend for Django
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-django
 Requires:       python3-django
 Requires:       python3-redis >= 2.10.0
@@ -36,18 +35,21 @@ Full featured redis cache backend for Django.
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{pypi_name}
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/%{modname}
-%{python3_sitelib}/django_redis-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/django_redis-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 4.5.0-26

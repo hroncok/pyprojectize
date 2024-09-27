@@ -15,7 +15,6 @@ Patch0:         version.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-testtools
 
 %description
@@ -30,11 +29,14 @@ Python library to generate nicely formatted trees, like the UNIX `tree` command
 %prep
 %autosetup -n %{pkgname}-%{commit}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 %check
 %{__python3} setup.py test
@@ -42,7 +44,7 @@ Python library to generate nicely formatted trees, like the UNIX `tree` command
 %files -n python3-%{pkgname}
 %license LICENSE
 # TODO this is listed as 0.1.0, but our %%{version} is 0.1.2 :(
-%{python3_sitelib}/tree_format-0.1.2-py%{python3_version}.egg-info/
+%{python3_sitelib}/tree_format-0.1.2.dist-info/
 %{python3_sitelib}/tree_format/
 
 %changelog

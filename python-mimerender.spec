@@ -14,7 +14,6 @@ Source1:        https://github.com/martinblech/mimerender/blob/v%{version}/LICEN
 BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3-mimeparse
-BuildRequires:  python3-setuptools
 
 %description
 mimerender provides a decorator that wraps a HTTP request handler to select
@@ -60,11 +59,14 @@ add support for other frameworks. This is the Python 3 build of mimerender.
 %autosetup -n %{srcname}-%{version}
 cp %{SOURCE1} ./LICENSE
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} src/mimerender.py

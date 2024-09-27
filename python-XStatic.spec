@@ -22,7 +22,6 @@ XStatic-* packages.
 %package -n python3-%{pypi_name}
 Summary:       XStatic base package with minimal support code
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -39,19 +38,23 @@ XStatic-* packages.
 %autosetup -n %{pypi_name}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 mkdir %{buildroot}/%{python3_sitelib}/xstatic/pkg
 
 
 %files -n python3-%{pypi_name}
 %doc README.txt
 %{python3_sitelib}/xstatic
-%{python3_sitelib}/XStatic-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/XStatic-%{version}.dist-info
 %{python3_sitelib}/XStatic-%{version}-py%{python3_version}-nspkg.pth
 
 

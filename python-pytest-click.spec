@@ -11,7 +11,6 @@ BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(click) >= 6
 BuildRequires:  python3dist(pytest) >= 5
-BuildRequires:  python3dist(setuptools)
 
 %description
 pytest-click comes with some configurable fixtures - cli_runner and
@@ -27,11 +26,14 @@ isolated_cli_runner.
 %prep
 %autosetup -n pytest_click-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest
@@ -40,7 +42,7 @@ isolated_cli_runner.
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/pytest_click/
-%{python3_sitelib}/pytest_click-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/pytest_click-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.1.0-8

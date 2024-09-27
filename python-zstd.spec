@@ -16,7 +16,6 @@ Patch:          python-zstd-1.5.5.1-test-external.patch
 
 BuildRequires:  gcc
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  pkgconfig(libzstd) >= %{zstd_version}
 
 %description
@@ -46,11 +45,14 @@ rm tests/test_version.py
 sed -i -e '/tests\.test_version/d' setup.py
 sed -i -e '/test_version/d' tests/__init__.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build -- --legacy --external
+%pyproject_wheel -C--global-option='--legacy --external'
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -58,7 +60,7 @@ sed -i -e '/test_version/d' tests/__init__.py
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.rst
-%{python3_sitearch}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/%{pypi_name}-%{version}.dist-info
 %{python3_sitearch}/%{pypi_name}*.so
 
 %changelog

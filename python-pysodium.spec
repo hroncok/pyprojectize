@@ -12,7 +12,6 @@ BuildArch:      noarch
 
 BuildRequires:  pkgconfig(libsodium)
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(pytest)
 
 %global _description %{expand:
@@ -31,11 +30,14 @@ Requires:       libsodium
 %prep
 %autosetup -p1 -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest
@@ -43,7 +45,7 @@ Requires:       libsodium
 %files -n python3-%{pypi_name}
 %doc AUTHORS README.md
 %license LICENSE.txt
-%{python3_sitelib}/%{pypi_name}-%{version}-py*.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %{python3_sitelib}/%{pypi_name}
 
 %changelog

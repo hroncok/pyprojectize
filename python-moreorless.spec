@@ -13,7 +13,6 @@ Source0:        %{pypi_source}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  %{py3_dist setuptools_scm}
 %if %{with tests}
 BuildRequires:  %{py3_dist click}
@@ -40,12 +39,16 @@ Summary:        %{summary}
 %autosetup -p1 -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %if %{with tests}
@@ -59,7 +62,7 @@ Summary:        %{summary}
 %doc README.md
 %{python3_sitelib}/%{srcname}/
 %exclude %{python3_sitelib}/%{srcname}/py.typed
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 
 
 %changelog

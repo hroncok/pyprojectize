@@ -28,7 +28,6 @@ BuildArch: noarch
 %package -n python3-%{pypi_name}
 Summary: %{summary}
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-requests
 Requires: publicsuffix-list
 
@@ -39,17 +38,20 @@ Requires: publicsuffix-list
 %setup -q -n %{pypi_name}-%{version}
 rm -r src/%{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 rm %{buildroot}%{python3_sitelib}/%{pypi_name}/public_suffix_list.dat
 ln -s ../../../../share/publicsuffix/public_suffix_list.dat %{buildroot}%{python3_sitelib}/%{pypi_name}
 
 %files -n python3-%{pypi_name}
 %doc README.rst
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %{python3_sitelib}/%{pypi_name}
 
 %changelog

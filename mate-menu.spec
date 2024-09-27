@@ -21,7 +21,6 @@ BuildRequires:  gobject-introspection-devel
 BuildRequires:  intltool
 BuildRequires:  python3-devel
 BuildRequires:  python3-distutils-extra
-BuildRequires:  python3-setuptools
 BuildRequires:  desktop-file-utils
 
 Requires:       mate-menus
@@ -53,11 +52,14 @@ Environment.
 # xdg-su isn't available in fedora
 sed -i 's/xdg-su/beesu/g' %{_name}/execute.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Manually invoke the python byte compile macro for each path that needs byte
 # compilation.
@@ -80,7 +82,7 @@ rm -rf %{buildroot}%{_datadir}/locale/zh-Hans/
 %{_bindir}/%{name}
 %{_usr}/lib/%{name}/
 %{python3_sitelib}/%{_name}/
-%{python3_sitelib}/%{_name}-*-py3.*.egg-info/
+%{python3_sitelib}/%{_name}-*-py3.*.dist-info/
 %{_datadir}/%{name}/
 %{_datadir}/glib-2.0/schemas/org.mate.mate-menu*.gschema.xml
 %{_datadir}/mate-panel/applets/org.mate.panel.MateMenuApplet.mate-panel-applet

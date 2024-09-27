@@ -47,7 +47,7 @@ sed -i 's/platformdirs >=2.6.0/platformdirs >=2.3.0/g' setup.cfg
 %install
 %pyproject_install
 %pyproject_save_files %{name}
-#%%py3_install
+#%%pyproject_install
 install -D -p -m 644 src/vorta/assets/icons/icon.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/com.borgbase.Vorta.svg
 install -D -p -m 644 package/icon-symbolic.svg %{buildroot}%{_datadir}/icons/hicolor/symbolic/apps/com.borgbase.Vorta-symbolic.svg
 install -D -p src/vorta/assets/metadata/com.borgbase.Vorta.desktop -t %{buildroot}%{_datadir}/applications/

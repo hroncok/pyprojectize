@@ -57,7 +57,6 @@ BuildRequires:  python%{python3_pkgversion}-gdal
 BuildRequires:  python%{python3_pkgversion}-memcached
 BuildRequires:  python%{python3_pkgversion}-modestmaps >= 1.3.0
 BuildRequires:  python%{python3_pkgversion}-nose
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-shapely
 BuildRequires:  python%{python3_pkgversion}-werkzeug
 Requires:       font(dejavusansmono)
@@ -86,12 +85,16 @@ sed -i '1i #!%{_bindir}/bash' examples/zoom_example/run_server.sh
 sed -i '1{s@^#!/usr/bin/env python@#!%{__python3}@}' examples/geotiff/server.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 install -d %{buildroot}%{_mandir}/man1
 install -p -m0644 man/tilestache-clean.1 %{buildroot}%{_mandir}/man1/
@@ -120,7 +123,7 @@ NO_DATABASE=1 OFFLINE_TESTS=1 %{__python3} -m nose \
 %license LICENSE
 %doc API.html CHANGELOG README.md
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 %{_bindir}/tilestache-clean.py
 %{_bindir}/tilestache-compose.py
 %{_bindir}/tilestache-list.py

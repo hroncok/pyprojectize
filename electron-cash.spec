@@ -18,7 +18,6 @@ BuildArch:      noarch
 ExcludeArch:    %{ix86}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-qt5-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
@@ -65,12 +64,15 @@ rm -v ./electroncash/tor/bin/tor
 #budled libraries
 rm -rfv ./packages/
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 pyrcc5 icons.qrc -o electroncash_gui/qt/icons_rc.py
-%{py3_build}
+%{pyproject_wheel}
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 # Remove shebang lines from .py files that aren't executable, and
 # remove executability from .py files that don't have a shebang line:
@@ -103,7 +105,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/org.elect
 %{python3_sitelib}/electroncash/
 %{python3_sitelib}/electroncash_gui/
 %{python3_sitelib}/electroncash_plugins/
-%{python3_sitelib}/Electron_Cash-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/Electron_Cash-%{version}.dist-info
 
 %changelog
 * Wed Jul 17 2024 Fedora Release Engineering <releng@fedoraproject.org> - 4.4.1-3

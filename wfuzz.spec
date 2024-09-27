@@ -12,7 +12,6 @@ BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3-mock
 BuildRequires:  python3-netaddr
-BuildRequires:  python3-setuptools
 
 %description
 Wfuzz has been created to facilitate the task in web applications assessments
@@ -38,13 +37,16 @@ sed -i -e 's/pyparsing>=2.4\*/pyparsing>=2.4/g' setup.py
 # We don't need this as we have the whole documentation
 sed -i -e '/data_files/d' setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 PYTHONPATH=${PWD} sphinx-build-3 docs html
 rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %license LICENSE
@@ -54,7 +56,7 @@ rm -rf html/.{doctrees,buildinfo}
 %{_bindir}/wfuzz
 %{_bindir}/wxfuzz
 %{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}-%{version}-py*.egg-info/
+%{python3_sitelib}/%{name}-%{version}.dist-info/
 
 %files -n %{name}-doc
 %doc html

@@ -20,7 +20,6 @@ their corresponding distro package names.
 %package -n python3-%{sname}
 Summary:          python module name to package name map
 Requires:         python3-pbr
-BuildRequires:    python3-setuptools
 BuildRequires:    python3-devel
 BuildRequires:    python3-pbr
 
@@ -42,8 +41,12 @@ This is a Python3 version.
 %setup -q -n pymod2pkg-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %if %{with tests}
 %check
@@ -52,7 +55,7 @@ rm -rf .testrepository
 %endif
 
 %install
-%py3_install
+%pyproject_install
 mv %{buildroot}%{_bindir}/%{sname} %{buildroot}%{_bindir}/%{sname}-%{python3_version}
 ln -s ./%{sname}-%{python3_version} %{buildroot}%{_bindir}/%{sname}-3
 ln -s ./%{sname}-%{python3_version} %{buildroot}%{_bindir}/%{sname}
@@ -63,7 +66,7 @@ ln -s ./%{sname}-%{python3_version} %{buildroot}%{_bindir}/%{sname}
 %{_bindir}/%{sname}
 %{_bindir}/%{sname}-3*
 %{python3_sitelib}/%{sname}
-%{python3_sitelib}/pymod2pkg-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/pymod2pkg-%{version}.dist-info
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 0.17.1-22

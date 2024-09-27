@@ -13,7 +13,6 @@ BuildArch:      noarch
 
 BuildRequires:  gcc
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-distutils-extra
 BuildRequires:  python3-gobject-base
 BuildRequires:  desktop-file-utils
@@ -46,12 +45,16 @@ conversion. It can also extract the audio from videos.
 %autosetup -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 mkdir -p %{buildroot}/usr/share/locale
 mv build/mo/* %{buildroot}/usr/share/locale/
@@ -80,7 +83,7 @@ rm -f %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 %{_docdir}/%{name}/
 %{_metainfodir}/%{name}.appdata.xml
 %{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}-*.egg-info
+%{python3_sitelib}/%{name}.dist-info
 
 
 %changelog

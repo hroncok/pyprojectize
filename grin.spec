@@ -9,7 +9,6 @@ Source0:       https://files.pythonhosted.org/packages/source/g/grin/grin-%{vers
 Requires:      python3-setuptools
 BuildArch:     noarch
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 %description
 grin is a similar in function to GNU grep, however it is has modified
@@ -32,18 +31,21 @@ Some features grin feature are:
 %autosetup
 sed -i -e '1d' grin.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 %files
 %doc README.rst
 %{_bindir}/grin
 %{_bindir}/grind
 %{python3_sitelib}/grin.py*
-%{python3_sitelib}/grin-*-py*.egg-info/
+%{python3_sitelib}/grin-*.dist-info/
 %{python3_sitelib}/__pycache__/grin.*
 
 %changelog

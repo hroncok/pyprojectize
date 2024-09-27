@@ -38,7 +38,6 @@ Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pbr
 # Testing requirements
 BuildRequires:  python3-fixtures
@@ -73,8 +72,11 @@ Documentation for the os-client-config library.
 # Let RPM handle the dependencies
 rm -f test-requirements.txt requirements.txt
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %if 0%{?with_doc}
 # generate html doc
@@ -83,7 +85,7 @@ rm -rf doc/build/html/.{doctrees,buildinfo} doc/build/html/objects.inv
 %endif
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 %check
 # NOTE(jpena): we are disabling Python2 unit tests when building the Python 3 package.
@@ -101,7 +103,7 @@ export PYTHONPATH=$PWD
 %doc ChangeLog CONTRIBUTING.rst PKG-INFO README.rst
 %license LICENSE
 %{python3_sitelib}/os_client_config
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 
 %if 0%{?with_doc}
 %files -n python-%{pypi_name}-doc

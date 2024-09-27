@@ -20,7 +20,6 @@ for Python to read and write DIDL-Lite-xml.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 # Tests are only in the GitHub source tarball present which was not released as of today
 #BuildRequires:  python3dist(defusedxml)
 #BuildRequires:  python3dist(pytest)
@@ -34,11 +33,14 @@ for Python to read and write DIDL-Lite-xml.
 %autosetup -n %{pypi_name}-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 #%%check
 #%%pytest -v tests
@@ -47,7 +49,7 @@ rm -rf %{pypi_name}.egg-info
 %license LICENSE.md
 %doc README.rst
 %{python3_sitelib}/didl_lite/
-%{python3_sitelib}/python_didl_lite-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/python_didl_lite-%{version}.dist-info/
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 1.2.5-16

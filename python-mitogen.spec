@@ -72,7 +72,6 @@ BuildRequires:  python2-setuptools
 %package -n python%{python3_pkgversion}-%{pkgname}
 Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{pkgname}}
 
 
@@ -89,14 +88,18 @@ rm -rf %{eggname}.egg-info
 rm -r mitogen/compat ansible_mitogen/compat
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 %{?with_python2:%py2_build}
-%{?with_python3:%py3_build}
+%{?with_python3:%pyproject_wheel}
 
 
 %install
 %{?with_python2:%py2_install}
-%{?with_python3:%py3_install}
+%{?with_python3:%pyproject_install}
 
 
 %check
@@ -111,7 +114,7 @@ rm -r mitogen/compat ansible_mitogen/compat
 %doc README.md
 %{python2_sitelib}/%{libname}
 %{python2_sitelib}/ansible_%{libname}
-%{python2_sitelib}/%{eggname}-%{version}-py%{python2_version}.egg-info
+%{python2_sitelib}/%{eggname}-%{version}-py%{python2_version}.dist-info
 %endif
 
 
@@ -121,7 +124,7 @@ rm -r mitogen/compat ansible_mitogen/compat
 %doc README.md
 %{python3_sitelib}/%{libname}
 %{python3_sitelib}/ansible_%{libname}
-%{python3_sitelib}/%{eggname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{eggname}-%{version}.dist-info
 %endif
 
 

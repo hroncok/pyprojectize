@@ -14,7 +14,6 @@ BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3-pip
 BuildRequires:  python3-pytest-runner
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
 BuildRequires:  python3-sphinx
 
@@ -40,11 +39,14 @@ Documentation for django-health-check
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # TODO: Enable once pytest-django is packaged
 # https://lists.fedoraproject.org/archives/list/python-devel@lists.fedoraproject.org/thread/QTZIBOTA5XHNOLEF22K46XC74LZ7OQP5/
@@ -56,7 +58,7 @@ Documentation for django-health-check
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/health_check/
-%{python3_sitelib}/django_health_check-*.egg-info/
+%{python3_sitelib}/django_health_check.dist-info/
 
 %files -n python-%{pypi_name}-doc
 # There is a docs directory but it is no longer included in the release tarball

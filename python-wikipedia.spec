@@ -22,7 +22,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-beautifulsoup4
 BuildRequires:  python3-pytest
 BuildRequires:  python3-requests
-BuildRequires:  python3-setuptools
 Requires:       python3-beautifulsoup4
 Requires:       python3-requests
 
@@ -33,11 +32,14 @@ from a page, and more.
 %prep
 %autosetup -n Wikipedia-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest
@@ -46,7 +48,7 @@ from a page, and more.
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-*.egg-info
+%{python3_sitelib}/%{srcname}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.4.5-31

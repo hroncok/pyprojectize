@@ -23,7 +23,6 @@ import/export.
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{modname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description -n python3-%{modname} %{_description}
 
@@ -32,11 +31,14 @@ Python 3 version.
 %prep
 %autosetup -n %{modname}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{modname}
 %license LICENSE

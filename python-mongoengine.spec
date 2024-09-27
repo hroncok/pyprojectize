@@ -21,7 +21,6 @@ BuildRequires: python3-pymongo-gridfs
 BuildRequires: python3-sphinx
 BuildRequires: python3-sphinx_rtd_theme
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: make
  
  
@@ -57,8 +56,12 @@ find . -name '*.py' | xargs sed -i '1s|^#!.*|#!%{__python3}|'
 sed -Ei 's/(, )?"readthedocs_ext\.readthedocs"//' docs/conf.py
  
  
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 PYTHONPATH=$(pwd) make -C docs SPHINXBUILD=sphinx-build-3 html
 rm -f docs/_build/html/.buildinfo
 # Don't ship fonts
@@ -66,13 +69,13 @@ rm -rf docs/_build/html/_static/font
  
  
 %install
-%py3_install
+%pyproject_install
  
 %files -n python3-%{pkgname}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{pkgname}
-%{python3_sitelib}/%{pkgname}-*.egg-info
+%{python3_sitelib}/%{pkgname}.dist-info
  
  
 %files doc

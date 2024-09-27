@@ -12,7 +12,6 @@ Source1:        %{url}/releases/download/v%{version}/%{srcname}-%{version}.tar.g
 Source2:        https://nmstate.io/nmstate.gpg
 Source3:        %{url}/releases/download/v%{version}/%{srcname}-vendor-%{version}.tar.xz
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  gnupg2
 BuildRequires:  systemd-devel
 BuildRequires:  systemd-rpm-macros
@@ -167,6 +166,9 @@ mv ../vendor ./
 %endif
 popd
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 pushd rust
 %cargo_build
@@ -178,7 +180,7 @@ pushd rust
 popd
 
 pushd rust/src/python
-%py3_build
+%pyproject_wheel
 popd
 
 %install
@@ -189,7 +191,7 @@ env SKIP_PYTHON_INSTALL=1 \
     %make_install
 
 pushd rust/src/python
-%py3_install
+%pyproject_install
 popd
 
 %if ! 0%{?rhel}
@@ -235,7 +237,7 @@ popd
 %files -n python3-%{libname}
 %license LICENSE
 %{python3_sitelib}/%{libname}
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 
 %files static
 %{_libdir}/libnmstate.a

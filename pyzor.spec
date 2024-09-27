@@ -14,7 +14,6 @@ Patch0:         https://github.com/SpamExperts/pyzor/pull/168.patch#/pyzor-1.0.0
 BuildArch:      noarch
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-pytest
-BuildRequires:  python%{python3_pkgversion}-setuptools
 # No python3-redis (yet?) in EPEL, only in Fedora
 %if 0%{?fedora}  
 BuildRequires:  python%{python3_pkgversion}-redis
@@ -35,12 +34,16 @@ is highly recommended.
 %forgeautosetup -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 install -d -m 755 %{buildroot}%{_sysconfdir}/%{name}
 
 

@@ -19,7 +19,6 @@ Read the documentation at http://pythonhosted.org/asciitree
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -30,11 +29,14 @@ Read the documentation at http://pythonhosted.org/asciitree
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Need fixing by upstream
 #%check

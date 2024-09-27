@@ -12,7 +12,6 @@ Source0: https://github.com/sqlalchemy/mako/archive/rel_%(echo %{version} | sed 
 BuildArch:     noarch
 BuildRequires: python3-devel
 BuildRequires: python3-pytest
-BuildRequires: python3-setuptools
 BuildRequires: python3-markupsafe
 
 %global _description\
@@ -52,12 +51,16 @@ This package contains the mako module built for use with python3.
 sed -i '/tag_build = dev/d' setup.cfg
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 mv %{buildroot}/%{_bindir}/mako-render %{buildroot}/%{_bindir}/mako-render-%{python3_version}
 ln -s ./mako-render-%{python3_version} %{buildroot}/%{_bindir}/mako-render-3
@@ -75,7 +78,7 @@ pytest-3
 %{_bindir}/mako-render-3
 %{_bindir}/mako-render-%{python3_version}
 %{python3_sitelib}/mako/
-%{python3_sitelib}/Mako-*.egg-info/
+%{python3_sitelib}/Mako.dist-info/
 
 
 %changelog

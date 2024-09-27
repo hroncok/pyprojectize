@@ -11,7 +11,6 @@ BuildArch:      noarch
  
 BuildRequires:  python3-devel
 BuildRequires:  python3-pip
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
 BuildRequires:  python3-wheel
 Requires:       git-core
@@ -26,11 +25,14 @@ Pretty-print git repository collaborators sorted by contributions.
 %prep
 %autosetup -n %{name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 mkdir -p %{buildroot}%{_libexecdir}/git-core
 ln -s %{_bindir}/%{name} %{buildroot}%{_libexecdir}/git-core/%{name}
 install -Dpm0644 -t %{buildroot}%{_mandir}/man1 gitfame/git-fame.1
@@ -44,7 +46,7 @@ install -Dpm0644 -t %{buildroot}%{_mandir}/man1 gitfame/git-fame.1
 %{_bindir}/%{name}
 %{_libexecdir}/git-core/%{name}
 %{_mandir}/man1/%{name}.1*
-%{python3_sitelib}/git_fame-*.egg-info/
+%{python3_sitelib}/git_fame.dist-info/
 %{python3_sitelib}/gitfame/
 
 %changelog

@@ -21,7 +21,6 @@ printable width of a string on a Terminal.
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if %{with tests}
 BuildRequires:  python3-pytest
 %endif
@@ -37,11 +36,14 @@ printable width of a string on a Terminal.
 # skip coverage checks
 sed -i -e 's|--cov[^[:space:]]*||g' tox.ini
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with tests}
 %check
@@ -52,7 +54,7 @@ sed -i -e 's|--cov[^[:space:]]*||g' tox.ini
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 %autochangelog

@@ -30,7 +30,6 @@ that you immediately profit from the underlying library’s speed and stability.
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-Cython
 BuildRequires:  python3-pytest
 BuildRequires:  python3-pytest-runner
@@ -46,11 +45,14 @@ rm -vf src/taglib.cpp
 # remove useless shebang
 sed -i -e '1{\@^#!/usr/bin/env python@d}' src/pyprinttags.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build -- --cython
+%pyproject_wheel -C--global-option=--cython
 
 %install
-%py3_install
+%pyproject_install
 # Not interested in having 2 binaries doing same thing
 mv -f %{buildroot}%{_bindir}/pyprinttags{3,}
 
@@ -61,7 +63,7 @@ mv -f %{buildroot}%{_bindir}/pyprinttags{3,}
 %license COPYING
 %doc README.md CHANGELOG.md
 %{_bindir}/pyprinttags
-%{python3_sitearch}/%{srcname}-*.egg-info/
+%{python3_sitearch}/%{srcname}.dist-info/
 %{python3_sitearch}/taglib.*.so
 %{python3_sitearch}/pyprinttags.py
 %{python3_sitearch}/__pycache__/pyprinttags.*

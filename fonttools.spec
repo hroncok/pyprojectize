@@ -26,7 +26,6 @@ Provides:       ttx = %{version}-%{release}
 Summary:        Python 3 fonttools library
 %{?python_provide:%python_provide python3-%{name}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
 
 BuildRequires:  python3-Cython
@@ -65,7 +64,7 @@ Obsoletes: python3-ufolib <= 2.1.1-11
 %if 0%{?fedora}
 # Cannot package “pathops” extra until python3dist(skia-pathops) is packaged;
 # cannot package “all” extra without the “pathops” extra
-%{?python_extras_subpkg:%python_extras_subpkg -n python3-fonttools -i %{python3_sitearch}/%{name}-%{version}-py%{python3_version}.egg-info graphite interpolatable lxml plot symfont type1 ufo unicode woff}
+%pyproject_extras_subpkg -n python3-fonttools graphite interpolatable lxml plot symfont type1 ufo unicode woff
 %endif
 
 %prep
@@ -78,9 +77,12 @@ sed -i '1d' Lib/fontTools/mtiLib/__init__.py
 sed -i 's/"lxml >=.*",/"lxml",/' setup.py
 sed -i 's/lxml==.*/lxml/' requirements.txt
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 export FONTTOOLS_WITH_CYTHON=1
-%py3_build
+%pyproject_wheel
 
 %install
 %{__python3} setup.py install --skip-build --root %{buildroot}
@@ -101,7 +103,7 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} %{python3} -m pytest --ignore Tests/o
 %license LICENSE
 %doc NEWS.rst README.rst
 %{python3_sitearch}/fontTools
-%{python3_sitearch}/%{name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/%{name}-%{version}.dist-info
 
 %changelog
 * Wed Jul 17 2024 Fedora Release Engineering <releng@fedoraproject.org> - 4.53.1-2

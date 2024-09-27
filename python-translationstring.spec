@@ -28,7 +28,6 @@ work best when provided with an instance of the babel.support.Translations class
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{modname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description -n python3-%{modname} %{_description}
 
@@ -37,11 +36,14 @@ Python 3 version.
 %prep
 %setup -q -n %{modname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -50,7 +52,7 @@ Python 3 version.
 %license LICENSE.txt
 %doc README.rst changes.rst
 %{python3_sitelib}/%{modname}/
-%{python3_sitelib}/%{modname}-*.egg-info/
+%{python3_sitelib}/%{modname}.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.3-30

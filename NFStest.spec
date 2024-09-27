@@ -10,7 +10,6 @@ Source0: http://www.linux-nfs.org/~mora/nfstest/releases/%{name}-%{version}.tar.
 
 BuildArch: noarch
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 Requires: nfs-utils sudo tcpdump 
 Requires: coreutils iproute iptables 
 Requires: openssh-clients psmisc util-linux
@@ -21,11 +20,14 @@ most of the functionality is focused mainly on testing the client.
 %prep
 %setup -q
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %{_bindir}/nfstest_alloc

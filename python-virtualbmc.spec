@@ -14,7 +14,6 @@ Source3: vbmcd.sysusers
 BuildArch: noarch
 BuildRequires: python3-devel
 BuildRequires: python3-pbr
-BuildRequires: python3-setuptools
 BuildRequires: systemd-rpm-macros
 BuildRequires: git
 # Documentation
@@ -56,15 +55,18 @@ Documentation for VirtualBMC.
 %prep
 %autosetup -n %{srcname}-%{version} -S git
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 # generate html docs
 sphinx-build-3 -W -b html doc/source doc/build/html
 # remove the sphinx-build-3 leftovers
 rm -rf doc/build/html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 install -p -D -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/polkit-1/rules.d/60-vbmcd.rules
 install -p -D -m 0644 %{SOURCE2} %{buildroot}%{_unitdir}/vbmcd.service
 install -p -D -m 0644 %{SOURCE3} %{buildroot}%{_sysusersdir}/vbmcd.conf
@@ -90,7 +92,7 @@ PYTHON=%{__python3} stestr run
 %{_bindir}/vbmcd
 %{_bindir}/vbmc
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-*.egg-info
+%{python3_sitelib}/%{srcname}.dist-info
 %exclude %{python3_sitelib}/%{srcname}/tests
 %{_datadir}/polkit-1/rules.d/60-vbmcd.rules
 %{_unitdir}/vbmcd.service

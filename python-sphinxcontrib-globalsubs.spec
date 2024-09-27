@@ -13,7 +13,6 @@ Source:         %{forgesource}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %global _description %{expand:
 This extension adds support for global substitutions to conf.py.
@@ -30,11 +29,14 @@ Summary:        %{summary}
 %prep
 %autosetup -p1 -n sphinxcontrib-globalsubs-%{commit}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # %%check
 # upstream has no testsuite
@@ -43,7 +45,7 @@ Summary:        %{summary}
 %license LICENSE.txt
 %doc README.rst
 %{python3_sitelib}/sphinxcontrib/*
-%{python3_sitelib}/sphinxcontrib_globalsubs-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/sphinxcontrib_globalsubs-%{version}.dist-info/
 %exclude %{python3_sitelib}/sphinxcontrib_globalsubs-*.pth
 
 %changelog

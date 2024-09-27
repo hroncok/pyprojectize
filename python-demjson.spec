@@ -11,7 +11,6 @@ Patch0:         demjson_2.2.4_py39.patch
 Patch1:         demjson_2.2.4_2to3.patch
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %global base_description The demjson package is a comprehensive Python language library to read\
 and write JSON; the popular language-independent data format standard.\
@@ -37,12 +36,16 @@ Summary:        Python JSON module and lint checker
 %autosetup -n %{srcname}-%{version} -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 # fix shebang lines
 find %{buildroot}%{python3_sitelib} \

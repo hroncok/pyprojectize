@@ -13,7 +13,6 @@ Source0:        https://files.pythonhosted.org/packages/source/h/%{srcname}/%{sr
 
 BuildRequires:  gcc
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  libxml2-devel
 BuildRequires:  pkgconf
 # For tests
@@ -48,11 +47,14 @@ export debug=True
 # remove shebangs from library files
 sed -i -e '/^#!\//, 1d' src/html5_parser/*.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test

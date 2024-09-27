@@ -42,7 +42,6 @@ It supports Python 2.7, 3.4+, Jython and PyPy and uses standard libraries only.
 
 %package -n python3-%{pypi_name}
 Summary:		Python 3 modules for writing files in the Excel 2007+ XLSX file format
-BuildRequires:	python3-setuptools
 BuildRequires:	python3-devel
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -54,17 +53,20 @@ BuildRequires:	python3-devel
 # Remove bundled egg-info
 rm -rf %{src_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %doc README.rst
 %license LICENSE.txt
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{src_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{src_name}-%{version}.dist-info
 %{_bindir}/vba_extract.py
 
 %changelog

@@ -24,7 +24,6 @@ BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-pytest
 BuildRequires:  python%{python3_pkgversion}-rosdistro >= 0.7.3
 BuildRequires:  python%{python3_pkgversion}-rospkg
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-yaml
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
@@ -45,12 +44,16 @@ about repositories with ROS packages/stacks.
 %autosetup -p1 -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 mv %{buildroot}%{_bindir}/%{srcname} %{buildroot}%{_bindir}/%{srcname}-%{python3_version}
 ln -s %{srcname}-%{python3_version} %{buildroot}%{_bindir}/%{srcname}
 
@@ -63,7 +66,7 @@ ln -s %{srcname}-%{python3_version} %{buildroot}%{_bindir}/%{srcname}
 %license LICENSE.txt
 %doc README.rst
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 %{_bindir}/%{srcname}
 %{_bindir}/%{srcname}-%{python3_version}
 

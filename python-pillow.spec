@@ -43,7 +43,6 @@ BuildRequires:  python%{python3_pkgversion}-numpy
 BuildRequires:  python%{python3_pkgversion}-olefile
 BuildRequires:  python%{python3_pkgversion}-pytest
 BuildRequires:  python%{python3_pkgversion}-qt5
-BuildRequires:  python%{python3_pkgversion}-setuptools
 %if %{with doc}
 BuildRequires:  make
 BuildRequires:  python%{python3_pkgversion}-sphinx
@@ -57,7 +56,7 @@ BuildRequires:  python%{python3_pkgversion}-tkinter
 BuildRequires:  mingw32-filesystem >= 95
 BuildRequires:  mingw32-gcc
 BuildRequires:  mingw32-python3
-BuildRequires:  mingw32-python3-setuptools
+BuildRequires:  mingw32-
 BuildRequires:  mingw32-dlfcn
 BuildRequires:  mingw32-freetype
 BuildRequires:  mingw32-lcms2
@@ -72,7 +71,7 @@ BuildRequires:  mingw32-zlib
 BuildRequires:  mingw64-filesystem >= 95
 BuildRequires:  mingw64-gcc
 BuildRequires:  mingw64-python3
-BuildRequires:  mingw64-python3-setuptools
+BuildRequires:  mingw64-
 BuildRequires:  mingw64-dlfcn
 BuildRequires:  mingw64-freetype
 BuildRequires:  mingw64-lcms2
@@ -186,9 +185,13 @@ MinGW Windows Python2 %{srcname} library.
 %autosetup -p1 -n Pillow-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 # Native build
-%py3_build
+%pyproject_wheel
 
 # MinGW build
 %if %{with mingw}
@@ -207,7 +210,7 @@ rm -f docs/_build_py3/html/.buildinfo
 # Native build
 install -d %{buildroot}/%{py3_incdir}/Imaging
 install -m 644 src/libImaging/*.h %{buildroot}/%{py3_incdir}/Imaging
-%py3_install
+%pyproject_install
 
 # MinGW build
 %if %{with mingw}
@@ -250,7 +253,7 @@ popd
 %doc README.md CHANGES.rst
 %license docs/COPYING
 %{python3_sitearch}/PIL/
-%{python3_sitearch}/pillow-%{version}-py%{python3_version}.egg-info/
+%{python3_sitearch}/pillow-%{version}.dist-info/
 # These are in subpackages
 %exclude %{python3_sitearch}/PIL/_imagingtk*
 %exclude %{python3_sitearch}/PIL/ImageTk*
@@ -283,13 +286,13 @@ popd
 %files -n mingw32-python3-%{srcname}
 %license docs/COPYING
 %{mingw32_python3_sitearch}/PIL/
-%{mingw32_python3_sitearch}/pillow-%{version}-py%{mingw32_python3_version}.egg-info/
+%{mingw32_python3_sitearch}/pillow-%{version}-py%{mingw32_python3_version}.dist-info/
 %{mingw32_py3_incdir}/Imaging/
 
 %files -n mingw64-python3-%{srcname}
 %license docs/COPYING
 %{mingw64_python3_sitearch}/PIL/
-%{mingw64_python3_sitearch}/pillow-%{version}-py%{mingw64_python3_version}.egg-info/
+%{mingw64_python3_sitearch}/pillow-%{version}-py%{mingw64_python3_version}.dist-info/
 %{mingw64_py3_incdir}/Imaging/
 %endif
 

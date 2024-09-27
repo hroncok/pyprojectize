@@ -23,7 +23,6 @@ BuildRequires: libvirt-devel == %{version}
 BuildRequires: python3-devel
 BuildRequires: python3-pytest
 BuildRequires: python3-lxml
-BuildRequires: python3-setuptools
 BuildRequires: gcc
 
 # Don't want provides for python shared objects
@@ -58,16 +57,19 @@ of recent versions of Linux (and other OSes).
 # for the -python3 package
 find examples -type f -exec chmod 0644 \{\} \;
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if ! %{supported_platform}
 echo "This RPM requires either Fedora >= %{min_fedora} or RHEL >= %{min_rhel}"
 exit 1
 %endif
 
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest

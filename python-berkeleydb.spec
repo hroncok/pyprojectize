@@ -13,7 +13,6 @@ URL:            https://www.jcea.es/programacion/pybsddb.htm
 Source0:        %{pypi_source}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  gcc
 BuildRequires:  libdb-devel
 BuildRequires:  chrpath
@@ -55,11 +54,14 @@ Manager. Complete support for Oracle Berkeley DB Base Replication.
 %prep
 %autosetup -n %{pypi_name}-%{pypi_version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 chrpath --delete $RPM_BUILD_ROOT%{python3_sitearch}/berkeleydb/_berkeleydb.cpython-*-linux-gnu*so
 
@@ -69,7 +71,7 @@ sed -i /env\ python/d $RPM_BUILD_ROOT%{python3_sitearch}/berkeleydb/dbshelve.py
 %license LICENSE.txt licenses.txt
 %doc README.txt
 %{python3_sitearch}/%{pypi_name}
-%{python3_sitearch}/%{pypi_name}-%{pypi_version}-py%{python3_version}.egg-info
+%{python3_sitearch}/%{pypi_name}-%{pypi_version}.dist-info
 
 %files -n python3-%{pypi_name}-devel
 %{_includedir}/python%{python3_version}/berkeleydb/

@@ -63,7 +63,6 @@ Requires: python3dist(configobj)
 
 BuildRequires: python3-devel
 BuildRequires: python3dist(traits)
-BuildRequires: python3dist(setuptools)
 
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 %description -n python%{python3_pkgversion}-%{srcname} %{common_description}
@@ -75,8 +74,12 @@ find examples -type f -exec chmod 0644 {} ";"
 cp -p %{SOURCE1} README.fedora
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 pushd docs
 PYTHONPATH=../build/lib make html SPHINXBUILD=%{_bindir}/sphinx-build-3
@@ -84,13 +87,13 @@ popd
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python%{python3_pkgversion}-%{srcname}
 %license *LICENSE*.txt
 %doc CHANGES.txt
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{python3_sitelib}/%{srcname}/
 
 %files -n python-%{srcname}-doc

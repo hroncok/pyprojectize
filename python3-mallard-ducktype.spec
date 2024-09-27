@@ -12,7 +12,6 @@ Source0: https://github.com/projectmallard/%{srcname}/archive/%{version}/%{versi
 
 BuildArch:     noarch
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 %description
 Parse Ducktype files and convert them to Mallard.
@@ -22,12 +21,16 @@ Parse Ducktype files and convert them to Mallard.
 %setup -q -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check

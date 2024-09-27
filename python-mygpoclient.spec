@@ -35,20 +35,23 @@ BuildRequires: python3-simplejson
 # Leave out http-tests as they currently fail occasionally (reported upstream)
 rm mygpoclient/http_test.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %check
 #nosetests-3 --cover-erase --with-coverage --with-doctest --cover-package=mygpoclient
 %pytest
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-mygpoclient
 %{python3_sitelib}/mygpoclient
-%{python3_sitelib}/mygpoclient*.egg-info
+%{python3_sitelib}/mygpoclient*.dist-info
 %{_bindir}/mygpo-*
 %{_mandir}/man1/mygpo-bpsync.1.gz
 %exclude %{python3_sitelib}/mygpoclient/*test.py*

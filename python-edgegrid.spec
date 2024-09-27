@@ -19,7 +19,6 @@ that provides the Akamai {OPEN} Edgegrid Authentication scheme.
 %package -n python3-edgegrid
 Summary:	%{summary}
 BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
 
 # Dependencies for tests
 BuildRequires:	python3dist(requests)
@@ -40,21 +39,25 @@ that provides the Akamai {OPEN} Edgegrid Authentication scheme.
 find akamai -name '*.py' -exec sed -r -e 's|^#!/usr/bin/env.*|#|' -i '{}' ';'
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %check
 # upstream uses custom test runner in this module
 %{__python3} -m akamai.edgegrid.test.test_edgegrid
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-edgegrid
 %doc README.rst
 %license LICENSE
 
-%{python3_sitelib}/edgegrid_python*.egg-info/
+%{python3_sitelib}/edgegrid_python*.dist-info/
 %{python3_sitelib}/edgegrid_python*.pth
 %dir %{python3_sitelib}/akamai
 %{python3_sitelib}/akamai/edgegrid

@@ -194,7 +194,6 @@ This package contains the service controller command line tool.
 Summary:	Python bindings for BlueChi
 BuildArch:	noarch
 BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
 Requires:	python3-dasbus
 
 Obsoletes:	python3-pyhirte < 0.4.0
@@ -208,7 +207,7 @@ API description and manually written code to simplify recurring tasks.
 %files -n python3-bluechi
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/bluechi-*.egg-info/
+%{python3_sitelib}/bluechi.dist-info/
 %{python3_sitelib}/bluechi/
 
 %endif
@@ -218,13 +217,16 @@ API description and manually written code to simplify recurring tasks.
 %prep
 %autosetup -S git_am
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %meson -Dapi_bus=system
 %meson_build
 
 %if %{with_python}
 pushd src/bindings/python
-%py3_build
+%pyproject_wheel
 popd
 %endif
 
@@ -234,7 +236,7 @@ popd
 
 %if %{with_python}
 pushd src/bindings/python
-%py3_install
+%pyproject_install
 popd
 %endif
 

@@ -19,7 +19,6 @@ BuildArch:      noarch
 Requires:       python3-%name = %version-%release
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Patch:          ERAlchemy-1.2.10-compat-with-sqlalchemy-1.4.patch
 Patch1:         ERAlchemy-1.2.10-setup-py-version.patch
@@ -39,12 +38,16 @@ Summary:        %sum
 %autosetup -p1 -n %srcname-%version
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -56,7 +59,7 @@ Summary:        %sum
 
 
 %files -n python3-%name
-%python3_sitelib/ERAlchemy-%version-*.egg-info
+%python3_sitelib/ERAlchemy-%version.dist-info
 %python3_sitelib/eralchemy/*.py
 %python3_sitelib/eralchemy/__pycache__
 

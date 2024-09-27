@@ -15,7 +15,6 @@ BuildRequires: python3-devel
 %if 0%{?fedora} || 0%{?rhel} >= 9
 BuildRequires: python-setuptools
 %else
-BuildRequires: python3-setuptools
 %endif
 BuildRequires: desktop-file-utils
 
@@ -39,11 +38,14 @@ Latex or PDF.
 %prep
 %autosetup
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 desktop-file-install                                    \
     --add-category="Calendar"                           \
     --delete-original                                   \
@@ -68,7 +70,7 @@ mv %{buildroot}/%{_datadir}/metainfo/%{name}.appdata.xml %{buildroot}/%{_datadir
 %{python3_sitelib}/%{name}/gui/
 %{python3_sitelib}/%{name}/images/
 %{python3_sitelib}/%{name}/util/
-%{python3_sitelib}/%{name}*.egg-info
+%{python3_sitelib}/%{name}*.dist-info
 %{python3_sitelib}/%{name}/__pycache__
 
 %changelog

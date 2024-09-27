@@ -31,7 +31,6 @@ Patch6: 0002-Python-3.12-adjust-for-removal-of-SafeConfigParser.patch
 BuildArch: noarch
 
 BuildRequires: python3
-BuildRequires: python3-setuptools
 BuildRequires: python3-devel
 BuildRequires: systemd-units
 
@@ -68,12 +67,15 @@ https://github.com/redhat-imaging/imagefactory for more information.
 %prep
 %autosetup -p1 -n imagefactory-imagefactory-%{version}-1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 install -d %{buildroot}/%{_sysconfdir}/imagefactory/jeos_images
@@ -110,7 +112,7 @@ rm -f %{buildroot}/%{_initddir}/imagefactoryd
 %{python3_sitelib}/imgfac/*.py*
 %{python3_sitelib}/imgfac/__pycache__/*.py*
 %{python3_sitelib}/imgfac/rest
-%{python3_sitelib}/imagefactory-*.egg-info
+%{python3_sitelib}/imagefactory.dist-info
 %{_bindir}/imagefactory
 %{_bindir}/imagefactoryd
 

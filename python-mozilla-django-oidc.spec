@@ -10,7 +10,6 @@ Source0:       https://github.com/mozilla/%{shortname}/archive/%{version}.tar.gz
 
 BuildArch: noarch
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 %description
 A django OpenID Connect library.
@@ -26,11 +25,14 @@ A django OpenID Connect library.
 %prep
 %autosetup -n %{shortname}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{shortname}
 %license LICENSE

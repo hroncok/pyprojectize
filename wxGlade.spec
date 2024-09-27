@@ -10,7 +10,6 @@ Source2:        wxglade.png
 BuildArch:      noarch
 BuildRequires:  desktop-file-utils
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Requires:       python3-wxpython4
 
 %description
@@ -25,11 +24,14 @@ and <= 2.7.
 %prep
 %autosetup
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Let's handle licenses by ourselves.
 rm -frv %{buildroot}%{_docdir}/wxglade/LICENSE.txt
@@ -47,7 +49,7 @@ install -pm 644 %{S:2} %{buildroot}%{_datadir}/icons/hicolor/32x32/apps
 %{_datadir}/applications/*
 %{_datadir}/wxglade
 %{python3_sitelib}/wxglade/
-%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{name}-%{version}.dist-info
 
 %changelog
 * Sat Jul 20 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.5-7

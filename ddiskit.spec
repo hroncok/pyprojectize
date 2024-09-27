@@ -20,7 +20,6 @@ Source0:        %{forgesource}
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       rpm createrepo
 Requires:       /usr/bin/mkisofs
@@ -39,11 +38,14 @@ kernel modules.
 # https://github.com/orosp/ddiskit/issues/17
 sed -i "8i packages=[]," setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 find %{buildroot} -size 0 -delete
 
 %check
@@ -52,7 +54,7 @@ find %{buildroot} -size 0 -delete
 %files -n %{name}
 %doc README
 %license COPYING
-%{python3_sitelib}/ddiskit-*.egg-info
+%{python3_sitelib}/ddiskit.dist-info
 %{_bindir}/ddiskit
 %{_mandir}/man1/ddiskit.1*
 %{_datadir}/bash-completion/completions/ddiskit

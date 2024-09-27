@@ -15,7 +15,6 @@ BuildRequires: cmake
 BuildRequires: gcc
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3dist(cffi)
 BuildRequires: python3dist(wheel)
 
@@ -41,6 +40,9 @@ Requires: %{name}%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 %autosetup -n %{appname}-%{version} -p1
 sed -e "s@/build@/%{_vpath_builddir}@g" -e 's@"build"@"%{_vpath_builddir}"@g' -i python/olm_build.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %cmake -G Ninja \
     -DCMAKE_BUILD_TYPE=Release \
@@ -48,7 +50,7 @@ sed -e "s@/build@/%{_vpath_builddir}@g" -e 's@"build"@"%{_vpath_builddir}"@g' -i
 %cmake_build
 
 pushd python
-%py3_build
+%pyproject_wheel
 popd
 
 %check
@@ -60,7 +62,7 @@ popd
 %cmake_install
 
 pushd python
-%py3_install
+%pyproject_install
 popd
 
 %files
@@ -77,7 +79,7 @@ popd
 %files python3
 %{python3_sitearch}/%{appname}
 %{python3_sitearch}/_%{name}.abi3.so
-%{python3_sitearch}/python_%{appname}-*.egg-info
+%{python3_sitearch}/python_%{appname}.dist-info
 
 %changelog
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 3.2.16-4

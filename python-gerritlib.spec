@@ -25,7 +25,6 @@ Source:        ChangeLog
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pbr
 BuildRequires:  python3-hacking
 BuildRequires:  python3-paramiko
@@ -57,11 +56,15 @@ cp %{SOURCE1} AUTHORS
 cp %{SOURCE2} ChangeLog
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -69,7 +72,7 @@ cp %{SOURCE2} ChangeLog
 %files -n python3-%{pypi_name}
 %doc README.rst AUTHORS ChangeLog
 %license LICENSE
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{python3_sitelib}/%{pypi_name}
 
 %changelog

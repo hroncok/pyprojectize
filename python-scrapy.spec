@@ -24,7 +24,6 @@ Summary:	%{summary}
 
 BuildRequires: make
 BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
 BuildRequires:	python3-sphinx
 BuildRequires:	python3-sphinx_rtd_theme
 BuildRequires:	python3-cssselect
@@ -83,22 +82,25 @@ This package contains the documentation for %{name}
 %prep
 %autosetup -n %{pkg_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 # Removing docs temporarily because is not compatible with sphinx 7.2.x
 #PYTHONPATH=$(pwd) make -C docs html
 #%make_build PYTHONPATH=$(pwd) -C docs html
 #rm -f docs/build/html/.buildinfo
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{pkg_name}
 %license LICENSE
 %doc AUTHORS PKG-INFO
 %{python3_sitelib}/scrapy
-%{python3_sitelib}/Scrapy-*.egg-info
+%{python3_sitelib}/Scrapy.dist-info
 %{_bindir}/scrapy
 
 #%files doc

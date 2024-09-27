@@ -39,7 +39,6 @@ See docs at http://packages.python.org/cmd2/
 %package -n python3-cmd2
 Summary:          %{summary}
 BuildRequires:    python3-devel
-BuildRequires:    python3-setuptools
 BuildRequires:    python3-setuptools_scm
 BuildRequires:    dos2unix
 
@@ -51,11 +50,14 @@ Requires:         /usr/bin/which
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %license LICENSE

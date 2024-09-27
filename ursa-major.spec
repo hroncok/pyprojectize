@@ -23,7 +23,6 @@ BuildRequires:  help2man
 
 %if 0%{?with_python3}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-gobject-base
 BuildRequires:  python3-cairo
 BuildRequires:  python3-koji
@@ -142,9 +141,12 @@ sed -i 's/futures.*/futures/' requirements.txt
 # workaround for no egg-info
 sed -i '/koji/d' requirements.txt
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if 0%{?with_python3}
-%py3_build
+%pyproject_wheel
 %else
 %py2_build
 %endif
@@ -152,7 +154,7 @@ sed -i '/koji/d' requirements.txt
 
 %install
 %if 0%{?with_python3}
-%py3_install
+%pyproject_install
 %else
 %py2_install
 %endif

@@ -10,7 +10,6 @@ URL:            http://github.com/mbr/visitor
 Source0:        https://files.pythonhosted.org/packages/source/v/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
 BuildArch:      noarch
  
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-devel
 
 %description
@@ -29,11 +28,14 @@ be better off copy and pasting the source straight into your project...
 %autosetup -n %{pypi_name}-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %license LICENSE

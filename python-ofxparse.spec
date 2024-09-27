@@ -20,7 +20,6 @@ accounts also provide account statements in OFX files.
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{upstream_name}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-nose
 BuildRequires:  python3-beautifulsoup4
 BuildRequires:  python3-six
@@ -38,11 +37,14 @@ accounts also provide account statements in OFX files.
 %prep
 %autosetup -p1 -n %{upstream_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest
@@ -51,7 +53,7 @@ accounts also provide account statements in OFX files.
 %license LICENSE
 %doc README.rst AUTHORS
 %{python3_sitelib}/%{upstream_name}
-%{python3_sitelib}/%{upstream_name}*.egg-info
+%{python3_sitelib}/%{upstream_name}*.dist-info
 
 %changelog
 * Sun Sep 01 2024 Rajeesh K V <rajeeshknambiar@gmail.com> - 0.21-7

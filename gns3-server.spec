@@ -20,7 +20,6 @@ BuildArch:      noarch
 
 BuildRequires:  git-core
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?systemd_requires}
 BuildRequires: systemd
 BuildRequires: python3-sphinx
@@ -64,11 +63,14 @@ sed -i -r 's/async-timeout>=4.0.3,<4.1/async-timeout>=4.0.2/' requirements.txt
 sed -i -r 's/sentry-sdk.*//g' requirements.txt
 sed -i -r 's/truststore.*//g' requirements.txt
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Remove shebang
 find %{buildroot}/%{python3_sitelib}/ -name '*.py' -print \
@@ -95,7 +97,7 @@ rm -fv %{buildroot}/%{python3_sitelib}/gns3server/disks/OVMF_VARS.fd
 %files
 %license LICENSE
 %doc README.md AUTHORS CHANGELOG
-%{python3_sitelib}/gns3_server*.egg-info/
+%{python3_sitelib}/gns3_server*.dist-info/
 %ghost %{python3_sitelib}/gns3server/disks/OVMF_CODE.fd
 %ghost %{python3_sitelib}/gns3server/disks/OVMF_VARS.fd
 %{python3_sitelib}/gns3server/

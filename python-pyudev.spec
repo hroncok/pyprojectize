@@ -23,7 +23,6 @@ Summary:          A libudev binding
 %{?python_provide:%python_provide python3-%{srcname}}
 
 BuildRequires:    python3-devel
-BuildRequires:    python3-setuptools
 
 # Needed for libudev, loaded through ctypes
 Requires:         systemd-libs
@@ -64,17 +63,20 @@ integrating a pyudev monitor with the Qt5 main loop.
 %autosetup -n %{srcname}-%{version}
 rm -rf pyudev.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %license COPYING
 %doc README.rst
 %{python3_sitelib}/pyudev
-%{python3_sitelib}/pyudev-%{version}-*.egg-info
+%{python3_sitelib}/pyudev-%{version}.dist-info
 %exclude %{python3_sitelib}/pyudev/glib.py
 %exclude %{python3_sitelib}/pyudev/__pycache__/glib.*
 %exclude %{python3_sitelib}/pyudev/pyqt4.py

@@ -42,7 +42,6 @@ Summary:		Classes and utility functions to integrate AngularJS with Django
 
 BuildRequires: make
 BuildRequires:		python3-devel
-BuildRequires:		python3-setuptools
 
 Requires:		python3-six
 Requires:		python3-django
@@ -94,8 +93,12 @@ do
 done
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 # Documentation
 pushd docs
@@ -107,7 +110,7 @@ popd
 
 
 %install
-%py3_install
+%pyproject_install
 
 # Documentation
 %{__mkdir} -p %{buildroot}%{?_py3docdir}
@@ -130,7 +133,7 @@ popd
 %doc %{?_py3docdir}/LICENSE.txt
 %endif
 %{python3_sitelib}/djng
-%{python3_sitelib}/django_angular-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/django_angular-%{version}.dist-info
 
 %files -n python3-%{pypi_name}-doc
 %if 0%{fedora} || 0%{?rhel} >= 7

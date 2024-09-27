@@ -20,7 +20,6 @@ BuildRequires:  gcc
 BuildRequires:  gcc-c++
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pypandoc
 BuildRequires:  python3-pytest
 BuildRequires:  python3-nose
@@ -69,8 +68,11 @@ sed -i 's/\["git", "rev-parse", "HEAD"\]/["echo", "deap-%{version}-%{release}"]/
 sed -i -r "s|'matplotlib.sphinxext.only_directives',||" doc/conf.py
 %endif
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 # generate html docs
 %if %{with docs}
@@ -85,7 +87,7 @@ rm -rf build/html/.{doctrees,buildinfo}
 %global _docdir_fmt %{name}
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 OPTIONS=(
@@ -100,7 +102,7 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} pytest -v "${OPTIONS[@]}"
 %license LICENSE.txt
 %doc README.md
 %{python3_sitearch}/deap
-%{python3_sitearch}/deap-*.egg-info
+%{python3_sitearch}/deap.dist-info
 
 %if %{with docs}
 %files -n python-deap-doc

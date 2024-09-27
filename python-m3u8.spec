@@ -22,7 +22,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-rpm-macros
 BuildRequires:  python3-iso8601
 BuildRequires:  python3-pytest
-BuildRequires:  python3-setuptools
 BuildRequires:  python3dist(wheel)
 Requires:       python3dist(iso8601)
 
@@ -39,10 +38,10 @@ Python module %srcname parser
 
 %build
 # Bytecompile Python modules
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with tests}
 %check
@@ -55,7 +54,7 @@ Python module %srcname parser
 %license LICENSE
 %dir %{python3_sitelib}/%{srcname}/
 %dir %{python3_sitelib}/%{srcname}/__pycache__/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 %{python3_sitelib}/%{srcname}/__pycache__/*.pyc
 %{python3_sitelib}/%{srcname}/*.py
 

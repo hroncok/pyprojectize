@@ -8,7 +8,6 @@ Source0:        https://files.pythonhosted.org/packages/source/I/IPy/IPy-%{versi
 # Automatically converted from old format: BSD - review is highly recommended.
 License:        LicenseRef-Callaway-BSD
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildArch:      noarch
 
 %description
@@ -36,8 +35,12 @@ and IPv6 Addresses and Networks.
 %autosetup -n %{oname}-%{version} -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %check
@@ -46,7 +49,7 @@ PYTHONPATH=$PWD %{__python3} test/test_IPy.py
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{oname}

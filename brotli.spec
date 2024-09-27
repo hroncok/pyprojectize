@@ -17,7 +17,6 @@ BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 Requires: lib%{name}%{?_isa} = %{version}-%{release}
 
 %description
@@ -73,6 +72,9 @@ chmod 644 c/enc/*.[ch]
 chmod 644 c/include/brotli/*.h
 chmod 644 c/tools/brotli.c
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if 0%{?rhel} == 7
 . /opt/rh/devtoolset-7/enable
@@ -86,7 +88,7 @@ chmod 644 c/tools/brotli.c
     -DCMAKE_INSTALL_LIBDIR="%{_libdir}"
 %cmake_build
 %endif
-%py3_build
+%pyproject_wheel
 
 %install
 %if 0%{?rhel} == 7
@@ -99,7 +101,7 @@ chmod 644 c/tools/brotli.c
 # I couldn't find the option to not build the static libraries
 #rm "%{buildroot}%{_libdir}/"*.a
 
-%py3_install
+%pyproject_install
 install -dm755 "%{buildroot}%{_mandir}/man3"
 cd docs
 for i in *.3;do
@@ -132,7 +134,7 @@ done
 %{python3_sitearch}/brotli.py
 %{python3_sitearch}/_brotli.cpython-%{python3_version_nodots}*.so
 %{python3_sitearch}/__pycache__/brotli.cpython-%{python3_version_nodots}*.py*
-%{python3_sitearch}/Brotli-1.1.0-py%{python3_version}.egg-info/
+%{python3_sitearch}/Brotli-1.1.0.dist-info/
 
 %files devel
 %{_includedir}/brotli

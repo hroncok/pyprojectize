@@ -50,7 +50,6 @@ BuildRequires:  %{py3_dist nibabel}
 BuildRequires:  %{py3_dist nose}
 BuildRequires:  %{py3_dist pytest}
 BuildRequires:  %{py3_dist scipy}
-BuildRequires:  %{py3_dist setuptools}
 BuildRequires:  gcc
 BuildRequires:  git-core
 
@@ -106,8 +105,11 @@ pushd tools
     done
 popd
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %if %{with docs}
 pushd doc &&
@@ -118,7 +120,7 @@ popd
 
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %if %{with tests}
@@ -129,7 +131,7 @@ PYTHONPATH=$RPM_BUILD_ROOT/%{python3_sitearch} nosetests-3 '--exclude=test_(cohe
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.txt THANKS
-%{python3_sitearch}/%{srcname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/%{srcname}-%{version}.dist-info
 %{python3_sitearch}/%{srcname}
 
 %if %{with docs}

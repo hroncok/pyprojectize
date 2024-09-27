@@ -10,7 +10,6 @@ Source0:	https://files.pythonhosted.org/packages/source/p/pandocfilters/pandocfi
 
 BuildArch:	noarch
 BuildRequires:	python3-devel
-BuildRequires:	python3dist(setuptools)
 
 %global _docdir_fmt %{name}
 
@@ -29,17 +28,20 @@ Summary:	Python module for writing pandoc filters
 %prep
 %autosetup -n pandocfilters-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-pandocfilters
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/pandocfilters.py
-%{python3_sitelib}/pandocfilters-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/pandocfilters-%{version}.dist-info
 %{python3_sitelib}/__pycache__/*
 
 %changelog

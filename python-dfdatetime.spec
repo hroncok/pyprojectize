@@ -20,7 +20,6 @@ precision for digital forensics.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -30,11 +29,14 @@ precision for digital forensics.
 %prep
 %autosetup -n %{pypi_name}-%{date}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 rm -rf %{buildroot}%{_defaultdocdir}/%{pypi_name}/*
 
 %check
@@ -43,7 +45,7 @@ rm -rf %{buildroot}%{_defaultdocdir}/%{pypi_name}/*
 %files -n python3-%{pypi_name}
 %doc ACKNOWLEDGEMENTS AUTHORS README
 %license LICENSE
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{python3_sitelib}/%{pypi_name}/
 
 %changelog

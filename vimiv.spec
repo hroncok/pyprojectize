@@ -12,7 +12,6 @@ BuildRequires:  gcc
 BuildRequires:  libappstream-glib
 BuildRequires:  python3-devel
 BuildRequires:  python3-gobject
-BuildRequires:  python3-setuptools
 
 Requires:       gtk3
 Requires:       hicolor-icon-theme
@@ -31,11 +30,15 @@ using the Gtk3 toolkit. Some of the features are:
 %setup -q
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 install -p -Dm644 config/vimivrc $RPM_BUILD_ROOT/%{_sysconfdir}/%{name}/vimivrc
 install -p -Dm644 config/keys.conf $RPM_BUILD_ROOT/%{_sysconfdir}/%{name}/keys.conf
@@ -57,7 +60,7 @@ done
 install -p -Dm644 icons/%{name}.svg $RPM_BUILD_ROOT/%{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
 
 %files
-%{python3_sitearch}/%{name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/%{name}-%{version}.dist-info
 %{python3_sitearch}/%{name}/
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
 %{_datadir}/icons/hicolor/scalable/apps/%{name}.svg

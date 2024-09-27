@@ -17,7 +17,6 @@ Source0:        https://github.com/simpleapples/flask-wtf-decorators/archive/%{c
 %package -n python3-%{srcname}
 Summary:       %{summary}
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-flask-wtf
 
 
@@ -50,23 +49,27 @@ To do this you should provide a callback for error_handler.
 %autosetup -n %{srcname}-%{commit}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %check
 %{python3} setup.py test
 
 
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{srcname}
 %license LICENSE.txt
 %doc README.md
 %{python3_sitelib}/flask_wtf_decorators
-%{python3_sitelib}/Flask_WTF_Decorators-*.egg-info/
+%{python3_sitelib}/Flask_WTF_Decorators.dist-info/
 
 
 %changelog

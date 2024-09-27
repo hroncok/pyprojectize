@@ -21,7 +21,6 @@ Summary:        Programmatically open an editor, capture the result.
 %{?python_provide:%python_provide python3-editor}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description -n python3-editor
 Programmatically open an editor, capture the result.
@@ -32,17 +31,20 @@ rm -rf %{pypi_name}.egg-info
 # Change shebang according to Python version
 sed -i '1s=^#!/usr/bin/\(python\|env python\)[0-9.]*=#!%{__python3}=' editor.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 chmod a+x $RPM_BUILD_ROOT%{python3_sitelib}/editor.py
 
 %files -n python3-editor
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/*.egg-info/
+%{python3_sitelib}/*.dist-info/
 %{python3_sitelib}/editor.py*
 %{python3_sitelib}/__pycache__/*
 

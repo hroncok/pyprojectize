@@ -13,7 +13,6 @@ Patch0:         0001-Update-to-work-with-setools-4.3.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires: python3-setools >= 4.0
 Requires: python3-networkx >= 1.11
@@ -27,12 +26,15 @@ providing policy visualization.
 %prep
 %autosetup -p 1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
 #mkdir -p % {buildroot}% {_mandir}/man1
-%py3_install
+%pyproject_install
 
 %check
 %if %{?_with_check:1}%{!?_with_check:0}

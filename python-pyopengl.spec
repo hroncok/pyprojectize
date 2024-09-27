@@ -14,7 +14,6 @@ Patch1: python-pyopengl-c99.patch
 
 BuildRequires:  gcc
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-numpy
 BuildRequires:  python3-Cython
 
@@ -69,6 +68,9 @@ Requires:       python3-tkinter
 %patch -P0 -p1
 %patch -P 1 -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 # Delete all Cython generated .c files to force a rebuild in py3_build
 # (py2_build then reuses the Cython output)
@@ -80,7 +82,7 @@ popd
 
 for dir in %{srcname}-%{version} %{srcname}-accelerate-%{version} ; do
     pushd $dir
-    %py3_build
+    %pyproject_wheel
     popd
 done
 
@@ -88,7 +90,7 @@ done
 %install
 for dir in %{srcname}-%{version} %{srcname}-accelerate-%{version} ; do
     pushd $dir
-    %py3_install
+    %pyproject_install
     popd
 done
 
@@ -113,11 +115,11 @@ PYTHONPATH=%{buildroot}%{python3_sitearch}:%{buildroot}%{python3_sitelib} \
 
 %files -n python3-%{shortname}
 %license %{srcname}-%{version}/license.txt
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 %{python3_sitelib}/OpenGL/
 %exclude %{python3_sitelib}/OpenGL/Tk
 %{python3_sitearch}/OpenGL_accelerate/
-%{python3_sitearch}/%{srcname}_accelerate-%{version}-py%{python3_version}.egg-info/
+%{python3_sitearch}/%{srcname}_accelerate-%{version}.dist-info/
 
 
 %files -n python3-%{shortname}-tk

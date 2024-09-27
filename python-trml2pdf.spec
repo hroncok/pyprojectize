@@ -8,7 +8,6 @@ License:	LicenseRef-Callaway-LGPLv2
 Summary:	Easy creating PDF using ReportLab's RML
 URL:		https://github.com/romanlv/trml2pdf
 Source0:	https://github.com/romanlv/trml2pdf/archive/%{version}/%{module}-%{version}.tar.gz
-BuildRequires:	python3-setuptools
 # python3-devel
 BuildRequires:	pkgconfig(python3)
 # python3-six
@@ -33,12 +32,16 @@ Open source implementation of RML (Report Markup Language) from ReportLab
 %autosetup -n %{module}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 %{__install} -Dp -m0644 doc/trml2pdf.1 %{buildroot}%{_mandir}/man1/trml2pdf.1
 
 
@@ -51,7 +54,7 @@ Open source implementation of RML (Report Markup Language) from ReportLab
 %doc README.md doc/CREDITS.md
 %{_bindir}/%{module}
 %{python3_sitelib}/%{module}/
-%{python3_sitelib}/%{module}-%{version}-py*.egg-info/
+%{python3_sitelib}/%{module}-%{version}.dist-info/
 %{_mandir}/man1/trml2pdf.1.*
 
 %changelog

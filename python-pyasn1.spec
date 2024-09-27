@@ -19,7 +19,6 @@ language.
 Summary:    ASN.1 tools for Python 3
 %{?python_provide:%python_provide python3-pyasn1}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description -n python3-pyasn1
 This is an implementation of ASN.1 types and codecs in the Python 3 programming
@@ -44,6 +43,10 @@ BuildRequires:  python3-sphinx
 
 %prep
 %setup -n %{module}-%{version} -q -b1
+
+
+%generate_buildrequires
+%pyproject_buildrequires
 
 
 %build
@@ -74,11 +77,11 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} setup.py test
 %doc README.md
 %license LICENSE.rst
 %{python3_sitelib}/%{module}
-%{python3_sitelib}/%{module}-%{version}-*.egg-info/
+%{python3_sitelib}/%{module}-%{version}.dist-info/
 
 %files -n python3-pyasn1-modules
 %{python3_sitelib}/%{module}_modules/
-%{python3_sitelib}/%{module}_modules-%{modules_version}-*.egg-info/
+%{python3_sitelib}/%{module}_modules-%{modules_version}.dist-info/
 
 %files doc
 %license LICENSE.rst

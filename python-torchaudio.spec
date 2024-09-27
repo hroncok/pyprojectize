@@ -89,7 +89,6 @@ BuildRequires:  roctracer-devel
 %endif
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(torch)
 
 %description
@@ -118,6 +117,9 @@ Summary:        %{name} for ROCm gfx9
 %endif
 
 rm -rf third_party/*
+
+%generate_buildrequires
+%pyproject_buildrequires
 
 %build
 # Building uses python3_sitearch/torch/utils/cpp_extension.py
@@ -210,7 +212,7 @@ done
 %doc README.md 
 %{python3_sitearch}/%{pypi_name}
 %{python3_sitearch}/torio
-%{python3_sitearch}/%{pypi_name}-*.egg-info/
+%{python3_sitearch}/%{pypi_name}.dist-info/
 
 %if %{with rocm}
 %files -n python3-%{pypi_name}-rocm-gfx9

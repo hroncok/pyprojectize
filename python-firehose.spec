@@ -17,7 +17,6 @@ BuildRequires:  libxml2
 # ^^^: used during selftests
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-six
 BuildRequires:  python3-mock
 # ^^^: used during selftests
@@ -52,12 +51,15 @@ sed -i '1s=^#!/usr/bin/\(python\|env python\)[0-9.]*=#!%{__python3}=' firehose/p
 
 sed -i 's/distutils\.core/setuptools/' setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 chmod +x %{buildroot}/%{python3_sitelib}/firehose/parsers/cppcheck.py
 chmod +x %{buildroot}/%{python3_sitelib}/firehose/parsers/gcc.py
 
@@ -69,7 +71,7 @@ chmod +x %{buildroot}/%{python3_sitelib}/firehose/parsers/gcc.py
 %files -n python3-firehose
 %doc README.rst lgpl-2.1.txt examples firehose.rng
 %{python3_sitelib}/firehose/
-%{python3_sitelib}/firehose-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/firehose-%{version}.dist-info
 
 
 %changelog

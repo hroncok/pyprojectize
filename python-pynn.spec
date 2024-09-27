@@ -123,7 +123,6 @@ Obsoletes:      python3-pynn-devel < 0:0.12.3-1
 %package -n python3-pynn
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description -n python3-pynn %_description
 
@@ -141,9 +140,12 @@ rm -rfv PyNN-%{version}/pyNN.egg-info
 # we install NEST libraries in standard directories, and that's where NEST expects to find extensions also
 sed -i 's|\${NEST_LIBDIR}/nest|\${NEST_LIBDIR}|' pyNN/nest/extensions/CMakeLists.txt
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 # TODO: investigate using pyproject macros, or other new non setup.py tools
-%py3_build
+%pyproject_wheel
 
 pushd ./build/lib/pyNN/neuron/nmodl/ || exit 1
     nrnivmodl .
@@ -161,7 +163,7 @@ popd
 
 
 %install
-%py3_install
+%pyproject_install
 
 # Includes compiled arch specific files but installs in /lib
 # Manually move to arch specific folder
@@ -220,7 +222,7 @@ find $RPM_BUILD_ROOT/%{python3_sitearch}/pyNN/neuron/nmodl/*/ -name "*.c" -o -na
 %doc README.rst AUTHORS changelog
 %{_libdir}/*pynn*so
 %{python3_sitearch}/pyNN
-%{python3_sitearch}/PyNN-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/PyNN-%{version}.dist-info
 
 %files doc
 %license LICENSE

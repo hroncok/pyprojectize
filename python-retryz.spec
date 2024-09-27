@@ -50,7 +50,6 @@ Summary:        %{summary}
 Requires:       python3
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 # for running tests
 BuildRequires:  python3-pytest
@@ -64,12 +63,15 @@ Retry decorator with a bunch of configuration parameters.
 %prep
 %setup -q -n %{pypi_name}-%{upstream_version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if 0%{?with_python2}
 %py2_build
 %endif
 %if 0%{?with_python3}
-%py3_build
+%pyproject_wheel
 %endif
 
 %check
@@ -87,7 +89,7 @@ PYTHONPATH=. py.test-3
 %endif
 
 %if 0%{?with_python3}
-%py3_install
+%pyproject_install
 %endif
 
 %if 0%{?with_python2}

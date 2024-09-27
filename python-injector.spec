@@ -12,7 +12,6 @@ Source0:        %{url}/archive/%{version}/%{pypi_name}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel >= 3.10
-BuildRequires:  python3dist(setuptools)
 
 %global _description %{expand:
 Dependency injection as a formal pattern is less useful in Python than in other
@@ -54,8 +53,12 @@ BuildRequires:  python3dist(typing-extensions)
 rm -rf %{pypi_name}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 # Generate html docs
 PYTHONPATH=${PWD} sphinx-build-3 docs html
@@ -65,14 +68,14 @@ rm -rf html/.{doctrees,buildinfo}
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{pypi_name}
 %license COPYING
 %doc README.md
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %files -n python3-%{pypi_name}-doc
 %doc html

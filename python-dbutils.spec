@@ -11,7 +11,6 @@ Source0:        %pypi_source
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(docutils)
 
 
@@ -41,8 +40,12 @@ Summary:        %{summary}
 %autosetup -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 # make docs
 pushd docs
@@ -50,7 +53,7 @@ pushd docs
 popd
 
 %install
-%py3_install
+%pyproject_install
 
 # install docs
 install -t '%{buildroot}%{_pkgdocdir}' -D -p -m 0644 README.md
@@ -66,7 +69,7 @@ popd
 %files -n python3-dbutils
 %license LICENSE
 %{python3_sitelib}/dbutils
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 %files doc
 %license LICENSE

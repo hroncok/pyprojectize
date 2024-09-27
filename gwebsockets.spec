@@ -11,7 +11,6 @@ BuildArch:     noarch
 
 BuildRequires: glib2-devel
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 %description
 A websocket server written in python. It uses GIO for network
@@ -29,11 +28,14 @@ communication and hence it easily integrates with the GLib mainloop.
 %prep
 %setup -q
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{name}
 %license LICENSE

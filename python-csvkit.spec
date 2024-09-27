@@ -25,7 +25,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 BuildRequires: make
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  %{py3_dist pytest}
 BuildRequires:  %{py3_dist agate} >= 1.6.1
 BuildRequires:  %{py3_dist agate-excel} >= 0.2.2
@@ -56,8 +55,12 @@ rm -rf *.egg-info
 find csvkit -name \*.py -type f | xargs sed -i '1{\@^#!/usr/bin/env python@d}'
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 cd docs
 make html
@@ -65,7 +68,7 @@ make man
 
 
 %install
-%py3_install
+%pyproject_install
 
 mkdir -p %{buildroot}%{_mandir}/man1
 for file in docs/_build/man/*.1; do
@@ -88,7 +91,7 @@ pytest-%{python3_version} tests -v -k "not test_convert_dbf and not test_decimal
 %doc README.rst CHANGELOG.rst AUTHORS.rst
 %{_bindir}/*
 %{_mandir}/man1/*
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 %{python3_sitelib}/%{pypi_name}/
 
 

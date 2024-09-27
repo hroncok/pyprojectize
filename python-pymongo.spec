@@ -17,7 +17,6 @@ BuildRequires:  make
 BuildRequires:  python3-sphinx
 %endif
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 The Python driver for MongoDB.
@@ -66,8 +65,12 @@ contains the python3 version of this module.
 %setup -q -n mongo-python-driver-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %if 0%{!?bootstrap:1}
 pushd doc
@@ -77,7 +80,7 @@ popd
 
 
 %install
-%py3_install
+%pyproject_install
 # Fix permissions
 chmod 755 %{buildroot}%{python3_sitearch}/bson/*.so
 chmod 755 %{buildroot}%{python3_sitearch}/pymongo/*.so
@@ -100,7 +103,7 @@ chmod 755 %{buildroot}%{python3_sitearch}/pymongo/*.so
 %license LICENSE
 %doc README.rst
 %{python3_sitearch}/pymongo
-%{python3_sitearch}/pymongo-%{version}-*.egg-info
+%{python3_sitearch}/pymongo-%{version}.dist-info
 
 
 %files -n python3-pymongo-gridfs

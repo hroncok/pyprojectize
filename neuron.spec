@@ -133,7 +133,6 @@ Documentation for %{name}
 Summary:   Python3 interface to %{name}
 Requires:  %{name}%{?_isa} = %{version}-%{release}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-Cython
 BuildRequires:  python3-pytest
 
@@ -250,6 +249,9 @@ find . -type f -name 'CMakeLists.txt' -exec gawk \
     '{}' '+' |
   xargs -r -t sed -r -i 's/(export SETUPTOOLS_USE_DISTUTILS=)stdlib/\1local/'
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 # Not yet to be used
 # export SUNDIALS_SYSTEM_INSTALL="yes"
@@ -296,7 +298,7 @@ echo
 %if %{with music}
 pushd $MY_CMAKE_BUILDDIR/src/neuronmusic
 %__cmake --build %{_smp_mflags}
-%{py3_build}
+%{pyproject_wheel}
 popd
 %endif
 }
@@ -483,7 +485,7 @@ export MY_CMAKE_BUILDDIR="%_vpath_builddir""-openmpi"
 # The libraries are here
 %{python3_sitearch}/%{name}
 # Egg info
-%{python3_sitearch}/NEURON-*-py%{python3_version}.egg-info
+%{python3_sitearch}/NEURON-*.dist-info
 
 %files devel
 %license Copyright
@@ -531,7 +533,7 @@ export MY_CMAKE_BUILDDIR="%_vpath_builddir""-openmpi"
 # The libraries are here
 %{python3_sitearch}/mpich/%{name}
 # Egg info
-%{python3_sitearch}/mpich/NEURON-*-py%{python3_version}.egg-info
+%{python3_sitearch}/mpich/NEURON-*.dist-info
 
 %files mpich-devel
 %license Copyright
@@ -576,7 +578,7 @@ export MY_CMAKE_BUILDDIR="%_vpath_builddir""-openmpi"
 # The libraries are here
 %{python3_sitearch}/openmpi/%{name}
 # Egg info
-%{python3_sitearch}/openmpi/NEURON-*-py%{python3_version}.egg-info
+%{python3_sitearch}/openmpi/NEURON-*.dist-info
 
 %files openmpi-devel
 %license Copyright

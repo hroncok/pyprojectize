@@ -15,7 +15,6 @@ Patch0:         openslide-python-1.0.1-disable-intersphinx.patch
 BuildRequires:  gcc
 BuildRequires:  openslide
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pillow
 BuildRequires:  python3-pytest
 BuildRequires:  python3-sphinx
@@ -46,14 +45,18 @@ programs to use OpenSlide.
 rm -rf examples
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 sphinx-build doc build/html
 rm -r build/html/.buildinfo build/html/.doctrees
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -70,7 +73,7 @@ sed -i -e '/^minversion/ d' pytest.ini
 %doc CHANGELOG.md build/html
 %license COPYING.LESSER
 %{python3_sitearch}/openslide/
-%{python3_sitearch}/*.egg-info/
+%{python3_sitearch}/*.dist-info/
 
 
 %changelog

@@ -35,11 +35,14 @@ Python 3 version.
 %prep
 %autosetup -n requests-ntlm-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 #python3 -m tests.test_server &
@@ -49,7 +52,7 @@ Python 3 version.
 %license LICENSE
 %doc CONTRIBUTORS.rst README.rst
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 
 %changelog
 * Thu Jul 21 2022 Maxwell G <gotmax@e.email> - 1.1.0-2

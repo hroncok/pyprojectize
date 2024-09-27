@@ -18,7 +18,6 @@ A simple (really simple) library for working with ISO639-2 language codes.
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{modname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description -n python3-%{modname}
 A simple (really simple) library for working with ISO639-2 language codes.
@@ -28,16 +27,19 @@ Python 3 version.
 %prep
 %autosetup -n %{modname}-python-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{modname}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{modname}-*.egg-info/
+%{python3_sitelib}/%{modname}.dist-info/
 %{python3_sitelib}/%{modname}/
 
 %changelog

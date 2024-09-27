@@ -14,7 +14,6 @@ Patch0:         httplib2.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 %description
 Python simple and lightweight SOAP library for client and
@@ -40,16 +39,19 @@ for lib in pysimplesoap/*.py; do
 done
 cp -p %{SOURCE1} .
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{rpmname}
 %license license.txt
 %{python3_sitelib}/pysimplesoap
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.16.2-23

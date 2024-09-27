@@ -14,7 +14,6 @@ URL:		http://jupyter.org
 Source0:	https://files.pythonhosted.org/packages/source/q/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
 BuildArch:	noarch
 
-BuildRequires:	python3-setuptools
 BuildRequires:	python3-devel
 BuildRequires:	python3-ipython-sphinx
 BuildRequires:	python3-sphinx_rtd_theme
@@ -52,8 +51,11 @@ Documentation for qtconsole
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 # generate html docs 
 sphinx-build docs/source html
@@ -66,7 +68,7 @@ sed -i 's/\r$//' html/objects.inv
 rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 desktop-file-install --dir=%{buildroot}%{_datadir}/applications examples/jupyter-qtconsole.desktop
 
 %files -n python3-%{pypi_name} 
@@ -74,7 +76,7 @@ desktop-file-install --dir=%{buildroot}%{_datadir}/applications examples/jupyter
 %doc README.md
 %{_bindir}/jupyter-qtconsole
 %{_datadir}/applications/jupyter-qtconsole.desktop
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %{python3_sitelib}/%{pypi_name}/*
 %dir %{python3_sitelib}/%{pypi_name}/
 

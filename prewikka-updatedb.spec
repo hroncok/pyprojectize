@@ -7,7 +7,6 @@ Summary:        Database update scripts for prewikka
 License:        GPL-2.0-or-later
 URL:            https://www.prelude-siem.org/
 Source0:        https://www.prelude-siem.org/pkg/src/%{version}/%{name}-%{version}.tar.gz
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-devel
 BuildArch:      noarch
 
@@ -25,15 +24,18 @@ Database update scripts for prewikka.
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{name}
 %{python3_sitelib}/prewikkaupdatedb/
-%{python3_sitelib}/prewikka_updatedb-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/prewikka_updatedb-%{version}.dist-info
 
 %changelog
 * Fri Jul 26 2024 Miroslav Suchý <msuchy@redhat.com> - 5.2.0-15

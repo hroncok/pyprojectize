@@ -37,7 +37,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-jinja2
 BuildRequires:  python3-pytest
 BuildRequires:  python3-requests
-BuildRequires:  python3-setuptools
 
 Requires:       genisoimage
 Requires:       libvirt-daemon
@@ -63,11 +62,14 @@ getent group testcloud >/dev/null || groupadd testcloud
 # Drop coverage testing
 sed -i 's/ --cov-report=term-missing --cov testcloud//g' tox.ini
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Docs
 install -d %{buildroot}%{_mandir}/man1
@@ -119,7 +121,7 @@ rm -rf %{buildroot}%{_sysconfdir}/testcloud/__pycache__
 
 %files -n python3-%{name}
 %{python3_sitelib}/testcloud
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 
 %changelog
 * Wed Jul 24 2024 Frantisek Zatloukal <fzatlouk@redhat.com> - 0.9.13-1

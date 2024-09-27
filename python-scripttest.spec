@@ -10,7 +10,6 @@ Source0:        https://github.com/pypa/scripttest/archive/1.3.0.tar.gz
 BuildArch:      noarch
 
 BuildRequires: python%{python3_pkgversion}-devel
-BuildRequires: python%{python3_pkgversion}-setuptools
 BuildRequires: python%{python3_pkgversion}-sphinx
 BuildRequires: python%{python3_pkgversion}-pytest
 
@@ -37,14 +36,18 @@ the output (stdout, stderr) and any file modifications.
 %setup -q -n scripttest-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 sphinx-build -b html docs/ docs/html
 
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -54,7 +57,7 @@ sphinx-build -b html docs/ docs/html
 %license docs/license.rst
 %{python3_sitelib}/scripttest.py
 %{python3_sitelib}/__pycache__/scripttest.cpython-%{python3_version_nodots}*
-%{python3_sitelib}/scripttest*.egg-info/
+%{python3_sitelib}/scripttest*.dist-info/
 
 
 %changelog

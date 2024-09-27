@@ -22,7 +22,6 @@ BuildArch:      noarch
 BuildRequires:  make
 BuildRequires:  perl-macros
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if %{with doc}
 # For building documentation
 BuildRequires:  dvipng
@@ -86,8 +85,11 @@ sed -i -s "1 s|/usr/bin/env python|%{python3}|" pysb/examples/*.py pysb/tools/*.
 # drop requirement on pynose.
 sed -r -i "s/'(sympy>=1.6),<1.12'/'\1'/; /'pynose'/d" setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 # Build documentation
 %if %{with doc}
@@ -96,7 +98,7 @@ rm doc/_build/html/.buildinfo
 %endif
 
 %install
-%py3_install
+%pyproject_install
 chmod +x %{buildroot}/%{python3_sitelib}/pysb/examples/run_*.py
 chmod +x %{buildroot}/%{python3_sitelib}/pysb/tools/[a-z]*.py
 
@@ -104,7 +106,7 @@ chmod +x %{buildroot}/%{python3_sitelib}/pysb/tools/[a-z]*.py
 %license LICENSE.txt
 %doc README.rst
 %{python3_sitelib}/pysb/
-%{python3_sitelib}/pysb-%{version}-*.egg-info
+%{python3_sitelib}/pysb-%{version}.dist-info
 %{_bindir}/pysb_export
 
 %if %{with doc}

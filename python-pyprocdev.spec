@@ -19,7 +19,6 @@ Summary:    %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires: python3-six
 
@@ -30,17 +29,20 @@ Requires: python3-six
 %autosetup -n %{srcname}-%{version}
 rm -rf src/pyprocdev.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-*.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 
 %changelog
 * Fri Jul 26 2024 Miroslav Suchý <msuchy@redhat.com> - 0.2-30

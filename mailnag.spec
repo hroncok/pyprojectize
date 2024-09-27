@@ -25,7 +25,6 @@ Requires:       python3-zombie-imp
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  (python3-setuptools if python3-devel >= 3.12)
 BuildRequires:  gettext
 BuildRequires:  desktop-file-utils
 BuildRequires:  libappstream-glib
@@ -40,12 +39,15 @@ creates a proper GNOME 3 notification that mentions sender and subject.
 %patch -P0 -b .patch0 -p1
 %patch -P1 -b .patch1 -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
 rm -rf %{buildroot}
-%py3_install
+%pyproject_install
 desktop-file-validate $RPM_BUILD_ROOT/%{_datadir}/applications/mailnag.desktop
 desktop-file-validate $RPM_BUILD_ROOT/%{_datadir}/applications/mailnag-config.desktop
 appstream-util validate-relax --nonet $RPM_BUILD_ROOT/%{_datadir}/metainfo/*.appdata.xml
@@ -58,7 +60,7 @@ appstream-util validate-relax --nonet $RPM_BUILD_ROOT/%{_datadir}/metainfo/*.app
 %{_datadir}/%{name}
 %{_datadir}/metainfo/
 %{python3_sitelib}/Mailnag
-%{python3_sitelib}/%{name}-*-*.egg-info
+%{python3_sitelib}/%{name}-*.dist-info
 %{_datadir}/applications/*
 %{_datadir}/icons/hicolor/*/apps/%{name}*png
 

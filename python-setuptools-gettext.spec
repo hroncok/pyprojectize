@@ -9,7 +9,6 @@ Source0:        %{pypi_source setuptools-gettext}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 %description
 Setuptools helpers for gettext. Compile .po files into .mo files.
@@ -24,11 +23,14 @@ Setuptools helpers for gettext. Compile .po files into .mo files.
 %autosetup -n setuptools-gettext-%{version}
 rm -rf ./setuptools_gettext.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %py3_check_import setuptools_gettext
@@ -37,7 +39,7 @@ rm -rf ./setuptools_gettext.egg-info
 %doc README.md
 %license COPYING
 %{python3_sitelib}/setuptools_gettext/
-%{python3_sitelib}/setuptools_gettext-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/setuptools_gettext-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.8-6

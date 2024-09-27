@@ -21,7 +21,6 @@ Patch0:			py36-metaclass-compatibility.patch
 Patch1:         pytest5.1-compatibility.patch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 BuildRequires:  python3-requests
 
@@ -60,11 +59,14 @@ See http://beanbag.readthedocs.org/ for more information.
 # Fix compatibility with pytest 7.2.0
 sed -i "s/py\.test/pytest/g" tests/test_attrdict.py tests/test_bbv1.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest

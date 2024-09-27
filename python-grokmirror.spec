@@ -10,7 +10,6 @@ Source0:        https://www.kernel.org/pub/software/network/grokmirror/grokmirro
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %global _description\
 Grokmirror was written to make mirroring large git repository\
@@ -33,12 +32,16 @@ Requires:       python3-GitPython, python3-anyjson, python3-setuptools, python3-
 %autosetup -n grokmirror-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 %{__mkdir_p} -m 0755 \
     %{buildroot}%{_mandir}/man1

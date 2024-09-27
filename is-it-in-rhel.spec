@@ -8,7 +8,6 @@ URL:            https://pagure.io/is-it-in-rhel
 Source0:        https://releases.pagure.org/is-it-in-rhel/is-it-in-rhel-%{version}.tar.gz
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 
 %description
@@ -20,12 +19,16 @@ packaged in RHEL or not.
 %setup -q
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files
@@ -33,7 +36,7 @@ packaged in RHEL or not.
 %doc README.rst
 %{python3_sitelib}/is_it_in_rhel.py
 %{python3_sitelib}/__pycache__/is_it_in_rhel.cpython-%{python3_version_nodots}*.py*
-%{python3_sitelib}/is_it_in_rhel-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/is_it_in_rhel-%{version}.dist-info
 %{_bindir}/is-it-in-rhel
 
 

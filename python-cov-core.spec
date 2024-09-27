@@ -23,7 +23,6 @@ BuildArch:      noarch
 %package -n     python%{python3_pkgversion}-%{pypi_name}
 Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{pypi_name}}
 %if %{undefined __pythondist_requires}
 Requires:       python%{python3_pkgversion}-coverage >= 3.6
@@ -51,8 +50,12 @@ Requires: python%{python3_other_pkgversion}-coverage >= 3.6
 rm -rf %{pypi_name}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 %if 0%{?with_python3_other}
 %py3_other_build
 %endif
@@ -65,7 +68,7 @@ rm -rf %{pypi_name}.egg-info
 %if 0%{?with_python3_other}
 %py3_other_install
 %endif
-%py3_install
+%pyproject_install
 
 
 # Python3

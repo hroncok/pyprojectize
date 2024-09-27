@@ -23,7 +23,6 @@ Summary:        %{summary}
 BuildRequires:  python3-devel
 BuildRequires:  python3-pytest
 BuildRequires:  python3-pytest-cov
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -47,13 +46,16 @@ Documentation for %{name}.
 rm -rf %{pypi_name}.egg-info
 sed -i -e '/^#!\//, 1d' asteval/asteval.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 PYTHONPATH=${PWD} sphinx-build-3 doc html
 rm -rf html/.{doctrees,buildinfo} html/_static/empty
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v tests
@@ -62,7 +64,7 @@ rm -rf html/.{doctrees,buildinfo} html/_static/empty
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py*.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %files -n python-%{pypi_name}-doc
 %doc html

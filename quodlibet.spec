@@ -34,7 +34,6 @@ BuildRequires:	intltool
 BuildRequires:	desktop-file-utils
 BuildRequires:	pkgconfig
 BuildRequires:	python3 >= 3.5
-BuildRequires:	(python3-setuptools if python3-devel >= 3.12)
 # needed for py_byte_compile
 BuildRequires:	python3-devel
 # needed for tests
@@ -106,12 +105,16 @@ This package installs %{summary}.
 install -pm 0644 %{S:3} .
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 desktop-file-install \
 	--dir %{buildroot}%{_datadir}/applications		\
@@ -154,7 +157,7 @@ desktop-file-install \
 %{_datadir}/icons/hicolor/scalable/apps/*.svg
 %{_datadir}/appdata/io.github.quodlibet.ExFalso.appdata.xml
 
-%{python3_sitelib}/quodlibet-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/quodlibet-%{version}.dist-info
 %{python3_sitelib}/quodlibet
 
 

@@ -220,7 +220,6 @@ BuildRequires:  python2-setuptools
 
 %if 0%{?with_python3}
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 %endif
 
 
@@ -306,6 +305,10 @@ git commit -q -a -m "downgrade autoconf for rhel6"
 %endif
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 # ======================= build ======================================
 
@@ -361,7 +364,7 @@ popd
 
 %if 0%{?with_python3}
 pushd bindings/python3
-%py3_build
+%pyproject_wheel
 popd
 # with_python3
 %endif
@@ -388,7 +391,7 @@ popd
 %if 0%{?with_python3}
 pushd bindings/python3
 mkdir -p %{buildroot}/%{python3_sitearch}
-%py3_install
+%pyproject_install
 popd
 %endif
 
@@ -418,13 +421,13 @@ find %{buildroot} -name '*.a' -exec rm -f {} ';'
 %if 0%{?with_python2}
 %files -n python2-libemu
 %{python2_sitearch}/%{name}.so
-%{python2_sitearch}/%{name}-*.egg-info
+%{python2_sitearch}/%{name}.dist-info
 %endif
 
 %if 0%{?with_python3}
 %files -n python%{python3_pkgversion}-libemu
 %{python3_sitearch}/%{name}.*.so
-%{python3_sitearch}/%{name}-*.egg-info
+%{python3_sitearch}/%{name}.dist-info
 # with_python3
 %endif
 

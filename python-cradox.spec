@@ -48,7 +48,6 @@ Summary:        Python libraries for the Ceph librados library with use cython i
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pbr
 BuildRequires:  python3-Cython
 BuildRequires:  python3-jinja2
@@ -66,17 +65,20 @@ Python libraries for the Ceph librados library with use cython instead of ctypes
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if %{with python2}
 %py2_build
 %endif
 %if %{with python3}
-%py3_build
+%pyproject_wheel
 %endif
 
 %install
 %if 0%{with python3}
-%py3_install
+%pyproject_install
 %endif
 %if %{with python2}
 %py2_install
@@ -87,7 +89,7 @@ Python libraries for the Ceph librados library with use cython instead of ctypes
 %doc README.rst
 %license LICENSE
 %{python2_sitearch}/cradox.so
-%{python2_sitearch}/%{pypi_name}-%{version}-py?.?.egg-info
+%{python2_sitearch}/%{pypi_name}-%{version}-py?.?.dist-info
 %exclude %{_usrsrc}/debug/*
 %exclude %{_libdir}/debug/*
 %endif
@@ -97,7 +99,7 @@ Python libraries for the Ceph librados library with use cython instead of ctypes
 %doc README.rst
 %license LICENSE
 %{python3_sitearch}/cradox.*.so
-%{python3_sitearch}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/%{pypi_name}-%{version}.dist-info
 %endif
 
 %changelog

@@ -15,7 +15,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3dist(cffi)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(pytest-runner)
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(sphinx)
 
 %description
@@ -39,15 +38,18 @@ Documentation for reflink
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 # generate html docs
 PYTHONPATH=${PWD} sphinx-build-3 docs html
 # remove the sphinx-build leftovers
 rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 
 # Cannot test as we cannot use loop filesystems in a systemd-nspawnd container
 #%check
@@ -57,7 +59,7 @@ rm -rf html/.{doctrees,buildinfo}
 %license LICENSE
 %doc README.rst docs/readme.rst
 %{python3_sitearch}/%{pypi_name}
-%{python3_sitearch}/%{pypi_name}-%{pypi_version}-py%{python3_version}.egg-info
+%{python3_sitearch}/%{pypi_name}-%{pypi_version}.dist-info
 
 %files -n python-%{pypi_name}-doc
 %doc html

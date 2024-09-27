@@ -18,7 +18,6 @@ A set of third-party matchers for Betamax.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 BuildRequires:  python3-betamax
 BuildRequires:  python3-requests-toolbelt
@@ -30,11 +29,14 @@ A set of third-party matchers for Betamax.
 %prep
 %autosetup -n betamax_matchers-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 pytest-%{python3_version} -v tests
@@ -42,7 +44,7 @@ pytest-%{python3_version} -v tests
 %files -n python3-%{pypi_name}
 %doc AUTHORS.rst HISTORY.rst README.rst
 %license LICENSE
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{python3_sitelib}/betamax_matchers/
 
 %changelog

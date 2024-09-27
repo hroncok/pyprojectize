@@ -17,7 +17,6 @@ rawkit is a ctypes-based set of LibRaw bindings for Python.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-Cython
 BuildRequires:  python3-pytest
 %{?python_provide:%python_provide python3-%{pypi_name}}
@@ -28,11 +27,14 @@ rawkit is a ctypes-based set of LibRaw bindings for Python
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # One test is currently failing
 #%check
@@ -41,7 +43,7 @@ rawkit is a ctypes-based set of LibRaw bindings for Python
 %files -n python3-%{pypi_name}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{python3_sitelib}/libraw
 %{python3_sitelib}/rawkit/
 

@@ -21,7 +21,7 @@ RFCs 1350, 2347, 2348 and the tsize option from RFC 2349.\
 Summary: %summary
 %{?python_provide:%python_provide python3-%{srcname}}
 
-BuildRequires:	python3-devel, python3-setuptools
+BuildRequires:	python3-devel
 Conflicts:	python2-%{srcname} <= 0.8.0-1
 
 %description -n python3-%{srcname} %_description
@@ -31,12 +31,16 @@ Conflicts:	python2-%{srcname} <= 0.8.0-1
 %setup -q -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{srcname}
@@ -44,7 +48,7 @@ Conflicts:	python2-%{srcname} <= 0.8.0-1
 %{_bindir}/tftpy_client.py
 %{_bindir}/tftpy_server.py
 %{python3_sitelib}/tftpy/
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 
 
 %changelog

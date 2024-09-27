@@ -47,7 +47,6 @@ Documentation package.
 
 %package -n     python%{python3_pkgversion}-%{pypi_name}
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-hypothesis
 Suggests:       python-CommonMark-doc
 Suggests:       %{name}-utils == %{version}-%{release}
@@ -67,12 +66,17 @@ sed -i '1{\@^#!/usr/bin/env python@d}' commonmark/cmark.py
 
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -82,7 +86,7 @@ PYTHONPATH=$(pwd) %{__python3} setup.py test
 
 %files -n python%{python3_pkgversion}-%{pypi_name}
 %license LICENSE
-%{python3_sitelib}/commonmark-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/commonmark-%{version}.dist-info
 %{python3_sitelib}/commonmark/
 
 %files utils

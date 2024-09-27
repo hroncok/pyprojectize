@@ -10,7 +10,6 @@ Source0: https://github.com/mcurlej/module-build/archive/%{version}/%{name}-%{ve
 
 BuildRequires: python3-devel
 BuildRequires: python3-pytest
-BuildRequires: python3-setuptools
 BuildRequires: libmodulemd >= 2.13.0
 BuildRequires: python3-gobject
 BuildRequires: mock
@@ -29,12 +28,16 @@ A library and a cli tool for building module streams.
 %autosetup -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -45,7 +48,7 @@ A library and a cli tool for building module streams.
 %doc README.md
 %license LICENSE
 %{python3_sitelib}/module_build
-%{python3_sitelib}/module_build-*.egg-info/
+%{python3_sitelib}/module_build.dist-info/
 %{_bindir}/module-build
 
 

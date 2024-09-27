@@ -19,7 +19,6 @@ BuildRequires:  python2-six
 BuildRequires:  python2-tools
 %endif
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-six
 BuildArch:      noarch
 %global         _description\
@@ -47,13 +46,16 @@ Requires:       python3-six
 %prep
 %setup -q -n %{oname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %{?py2:%{py2_build}}
-%{py3_build}
+%{pyproject_wheel}
 
 %install
 %{?py2:%{py2_install}}
-%{py3_install}
+%{pyproject_install}
 
 %check
 # fail after tidy 5.6
@@ -66,14 +68,14 @@ Requires:       python3-six
 %license LICENSE
 %doc README.rst
 %{python2_sitelib}/tidy
-%{python2_sitelib}/uTidylib-*-py2*.egg-info
+%{python2_sitelib}/uTidylib-*-py2*.dist-info
 %endif
 
 %files -n python3-tidy
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/tidy
-%{python3_sitelib}/uTidylib-*-py3*.egg-info
+%{python3_sitelib}/uTidylib-*-py3*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.6-18

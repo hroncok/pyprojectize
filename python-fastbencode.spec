@@ -13,7 +13,6 @@ Source:         %{url}/archive/v%{version}/%{pypi_name}-%{version}.tar.gz
 
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(cython) >= 0.29
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  gcc
 
 %global _description %{expand:
@@ -37,11 +36,14 @@ Summary:        %{summary}
 %prep
 %autosetup -n %{pypi_name}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{py3_test_envvars} %{python3} -m unittest
@@ -50,7 +52,7 @@ Summary:        %{summary}
 %license COPYING
 %doc README.md
 %{python3_sitearch}/%{pypi_name}/
-%{python3_sitearch}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitearch}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.2-5

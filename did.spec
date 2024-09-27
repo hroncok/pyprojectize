@@ -18,7 +18,6 @@ BuildRequires: python3-devel
 BuildRequires: python3-httplib2
 BuildRequires: python3-pytest
 BuildRequires: python3-requests-gssapi
-BuildRequires: python3-setuptools
 Requires: python3-bugzilla
 Requires: python3-httplib2
 Requires: python3-nitrate
@@ -35,11 +34,14 @@ range. By default all available stats for this week are reported.
 %prep
 %autosetup -S git
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 mkdir -p %{buildroot}%{_mandir}/man1
 install -pm 644 did.1.gz %{buildroot}%{_mandir}/man1
 
@@ -51,7 +53,7 @@ export LANG=en_US.utf-8
 %{_mandir}/man1/*
 %{_bindir}/did
 %{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}-*.egg-info/
+%{python3_sitelib}/%{name}.dist-info/
 %doc README.rst examples
 %license LICENSE
 

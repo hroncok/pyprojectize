@@ -75,7 +75,7 @@ sed --in-place "s:#!\s*/usr.*::" xonsh/xoreutils/_which.py xonsh/webconfig/main.
 
 %build
 %pyproject_wheel
-%py3_build
+%pyproject_wheel
 
 %install
 %pyproject_install

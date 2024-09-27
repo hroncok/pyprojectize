@@ -18,7 +18,6 @@ Source1:        https://raw.githubusercontent.com/tonyseek/sphinx-kr-theme/57834
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 %if %{with tests}
 BuildRequires:  python3dist(pytest)
@@ -45,8 +44,11 @@ Sphinx documentation, originally derived from Mitsuhiko's Flask theme.
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %if %{with tests}
 %check
@@ -55,13 +57,13 @@ export PYTHONPATH=%{buildroot}%{python3_sitelib}
 %endif
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/sphinx_kr_theme
-%{python3_sitelib}/sphinx_kr_theme-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/sphinx_kr_theme-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.2.1-17

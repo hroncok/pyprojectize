@@ -10,7 +10,6 @@ Source0:        https://github.com/Syndace/%{name}/archive/v%{version}.tar.gz
 BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3-cryptography
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-x3dh
 #BuildRequires:  python3-pytest
 # For tests
@@ -46,12 +45,16 @@ are offline.
 %autosetup -n %{name}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -65,7 +68,7 @@ are offline.
 %doc README.md
 # For noarch packages: sitelib
 %{python3_sitelib}/omemo/
-%{python3_sitelib}/OMEMO-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/OMEMO-%{version}.dist-info/
 
 
 

@@ -17,7 +17,6 @@ A Python library to the CoAP protocol.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       python3-cachetools
 %{?python_provide:%python_provide python3-coapthon3}
@@ -37,17 +36,20 @@ Command-line tools for %{pypi_name}.
 # https://github.com/Tanganelli/CoAPthon3/pull/23
 sed -i -e '1d;2i#!/usr/bin/python3' exampleresources.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-coapthon3
 # Doc files are missing in the releases on PyPI
 # https://github.com/Tanganelli/CoAPthon3/issues/22
 %{python3_sitelib}/coapthon/
-%{python3_sitelib}/%{pypi_name}*.egg-info
+%{python3_sitelib}/%{pypi_name}*.dist-info
 
 %files -n coapthon3
 %{_bindir}/*.py

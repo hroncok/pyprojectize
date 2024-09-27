@@ -21,7 +21,6 @@ Python Interface to Graphviz's Dot language.
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{modname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3dist(pyparsing) >= 2.0.1
 Requires:       graphviz
 
@@ -36,11 +35,14 @@ Python 3 version.
 
 rm -rf lib/*.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # https://github.com/carlos-jenkins/pydotplus/issues/2

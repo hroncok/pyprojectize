@@ -22,7 +22,6 @@ compressing firewall rules or BGP prefix-list filters.
 %package -n python%{python3_pkgversion}-%{name}
 Summary:        Python module to compress an unsorted list of IPv4 and IPv6 prefixes
 %if 0%{?rhel} && 0%{?rhel} < 9
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-py-radix >= 0.10.0
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{name}}
 %endif
@@ -46,7 +45,7 @@ filters.
 %if 0%{?fedora} || 0%{?rhel} >= 9
 %pyproject_wheel
 %else
-%py3_build
+%pyproject_wheel
 %endif
 
 %install
@@ -54,7 +53,7 @@ filters.
 %pyproject_install
 %pyproject_save_files %{name}
 %else
-%py3_install
+%pyproject_install
 %{?el8:%py3_shebang_fix $RPM_BUILD_ROOT%{_bindir}/%{name}}
 %endif
 
@@ -79,7 +78,7 @@ touch -c -r %{name}/%{name}.py $RPM_BUILD_ROOT%{python3_sitelib}/%{name}/%{name}
 %else
 %files -n python%{python3_pkgversion}-%{name}
 %{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{name}-%{version}.dist-info/
 %endif
 %license LICENSE
 

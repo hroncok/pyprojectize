@@ -14,7 +14,6 @@ Patch:          https://pagure.io/pungi/pull-request/1782.patch
 BuildRequires:  make
 BuildRequires:  python3-pytest
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-productmd >= 1.28
 BuildRequires:  python3-kobo-rpmlib
 BuildRequires:  createrepo_c
@@ -93,8 +92,11 @@ no guarantees about API stability.
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 cd doc
 make epub     SPHINXBUILD=/usr/bin/sphinx-build-3
 make text     SPHINXBUILD=/usr/bin/sphinx-build-3
@@ -102,7 +104,7 @@ make man      SPHINXBUILD=/usr/bin/sphinx-build-3
 gzip _build/man/pungi.1
 
 %install
-%py3_install
+%pyproject_install
 %{__install} -d %{buildroot}/var/cache/pungi/createrepo_c
 %{__install} -d %{buildroot}%{_mandir}/man1
 %{__install} -m 0644 doc/_build/man/pungi.1.gz %{buildroot}%{_mandir}/man1
@@ -128,7 +130,7 @@ rm %{buildroot}%{_bindir}/pungi
 
 %files -n python3-%{name}
 %{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{name}-%{version}.dist-info
 
 %files utils
 %{python3_sitelib}/%{name}_utils

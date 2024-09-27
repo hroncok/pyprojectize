@@ -15,7 +15,6 @@ Source0:   %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires: desktop-file-utils
 BuildRequires: python3
-BuildRequires: python3-setuptools
 BuildRequires: python3-devel
 
 Requires: python3-pillow
@@ -41,11 +40,14 @@ window managers, on Arch Linux, Void Linux, Debian and Fedora.
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 #desktop-file-edit --set-icon %{_datadir}/pixmaps/%{name}.svg dist/%{name}.desktop
 install -p -D -m 0644 -t %{buildroot}/%{_datadir}/applications dist/%{name}.desktop
 install -p -D -m 0644 -t %{buildroot}/%{_datadir}/%{name} dist/*.png dist/*.svg
@@ -59,7 +61,7 @@ done
 
 %files
 %{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}-*.egg-info/
+%{python3_sitelib}/%{name}.dist-info/
 %{_bindir}/%{name}
 %{_datadir}/%{name}/
 %{_datadir}/pixmaps/*

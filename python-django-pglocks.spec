@@ -21,7 +21,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 %description -n python3-%{srcname} %{_description}
 
@@ -33,16 +32,19 @@ Python 3 version.
 # https://github.com/Xof/django-pglocks/pull/27
 sed -i -e "s/from distutils.core import setup/from setuptools import setup/" setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %license LICENSE.txt
 %doc CHANGES.txt
-%{python3_sitelib}/django_pglocks-*.egg-info/
+%{python3_sitelib}/django_pglocks.dist-info/
 %{python3_sitelib}/django_pglocks/
 
 %changelog

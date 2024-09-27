@@ -22,7 +22,6 @@ Zope to make use of two-phase commit transactions in a WSGI context.
 %package -n python3-repoze-tm2
 Summary: Zope-like transaction manager via WSGI middleware
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-transaction
 %{?python_provide:%python_provide python3-repoze-tm2}
 
@@ -39,12 +38,16 @@ This package contains the python3 version of the library.
 %setup -q -n repoze.tm2-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 

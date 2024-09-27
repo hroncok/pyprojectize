@@ -21,7 +21,6 @@ documents.
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{pypi_name}}
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 Requires:       libmodulemd
 Requires:       python%{python3_version}dist(pygobject)
 
@@ -38,11 +37,14 @@ documents.
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{pypi_name}
@@ -50,7 +52,7 @@ rm -rf %{pypi_name}.egg-info
 %license LICENSE
 %{_bindir}/ModulemdTranslationHelpers
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-*.egg-info/
+%{python3_sitelib}/%{pypi_name}.dist-info/
 
 
 %changelog

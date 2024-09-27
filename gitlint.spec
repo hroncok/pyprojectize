@@ -8,7 +8,6 @@ Patch0: strict-dependencies.patch
 URL: https://jorisroovers.github.io/gitlint
 BuildArch: noarch
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: %{py3_dist Click} >= 7.1.2
 BuildRequires: %{py3_dist arrow} >= 0.15.6
 BuildRequires: %{py3_dist sh} >= 1.13.1
@@ -25,20 +24,23 @@ minimum body length, valid email addresses...
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} -m coverage run --omit='/usr/*,$(pwd)/gitlint/tests/*,$(pwd)/gitlint/qa/*' -m unittest discover -v -s $(pwd)/gitlint/tests
 
 %install
-%py3_install
+%pyproject_install
 rm -rf %{buildroot}%{python3_sitelib}/qa
 
 %files
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{name}-*.egg-info/
+%{python3_sitelib}/%{name}.dist-info/
 %{python3_sitelib}/%{name}/
 %{_bindir}/gitlint
 

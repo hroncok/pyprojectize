@@ -19,7 +19,6 @@ Patch:          drop-makeSuite.patch
 BuildArch:      noarch
 
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-lxml
 
 %description
@@ -45,11 +44,14 @@ module. This is the python%{python3_pkgversion} build.
 %prep
 %autosetup -p1 -n %{pypi_name}-%{upstream_version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{python3} tests.py
@@ -59,7 +61,7 @@ module. This is the python%{python3_pkgversion} build.
 %doc README.txt README.html CHANGES.txt
 %license LICENSE
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{upstream_version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{upstream_version}.dist-info/
 
 
 %changelog

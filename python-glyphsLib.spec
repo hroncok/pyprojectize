@@ -22,7 +22,6 @@ Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
 BuildRequires:  python3-wheel
 
@@ -41,11 +40,14 @@ This library provides a bridge from Glyphs source files (.glyphs) to UFOs
 %prep
 %autosetup -n %{srcname}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Skipping check for now due to missing dependencies
 %if 0%{?with_check}
@@ -57,7 +59,7 @@ This library provides a bridge from Glyphs source files (.glyphs) to UFOs
 %license LICENSE
 %doc README.rst CONTRIBUTING.md
 %dir %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-*.egg-info
+%{python3_sitelib}/%{srcname}.dist-info
 %{python3_sitelib}/%{srcname}/*
 %{_bindir}/glyphs2ufo
 %{_bindir}/ufo2glyphs

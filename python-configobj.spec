@@ -13,7 +13,6 @@ Source0:        https://github.com/DiffSK/configobj/archive/v%{version}.tar.gz
 Patch1:         0001-Address-CVE-2023-26112-ReDoS.patch
 BuildArch:      noarch
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-six
 BuildRequires:  python%{python3_pkgversion}-pytest
 %global _description \
@@ -31,11 +30,14 @@ Requires:       python%{python3_pkgversion}-six
 %prep
 %autosetup -p1 -n configobj-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 export PYTHONPATH=$(pwd)/build/lib
@@ -48,7 +50,7 @@ export PYTHONPATH=$(pwd)/build/lib
 %license LICENSE
 %{python3_sitelib}/configobj
 %{python3_sitelib}/validate
-%{python3_sitelib}/configobj-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/configobj-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 5.0.8-10

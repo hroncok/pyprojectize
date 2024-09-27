@@ -18,7 +18,6 @@ Source0: %{url}/archive/v%{version}/%{srcname}-%{version}.tar.gz
 Patch0:  0000-Use-yaml.safe_load-instead-of-load.patch
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-pyramid
 BuildRequires: python3-pyyaml
 
@@ -41,12 +40,16 @@ Summary: %{summary}
 %autosetup -p1 -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -58,7 +61,7 @@ Summary: %{summary}
 %doc CHANGES.rst
 %doc README.rst
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 
 
 %changelog

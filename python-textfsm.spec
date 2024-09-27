@@ -27,7 +27,6 @@ devices.
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{pypi_name}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-six
 BuildRequires:  python3-pytest
 BuildRequires:  python3-pytest-runner
@@ -48,11 +47,14 @@ sed -i 's/1.1.2/1.1.3/' textfsm/__init__.py
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest
@@ -61,7 +63,7 @@ rm -rf %{pypi_name}.egg-info
 %license COPYING
 %exclude %{python3_sitelib}/testdata
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %{_bindir}/textfsm
 
 %changelog

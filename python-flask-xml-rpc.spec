@@ -14,7 +14,6 @@ Patch1:             https://bitbucket.org/ppjet6/flask-xml-rpc/commits/9da0e2bcf
 BuildArch:          noarch
 
 BuildRequires:      python3-devel
-BuildRequires:      python3-setuptools
 BuildRequires:      python3-flask
 BuildRequires:      python3-nose
 
@@ -40,11 +39,14 @@ Requires:           python3-flask
 %prep
 %autosetup -n %{pkgname}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test

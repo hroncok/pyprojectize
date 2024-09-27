@@ -10,7 +10,6 @@ Source0:        %pypi_source pdftools.pdfposter
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       python3-PyPDF2
 
@@ -30,11 +29,14 @@ for Files in pdftools/pdfposter/cmd.py pdftools/pdfposter/__init__.py; do
   rm ${Files}.orig
 done
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %doc README.txt

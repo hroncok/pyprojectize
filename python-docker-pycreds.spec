@@ -55,7 +55,6 @@ Python bindings for the docker credentials store API
 Summary:        Python bindings for the docker credentials store API
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-six
 %if %{with tests}
 BuildRequires:  python3-pytest
@@ -75,12 +74,16 @@ Python bindings for the docker credentials store API
 %autosetup -n %{pypi_name}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 %if %{with python2}
 %py2_build
 %endif # with python2
 %if %{with python3}
-%py3_build
+%pyproject_wheel
 %endif # with python3
 
 
@@ -92,7 +95,7 @@ Python bindings for the docker credentials store API
 %py2_install
 %endif # with python2
 %if %{with python3}
-%py3_install
+%pyproject_install
 %endif # with python3
 
 
@@ -118,7 +121,7 @@ PYTHONPATH="${PWD}" py.test-%{python3_version} -vv tests/
 %doc README.md
 %license LICENSE
 %{python2_sitelib}/dockerpycreds
-%{python2_sitelib}/docker_pycreds-%{version}-py?.?.egg-info
+%{python2_sitelib}/docker_pycreds-%{version}-py?.?.dist-info
 %endif # with python2
 
 %if %{with python3}
@@ -126,7 +129,7 @@ PYTHONPATH="${PWD}" py.test-%{python3_version} -vv tests/
 %doc README.md
 %license LICENSE
 %{python3_sitelib}/dockerpycreds
-%{python3_sitelib}/docker_pycreds-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/docker_pycreds-%{version}.dist-info
 %endif # python3
 
 

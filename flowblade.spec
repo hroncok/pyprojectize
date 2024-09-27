@@ -29,7 +29,6 @@ Patch1:         %{name}-invalid-escape-sequence.patch
 BuildRequires:  desktop-file-utils
 BuildRequires:  libappstream-glib
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Requires:       /usr/bin/ffmpeg
 Requires:       python3-mlt
 Requires:       frei0r-plugins >= 1.4
@@ -74,6 +73,9 @@ sed -i -e 's|#!/usr/bin/env python|#!/usr/bin/python3|g' flowblade-trunk/Flowbla
 
 # fix to %%{_datadir}/locale
 sed -i "s|respaths.LOCALE_PATH|'%{_datadir}/locale'|g" flowblade-trunk/Flowblade/translations.py
+
+%generate_buildrequires
+%pyproject_buildrequires
 
 %build 
 cd flowblade-trunk

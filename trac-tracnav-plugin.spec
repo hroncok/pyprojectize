@@ -10,7 +10,6 @@ URL:            https://svn.ipd.kit.edu/trac/javaparty/wiki/TracNav
 Source0:        %{pypi_source}
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
 BuildRequires:  python3-toml
 Requires:       trac >= 0.11
@@ -28,18 +27,22 @@ that was originally supplied with Trac.
 %autosetup -n TracNav-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files
 %doc README.md
 %license COPYING
-%{python3_sitelib}/TracNav-*.egg-info/
+%{python3_sitelib}/TracNav.dist-info/
 %{python3_sitelib}/tracnav/
 
 

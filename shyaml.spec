@@ -14,7 +14,6 @@ Patch1:         %{name}.filelist.patch
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  %{py3_dist d2to1}
 BuildRequires:  %{py3_dist pyyaml}
 
@@ -30,12 +29,16 @@ of YAML file.
 %autosetup -p1 -n %{name}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files

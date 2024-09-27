@@ -18,7 +18,6 @@ Patch0:         https://github.com/stchris/untangle/pull/140.patch#/python-untan
 
 
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-defusedxml
 BuildRequires:  python%{python3_pkgversion}-pytest
 
@@ -47,12 +46,15 @@ element.
 %prep
 %autosetup -n untangle-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 # using old py3_build/py3_install to keep remain compatible with EPEL7/8 builds
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -70,7 +72,7 @@ export LANG=en_US.UTF-8
 %doc README.md AUTHORS CHANGELOG.md
 %{python3_sitelib}/__pycache__/*
 %{python3_sitelib}/untangle.py
-%{python3_sitelib}/untangle-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/untangle-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.2.1-5

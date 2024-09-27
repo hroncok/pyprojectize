@@ -30,7 +30,6 @@ BuildRequires: gcc
 BuildRequires: gettext
 BuildRequires: pkgconfig
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-docutils
 %if %{with rust}
 BuildRequires: rust-packaging
@@ -134,6 +133,8 @@ done
 # These are shipped as examples in /usr/share/docs and should not be executable
 chmod -x hgweb.cgi contrib/hgweb.fcgi
 
+%pyproject_buildrequires
+
 %build
 PYTHON=%{python3} make all
 
@@ -150,7 +151,7 @@ popd
 %endif
 
 %install
-%py3_install
+%pyproject_install
 make install-doc DESTDIR=%{buildroot} MANDIR=%{_mandir}
 
 # Overrule setup.py policy "c" for module usage: always allow rust extension (if available)
@@ -223,7 +224,7 @@ rm -rf %{buildroot}%{python3_sitearch}/mercurial/locale
 %if %{with rust}
 %exclude %{python3_sitearch}/mercurial/rustext%{python3_ext_suffix}
 %endif
-%{python3_sitearch}/mercurial-%{version}-py%{python3_version}.egg-info/
+%{python3_sitearch}/mercurial-%{version}.dist-info/
 %{python3_sitearch}/mercurial/
 %{python3_sitearch}/hgext/
 %{python3_sitearch}/hgext3rd/

@@ -10,7 +10,6 @@ URL:            https://pagure.io/debrepo
 Source0:        https://files.pythonhosted.org/packages/source/d/%{srcname}/%{srcname}-%{version}.tar.gz
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 BuildArch:      noarch
 
@@ -41,11 +40,14 @@ composes.
 %prep
 %autosetup -n %{srcname}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %install
-%py3_install
+%pyproject_install
 sed -i -e 's|#!/usr/bin/env python|#!%{__python3}|' \
    %{buildroot}%{_bindir}/debrepodiff
 
@@ -53,7 +55,7 @@ sed -i -e 's|#!/usr/bin/env python|#!%{__python3}|' \
 %license LICENSE.rst
 %doc README.rst
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 %{_bindir}/debrepodiff
 
 

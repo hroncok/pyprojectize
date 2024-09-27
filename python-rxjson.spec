@@ -21,7 +21,6 @@ JSON RX Schema validation tool.
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-d2to1
 
 %description -n python3-%{srcname} %{_description}
@@ -30,11 +29,14 @@ BuildRequires:  python3-d2to1
 %autosetup -n %{srcname}-%{version}
 rm -vrf *.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %doc README.rst

@@ -12,7 +12,6 @@ Source0:    https://github.com/gammu/%{name}/archive/%{version}/%{name}-%{versio
 
 BuildRequires:  gcc
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  gammu-devel >= %{gammu_ver}
 #for tests: Solve DBI failed to initialize!
 BuildRequires:  libdbi-dbd-sqlite
@@ -39,11 +38,14 @@ system for feature requests.
 %prep
 %setup -q
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test || :
@@ -52,7 +54,7 @@ system for feature requests.
 %doc AUTHORS NEWS.rst README.rst examples/*
 %license COPYING
 %{python3_sitearch}/gammu
-%{python3_sitearch}/python_gammu-*.egg-info
+%{python3_sitearch}/python_gammu.dist-info
 
 %changelog
 * Fri Jul 26 2024 Miroslav Suchý <msuchy@redhat.com> - 3.2.4-12

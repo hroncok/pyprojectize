@@ -33,7 +33,6 @@ Summary: D-Bus bindings for python3
 %{?python_provide:%python_provide python%{python3_pkgversion}-dbus}
 BuildRequires: python%{python3_pkgversion}-devel
 # for py3_build
-BuildRequires: python3dist(setuptools)
 BuildRequires: python3dist(setuptools-scm)
 BuildRequires: python3dist(wheel)
 BuildRequires: make
@@ -55,16 +54,19 @@ bindings.
 # For new arches (aarch64/ppc64le), and patch0
 autoreconf -vif
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 export DBUS_PYTHON_USE_AUTOTOOLS=1
 %set_build_flags
-%py3_build
+%pyproject_wheel
 %configure PYTHON="%{__python3}"
 %make_build
 
 %install
 export DBUS_PYTHON_USE_AUTOTOOLS=1
-%py3_install
+%pyproject_install
 %make_install
 
 # unpackaged files

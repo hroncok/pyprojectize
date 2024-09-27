@@ -22,7 +22,6 @@ BuildArch:      noarch
 
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pyramid >= 1.5
 BuildRequires:  python3-transaction >= 2.0
 BuildRequires:  python3-nose
@@ -64,11 +63,14 @@ rm -rf %{modname}.egg-info
 
 rm docs/.gitignore
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test

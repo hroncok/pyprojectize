@@ -48,7 +48,6 @@ Source0:        http://www.borgelt.net/src/%{pypi_name}.tar.gz
 Summary:        %{summary}
 BuildRequires:  gcc
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  %{py3_dist Cython}
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -68,11 +67,14 @@ sed -i "s/version=.*/version='6.28',/" setup.py
 # Can use something similar to correct/remove /usr/bin/python shebangs also
 # find . -type f -name "*.py" -exec sed -i '/^#![  ]*\/usr\/bin\/env.*$/ d' {} 2>/dev/null ';'
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %if %{with tests}
@@ -82,7 +84,7 @@ sed -i "s/version=.*/version='6.28',/" setup.py
 %files -n python3-%{pypi_name}
 # All sub directories contain this file
 %license pyfim/doc/mit-license.txt
-%{python3_sitearch}/fim-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/fim-%{version}.dist-info
 %{python3_sitearch}/fim.cpython-%{python3_version_nodots}*.so
 
 %changelog

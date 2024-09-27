@@ -28,7 +28,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 BuildRequires:  python3-PyYAML >= 3.11
 BuildRequires:  python3-docutils >= 0.11
@@ -48,12 +47,16 @@ cp -a %{SOURCE1} .
 find -name '*.pyc' -delete
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -65,7 +68,7 @@ PYTHONPATH="$(pwd)" pytest-%{python3_version} -v
 %license UNLICENSE
 %{_bindir}/rst-lint
 %{_bindir}/restructuredtext-lint
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 %{python3_sitelib}/%{pypi_name}/
 
 

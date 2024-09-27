@@ -40,7 +40,6 @@ Summary:        %{summary}
 BuildRequires:  python3-devel
 BuildRequires:  python3-hypothesis
 BuildRequires:  python3-pytest
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-sphinx_rtd_theme
 Obsoletes:      python2-mutagen < 1.42.0-10
 
@@ -58,13 +57,16 @@ Contains the html documentation for python mutagen.
 %prep
 %autosetup -n %{modname}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 sphinx-build -b html -n docs docs/_build
 
 %install
-%py3_install
+%pyproject_install
 
 install -D -p -m 0644 man/*.1 %{buildroot}%{_mandir}/man1
 
@@ -78,7 +80,7 @@ rm -rf docs/_build/{.buildinfo,.doctrees}
 %files -n python3-%{modname}
 %license COPYING
 %doc NEWS README.rst
-%{python3_sitelib}/%{modname}-*.egg-info
+%{python3_sitelib}/%{modname}.dist-info
 %{python3_sitelib}/%{modname}/
 
 %{_bindir}/mid3cp

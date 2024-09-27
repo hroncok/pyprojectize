@@ -12,7 +12,6 @@ BuildArch:	noarch
 
 Requires:	python3-mapnik
 
-BuildRequires:	python3-setuptools
 BuildRequires:	python3-devel
 
 %description
@@ -21,11 +20,14 @@ Nik4 is a mapnik-to-image exporting script.
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 mv %{buildroot}/%{_bindir}/nik4.py %{buildroot}/%{_bindir}/nik4
 

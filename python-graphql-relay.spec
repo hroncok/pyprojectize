@@ -18,7 +18,6 @@ It allows the easy creation of Relay-compliant servers using GraphQL-core.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-graphql-core
 BuildRequires:  python3-pytest
 BuildRequires:  python3-pytest-asyncio
@@ -34,11 +33,14 @@ It allows the easy creation of Relay-compliant servers using GraphQL-core.
 %autosetup -n %{pypi_name}-py-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 #%%check
 #%%pytest -v tests
@@ -47,7 +49,7 @@ rm -rf %{pypi_name}.egg-info
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/graphql_relay/
-%{python3_sitelib}/graphql_relay-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/graphql_relay-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 3.2.0-9

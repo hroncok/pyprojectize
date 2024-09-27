@@ -21,7 +21,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description -n python3-%{srcname} %{_description}
 
@@ -31,16 +30,19 @@ Python 3 version.
 %autosetup -n %{srcname}-%{version} -p1
 rm -vr *.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.md HISTORY.rst
-%{python3_sitelib}/django_taggit_serializer-*.egg-info/
+%{python3_sitelib}/django_taggit_serializer.dist-info/
 %{python3_sitelib}/taggit_serializer/
 
 %changelog

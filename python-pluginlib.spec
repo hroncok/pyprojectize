@@ -17,7 +17,6 @@ BuildArch:      noarch
 
 %if %{with python3}
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 %endif
 
 %if 0%{?with_python3_other}
@@ -58,9 +57,13 @@ Requires:       python%{python3_other_pkgversion}-setuptools
 rm -rf %{pypi_name}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 %if %{with python3}
-%py3_build
+%pyproject_wheel
 %endif
 
 %if 0%{?with_python3_other}
@@ -74,7 +77,7 @@ rm -rf %{pypi_name}.egg-info
 %endif
 
 %if %{with python3}
-%py3_install
+%pyproject_install
 %endif
 
 %check

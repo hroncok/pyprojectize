@@ -16,7 +16,6 @@ BuildRequires:  libtree-devel
 BuildRequires:  make
 BuildRequires:  mum-hash-devel
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 # Partial http://troydhanson.github.io/uthash (BSD) - 2.x is shipped in Fedora.
 Provides: bundled(uthash) = 1.9.8
@@ -63,6 +62,9 @@ for def in schema/ref.json schema/refRemote.json schema/definitions.json; do
   rm tests/$def
 done
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 # Run autoconf.
 ./autogen.sh
@@ -70,7 +72,7 @@ done
 %configure --disable-static
 
 V=1 %make_build
-(cd python; %py3_build)
+(cd python; %pyproject_wheel)
 
 %install
 %make_install

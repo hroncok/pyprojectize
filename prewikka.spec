@@ -14,7 +14,6 @@ BuildRequires:  pkgconfig(python3)
 BuildRequires:  python3-configargparse
 BuildRequires:  python3-babel
 BuildRequires:  python3-lesscpy
-BuildRequires:  python3-setuptools
 
 Requires:       python3-%{name} >= %{version}
 
@@ -57,8 +56,11 @@ whois and traceroute.
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
 install -d -m 0755 %{buildroot}%{_sbindir}
@@ -111,7 +113,7 @@ ln -s %{_datadir}/locale %{buildroot}%{python3_sitelib}/%{name}/locale
 %{_sbindir}/%{name}-cli-3
 %{_sbindir}/%{name}-cli-%{python3_version}
 %{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{name}-%{version}.dist-info
 
 %changelog
 * Fri Jul 26 2024 Miroslav Suchý <msuchy@redhat.com> - 5.2.0-19

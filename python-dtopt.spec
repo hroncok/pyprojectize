@@ -11,7 +11,6 @@ Source0:        http://pypi.python.org/packages/source/d/dtopt/dtopt-%{version}.
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 
 %global _description\
@@ -48,16 +47,20 @@ rm -rf *.egg-info
 rm dtopt/tests.py*
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-dtopt
 %doc docs/*
 %{python3_sitelib}/dtopt/
-%{python3_sitelib}/dtopt*.egg-info/
+%{python3_sitelib}/dtopt*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1-50

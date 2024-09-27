@@ -24,7 +24,6 @@ Summary:        %{summary}
 
 BuildRequires:  pandoc
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(sphinx) >= 1.5.1
 BuildRequires:  python3dist(sphinx-rtd-theme)
 BuildRequires:  python3dist(ipykernel)
@@ -55,10 +54,14 @@ Documentation for python3-%{srcname}.
 rm -rf %{srcname}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 %pyproject_wheel
-# %py3_build
+# %pyproject_wheel
 
 pushd docs
 %{__python3} -m sphinx source html
@@ -69,7 +72,7 @@ popd
 
 %install
 export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
-%py3_install
+%pyproject_install
 
 
 %check
@@ -81,7 +84,7 @@ export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 %doc README.md
 %license LICENSE
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}_ng-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{srcname}_ng-%{version}.dist-info
 
 %files -n python3-%{srcname}-doc
 %doc docs/html

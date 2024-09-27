@@ -19,7 +19,6 @@ Py.test plugin for efficiently checking python source with pyflakes.
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3dist(pytest) >= 2.8
 BuildRequires:  python3dist(pyflakes)
 
@@ -32,11 +31,14 @@ Python 3 version.
 %autosetup -n %{srcname}-%{version}
 rm -rf *.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -44,7 +46,7 @@ rm -rf *.egg-info
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/pytest_flakes-*.egg-info/
+%{python3_sitelib}/pytest_flakes.dist-info/
 %{python3_sitelib}/pytest_flakes.py
 %{python3_sitelib}/__pycache__/pytest_flakes.*
 

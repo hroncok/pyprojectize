@@ -17,7 +17,6 @@ BuildRequires: libudev-devel
 
 BuildRequires: python3-devel
 BuildRequires: python3-pytest
-BuildRequires: python3-setuptools
 BuildRequires: python3-cython
 
 %description
@@ -42,12 +41,15 @@ rm -rf hidapi hidapi.egg-info hid.c
 sed -i -e 's|/usr/include/hidapi|%{_includedir}/hidapi|' setup.py
 %endif
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -59,7 +61,7 @@ sed -i -e 's|/usr/include/hidapi|%{_includedir}/hidapi|' setup.py
 %doc README.rst try.py
 %{python3_sitearch}/hid%{python3_ext_suffix}
 %{python3_sitearch}/hidraw%{python3_ext_suffix}
-%{python3_sitearch}/hidapi-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/hidapi-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.14.0.post2-3

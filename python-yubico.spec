@@ -20,7 +20,6 @@ Pure-python library for interacting with Yubikeys
 %package -n python3-%{srcname}
 Summary:        Pure-python library for interacting with Yubikeys
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 BuildRequires:  python3-pyusb
 
@@ -34,12 +33,16 @@ Pure-python library for interacting with Yubikeys. For Python 3.
 %autosetup -n %{name}-%{name}-%{version} -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check

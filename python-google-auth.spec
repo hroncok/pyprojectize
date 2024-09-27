@@ -44,11 +44,14 @@ Python client for the kubernetes API.
 %prep
 %autosetup -n google-auth-library-python-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 
@@ -57,7 +60,7 @@ Python client for the kubernetes API.
 %dir %{python3_sitelib}/google/
 %{python3_sitelib}/google/auth
 %{python3_sitelib}/google/oauth2
-%{python3_sitelib}/google_auth-%{version}*.egg-info
+%{python3_sitelib}/google_auth-%{version}*.dist-info
 
 %changelog
 * Sat Sep 21 2024 Fedora Release Monitoring <release-monitoring@fedoraproject.org> - 1:2.35.0-1

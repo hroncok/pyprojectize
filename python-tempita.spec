@@ -12,7 +12,6 @@ Patch0001:      0001-Apply-fixes-required-for-Python-3.patch
 BuildArch:      noarch
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 %global _description\
 Tempita is a small templating language for text substitution.
@@ -43,17 +42,21 @@ Tempita is a small templating language for text substitution.
 sed -i '/use_2to3/d' setup.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-tempita
 %{python3_sitelib}/tempita/
-%{python3_sitelib}/*.egg-info/
+%{python3_sitelib}/*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.5.2-14

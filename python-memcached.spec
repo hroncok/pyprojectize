@@ -10,7 +10,6 @@ Source0:        https://github.com/linsomniac/python-memcached/archive/%{version
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-six
 # Required for running test suite
 BuildRequires:  %{_bindir}/memcached
@@ -43,12 +42,16 @@ sed -i -e 's/^import mock/from unittest import mock/' \
     tests/test_memcache.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -65,7 +68,7 @@ kill $(cat $pidfile)
 %attr(755,root,root) %{python3_sitelib}/memcache.py
 %{python3_sitelib}/memcache.py
 %{python3_sitelib}/__pycache__/memcache.*
-%{python3_sitelib}/python_memcached-%{version}-py*.egg-info/
+%{python3_sitelib}/python_memcached-%{version}.dist-info/
 
 
 %changelog

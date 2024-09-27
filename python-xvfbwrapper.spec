@@ -21,7 +21,6 @@ Python wrapper for running a display inside X virtual framebuffer (Xvfb)
 Summary:        run headless display inside X virtual framebuffer (Xvfb)
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-mock
 BuildRequires: python3-nose
 BuildRequires: xorg-x11-server-Xvfb
@@ -39,13 +38,19 @@ sed -i '1{\@^#!/usr/bin/env python@d}' xvfbwrapper.py
 
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
+
+
 %build
 
-%py3_build
+%pyproject_wheel
 
 %install
 
-%py3_install
+%pyproject_install
 
 %check
 export DISPLAY=:0.0
@@ -57,7 +62,7 @@ nosetests-%{python3_version}
 %doc README.rst
 %{python3_sitelib}/%{pypi_name}.py*
 %{python3_sitelib}/__pycache__/%{pypi_name}.*
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.2.9-25

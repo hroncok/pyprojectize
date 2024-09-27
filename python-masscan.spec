@@ -20,7 +20,6 @@ python-masscan is a python library which helps in using masscan port scanner.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-masscan}
 
 %description -n python3-masscan
@@ -30,16 +29,19 @@ python-masscan is a python library which helps in using masscan port scanner.
 %autosetup -n %{srcname}-%{version}
 sed -i -e '/^#!\//, 1d' masscan/*.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-masscan
 %doc CHANGELOG.md README.rst
 %license LICENSE
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{python3_sitelib}/masscan/
 
 %changelog

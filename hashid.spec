@@ -12,7 +12,6 @@ Source0:        %{url}/archive/v%{version}/%{pypi_name}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 Identify the different types of hashes used to encrypt data and especially
@@ -26,11 +25,14 @@ a directory and identify the hashes within them.
 %autosetup -n %{pypi_name}-%{version}
 sed -i -e '/^#!\//, 1d' hashid.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 install -Dp -m 0644 doc/man/%{name}.7 %{buildroot}%{_mandir}/man7/%{name}.7
 
 %files
@@ -38,7 +40,7 @@ install -Dp -m 0644 doc/man/%{name}.7 %{buildroot}%{_mandir}/man7/%{name}.7
 %license doc/LICENSE
 %{_mandir}/man*/%{name}*.*
 %{_bindir}/%{name}
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{python3_sitelib}/%{name}.py
 %{python3_sitelib}/__pycache__/*
 

@@ -18,7 +18,6 @@ Python library to create SVG drawings.
 %package -n     python3-%{pypi_name}
 Summary:        Python 3 library to create SVG drawings
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pyparsing
 BuildRequires:  python3-pytest
 Requires:       python3-setuptools
@@ -31,12 +30,15 @@ Python 3 library to create SVG drawings.
 %prep
 %autosetup -n %{pypi_name}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 # Remove shebang
 for lib in %{buildroot}%{python3_sitelib}/%{pypi_name}/{,*/}/*.py; do
  sed '1{\@^#!/usr/bin/env python@d}' $lib > $lib.new &&
@@ -50,7 +52,7 @@ done
 %files -n python3-%{pypi_name}
 %license LICENSE.TXT
 %doc NEWS.rst README.rst
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %{python3_sitelib}/%{pypi_name}/
 
 

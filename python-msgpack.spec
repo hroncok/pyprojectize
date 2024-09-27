@@ -21,7 +21,6 @@ Summary:        %{summary}
 
 BuildRequires:  python%{python3_pkgversion}-Cython
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-pytest
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
@@ -39,11 +38,14 @@ This is a Python %{python3_version} (de)serializer for MessagePack.
 # There is a circular dependency with python-msgpack-ext
 rm -rf test/test_timestamp.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v test
@@ -52,7 +54,7 @@ rm -rf test/test_timestamp.py
 %doc README.md
 %license COPYING
 %{python3_sitearch}/%{srcname}/
-%{python3_sitearch}/%{srcname}*.egg-info
+%{python3_sitearch}/%{srcname}*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.7-5

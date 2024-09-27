@@ -13,7 +13,6 @@ Source0:        %{pypi_source}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if %{with tests}
 BuildRequires:  %{py3_dist attrs}
 BuildRequires:  %{py3_dist click}
@@ -56,12 +55,16 @@ sed -i '1d' $(grep -l '#!/usr/bin/env' bowler/*.py)
 sed -i '/volatile/d' requirements.txt
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %if %{with tests}
@@ -76,7 +79,7 @@ sed -i '/volatile/d' requirements.txt
 %{_bindir}/%{srcname}
 %{python3_sitelib}/%{srcname}/
 %exclude %{python3_sitelib}/%{srcname}/tests
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 
 %files -n python3-%{srcname}-docs
 %doc docs/*.md

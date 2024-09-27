@@ -8,7 +8,6 @@ Source0:        https://github.com/doceme/py-spidev/archive/v%{version}/%{name}-
 
 BuildRequires:  gcc
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 A python module for interfacing with SPI devices from user 
@@ -26,11 +25,14 @@ space via the spidev linux kernel driver.
 %prep
 %autosetup
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-spidev
 %license LICENSE

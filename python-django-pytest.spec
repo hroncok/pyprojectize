@@ -12,7 +12,6 @@ Source0:        http://pypi.python.org/packages/source/d/django-pytest/%{pypi_na
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %global _description\
 This project allows you to use py.test as a django test runner,\
@@ -41,18 +40,22 @@ principle.
 rm -rf %{pypi_name}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{pypi_name}
 %doc LICENSE.txt README.md
 %{python3_sitelib}/django_pytest/
-%{python3_sitelib}/django_pytest-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/django_pytest-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.2.0-40

@@ -10,7 +10,6 @@ Source0:        https://github.com/WebThingsIO/webthing-python/archive/v%{versio
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 A server implementing the HTTP Web Thing implementation.
@@ -27,19 +26,22 @@ A server implementing the HTTP Web Thing implementation.
 # Remove bundled egg-info
 rm -rf %{realname}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-webthing
 %license LICENSE.txt
 %doc README.rst
 %{python3_sitelib}/webthing/
-%{python3_sitelib}/webthing-%{version}-py3.*.egg-info
+%{python3_sitelib}/webthing-%{version}-py3.*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.15.0-15

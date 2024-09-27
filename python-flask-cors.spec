@@ -22,7 +22,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-flask
 BuildRequires:  python3-pytest
 BuildRequires:  python3-packaging
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-six
 
 %description -n python3-%{srcname}
@@ -31,11 +30,14 @@ Python3 flask_cors package.
 %prep
 %autosetup -n %{srcname}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 %check
 %pytest
@@ -44,7 +46,7 @@ Python3 flask_cors package.
 %license LICENSE
 %doc CHANGELOG.md README.rst
 %{python3_sitelib}/flask_cors/
-%{python3_sitelib}/Flask_Cors*.egg-info/
+%{python3_sitelib}/Flask_Cors*.dist-info/
 
 %changelog
 %autochangelog

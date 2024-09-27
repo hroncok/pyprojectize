@@ -24,7 +24,6 @@ BuildRequires:  picosat-devel
 %package -n python%{python3_pkgversion}-%{srcname}
 Summary:        %{sum}
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-pytest
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
@@ -40,11 +39,14 @@ rm picosat.*
 # upstream only applies proper flags when build is invoked with --inplace
 sed -i "s/if .--inplace. in sys.argv:/if True:/" setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitearch} py.test-%{python3_version} -vv

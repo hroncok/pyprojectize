@@ -31,7 +31,6 @@ BuildRequires:  python3-devel
 #   still provides distutils. (Contributed by Victor Stinner in gh-92584.)
 #
 # We must therefore BuildRequire python3dist(setuptools) to get distutils.
-BuildRequires:  python3dist(setuptools)
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
@@ -228,8 +227,12 @@ find data/iso-codes -type f -name '*.json' |
 cp -vrp doc using-gaupol
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
@@ -289,7 +292,7 @@ appstreamcli validate --no-net --explain \
 %{_bindir}/gaupol
 
 %{python3_sitelib}/gaupol/
-%{python3_sitelib}/gaupol-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/gaupol-%{version}.dist-info/
 
 %{_datadir}/gaupol/
 %{_metainfodir}/%{app_id}.appdata.xml
@@ -306,7 +309,7 @@ appstreamcli validate --no-net --explain \
 %doc NEWS.md
 
 %{python3_sitelib}/aeidon/
-%{python3_sitelib}/aeidon-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/aeidon-%{version}.dist-info/
 
 
 %changelog

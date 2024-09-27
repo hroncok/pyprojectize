@@ -11,7 +11,7 @@ URL:              https://flent.org/
 Source0:          %{pypi_source}
 
 BuildArch:        noarch
-BuildRequires:    python3-devel python3-sphinx desktop-file-utils libappstream-glib python3-setuptools make
+BuildRequires:    python3-devel python3-sphinx desktop-file-utils libappstream-glib make
 Recommends:       python3-matplotlib python3-matplotlib-qt5 python3-pyside2 python3-QtPy
 Requires:         fping netperf golang-github-heistp-irtt
 
@@ -59,13 +59,17 @@ ping times before, during and after a link is loaded.
 %autosetup -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 %make_build -C doc/ html PYTHON=%{__python3} SPHINXBUILD=sphinx-build-3
 rm -f doc/_build/html/index.html doc/_build/html/.buildinfo
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %make_build test PYTHON=%{__python3}
@@ -74,7 +78,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 
 %files
 %{python3_sitelib}/flent
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 %{_bindir}/flent
 %{_bindir}/flent-gui
 %{_datadir}/applications/flent.desktop

@@ -19,7 +19,6 @@ Patch100:       pycparser-unbundle-ply.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-ply
 
 # for unit tests
@@ -50,14 +49,17 @@ rm -r pycparser/ply
 # Remove relative sys.path from the examples
 %{python3} %{SOURCE1} examples
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 pushd build/lib/pycparser
 %{python3} _build_tables.py
 popd
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %if %{with tests}
@@ -68,7 +70,7 @@ popd
 %license LICENSE
 %doc examples
 %{python3_sitelib}/pycparser/
-%{python3_sitelib}/pycparser-*.egg-info/
+%{python3_sitelib}/pycparser.dist-info/
 
 %changelog
 %autochangelog

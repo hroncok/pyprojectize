@@ -11,7 +11,6 @@ Source0:        %{pypi_source}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 %description
 This module implements a python logging formatter which produces well-formed
@@ -30,11 +29,14 @@ RFC5424-compatible Syslog messages to a given socket.
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %py3_check_import syslog_rfc5424_formatter
@@ -44,7 +46,7 @@ rm -rf %{pypi_name}.egg-info
 %doc README.md
 %doc CHANGES.md
 %{python3_sitelib}/syslog_rfc5424_formatter
-%{python3_sitelib}/syslog_rfc5424_formatter-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/syslog_rfc5424_formatter-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.2.3-8

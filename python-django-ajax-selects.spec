@@ -12,7 +12,6 @@ Source:         http://pypi.python.org/packages/source/d/%{pkgname}/%{pkgname}-%
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %global _description\
 Enables editing of ForeignKey, ManyToMany and simple text fields using the\
@@ -41,17 +40,20 @@ Obsoletes:      python-django-ajax-selects < 1.3.4-14
 %prep
 %setup -q -n %{pkgname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-django-ajax-selects
 %license ajax_select/LICENSE.txt
 %doc README.md CHANGELOG.md
 %{python3_sitelib}/ajax_select
-%{python3_sitelib}/django_ajax_selects-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/django_ajax_selects-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 2.2.0-10

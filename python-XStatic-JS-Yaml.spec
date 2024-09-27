@@ -40,7 +40,6 @@ This package contains the JavaScript files.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       python3-XStatic
 Requires:       xstatic-js-yaml-common
@@ -67,12 +66,16 @@ rm -rf %{pypi_name}.egg-info
 sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/js_yaml'|" xstatic/pkg/js_yaml/__init__.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 mkdir -p %{buildroot}/%{_jsdir}/js_yaml
 mv %{buildroot}/%{python3_sitelib}/xstatic/pkg/js_yaml/data/js-yaml.js %{buildroot}/%{_jsdir}/js_yaml
 rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/js_yaml/data/
@@ -85,7 +88,7 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/js_yaml/data/
 %files -n python3-%{pypi_name}
 %doc README.txt
 %{python3_sitelib}/xstatic/pkg/js_yaml
-%{python3_sitelib}/XStatic_JS_Yaml-%{version}-py3.*.egg-info
+%{python3_sitelib}/XStatic_JS_Yaml-%{version}-py3.*.dist-info
 %{python3_sitelib}/XStatic_JS_Yaml-%{version}-py3.*-nspkg.pth
 
 

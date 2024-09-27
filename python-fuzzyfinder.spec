@@ -25,7 +25,6 @@ Vim’s Ctrl-P plugin.
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 
 %description -n python3-%{srcname} %{_description}
@@ -36,11 +35,14 @@ Python 3 version.
 %autosetup -n %{srcname}-%{version}
 rm -rf %{srcname}.egg-info/
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-3 -v
@@ -48,7 +50,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-3 -v
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 %{python3_sitelib}/%{srcname}/
 
 %changelog

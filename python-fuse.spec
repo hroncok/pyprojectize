@@ -12,7 +12,6 @@ Source0: https://github.com/terencehonles/fusepy/archive/v%{version}.tar.gz#/%{s
 
 BuildArch: noarch
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 %description
 fusepy is a Python module that provides a simple interface to FUSE and MacFUSE.
@@ -33,11 +32,14 @@ It's just one file and is implemented using ctypes.
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-fusepy
 %doc README.rst

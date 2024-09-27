@@ -11,7 +11,6 @@ Source0:        %pypi_source
 BuildArch:      noarch
  
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 %description
 Automatically produces UNIX-style manual pages for Python applications that
@@ -35,11 +34,14 @@ use Click for option handling.
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{pypi_name}
@@ -47,7 +49,7 @@ rm -rf %{pypi_name}.egg-info
 %doc README.md
 %{_bindir}/click-man
 %{python3_sitelib}/click_man
-%{python3_sitelib}/click_man-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/click_man-%{version}.dist-info
 
 
 %changelog

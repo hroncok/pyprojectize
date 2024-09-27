@@ -15,7 +15,6 @@ Patch:          0002-python-drop-pointless-line-continuations.patch
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 %global _description %{expand:
 TLSH is a fuzzy matching library. Given a byte stream with a minimum length of
@@ -53,16 +52,19 @@ echo 'set(CMAKE_CXX_FLAGS "%{optflags} -fPIC")' | \
 
 sed -r -i '/CMAKE_EXE_LINKER_FLAGS.*-static-libstdc/d' CMakeLists.txt
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %cmake
 %cmake_build
 pushd py_ext
-%py3_build
+%pyproject_wheel
 popd
 
 %install
 pushd py_ext
-%py3_install
+%pyproject_install
 popd
 
 %global _docdir_fmt %{name}

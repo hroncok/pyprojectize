@@ -26,7 +26,6 @@ and expose its documentation properly using Swagger.}
 %package -n     python3-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Provides:       python3-flask-restplus = %{version}-%{release}
 # Using < or <= would obsolete ourselves
 Obsoletes:      python3-flask-restplus = 0.13.0
@@ -40,11 +39,14 @@ Obsoletes:      python3-flask-restplus = 0.13.0
 rm -rf %{libname}.egg-info
 rm -f %{libname}/static/files/.npmignore
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Upstream requires pinned dependencies versions
 #%%check
@@ -54,7 +56,7 @@ rm -f %{libname}/static/files/.npmignore
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{libname}
-%{python3_sitelib}/%{libname}-*.egg-info/
+%{python3_sitelib}/%{libname}.dist-info/
 
 
 %changelog

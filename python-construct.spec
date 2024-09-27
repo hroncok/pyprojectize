@@ -7,7 +7,6 @@ URL:            http://construct.readthedocs.org
 Source0:        https://pypi.python.org/packages/source/c/construct/construct-%{version}.tar.gz
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %global _description %{expand:
 Construct is a powerful declarative parser (and builder) for binary
@@ -28,17 +27,20 @@ Requires:       python3-six
 %prep
 %autosetup -n construct-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 %files -n python3-construct
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/construct
-%{python3_sitelib}/construct-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/construct-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.10.70-5

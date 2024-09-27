@@ -17,7 +17,6 @@ BuildRequires:  git-core
 BuildRequires:  python3-devel
 BuildRequires:  python3-gssapi
 BuildRequires:  python3-requests
-BuildRequires:  python3-setuptools
 
 %global _description\
 Requests is an HTTP library, written in Python, for human beings. This\
@@ -37,12 +36,15 @@ Requires:       python3-requests
 %prep
 %autosetup -S git_am -n %{sname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} -m unittest

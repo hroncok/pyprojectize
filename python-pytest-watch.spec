@@ -24,7 +24,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Requires:       python3-colorama >= 0.3.3
 Requires:       python3-docopt >= 0.6.2
 Requires:       python3-pytest >= 2.6.4
@@ -47,14 +46,18 @@ sed -i 's/\r$//' %{file_name}/watcher.py
 # %%patch0 -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 cp %{SOURCE1} .
 
 
 
 %install
-%py3_install
+%pyproject_install
 pushd %{buildroot}%{_bindir}
 mv ptw ptw-%{python3_version}
 ln -s ptw-%{python3_version} ptw-3
@@ -66,7 +69,7 @@ popd
 %files -n python3-%{pypi_name}
 %doc README.md CHANGES.md AUTHORS.md
 %license LICENSE
-%{python3_sitelib}/%{file_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{file_name}-%{version}.dist-info/
 %{python3_sitelib}/%{file_name}/
 %{_bindir}/ptw-3*
 %{_bindir}/pytest-watch-3*

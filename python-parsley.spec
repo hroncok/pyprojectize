@@ -49,13 +49,16 @@ Summary: %summary
 %autosetup -p1 -n %{oname}-%{version}
 rm -rf *.egg*
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 make -C doc html man
 rm -f doc/_build/html/.buildinfo
 
 %install
-%py3_install
+%pyproject_install
 mkdir -p %{buildroot}%{_mandir}/man1
 cp -a %{_builddir}/%{oname}-%{version}/doc/_build/man/%{lowname}.1* %{buildroot}%{_mandir}/man1
 
@@ -67,7 +70,7 @@ py.test-%{python3_version} terml/test ometa/test --ignore=ometa/test/test_vm_bui
 %license LICENSE
 %doc NEWS README
 %{_mandir}/man1/%{lowname}.1*
-%{python3_sitelib}/%{oname}-%{version}-py3.*.egg-info
+%{python3_sitelib}/%{oname}-%{version}-py3.*.dist-info
 %{python3_sitelib}/ometa/
 %{python3_sitelib}/__pycache__/%{lowname}.*
 %{python3_sitelib}/%{lowname}.*

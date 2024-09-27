@@ -33,7 +33,6 @@ for networks (the data structure itself is more general).
 Summary: Radix tree data structure for Python
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 # Needed for tests
 BuildRequires: python3-pytest
 
@@ -54,11 +53,14 @@ for networks (the data structure itself is more general).
 rm -f inet_ntop.c strlcpy.c
 touch inet_ntop.c strlcpy.c
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v

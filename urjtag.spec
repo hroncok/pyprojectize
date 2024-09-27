@@ -20,7 +20,6 @@ Patch0:         %{name}-fixarm.patch
 BuildRequires:  make
 BuildRequires:  gcc
 BuildRequires:  libftdi-devel
-BuildRequires:  (python3-setuptools if python3-devel >= 3.12)
 BuildRequires:  readline-devel
 BuildRequires:  swig
 %if 0%{?rhel} || 0%{?centos}
@@ -60,12 +59,15 @@ Python bindings and examples for %{name}.
 %setup -q
 %patch -P0 -p2 -b .armfix
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %configure --enable-jedec-exp --enable-stapl --enable-bsdl --enable-svf --disable-static --enable-shared
 # V=1: verbose build, disables AM_SILENT_RULES
 %{__make} %{?_smp_mflags} V=1
 pushd bindings/python/
-%py3_build
+%pyproject_wheel
 
 %install
 # cd urjtag
@@ -74,7 +76,7 @@ rm -f %{buildroot}%{_libdir}/*.la
 rm -f %{buildroot}%{_libdir}/*.a
 %find_lang %{name}
 pushd bindings/python/
-%py3_install
+%pyproject_install
 
 %ldconfig_scriptlets
  

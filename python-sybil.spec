@@ -23,7 +23,6 @@ Summary:        %{summary}
 
 BuildRequires:  make
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 BuildRequires:  python3-pytest-cov
 BuildRequires:  python3-testfixtures
@@ -40,11 +39,14 @@ test runners.
 %autosetup -n %{pypi_name}-%{version} -p1
 sed -i "/seeddir/d" setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{pytest} tests
@@ -52,7 +54,7 @@ sed -i "/seeddir/d" setup.py
 %files -n python3-%{pypi_name}
 %doc README.rst
 %license docs/license.rst
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{python3_sitelib}/%{pypi_name}/
 
 %changelog

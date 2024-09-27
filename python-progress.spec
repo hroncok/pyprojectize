@@ -35,7 +35,6 @@ BuildRequires:  python2-setuptools
 
 %if %{with python3}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %endif
 
 Patch1:         0001-fixup-moving-average-window.patch
@@ -72,28 +71,32 @@ Collection of easy to use progress bars and spinners.
 rm -rf %{pypi_name}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 %{?with_python2: %py2_build}
-%{?with_python3: %py3_build}
+%{?with_python3: %pyproject_wheel}
 
 
 %install
 %{?with_python2: %py2_install}
-%{?with_python3: %py3_install}
+%{?with_python3: %pyproject_install}
 
 
 %if 0%{with python2}
 %files -n python2-%{pypi_name}
 %doc README.rst LICENSE
 %{python2_sitelib}/%{pypi_name}
-%{python2_sitelib}/%{pypi_name}-%{version}-py?.?.egg-info
+%{python2_sitelib}/%{pypi_name}-%{version}-py?.?.dist-info
 %endif
 
 %if 0%{with python3}
 %files -n python3-%{pypi_name}
 %doc README.rst LICENSE
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %endif
 
 

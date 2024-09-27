@@ -18,7 +18,6 @@ License:        GPL-2.0-or-later
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  systemd-rpm-macros
 %if %{with check}
 BuildRequires:  gtk3
@@ -78,13 +77,17 @@ rm docs/.gitignore
 rm -rv lib/hid_parser
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 tools/po-compile.sh
 
 
 %install
-%py3_install
+%pyproject_install
 
 install -pm755 tools/hidconsole %{buildroot}%{_bindir}
 
@@ -121,7 +124,7 @@ fi
 %{python3_sitelib}/keysyms
 %{python3_sitelib}/logitech_receiver
 %{python3_sitelib}/solaar
-%{python3_sitelib}/solaar-%{version}*-py%{python3_version}.egg-info
+%{python3_sitelib}/solaar-%{version}*.dist-info
 %{_datadir}/applications/solaar.desktop
 %{_datadir}/icons/hicolor/32x32/apps/solaar-light_*.png
 %{_datadir}/icons/hicolor/scalable/apps/solaar.svg

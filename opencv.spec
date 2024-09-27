@@ -147,7 +147,6 @@ BuildRequires:  zlib-devel
 BuildRequires:  pkgconfig
 BuildRequires:  python3-devel
 BuildRequires:  python3-numpy
-BuildRequires:  python3-setuptools
 %{?with_linters:
 BuildRequires:  pylint
 BuildRequires:  python3-flake8
@@ -425,6 +424,9 @@ mv opencv_3rdparty-%{wechat_commit}/sr.prototxt .cache/wechat_qrcode/69db99927a7
 mkdir -p .cache/ade
 install -pm 0644 %{S:4} .cache/ade/
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 # enabled by default if libraries are presents at build time:
 # GTK, GSTREAMER, 1394, V4L, eigen3
@@ -504,7 +506,7 @@ install -pm 0644 %{S:4} .cache/ade/
 %install
 %cmake_install
 cd %{__cmake_builddir}/python_loader/
-%py3_install -- --install-lib %{python3_sitearch}
+%pyproject_install}
 
 rm -rf %{buildroot}%{_datadir}/OpenCV/licenses/
 %if %{with java}
@@ -567,7 +569,7 @@ ln -s -r %{buildroot}%{_jnidir}/opencv-%{javaver}.jar %{buildroot}%{_jnidir}/ope
 
 %files -n python3-opencv
 %{python3_sitearch}/cv2
-%{python3_sitearch}/opencv-*.egg-info
+%{python3_sitearch}/opencv.dist-info
 
 %if %{with java}
 %files java

@@ -24,7 +24,6 @@ Summary:        %{summary}
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(decorator)
 BuildRequires:  python3dist(ply)
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(six)
 BuildRequires:  python3dist(oslotest)
 BuildRequires:  python3dist(testscenarios)
@@ -40,11 +39,14 @@ original JSONPath proposal.
 sed -i -e '/^#!\//, 1d' jsonpath_ng/bin/jsonpath.py
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -53,7 +55,7 @@ rm -rf %{pypi_name}.egg-info
 %doc README.rst
 %{_bindir}/jsonpath_ng
 %{python3_sitelib}/jsonpath_ng/
-%{python3_sitelib}/jsonpath_ng-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/jsonpath_ng-%{version}.dist-info/
 
 %changelog
 * Wed Aug 07 2024 Miroslav Suchý <msuchy@redhat.com> - 1.5.1-16

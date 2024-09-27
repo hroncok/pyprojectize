@@ -20,7 +20,6 @@ automatically.
 %package -n python3-%{pypi_name}
 Summary:        %{summary}
 
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-devel
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -34,16 +33,19 @@ automatically.
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %doc README.md
 %license LICENSE.txt
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %exclude %{python3_sitelib}/tests/
 
 %changelog

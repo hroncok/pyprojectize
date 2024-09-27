@@ -46,6 +46,9 @@ system developed by Yahoo Japan Corporation.
 %prep
 %autosetup -n %{srcname}-%{version} -S git
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %post
 %systemd_post k2hr3-osnl.service
 
@@ -56,10 +59,10 @@ system developed by Yahoo Japan Corporation.
 %systemd_postun_with_restart k2hr3-osnl.service
 
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 mkdir -p -m755 %{buildroot}%{_sysconfdir}/k2hr3
 mkdir -p -m755 %{buildroot}%{_unitdir}
 mkdir -p -m755 %{buildroot}%{_mandir}/man1
@@ -78,7 +81,7 @@ rm -rf %{buildroot}/usr/etc/k2hr3/k2hr3-osnl.conf
 %license LICENSE
 %{_bindir}/k2hr3-osnl
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{_unitdir}/k2hr3-osnl.service
 %{_mandir}/man1/k2hr3-osnl.1*
 

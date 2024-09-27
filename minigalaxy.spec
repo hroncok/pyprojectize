@@ -18,7 +18,6 @@ BuildRequires:  intltool
 BuildRequires:  libappstream-glib
 BuildRequires:  python3-devel
 BuildRequires:  python3-gobject-devel >= 3.30
-BuildRequires:  python3-setuptools
 
 BuildRequires:  python3dist(requests)
 
@@ -45,12 +44,16 @@ games.
 %forgeautosetup -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -66,7 +69,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_datadir}/applications/*.desktop
 %{_datadir}/icons/hicolor/*/*/*.png
 %{_metainfodir}/*.xml
-%{python3_sitelib}/%{name}-*.egg-info/
+%{python3_sitelib}/%{name}.dist-info/
 %{python3_sitelib}/%{name}/
 
 

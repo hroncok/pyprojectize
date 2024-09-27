@@ -38,7 +38,6 @@ Source0: %{url}/archive/%{commit}/%{gittar}
 
 BuildArch: noarch
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 %description
 Aexpect is a python library used to control interactive applications, very
@@ -60,11 +59,14 @@ sftp, telnet, among others.
 %autosetup -n aexpect-%{commit} -p 1
 %endif
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 ln -s aexpect_helper %{buildroot}%{_bindir}/aexpect_helper-%{python3_pkgversion}
 ln -s aexpect_helper %{buildroot}%{_bindir}/aexpect_helper-%{python3_version}
 
@@ -77,7 +79,7 @@ selftests/checkall
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/aexpect/
-%{python3_sitelib}/aexpect-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/aexpect-%{version}.dist-info/
 %{_bindir}/aexpect_helper*
 
 %changelog

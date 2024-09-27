@@ -38,7 +38,6 @@ ExcludeArch:    ppc ppc64 s390 s390x
 BuildRequires:  gcc-c++
 BuildRequires:  sqlite-devel
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-nose
 BuildRequires:  python3-PyPDF2
 BuildRequires:  python3-pybind11 pybind11-devel
@@ -71,13 +70,17 @@ tar --directory=test/data --strip-components=1 --gunzip --extract --file=%{SOURC
 tar --directory=test/data-visual --strip-components=1 --gunzip --extract --file=%{SOURCE2} 
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 export PYCAIRO=true
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check

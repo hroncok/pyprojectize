@@ -17,7 +17,6 @@ Source3:        %{name}.appdata.xml
 BuildArch:      noarch
 
 BuildRequires:  python3-devel 
-BuildRequires:  python3-setuptools
 BuildRequires:  desktop-file-utils
 BuildRequires:  libappstream-glib
 
@@ -50,11 +49,15 @@ sed -i -r 's/jsonschema>=4.23,<4.24/jsonschema>=3.2.0/' requirements.txt
 sed -i 's/"check_for_update": True,/"check_for_update": False,/' gns3/settings.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Remove shebang
 for lib in `find %{buildroot}/%{python3_sitelib}/ -name '*.py'`; do
@@ -82,7 +85,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/gns3*.desktop
 %license LICENSE
 %doc README.md AUTHORS CHANGELOG
 %{python3_sitelib}/gns3/
-%{python3_sitelib}/gns3_gui*.egg-info/
+%{python3_sitelib}/gns3_gui*.dist-info/
 %{_bindir}/gns3
 %{_datadir}/applications/gns3*.desktop
 %{_datadir}/icons/hicolor/*/apps/*gns3*

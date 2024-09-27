@@ -10,7 +10,6 @@ URL:            https://fts.web.cern.ch/
 Source0:        %{name}-%{version}.tar.gz
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Requires:       python3
 Requires:       python%{python3_pkgversion}-m2crypto
 Requires:       python%{python3_pkgversion}-requests
@@ -29,16 +28,19 @@ File Transfer Service (FTS) -- Python3 Client and CLI
 %prep
 %setup -q
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %license LICENSE
 %{python3_sitelib}/fts3/
-%{python3_sitelib}/fts*-*.egg-info/
+%{python3_sitelib}/fts*.dist-info/
 %{_bindir}/fts-rest-*
 
 %changelog

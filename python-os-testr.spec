@@ -33,7 +33,6 @@ BuildRequires:  /usr/bin/gpgv2
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-pbr
-BuildRequires:  python3-setuptools
 BuildRequires:  git-core
 
 %description
@@ -73,8 +72,11 @@ Documentation for ostestr module
 # Let RPM handle the dependencies
 rm -rf *requirements.txt
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %if 0%{?with_doc}
 # generate html docs
@@ -84,7 +86,7 @@ rm -rf doc/build/html/.{doctrees,buildinfo}
 %endif
 
 %install
-%{py3_install}
+%{pyproject_install}
 for file in %{buildroot}%{python3_sitelib}/os_testr/{subunit_trace,subunit2html}.py; do
     chmod a+x $file
 done
@@ -99,7 +101,7 @@ done
 %{_bindir}/subunit-trace
 %{_bindir}/subunit2html
 %{python3_sitelib}/os_testr
-%{python3_sitelib}/os_testr-*.egg-info
+%{python3_sitelib}/os_testr.dist-info
 
 %if 0%{?with_doc}
 %files -n python-%{pypi_name}-doc

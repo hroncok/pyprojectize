@@ -21,7 +21,6 @@ repositories.
 Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-pytest
-BuildRequires:  python%{python3_pkgversion}-setuptools >= 30.3.0
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %if %{undefined __pythondist_requires}
@@ -38,12 +37,16 @@ repositories.
 %autosetup -p1 -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -57,7 +60,7 @@ repositories.
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/colcon_metadata/
-%{python3_sitelib}/colcon_metadata-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/colcon_metadata-%{version}.dist-info/
 
 
 %changelog

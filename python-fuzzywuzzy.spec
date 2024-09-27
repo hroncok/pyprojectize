@@ -18,7 +18,6 @@ differences between sequences in a simple-to-use package.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -34,12 +33,16 @@ find . -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python3}|'
 sed -i -e '/import pycodestyle/d' -e 's/test_pep8_conformance/notest_pep8_conformance/' test_fuzzywuzzy.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} -m unittest
@@ -48,7 +51,7 @@ sed -i -e '/import pycodestyle/d' -e 's/test_pep8_conformance/notest_pep8_confor
 %doc CHANGES.rst README.rst
 %license LICENSE.txt
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.18.0-17

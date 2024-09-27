@@ -21,7 +21,6 @@ BuildRequires:	help2man
 Summary:	%{summary}
 
 BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -30,12 +29,15 @@ BuildRequires:	python3-setuptools
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
 %{__mkdir} -p %{buildroot}%{_mandir}/man1
-%py3_install
+%pyproject_install
 export PYTHONPATH="%{buildroot}%{python3_sitelib}"
 for f in $(%{_bindir}/find %{buildroot}%{_bindir} -type f -name '*' | /bin/sort )
 do
@@ -50,7 +52,7 @@ unset PYTHONPATH
 %{_bindir}/speedtest*
 %{_mandir}/man1/speedtest*.1*
 %{python3_sitelib}/speedtest*.py
-%{python3_sitelib}/speedtest_cli-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/speedtest_cli-%{version}.dist-info
 %{python3_sitelib}/__pycache__/speedtest*.cpython-%{python3_version_nodots}*.pyc
 
 %changelog

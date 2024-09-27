@@ -13,7 +13,6 @@ BuildRequires:  git-core
 BuildRequires:  python3-devel
 BuildRequires:  python3-rpm-macros
 
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(click)
 BuildRequires:  python3dist(lxml)
 BuildRequires:  python3dist(rpm)
@@ -40,12 +39,16 @@ and continuous deployment infrastructure.
 %autosetup -S git_am
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 # Setup obsauth ghost config file
 mkdir -p %{buildroot}%{_sysconfdir}/obsctl
@@ -58,7 +61,7 @@ touch %{buildroot}%{_sysconfdir}/obsctl/obsauth.json
 %dir %{_sysconfdir}/obsctl
 %ghost %{_sysconfdir}/obsctl/obsauth.json
 %{_bindir}/obsctl
-%{python3_sitelib}/obsctl-*.egg-info/
+%{python3_sitelib}/obsctl.dist-info/
 %{python3_sitelib}/obsctl/
 
 

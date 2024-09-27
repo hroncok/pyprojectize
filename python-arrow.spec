@@ -37,7 +37,6 @@ Summary:            Better dates and times for Python
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{modname}}
 
 BuildRequires:      python%{python3_pkgversion}-devel
-BuildRequires:      python%{python3_pkgversion}-setuptools
 BuildRequires:      python%{python3_pkgversion}-chai
 BuildRequires:      python%{python3_pkgversion}-dateutil
 BuildRequires:      python%{python3_pkgversion}-pytz
@@ -75,11 +74,14 @@ sed -i -e "s|--cov-fail-under=100 ||" tox.ini
 # Remove bundled egg-info in case it exists
 rm -rf %{modname}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 %check
 pytest-%{python3_version} tests

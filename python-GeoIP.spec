@@ -15,7 +15,6 @@ BuildRequires:  gcc
 # GeoIP 1.4.8 required by v1.2.7 of this package per README
 BuildRequires:  GeoIP-devel >= 1.4.8
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 This package contains the Python bindings for the GeoIP API, allowing IP to
@@ -32,11 +31,14 @@ location lookups to country, city and organization level within Python code.
 %prep
 %setup -q -n GeoIP-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %doc README.rst examples/

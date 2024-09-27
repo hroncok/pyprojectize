@@ -15,7 +15,6 @@ BuildArch:      noarch
 
 BuildRequires: python3-devel
 BuildRequires: python3dist(markdown)
-BuildRequires: python3dist(setuptools)
 
 
 %description
@@ -35,11 +34,14 @@ rm -rf %{pypi_name}.egg-info
 
 find . -type f -name "*.py" -exec sed -i '/^#![  ]*\/usr\/bin\/env.*$/ d' {} ';'
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install 
+%pyproject_install
 
 %check
 export PYTHONPATH=$RPM_BUILD_ROOT/%{python3_sitelib}
@@ -48,7 +50,7 @@ export PYTHONPATH=$RPM_BUILD_ROOT/%{python3_sitelib}
 %doc README.rst
 %{_bindir}/ipmitool.py
 %{python3_sitelib}/pyipmi
-%{python3_sitelib}/*-py%{python3_version}.egg-info
+%{python3_sitelib}/*.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.5.5-2

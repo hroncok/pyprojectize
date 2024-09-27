@@ -22,6 +22,9 @@ Python 3 stack in EPEL.
 
 %prep
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 
 %install

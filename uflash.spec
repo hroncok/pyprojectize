@@ -12,7 +12,6 @@ Source1:        https://github.com/ntoll/uflash/archive/%{hash}.tar.gz
 BuildRequires:  python3-pytest
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-nudatus
 
 Requires:       python3-setuptools
@@ -36,11 +35,15 @@ uflash that will flash Python scripts onto a BBC micro:bit.
 %setup -q
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 tar -xf %{SOURCE1}

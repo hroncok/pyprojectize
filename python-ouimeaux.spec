@@ -32,7 +32,6 @@ Patch4: python-ouimeaux-getchildren.patch
 
 BuildArch: noarch
 BuildRequires: python3-devel
-BuildRequires: %{py3_dist setuptools}
 BuildRequires: findutils
 BuildRequires: sed
 BuildRequires: coreutils
@@ -87,11 +86,14 @@ sed -i -e '/^#!\//, 1d' ouimeaux/__init__.py
 # fix python shebang and non-executable-script errors
 find \( -name device.py -or -name service.py -or -name watch.py \) -type f -exec chmod +x {} \; -exec sed -i 's\^#!/usr/bin/env python$\#!%{python3}\' {} \;
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # remove non-ttf fonts and link the ttf font to the packaged file with the same name
 rm -f %{buildroot}%{python3_sitelib}/%{srcname}/server/static/fonts/glyphicons-halflings-regular.*
@@ -110,7 +112,7 @@ install -pm 0644 %{SOURCE2} %{buildroot}%{fw_services}/
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.md HISTORY.rst AUTHORS.rst CONTRIBUTING.rst README.firewall examples/
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 %{python3_sitelib}/%{srcname}/
 %{_bindir}/wemo
 %{fw_services}/%{srcname}.xml

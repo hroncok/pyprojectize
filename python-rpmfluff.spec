@@ -28,7 +28,6 @@ Summary:        %{summary}
 BuildRequires:  gcc
 BuildRequires:  python3-devel
 BuildRequires:  python3-rpm
-BuildRequires:  python3-setuptools
 Requires:       rpm-build
 Requires:       createrepo_c
 
@@ -39,11 +38,14 @@ Python 3 version.
 %prep
 %autosetup -n %{modname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 python3 -m unittest %{modname}.test

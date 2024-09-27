@@ -15,7 +15,6 @@ BuildArch:      noarch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-gobject
-BuildRequires:  python3-setuptools
 
 %description
 RabbitVCS is a set of graphical tools written to provide simple
@@ -93,11 +92,14 @@ source control system.
 %autosetup -p1
 %py3_shebang_fix .
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 install -p -m0755 clients/cli/rabbitvcs -D %{buildroot}%{_bindir}/rabbitvcs
 install -p -m0644 clients/caja/RabbitVCS.py -D %{buildroot}%{_datadir}/caja-python/extensions/RabbitVCS.py
 install -p -m0644 clients/nautilus/RabbitVCS.py -D %{buildroot}%{_datadir}/nautilus-python/extensions/RabbitVCS.py

@@ -8,7 +8,6 @@ URL:           https://pypi.python.org/pypi/Unipath/
 Source0:       https://files.pythonhosted.org/packages/source/U/%{oname}/%{oname}-%{version}.tar.gz
 BuildArch:     noarch
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 %global _description\
 Unipath is a package for doing pathname calculations and filesystem\
 access in an object-oriented manner, an alternative to functions in\
@@ -38,17 +37,20 @@ Summary:        %summary
 %prep
 %setup -q -n %{oname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 %files -n python3-unipath
 %license CHANGES
 %doc BUGS.txt PKG-INFO README.html README.rst
 %{python3_sitelib}/unipath/
-%{python3_sitelib}/%{oname}-%{version}-py*.egg-info
+%{python3_sitelib}/%{oname}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.1-27

@@ -12,7 +12,6 @@ Source0:        %pypi_source
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 %description
 Glad uses the official Khronos-XML specs to generate a GL/GLES/EGL/GLX/WGL
@@ -50,12 +49,16 @@ rm -rf %{srcname}.egg-info
 sed -i -e '/^#!\//, 1d' %{srcname}/__main__.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n %{srcname}
@@ -63,7 +66,7 @@ sed -i -e '/^#!\//, 1d' %{srcname}/__main__.py
 
 %files -n python3-%{srcname}
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 
 %changelog

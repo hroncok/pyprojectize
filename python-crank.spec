@@ -12,7 +12,6 @@ Source0:            https://pypi.io/packages/source/c/%{modname}/%{modname}-%{ve
 BuildArch:          noarch
 
 BuildRequires:      python3-devel
-BuildRequires:      python3-setuptools
 
 %global _description\
 Generalization of dispatch mechanism for use across frameworks.
@@ -34,12 +33,16 @@ This package provides the python3 version of this module
 rm -rf %{modname}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 # The current upstream tarball doesn't contain the tests

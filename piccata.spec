@@ -8,7 +8,6 @@ Source0:       https://github.com/NordicSemiconductor/piccata/archive/%{version}
 
 BuildArch: noarch
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 %description
 Piccata is a simple CoAP (RFC7252) toolkit written in Python.
@@ -32,18 +31,21 @@ communication over different link types. Transport for a UDP socket is provided.
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-piccata
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/piccata/
 %{python3_sitelib}/transport/
-%{python3_sitelib}/piccata-%{version}-py*.egg-info/
+%{python3_sitelib}/piccata-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.0.1-8

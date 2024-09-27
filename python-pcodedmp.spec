@@ -63,7 +63,6 @@ Requires:       python2-oletools >= 0.54
 %package -n python%{python3_pkgversion}-pcodedmp
 Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 %if %{with pypandoc}
 BuildRequires:  python%{python3_pkgversion}-pypandoc
 %endif
@@ -97,18 +96,21 @@ Requires:       python%{python3_other_pkgversion}-oletools >= 0.54
 %prep
 %autosetup -n pcodedmp-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if 0%{?rhel} && 0%{?rhel} < 8
 %py2_build
 %endif
-%py3_build
+%pyproject_wheel
 %{?with_python3_other:%py3_other_build}
 
 %install
 %if 0%{?rhel} && 0%{?rhel} < 8
 %py2_install
 %endif
-%py3_install
+%pyproject_install
 %{?with_python3_other:%py3_other_install}
 
 # The check requires oletools, which might not be available during bootstrapping
@@ -128,21 +130,21 @@ Requires:       python%{python3_other_pkgversion}-oletools >= 0.54
 %license LICENSE
 %doc README.md
 %{python2_sitelib}/pcodedmp/
-%{python2_sitelib}/pcodedmp-*.egg-info
+%{python2_sitelib}/pcodedmp.dist-info
 %endif
 
 %files -n python%{python3_pkgversion}-pcodedmp
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/pcodedmp/
-%{python3_sitelib}/pcodedmp-*.egg-info/
+%{python3_sitelib}/pcodedmp.dist-info/
 
 %if 0%{?with_python3_other}
 %files -n python%{python3_other_pkgversion}-pcodedmp
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/pcodedmp/
-%{python3_sitelib}/pcodedmp-*.egg-info/
+%{python3_sitelib}/pcodedmp.dist-info/
 %endif
 
 %changelog

@@ -15,7 +15,6 @@ BuildArch: noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3-mock
 BuildRequires:  python3-pytest
-BuildRequires:  python3-setuptools
 
 %description
 bitmath simplifies many facets of interacting with file sizes in
@@ -79,12 +78,14 @@ always at 100%.
 %setup -n bitmath-%{version}.%{_short_release} -q
 
 ######################################################################
+%generate_buildrequires
+%pyproject_buildrequires
 %build
-%py3_build
+%pyproject_wheel
 
 ######################################################################
 %install
-%py3_install
+%pyproject_install
 
 
 mkdir -p $RPM_BUILD_ROOT/%{_mandir}/man1/

@@ -61,7 +61,7 @@ cp %{SOURCE1} ./
 %if %{with pyproject}
 %pyproject_wheel
 %else
-%py3_build
+%pyproject_wheel
 %endif
 
 %install
@@ -69,7 +69,7 @@ cp %{SOURCE1} ./
 %pyproject_install
 %pyproject_save_files autopage
 %else
-%py3_install
+%pyproject_install
 %endif
 
 %check
@@ -85,7 +85,7 @@ cp %{SOURCE1} ./
 %files -n python3-%{srcname} -f %{pyproject_files}
 %else
 %files -n python3-%{srcname}
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 %{python3_sitelib}/%{srcname}/
 %endif
 %license LICENSE

@@ -10,7 +10,6 @@ Source0:    http://tarballs.openstack.org/dib-utils/dib-utils-%{version}.tar.gz
 BuildArch: noarch
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-d2to1
 BuildRequires: python3-pbr
 
@@ -25,11 +24,14 @@ diskimage-builder and its dependencies.
 %prep
 %setup -q -n %{name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files

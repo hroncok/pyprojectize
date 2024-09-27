@@ -13,7 +13,6 @@ URL:        https://github.com/ValvePython/vdf
 Source0:    %{url}/archive/v%{version}/%{pypi_name}-%{version}.tar.gz
 
 BuildRequires: python3-devel
-BuildRequires: python3dist(setuptools)
 %if %{with tests}
 BuildRequires: python3dist(pytest-cov) >= 2.7.0
 BuildRequires: python3dist(pytest)
@@ -37,12 +36,16 @@ Summary:    %{summary}
 %autosetup -n %{pypi_name}-%{version} -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %if %{with tests}
@@ -57,7 +60,7 @@ Summary:    %{summary}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}*.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}*.dist-info
 
 
 %changelog

@@ -24,7 +24,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 BuildRequires: make
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-nose
 BuildRequires:  python3dist(agate) >= 1.5
 BuildRequires:  python3dist(sqlalchemy) >= 1.0.8
@@ -52,8 +51,12 @@ Documentation package.
 sed -i '1{\@^#!/usr/bin/env python@d}' agatesql/*.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 # Build documentation
 pushd docs
@@ -63,7 +66,7 @@ popd
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -73,7 +76,7 @@ nosetests-%{python3_version} tests -v -e test_to_sql_create_statement_unique_con
 %files -n python3-%{pypi_name}
 %doc README.rst AUTHORS.rst CHANGELOG.rst
 %license COPYING
-%{python3_sitelib}/agate_sql-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/agate_sql-%{version}.dist-info/
 %{python3_sitelib}/%{file_name}/
 
 

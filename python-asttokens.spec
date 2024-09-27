@@ -10,7 +10,6 @@ Source:         https://github.com/gristlabs/asttokens/archive/v%{version}/astto
 BuildArch:      noarch
 BuildRequires:  git-core
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(setuptools-scm)
 BuildRequires:  python3dist(wheel)
 BuildRequires:  python3dist(pytest)
@@ -37,11 +36,14 @@ Requires:       %{py3_dist six}
 %autosetup -S git -p1 -n asttokens-%{version}
 git tag %{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # test_fixture9 and test_sys_modules tests are currently failing with Python 3.12

@@ -23,7 +23,6 @@ vSphere Events from the command-line.
 %package     -n python%{python3_pkgversion}-vevents
 Summary:        vSphere Events from the command-line
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-pyvmomi
 BuildRequires:  python%{python3_pkgversion}-docopt
 BuildRequires:  python%{python3_pkgversion}-vconnector 
@@ -43,18 +42,21 @@ vEvents is an application that allows you to view and monitor
 %prep
 %autosetup -npy-vevents-%{commit0}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 
 %files -n python%{python3_pkgversion}-vevents
 #%%license add-license-file-here
 %doc README.md
 # egg-info only due to single binary
-%{python3_sitelib}/vevents-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/vevents-%{version}.dist-info/
 %{_bindir}/vevents-cli
 
 

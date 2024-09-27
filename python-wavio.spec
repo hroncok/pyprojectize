@@ -14,7 +14,6 @@ URL: https://github.com/WarrenWeckesser/wavio
 Source0: %{URL}/archive/v%{version}/%{pypi_name}-v%{version}.tar.gz
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 # For running the tests
 BuildRequires: python3-numpy
@@ -44,12 +43,16 @@ awk 'BEGIN { start_print=0 }
 /.*/ { if (start_print == 1) print $0 }' < wavio.py > LICENSE
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -59,7 +62,7 @@ awk 'BEGIN { start_print=0 }
 %files -n python3-%{pypi_name}
 %license LICENSE
 %{python3_sitelib}/%{pypi_name}.py
-%{python3_sitelib}/%{pypi_name}-*.egg-info/
+%{python3_sitelib}/%{pypi_name}.dist-info/
 %{python3_sitelib}/__pycache__/%{pypi_name}.*
 
 

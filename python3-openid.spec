@@ -15,7 +15,6 @@ BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3-django
 BuildRequires:  python3-psycopg2
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-defusedxml
 
 Requires:       python3-defusedxml
@@ -35,12 +34,16 @@ grep -Erl '^#!/usr/bin/env python$' | xargs \
 sed -i -r '1 s|^#!/usr/bin/env python$|#!%{__python3}|g'
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 # remove .po files
 find %{buildroot} -name "*.po" | xargs rm -f
@@ -80,7 +83,7 @@ find %{buildroot} -name "*.po" | xargs rm -f
 %{python3_sitelib}/openid/yadis/*.py
 %dir %{python3_sitelib}/openid/yadis/__pycache__
 %{python3_sitelib}/openid/yadis/__pycache__/*.pyc
-%{python3_sitelib}/python3_openid-%{version}-py3.*.egg-info/
+%{python3_sitelib}/python3_openid-%{version}-py3.*.dist-info/
 
 
 %changelog

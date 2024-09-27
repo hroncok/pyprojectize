@@ -502,6 +502,9 @@ monitor resources.
 # as configure.ac is checking for support
 sed -i configure.ac -e "s/-Wall/-Wall -Wno-format-truncation/"
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 
 export systemdsystemunitdir=%{?_unitdir}%{!?_unitdir:no}
@@ -546,7 +549,7 @@ export LDFLAGS_HARDENED_LIB="%{?_hardening_ldflags}"
 make %{_smp_mflags} V=1
 
 pushd python
-%py3_build
+%pyproject_wheel
 popd
 
 %check
@@ -567,7 +570,7 @@ make install \
   %{?_python_bytecompile_extra:%{?py_byte_compile:am__py_compile=true}}
 
 pushd python
-%py3_install
+%pyproject_install
 popd
 
 mkdir -p %{buildroot}%{_datadir}/pacemaker/nagios/plugins-metadata
@@ -765,7 +768,7 @@ exit 0
 %dir %attr (770, %{uname}, %{gname}) %{_var}/log/pacemaker
 %dir %attr (770, %{uname}, %{gname}) %{_var}/log/pacemaker/bundles
 
-%files -n %{pkgname_pcmk_libs} %{?with_nls:-f\\\\\\ %{name}.lang}
+%files -n %{pkgname_pcmk_libs} %{?with_nls:-f\\\\\\\ %{name}.lang}
 %{_sysusersdir}/pacemaker.conf
 %{_libdir}/libcib.so.*
 %{_libdir}/liblrmd.so.*
@@ -787,7 +790,7 @@ exit 0
 
 %files -n %{python_name}-%{name}
 %{python3_sitelib}/pacemaker/
-%{python3_sitelib}/pacemaker-*.egg-info
+%{python3_sitelib}/pacemaker.dist-info
 %exclude %{python3_sitelib}/pacemaker/_cts/
 %license licenses/LGPLv2.1
 %doc COPYING

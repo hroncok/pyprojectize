@@ -19,7 +19,6 @@ Source2:        python-bucky-supervisord-example.conf
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %global _description\
 Bucky is a small server for collecting and translating metrics for\
@@ -45,15 +44,19 @@ Requires:       python3-cryptography
 %{__install} -m 644 %{SOURCE2} .
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
 # Delete the Python 2 executable so that the Python 3
 # version can take it's place.
 rm -rf %{_bindir}/bucky
-%py3_install
+%pyproject_install
 %{__mkdir_p} %{buildroot}%{_localstatedir}/log/bucky
 %{__mkdir_p} %{buildroot}%{_localstatedir}/run/bucky
 %{__mkdir_p} %{buildroot}%{_sysconfdir}/bucky
@@ -82,7 +85,7 @@ fi
 %attr(-,bucky,bucky) %{_localstatedir}/run/bucky
 %config(noreplace) %{_sysconfdir}/bucky/bucky.conf
 %{python3_sitelib}/bucky/
-%{python3_sitelib}/bucky-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/bucky-%{version}.dist-info
 
 
 %changelog

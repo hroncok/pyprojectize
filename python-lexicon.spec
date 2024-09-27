@@ -11,7 +11,6 @@ Source0:	https://github.com/bitprophet/lexicon/archive/%{version}/lexicon-%{vers
 Patch0:		lexicon-2.0.1-pytest8.patch
 BuildArch:	noarch
 BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
 
 %if %{with tests}
 # For test suite
@@ -35,11 +34,14 @@ Lexicon is a simple collection of dict sub-classes providing extra power.
 # Attempt to fix for pytest 8
 %patch -P 0
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with tests}
 %check
@@ -50,7 +52,7 @@ Lexicon is a simple collection of dict sub-classes providing extra power.
 %license LICENSE
 %doc docs/changelog.rst README.rst
 %{python3_sitelib}/lexicon/
-%{python3_sitelib}/lexicon-%{version}-*.egg-info/
+%{python3_sitelib}/lexicon-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.0.1-14

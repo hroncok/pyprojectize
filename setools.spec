@@ -19,7 +19,6 @@ BuildRequires:  libsepol-devel >= %{sepol_ver}, libsepol-static >= %{sepol_ver}
 BuildRequires:  swig
 BuildRequires:  python3-Cython
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  libselinux-devel
 
 Requires:       %{name}-console = %{version}-%{release}
@@ -92,12 +91,16 @@ Python modules designed to facilitate SELinux policy analysis.
 %autosetup -p 1 -S git -n setools-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %if %{?_with_check:1}%{!?_with_check:0}

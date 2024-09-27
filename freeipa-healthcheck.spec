@@ -39,7 +39,6 @@ Requires:       logrotate
 Requires(post): systemd-units
 Requires:       %{name}-core = %{version}-%{release}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  systemd-devel
 %{?systemd_requires}
 # packages for make check
@@ -79,12 +78,16 @@ packages.
 %autosetup -p1  -n freeipa-healthcheck-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 mkdir -p %{buildroot}%{_sysconfdir}/ipahealthcheck
 install -m644 %{SOURCE1} %{buildroot}%{_sysconfdir}/ipahealthcheck
@@ -140,7 +143,7 @@ PYTHONPATH=src PATH=$PATH:$RPM_BUILD_ROOT/usr/bin pytest-3 tests/test_*
 %dir %{_localstatedir}/log/ipa/healthcheck
 %config(noreplace) %{_sysconfdir}/ipahealthcheck/ipahealthcheck.conf
 %config(noreplace) %{_sysconfdir}/logrotate.d/ipahealthcheck
-%{python3_sitelib}/ipahealthcheck-%{version}-*.egg-info/
+%{python3_sitelib}/ipahealthcheck-%{version}.dist-info/
 %{python3_sitelib}/ipahealthcheck-%{version}-*-nspkg.pth
 %{_unitdir}/*
 %{_libexecdir}/*

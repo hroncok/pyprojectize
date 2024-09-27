@@ -28,7 +28,6 @@ Some reasons you might want to use REST framework:
 %package -n python3-django-rest-framework
 Summary:        Web APIs for Django, made easy
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-django-rest-framework}
 
 Obsoletes: python2-django-rest-framework < 3.7.7-2
@@ -59,11 +58,14 @@ rm -rf %{pypi_name}.egg-info
 # remove .po files
 find . -name *.po -exec rm -f '{}' \;
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %find_lang django
 
@@ -85,7 +87,7 @@ find . -name *.po -exec rm -f '{}' \;
 %{python3_sitelib}/rest_framework/templatetags
 %{python3_sitelib}/rest_framework/utils
 %{python3_sitelib}/rest_framework/*.py*
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 3.14.0-8

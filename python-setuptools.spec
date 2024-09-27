@@ -72,7 +72,6 @@ BuildRequires:  python3-rpm-generators >= 12-8
 %if %{without bootstrap}
 BuildRequires:  pyproject-rpm-macros >= 0-44
 # Not to use the pre-generated egg-info, we use setuptools from previous build to generate it
-BuildRequires:  python%{python3_pkgversion}-setuptools
 %endif
 
 %description
@@ -152,7 +151,7 @@ rm -r docs/conf.py
 
 %build
 %if %{with bootstrap}
-%py3_build
+%pyproject_wheel
 %else
 %pyproject_wheel
 %endif
@@ -164,7 +163,7 @@ rm -r docs/conf.py
 # but the distutils-precedence.pth file is not yet respected
 # and Python 3.12+ no longer has distutils in the standard library.
 ln -s setuptools/_distutils distutils
-PYTHONPATH=$PWD %py3_install
+PYTHONPATH=$PWD %pyproject_install
 unlink distutils
 %else
 %pyproject_install
@@ -221,12 +220,12 @@ PYTHONPATH=$(pwd) %pytest \
 %endif # with tests
 
 
-%files -n python%{python3_pkgversion}-setuptools %{?!with_bootstrap:-f %{pyproject_files}}
+%files -n python%{python3_pkgversion}-setuptools %{?!with_bootstrap:-f\ %{pyproject_files}}
 %license LICENSE
 %doc docs/* NEWS.rst README.rst
 %{python3_sitelib}/distutils-precedence.pth
 %if %{with bootstrap}
-%{python3_sitelib}/setuptools-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/setuptools-%{version}.dist-info/
 %{python3_sitelib}/pkg_resources/
 %{python3_sitelib}/setuptools/
 %{python3_sitelib}/_distutils_hack/

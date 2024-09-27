@@ -11,7 +11,6 @@ URL:		http://www.owlfish.com/software/simpleTAL/
 Source0:	http://www.owlfish.com/software/simpleTAL/downloads/%{srcname}-%{version}.tar.gz
 BuildArch:	noarch
 BuildRequires:	python3-devel
-BuildRequires:	(python3-setuptools if python3-devel >= 3.12)
 %{?python_provide:%python_provide python3-%{pkgname}}
 
 %description
@@ -23,12 +22,16 @@ METAL specifications used in Zope to power HTML and XML templates.
 %autosetup -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 # remove x-bits from example files
 find examples -name '*.py' -exec chmod -x {} \;
@@ -44,7 +47,7 @@ find examples -name '*.py' -exec chmod -x {} \;
 %doc examples
 %license LICENSE.txt
 %{python3_sitelib}/%{pkgname}
-%{python3_sitelib}/%{srcname}-%{version}-py*.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 
 %changelog

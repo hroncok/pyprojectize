@@ -12,7 +12,6 @@ BuildArch: noarch
 BuildRequires:  libxcb-devel
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-cffi >= 1.1.2
 BuildRequires:  python3-six
 
@@ -42,19 +41,23 @@ the 29 (xprint and xkb are missing) X extensions in 1.10.
 %setup -q -n xcffib-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-xcffib
 %doc LICENSE
 %doc README.md
 %{python3_sitelib}/xcffib
-%{python3_sitelib}/xcffib*.egg-info
+%{python3_sitelib}/xcffib*.dist-info
 
 
 %changelog

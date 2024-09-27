@@ -22,7 +22,6 @@ Patch3:         %{url}/pull/1303.patch
 BuildRequires:  gcc
 BuildRequires:  python3-Cython
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pyserial
 BuildRequires:  /usr/bin/appstream-util
 BuildRequires:  /usr/bin/desktop-file-validate
@@ -125,6 +124,9 @@ sed -i 's/.py//' *.desktop
 # remove useless shebangs
 grep -ilrx printrun -e '#!/usr/bin/env python3' --include '*.py'| xargs sed -i '1s|^#!/usr/bin/env python3$||'
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 # rebuild locales
 cd locale
@@ -134,10 +136,10 @@ for FILE in *
 done
 cd ..
 
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 cd %{buildroot}%{_bindir}
 for FILE in *.py; do
@@ -161,7 +163,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.appdata
 
 %files common
 %{python3_sitearch}/%{name}/
-%{python3_sitearch}/Printrun-*.egg-info/
+%{python3_sitearch}/Printrun.dist-info/
 %{_bindir}/printcore*
 %doc README*
 %license COPYING

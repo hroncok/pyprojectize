@@ -12,7 +12,6 @@ Source0:        https://github.com/bottlepy/%{srcname}/archive/%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python3dist(pytest)
 
 %description
@@ -37,11 +36,14 @@ Python Standard Library.
 %autosetup -p1 -n %{srcname}-%{version}
 sed -i '/^#!/d' bottle.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 rm %{buildroot}%{_bindir}/bottle.py
 
 %check
@@ -51,7 +53,7 @@ rm %{buildroot}%{_bindir}/bottle.py
 %license LICENSE
 %doc AUTHORS README.rst docs/*
 %{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{python3_sitelib}/*.py
 
 %changelog

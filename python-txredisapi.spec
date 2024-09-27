@@ -9,7 +9,6 @@ Source0:        https://files.pythonhosted.org/packages/source/t/txredisapi/txre
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %global _description %{expand:
 txredisapi is a non-blocking client driver for the Redis database,
@@ -42,18 +41,21 @@ Requires:       python3-twisted
 # Remove bundled egg-info
 rm -rf txredisapi.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-txredisapi
 %{python3_sitelib}/__pycache__/*
 %{python3_sitelib}/txredisapi.py
-%{python3_sitelib}/txredisapi-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/txredisapi-%{version}.dist-info
 
 
 %changelog

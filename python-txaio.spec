@@ -22,7 +22,6 @@ asyncio.
 Summary:        %{summary}
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 BuildRequires:  python3-pytest-cov
 BuildRequires:  python3-six
@@ -56,8 +55,11 @@ rm -rf %{pypi_name}.egg-info
 rm docs/index.rst
 cp -a README.rst docs/index.rst
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 # Build documentation
 cd docs && make html
 # Remove buildinfo
@@ -67,7 +69,7 @@ rm -f  _build/html/_static/jquery.js
 ln -s /usr/share/javascript/jquery/latest/jquery.min.js _build/html/_static/jquery.js
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v test
@@ -75,7 +77,7 @@ ln -s /usr/share/javascript/jquery/latest/jquery.min.js _build/html/_static/jque
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 %{python3_sitelib}/%{pypi_name}/
 
 %files doc

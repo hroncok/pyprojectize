@@ -9,7 +9,6 @@ Source0:        https://github.com/varlink/%{name}/archive/%{version}/%{name}-%{
 BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3-rpm-macros
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
 
 %global _description \
@@ -33,9 +32,12 @@ sed -i -e 's#env python#env python3#' varlink/tests/test_certification.py
 # varlink also supports python-2.7 but python3 is required here
 sed -i -e 's#env python#env python3#' varlink/tests/test_orgexamplemore.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
-%py3_build
+%pyproject_wheel
 
 %check
 export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
@@ -43,7 +45,7 @@ CFLAGS="%{optflags}" %{__python3} %{py_setup} %{?py_setup_args} check
 
 %install
 export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
-%py3_install
+%pyproject_install
 
 %files -n python3-varlink
 %license LICENSE.txt

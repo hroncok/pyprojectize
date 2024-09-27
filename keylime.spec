@@ -28,7 +28,6 @@ BuildRequires: openssl-devel
 BuildRequires: python3-devel
 BuildRequires: python3-dbus
 BuildRequires: python3-jinja2
-BuildRequires: python3-setuptools
 BuildRequires: systemd-rpm-macros
 
 Requires: python3-%{srcname} = %{version}-%{release}
@@ -185,6 +184,9 @@ The keylime tools package includes miscelaneous tools.
 %prep
 %autosetup -S git -n %{srcname}-%{version} -a2
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if 0%{?with_selinux}
 # SELinux policy (originally from selinux-policy-contrib)
@@ -194,10 +196,10 @@ make -f %{_datadir}/selinux/devel/Makefile %{srcname}.pp
 bzip2 -9 %{srcname}.pp
 %endif
 
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 mkdir -p %{buildroot}/%{_sharedstatedir}/%{srcname}
 mkdir -p --mode=0700 %{buildroot}/%{_rundir}/%{srcname}
 
@@ -357,7 +359,7 @@ fi
 
 %files -n python3-%{srcname}
 %license LICENSE
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 %{python3_sitelib}/%{srcname}
 %{_datadir}/%{srcname}/scripts/create_mb_refstate
 %{_bindir}/keylime_attest

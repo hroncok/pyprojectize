@@ -24,7 +24,6 @@ annotations in the header files to generate correct Cython code.
 Summary: Generates Python3 Extension modules from [Cython] PXD files
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{name}}
 BuildRequires: python%{python3_pkgversion}-devel
-BuildRequires: python%{python3_pkgversion}-setuptools
 BuildRequires: python%{python3_pkgversion}-pytest
 BuildRequires: python%{python3_pkgversion}-Cython
 Obsoletes: python2-autowrap < 0:%{version}-%{release}
@@ -41,15 +40,18 @@ Obsoletes: python34-autowrap < 0:%{version}-%{release}
 ##Remove bundled files
 rm -rf %{name}-release-%{version}/autowrap/data_files/boost
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 pushd %{name}-release-%{version}
-%py3_build
+%pyproject_wheel
 popd
 
 %install
 
 pushd %{name}-release-%{version}
-%py3_install
+%pyproject_install
 
 mkdir exe && pushd exe
 for i in python%{python3_version}-autowrap autowrap-%{python3_version} autowrap-v%{version}-%{python3_version}; do
@@ -77,7 +79,7 @@ popd
 %{_bindir}/autowrap-v%{version}-%{python3_version}
 %{python3_sitelib}/autowrap/
 %exclude %{python3_sitelib}/tests
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 
 %changelog
 * Wed Aug 28 2024 Miroslav Suchý <msuchy@redhat.com> - 0.22.11-10

@@ -22,7 +22,6 @@ Source0: %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 BuildRequires: make
 BuildRequires: python3-devel
 BuildRequires: python3-pytest
-BuildRequires: python3-setuptools
 BuildRequires: python3-sphinx
 
 
@@ -70,15 +69,19 @@ sed -i "/html_theme =.*/d" docs/conf.py
 sed -i "/.*github_url.*/d" docs/conf.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 make %{?_smp_mflags} -C docs html
 rm -rf docs/_build/html/.buildinfo
 
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -96,7 +99,7 @@ PYTHONPATH="./src" py.test-3
 %license LICENSE.txt
 %doc README.rst
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 
 
 %changelog

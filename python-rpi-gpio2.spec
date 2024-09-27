@@ -23,7 +23,6 @@ Obsoletes: python3-RPi.GPIO < 0.7.0-7
 Provides: python3-RPi.GPIO = 1:%{version}-%{release}
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 # This explicit dependency on the libgpiod python bindings subpackage
 # is neccessary because it is unsatisfiable via PyPi
@@ -45,11 +44,15 @@ A set of examples for python-rpi-gpio2
 chmod 0644 examples/*
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 rm -rf %{buildroot}%{python3_sitelib}/tests
 rm -rf %{buildroot}%{python3_sitelib}/examples
 
@@ -63,7 +66,7 @@ rm -rf %{buildroot}%{python3_sitelib}/examples
 %license LICENSE.txt
 %doc README.md
 %{python3_sitelib}/RPi/
-%{python3_sitelib}/RPi.GPIO2-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/RPi.GPIO2-%{version}.dist-info
 
 %files doc
 %license LICENSE.txt

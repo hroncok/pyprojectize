@@ -19,7 +19,6 @@ BuildRequires:  hdf5-devel
 BuildRequires:  liblzf-devel
 BuildRequires:  python%{python3_pkgversion}-Cython >= 0.23
 BuildRequires:  python%{python3_pkgversion}-devel >= 3.2
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-cached_property
 BuildRequires:  python%{python3_pkgversion}-numpy >= 1.7
 BuildRequires:  python%{python3_pkgversion}-pkgconfig
@@ -110,6 +109,10 @@ cd serial
 cd -
 %{?with_openmpi:cp -al serial openmpi}
 %{?with_mpich:cp -al serial mpich}
+
+
+%generate_buildrequires
+%pyproject_buildrequires
 
 
 %build
@@ -212,14 +215,14 @@ mpirun %{__python3} -m pytest --pyargs h5py -rxXs --with-mpi ${PYTHONPATH} || ex
 #doc serial/ANN.rst serial/README.rst serial/examples
 %doc serial/README.rst serial/examples
 %{python3_sitearch}/%{name}/
-%{python3_sitearch}/%{name}-%{version}-*.egg-info
+%{python3_sitearch}/%{name}-%{version}.dist-info
 
 %if %{with openmpi}
 %files -n python%{python3_pkgversion}-h5py-openmpi
 %license openmpi/licenses/*.txt
 %doc openmpi/README.rst
 %{python3_sitearch}/openmpi/%{name}/
-%{python3_sitearch}/openmpi/%{name}-%{version}-*.egg-info
+%{python3_sitearch}/openmpi/%{name}-%{version}.dist-info
 %endif
 
 %if %{with mpich}
@@ -227,7 +230,7 @@ mpirun %{__python3} -m pytest --pyargs h5py -rxXs --with-mpi ${PYTHONPATH} || ex
 %license mpich/licenses/*.txt
 %doc mpich/README.rst
 %{python3_sitearch}/mpich/%{name}/
-%{python3_sitearch}/mpich/%{name}-%{version}-*.egg-info
+%{python3_sitearch}/mpich/%{name}-%{version}.dist-info
 %endif
 
 

@@ -19,7 +19,6 @@ A Flask extension for sending email messages.
 %package -n python3-%{pkg_name}
 Summary:    Flask extension for sending email
 BuildRequires:   python3-devel
-BuildRequires:   python3-setuptools
 BuildRequires:   python3-flask
 
 %description -n python3-%{pkg_name}
@@ -30,12 +29,16 @@ A Flask extension for sending email messages.
 %autosetup -n %{mod_name}-%{version} -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{pkg_name}
@@ -43,7 +46,7 @@ A Flask extension for sending email messages.
 %license LICENSE
 %{python3_sitelib}/flask_mail.py
 %{python3_sitelib}/__pycache__/flask_mail*.py*
-%{python3_sitelib}/Flask_Mail*.egg-info/
+%{python3_sitelib}/Flask_Mail*.dist-info/
 
 
 %changelog

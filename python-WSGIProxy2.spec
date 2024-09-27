@@ -19,7 +19,6 @@ WSGI Proxy that supports several HTTP backends.
 %package -n     python3-%{pypi_name}
 Summary:        WSGI Proxy that supports several HTTP backends
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Requires:       python3-webob
 Requires:       python3-six
 %{?python_provide:%python_provide python3-%{pypi_name}}
@@ -33,16 +32,19 @@ Python 3 version.
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %doc README_fixt.py README.rst
 %{python3_sitelib}/%{package_name}/
-%{python3_sitelib}/%{pypi_name}-*.egg-info/
+%{python3_sitelib}/%{pypi_name}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.4.6-18

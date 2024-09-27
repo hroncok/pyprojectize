@@ -17,7 +17,6 @@ Purge API, including authentication and error recovery.
 %package -n python3-%{srcname}
 Summary:	%{summary}
 BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
 
 # Dependencies for test suite
 BuildRequires:	python3dist(pytest)
@@ -37,11 +36,14 @@ Purge API, including authentication and error recovery.
 %prep
 %autosetup -n %{name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} -m pytest -v
@@ -51,7 +53,7 @@ Purge API, including authentication and error recovery.
 %doc CHANGELOG.md
 %license LICENSE
 
-%{python3_sitelib}/%{srcname}*.egg-info/
+%{python3_sitelib}/%{srcname}*.dist-info/
 %{python3_sitelib}/%{srcname}/
 
 %changelog

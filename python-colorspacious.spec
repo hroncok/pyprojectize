@@ -47,7 +47,6 @@ This package contains the HTML documentation.
 %package -n python3-%{pname}
 Summary: Perform colorspace conversions accurately and easily
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-numpy
 Requires: python3-numpy
 %{?python_provide:%python_provide python3-%{pname}}
@@ -62,16 +61,19 @@ This package contains the python3 module.
 %patch -P0 -p1
 rm -r *.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if %{with html}
 pushd doc
 PYTHONPATH=`realpath ../build/lib.linux*` make html
 popd
 %endif
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with check}
 %check
@@ -85,7 +87,7 @@ nosetests-3 --all-modules colorspacious
 
 %files -n python3-%{pname}
 %doc README.rst
-%{python3_sitelib}/%{pname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pname}-%{version}.dist-info
 %{python3_sitelib}/%{pname}
 
 %changelog

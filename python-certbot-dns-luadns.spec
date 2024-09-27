@@ -20,7 +20,6 @@ BuildRequires:  python3-certbot >= %{version}
 BuildRequires:  python3-devel
 BuildRequires:  python3-dns-lexicon >= 3.2.1
 BuildRequires:  python3-pytest
-BuildRequires:  python3-setuptools >= 41.6.0
 
 # Used to verify OpenPGP signature
 BuildRequires:  gnupg2
@@ -53,15 +52,18 @@ Documentation for certbot-dns-luadns
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 # generate html docs
 sphinx-build-3 docs html
 # remove the sphinx-build leftovers
 rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -71,7 +73,7 @@ rm -rf html/.{doctrees,buildinfo}
 %license LICENSE.txt
 %doc README.rst
 %{python3_sitelib}/certbot_dns_luadns
-%{python3_sitelib}/certbot_dns_luadns-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/certbot_dns_luadns-%{version}.dist-info
 
 %files -n python-%{pypi_name}-doc
 %doc html

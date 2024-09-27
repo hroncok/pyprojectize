@@ -40,7 +40,6 @@ Documentation for %{name}.
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{modname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-Cython
 BuildRequires:  python3dist(numpy) >= 1.9.1
 BuildRequires:  python3-pytest
@@ -63,8 +62,11 @@ Python 3 version.
 
 sed -i '1{\@^#!/usr/bin/env python@d}' %{modname}/tests/*.py 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build -- --force
+%pyproject_wheel -C--global-option=--force
 
 pushd doc
   export PYTHONPATH=`readlink -f ../build/lib.*-*`
@@ -73,7 +75,7 @@ pushd doc
 popd
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 mkdir -p matplotlib
@@ -95,7 +97,7 @@ popd
 %license LICENSE
 %doc README.rst
 %{python3_sitearch}/%{modname}/
-%{python3_sitearch}/%{pkgname}*.egg-info
+%{python3_sitearch}/%{pkgname}*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.3.0-9

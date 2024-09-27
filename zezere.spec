@@ -8,7 +8,6 @@ Source0:       https://github.com/fedora-iot/zezere/archive/v%{version}.tar.gz#/
 
 BuildArch: noarch
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: systemd
 
 %description
@@ -26,11 +25,14 @@ An Ignition client for Zezere managed systems.
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 install zezere_ignition/__init__.py %{buildroot}/usr/bin/zezere-ignition
 chmod +x %{buildroot}/usr/bin/zezere-ignition

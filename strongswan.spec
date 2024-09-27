@@ -59,7 +59,6 @@ Recommends:     tpm2-tools
 
 %if %{with python3}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 %endif
 
@@ -151,6 +150,9 @@ for Strongswan runtime configuration from perl applications.
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -n %{name}-%{version}%{?prerelease} -p1
+
+%generate_buildrequires
+%pyproject_buildrequires
 
 %build
 # only for snapshots
@@ -294,7 +296,7 @@ pushd src/libcharon/plugins/vici
     # TODO: --enable-python-eggs breaks our previous build. Do it now
     # propose better way to upstream
     %py3_build
-    %py3_install
+    %pyproject_install
   popd
 %endif
 %if %{with perl}
@@ -411,7 +413,7 @@ install -D -m 0644 %{SOURCE3} %{buildroot}/%{_tmpfilesdir}/strongswan-starter.co
 %license COPYING
 %doc src/libcharon/plugins/vici/python/README.rst
 %{python3_sitelib}/vici
-%{python3_sitelib}/vici-%{version}-py*.egg-info
+%{python3_sitelib}/vici-%{version}.dist-info
 %endif
 
 %if %{with perl}

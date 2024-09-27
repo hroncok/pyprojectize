@@ -55,7 +55,6 @@ BuildRequires: python3-devel
 BuildRequires: python3-psycopg2
 BuildRequires: python3-pytest
 BuildRequires: python3-pytest-cov
-BuildRequires: python3-setuptools
 BuildRequires: python3-six
 BuildRequires: python3-sqlalchemy
 %if 0%{?is_opensuse}
@@ -220,12 +219,16 @@ rm -r resalloc_agent_spawner
 %endif
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 %if %{with python2}
 python=%__python2
 %py2_build
 %else
-%py3_build
+%pyproject_wheel
 python=%__python3
 %endif
 sed "1c#! $python" %SOURCE6 > %{name}-wait-for-ssh
@@ -236,7 +239,7 @@ sed "1c#! $python" %SOURCE6 > %{name}-wait-for-ssh
 %py2_install
 rm -r %buildroot%python2_sitelib/%{name}webui
 %else
-%py3_install
+%pyproject_install
 install -d -m 755 %buildroot%_datadir/%{name}webui
 cp -r %{name}webui/templates %buildroot%_datadir/%{name}webui/
 cp -r %{name}webui/static %buildroot%_datadir/%{name}webui/
@@ -317,7 +320,7 @@ ln -s "%{default_sitelib}/%{name}server" %buildroot%_homedir/project
 %doc %doc_files
 %license COPYING
 %{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}-*.egg-info
+%{python3_sitelib}/%{name}.dist-info
 %endif
 
 
@@ -326,7 +329,7 @@ ln -s "%{default_sitelib}/%{name}server" %buildroot%_homedir/project
 %doc %doc_files
 %license COPYING
 %{python2_sitelib}/%{name}
-%{python2_sitelib}/%{name}-*.egg-info
+%{python2_sitelib}/%{name}.dist-info
 %endif
 
 

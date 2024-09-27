@@ -30,7 +30,6 @@ BuildRequires:  libsndfile-devel
 BuildRequires:  python3-numpy
 BuildRequires:  pkgconfig
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  txt2man
 
 Requires:       %{name}-python3 = %{version}-%{release}
@@ -79,6 +78,9 @@ The %{name}-python3 package contains the Python 3 language bindings for
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %set_build_flags
 
@@ -98,7 +100,7 @@ The %{name}-python3 package contains the Python 3 language bindings for
 
 %{python3} ./waf build %{_verbose} %{?_smp_mflags}
 
-%py3_build
+%pyproject_wheel
 
 %install
 %{python3} ./waf --destdir=%{buildroot} %{_verbose} install
@@ -107,7 +109,7 @@ rm -rf libaubio-doc
 cp -r %{buildroot}%{_docdir}/libaubio-doc libaubio-doc
 rm -rf %{buildroot}%{_docdir}/libaubio-doc
 
-%py3_install
+%pyproject_install
 
 # Remove shebang from python files
 sed -i -e '/^#![[:blank:]]*\//, 1d' %{buildroot}%{python3_sitearch}/%{name}/*.py
@@ -130,7 +132,7 @@ sed -i -e '/^#![[:blank:]]*\//, 1d' %{buildroot}%{python3_sitearch}/%{name}/*.py
 
 %files python3
 %{python3_sitearch}/%{name}
-%{python3_sitearch}/%{name}*.egg-info
+%{python3_sitearch}/%{name}*.dist-info
 
 %changelog
 * Thu Jul 25 2024 Miroslav Suchý <msuchy@redhat.com> - 0.4.9-24

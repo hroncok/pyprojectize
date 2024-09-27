@@ -99,11 +99,15 @@ with milters.
 cp -p template.py milter-template.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 %if %{with python2}
 %py2_build
 %endif
-%py3_build
+%pyproject_wheel
 checkmodule -m -M -o pymilter.mod pymilter.te
 semodule_package -o pymilter.pp -m pymilter.mod
 
@@ -111,7 +115,7 @@ semodule_package -o pymilter.pp -m pymilter.mod
 %if %{with python2}
 %py2_install
 %endif
-%py3_install
+%pyproject_install
 
 mkdir -p %{buildroot}/run/milter
 mkdir -p %{buildroot}%{_localstatedir}/log/milter

@@ -7,7 +7,6 @@ License:        GPL-2.0-or-later
 URL  :          https://github.com/andreafrancia/trash-cli
 Source0:        https://files.pythonhosted.org/packages/source/t/%{name}/%{name}-%{version}.tar.gz
 BuildArch:      noarch
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-devel
 
 %description
@@ -18,18 +17,21 @@ compatible with rm and you can use trash-put as an alias to rm.
 %prep
 %autosetup -n %{name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %doc README.rst
 
 %{_bindir}/trash*
 %{python3_sitelib}/trashcli/
-%{python3_sitelib}/trash_cli-*-py*.egg-info
+%{python3_sitelib}/trash_cli-*.dist-info
 %{_mandir}/man1/trash*
 
 %changelog

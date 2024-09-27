@@ -59,7 +59,6 @@ BuildRequires:  python2-tox
 
 %if %{with python3}
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 %if %{with doc}
 BuildRequires:  python%{python3_pkgversion}-tox
 %endif
@@ -137,13 +136,18 @@ done
 
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
+
 %build
 %if %{with python2}
 %py2_build
 %endif
 
 %if %{with python3}
-%py3_build
+%pyproject_wheel
 %endif
 
 %if %{with doc}
@@ -174,7 +178,7 @@ ln -s %{_bindir}/scapy2   %{buildroot}%{_bindir}/scapy
 %endif
 
 %if %{with python3}
-%py3_install
+%pyproject_install
 rm -f %{buildroot}%{python3_sitelib}/*egg-info/requires.txt
 
 # Rename the executables
@@ -203,7 +207,7 @@ ln -s %{_bindir}/scapy3   %{buildroot}%{_bindir}/scapy
 %endif
 %{_bindir}/scapy2
 %{python2_sitelib}/scapy/
-%{python2_sitelib}/scapy-*.egg-info
+%{python2_sitelib}/scapy.dist-info
 %exclude %{python2_sitelib}/test/
 %endif
 
@@ -216,7 +220,7 @@ ln -s %{_bindir}/scapy3   %{buildroot}%{_bindir}/scapy
 %{_bindir}/scapy
 %{_bindir}/scapy3
 %{python3_sitelib}/scapy/
-%{python3_sitelib}/scapy-*.egg-info
+%{python3_sitelib}/scapy.dist-info
 %exclude %{python3_sitelib}/test/
 %endif
 

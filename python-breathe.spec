@@ -26,7 +26,6 @@ BuildArch:      noarch
 
 BuildRequires:  doxygen >= 1.8.4
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  %{py3_dist six} >= 1.9
 %if 0%{?rhel}
 BuildRequires:  %{py3_dist Sphinx}
@@ -74,8 +73,11 @@ This package contains documentation for developer documentation for %{srcname}.
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -n %{srcname}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 %if %{with doc}
 # Build the documentation
 # Remove -W (turn warnings into errors) from SPHINXOPTS to fix the build for f39
@@ -85,7 +87,7 @@ rm documentation/build/html/.buildinfo
 %endif
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %make_build dev-test

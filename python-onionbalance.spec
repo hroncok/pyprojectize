@@ -29,7 +29,6 @@ BuildArch: noarch
 BuildRequires: systemd-units
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-stem >= 1.8
 BuildRequires:  python3-PyYAML >= 4.2b1
 BuildRequires:  python3-cryptography >= 2.5
@@ -67,11 +66,14 @@ Requires(postun): systemd
 %prep
 %autosetup -n %{pypi_name}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 install -d        %{buildroot}/etc/logrotate.d
 install -d        %{buildroot}/%{_sysconfdir}/%{pkgname}

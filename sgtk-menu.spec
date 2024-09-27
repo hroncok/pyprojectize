@@ -12,7 +12,6 @@ Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 This project is an attempt to create a launcher, that behaves decently on sway,
@@ -32,12 +31,16 @@ for lib in sgtk_menu/*.py; do
 done
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files
@@ -47,7 +50,7 @@ done
 %{_bindir}/sgtk-bar
 %{_bindir}/sgtk-dmenu
 %{_bindir}/sgtk-grid
-%{python3_sitelib}/%{sysname}-*.egg-info/
+%{python3_sitelib}/%{sysname}.dist-info/
 %{python3_sitelib}/%{sysname}/
 
 

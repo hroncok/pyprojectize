@@ -40,7 +40,6 @@ multiprotocol kernel target.
 Summary:        API for Linux kernel LIO SCSI target
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-kmod
 BuildRequires:  python3-six
 BuildRequires:  python3-pyudev
@@ -74,8 +73,12 @@ on system restart.
 %patch -P1 -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %if %{with apidocs}
 mkdir -p doc/html
@@ -84,7 +87,7 @@ epydoc --no-sourcecode --html -n rtslib -o doc/html rtslib/*.py
 
 %install
 # remove py2 scripts if py3 enabled
-%py3_install
+%pyproject_install
 
 mkdir -p %{buildroot}%{_mandir}/man8/
 mkdir -p %{buildroot}%{_mandir}/man5/

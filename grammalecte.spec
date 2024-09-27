@@ -38,7 +38,6 @@ Source2:        libreoffice-%{name}.metainfo.xml
 BuildRequires:  libappstream-glib
 BuildRequires:  python3-devel
 BuildRequires:  %{py3_dist bottle}
-BuildRequires:  %{py3_dist setuptools}
 
 %description
 %{_description}
@@ -94,6 +93,10 @@ bibliothèque Python.
 ln -sf %{python3_sitelib}/bottle.py 3rd/
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 # Build LibreOffice extension and Python module ZIP
 %{__python3} make.py -b -d fr
@@ -103,7 +106,7 @@ mkdir python/
 unzip _build/Grammalecte-fr-v%{version}.zip -d python/
 pushd python/
 rm -rf *.egg-info
-%py3_build
+%pyproject_wheel
 popd
 
 
@@ -119,7 +122,7 @@ find $RPM_BUILD_ROOT%{_libdir}/libreoffice/share/extensions/%{name}/ -type f | x
 
 # Install Python module
 pushd python/
-%py3_install
+%pyproject_install
 popd
 
 # Unbundle bottle library
@@ -155,7 +158,7 @@ appstream-util validate-relax --nonet $RPM_BUILD_ROOT%{_metainfodir}/%{name}.app
 %{_bindir}/%{name}-cli.py
 %{_bindir}/%{name}-server.py
 %{python3_sitelib}/%{name}/
-%{python3_sitelib}/Grammalecte_fr-*.egg-info/
+%{python3_sitelib}/Grammalecte_fr.dist-info/
 
 
 %changelog

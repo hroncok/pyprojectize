@@ -18,7 +18,6 @@ implementation for GraphQL, a query language for APIs.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 BuildRequires:  python3-pytest-benchmark
 %{?python_provide:%python_provide python3-%{pypi_name}}
@@ -40,11 +39,14 @@ Documentation for graphql-core.
 %autosetup -n %{pypi_name}-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 # Not docs because of https://bugzilla.redhat.com/show_bug.cgi?id=1900509
 #PYTHONPATH=%{buildroot}%{python3_sitelib} sphinx-build-3 docs html
 #rm -rf html/.{doctrees,buildinfo}
@@ -56,7 +58,7 @@ rm -rf %{pypi_name}.egg-info
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/graphql/
-%{python3_sitelib}/graphql_core-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/graphql_core-%{version}.dist-info
 
 %files -n python-%{pypi_name}-doc
 #%%doc html

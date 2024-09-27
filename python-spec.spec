@@ -16,7 +16,6 @@ BuildArch:      noarch
 BuildRequires:  coreutils
 BuildRequires:  gnupg2
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 A Python testing tool that provides:
@@ -53,17 +52,20 @@ cp -p %{SOURCE3} .
 # Remove bundled egg-info
 rm -rf spec.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-spec
 %license LICENSE
 %{_bindir}/spec
 %{python3_sitelib}/spec/
-%{python3_sitelib}/spec-*.egg-info/
+%{python3_sitelib}/spec.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.4.1-18

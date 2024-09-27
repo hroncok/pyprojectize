@@ -15,7 +15,6 @@ BuildRequires:	python3-click
 BuildRequires:	python3-devel
 BuildRequires:  python3-gobject-base
 BuildRequires:	python3-pytest
-BuildRequires:	python3-setuptools
 BuildRequires:	golang-github-cpuguy83-md2man
 
 Requires: python3-click
@@ -32,8 +31,12 @@ adds/removes Flatpak repositories as necessary.
 %autosetup -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 go-md2man -in doc/%{name}.1.md -out doc/%{name}.1
 
@@ -43,7 +46,7 @@ go-md2man -in doc/%{name}.1.md -out doc/%{name}.1
 
 
 %install
-%py3_install
+%pyproject_install
 
 # This script is just for use under pkexec, move it out of bindir to avoid confusion
 mkdir -p %{buildroot}%{_prefix}/lib/%{name}

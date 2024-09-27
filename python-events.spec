@@ -19,7 +19,6 @@ URL:            http://github.com/pyeve/events
 Source0:        https://pypi.org/packages/source/E/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
 BuildArch:      noarch
  
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-devel
 
 %description    %_description
@@ -33,11 +32,14 @@ Summary:        %{summary}
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -47,7 +49,7 @@ Summary:        %{summary}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/events
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.4-11

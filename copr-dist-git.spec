@@ -62,8 +62,12 @@ This package contains Copr services for Dist Git server.
 %setup -q
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %pre
@@ -75,7 +79,7 @@ useradd -r -m -g copr-dist-git -G packager,apache -c "copr-dist-git user" copr-d
 /usr/bin/passwd -l copr-dist-git >/dev/null
 
 %install
-%py3_install
+%pyproject_install
 
 install -d %{buildroot}%{_datadir}/copr/dist_git
 install -d %{buildroot}%{_sysconfdir}/copr

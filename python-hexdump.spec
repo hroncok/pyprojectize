@@ -25,7 +25,6 @@ Patch0:         %{name}-setup.patch
 BuildArch:      noarch
 
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 
 %description
 Python library to dump binary data to hex format and restore from there
@@ -47,11 +46,15 @@ Python library to dump binary data to hex format and restore from there
 sed -i -e 's|#!/usr/bin/env python|#|' hexdump.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 mkdir -p %{buildroot}%{_mandir}/man1
 install -m 644 %{SOURCE1} %{buildroot}%{_mandir}/man1/hexdumpy.1

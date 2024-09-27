@@ -37,7 +37,7 @@ works with any Django models.
 
 %build
 %pyproject_wheel
-%py3_build
+%pyproject_wheel
 
 %install
 %pyproject_install

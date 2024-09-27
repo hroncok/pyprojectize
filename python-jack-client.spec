@@ -14,7 +14,6 @@ URL:           http://jackclient-python.rtfd.org
 Source0:       https://github.com/spatialaudio/jackclient-python/archive/%{version}/%{srcname0}-%{version}.tar.gz
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-cffi
 %{?python_provide:%python_provide %{name}}
 Requires:      python3-cffi
@@ -31,11 +30,14 @@ This package installs the library for Python.
 %prep
 %autosetup -n %{srcname1}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -45,7 +47,7 @@ This package installs the library for Python.
 %doc README.rst
 %doc NEWS.rst
 %doc CONTRIBUTING.rst
-%{python3_sitelib}/%{srcname2}-*.egg-info/
+%{python3_sitelib}/%{srcname2}.dist-info/
 %{python3_sitelib}/__pycache__/*
 %{python3_sitelib}/_jack.py
 %{python3_sitelib}/jack.py

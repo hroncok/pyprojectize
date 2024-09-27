@@ -22,7 +22,6 @@ BuildArch:  noarch
 BuildRequires:  pyOpenSSL
 %endif
 
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-devel
 
 # For tests
@@ -57,11 +56,14 @@ to be delegated to a server giving you double hop authentication.
 # Remove bundled egg-info, it's not there yet but just in case it gets added upstream
 rm -rf %{gh_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{pytest} -k "not test_invalid_auth_mechanism"
@@ -70,7 +72,7 @@ rm -rf %{gh_name}.egg-info
 %license LICENSE
 %doc CHANGELOG.md README.md
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.0.0-9

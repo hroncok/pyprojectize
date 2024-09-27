@@ -17,7 +17,6 @@ BuildArch:          noarch
 Summary:            %{summary}
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{modname}}
 BuildRequires:      python%{python3_pkgversion}-devel
-BuildRequires:      python%{python3_pkgversion}-setuptools
 BuildRequires:      python%{python3_pkgversion}-pytest
 BuildRequires:      python%{python3_pkgversion}-pytest-cov
 BuildRequires:      python%{python3_pkgversion}-coverage
@@ -32,13 +31,16 @@ Python %{python3_version} version.
 %prep
 %autosetup -n encrypted-content-encoding-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 cd python
-%py3_build
+%pyproject_wheel
 
 %install
 cd python
-%py3_install
+%pyproject_install
 
 %check
 cd python
@@ -48,7 +50,7 @@ cd python
 %doc python/README.rst python/*.md
 %license LICENSE
 %{python3_sitelib}/http_ece/
-%{python3_sitelib}/http_ece-*.egg-info/
+%{python3_sitelib}/http_ece.dist-info/
 
 %changelog
 * Thu Aug 01 2024 Gwyn Ciesla <gwync@protonmail.com> - 1.2.1-1

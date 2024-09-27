@@ -30,7 +30,6 @@ A PEG-based parser interpreter with memoization.
 %package -n python3-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
@@ -39,31 +38,34 @@ A PEG-based parser interpreter with memoization.
 %prep
 %autosetup -n %{srcname}-%{commit}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if %{py2support}
 %py2_build
 %endif
-%py3_build
+%pyproject_wheel
 
 %install
 %if %{py2support}
 %py2_install
 %endif
-%py3_install
+%pyproject_install
 
 # Note that there is no %%files section for the unversioned python module
 %if %{py2support}
 %files -n python2-%{srcname}
 %license LICENSE
 %doc README.md
-%{python2_sitelib}/%{srcname}-*.egg-info/
+%{python2_sitelib}/%{srcname}.dist-info/
 %{python2_sitelib}/%{srcname}/
 %endif
 
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 %{python3_sitelib}/%{srcname}/
 
 %changelog

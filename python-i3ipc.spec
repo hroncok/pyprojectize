@@ -17,7 +17,6 @@ Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 Patch0:         0001-Adapt-test-launcher-for-our-envirnoment.patch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if %{with tests}
 # Test deps
 BuildRequires:  i3
@@ -51,11 +50,14 @@ Summary:        %{summary}
 
 sed -i '/^#!/d' i3ipc/connection.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with tests}
 %check
@@ -66,7 +68,7 @@ sed -i '/^#!/d' i3ipc/connection.py
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/i3ipc/
-%{python3_sitelib}/i3ipc-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/i3ipc-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 2.2.1-14

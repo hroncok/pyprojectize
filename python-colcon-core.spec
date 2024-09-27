@@ -32,7 +32,6 @@ BuildRequires:  python%{python3_pkgversion}-importlib-metadata
 %endif
 BuildRequires:  python%{python3_pkgversion}-packaging
 BuildRequires:  python%{python3_pkgversion}-pytest
-BuildRequires:  python%{python3_pkgversion}-setuptools >= 30.3.0
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %if %{undefined __pythondist_requires}
@@ -71,12 +70,16 @@ and sets up the environment to use the packages.
 %autosetup -p1 -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -88,7 +91,7 @@ and sets up the environment to use the packages.
 %doc README.rst
 %{python3_sitelib}/colcon/
 %{python3_sitelib}/colcon_core/
-%{python3_sitelib}/colcon_core-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/colcon_core-%{version}.dist-info/
 %{_bindir}/colcon
 
 

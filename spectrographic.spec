@@ -16,7 +16,6 @@ Patch1: 0001-add-version-metadata.patch
 BuildRequires: make
 BuildRequires: python3-devel
 BuildRequires: python3-pyscaffold
-BuildRequires: python3-setuptools >= 38.3
 BuildRequires: python3-sphinx
 
 # These aren't strictly required, but sphinx complains
@@ -55,8 +54,12 @@ for the %{pypi_name} program.
 sed -e 's/\b__RPM_PACKAGE_VERSION__\b/%{version}/g' -i setup.cfg
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 cd docs/
 make man
@@ -64,7 +67,7 @@ make html
 
 
 %install
-%py3_install
+%pyproject_install
 
 install -m 755 -d %{buildroot}%{_mandir}/man1/
 install -m 644 build/sphinx/man/%{name}.1 %{buildroot}%{_mandir}/man1/
@@ -76,7 +79,7 @@ install -m 644 build/sphinx/man/%{name}.1 %{buildroot}%{_mandir}/man1/
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*
 %{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}-*.egg-info/
+%{python3_sitelib}/%{name}.dist-info/
 
 
 %files doc

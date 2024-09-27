@@ -10,7 +10,6 @@ Source0:        %{pypi_source pythondialog}
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %global _description %{expand:
 A Python interface to the Unix dialog utility, designed to provide an
@@ -31,11 +30,14 @@ Summary:        %{summary}
 
 find examples -name '*.py' -print -exec sed -r -i 's|(.!)\s+/usr/bin/env python.*|\1%{__python3}|' {} \;
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %py3_check_import dialog
@@ -45,7 +47,7 @@ find examples -name '*.py' -print -exec sed -r -i 's|(.!)\s+/usr/bin/env python.
 %doc README.rst examples/
 %{python3_sitelib}/dialog.py*
 %{python3_sitelib}/__pycache__/
-%{python3_sitelib}/pythondialog-*.egg-info
+%{python3_sitelib}/pythondialog.dist-info
 
 %changelog
 %autochangelog

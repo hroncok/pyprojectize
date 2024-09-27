@@ -27,7 +27,6 @@ BuildRequires:  python3dist(httplib2)
 BuildRequires:  python3dist(keyring)
 BuildRequires:  python3dist(lazr-restfulclient) >= 0.9.19
 BuildRequires:  python3dist(lazr-uri)
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(testresources)
 BuildRequires:  python3dist(wadllib)
 
@@ -36,11 +35,14 @@ BuildRequires:  python3dist(wadllib)
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -49,7 +51,7 @@ BuildRequires:  python3dist(wadllib)
 %license COPYING.txt
 %doc README.rst
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 %autochangelog

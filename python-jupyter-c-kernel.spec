@@ -31,7 +31,6 @@ Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-jupyter-client
 
 Requires:       gcc
@@ -49,12 +48,16 @@ cp -p %SOURCE1 %SOURCE2 .
 rm -rf %{srcname_}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 %{__python3} %{buildroot}%{_bindir}/install_c_kernel --prefix %{buildroot}%{_prefix}
 rm %{buildroot}%{_bindir}/install_c_kernel
@@ -64,7 +67,7 @@ rm %{buildroot}%{_bindir}/install_c_kernel
 %doc README.md
 %license LICENSE.txt
 %{python3_sitelib}/%{srcname_}
-%{python3_sitelib}/%{srcname_}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{srcname_}-%{version}.dist-info
 %{_datadir}/jupyter/kernels/c
 
 

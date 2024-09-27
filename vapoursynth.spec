@@ -20,7 +20,6 @@ BuildRequires:  pkgconfig(tesseract)
 BuildRequires:  pkgconfig(zimg)
 BuildRequires:  python3
 BuildRequires:  python3-Cython
-BuildRequires:  python3-setuptools
 
 %{?_with_tests:
 BuildRequires:  %{name}-devel
@@ -64,6 +63,9 @@ This package contains the vspipe tool for interfacing with VapourSynth.
 %prep
 %autosetup -p1 -n %{name}-R%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 autoreconf -vif
 %configure \
@@ -77,7 +79,7 @@ autoreconf -vif
 %make_build
 
 %install
-%py3_install
+%pyproject_install
 %make_install
 find %{buildroot} -type f -name "*.la" -delete
 
@@ -104,7 +106,7 @@ rm -fr %{buildroot}%{_docdir}/%{name}
 
 %files -n python3-%{name}
 %{python3_sitearch}/%{name}.so
-%{python3_sitearch}/VapourSynth-*.egg-info
+%{python3_sitearch}/VapourSynth.dist-info
 
 %files devel
 %{_includedir}/%{name}/

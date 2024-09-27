@@ -10,7 +10,6 @@ Source0:        https://github.com/thp/urlwatch/archive/%{version}.tar.gz#/%{nam
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-idle
 
 Requires:       python3-requests
@@ -43,11 +42,14 @@ Basic features
 %prep
 %autosetup
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 # Fix exec permission for rpmlint
 chmod 0755 %{buildroot}%{python3_sitelib}/%{name}/*txt.py
 chmod a+x %{buildroot}%{python3_sitelib}/%{name}/handler.py
@@ -59,7 +61,7 @@ chmod a+x %{buildroot}%{python3_sitelib}/%{name}/handler.py
 %{_bindir}/%{name}
 %{_datadir}/%{name}/examples/
 %{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}*.egg-info
+%{python3_sitelib}/%{name}*.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 2.28-4

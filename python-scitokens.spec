@@ -13,7 +13,6 @@ BuildArch:      noarch
 
 # build requirements
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 # test requirements
 %if 0%{?rhel} == 7
@@ -43,11 +42,14 @@ SciToken reference implementation library
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %if 0%{?rhel} == 7
@@ -60,7 +62,7 @@ export PYTHONPATH="%{buildroot}%{python3_sitelib}"
 %files -n python3-%{pypi_name}
 %license LICENSE
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py*.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %doc README.rst
 %{_bindir}/scitokens-admin-create-key
 %{_bindir}/scitokens-admin-create-token

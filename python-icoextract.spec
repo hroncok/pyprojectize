@@ -17,7 +17,6 @@ Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 %if %{with tests}
 BuildRequires:  ImageMagick
 BuildRequires:  make
@@ -65,12 +64,16 @@ icoextract aims to be:
 %autosetup -n %{pypi_name}-%{pypi_version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 # Exec permission
 pushd %{buildroot}%{python3_sitelib}/%{pypi_name}
@@ -99,7 +102,7 @@ popd
 %{_bindir}/exe-thumbnailer
 %{_bindir}/icolist
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{pypi_version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{pypi_version}.dist-info
 
 
 %changelog

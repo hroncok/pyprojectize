@@ -10,7 +10,6 @@ Source:         http://github.srcurl.net/misli/%{name}/%{version}/%{name}-%{vers
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 Flock object uses fcntl.flock to lock (resp. unlock)
@@ -31,19 +30,23 @@ when entering (resp. leaving) runtime context related to it.
 %autosetup
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 
 %files -n python3-flock
 %doc README.md LICENSE
 %{python3_sitelib}/flock.py
 %{python3_sitelib}/__pycache__/flock.*
-%{python3_sitelib}/flock-%{version}-py3.*.egg-info
+%{python3_sitelib}/flock-%{version}-py3.*.dist-info
 
 
 %changelog

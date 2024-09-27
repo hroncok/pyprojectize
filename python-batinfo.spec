@@ -11,7 +11,6 @@ Source0:        https://files.pythonhosted.org/packages/source/b/%{srcname}/%{sr
 Buildarch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 A simple Python module to retrieve battery information on Linux-based
@@ -30,18 +29,21 @@ kernel and its /sys/class/power_supply folder.
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 rm -rf %{buildroot}%{_defaultdocdir}/%{srcname}/
 
 %files -n python3-%{srcname}
 %doc AUTHORS README.md
 %license LICENSE
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}*.egg-info
+%{python3_sitelib}/%{srcname}*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.4.2-31

@@ -25,7 +25,6 @@ functions.}
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 # While upstream runs tests directly with Python/unittest, using pytest as the
 # runner allows us to more easily skip tests.
@@ -118,8 +117,11 @@ Documentation for pyperclip
 # Fix ends of line encoding
 sed -i 's/\r$//' README.md docs/*
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %if %{with doc_pdf}
 PYTHONPATH="${PWD}/src" %make_build -C docs latex \
@@ -128,7 +130,7 @@ PYTHONPATH="${PWD}/src" %make_build -C docs latex \
 %endif
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %global __pytest /usr/bin/xvfb-run -a %{python3} -m pytest
@@ -146,7 +148,7 @@ k="${k-}${k+ and }not TestXSel"
 %doc CHANGES.txt
 %doc README.md
 %{python3_sitelib}/pyperclip
-%{python3_sitelib}/pyperclip-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/pyperclip-%{version}.dist-info
 
 %files -n python-pyperclip-doc
 %license LICENSE.txt

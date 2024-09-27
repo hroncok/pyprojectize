@@ -14,7 +14,6 @@ BuildArch:      noarch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(django) >= 1.11
-BuildRequires:  python3dist(setuptools)
 
 %description
 Django "excontrib" Comments Django used to include a comments framework; since
@@ -45,11 +44,14 @@ Documentation: https://django-contrib-comments.readthedocs.io/en/latest/
 # Remove bundled egg-info
 rm -rf django_contrib_comments.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -58,7 +60,7 @@ rm -rf django_contrib_comments.egg-info
 %license LICENSE.txt
 %doc README.rst
 %{python3_sitelib}/django_comments
-%{python3_sitelib}/django_contrib_comments-%{version}-py*.egg-info
+%{python3_sitelib}/django_contrib_comments-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 2.0.0-15

@@ -26,7 +26,6 @@ Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{pkgname}}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-defcon
 BuildRequires:  python3-fontMath
 BuildRequires:  python3-fonttools
@@ -40,11 +39,14 @@ interpolating data related to fonts, but if can handle any arithmetic object.
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -53,7 +55,7 @@ interpolating data related to fonts, but if can handle any arithmetic object.
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{libname}
-%{python3_sitelib}/%{srcname}-*.egg-info
+%{python3_sitelib}/%{srcname}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 3.0.1-15

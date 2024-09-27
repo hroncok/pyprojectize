@@ -13,7 +13,6 @@ Source0:        https://files.pythonhosted.org/packages/source/P/%{pypi_name}/%{
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %global _description Dispatcher mechanism for creating event models. \
 PyDispatcher is an enhanced version of Patrick K. O'Brien's original \
@@ -43,12 +42,16 @@ This package contains the Python 3 version of %{pypi_name}.
 rm -rf %{pypi_name}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -59,7 +62,7 @@ rm -rf %{pypi_name}.egg-info
 %license license.txt
 %doc PKG-INFO
 %{python3_sitelib}/pydispatch
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 
 %changelog

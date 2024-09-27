@@ -19,7 +19,6 @@ of the parser.
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 # Test requires:
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(ply)
@@ -38,11 +37,14 @@ echo 'ply' >> requirements.txt
 sed -i -e "s/,'hcl.ply'//" setup.py
 grep -rl '\.ply' | xargs -t sed -i -e 's/\.ply/ply/'
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} %python3 -m pytest tests
@@ -52,7 +54,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %python3 -m pytest tests
 %doc README.rst
 %{_bindir}/hcltool
 %{python3_sitelib}/hcl/
-%{python3_sitelib}/pyhcl-*.egg-info/
+%{python3_sitelib}/pyhcl.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.4.5-5

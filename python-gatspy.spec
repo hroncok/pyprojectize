@@ -36,11 +36,14 @@ periodogram, the Supersmoother method, and others.
 %prep
 %setup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # Disabled for now as tests require online access

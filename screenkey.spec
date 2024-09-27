@@ -13,7 +13,6 @@ Source2:        https://www.thregr.org/~wavexx/files/wavexx.asc
 BuildArch:	noarch
 
 BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
 BuildRequires:	python3-babel
 BuildRequires:	desktop-file-utils
 
@@ -44,11 +43,14 @@ A screencast tool to display your keys, featuring:
 # Remove bundled egg-info
 rm -rf %{src_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 %find_lang %{name}
 
 %check
@@ -61,7 +63,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}.desktop
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/metainfo/org.thregr.%{name}.metainfo.xml
 %{python3_sitelib}/%{py_name}/
-%{python3_sitelib}/%{name}-%{version}-*.egg-info
+%{python3_sitelib}/%{name}-%{version}.dist-info
 
 %changelog
 * Thu Jul 25 2024 Miroslav Suchý <msuchy@redhat.com> - 1.5-10

@@ -18,7 +18,6 @@ checking the magic numbers signature of a file or buffer.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Buildrequires:  python3-pytest
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -31,11 +30,14 @@ checking the magic numbers signature of a file or buffer.
 sed -i -e '/^#!\//, 1d' examples/*.py
 rm -rf examples/__init__.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 rm -rf %{buildroot}%{python3_sitelib}/examples
 
 %check
@@ -48,7 +50,7 @@ rm -rf %{buildroot}%{python3_sitelib}/examples
 %license LICENSE
 %{_bindir}/%{pypi_name}
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py*.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.2.0-5

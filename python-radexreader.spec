@@ -40,7 +40,6 @@ Summary:       %{common_summary_en}
 Summary(fr):   %{common_summary_fr}
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 Requires:      python3
 Requires:      %{py3_dist pyserial}
 Requires:      %{py3_dist pyusb}
@@ -54,13 +53,16 @@ Requires:      %{py3_dist pyusb}
 sed -i 's/python3-radexreader /python3-radexreader-rpm /g' src/radexreader.py
 sed -i 's/\#\!\/usr\/bin\/python3/\#/g' src/radexreader/__init__.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 cd src
-%py3_build
+%pyproject_wheel
 
 %install
 cd src
-%py3_install
+%pyproject_install
 mkdir -p %{buildroot}%{_bindir}/
 install -pm 755 radexreader.py %{buildroot}%{_bindir}/radexreader
 

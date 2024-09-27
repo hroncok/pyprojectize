@@ -653,6 +653,9 @@ rm configure pyconfig.h.in
 # Configuring and building the code:
 # ======================================================
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 
 # The build process embeds version info extracted from the Git repository
@@ -687,7 +690,7 @@ topdir=$(pwd)
 # extensions with our python won't get all the compiler/linker flags used
 # in Fedora RPMs.
 # Standard library built here will still use the %%build_...flags,
-# Fedora packages utilizing %%py3_build will use them as well
+# Fedora packages utilizing %%pyproject_wheel -C--global-option='will use them as well'
 # https://fedoraproject.org/wiki/Changes/Python_Extension_Flags
 # https://fedoraproject.org/wiki/Changes/Python_Extension_Flags_Reduction
 export CFLAGS="%{extension_cflags}"

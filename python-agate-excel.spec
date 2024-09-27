@@ -25,7 +25,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 BuildRequires: make
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-nose >= 1.1.2
 BuildRequires:  python3dist(agate) >= 1.5
 BuildRequires:  python3dist(xlrd) >= 0.9.4
@@ -57,8 +56,12 @@ Documentation package.
 sed -i '1{\@^#!/usr/bin/env python@d}' agateexcel/*.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 # Build documentation
 pushd docs
@@ -68,7 +71,7 @@ popd
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -78,7 +81,7 @@ nosetests-%{python3_version} tests -v
 %files -n python3-%{pypi_name}
 %doc README.rst AUTHORS.rst CHANGELOG.rst
 %license COPYING
-%{python3_sitelib}/agate_excel-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/agate_excel-%{version}.dist-info/
 %{python3_sitelib}/%{file_name}/
 
 

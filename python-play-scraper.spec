@@ -17,7 +17,6 @@ Scrapes and parses application data from Google Play Store.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -27,11 +26,14 @@ Scrapes and parses application data from Google Play Store.
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # https://github.com/danieliu/play-scraper/issues/64
 #%check
@@ -41,7 +43,7 @@ Scrapes and parses application data from Google Play Store.
 %doc CHANGELOG.md README.md
 %license LICENSE
 %{python3_sitelib}/play_scraper/
-%{python3_sitelib}/play_scraper-%{version}-py*.egg-info
+%{python3_sitelib}/play_scraper-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.6.0-19

@@ -23,7 +23,6 @@ URL:            https://github.com/osandov/drgn
 Source0:        %{pypi_source}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 %if %{with docs}
 BuildRequires:  sed
 BuildRequires:  python3dist(sphinx)
@@ -77,9 +76,12 @@ if [ ! -f drgn/internal/version.py ]; then
   echo '__version__ = "%{version}"' > drgn/internal/version.py
 fi
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 # verbose build
-V=1 %py3_build
+V=1 %pyproject_wheel
 
 %if %{with docs}
 # generate html docs
@@ -89,7 +91,7 @@ rm -rf html/.{doctrees,buildinfo}
 %endif
 
 %install
-%py3_install
+%pyproject_install
 mkdir -p %{buildroot}%{_datadir}/drgn
 cp -PR contrib tools %{buildroot}%{_datadir}/drgn
 
@@ -107,7 +109,7 @@ cp -PR contrib tools %{buildroot}%{_datadir}/drgn
 %{python3_sitearch}/_%{pypi_name}.pyi
 %{python3_sitearch}/_%{pypi_name}.cpython*.so
 %{python3_sitearch}/%{pypi_name}
-%{python3_sitearch}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/%{pypi_name}-%{version}.dist-info
 
 %if %{with docs}
 %files -n %{pypi_name}-doc

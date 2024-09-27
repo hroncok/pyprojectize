@@ -24,7 +24,6 @@ BuildArch:  noarch
 BuildRequires: make
 BuildRequires: systemd-rpm-macros
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: selinux-policy
 BuildRequires: selinux-policy-devel
 
@@ -43,15 +42,18 @@ An EC2 agent that creates a setup for instance hibernation
 # https://github.com/aws/amazon-ec2-hibinit-agent/issues/24
 sed -i "20i packages=[]," setup.py
  
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 # Makefile generates pp.bz2 from .tt file. 
 # Generating tt file https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide/security-enhanced_linux-the-sepolicy-suite-sepolicy_generate
 make -C %{_builddir}/%{project}-%{version}/packaging/rhel/ec2hibernatepolicy
 
 %install
-%py3_install
+%pyproject_install
 
 mkdir -p %{buildroot}%{python3_sitelib}
 mkdir -p "%{buildroot}%{_unitdir}"
@@ -90,7 +92,7 @@ install -m 0644 %{_builddir}/%{project}-%{version}/packaging/rhel/ec2hibernatepo
 %{_bindir}/hibinit-agent
 %config(noreplace) %{_sysconfdir}/acpi/events/sleepconf
 %config(noreplace) %{_sysconfdir}/acpi/actions/sleep.sh
-%{python3_sitelib}/ec2_hibinit_agent-*.egg-info/
+%{python3_sitelib}/ec2_hibinit_agent.dist-info/
 %dir %{_sharedstatedir}/hibinit-agent
 %ghost %attr(0600,root,root) %{_sharedstatedir}/hibinit-agent/hibernation-enabled
 

@@ -25,7 +25,6 @@ It supports synchronous and asynchronous transports.}
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Recommends:     python%{python3_version}dist(requests)
 Suggests:       python%{python3_version}dist(twisted)
 
@@ -39,16 +38,19 @@ rm -vrf *.egg-info
 # Tests are not distributed on PyPI
 sed -i -e '/setup_requires/,+3d' setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/ns1_python-*.egg-info/
+%{python3_sitelib}/ns1_python.dist-info/
 %{python3_sitelib}/ns1/
 
 %changelog

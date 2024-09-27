@@ -12,7 +12,6 @@ Source0:        https://files.pythonhosted.org/packages/source/h/%{srcname}/%{sr
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 # python3 test buildrequires
 BuildRequires: python3-pytest
@@ -35,11 +34,14 @@ When files are changed the process is restarted.
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} -m pytest

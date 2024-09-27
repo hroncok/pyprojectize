@@ -21,7 +21,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 # https://github.com/matthiask/django-js-asset/pull/5
 Requires:       python%{python3_version}dist(django)
 
@@ -33,16 +32,19 @@ Python 3 version.
 %autosetup -n %{srcname}-%{version} -p1
 rm -vr *.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/django_js_asset-*.egg-info/
+%{python3_sitelib}/django_js_asset.dist-info/
 %{python3_sitelib}/js_asset/
 
 %changelog

@@ -20,7 +20,6 @@ Summary:	%{summary}
 BuildRequires:  gcc
 BuildRequires:	python3-devel
 BuildRequires:	python3-pytest
-BuildRequires:	python3-setuptools
 BuildRequires:	python3-sqlalchemy
 BuildRequires:	python3-redis
 BuildRequires:	python3-zmq
@@ -38,11 +37,14 @@ Logbook can do that.
 %prep
 %autosetup -n logbook-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -k "not test_redis_handler"
@@ -50,7 +52,7 @@ Logbook can do that.
 %files -n python3-logbook
 %doc CHANGES README.md
 %license LICENSE
-%{python3_sitearch}/Logbook-*.egg-info/
+%{python3_sitearch}/Logbook.dist-info/
 %{python3_sitearch}/logbook/
 
 %changelog

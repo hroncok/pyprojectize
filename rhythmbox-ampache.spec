@@ -14,7 +14,6 @@ URL:            https://github.com/lotan/rhythmbox-ampache
 Source0:        https://github.com/lotan/rhythmbox-ampache/archive/%{commit}/%{name}-%{commit}.tar.gz
 ExcludeArch:    s390 s390x
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Requires:       rhythmbox%{?_isa}
 
 %description
@@ -29,11 +28,14 @@ from an Ampache media server.
 # Upstream issue: https://github.com/lotan/rhythmbox-ampache/issues/27
 sed -i "33i packages=[]," setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install -- %py_install_args
+%pyproject_install
 
 %files
 %doc README
@@ -41,7 +43,7 @@ sed -i "33i packages=[]," setup.py
 %{_libdir}/rhythmbox/plugins/ampache
 %{_datadir}/glib-2.0/schemas/org.gnome.rhythmbox.plugins.ampache.gschema.xml
 %{_datadir}/rhythmbox/plugins/ampache
-%{python3_sitelib}/rhythmbox_ampache-*-py*.egg-info
+%{python3_sitelib}/rhythmbox_ampache-*.dist-info
 
 %changelog
 * Fri Jul 26 2024 Miroslav Suchý <msuchy@redhat.com> - 0-41.20200822gited4b082

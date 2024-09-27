@@ -11,7 +11,6 @@ Source0:        https://github.com/latchset/%{srcname}/releases/download/v%{vers
 
 BuildArch:      noarch
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-cryptography >= 2.3
 BuildRequires:  python%{python3_pkgversion}-pytest
 %if %{undefined rhel}
@@ -43,8 +42,12 @@ sed -i -e '/^from deprecated/d' -e '/@deprecated/d' %{srcname}/*.py
 %endif
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %check
@@ -52,7 +55,7 @@ sed -i -e '/^from deprecated/d' -e '/@deprecated/d' %{srcname}/*.py
 
 
 %install
-%py3_install
+%pyproject_install
 
 rm -rf %{buildroot}%{_docdir}/%{srcname}
 rm -rf %{buildroot}%{python3_sitelib}/%{srcname}/tests{,-cookbook}.py*
@@ -63,7 +66,7 @@ rm -rf %{buildroot}%{python3_sitelib}/%{srcname}/__pycache__/tests{,-cookbook}.*
 %doc README.md
 %license LICENSE
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 
 %changelog

@@ -23,7 +23,6 @@ Summary:        %{summary}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-mock
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-tomli
 BuildRequires:  python3-mock
 BuildRequires:  python3-pytest
@@ -48,11 +47,14 @@ Command-line tool to check MANIFEST.in files.
 rm -rf %{pypi_name}.egg-info
 sed -i -e '/^#!\//, 1d' check_manifest.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v tests.py -k "not vcs and not git and not sdist"
@@ -62,7 +64,7 @@ sed -i -e '/^#!\//, 1d' check_manifest.py
 %doc README.rst CHANGES.rst
 %{python3_sitelib}/__pycache__/*
 %{python3_sitelib}/check_manifest.py
-%{python3_sitelib}/check_manifest-%{version}-py*.egg-info
+%{python3_sitelib}/check_manifest-%{version}.dist-info
 
 %files -n %{pypi_name}
 %{_bindir}/check-manifest

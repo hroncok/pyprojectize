@@ -27,7 +27,6 @@ BuildRequires:  git
 Summary:  %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(pytest)
 %{?python_provide:%python_provide python3-%{srcname}}
 
@@ -43,11 +42,14 @@ BuildRequires:  python3dist(pytest)
 %{_bindir}/git add .
 %{_bindir}/git commit -m'fake commit'
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v setuptools_git/tests.py
@@ -56,7 +58,7 @@ BuildRequires:  python3dist(pytest)
 %doc PKG-INFO README.rst TODO.txt
 %license AUTHORS.txt LICENSE.txt
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.2-15

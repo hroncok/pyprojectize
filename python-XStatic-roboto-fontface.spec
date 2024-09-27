@@ -48,7 +48,6 @@ Summary:        roboto-fontface (XStatic packaging standard)
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:    python3-XStatic
 Requires:    roboto-fontface-common = %{version}-%{release}
@@ -67,11 +66,14 @@ has any extra requirements.
 
 sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/roboto_fontface'|" xstatic/pkg/roboto_fontface/__init__.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %{__python3} setup.py build
 
 %install
-%py3_install
+%pyproject_install
 
 # Move fonts to the right directory
 mkdir -p %{buildroot}/%{_datadir}/fonts/roboto_fontface
@@ -103,7 +105,7 @@ popd
 %files -n python3-%{pypi_name}
 %doc README.txt
 %{python3_sitelib}/xstatic/pkg/roboto_fontface
-%{python3_sitelib}/XStatic_roboto_fontface-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/XStatic_roboto_fontface-%{version}.dist-info
 %{python3_sitelib}/XStatic_roboto_fontface-%{version}-py%{python3_version}-nspkg.pth
 
 %changelog

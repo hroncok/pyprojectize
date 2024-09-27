@@ -111,7 +111,6 @@ BuildRequires: python3-docutils
 BuildRequires: python3-munch
 BuildRequires: python3-filelock
 BuildRequires: python3-pytest
-BuildRequires: python3-setuptools
 BuildRequires: python3-requests
 BuildRequires: python3-requests-toolbelt
 BuildRequires: python3-six
@@ -171,7 +170,7 @@ developers only.
 
 %build
 %if %{with python3}
-version=%version %py3_build
+version=%version %pyproject_wheel
 %endif
 
 %if %{with python2}
@@ -186,7 +185,7 @@ make -C docs %{?_smp_mflags} html %{?sphinxbuild}
 
 %install
 %if %{with python3}
-version=%version %py3_install
+version=%version %pyproject_install
 %endif
 
 %if %{with python2}

@@ -21,7 +21,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3dist(pyparsing)
 BuildRequires:  python3-pytest
 
@@ -39,18 +38,21 @@ Requires:       python3-pytest
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 py.test-%{python3_version} -v
 
 %files -n python3-%{srcname}
 %license LICENSE
-%{python3_sitelib}/rustcfg-*.egg-info/
+%{python3_sitelib}/rustcfg.dist-info/
 %{python3_sitelib}/rustcfg/
 %exclude %{python3_sitelib}/rustcfg/test
 

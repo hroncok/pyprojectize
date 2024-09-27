@@ -125,7 +125,6 @@ developing applications that use %{name}.
 %package -n python3-%{name}
 Summary:        Python bindings for %{name}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
 %if %{with pytests}
 # tests/requirements-tests.txt
@@ -177,6 +176,10 @@ ln -s '%{_includedir}/lexertl' '3rdparty/'
 find . -type f -name .gitignore -print -delete
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 export SETUPTOOLS_SCM_PRETEND_VERSION='%{version}'
 %cmake \
@@ -196,14 +199,14 @@ export SETUPTOOLS_SCM_PRETEND_VERSION='%{version}'
 %cmake_build
 
 # Build pure python bits
-%py3_build
+%pyproject_wheel
 
 
 %install
 export SETUPTOOLS_SCM_PRETEND_VERSION='%{version}'
 %cmake_install
 # Install pure python bits
-%py3_install
+%pyproject_install
 
 # Move module to sitearch so that the binding can be correctly imported.
 if [ '%{python3_sitelib}' != '%{python3_sitearch}' ]
@@ -279,7 +282,7 @@ k="${k} and not test_dendritic_spine_round_trip_empty_postsynaptic_density"
 %files -n python3-%{name}
 %license LICENSE.txt
 %{python3_sitearch}/%{name}
-%{python3_sitearch}/%{name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/%{name}-%{version}.dist-info
 
 
 %files doc

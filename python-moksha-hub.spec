@@ -55,7 +55,6 @@ BuildRequires:  python2-websocket-client
 
 %if 0%{?with_python3}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-nose
 BuildRequires:  python3-mock
 
@@ -147,13 +146,16 @@ Hub components for Moksha.
 # *Experimental* support for python-zmq-13.0.0 in rawhide.
 %{__sed} -i 's/pyzmq<=2.2.0.1/pyzmq/' setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if 0%{?with_python2}
 %py2_build
 %endif
 
 %if 0%{?with_python3}
-%py3_build
+%pyproject_wheel
 %endif
 
 
@@ -165,7 +167,7 @@ ln -s ./moksha-hub-%{python2_version} %{buildroot}%{_bindir}/moksha-hub-2
 %endif
 
 %if 0%{?with_python3}
-%py3_install
+%pyproject_install
 ln -s ./moksha-hub %{buildroot}%{_bindir}/moksha-hub-3
 ln -s ./moksha-hub %{buildroot}%{_bindir}/moksha-hub-%{python3_version}
 %endif

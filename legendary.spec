@@ -9,7 +9,6 @@ URL:            https://github.com/derrod/legendary
 Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires:  python3-devel >= 3.9
-BuildRequires:  python3-setuptools
 BuildRequires:  python3dist(requests)
 
 Requires:       python3-requests
@@ -34,19 +33,23 @@ for lib in %{name}/{*.py,downloader/*.py,lfs/*.py,models/*.py}; do
 done
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files
 %license LICENSE
 %doc README.md
 %{_bindir}/%{name}
-%{python3_sitelib}/%{name}*.egg-info/
+%{python3_sitelib}/%{name}*.dist-info/
 %{python3_sitelib}/%{name}/
 
 

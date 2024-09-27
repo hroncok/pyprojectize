@@ -42,7 +42,6 @@ This package contains the JavaScript files.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       python3-XStatic
 Requires:       xstatic-json2yaml-common
@@ -69,12 +68,16 @@ rm -rf %{pypi_name}.egg-info
 sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/json2yaml'|" xstatic/pkg/json2yaml/__init__.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 mkdir -p %{buildroot}/%{_jsdir}/json2yaml
 mv %{buildroot}/%{python3_sitelib}/xstatic/pkg/json2yaml/data/json2yaml.js %{buildroot}/%{_jsdir}/json2yaml
@@ -87,7 +90,7 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/json2yaml/data/
 %files -n python3-%{pypi_name}
 %doc README.txt
 %{python3_sitelib}/xstatic/pkg/json2yaml
-%{python3_sitelib}/XStatic_Json2yaml-%{version}-py3.*.egg-info
+%{python3_sitelib}/XStatic_Json2yaml-%{version}-py3.*.dist-info
 %{python3_sitelib}/XStatic_Json2yaml-%{version}-py3.*-nspkg.pth
 
 

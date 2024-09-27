@@ -22,7 +22,6 @@ Summary:        Declarative HTTP testing library
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 BuildRequires:       python3-devel
-BuildRequires:       python3-setuptools
 BuildRequires:       python3-six
 BuildRequires:       python3-pbr
 BuildRequires:       python3-httplib2
@@ -65,11 +64,14 @@ Documentation for the gabbi module
 %prep
 %setup -q -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # generate html docs
 sphinx-build docs/source html
@@ -91,7 +93,7 @@ rm -rf html/.{doctrees,buildinfo}
 %{_bindir}/%{pypi}
 %{_mandir}/man1/gabbi.1*
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %exclude %{python3_sitelib}/gabbi/tests/gabbits_intercept/horse
 
 %files -n python-%{pypi_name}-doc

@@ -15,7 +15,6 @@ Patch1:         python-smbpasswd-1.0.1-py3.patch
 Patch2:         python-smbpasswd-1.0.2-py3.10.patch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  gcc
 
 %global _description\
@@ -37,11 +36,14 @@ This is a ported release for python 3.
 %prep
 %autosetup -n py-smbpasswd-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # there are no tests, let's do some sanity check ourselves

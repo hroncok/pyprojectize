@@ -12,7 +12,6 @@ Source0: https://pypi.python.org/packages/source/h/husl/husl-%{version}.tar.gz
 Source1: https://raw.githubusercontent.com/husl-colors/husl-python/master/LICENSE.txt
 BuildArch: noarch
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 %global _description\
 HUSL is a human-friendly alternative to HSL (Hue, Saturation and Lightness)\
@@ -23,7 +22,6 @@ color space. This package provides Python2 support
 %package -n python3-%{upname}
 Summary: A Python implementation of HUSL
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 %description -n python3-%{upname}
 HUSL is a human-friendly alternative to HSL (Hue, Saturation and Lightness)
@@ -35,12 +33,15 @@ color space. This package provides Python3 support
 
 find . -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python3}|'
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 cp -p %{SOURCE1} .
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{upname}
 %doc README.md

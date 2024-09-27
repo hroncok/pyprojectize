@@ -29,7 +29,6 @@ Summary: Astronomical source extraction and photometry in Python
 %{?python_provide:%python_provide python3-%{srcname}}
 
 BuildRequires: %{py3_dist Cython}
-BuildRequires: %{py3_dist setuptools}
 BuildRequires: %{py3_dist numpy}
 
 %description -n python3-%{srcname}
@@ -43,16 +42,19 @@ functions and classes. These operate directly on in-memory numpy arrays
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %doc AUTHORS.md README.md CHANGES.md
 %license licenses/MIT_LICENSE.txt licenses/LGPL_LICENSE.txt licenses/BSD_LICENSE.txt
-%{python3_sitearch}/sep-*.egg-info
+%{python3_sitearch}/sep.dist-info
 %{python3_sitearch}/sep*.so
 
 %changelog

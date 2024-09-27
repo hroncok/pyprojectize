@@ -26,7 +26,6 @@ Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 %{?python_enable_dependency_generator}
 
@@ -44,12 +43,16 @@ transmitting them over-the-wire.
 rm -rf %{srcname}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -59,7 +62,7 @@ rm -rf %{srcname}.egg-info
 %files -n python3-%{srcname}
 %doc README.rst
 %{python3_sitelib}/%{srcname_}
-%{python3_sitelib}/%{Srcname_}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{Srcname_}-%{version}.dist-info
 
 
 %changelog

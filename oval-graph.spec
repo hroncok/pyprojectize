@@ -13,7 +13,7 @@ Source0:            https://files.pythonhosted.org/packages/source/o/%{name}/%{m
 
 BuildArch:          noarch
 
-BuildRequires:      python3-devel, python3-setuptools
+BuildRequires:      python3-devel
 Requires:           python3-lxml
 
 %description
@@ -28,17 +28,20 @@ Use `arf-to-json` to generate a rule result in json. Using the
 %prep
 %autosetup -n %{module}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/%{module}/
-%{python3_sitelib}/%{module}-*.egg-info/
+%{python3_sitelib}/%{module}.dist-info/
 %{_bindir}/arf-to-graph
 %{_bindir}/arf-to-json
 %{_bindir}/json-to-graph

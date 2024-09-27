@@ -49,7 +49,6 @@ Patch:      0001-openidc-also-set-introspection_endpoint.patch
 BuildArch:  noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-lasso
 BuildRequires:  python3-openid, python3-openid-cla, python3-openid-teams
 BuildRequires:  python3-m2crypto
@@ -284,12 +283,16 @@ Provides a theme for Ipsilon used for openSUSE Accounts.
 %endif
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 mkdir -p %{buildroot}%{_sbindir}
 mkdir -p %{buildroot}%{_libexecdir}/ipsilon
 mkdir -p %{buildroot}%{_defaultdocdir}
@@ -329,7 +332,7 @@ exit 0
 %dir %{_datadir}/ipsilon/templates/install
 %dir %{python3_sitelib}/ipsilon
 %{python3_sitelib}/ipsilon/__init__.py*
-%{python3_sitelib}/ipsilon-*.egg-info
+%{python3_sitelib}/ipsilon.dist-info
 %dir %{python3_sitelib}/ipsilon/__pycache__/
 %{python3_sitelib}/ipsilon/__pycache__/__init__.*
 %dir %{python3_sitelib}/ipsilon/tools

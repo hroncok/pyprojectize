@@ -34,11 +34,14 @@ Python. It makes use of numpy for fast numerical computation.
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 nosetests-%{python3_version} supersmoother

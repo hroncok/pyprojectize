@@ -21,7 +21,6 @@ Patch3:         python-abimap-0.3.2-use-natural-sort.patch
 BuildArch:      noarch
 BuildRequires: make
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 # Required for testing
 BuildRequires:  python%{python3_pkgversion}-pytest
 BuildRequires:  python%{python3_pkgversion}-pytest-runner
@@ -67,8 +66,11 @@ Documentation for python-%{module_name}
 # Remove bundled egg-info
 rm -rf %{module_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 %if 0%{?el7}
 # Generate html docs
 PYTHONPATH=${PWD}/src:${PWD}/tests \
@@ -90,7 +92,7 @@ rm -rf html/.{doctrees,buildinfo}
 %endif
 
 %install
-%py3_install
+%pyproject_install
 # Install man page
 mkdir -p %{buildroot}%{_mandir}/man1
 install ${PWD}/man/abimap.1 %{buildroot}%{_mandir}/man1/abimap.1
@@ -108,7 +110,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib}:$PWD/tests \
 %{_bindir}/abimap
 %dir %{python3_sitelib}/abimap
 %{python3_sitelib}/abimap/*
-%{python3_sitelib}/abimap-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/abimap-%{version}.dist-info
 %{_mandir}/man1/abimap.1*
 
 %files -n python-%{module_name}-doc

@@ -31,7 +31,6 @@ Source0:        https://github.com/erocarrera/%{srcname}/releases/download/v%{ve
 BuildArch:      noarch
 
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 
 # For the patch
 # BuildRequires: git-core
@@ -51,11 +50,14 @@ Summary:        %{summary}
 %autosetup -n %{srcname}-%{version}
 sed -i -e '/^#!\//, 1d' pefile.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %py3_check_import pefile peutils ordlookup

@@ -18,7 +18,6 @@ BuildRequires: /usr/bin/git
 BuildRequires: python3-devel
 BuildRequires: python3-libguestfs
 BuildRequires: python3-passlib
-BuildRequires: python3-setuptools
 BuildRequires: fdupes
 
 Requires: python3-libguestfs
@@ -35,11 +34,14 @@ libvirt containers.
 %prep
 %autosetup -S git
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 %fdupes %{buildroot}%{_prefix}
 
 # Replace '#!/usr/bin/env python3' with '#!/usr/bin/python3'
@@ -61,7 +63,7 @@ done
 %doc README.md ChangeLog AUTHORS
 %{_bindir}/virt-bootstrap
 %{python3_sitelib}/virtBootstrap
-%{python3_sitelib}/virt_bootstrap-*.egg-info
+%{python3_sitelib}/virt_bootstrap.dist-info
 %{_mandir}/man1/virt-bootstrap*
 
 %changelog

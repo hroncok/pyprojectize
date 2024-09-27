@@ -15,7 +15,6 @@ Source0:        %{pypi_source}
 
 BuildRequires:  gcc
 BuildRequires:  python3-devel
-BuildRequires:  %{py3_dist setuptools} >= 30.3
 BuildRequires:  %{py3_dist wheel}
 
 %global _description %{expand:
@@ -35,12 +34,16 @@ Provides: python3-pyqt6-sip-api(%{_sip_api_major})%{?_isa} = %{_sip_api}
 %autosetup -p1 -n %{pypi_name}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-%{pkg_name}

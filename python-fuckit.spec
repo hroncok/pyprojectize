@@ -11,7 +11,6 @@ Source0:        https://pypi.python.org/packages/source/f/fuckit/fuckit-4.8.1.zi
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %global _description\
 FuckIt.py uses state-of-the-art technology to make sure your Python code runs\
@@ -37,19 +36,23 @@ find -name '*.txt' | xargs chmod -x
 find -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python3}|'
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 # The license text is available in README.md
 %doc README.md
 %{python3_sitelib}/%{srcname}.py*
 %{python3_sitelib}/__pycache__/%{srcname}.*
-%{python3_sitelib}/%{srcname}-%{version}*.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}*.dist-info/
 
 
 %changelog

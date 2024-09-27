@@ -25,7 +25,6 @@ BuildRequires:  python3dist(pytest-cov)
 BuildRequires:  python3dist(pytest-mock)
 BuildRequires:  python3dist(pytest-runner)
 BuildRequires:  python3dist(requests)
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(websocket-client)
 BuildRequires:  python3dist(zeroconf)
 %{?python_provide:%python_provide python3-%{pypi_name}}
@@ -38,11 +37,14 @@ in Python.
 %autosetup -n devolo_home_control_api-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with network}
 %check
@@ -54,7 +56,7 @@ rm -rf %{pypi_name}.egg-info
 %license LICENSE
 %{python3_sitelib}/devolo_home_control_api
 %exclude %{python3_sitelib}/tests
-%{python3_sitelib}/devolo_home_control_api-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/devolo_home_control_api-%{version}.dist-info/
 
 %changelog
 * Mon Jul 29 2024 Miroslav Suchý <msuchy@redhat.com> - 0.16.0-16

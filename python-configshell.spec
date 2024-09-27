@@ -11,7 +11,7 @@ URL:            https://github.com/open-iscsi/configshell-fb
 Source:         %{url}/archive/v%{version}/%{oname}-%{version}.tar.gz
 BuildArch:      noarch
 
-BuildRequires:  python3-devel python3-setuptools
+BuildRequires:  python3-devel
 
 %global _description\
 A framework to implement simple but nice configuration-oriented\
@@ -31,11 +31,14 @@ Requires:       python3-pyparsing python3-urwid
 
 sed -r -i "s/'pyparsing.*'/'pyparsing'/" setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-configshell
 %{python3_sitelib}/configshell*

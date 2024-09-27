@@ -56,11 +56,11 @@ sed -i -e '/isort\|flake\|coverage\[toml\]/d' -e 's/\([a-z]\)[>=]\{2\}[0-9.]\+/\
 
 
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # skip tests that involve SHA1 since Fedora nowadays disables it, systemwide
@@ -70,7 +70,7 @@ PYTHONPATH=src %{__python3} -m pytest tests -v -k 'not (SHA1 or test_sign_pw or 
 %license LICENSE
 %doc README.rst examples
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-*-py*.egg-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 
 
 %changelog

@@ -12,7 +12,6 @@ Source0:        %{url}/archive/v%{version}/%{pypi_name}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-lxml
 
 %description
@@ -22,11 +21,14 @@ supports a basic CRUD (create, read, update, delete) for various items.
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -36,7 +38,7 @@ supports a basic CRUD (create, read, update, delete) for various items.
 %license LICENSE
 %{_bindir}/iocdump
 %{_bindir}/openioc*
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{python3_sitelib}/%{pypi_name}/
 
 %changelog

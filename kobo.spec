@@ -14,7 +14,6 @@ Source0:        %pypi_source
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 Kobo is a set of python modules designed for rapid tools development.
@@ -116,12 +115,16 @@ Python library for kobo-admin command.
 %py3_shebang_fix kobo/admin/kobo-admin kobo/admin/templates/*/*
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 %if ! 0%{?with_admin}
 rm -rf $RPM_BUILD_ROOT/%{python3_sitelib}/kobo/admin
@@ -154,7 +157,7 @@ rm -rf $RPM_BUILD_ROOT/%{python3_sitelib}/kobo/worker
 %{python3_sitelib}/kobo/*.py*
 %{python3_sitelib}/kobo/__pycache__
 %exclude %{python3_sitelib}/kobo/rpmlib.py*
-%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{name}-%{version}.dist-info
 %doc AUTHORS
 %license COPYING LICENSE
 

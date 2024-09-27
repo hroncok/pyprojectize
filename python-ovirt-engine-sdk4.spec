@@ -10,7 +10,6 @@ Source: https://github.com/oVirt/python-ovirt-engine-sdk4/archive/%{version}/%{n
 BuildRequires: gcc
 BuildRequires: libxml2-devel
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 %global _description\
 This package contains the Python SDK for version 4 of the oVirt Engine\
@@ -45,18 +44,21 @@ for gen_file in ${GENERATED_FILES} ; do
     < ${gen_file}.in > ${gen_file}
 done
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-ovirt-engine-sdk4
 %doc README.adoc
 %doc examples
 %license LICENSE.txt
 %{python3_sitearch}/ovirtsdk4
-%{python3_sitearch}/ovirt_engine_sdk_python-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/ovirt_engine_sdk_python-%{version}.dist-info
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 4.6.2-6

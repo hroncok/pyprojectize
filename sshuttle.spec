@@ -10,7 +10,6 @@ BuildArch:          noarch
 
 BuildRequires:      make
 BuildRequires:      python3-devel
-BuildRequires:      python3-setuptools
 BuildRequires:      python3-setuptools_scm
 BuildRequires:      python3-sphinx
 BuildRequires:      texinfo
@@ -35,8 +34,12 @@ Doesn't require admin. Works with Linux and MacOS. Supports DNS tunneling.
 %autosetup -p1 -n %{name}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 # Build docs
 pushd docs
@@ -46,7 +49,7 @@ popd
 
 
 %install
-%py3_install
+%pyproject_install
 
 # Install docs
 pushd docs
@@ -69,7 +72,7 @@ popd
 %{_mandir}/man1/%{name}.1.*
 %{_infodir}/%{name}.info.*
 %{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}*.egg-info
+%{python3_sitelib}/%{name}*.dist-info
 %{_bindir}/sshuttle
 
 

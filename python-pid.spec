@@ -61,7 +61,6 @@ BuildRequires:  python2-mock
 Summary:        %{summary}
 
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 %if %{with python3_tests}
 BuildRequires:  python%{python3_pkgversion}-pytest
 %endif
@@ -77,12 +76,15 @@ BuildRequires:  python%{python3_pkgversion}-pytest
 
 rm -rf %{srcname}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if %{with python2}
 %py2_build
 %endif
 %if %{with python3}
-%py3_build
+%pyproject_wheel
 %endif
 
 %install
@@ -90,7 +92,7 @@ rm -rf %{srcname}.egg-info
 %py2_install
 %endif
 %if %{with python3}
-%py3_install
+%pyproject_install
 %endif
 
 %check
@@ -106,7 +108,7 @@ PYTHONPATH=%{buildroot}%{python2_sitelib} nosetests-%{python2_version} --verbose
 %license LICENSE
 %doc AUTHORS CHANGELOG README.rst
 %{python2_sitelib}/%{srcname}
-%{python2_sitelib}/%{srcname}-%{version}-py%{python2_version}.egg-info
+%{python2_sitelib}/%{srcname}-%{version}-py%{python2_version}.dist-info
 %endif
 
 %if %{with python3}
@@ -114,7 +116,7 @@ PYTHONPATH=%{buildroot}%{python2_sitelib} nosetests-%{python2_version} --verbose
 %license LICENSE
 %doc AUTHORS CHANGELOG README.rst
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 %endif
 
 %changelog

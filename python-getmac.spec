@@ -10,7 +10,7 @@ URL:            https://github.com/GhostofGoes/getmac
 Source0:        %pypi_source
 
 BuildArch:      noarch
-BuildRequires:  python3-devel, python3-setuptools
+BuildRequires:  python3-devel
 
 %description
 Pure-python module to get the MAC address of remote hosts or network interfaces.
@@ -31,18 +31,21 @@ network (by IPv4/IPv6 address or host-name).
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 sed -i '1{/^#!\//d}' getmac/__main__.py
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 /usr/bin/getmac
 
 %changelog

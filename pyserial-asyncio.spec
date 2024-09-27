@@ -19,7 +19,6 @@ Summary:        %{summary}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(pyserial)
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(pytest)
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -39,13 +38,16 @@ Documentation for pyserial-asyncio.
 rm -rf %{pypi_name}.egg-info
 sed -i -e '/^#!\//, 1d' serial_asyncio/__init__.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 PYTHONPATH=${PWD} sphinx-build-3 documentation html
 rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v test
@@ -54,7 +56,7 @@ rm -rf html/.{doctrees,buildinfo}
 %license LICENSE.txt
 %doc README.rst
 %{python3_sitelib}/serial_asyncio/
-%{python3_sitelib}/pyserial_asyncio-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/pyserial_asyncio-%{version}.dist-info/
 
 %files -n python-%{pypi_name}-doc
 %doc html

@@ -45,7 +45,6 @@ BuildRequires: %{py3_dist lexicon} >= 2.0.1
 BuildRequires: %{py3_dist pyasn1} >= 0.1.7
 BuildRequires: %{py3_dist pynacl} >= 1.5
 BuildRequires: %{py3_dist pytest}
-BuildRequires: %{py3_dist setuptools}
 Recommends:    %{py3_dist pyasn1} >= 0.1.7
 
 %description -n python%{python3_pkgversion}-%{srcname}
@@ -69,11 +68,14 @@ This is the documentation and demos.
 chmod -c a-x demos/*
 sed -i -e '/^#!/,1d' demos/*
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 sphinx-build -b html sites/docs/ html/
 rm html/.buildinfo
@@ -85,7 +87,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version}
 %files -n python%{python3_pkgversion}-%{srcname}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 %{python3_sitelib}/%{srcname}/
 
 %files doc

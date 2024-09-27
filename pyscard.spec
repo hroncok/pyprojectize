@@ -25,7 +25,6 @@ Python wrapper module.
 %package -n python%{python3_pkgversion}-%{name}
 Summary:        A framework for building smart card aware applications in Python
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 Requires:       pcsc-lite
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{name}}
 
@@ -41,11 +40,14 @@ This is the python3 package.
 # license file is CRLF terminated -- prevent a rpmlint warning
 #sed -i 's/\r//' LICENSE
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 chmod 755 %{buildroot}%{python3_sitearch}/smartcard/scard/*.so
 
 
@@ -54,7 +56,7 @@ chmod 755 %{buildroot}%{python3_sitearch}/smartcard/scard/*.so
 %doc ACKS README.md
 %doc smartcard/doc/*
 %{python3_sitearch}/smartcard/
-%{python3_sitearch}/%{name}-%{version}-py*.egg-info
+%{python3_sitearch}/%{name}-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 2.0.5-9

@@ -23,7 +23,6 @@ BuildRequires:  python3-devel
 # Unit tests are present in the upstream repo, but not in the PyPi distribution
 # https://github.com/confluentinc/confluent-kafka-python/issues/508
 #BuildRequires:  python3dist(pytest)
-BuildRequires:  python3-setuptools
 
 Requires:       python3-fastavro
 Requires:       python3-requests
@@ -37,11 +36,14 @@ and the Confluent Platform.
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 # Remove license file installed in weird place
 rm -f  %{buildroot}/%{_prefix}/LICENSE.txt
 
@@ -55,7 +57,7 @@ rm -f  %{buildroot}/%{_prefix}/LICENSE.txt
 %license LICENSE.txt
 %doc README.md
 %{python3_sitearch}/confluent_kafka
-%{python3_sitearch}/confluent_kafka-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/confluent_kafka-%{version}.dist-info
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 1.6.1-9

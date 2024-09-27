@@ -23,7 +23,6 @@ Library to apply JSON Patches according to RFC 6902 - Python 2 build.
 Summary:        Applying JSON Patches in Python 3
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-jsonpointer
 Requires:       python3-jsonpointer
 
@@ -38,11 +37,15 @@ Library to apply JSON Patches according to RFC 6902 - Python 3 build.
 %patch -P 1 -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 # remove jsondiff binary conflicting with python-jsondiff
 # https://bugzilla.redhat.com/show_bug.cgi?id=2029805
 rm %{buildroot}%{_bindir}/jsondiff
@@ -60,7 +63,7 @@ ln -s ./jsonpatch-%{python3_version} %{buildroot}%{_bindir}/jsonpatch
 %{_bindir}/jsonpatch-3*
 %{python3_sitelib}/%{pypi_name}.py*
 %{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.33-6

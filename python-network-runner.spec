@@ -52,11 +52,14 @@ Role for Python Network Runner Library
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 LANG=C.utf-8 %{__python3} -m pytest --ignore=build
@@ -65,7 +68,7 @@ LANG=C.utf-8 %{__python3} -m pytest --ignore=build
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/network_runner
-%{python3_sitelib}/network_runner-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/network_runner-%{version}.dist-info
 
 %files -n ansible-role-%{ansible_role}
 %license LICENSE

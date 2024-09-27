@@ -40,7 +40,6 @@ This package contains documentation for %{name}.
 %package -n python3-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description -n python3-%{srcname} %{_description}
 Python3 version.
@@ -54,13 +53,17 @@ find ./ -type f -name '*.py' -exec dos2unix '{}' ';'
 dos2unix doc/*.rst
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 make -C doc html BUILDDIR=_doc_build SPHINXBUILD=sphinx-build-%{python3_version}
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -73,7 +76,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} tests/test_olefile.py
 %files -n python3-%{srcname}
 %doc README.md
 %license doc/License.rst
-%{python3_sitelib}/olefile-*.egg-info
+%{python3_sitelib}/olefile.dist-info
 %{python3_sitelib}/olefile/
 
 

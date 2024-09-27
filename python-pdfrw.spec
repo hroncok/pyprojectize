@@ -11,7 +11,6 @@ URL:     https://github.com/pmaupin/pdfrw
 Source0: %{pypi_source}
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildArch: noarch
 
 %description
@@ -32,11 +31,14 @@ of existing PDFs in new PDFs created with reportlab.
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %{!?_licensedir:%global license %%doc}

@@ -13,7 +13,6 @@ Source0:        https://github.com/csparpa/pyowm/archive/%{version}.tar.gz
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if 0%{?with_tests}
 BuildRequires:  python3-pytest
 %endif
@@ -37,11 +36,14 @@ applications via a simple object model and in a human-friendly fashion.
 %prep
 %setup -q -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Strip out #!/usr/bin/env python
 sed -i -e '1{\@^#!/usr/bin/env python@d}' %{buildroot}%{python3_sitelib}/%{pypi_name}/*.py

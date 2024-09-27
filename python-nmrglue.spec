@@ -13,7 +13,6 @@ Source0:	https://github.com/jjhelmus/%{pkgname}/archive/v%{version}.tar.gz
 
 BuildArch:	noarch
 BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
 # these are required for tests
 BuildRequires:	python3-numpy
 BuildRequires:	python3-scipy
@@ -43,11 +42,15 @@ sed -i '/package_data/d' setup.py
 sed -i '/fileio\/tests\/data\//d' setup.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 

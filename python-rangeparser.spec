@@ -19,7 +19,6 @@ RangeParser is a Python package to parse ranges easily.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(pytest)
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -29,11 +28,14 @@ RangeParser is a Python package to parse ranges easily.
 %prep
 %autosetup -n %{pkg_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v rangeparser/test
@@ -42,7 +44,7 @@ RangeParser is a Python package to parse ranges easily.
 %license LICENSE.txt
 %doc README.txt
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pkg_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pkg_name}-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.1.3-16

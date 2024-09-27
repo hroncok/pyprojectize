@@ -44,12 +44,15 @@ mv %{pkgname}/tests .
 # use the standard library unittest module
 sed -i 's/import unittest2 as unittest/import unittest/' tests/*.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %if %{with tests}

@@ -31,7 +31,6 @@ modules, it should work on any platform with a Python implementation.
 Summary:        Python 3 module that offers a simple interface to query NTP servers
 
 BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
 
 %{?python_provide:%python_provide python3-ntplib}
 
@@ -48,13 +47,16 @@ Python 3 version.
 %prep
 %setup -q -n ntplib-%{?version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 
-%py3_build
+%pyproject_wheel
 
 %install
 
-%py3_install
+%pyproject_install
 
 %if 0%{?with_tests}
 

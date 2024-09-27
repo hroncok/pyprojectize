@@ -29,7 +29,6 @@ Patch5: patsy-doc-conf.patch
 BuildArch: noarch
 BuildRequires: make
 BuildRequires: python3-devel
-BuildRequires: %{py3_dist setuptools}
 
 %description %_description
 
@@ -70,8 +69,11 @@ This package contains the full API documentation for python3-%{srcname}.
 %prep
 %autosetup -n %{srcname}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 pushd doc
   export PYTHONPATH=`readlink -f ../build/lib`
@@ -79,7 +81,7 @@ pushd doc
 popd
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %if %{with check}

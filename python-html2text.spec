@@ -19,7 +19,6 @@ BuildArch:      noarch
 
 BuildRequires:  help2man
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python3-pytest
 
 %description
@@ -41,14 +40,18 @@ Obsoletes:      python2-%{upname} <= %{version}-%{release}
 %{__rm} -fr *.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
 %{__mkdir} -p %{buildroot}%{_mandir}/man1
 
-%py3_install
+%pyproject_install
 %{__mv} -f %{buildroot}%{_bindir}/%{upname} %{buildroot}%{_bindir}/python3-%{upname}
 export PYTHONPATH="%{buildroot}%{python3_sitelib}"
 help2man --no-discard-stderr -s 1 -N -o %{buildroot}%{_mandir}/man1/python3-%{upname}.1 %{buildroot}%{_bindir}/python3-%{upname}
@@ -76,7 +79,7 @@ popd
 %{_mandir}/man1/%{upname}.1*
 %{_mandir}/man1/%{name}.1*
 %{python3_sitelib}/%{upname}
-%{python3_sitelib}/%{upname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{upname}-%{version}.dist-info
 
 
 %changelog

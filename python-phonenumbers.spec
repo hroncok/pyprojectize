@@ -23,7 +23,6 @@ BuildArch:      noarch
 %package -n python3-%{pypi_name}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -37,14 +36,18 @@ BuildRequires:  python3-setuptools
 sed -i -e '/^#!\//, 1d' python/%{pypi_name}/util.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 cd python
-%py3_build
+%pyproject_wheel
 
 
 %install
 cd python
-%py3_install
+%pyproject_install
 
 
 %check
@@ -56,7 +59,7 @@ cd python
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-*.egg-info
+%{python3_sitelib}/%{pypi_name}.dist-info
 
 
 %changelog

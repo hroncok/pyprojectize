@@ -18,7 +18,6 @@ BuildRequires:  doxygen
 BuildRequires:  gcc-c++
 BuildRequires:  make
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 BuildRequires:  mingw32-filesystem >= 95
 BuildRequires:  mingw32-gcc-c++
@@ -116,6 +115,10 @@ MinGW Windows %{name} python 3 bindings.
 %autosetup -p1 -n geographiclib-%{nativever} -a1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 # Native build
 %cmake \
@@ -130,7 +133,7 @@ MinGW Windows %{name} python 3 bindings.
 
 pushd geographiclib-%{pythonver}
 # Native build
-%py3_build
+%pyproject_wheel
 # MinGW build
 %mingw32_py3_build_wheel
 %mingw64_py3_build_wheel
@@ -145,7 +148,7 @@ popd
 
 pushd geographiclib-%{pythonver}
 # Native build
-%py3_install
+%pyproject_install
 # MinGW build
 %mingw32_py3_install_wheel
 %mingw64_py3_install_wheel
@@ -194,7 +197,7 @@ popd
 %files -n python3-%{name}
 %license LICENSE.txt
 %{python3_sitelib}/geographiclib/
-%{python3_sitelib}/geographiclib-%{pythonver}-py%{python3_version}.egg-info
+%{python3_sitelib}/geographiclib-%{pythonver}.dist-info
 
 %files -n mingw32-%{name}
 %license LICENSE.txt

@@ -28,7 +28,6 @@ BuildArch:      noarch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(psutil)
-BuildRequires:  python3dist(setuptools)
 %if %{with check}
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(testslide)
@@ -73,12 +72,16 @@ mv legacy_setup.py setup.py
 %endif
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -99,7 +102,7 @@ mv legacy_setup.py setup.py
 %doc HISTORY.md MANUAL_RPM_CLEANUP.md
 %{_bindir}/dcrpm
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 
 %changelog

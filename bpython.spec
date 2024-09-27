@@ -10,7 +10,6 @@ BuildRequires: desktop-file-utils
 BuildRequires: make
 BuildRequires: python3-blessed
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-sphinx
 %description
 bpython is a fancy interface to the Python interpreter for Unix-like
@@ -77,14 +76,17 @@ operating systems. It has the following features:
 %prep
 %autosetup -n %{name}-%{version}-release
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 pushd doc/sphinx/
 make man
 popd
 
 %install
-%{py3_install}
+%{pyproject_install}
 # backwards compatibility links python3
 ln -s bpython %{buildroot}/%{_bindir}/bpython3
 ln -s bpython-curses %{buildroot}/%{_bindir}/bpython3-curses

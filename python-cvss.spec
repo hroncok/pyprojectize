@@ -53,7 +53,6 @@ Python 2 version.
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description -n python3-%{srcname} %{_description}
 
@@ -64,12 +63,15 @@ Python 3 version.
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if %{with python2}
 %py2_build
 %endif
 %if %{with python3}
-%py3_build
+%pyproject_wheel
 %endif
 
 %install
@@ -77,7 +79,7 @@ Python 3 version.
 %py2_install
 %endif
 %if %{with python3}
-%py3_install
+%pyproject_install
 %endif
 
 # Tests are not ran (have to patch code and use nose/pytest)
@@ -87,7 +89,7 @@ Python 3 version.
 %files -n python2-%{srcname}
 %doc README.rst
 %license LICENSE
-%{python2_sitelib}/%{srcname}-*.egg-info/
+%{python2_sitelib}/%{srcname}.dist-info/
 %{python2_sitelib}/%{srcname}/
 %endif
 
@@ -95,7 +97,7 @@ Python 3 version.
 %files -n python3-%{srcname}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 %{python3_sitelib}/%{srcname}/
 %endif
 

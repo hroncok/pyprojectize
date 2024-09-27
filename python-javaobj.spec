@@ -21,7 +21,6 @@ is a standard data interchange format in Java world.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 BuildRequires:  maven-local
 BuildRequires:  xorg-x11-server-Xvfb
@@ -37,11 +36,14 @@ is a standard data interchange format in Java world.
 # Remove shebang
 sed -i -e '/^#!\//, 1d' {javaobj/*.py,javaobj/v1/*.py,javaobj/v2/*.py}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v
@@ -50,7 +52,7 @@ sed -i -e '/^#!\//, 1d' {javaobj/*.py,javaobj/v1/*.py,javaobj/v2/*.py}
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}*.egg-info/
+%{python3_sitelib}/%{pypi_name}*.dist-info/
 
 %changelog
 * Wed Sep 18 2024 Fabian Affolter <mail@fabian-affolter.ch> - 0.4.4-1

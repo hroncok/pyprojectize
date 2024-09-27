@@ -14,7 +14,6 @@ URL:        https://pagure.io/compose-utils
 Source0:    https://pagure.io/releases/compose-utils/%{name}-%{version}.tar.bz2
 
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 
 %if %{with tests}
 BuildRequires:  python%{python3_pkgversion}-productmd >= 1.33
@@ -49,12 +48,16 @@ Python 3 libraries supporting tools for working with composes
 %autosetup -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %if %{with tests}

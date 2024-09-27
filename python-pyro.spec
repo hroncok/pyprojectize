@@ -21,7 +21,6 @@ Object Technology and has much more to offer than Pyro or RMI.
 Summary:        Python Remote Objects
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -34,8 +33,11 @@ Object Technology and has much more to offer than Pyro or RMI.
 %prep
 %setup -q -n Pyro4-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
 find examples -type f -exec sed -i 's/\r//' {} \;
@@ -45,7 +47,7 @@ chmod -x examples/echoserver/{Readme.txt,client.py}
 chmod -x examples/gui_eventloop/{gui_threads.py,gui_nothreads.py}
 chmod -x examples/maxsize/Readme.txt
 
-%py3_install
+%pyproject_install
 find examples -type f -exec sed -i 's/\r//' {} \;
 find docs -type f -exec sed -i 's/\r//' {} \;
 sed -i 's/\r//' LICENSE
@@ -56,7 +58,7 @@ chmod -x examples/maxsize/Readme.txt
 %files -n python3-%{pypi_name}
 %doc docs/* examples LICENSE
 %{python3_sitelib}/Pyro4
-%{python3_sitelib}/Pyro4-*.egg-info
+%{python3_sitelib}/Pyro4.dist-info
 %{_bindir}/pyro4*
 
 %changelog

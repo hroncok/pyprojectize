@@ -23,7 +23,6 @@ for filtering those results.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -39,11 +38,14 @@ for filtering those results.
 %autosetup -n %{pypi_name}-%{version}
 find -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python3}|'
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-dpath
 %doc LICENSE.txt README.rst

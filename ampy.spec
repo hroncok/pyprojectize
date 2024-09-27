@@ -12,7 +12,6 @@ Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %?python_enable_dependency_generator
 
@@ -42,12 +41,16 @@ interaction like a shell or terminal to send input to a board.
 sed -i '1d' $(grep -lr '#!/usr/')
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -59,7 +62,7 @@ sed -i '1d' $(grep -lr '#!/usr/')
 %license LICENSE
 %{_bindir}/%{name}
 %{python3_sitelib}/%{name}
-%{python3_sitelib}/adafruit_ampy-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/adafruit_ampy-%{version}.dist-info
 
 
 %changelog

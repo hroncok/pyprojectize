@@ -18,7 +18,6 @@ Source: https://files.pythonhosted.org/packages/source/m/%{srcname}/%{srcname}-%
 
 BuildArch: noarch
 
-BuildRequires: python3-setuptools
 BuildRequires: python3-devel python3-pytest
 
 %global _description \
@@ -39,13 +38,16 @@ Summary: %{summary}
 %prep
 %autosetup -n %{srcname}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 
-%py3_build
+%pyproject_wheel
 
 %install
 
-%py3_install
+%pyproject_install
 
 # note: sample file is not present anymore in pypi version
 # remove executable permissions from sample.py to

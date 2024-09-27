@@ -15,7 +15,6 @@ BuildRequires:  make
 BuildRequires:  gcc
 BuildRequires:  python3-cffi
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  c-ares-devel
 # for docs
 BuildRequires:  python3-sphinx
@@ -59,9 +58,13 @@ This package contains documentation in reST and HTML formats.
 %autosetup -p1 -n %{srcname}-%{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 export PYCARES_USE_SYSTEM_LIB=1
-%py3_build
+%pyproject_wheel
 
 # Build sphinx documentation
 pushd docs/
@@ -70,7 +73,7 @@ popd # docs
 
 
 %install
-%py3_install
+%pyproject_install
 
 # Install html docs
 mkdir -p %{buildroot}%{_pkgdocdir}/
@@ -96,7 +99,7 @@ chmod 755 %{buildroot}%{python3_sitearch}/%{srcname}/_cares.cpython-*.so
 %doc README.rst ChangeLog
 # For arch-specific packages: sitearch
 %{python3_sitearch}/%{srcname}/
-%{python3_sitearch}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitearch}/%{srcname}-%{version}.dist-info/
 
 
 %files -n python-%{srcname}-doc

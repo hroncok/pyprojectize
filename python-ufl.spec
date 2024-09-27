@@ -20,7 +20,6 @@ expressions for weak forms in a notation close to mathematical notation.
 Summary:        %{summery}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
@@ -51,11 +50,14 @@ chmod +x test/test_*.py
 # Fix typo
 sed -i -e 's|#!/use/bin/env|#!/usr/bin/env|g' test/test_measures.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 mkdir %{buildroot}%{python3_sitelib}/%{srcname}/demo/
 install -Dp -m 0644 demo/* %{buildroot}%{python3_sitelib}/%{srcname}/demo/
 mkdir %{buildroot}%{python3_sitelib}/%{srcname}/test/
@@ -66,7 +68,7 @@ chmod +x %{buildroot}%{python3_sitelib}/%{srcname}/demo/clean.sh
 %doc AUTHORS ChangeLog.rst README.rst
 %license COPYING COPYING.LESSER
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/*ufl*.egg-info
+%{python3_sitelib}/*ufl*.dist-info
 %exclude %{python3_sitelib}/%{srcname}/demo/
 %exclude %{python3_sitelib}/%{srcname}/test/
 

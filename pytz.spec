@@ -32,7 +32,6 @@ Almost all (over 540) of the Olson timezones are supported.
 %package -n python3-%{name}
 Summary:        %summary
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if %{with tests}
 BuildRequires:  python3-pytest
 %endif
@@ -45,12 +44,16 @@ Requires:       tzdata
 %autosetup -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 rm -r %{buildroot}%{python3_sitelib}/pytz/zoneinfo
 
 
@@ -64,7 +67,7 @@ rm -r %{buildroot}%{python3_sitelib}/pytz/zoneinfo
 %license LICENSE.txt
 %doc README.rst
 %{python3_sitelib}/pytz/
-%{python3_sitelib}/*.egg-info/
+%{python3_sitelib}/*.dist-info/
 
 
 %changelog

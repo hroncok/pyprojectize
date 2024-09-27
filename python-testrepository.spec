@@ -23,7 +23,6 @@ TAP test suite and any pyunit compatible test suite.
 %package -n python3-%{pypi_name}
 Summary:        A repository of test results (for Python 3)
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-fixtures
 BuildRequires:  python3-subunit
 BuildRequires:  python3-testtools
@@ -52,12 +51,15 @@ This package is for Python 3.
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 mv %{buildroot}%{_bindir}/testr{,-%{python3_version}}
 ln -s ./testr-%{python3_version} %{buildroot}%{_bindir}/testr
 
@@ -67,7 +69,7 @@ ln -s ./testr-%{python3_version} %{buildroot}%{_bindir}/testr
 %{_bindir}/testr
 %{_bindir}/testr-%{python3_version}
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 0.0.20-37

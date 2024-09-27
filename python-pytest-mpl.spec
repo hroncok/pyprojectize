@@ -31,7 +31,6 @@ BuildRequires:  python3dist(matplotlib)
 BuildRequires:  python3dist(nose)
 BuildRequires:  python3dist(pillow)
 BuildRequires:  python3dist(pytest)
-BuildRequires:  python3dist(setuptools)
 
 %description -n python3-%{srcname} %{_description}
 
@@ -43,12 +42,16 @@ BuildRequires:  python3dist(setuptools)
 rm -rf %{srcname}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -61,7 +64,7 @@ MPLBACKEND=Agg %{pytest} tests -k 'not test_succeeds_remote and not test_succeed
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/pytest_mpl/
-%{python3_sitelib}/pytest_mpl-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/pytest_mpl-%{version}.dist-info/
 
 
 %changelog

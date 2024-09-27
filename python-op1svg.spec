@@ -26,7 +26,6 @@ BuildArch:      noarch
 
 BuildRequires:  sed
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 %description
 %{common_description}
@@ -44,11 +43,14 @@ rm -rf %{pypi_name}.egg-info
 # Remove unneeded shebang
 sed -e "\|#!/usr/bin/env python3|d" -i %{pypi_name}/*.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 mkdir -p %{buildroot}%{_mandir}/man1
 cp -P %{SOURCE1} %{buildroot}%{_mandir}/man1
 
@@ -57,7 +59,7 @@ cp -P %{SOURCE1} %{buildroot}%{_mandir}/man1
 %doc README.md template
 %{_bindir}/op1svg
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %{_mandir}/man1/op1svg.1*
 
 %changelog

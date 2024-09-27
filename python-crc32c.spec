@@ -38,11 +38,11 @@ Summary:        %{summary}
 
 
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -62,7 +62,7 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} %{python3} run-tests.py
 %doc README.rst
 
 %{python3_sitearch}/crc32c/
-%{python3_sitearch}/crc32c-%{version}-*.egg-info
+%{python3_sitearch}/crc32c-%{version}.dist-info
 
 %changelog
 %autochangelog

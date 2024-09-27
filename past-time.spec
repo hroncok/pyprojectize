@@ -11,7 +11,6 @@ Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-freezegun
 BuildRequires:  python3-click
 BuildRequires:  python3-tqdm
@@ -22,11 +21,14 @@ A simple tool to visualize the progress of the year based on the past days.
 %prep
 %autosetup
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} setup.py test
@@ -35,7 +37,7 @@ A simple tool to visualize the progress of the year based on the past days.
 %doc README.rst
 %license LICENSE
 %{_bindir}/%{name}
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{python3_sitelib}/%{pypi_name}
 
 %changelog

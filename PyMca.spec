@@ -27,7 +27,6 @@ BuildRequires:  gcc
 BuildRequires:  desktop-file-utils
 BuildRequires:  ImageMagick
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3dist(cython)
 BuildRequires:  python3dist(numpy)
 BuildRequires:  python3dist(h5py)
@@ -64,6 +63,9 @@ This package contains photon interaction data/elements data for %{name}.
 # Fix wrong shebang of pymcapostbatch.
 sed -i "s|!python|!%python3|g" PyMca5/scripts/pymcapostbatch
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 # Need to define manually. Note using pkg-config to export the cflags
 # is not identified by the setup.py script as it requires non-blank
@@ -73,12 +75,12 @@ QHULL_LIBS="-lqhull" \
 SPECFILE_USE_GNU_SOURCE=1 \
 PYMCA_DATA_DIR=/usr/share/PyMca \
 PYMCA_DOC_DIR=/usr/share/doc/PyMca \
-%py3_build
+%pyproject_wheel
 
 %install
 PYMCA_DATA_DIR=/usr/share/PyMca \
 PYMCA_DOC_DIR=/usr/share/doc/PyMca \
-%py3_install
+%pyproject_install
 
 # Install desktop file.
 desktop-file-install --dir=%{buildroot}%{_datadir}/applications %{S:1}
@@ -215,7 +217,7 @@ LC_ALL=pl_PL.utf8 \
 %{_datadir}/icons/hicolor/*x*/apps/%{name}.png
 %{_mandir}/man1/*.1*
 %{python3_sitearch}/PyMca5/
-%{python3_sitearch}/PyMca5-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/PyMca5-%{version}.dist-info
 %exclude %{_pkgdocdir}
 
 %files data

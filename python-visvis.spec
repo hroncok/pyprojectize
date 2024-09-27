@@ -9,7 +9,6 @@ URL:              https://github.com/almarklein/%{srcname}
 Source0:          %{url}/archive/v%{version}/%{srcname}-%{version}.tar.gz
 BuildArch:        noarch
 BuildRequires:    python3-devel
-BuildRequires:    python3-setuptools
 BuildRequires:    sed
 
 %global _description\
@@ -26,7 +25,7 @@ volshow(), surf()).
 %package -n python3-%{srcname}
 Summary:          %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
-BuildRequires:    python3-devel, python3-setuptools
+BuildRequires:    python3-devel
 Requires:         python3-numpy, python3-pyopengl
 Recommends:       python3-PyQt4, python3-wxpython4
 Recommends:       python3-gobject
@@ -42,17 +41,20 @@ pushd examples
 sed -i "1 s|#!/usr/bin/env python|#!%{python3}|" *.py
 popd
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %license license.txt
 %doc README.md
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-%{version}-*.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.14.0-10

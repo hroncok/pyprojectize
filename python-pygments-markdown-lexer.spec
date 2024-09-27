@@ -18,7 +18,6 @@ Source0:            https://pypi.python.org/packages/source/p/%{modname}/%{modna
 BuildArch:          noarch
 
 BuildRequires:      python3-devel
-BuildRequires:      python3-setuptools
 BuildRequires:      python3-pygments
 
 %description
@@ -36,11 +35,14 @@ Requires:           python3-pygments
 %prep
 %autosetup -n %{modname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Well this is weird...
 rm -rf %{buildroot}/usr/EGG-INFO

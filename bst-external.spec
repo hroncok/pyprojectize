@@ -21,7 +21,6 @@ BuildRequires:  python3dist(pytest-runner)
 BuildRequires:  python3dist(pytest) >= 3.1.0
 BuildRequires:  python3dist(requests)
 BuildRequires:  python3dist(setuptools-scm)
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(tomli)
 %if %{with check}
 # FIXME: Package was retired in Fedora
@@ -49,12 +48,16 @@ whatever reason.
 sed 's|coverage == 4.4.0|coverage|' -i setup.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %if %{with check}
@@ -69,7 +72,7 @@ export PYTHONPATH=%{buildroot}%{python3_sitelib}
 %license LICENSE
 %doc README.rst NEWS MAINTAINERS
 %{python3_sitelib}/%{sysname}/
-%{python3_sitelib}/BuildStream_external-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/BuildStream_external-%{version}.dist-info
 
 
 %changelog

@@ -18,7 +18,6 @@ BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3-pyserial
 BuildRequires:  python3-pytest
-BuildRequires:  python3-setuptools
 
 %?python_enable_dependency_generator
 
@@ -42,11 +41,14 @@ system provided by MicroPython on the BBC micro:bit.
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} -m pytest -vv tests
@@ -57,7 +59,7 @@ rm -rf %{pypi_name}.egg-info
 %{_bindir}/ufs
 %{python3_sitelib}/__pycache__/*
 %{python3_sitelib}/%{pypi_name}.py
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 %autochangelog

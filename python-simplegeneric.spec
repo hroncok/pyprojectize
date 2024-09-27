@@ -26,7 +26,6 @@ Summary:        Simple generic functions (similar to Python's own len(), pickle.
 # Automatically converted from old format: Python or ZPLv2.1 - review is highly recommended.
 License:        LicenseRef-Callaway-Python OR ZPL-2.1
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -42,12 +41,16 @@ and other generic functions found in the Python standard library.
 %autosetup -p1 -n %{pypi_name}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -58,7 +61,7 @@ PYTHONPATH=$(pwd) %{__python3} setup.py test
 %doc README.txt
 %{python3_sitelib}/__pycache__/simplegeneric.cpython*
 %{python3_sitelib}/simplegeneric.py
-%{python3_sitelib}/simplegeneric-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/simplegeneric-%{version}.dist-info/
 
 
 %changelog

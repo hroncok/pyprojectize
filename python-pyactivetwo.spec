@@ -19,7 +19,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 Requires:       python3-numpy
 
 %description -n python3-%{srcname}
@@ -32,11 +31,14 @@ Python 3 version.
 rm -vrf *.egg-info
 cp -p %{SOURCE1} .
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # No tests
 #check

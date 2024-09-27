@@ -13,7 +13,6 @@ BuildArch:      noarch
 BuildRequires:  python3-pyasn1 >= 0.1.1
 BuildRequires:  python3-devel
 BuildRequires:  python3-pyOpenSSL
-BuildRequires:  python3-setuptools
 BuildRequires:  openssl
 BuildRequires:  /usr/bin/killall
 
@@ -39,11 +38,14 @@ verification of the SSL peer. This is the python3 library.
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 pushd ndg/httpsclient/test/
@@ -63,7 +65,7 @@ grep -qv python2 %{buildroot}%{_bindir}/ndg_httpclient
 %files -n python3-%{pypi_name}
 %{_bindir}/ndg_httpclient
 %{python3_sitelib}/ndg/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.5.1-22

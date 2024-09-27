@@ -14,7 +14,6 @@ Source0:	https://github.com/smbcmp/smbcmp/archive/v0.1/%{name}-%{version}.tar.gz
 BuildArch:	noarch
 BuildRequires:	python3-devel
 BuildRequires:	python3 >= 3.4
-BuildRequires:	python3-setuptools
 Requires:	wireshark-cli
 
 %description
@@ -33,13 +32,16 @@ wxWidget toolkit.
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 # Workaround as there is no -lboost_python3
 sed -i 's|curses||' setup.py
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %license LICENSE

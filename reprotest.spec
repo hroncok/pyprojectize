@@ -12,7 +12,6 @@ BuildArch:      noarch
 
 BuildRequires:  gnupg2
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 
 Requires:       python%{python3_pkgversion}-rstr
 Requires:       diffoscope
@@ -40,17 +39,20 @@ reprotest is developed as part of the "reproducible builds" Debian project.
 # Remove bundled egg-info
 rm -rf %{name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %doc README.rst
 %{_bindir}/reprotest
 %{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{name}-%{version}.dist-info
 
 %changelog
 * Tue Sep 10 2024 Frédéric Pierret (fepitre) <frederic@invisiblethingslab.com> - 0.7.28-1

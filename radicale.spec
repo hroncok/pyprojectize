@@ -63,7 +63,6 @@ BuildArch:        noarch
 Summary:          %{summary}
 
 BuildRequires:    python3-devel
-BuildRequires:    python3-setuptools
 BuildRequires:    systemd
 BuildRequires:    checkpolicy
 BuildRequires:    selinux-policy-devel
@@ -190,8 +189,12 @@ sed -i 's|\(/var/run\)|%{_rundir}|' SELinux/%{name}.fc
 sed -i 's|VERSION = "%{radicale_major}.dev"|VERSION = "%{radicale_version}"|' setup.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 cd SELinux
 
 for selinuxvariant in %{selinux_variants}
@@ -204,7 +207,7 @@ cd -
 
 
 %install
-%py3_install
+%pyproject_install
 
 # move scripts away from _bindir to avoid conflicts and create a wrapper scripts
 install -d -p %{buildroot}%{_libexecdir}/%{name}
@@ -406,7 +409,7 @@ fi
 %files -n python3-%{radicale_package_name}
 %license COPYING.md
 %{python3_sitelib}/%{name}
-%{python3_sitelib}/Radicale-*.egg-info
+%{python3_sitelib}/Radicale.dist-info
 
 
 %files -n %{radicale_package_name}-httpd

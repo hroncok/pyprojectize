@@ -9,7 +9,6 @@ Source0:	https://github.com/%{name}/%{name}/archive/%{version}/%{name}-%{version
 
 
 BuildRequires:  python%{python3_pkgversion}-devel python%{python3_pkgversion}-numpy python%{python3_pkgversion}-Cython
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  SDL2_ttf-devel SDL2_image-devel SDL2_mixer-devel
 BuildRequires:  SDL2-devel freetype-devel
 BuildRequires:  libpng-devel libjpeg-devel libX11-devel
@@ -69,11 +68,15 @@ iconv -f iso8859-1 -t utf-8 README.txt > README.txt.conv && mv -f README.txt.con
 rm -f src_c/ffmovie.[ch]
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build cython
+%pyproject_wheel -C--global-option=cython
 
 %install
-%py3_install
+%pyproject_install
 
 #use system font.
 rm -f $RPM_BUILD_ROOT%{python3_sitearch}/%{name}/freesansbold.ttf

@@ -17,7 +17,6 @@ Patch0:         todocli-fix-version.patch
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 A To Do command line application with SQLite back end written in Python.
@@ -28,11 +27,14 @@ A To Do command line application with SQLite back end written in Python.
 #Remove egg.info
 rm -rf %{name}.egg.info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 mkdir -p %{buildroot}/%{_mandir}/man1
 install -p -m 0644 %{SOURCE1} %{buildroot}/%{_mandir}/man1/

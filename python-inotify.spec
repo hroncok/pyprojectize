@@ -13,7 +13,6 @@ Patch01:       pyinotify-0.9.6-epoint.patch
 Patch02:       pyinotify-python-3.12-fix.patch
 BuildRequires: gmp-devel
 BuildRequires: python%{python3_pkgversion}-devel
-BuildRequires: python%{python3_pkgversion}-setuptools
 BuildArch:     noarch
 %global _description \
 This is a Python module for watching filesystems changes. pyinotify \
@@ -31,11 +30,14 @@ Summary:       %{summary}
 %autosetup -p1 -n %{oname}-%{version}
 sed -i '1c#! %{__python3}' python3/pyinotify.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %py3_check_import pyinotify

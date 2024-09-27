@@ -8,7 +8,6 @@ Source0:        https://github.com/downloads/maurizio-lombardi/%{name}/%{name}-%
 BuildRequires:  gcc
 BuildRequires:  python3-Cython
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3
 BuildRequires:  kmod-devel
 
@@ -28,15 +27,18 @@ Linux kernel modules, using libkmod.
 %prep
 %setup -q
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-kmod
 %{python3_sitearch}/kmod/
-%{python3_sitearch}/kmod*.egg-info
+%{python3_sitearch}/kmod*.dist-info
 %doc COPYING.LESSER README
 
 %changelog

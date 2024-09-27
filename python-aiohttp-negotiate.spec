@@ -22,7 +22,6 @@ A mixin for supporting Negotiate authentication with aiohttp.
 Summary:        %{summary}
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{upstream_name}}
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 Requires:       python%{python3_pkgversion}-aiohttp
 Requires:       python%{python3_pkgversion}-www-authenticate
 Requires:       python%{python3_pkgversion}-gssapi
@@ -50,14 +49,17 @@ Python %{python3_other_pkgversion} version.
 %autosetup -n %{upstream_name}-%{version}
 cp -p %{SOURCE1} .
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 %if 0%{?with_python3_other}
 %py3_other_build
 %endif
 
 %install
-%py3_install
+%pyproject_install
 %if 0%{?with_python3_other}
 %py3_other_install
 %endif
@@ -70,7 +72,7 @@ cp -p %{SOURCE1} .
 %doc README.rst
 %{python3_sitelib}/%{modname}.py*
 %{python3_sitelib}/__pycache__/%{modname}.*
-%{python3_sitelib}/%{modname}-*.egg-info
+%{python3_sitelib}/%{modname}.dist-info
 
 %if 0%{?with_python3_other}
 %files -n python%{python3_other_pkgversion}-%{upstream_name}
@@ -78,7 +80,7 @@ cp -p %{SOURCE1} .
 %doc README.rst
 %{python3_other_sitelib}/%{modname}.py*
 %{python3_other_sitelib}/__pycache__/%{modname}.*
-%{python3_other_sitelib}/%{modname}-*.egg-info
+%{python3_other_sitelib}/%{modname}.dist-info
 %endif
 
 %changelog

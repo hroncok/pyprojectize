@@ -13,7 +13,6 @@ Source0:        %{pypi_source}
 BuildArch:      noarch
 
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-pip
 BuildRequires:  python%{python3_pkgversion}-gobject
 BuildRequires:  python%{python3_pkgversion}-psutil
@@ -28,12 +27,15 @@ Utility to control RGB on AMD Wraith Prism
 %autosetup -n %{srcname}-%{version}
 chmod 644 LICENSE README.md
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 chmod -x %{buildroot}%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/dependency_links.txt
 
 %files
@@ -41,7 +43,7 @@ chmod -x %{buildroot}%{python3_sitelib}/%{srcname}-%{version}-py%{python3_versio
 %doc README.md
 # For noarch packages: sitelib
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 %{_bindir}/*
 
 %changelog

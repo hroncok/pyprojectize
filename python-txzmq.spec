@@ -30,7 +30,6 @@ BuildArch:      noarch
 %package -n python3-%{pkgname}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  %{py3_dist setuptools}
 %if %{with tests}
 BuildRequires:  %{py3_dist twisted pyzmq}
 %endif
@@ -44,12 +43,16 @@ BuildRequires:  %{py3_dist twisted pyzmq}
 rm -rf %{eggname}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -62,7 +65,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} trial-3 txzmq
 %doc README.rst
 %license LICENSE.txt
 %{python3_sitelib}/%{libname}
-%{python3_sitelib}/%{eggname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{eggname}-%{version}.dist-info
 
 
 %changelog

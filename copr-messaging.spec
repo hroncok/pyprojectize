@@ -32,7 +32,6 @@ BuildRequires: python3-copr-common
 BuildRequires: python3-devel
 BuildRequires: python3-fedora-messaging
 BuildRequires: python3-pytest
-BuildRequires: python3-setuptools
 BuildRequires: python3-sphinx
 
 %description %_description
@@ -60,14 +59,18 @@ This package contains documentation for copr-messaging.
 %setup -q
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 PYTHONPATH=${PWD} sphinx-build-3 docs html
 rm -rf html/.{doctrees,buildinfo}
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check

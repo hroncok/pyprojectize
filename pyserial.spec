@@ -6,7 +6,6 @@ Source0: %pypi_source
 License: BSD-3-Clause
 URL: http://pypi.python.org/pypi/pyserial
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildArch: noarch
 
 %global _description\
@@ -33,12 +32,15 @@ export UNZIP="-aa"
 # Reported upstream: https://github.com/pyserial/pyserial/issues/754
 sed -i 's/unittest.findTestCases(module)/unittest.TestLoader().loadTestsFromModule(module)/' test/run_all_tests.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -48,7 +50,7 @@ PYTHONPATH=%{buildroot}/%{python3_sitelib} %{python3} test/run_all_tests.py
 %files -n python3-pyserial
 %doc LICENSE.txt CHANGES.rst README.rst examples
 %{python3_sitelib}/serial
-%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{name}-%{version}.dist-info
 %{_bindir}/pyserial-miniterm
 %{_bindir}/pyserial-ports
 

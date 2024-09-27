@@ -21,13 +21,11 @@ Summary:        %{summary}
 %{?python_provide:%python_provide python3-lazr-restfulclient}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 # check is disabled, but we BR runtime dpes to make sure they exists:
 BuildRequires:  python3dist(distro)
 BuildRequires:  python3dist(httplib2) >= 0.7.7
 BuildRequires:  python3dist(oauthlib)
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(six)
 BuildRequires:  python3dist(wadllib) >= 1.1.4
 
@@ -37,11 +35,14 @@ BuildRequires:  python3dist(wadllib) >= 1.1.4
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 #check
 #lazr.restful test dependency not packaged
@@ -52,7 +53,7 @@ BuildRequires:  python3dist(wadllib) >= 1.1.4
 %doc README.rst
 %{python3_sitelib}/lazr
 %{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}-*.pth
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 %autochangelog

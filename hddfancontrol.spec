@@ -14,7 +14,6 @@ Source0:        https://github.com/desbma/hddfancontrol/archive/%{version}/%{pyp
 
 BuildArch:      noarch
 
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-devel
 BuildRequires:  python3-pypandoc, python3-daemon, python3-docutils
 BuildRequires:  hddtemp, hdparm
@@ -38,11 +37,14 @@ according to hard drive temperature on Linux.
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 cp %{buildroot}/%{_bindir}/hddfancontrol %{buildroot}/%{_bindir}/hddfancontrol-3
 ln -sf %{_bindir}/hddfancontrol-3 %{buildroot}/%{_bindir}/hddfancontrol-%{python3_version}
 
@@ -70,7 +72,7 @@ cp -a systemd/hddfancontrol.conf %{buildroot}%{_sysconfdir}/
 %{_unitdir}/hddfancontrol.service
 %config(noreplace) %{_sysconfdir}/hddfancontrol.conf
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Fri Jul 26 2024 Miroslav Suchý <msuchy@redhat.com> - 1.6.2-2

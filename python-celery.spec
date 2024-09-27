@@ -52,7 +52,6 @@ Summary:        Distributed Task Queue
 # Requires are auto-generated from setup.py (and then from requirements/default.txt)
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %if %{with tests}
 BuildRequires:  python3-amqp
@@ -85,8 +84,11 @@ BuildRequires:  python3-simplejson
 # Drop python tzdata requirement which doesn't make sense on Fedora
 sed -i 's/tzdata>=2022.7//g' requirements/default.txt
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 #pushd docs
 # missing python-sphinx_celery (for the moment)
@@ -97,7 +99,7 @@ sed -i 's/tzdata>=2022.7//g' requirements/default.txt
 cp %{SOURCE1} .
 
 %install
-%py3_install
+%pyproject_install
 pushd %{buildroot}%{_bindir}
 mv celery celery-%{python3_version}
 ln -s celery-%{python3_version} celery-3
@@ -133,7 +135,7 @@ export TEST_BACKEND=rpc
 %doc README.rst TODO CONTRIBUTORS.txt examples
 %{_bindir}/celery
 %{_bindir}/celery-3*
-%{python3_sitelib}/celery-*.egg-info
+%{python3_sitelib}/celery.dist-info
 %{python3_sitelib}/celery
 
 %changelog

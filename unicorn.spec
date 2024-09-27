@@ -15,7 +15,6 @@ Source0:        https://github.com/unicorn-engine/%{name}/archive/%{version}/%{n
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 # Much of Unicorn follows from QEMU, which the Unicorn project forked in
 # 2015. Since then, the Unicorn team has applied a number of bugfixes to
@@ -53,19 +52,22 @@ The unicorn-python3 package contains python3 bindings for unicorn.
 %prep
 %autosetup -n %{name}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %cmake
 %cmake_build
 
 pushd bindings/python
-%py3_build
+%pyproject_wheel
 popd
 
 %install
 %cmake_install
 
 pushd bindings/python
-%py3_install
+%pyproject_install
 popd
 
 rm $RPM_BUILD_ROOT%{_libdir}/libunicorn.a
@@ -84,7 +86,7 @@ rm $RPM_BUILD_ROOT%{_libdir}/libunicorn.a
 %{_includedir}/unicorn/
 
 %files -n python3-unicorn
-%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{name}-%{version}.dist-info/
 %{python3_sitelib}/%{name}/
 
 %changelog

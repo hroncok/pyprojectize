@@ -61,6 +61,9 @@ Documentation for the bashate module
 rm -rf %{pypi_name}.egg-info
 rm -rf {test-,}requirements.txt
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 #remove shebang
 sed -i -e '1{\@^#!/usr/bin/env python@d}' bashate/bashate.py
@@ -68,10 +71,10 @@ sed -i -e '1{\@^#!/usr/bin/env python@d}' bashate/bashate.py
 sphinx-build-3 -b html -d build/doctrees  doc/source doc/build/html
 rm -rf doc/build/html/.{doctrees,buildinfo}
 
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 stestr --test-path ./bashate/tests run
@@ -81,7 +84,7 @@ stestr --test-path ./bashate/tests run
 %license LICENSE
 %{_bindir}/%{pypi_name}
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %exclude %{python3_sitelib}/%{pypi_name}/tests
 
 %files -n python-%{pypi_name}-doc

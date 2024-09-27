@@ -17,7 +17,6 @@ Fully asynchronous SMB library written in pure Python.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -32,11 +31,14 @@ sed -i -e '/^#!\//, 1d' aiosmb/{authentication/spnego/asn1_structs.py,\
 authentication/spnego/native.py,authentication/spnego/sspi.py,\
 commons/connection/target.py,crypto/pure/RC4/RC4.py}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %doc README.md
@@ -48,7 +50,7 @@ commons/connection/target.py,crypto/pure/RC4/RC4.py}
 %{_bindir}/asmbosenum
 %{_bindir}/asmbgetfile
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py*.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.2.35-13

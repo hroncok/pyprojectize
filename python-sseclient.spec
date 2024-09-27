@@ -21,7 +21,6 @@ is then an iterator over messages coming from the server.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pkginfo
 BuildRequires:  python3-pytest
 BuildRequires:  python3-requests
@@ -37,11 +36,14 @@ is then an iterator over messages coming from the server.
 %prep
 %autosetup -p1 -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with network}
 %check
@@ -51,7 +53,7 @@ pytest-%{python3_version} -v
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{srcname}-%{version}-*.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 %{python3_sitelib}/sseclient.py*
 %{python3_sitelib}/__pycache__/sseclient*
 

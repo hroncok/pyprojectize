@@ -12,7 +12,6 @@ Source2:        quisk.png
 Source3:        name.ahlstrom.james.Quisk.metainfo.xml
 
 BuildRequires:  gcc
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-devel
 BuildRequires:  python3-wxpython4
 BuildRequires:  fftw-devel
@@ -51,12 +50,15 @@ sed -i 's|#!\s*/usr/bin/python|#!/usr/bin/python3|;s|#!\s*/usr/bin/env\s\+python
   quisk.py quisk_vna.py portaudio.py n2adr/startup.py \
   afedrinet/sdr_control.py afedrinet/afedri.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 CFLAGS="%{optflags}" %{__python3} setup.py build_ext --inplace
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 # make Python scripts with shebangs executable
 for f in `find %{buildroot}%{python3_sitearch}/%{name} -name \*.py`
 do
@@ -78,7 +80,7 @@ install -Dpm 0644 %{SOURCE3} \
 %doc help.html help_vna.html
 %{_bindir}/%{name}{,_vna}
 %{python3_sitearch}/%{name}
-%{python3_sitearch}/%{name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/%{name}-%{version}.dist-info
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/128x128/apps/%{name}.png
 %{_metainfodir}/name.ahlstrom.james.Quisk.metainfo.xml

@@ -16,7 +16,6 @@ Python WSGI based adapter for the Websockets protocol
 %package -n python3-%{pkgname}
 Summary:        %{summary} - Python 3 version
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       python3-setuptools
 
@@ -34,11 +33,14 @@ Python WSGI based adapter for the Websockets protocol - documentation
 %prep
 %autosetup -n %{pkgname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 rm -Rf %{buildroot}/usr/share/websockify
 mkdir -p %{buildroot}%{_mandir}/man1/
@@ -48,7 +50,7 @@ install -m 444 docs/websockify.1 %{buildroot}%{_mandir}/man1/
 %license COPYING
 %{_mandir}/man1/websockify.1*
 %{python3_sitelib}/websockify/
-%{python3_sitelib}/websockify-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/websockify-%{version}.dist-info
 %{_bindir}/websockify
 
 %files doc

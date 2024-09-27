@@ -21,7 +21,6 @@ BuildArch:      noarch
 %{!?pytest: %global pytest pytest-3}
 
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-sphinx
 BuildRequires:  python%{python3_pkgversion}-pytest
 
@@ -70,9 +69,14 @@ find ./ -type f '!' '(' -name '*.xls' -o -name '*.xlsx' ')' -print -exec sed '-i
 
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
+
 %build
 # package doesn't support pyproject yet
-%py3_build
+%pyproject_wheel
 
 %if (0%{?fedora}) || ( 0%{?rhel} && 0%{?rhel} >= 8 )
 # on rhel7 there is missing package python3-pkginfo
@@ -85,7 +89,7 @@ rm -rf html/.{doctrees,buildinfo}
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -97,7 +101,7 @@ rm -rf html/.{doctrees,buildinfo}
 %doc README.md
 %{_bindir}/runxlrd2.py
 %{python3_sitelib}/xlrd2
-%{python3_sitelib}/xlrd2-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/xlrd2-%{version}.dist-info
 
 # on rhel7 there is missing package python3-pkginfo
 %files -n python-xlrd2-doc

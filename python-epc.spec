@@ -19,7 +19,6 @@ Source0:        https://github.com/tkf/%{name}/archive/v%{version}/%{srcname}-%{
 BuildRequires:  python3-devel
 BuildRequires:  %{py3_dist nose}
 BuildRequires:  %{py3_dist pytest}
-BuildRequires:  %{py3_dist setuptools}
 BuildRequires:  %{py3_dist sexpdata}
 BuildArch:      noarch
 
@@ -43,12 +42,16 @@ Requires:       %{py3_dist sexpdata}
 rm -rf *.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -59,7 +62,7 @@ pytest
 %doc README.rst
 %license COPYING
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-*.egg-info
+%{python3_sitelib}/%{srcname}.dist-info
 
 
 %changelog

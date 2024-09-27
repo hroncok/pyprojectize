@@ -13,7 +13,6 @@ Source0:        https://github.com/ur1katz/casttube/archive/%{version}/%{pypi_na
 
 BuildArch: noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if 0%{?with_tests}
 BuildRequires:  python3-requests
 %endif
@@ -33,11 +32,14 @@ Casttube is a python library to interact with the Youtube Chromecast api.
 %prep
 %autosetup -p1 -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 rm -f %{buildroot}/usr/LICENSE
 
 %check
@@ -48,7 +50,7 @@ rm -f %{buildroot}/usr/LICENSE
 %files -n python3-casttube
 %license LICENSE
 %{python3_sitelib}/casttube
-%{python3_sitelib}/casttube-%{version}-py*.egg-info
+%{python3_sitelib}/casttube-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.2.1-14

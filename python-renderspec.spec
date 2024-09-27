@@ -29,7 +29,6 @@ BuildRequires:  %{py3_dist testtools}
 BuildRequires:  %{py3_dist ddt}
 BuildRequires:  %{py3_dist Sphinx}
 BuildRequires:  %{py3_dist openstackdocstheme}
-BuildRequires:  %{py3_dist setuptools}
 # Required for tests
 BuildRequires:  %{py3_dist stestr}
 BuildRequires:  %{py3_dist packaging}
@@ -61,8 +60,11 @@ rm -rf %{pypi_name}.egg-info
 find -type f -a \( -name '*.py' -o -name 'py.*' \) \
    -exec sed -i '1{/^#!/d}' {} \; \
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 # generate html docs
 sphinx-build-3 doc/source html
@@ -70,7 +72,7 @@ sphinx-build-3 doc/source html
 rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 cp %{buildroot}/%{_bindir}/renderspec %{buildroot}/%{_bindir}/renderspec-%{python3_version}
 ln -s %{_bindir}/renderspec-%{python3_version} %{buildroot}/%{_bindir}/renderspec-3
 
@@ -84,7 +86,7 @@ stestr run
 %{_bindir}/renderspec-3
 %{_bindir}/renderspec-%{python3_version}
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %files -n python-%{pypi_name}-doc
 %license LICENSE

@@ -14,7 +14,6 @@ BuildArch:      noarch
 
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-nose
 
 BuildRequires:  python3-decorator
@@ -49,11 +48,14 @@ Common components for Moksha.
 # Remove namespace_packages from setup.py
 sed -i "/namespace_packages/d" setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Add __init__.py files to namespace packages not installed by setuptools
 cp moksha/__init__.py %{buildroot}/%{python3_sitelib}/moksha/

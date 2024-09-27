@@ -24,7 +24,6 @@ Sphinx theme for Enthought projects, derived from the Scipy theme.}
 %package -n python3-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{srcname}}
 Provides:       bundled(bootstrap) = 2.3.2
 
@@ -33,11 +32,14 @@ Provides:       bundled(bootstrap) = 2.3.2
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 #check
 # No tests
@@ -45,7 +47,7 @@ Provides:       bundled(bootstrap) = 2.3.2
 %files -n python3-%{srcname}
 %license LICENSE licenses/*.txt
 %doc CHANGES.rst README.rst
-%{python3_sitelib}/%{modname}-*.egg-info/
+%{python3_sitelib}/%{modname}.dist-info/
 %{python3_sitelib}/%{modname}/
 
 %changelog

@@ -21,7 +21,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 
 %description -n python3-%{srcname} %{_description}
 
@@ -43,20 +42,23 @@ Requires:       python%{python3_version}dist(djangorestframework) >= 3
 %autosetup -n %{srcname}-%{version} -p1
 rm -vr *.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %license LICENSE.txt
 %doc README.md
-%{python3_sitelib}/django_timezone_field-*.egg-info/
+%{python3_sitelib}/django_timezone_field.dist-info/
 %{python3_sitelib}/timezone_field/
 
 %files -n python3-%{srcname}+rest_framework
-%{?python_extras_subpkg:%ghost %{python3_sitelib}/django_timezone_field-*.egg-info/}
+%{?python_extras_subpkg:%ghost %{python3_sitelib}/django_timezone_field.dist-info/}
 
 %changelog
 %autochangelog

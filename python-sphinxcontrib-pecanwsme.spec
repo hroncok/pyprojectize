@@ -49,7 +49,6 @@ Summary:        Extension to Sphinx for documenting APIs built with Pecan and WS
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-pbr
-BuildRequires:  python3-setuptools
 
 Requires: python3-six
 Requires: python3-sphinxcontrib-httpdomain
@@ -63,12 +62,15 @@ built with the Pecan WSGI object-dispatching web framework and WSME
 %prep
 %setup -q -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if %{with python2}
 %py2_build
 %endif
 %if %{with python3}
-%py3_build
+%pyproject_wheel
 %endif
 
 %install
@@ -76,7 +78,7 @@ built with the Pecan WSGI object-dispatching web framework and WSME
 %py2_install
 %endif
 %if %{with python3}
-%py3_install
+%pyproject_install
 %endif
 
 %if %{with python2}
@@ -84,7 +86,7 @@ built with the Pecan WSGI object-dispatching web framework and WSME
 %doc README.rst
 %license LICENSE
 %{python2_sitelib}/sphinxcontrib/pecanwsme
-%{python2_sitelib}/*.egg-info
+%{python2_sitelib}/*.dist-info
 %{python2_sitelib}/*-nspkg.pth
 %endif
 
@@ -93,7 +95,7 @@ built with the Pecan WSGI object-dispatching web framework and WSME
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/sphinxcontrib/pecanwsme
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{python3_sitelib}/*-nspkg.pth
 %endif
 

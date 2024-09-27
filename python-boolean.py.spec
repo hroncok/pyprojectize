@@ -13,7 +13,6 @@ Source0:        %pypi_source
 BuildArch:      noarch
 
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  %{py3_dist Sphinx}
 BuildRequires:  %{py3_dist pytest}
 
@@ -37,13 +36,16 @@ Python 3 version.
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 sphinx-build-%{python3_version} docs html
 rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest
@@ -51,7 +53,7 @@ rm -rf html/.{doctrees,buildinfo}
 %files -n python%{python3_pkgversion}-%{pypi_name}
 %license LICENSE.txt
 %doc CHANGELOG.rst README.rst html/
-%{python3_sitelib}/boolean.py*.egg-info/
+%{python3_sitelib}/boolean.py*.dist-info/
 %{python3_sitelib}/boolean/
 
 %changelog

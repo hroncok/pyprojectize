@@ -42,7 +42,6 @@ Summary:    OpenStack common messaging library
 %py_provides python3-%{pkg_name}
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-pbr
 BuildRequires: python3-futurist
 # Required for tests
@@ -153,8 +152,11 @@ Tests for the OpenStack common messaging library.
 # let RPM handle deps
 rm -rf {test-,}requirements.txt
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %if 0%{?with_doc}
 export PYTHONPATH=.
@@ -164,7 +166,7 @@ rm -fr doc/build/html/.buildinfo
 %endif
 
 %install
-%{py3_install}
+%{pyproject_install}
 ln -s ./oslo-messaging-send-notification %{buildroot}%{_bindir}/oslo-messaging-send-notification-3
 
 %check
@@ -175,7 +177,7 @@ stestr-3 run || true
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/oslo_messaging
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %{_bindir}/oslo-messaging-send-notification
 %{_bindir}/oslo-messaging-send-notification-3
 %exclude %{python3_sitelib}/oslo_messaging/tests

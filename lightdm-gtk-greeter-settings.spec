@@ -16,7 +16,6 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  intltool
 BuildRequires:  python3-devel
 BuildRequires:  python3-distutils-extra
-BuildRequires:  python3-setuptools
 
 Requires:  lightdm-gtk
 Requires:  python3-gobject
@@ -36,12 +35,16 @@ sed -i -e 's@com.ubuntu.pkexec@com.fedora.pkexec@g' com.ubuntu.pkexec.lightdm-gt
 mv com.ubuntu.pkexec.lightdm-gtk-greeter-settings.policy.in com.fedora.pkexec.lightdm-gtk-greeter-settings.policy.in
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-# %%py3_install des not work properly here.
+# %%pyproject_install
 %{__python3} setup.py install --root=$RPM_BUILD_ROOT --optimize=1
 
 # Remove shebang from files
@@ -62,7 +65,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %license COPYING
 %{_bindir}/lightdm-gtk-greeter-settings
 %{_bindir}/lightdm-gtk-greeter-settings-pkexec
-%{python3_sitelib}/lightdm_gtk_greeter_settings-%{version}-py*.egg-info
+%{python3_sitelib}/lightdm_gtk_greeter_settings-%{version}.dist-info
 %{python3_sitelib}/lightdm_gtk_greeter_settings/
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/lightdm-gtk-greeter-settings*

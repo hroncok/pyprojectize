@@ -9,7 +9,6 @@ Source0:        https://pypi.io/packages/source/z/zc.lockfile/zc.lockfile-%{vers
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-zope-testing
 
 %global _description\
@@ -39,12 +38,16 @@ database files. The database files and lock file files are separate files.
 %setup -q -n zc.lockfile-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 rm -f %{buildroot}%{python3_sitelib}/zc/lockfile/*.txt
 
 %check
@@ -52,7 +55,7 @@ rm -f %{buildroot}%{python3_sitelib}/zc/lockfile/*.txt
 
 %files -n python3-zc-lockfile
 %doc src/zc/lockfile/*.txt
-%{python3_sitelib}/zc.lockfile-*.egg-info
+%{python3_sitelib}/zc.lockfile.dist-info
 %{python3_sitelib}/zc.lockfile-*-nspkg.pth
 %{python3_sitelib}/zc/lockfile/
 %dir %{python3_sitelib}/zc/

@@ -44,7 +44,6 @@ module available in Python.
 %package -n python3-%{modname}
 Summary:        %summary
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
 # Runtime deps
 BuildRequires:  python3-six
@@ -74,12 +73,15 @@ popd
 iconv --from=ISO-8859-1 --to=UTF-8 NEWS > NEWS.new
 mv NEWS.new NEWS
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 make -C docs html
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %if %{with tests}
@@ -92,7 +94,7 @@ make -C docs html
 %license LICENSE
 %doc NEWS README.rst
 %{python3_sitelib}/%{modname}/
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 
 %files doc
 %license LICENSE

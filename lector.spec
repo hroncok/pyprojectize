@@ -20,7 +20,6 @@ BuildRequires: python3dist(beautifulsoup4) >= 4.6
 BuildRequires: python3-devel >= 3.6
 BuildRequires: python3-poppler-qt5 >= 0.24.2
 BuildRequires: python3-PyQt5 >= 5.10.1
-BuildRequires: python3dist(setuptools)
 BuildRequires: pkgconfig(Qt)
 
 Requires: hicolor-icon-theme
@@ -73,14 +72,19 @@ find ./  -type f  -iname "*.py"  -executable  -exec sed --regexp-extended 's|^#!
 
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
+
 %build
-%py3_build
+%pyproject_wheel
 mv  ./lector/rarfile/LICENSE  ./LICENSE-rarfile
 
 
 
 %install
-%py3_install
+%pyproject_install
 
 # TODO: When upstream merges the .metainfo.xml and .desktop file changes and adds them to setup.py, I won't need to manually install SOURCE1 metainfo, nor rename the .desktop file anymore.
 # Solved by a pull request here <https://github.com/BasioMeusPuga/Lector/pull/120>

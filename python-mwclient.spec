@@ -23,7 +23,6 @@ Summary:        %{summary}
 Obsoletes:      python2-%{github_name} < %{version}-%{release}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 BuildRequires:  python3-pytest-cov
 BuildRequires:  python3-pytest-runner
@@ -43,12 +42,16 @@ provides access to most API functionality. This is the Python 3 build of
 %autosetup -p1 -n %{github_name}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check

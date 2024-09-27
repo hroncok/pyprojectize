@@ -16,7 +16,6 @@ BuildRequires:  python2-devel
 BuildRequires:  python2-setuptools
 %else
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %endif
 
 %description
@@ -41,18 +40,21 @@ Summary:        %{summary}
 %prep
 %autosetup -n %{name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %if 0%{?rhel} && 0%{?rhel} < 8
 %py2_build
 %else
-%py3_build
+%pyproject_wheel
 %endif
 
 %install
 %if 0%{?rhel} && 0%{?rhel} < 8
 %py2_install
 %else
-%py3_install
+%pyproject_install
 %endif
 
 %if 0%{?rhel} && 0%{?rhel} < 8
@@ -60,13 +62,13 @@ Summary:        %{summary}
 %doc README.md
 %license LICENSE
 %{python2_sitelib}/%{srcname}/
-%{python2_sitelib}/%{srcname}*.egg-info/
+%{python2_sitelib}/%{srcname}*.dist-info/
 %else
 %files -n python3-%{srcname}
 %doc README.md
 %license LICENSE
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}*.egg-info/
+%{python3_sitelib}/%{srcname}*.dist-info/
 %endif
 
 %changelog

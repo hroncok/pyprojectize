@@ -49,19 +49,23 @@ sed -i "s/libudev.so.0/libudev.so/" setup.py
 find . -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python3}|'
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 chmod a-x examples/*
 
 
 %files -n python3-uinput
 %doc COPYING NEWS README examples
-%{python3_sitearch}/python_uinput-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/python_uinput-%{version}.dist-info
 %{python3_sitearch}/_libsuinput.*.so
 %{python3_sitearch}/uinput
 

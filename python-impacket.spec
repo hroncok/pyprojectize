@@ -66,7 +66,6 @@ BuildRequires:  sed
 BuildRequires:  grep
 
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 
 %description
 %{common_desc}
@@ -149,8 +148,10 @@ sed -i -e "s%/split.py%/splitpcap.py%" impacket.egg-info/SOURCES.txt
 sed -i "s/'future',//" setup.py
 
 #===== Build
+%generate_buildrequires
+%pyproject_buildrequires
 %build
-%py3_build
+%pyproject_wheel
 
 
 #===== Check
@@ -161,7 +162,7 @@ PYTHONPATH=$BUILD_ROOT/usr/lib/python%{python3_version}/site-packages/ python3 -
 
 #===== Install
 %install
-%py3_install
+%pyproject_install
 
 #now in license directory
 rm -f %{buildroot}%{_defaultdocdir}/%{name}/LICENSE
@@ -173,7 +174,7 @@ rm -f %{buildroot}%{_defaultdocdir}/%{name}/LICENSE
 %license        LICENSE
 %doc            ChangeLog.md README.md
 %{python3_sitelib}/%{gitname}/
-%{python3_sitelib}/%{gitname}*.egg-info
+%{python3_sitelib}/%{gitname}*.dist-info
 %exclude %{_defaultdocdir}/%{gitname}
 # %%exclude %%{_defaultdocdir}/%%{gitname}/testcases/*
 %exclude %{_defaultdocdir}/%{gitname}/README.md

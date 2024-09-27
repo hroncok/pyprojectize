@@ -18,7 +18,6 @@ Source0:        %{pypi_source}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(sphinx)
 BuildRequires:  python3dist(wheel)
@@ -51,8 +50,12 @@ sed -i "s/, 'pkginfo.tests'//g" setup.py
 rm -rf %{pypi_name}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 # generate html docs
 PYTHONPATH=${PWD} sphinx-build-3 docs html
@@ -62,7 +65,7 @@ rm -rf html/.{doctrees,buildinfo}
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -76,7 +79,7 @@ rm -rf html/.{doctrees,buildinfo}
 %{_bindir}/pkginfo
 
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %files -n python-%{pypi_name}-doc
 %license LICENSE.txt

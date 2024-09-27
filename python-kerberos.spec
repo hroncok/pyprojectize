@@ -20,7 +20,6 @@ Patch1:         PY_SSIZE_T_CLEAN.patch
 Patch2:         include_unistd.patch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-requests
 BuildRequires:  krb5-devel
 BuildRequires:  gcc
@@ -45,12 +44,15 @@ Summary:        %{sum}
 %prep
 %autosetup -p1 -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %install
 install -m 644 $RPM_SOURCE_DIR/LICENSE LICENSE 
-%{py3_install}
+%{pyproject_install}
 
 %check
 # Regression test for https://bugzilla.redhat.com/2008899

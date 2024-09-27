@@ -9,7 +9,6 @@ Source0:        https://pypi.python.org/packages/source/p/python-ly/python-ly-%{
 
 BuildArch:      noarch
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 
 %global _description\
 This package provides a Python library ly containing various Python modules\
@@ -35,11 +34,14 @@ This package allows for use of python-ly with Python 3.
 %prep
 %setup -q
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-ly
 %doc ChangeLog README.rst

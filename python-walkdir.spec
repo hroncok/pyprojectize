@@ -15,7 +15,6 @@ BuildArch:      noarch
 
 BuildRequires: make
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 walkdir is a simple set of iterator tools intended to
@@ -39,13 +38,17 @@ that produces data in the same format
 %setup -q -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%py3_install
+%pyproject_install
 
 
 
@@ -53,7 +56,7 @@ rm -rf $RPM_BUILD_ROOT
 %license LICENSE.txt
 %{python3_sitelib}/%{srcname}.py
 %{python3_sitelib}/__pycache__/%{srcname}.cpython-%{python3_version_nodots}.*
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 
 
 %changelog

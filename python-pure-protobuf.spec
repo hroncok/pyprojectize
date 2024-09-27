@@ -15,7 +15,6 @@ BuildArch:      noarch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(pytest)
-BuildRequires:  python3dist(setuptools)
 %if 0%{?el8}
 BuildRequires:  python3dist(dataclasses)
 %endif
@@ -54,12 +53,16 @@ sed -i 's|/usr/bin/env python3|%{_bindir}/python3|' \
 popd
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 # E: non-executable-script
 pushd %{buildroot}%{python3_sitelib}/pure_protobuf/
@@ -74,7 +77,7 @@ popd
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/pure_protobuf-%{version}-py*.egg-info
+%{python3_sitelib}/pure_protobuf-%{version}.dist-info
 %{python3_sitelib}/pure_protobuf/
 
 

@@ -23,7 +23,6 @@ BuildRequires:  python3dist(oauthlib)
 BuildRequires:  python3dist(pytz)
 BuildRequires:  python3dist(requests)
 BuildRequires:  python3dist(requests-oauthlib)
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(requests-mock)
 %{?python_provide:%python_provide python3-%{pypi_name}}
@@ -36,11 +35,14 @@ objects.
 %autosetup -n python-ring-doorbell-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v tests
@@ -49,7 +51,7 @@ rm -rf %{pypi_name}.egg-info
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/ring_doorbell/
-%{python3_sitelib}/ring_doorbell-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/ring_doorbell-%{version}.dist-info/
 
 %changelog
 %autochangelog

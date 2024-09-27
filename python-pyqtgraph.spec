@@ -14,7 +14,6 @@ Patch0:         no-sphinx-qt-doc.patch
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 # For Docs
 %if %{with docs}
 BuildRequires:  make %{py3_dist pydata-sphinx-theme sphinx sphinx_design}
@@ -53,14 +52,17 @@ This package provides documentation for the %{srcname} library.
 %prep
 %autosetup -p1 -n %{srcname}-%{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 %if %{with docs}
 make -C doc html
 %endif
 
 %install
-%py3_install
+%pyproject_install
 rm -rf %{buildroot}/%{python3_sitelib}/pyqtgraph/examples
 rm -f doc/build/html/.buildinfo
 rm -f doc/build/html/objects.inv

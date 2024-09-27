@@ -9,7 +9,6 @@ License:        LicenseRef-Callaway-BSD
 URL:            https://github.com/ianare/exif-py
 Source0:        https://github.com/ianare/%{oname}/archive/%{version}/%{oname}-%{version}.tar.gz
 BuildArch:      noarch
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-devel
 
 %global _description\
@@ -24,11 +23,14 @@ Summary:       Python 3 module to extract EXIF information
 %prep
 %setup -q -n %{oname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 ln -s EXIF.py %{buildroot}%{_bindir}/EXIF
 
 %files -n python3-exif
@@ -37,7 +39,7 @@ ln -s EXIF.py %{buildroot}%{_bindir}/EXIF
 %{_bindir}/EXIF
 %{_bindir}/EXIF.py
 %{python3_sitelib}/exifread
-%{python3_sitelib}/ExifRead-*-py*.egg-info
+%{python3_sitelib}/ExifRead-*.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 3.0.0-11

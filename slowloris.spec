@@ -9,7 +9,6 @@ Source0:        %{pypi_source Slowloris}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       python3-%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
@@ -32,11 +31,14 @@ sed -i -e "s/distutils.core/setuptools/g" setup.py
 # Remove shebang
 sed -i -e '/^#!\//, 1d' %{name}.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files
 %{_bindir}/%{name}
@@ -46,7 +48,7 @@ sed -i -e '/^#!\//, 1d' %{name}.py
 %license LICENSE
 %{python3_sitelib}/__pycache__/*
 %{python3_sitelib}/%{name}.py
-%{python3_sitelib}/Slowloris-%{version}-py*.egg-info
+%{python3_sitelib}/Slowloris-%{version}.dist-info
 
 %changelog
 * Sat Jul 20 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.2.1-15

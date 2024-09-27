@@ -23,7 +23,6 @@ a program when it exits because of an exception.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -43,17 +42,20 @@ for file in README.md; do
   mv $file.new $file
 done
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %doc README.md
 %license LICENSE
 %{python3_sitelib}/%{pypi_name}.py
-%{python3_sitelib}/%{pypi_name}*.egg-info/
+%{python3_sitelib}/%{pypi_name}*.dist-info/
 %{python3_sitelib}/__pycache__/*
 
 %changelog

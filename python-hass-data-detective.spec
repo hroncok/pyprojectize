@@ -19,11 +19,9 @@ data in your Home Assistant database.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pandas
 BuildRequires:  python3-pytz
 BuildRequires:  python3-ruamel-yaml
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-sqlalchemy
 BuildRequires:  python3-pytest-timeout
 BuildRequires:  python3-pytest
@@ -38,11 +36,14 @@ data in your Home Assistant database.
 rm -rf %{pypi_name}.egg-info
 sed -i -e 's/2.1/2.3/g' setup.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v tests
@@ -51,7 +52,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v tests
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/detective/
-%{python3_sitelib}/HASS_data_detective-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/HASS_data_detective-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.4-14

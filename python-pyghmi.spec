@@ -37,7 +37,6 @@ BuildRequires: python3-devel
 %if %{with pbr}
 BuildRequires: python3-pbr
 %endif
-BuildRequires: python3-setuptools
 %if %{with tests}
 BuildRequires: python3-oslotest
 BuildRequires: python3-stestr
@@ -81,8 +80,11 @@ sed -i s/@@REDHATVERSION@@/%{version}/ pyghmi/version.py
 sed -e "s/#VERSION#/%{version}/" setup.py.tmpl > setup.py
 %endif
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 %if %{with docs}
 sphinx-build -b html doc/source doc/build/html
 
@@ -91,7 +93,7 @@ rm -rf doc/build/html/.{doctrees,buildinfo}
 %endif
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %if %{with tests}
@@ -107,7 +109,7 @@ stestr run
 %{_bindir}/virshbmc
 %{_bindir}/fakebmc
 %{python3_sitelib}/%{sname}
-%{python3_sitelib}/%{sname}-*.egg-info
+%{python3_sitelib}/%{sname}.dist-info
 %exclude %{python3_sitelib}/%{sname}/tests
 
 %files -n python3-%{sname}-tests

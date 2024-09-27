@@ -20,7 +20,6 @@ Summary: Zope Component Architecture
 %{?python_provide:%python_provide python3-zope-component}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-sphinx
 
 Requires: python3-zope-interface
@@ -36,8 +35,11 @@ defining, registering and looking up components.
 
 rm -rf %{modname}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 # build Sphinx documents
 COPYRIGHT=`grep Author: PKG-INFO |sed -e 's/Author: //'`
@@ -59,7 +61,7 @@ sphinx-build -b html docs/ html
 rm -fr html/{.buildinfo,.doctrees}
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-zope-component
 %doc CHANGES.rst COPYRIGHT.txt README.rst
@@ -67,7 +69,7 @@ rm -fr html/{.buildinfo,.doctrees}
 %license LICENSE.txt
 %{python3_sitelib}/zope/component/
 %exclude %{python3_sitelib}/zope/component/*.txt
-%{python3_sitelib}/%{modname}-*.egg-info
+%{python3_sitelib}/%{modname}.dist-info
 %{python3_sitelib}/%{modname}-*-nspkg.pth
 
 %changelog

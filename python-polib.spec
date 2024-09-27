@@ -24,7 +24,6 @@ POFile, MOFile, POEntry and MOEntry for creating new files/entries.
 %package -n python3-%{srcname}
 Summary:        A library to parse and manage gettext catalogs
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
@@ -40,11 +39,14 @@ POFile, MOFile, POEntry and MOEntry for creating new files/entries.
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{__python3} tests/tests.py

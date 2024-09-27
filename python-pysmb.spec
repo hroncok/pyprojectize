@@ -24,7 +24,6 @@ Summary:        %{summary}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(pyasn1)
-BuildRequires:  python3dist(setuptools)
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -38,11 +37,14 @@ sharing and Samba folders.
 rm -rf %{pypi_name}.egg-info
 sed -i -e '/^#!\//, 1d' python3/smb/utils/sha256.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 #%%check
 # https://github.com/miketeo/pysmb/issues/165
@@ -53,7 +55,7 @@ sed -i -e '/^#!\//, 1d' python3/smb/utils/sha256.py
 %doc CHANGELOG README.txt python3/tests/README_1st.txt
 %{python3_sitelib}/nmb/
 %{python3_sitelib}/smb/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.2.4-14

@@ -33,7 +33,6 @@ BuildRequires:  python3-icalendar
 BuildRequires:  python3-lxml
 BuildRequires:  python3-requests >= 2.10
 BuildRequires:  python3-requests-toolbelt >= 0.4.0
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
 BuildRequires:  python3-sphinx
 BuildRequires:  python3-sphinx_rtd_theme
@@ -93,6 +92,9 @@ for the vdirsyncer calendar/address-book synchronization utility.
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 # Here we set upstream version based on setuptools_scm documentation
 # this is done to avoid the following error:
@@ -100,7 +102,7 @@ for the vdirsyncer calendar/address-book synchronization utility.
 # since we are not importing a .git repository in the tarball
 # From: https://athoscr.fedorapeople.org/packaging/python-setuptools_scm_git_archive.spec
 export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
-%py3_build
+%pyproject_wheel
 
 # Custom sphinx docs need to import vdirsyncer classes from the untarred
 # source tree
@@ -123,7 +125,7 @@ rm -fv docs/_build/html/{.buildinfo,objects.inv}
 # since we are not importing a .git repository in the tarball
 # From: https://athoscr.fedorapeople.org/packaging/python-setuptools_scm_git_archive.spec
 export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
-%py3_install
+%pyproject_install
 
 install -d "$RPM_BUILD_ROOT%{_mandir}/man1"
 cp -r docs/_build/man/%{name}.1 "$RPM_BUILD_ROOT%{_mandir}/man1"
@@ -136,7 +138,7 @@ sh build.sh tests
 %files -n python3-%{srcname}
 %license LICENSE
 %doc AUTHORS.rst README.rst CONTRIBUTING.rst
-%{python3_sitelib}/%{srcname}-*.egg-info
+%{python3_sitelib}/%{srcname}.dist-info
 %{python3_sitelib}/%{srcname}
 
 

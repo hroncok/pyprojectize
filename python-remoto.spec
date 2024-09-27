@@ -16,7 +16,6 @@ BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3-pytest
 BuildRequires:  python3-execnet >= 1.2.0
-BuildRequires:  python3-setuptools
 
 %global _description\
 Execute remote commands or processes.
@@ -33,11 +32,14 @@ Requires:       python3-execnet >= 1.2.0
 %prep
 %autosetup -p1 -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 %check
 py.test-%{python3_version} -v remoto/tests

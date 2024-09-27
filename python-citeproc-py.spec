@@ -19,7 +19,6 @@ BuildArch:      noarch
 %package -n python3-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3dist(rnc2rng) >= 2.2
 BuildRequires:  python3dist(lxml)
 BuildRequires:  python3dist(pytest)
@@ -33,11 +32,14 @@ Python 3 version.
 %autosetup -n %{srcname}-%{version}
 rm -vrf *.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 sed -i -e '1s|^.*$|#!%{__python3}|' %{buildroot}%{_bindir}/csl_unsorted
 
@@ -49,7 +51,7 @@ sed -i -e '1s|^.*$|#!%{__python3}|' %{buildroot}%{_bindir}/csl_unsorted
 %license LICENSE
 %doc README.rst examples CHANGES.rst
 %{python3_sitelib}/citeproc/
-%{python3_sitelib}/citeproc_py-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/citeproc_py-%{version}.dist-info
 
 %{_bindir}/csl_unsorted
 

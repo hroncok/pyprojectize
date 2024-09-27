@@ -24,7 +24,6 @@ study of the Windows NT Registry.
 Summary:        %{summary}
 
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-six
 BuildRequires:  python%{python3_pkgversion}-pytest
 
@@ -42,11 +41,14 @@ study of the Windows NT Registry.
 rm -rf %{pypi_name}.egg-info
 sed -i -e '/^#!\//, 1d' Registry/*.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v tests -k "not test_regsz_value and not test_decoding and not test_utf16le_kanji_with_nulls"
@@ -55,7 +57,7 @@ sed -i -e '/^#!\//, 1d' Registry/*.py
 %doc CHANGELOG.TXT README.MD
 %license LICENSE.TXT
 %{python3_sitelib}/Registry/
-%{python3_sitelib}/python_registry-*.egg-info/
+%{python3_sitelib}/python_registry.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.4-15

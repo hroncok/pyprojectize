@@ -27,7 +27,6 @@ specify how many machines they need and commands/checks to run on them.
 Summary: Utility for writing multi-host tests for pytest
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-pytest
 # These are not *strictly* required, but are part of the default workflow.
 Recommends:    python%{python3_version}dist(pyyaml)
@@ -41,20 +40,23 @@ specify how many machines they need and commands/checks to run on them.
 %prep
 %autosetup -n %{versionedname}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %check
 # Do not run the test that needs passwordless SSH to localhost set up
 %{__python3} -m pytest -m "not needs_ssh"
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{srcname}
 %license COPYING
 %doc README.rst
-%{python3_sitelib}/%{modulename}-*.egg-info/
+%{python3_sitelib}/%{modulename}.dist-info/
 %{python3_sitelib}/%{modulename}/
 
 %changelog

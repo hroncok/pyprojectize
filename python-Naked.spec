@@ -14,7 +14,6 @@ URL:            http://naked-py.com
 Source0:        https://files.pythonhosted.org/packages/source/N/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 BuildArch:      noarch
 
@@ -40,8 +39,11 @@ Requires:       python3-setuptools
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 sed -i -e '1d' lib/Naked/templates/licenses.py
 sed -i -e '1d' lib/Naked/templates/readme_md_file.py
@@ -56,7 +58,7 @@ function update_scripts() {
     find "${1}" \( -name '*.c' -or -name '*.sh' \) -delete
 }
 
-%py3_install
+%pyproject_install
 update_scripts "%{buildroot}/%{python3_sitelib}/%{pypi_name}"
 
 
@@ -65,7 +67,7 @@ update_scripts "%{buildroot}/%{python3_sitelib}/%{pypi_name}"
 %doc docs/README.rst lib/Naked/templates/readme_md_file.py
 %{_bindir}/naked
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.31-27

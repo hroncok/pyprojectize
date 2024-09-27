@@ -17,7 +17,6 @@ BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3-pytest-cov
 BuildRequires:  python3-pytest
-BuildRequires:  python3-setuptools
 
 %description
 Fast, simple packet creation and parsing library
@@ -37,11 +36,14 @@ with definitions for the basic TCP/IP protocols.
 #%patch0 -p1
 #%patch1 -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # One test, "test_deprecated_decorator" fails, but doesn't appear
@@ -55,7 +57,7 @@ with definitions for the basic TCP/IP protocols.
 %license LICENSE 
 %doc AUTHORS LICENSE README.md examples docs
 %{python3_sitelib}/dpkt
-%{python3_sitelib}/dpkt*.egg-info
+%{python3_sitelib}/dpkt*.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.9.8-8

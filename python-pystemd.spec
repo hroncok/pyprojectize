@@ -17,7 +17,6 @@ Patch0:         %{url}/pull/87.patch#/pystemd-fix_deprecation_warning.diff
 BuildRequires:  gcc
 BuildRequires:  pkgconfig(libsystemd)
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(cython)
 BuildRequires:  python3dist(lxml)
 BuildRequires:  python3dist(psutil)
@@ -44,11 +43,14 @@ and then parsing the output to know the result.
 %prep
 %autosetup -n %{pypi_name}-%{version} -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 # remove installed source files if present
 # seems to vary based on dependency versions (EPEL 9 does not install these)
 rm -f %{buildroot}%{python3_sitearch}/%{pypi_name}/*.c
@@ -70,7 +72,7 @@ popd
 %license LICENSE
 %doc README.md
 %{python3_sitearch}/%{pypi_name}
-%{python3_sitearch}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.13.2-10

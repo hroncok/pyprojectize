@@ -45,7 +45,6 @@ BuildRequires:  python3dist(more-itertools) >= 2.6
 
 BuildRequires:  python3dist(requests)
 BuildRequires:  python3dist(requests-unixsocket)
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(setuptools-scm)
 BuildRequires:  python3dist(trustme)
 %{?python_provide:%python_provide python3-%{pypi_name}}
@@ -87,8 +86,11 @@ sed -i "/getfixturevalue('_garbage_bin')/d" cheroot/test/test_server.py
 sed -i '/jaraco.context/d' cheroot/test/test_wsgi.py
 sed -i '39 i @pytest.mark.skip()' cheroot/test/test_wsgi.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 %if %{with docs}
 sphinx-build -vvv docs html
 # remove the sphinx-build leftovers
@@ -96,7 +98,7 @@ rm -rf html/.{doctrees,buildinfo}
 %endif
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 LANG=C.utf-8 %{__python3} -m pytest --ignore=build -W ignore::DeprecationWarning -p no:unraisableexception

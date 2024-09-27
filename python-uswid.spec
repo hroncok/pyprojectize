@@ -22,7 +22,6 @@ and storage constraints.}
 %package -n python3-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 BuildRequires:  python3-cbor2
 BuildRequires:  python3-lxml
@@ -35,11 +34,14 @@ BuildRequires:  python3-wheel
 %autosetup -n %{srcname}-%{version}
 sed -i -e '/^#!\//, 1d' %{srcname}/*.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 #%{python3} setup.py test
@@ -48,7 +50,7 @@ sed -i -e '/^#!\//, 1d' %{srcname}/*.py
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 %{python3_sitelib}/%{srcname}/
 %{_bindir}/uswid
 

@@ -18,7 +18,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-pbr
 BuildRequires:  python3-pytest
 BuildRequires:  python3-sphinx
-BuildRequires:  python3-setuptools
 
 %global common_desc \
 This package contains Sphinx extension for running sphinx-apidoc_ \
@@ -46,13 +45,16 @@ Requires:   python3-sphinx
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 
-%py3_build
+%pyproject_wheel
 
 %install
 
-%py3_install
+%pyproject_install
 
 # %check
 # FIXME(chkumar246): Tests are broken in current version, So
@@ -68,7 +70,7 @@ rm -rf %{pypi_name}.egg-info
 %doc README.rst
 %{python3_sitelib}/sphinxcontrib_apidoc*nspkg.pth
 %{python3_sitelib}/sphinxcontrib/apidoc
-%{python3_sitelib}/sphinxcontrib_apidoc-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/sphinxcontrib_apidoc-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.3.0-15

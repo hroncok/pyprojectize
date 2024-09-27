@@ -28,7 +28,6 @@ and pysnmp modules can be generated from ASN.1 MIBs.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-ply
 %{?python_provide:%python_provide python3-smi}
 
@@ -46,11 +45,14 @@ and pysnmp modules can be generated from ASN.1 MIBs.
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 mv %{buildroot}%{_bindir}/mibcopy.py %{buildroot}%{_bindir}/mibcopy
 mv %{buildroot}%{_bindir}/mibdump.py %{buildroot}%{_bindir}/mibdump
 
@@ -64,7 +66,7 @@ mv %{buildroot}%{_bindir}/mibdump.py %{buildroot}%{_bindir}/mibdump
 %license LICENSE.rst
 %{_bindir}/mibcopy
 %{_bindir}/mibdump
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{python3_sitelib}/%{srcname}/
 
 %changelog

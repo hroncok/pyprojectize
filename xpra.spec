@@ -188,6 +188,9 @@ network bandwidth constraints.
 sed -i 's|-mfpmath=387|-mfloat-abi=hard|' setup.py
 %endif
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %set_build_flags
 %py3_build -- \
@@ -205,7 +208,7 @@ sed -i 's|-mfpmath=387|-mfloat-abi=hard|' setup.py
     --with-enc_ffmpeg
 
 %install
-%py3_install
+%pyproject_install
 
 mkdir -p %{buildroot}%{_unitdir}
 mv %{buildroot}/lib/systemd/system/xpra.*  %{buildroot}%{_unitdir}/
@@ -298,7 +301,7 @@ getent group xpra >/dev/null || groupadd -r xpra
 %{_bindir}/run_scaled
 %{_sysusersdir}/*.conf
 %{python3_sitearch}/xpra/
-%{python3_sitearch}/*.egg-info
+%{python3_sitearch}/*.dist-info
 %{_datadir}/applications/xpra*.desktop
 %{_datadir}/icons/hicolor/48x48/apps/xpra-mdns.png
 %{_datadir}/icons/hicolor/48x48/apps/xpra-shadow.png

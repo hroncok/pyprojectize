@@ -22,7 +22,6 @@ Patch1:           python-virtualenvwrapper-4.8.4-fix-deprecated-egrep.patch
 BuildArch:        noarch
 
 BuildRequires:      python3-devel
-BuildRequires:      python3-setuptools
 BuildRequires:      python3-virtualenv
 BuildRequires:      python3-virtualenv-clone
 BuildRequires:      python3-stevedore
@@ -54,11 +53,14 @@ rm -rf %{modname}.egg-info
 # Fix egrep -> grep -E
 %patch -P1 -p1 -b .fix-deprecated-egrep
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Prepend a shebang to these so they are not stripped of executable bits
 sed -i '1i #!/bin/sh' %{buildroot}/%{_bindir}/%{modname}.sh

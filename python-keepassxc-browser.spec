@@ -11,7 +11,6 @@ Source0:        %{pypi_source}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(pysodium)
 
 %global _description %{expand:
@@ -29,16 +28,19 @@ Summary:        %{summary}
 %prep
 %autosetup -p1 -n keepassxc-browser-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/keepassxc_browser-%{version}-py*.egg-info
+%{python3_sitelib}/keepassxc_browser-%{version}.dist-info
 %{python3_sitelib}/keepassxc_browser
 
 %changelog

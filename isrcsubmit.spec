@@ -13,7 +13,6 @@ BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3-libdiscid
 BuildRequires:  python3-musicbrainzngs
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-sphinx
 Requires:       python3-libdiscid
 Requires:       python3-musicbrainzngs
@@ -36,12 +35,16 @@ and on server), keyring support for login information.
 sed -i "100i packages=[]," setup.py
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check

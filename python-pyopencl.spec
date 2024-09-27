@@ -62,7 +62,6 @@ API in a manner similar to the sister project `PyCUDA`.
 Summary:        Python 3 wrapper for OpenCL
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3dist(pybind11)
 BuildRequires:  python3dist(numpy)
 BuildRequires:  python3dist(zombie-imp)
@@ -81,12 +80,15 @@ rm -vf examples/download-examples-from-wiki.py
 # remove the sphinx-build leftovers
 #rm -rf html/.{doctrees,buildinfo}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 %{__python3} configure.py --cl-enable-gl --cl-pretend-version=1.2
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 find %{buildroot}%{python3_sitearch}/%{srcname} -name '*.so' -exec chmod 755 {} \+
 
@@ -94,7 +96,7 @@ find %{buildroot}%{python3_sitearch}/%{srcname} -name '*.so' -exec chmod 755 {} 
 %license LICENSE
 %doc examples
 %{python3_sitearch}/%{srcname}/
-%{python3_sitearch}/%{srcname}-*.egg-info/
+%{python3_sitearch}/%{srcname}.dist-info/
 
 %changelog
 %autochangelog

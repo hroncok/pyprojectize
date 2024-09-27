@@ -20,7 +20,6 @@ added to a Box or BoxList object are converted automatically.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(pytest-cov)
 BuildRequires:  python3dist(msgpack)
@@ -41,11 +40,14 @@ added to a Box or BoxList object are converted automatically.
 %prep
 %autosetup -n Box-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v test -k "not test_msgpack"
@@ -54,7 +56,7 @@ added to a Box or BoxList object are converted automatically.
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/python_box-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/python_box-%{version}.dist-info/
 
 %changelog
 * Tue Sep 17 2024 Fabian Affolter <mail@fabian-affolter.ch> - 7.2.0-1

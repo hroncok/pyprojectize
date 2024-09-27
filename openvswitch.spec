@@ -73,7 +73,7 @@ BuildRequires: gcc gcc-c++ make
 BuildRequires: autoconf automake libtool
 BuildRequires: systemd-rpm-macros
 BuildRequires: openssl openssl-devel
-BuildRequires: python3-devel python3-six python3-setuptools python3-sortedcontainers
+BuildRequires: python3-devel python3-six python3-sortedcontainers
 BuildRequires: python3-sphinx
 BuildRequires: desktop-file-utils
 BuildRequires: groff-base graphviz
@@ -205,6 +205,9 @@ This provides ovs-vswitchd linked with DPDK library.
 %else
 %autosetup -p 1
 %endif
+
+%generate_buildrequires
+%pyproject_buildrequires
 
 %build
 %if 0%{?commit0:1}
@@ -343,7 +346,7 @@ pushd python
 export CPPFLAGS="-I ../build/include -I ../include"
 export LDFLAGS="%{__global_ldflags} -L $RPM_BUILD_ROOT%{_libdir}"
 %py3_build
-%py3_install
+%pyproject_install
 [ -f "$RPM_BUILD_ROOT/%{python3_sitearch}/ovs/_json$(python3-config --extension-suffix)" ]
 )
 popd
@@ -478,7 +481,7 @@ fi
 
 %files -n python3-openvswitch
 %{python3_sitearch}/ovs
-%{python3_sitearch}/ovs-*.egg-info
+%{python3_sitearch}/ovs.dist-info
 %{_datadir}/openvswitch/bugtool-plugins/
 %{_datadir}/openvswitch/scripts/ovs-bugtool-*
 %{_datadir}/openvswitch/scripts/ovs-check-dead-ifs

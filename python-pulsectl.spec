@@ -11,7 +11,6 @@ Source0:        https://files.pythonhosted.org/packages/1a/a9/cdd1a19889f78ddd45
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  pulseaudio-libs
 
 %description
@@ -35,12 +34,16 @@ samples to play, player-like client).
 %setup -n %{pypi_name}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 
 %install
-%{py3_install}
+%{pyproject_install}
 
 
 %files -n python3-%{pypi_name}

@@ -13,7 +13,6 @@ BuildRequires:	python3-devel
 BuildRequires:	asciidoc
 BuildRequires:	desktop-file-utils
 BuildRequires:	libappstream-glib
-BuildRequires:	python3-setuptools
 Requires:	qt6-qtbase
 Requires:	qt6-qtdeclarative
 Requires:	python3-pyqt6
@@ -34,6 +33,10 @@ It was inspired by other browsers/addons like dwb and Vimperator/Pentadactyl.
 %autosetup -p 1 -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 # Compile the man page
 a2x -f manpage doc/qutebrowser.1.asciidoc
@@ -42,11 +45,11 @@ a2x -f manpage doc/qutebrowser.1.asciidoc
 # then replace it with '#!/usr/bin/python3' (if it's the 1st line).
 find . -type f -iname "*.py" -exec sed -i '1s_^#!/usr/bin/env python3$_#!/usr/bin/python3_' {} +
 
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 # Install desktop and appdata files
 desktop-file-install \
@@ -81,7 +84,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.appdata
 %files
 %license LICENSE
 %doc README.asciidoc doc/changelog.asciidoc doc
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 %{python3_sitelib}/%{srcname}
 %{_bindir}/%{srcname}
 %{_datadir}/applications/org.%{srcname}.%{srcname}.desktop

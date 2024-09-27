@@ -13,7 +13,6 @@ BuildArch:      noarch
 Patch0:         2to3.patch
  
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(sphinx)
 
 %description
@@ -45,15 +44,18 @@ chmod 644 COPYING
 chmod 644 COPYING.LESSER
 chmod 644 README.rst
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 # generate html docs 
 PYTHONPATH=${PWD} sphinx-build-3 docs html
 # remove the sphinx-build leftovers
 rm -rf html/.{doctrees,buildinfo}
 
 %install
-%py3_install
+%pyproject_install
 
 #%check
 #%{__python3} lptest.py test
@@ -63,7 +65,7 @@ rm -rf html/.{doctrees,buildinfo}
 %doc README.rst
 %{python3_sitelib}/__pycache__/*
 %{python3_sitelib}/%{pypi_name}.py
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %files -n python-%{pypi_name}-doc
 %license COPYING COPYING.LESSER

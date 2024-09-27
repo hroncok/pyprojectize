@@ -21,7 +21,6 @@ BuildRequires: openldap-devel >= %{openldap_version}
 BuildRequires: openssl-devel
 BuildRequires: cyrus-sasl-devel
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 # Test dependencies
 %if %{with tests}
 BuildRequires: openldap-servers >= %{openldap_version}
@@ -60,8 +59,12 @@ Provides:  python3-pyldap%{?_isa} = %{version}-%{release}
 find . -name '*.py' | xargs sed -i '1s|^#!/usr/bin/env python|#!%{__python3}|'
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %check
@@ -73,7 +76,7 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} %{__python3} -m unittest discover -v 
 
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-ldap
 %license LICENCE
@@ -84,7 +87,7 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} %{__python3} -m unittest discover -v 
 %{python3_sitearch}/__pycache__/*
 %{python3_sitearch}/slapdtest/
 %{python3_sitearch}/ldap/
-%{python3_sitearch}/python_ldap-%{version}%{?prerelease}-py%{python3_version}.egg-info/
+%{python3_sitearch}/python_ldap-%{version}%{?prerelease}.dist-info/
 
 %changelog
 %autochangelog

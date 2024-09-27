@@ -14,7 +14,6 @@ Source0:        https://github.com/%{pypi_name}/%{pypi_name}/archive/v%{version}
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 %if 0%{?with_tests}
 BuildRequires:  python3-pytest
 %endif
@@ -34,11 +33,14 @@ Summary: %{global_desc}. This package includes a commandline interface.
 %prep
 %setup -q -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %if %{with_tests}

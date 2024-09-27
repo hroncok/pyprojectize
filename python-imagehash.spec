@@ -19,7 +19,6 @@ perception hashing, difference hashing and wavelet hashing.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pywt
 BuildRequires:  python3-pillow
 BuildRequires:  python3-scipy
@@ -41,11 +40,14 @@ Demo tool for %{pypi_name}.
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 rm -rf %{buildroot}/usr/images
 
 %check
@@ -55,7 +57,7 @@ rm -rf %{buildroot}/usr/images
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %exclude %{python3_sitelib}/%{pypi_name}/tests/
 
 %files -n %{pypi_name}-demo

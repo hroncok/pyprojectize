@@ -18,7 +18,6 @@ Low-level communication layer for PRAW 4+ library.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  mock
 BuildRequires:  python3-mock
 BuildRequires:  python3-betamax
@@ -35,11 +34,14 @@ Low-level communication layer for PRAW 4+ library.
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v tests
@@ -47,7 +49,7 @@ Low-level communication layer for PRAW 4+ library.
 %files -n python3-%{pypi_name}
 %doc AUTHORS.rst CHANGES.rst README.rst
 %license LICENSE.txt
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{python3_sitelib}/%{pypi_name}/
 
 %changelog

@@ -12,7 +12,6 @@ Source0:        %{url}/archive/v%{version}/%{srcname}-%{version}.tar.gz
 BuildArch:      noarch
 BuildRequires:  python3-devel
 
-BuildRequires:  python3dist(setuptools)
 
 %global _description %{expand:
 Iterative JSON parser with standard Python iterator interfaces.}
@@ -35,11 +34,14 @@ BuildRequires:  python3dist(cffi)
 # Disable tests for unsupported configurations.
 sed -i "s/\['python', 'yajl', 'yajl2', 'yajl2_cffi', 'yajl2_c']/\['python', 'yajl2', 'yajl2_cffi']/" test/test_base.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib}:$PWD %{python3} -m unittest discover
@@ -48,7 +50,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib}:$PWD %{python3} -m unittest discover
 %license LICENSE.txt
 %doc README.rst
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 %changelog
 %autochangelog

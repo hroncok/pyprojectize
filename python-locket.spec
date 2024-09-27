@@ -33,7 +33,6 @@ module in the standard library. Specifically, their behaviour is:
 %package -n python%{python3_pkgversion}-%{srcname}
 Summary:        File-based locks for Python for Linux and Windows
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 # For tests
 BuildRequires:  python%{python3_pkgversion}-pytest
 BuildRequires:  python%{python3_pkgversion}-spur
@@ -61,11 +60,14 @@ module in the standard library. Specifically, their behaviour is:
 %prep
 %setup -q -n %{srcname}.py-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest

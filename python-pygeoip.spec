@@ -12,7 +12,6 @@ BuildArch:          noarch
 
 BuildRequires:      GeoIP
 BuildRequires:      python3-devel
-BuildRequires:      python3-setuptools
 BuildRequires:      python3-nose
 
 %global _description\
@@ -74,12 +73,15 @@ Requires:           geoip-geolite
 # Remove bundled egg-info in case it exists
 rm -rf %{modname}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 ## The tests require some files not in sdist
 # FileNotFoundError: [Errno 2] No such file or directory:

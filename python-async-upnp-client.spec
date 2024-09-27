@@ -24,7 +24,6 @@ BuildRequires:  python3dist(defusedxml)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(pytest-asyncio)
 BuildRequires:  python3dist(python-didl-lite)
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(voluptuous)
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -35,11 +34,14 @@ Async UPnP Client Asyncio UPnP Client library for Python.
 %autosetup -n async_upnp_client-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v tests
@@ -49,7 +51,7 @@ rm -rf %{pypi_name}.egg-info
 %doc README.rst
 %{_bindir}/upnp-client
 %{python3_sitelib}/async_upnp_client/
-%{python3_sitelib}/async_upnp_client-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/async_upnp_client-%{version}.dist-info/
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 0.14.15-15

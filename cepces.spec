@@ -36,7 +36,6 @@ have been tested.
 %package -n python%{python3_pkgversion}-%{name}
 Summary:        Python part of %{name}
 
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(cryptography) >= 1.2
 BuildRequires:  python3dist(requests)
 BuildRequires:  python3dist(gssapi)
@@ -80,8 +79,11 @@ SELinux support for %{name}
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %if %{with selinux}
 # Build the SELinux module(s).
@@ -92,7 +94,7 @@ done
 %endif
 
 %install
-%py3_install
+%pyproject_install
 
 install -d  %{buildroot}%{logdir}
 
@@ -184,7 +186,7 @@ fi
 %files -n python%{python3_pkgversion}-%{name}
 %license LICENSE
 %{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}-%{version}-py?.*.egg-info
+%{python3_sitelib}/%{name}-%{version}-py?.*.dist-info
 
 %files certmonger
 %{_libexecdir}/certmonger/%{name}-submit

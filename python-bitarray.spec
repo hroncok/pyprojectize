@@ -13,7 +13,6 @@ Source0:        https://pypi.python.org/packages/source/b/%{srcname}/%{srcname}-
 
 BuildRequires:  gcc
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 
 
 %description
@@ -46,12 +45,15 @@ This is Python 3 version.
 %prep
 %setup -q -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python%{python3_pkgversion}-%{srcname}

@@ -28,7 +28,6 @@ BuildArch:      noarch
 BuildRequires:  systemd
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  %{py3_dist pyusb}
 BuildRequires:  %{py3_dist pytest}
 
@@ -42,13 +41,16 @@ Summary:        %{summary}
 %prep
 %autosetup -n %{pretty_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
 %{!?_udevrulesdir: %global _udevrulesdir %{_sysconfdir}/udev/rules.d}
 
-%py3_install
+%pyproject_install
 mkdir -pm 755 %{buildroot}/%{_udevrulesdir}	
 install -pm 644 %{SOURCE2} %{buildroot}/%{_udevrulesdir}
 
@@ -64,7 +66,7 @@ install -pm 644 %{SOURCE2} %{buildroot}/%{_udevrulesdir}
 %files -n python3-%{pretty_name}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{pretty_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pretty_name}-%{version}.dist-info
 %{python3_sitelib}/%{extract_name}
 %{python3_sitelib}/%{pretty_name}
 %{_bindir}/openant

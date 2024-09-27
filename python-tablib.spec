@@ -27,7 +27,6 @@ Output formats supported:\
 %package -n python3-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(setuptools-scm)
 # ods
 Requires:       python3dist(odfpy)
@@ -44,16 +43,19 @@ Requires:       python3dist(pyyaml)
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
  
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/tablib-*.egg-info/
+%{python3_sitelib}/tablib.dist-info/
 %{python3_sitelib}/tablib/
 
 %changelog

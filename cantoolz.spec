@@ -10,7 +10,6 @@ Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %description
 CANToolz is a framework for analyzing CAN networks and devices. It provides
@@ -23,11 +22,14 @@ scanning or R&D, testing and validation.
 %prep
 %autosetup -n CANToolz-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 # Tests are writing results to files
 #%check
@@ -37,7 +39,7 @@ scanning or R&D, testing and validation.
 %doc CONTRIBUTORS.md README.md NOTICE.md
 %license LICENSE.md
 %{_bindir}/%{name}
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{python3_sitelib}/%{name}/
 %exclude %{python3_sitelib}/tests/
 

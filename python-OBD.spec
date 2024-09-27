@@ -24,7 +24,6 @@ Works with ELM327 OBD-II adapters, and is fit for the Raspberry Pi.
 Summary:       %{summary}
 %{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 %if %{with check}
 BuildRequires: python3-pint >= 0.16
 BuildRequires: python3-pytest
@@ -43,11 +42,14 @@ Python 3 version.
 %prep
 %autosetup
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with check}
 %check
@@ -56,7 +58,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-3 -v
 
 %files -n python3-%{srcname}
 %license LICENSE
-%{python3_sitelib}/obd-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/obd-%{version}.dist-info
 %{python3_sitelib}/obd
 
 %changelog

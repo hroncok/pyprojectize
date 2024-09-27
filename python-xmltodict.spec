@@ -20,7 +20,6 @@ Wikipedia.
 Summary:            %{summary}
 
 BuildRequires:      python3-devel
-BuildRequires:      python3-setuptools
 BuildRequires:      %{py3_dist pytest}
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
@@ -33,11 +32,14 @@ Wikipedia.
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v

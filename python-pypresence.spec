@@ -8,7 +8,6 @@ Source0:        https://github.com/qwertyquerty/pypresence/archive/v%{version}/p
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 
 %global _description \
@@ -33,12 +32,16 @@ Summary:        %{summary}
 rm -rf %{buildroot}/docs
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -49,7 +52,7 @@ rm -rf %{buildroot}/docs
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/pypresence/
-%{python3_sitelib}/pypresence-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/pypresence-%{version}.dist-info/
 
 
 %changelog

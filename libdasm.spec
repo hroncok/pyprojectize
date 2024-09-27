@@ -131,7 +131,6 @@ BuildRequires:  python2-setuptools
 
 %if %{with python3}
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 %endif
 
 %description
@@ -206,6 +205,11 @@ sed -i -e 's|make -C pydasm|# make -C pydasm|' Makefile
 
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
+
 %build
 %set_build_flags
 %make_build CFLAGS="$CFLAGS -fPIC" PREFIX=/usr LIBDIR=%{_libdir} BINDIR=%{_bindir}
@@ -219,7 +223,7 @@ popd
 
 %if %{with python3}
 pushd pydasm
-%py3_build
+%pyproject_wheel
 popd
 %endif
 
@@ -250,7 +254,7 @@ popd
 #Use explicitly versioned python3 shabang
 sed -i -e 's|^#!/usr/bin/.*|#!/usr/bin/python3|;' pydasm/das.py
 pushd pydasm
-%py3_install
+%pyproject_install
 install -m 755 -p -D das.py "%{buildroot}%{_bindir}/das-%{python3_version}"
 pushd %{buildroot}%{_bindir}
 ln -s "das-%{python3_version}" "das-3"

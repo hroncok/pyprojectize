@@ -57,7 +57,6 @@ BuildRequires: python3-docutils
 BuildRequires: python3-jinja2
 BuildRequires: python3-lxml
 BuildRequires: python3-psutil
-BuildRequires: python3-setuptools
 %if %{with_resultsdb}
 BuildRequires: python3-resultsdb_api
 BuildRequires: python3-pycdlib
@@ -90,6 +89,9 @@ sed -e "s/'PyYAML>=4.2b2'/'PyYAML>=3.12'/" -i optional_plugins/varianter_yaml_to
 sed -e "s/'markupsafe<2.0.0', //" -i optional_plugins/html/setup.py
 # loosen jinja2 version requirement
 sed -e "s/'jinja2<3.0.0'/'jinja2'/" -i optional_plugins/html/setup.py
+
+%generate_buildrequires
+%pyproject_buildrequires
 
 %build
 %py3_build
@@ -232,7 +234,7 @@ these days a framework) to perform automated testing.
 %license LICENSE
 %{_pkgdocdir}/README.rst
 %{python3_sitelib}/avocado/
-%{python3_sitelib}/avocado_framework-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/avocado_framework-%{version}.dist-info
 %{_bindir}/avocado-%{python3_version}
 %{_bindir}/avocado-3
 %{_bindir}/avocado
@@ -309,7 +311,7 @@ arbitrary filesystem location.
 
 %files -n python3-avocado-plugins-output-html
 %{python3_sitelib}/avocado_result_html/
-%{python3_sitelib}/avocado_framework_plugin_result_html-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/avocado_framework_plugin_result_html-%{version}.dist-info
 
 
 %if %{with_resultsdb}
@@ -325,7 +327,7 @@ server.
 
 %files -n python3-avocado-plugins-resultsdb
 %{python3_sitelib}/avocado_resultsdb/
-%{python3_sitelib}/avocado_framework_plugin_resultsdb-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/avocado_framework_plugin_resultsdb-%{version}.dist-info
 %endif
 # with_resultsdb
 
@@ -342,7 +344,7 @@ defined in a yaml file(s).
 
 %files -n python3-avocado-plugins-varianter-yaml-to-mux
 %{python3_sitelib}/avocado_varianter_yaml_to_mux/
-%{python3_sitelib}/avocado_framework_plugin_varianter_yaml_to_mux-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/avocado_framework_plugin_varianter_yaml_to_mux-%{version}.dist-info
 
 
 %package -n python3-avocado-plugins-golang
@@ -358,7 +360,7 @@ also run them.
 
 %files -n python3-avocado-plugins-golang
 %{python3_sitelib}/avocado_golang/
-%{python3_sitelib}/avocado_framework_plugin_golang-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/avocado_framework_plugin_golang-%{version}.dist-info
 %{_bindir}/avocado-runner-golang
 
 
@@ -374,7 +376,7 @@ Pair-Wise algorithms, also known as Combinatorial Independent Testing.
 
 %files -n python3-avocado-plugins-varianter-pict
 %{python3_sitelib}/avocado_varianter_pict/
-%{python3_sitelib}/avocado_framework_plugin_varianter_pict-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/avocado_framework_plugin_varianter_pict-%{version}.dist-info
 
 
 %package -n python3-avocado-plugins-varianter-cit
@@ -390,7 +392,7 @@ collaboration with CVUT Prague.
 
 %files -n python3-avocado-plugins-varianter-cit
 %{python3_sitelib}/avocado_varianter_cit/
-%{python3_sitelib}/avocado_framework_plugin_varianter_cit-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/avocado_framework_plugin_varianter_cit-%{version}.dist-info
 
 
 %package -n python3-avocado-plugins-result-upload
@@ -405,7 +407,7 @@ a dedicated sever.
 
 %files -n python3-avocado-plugins-result-upload
 %{python3_sitelib}/avocado_result_upload/
-%{python3_sitelib}/avocado_framework_plugin_result_upload-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/avocado_framework_plugin_result_upload-%{version}.dist-info
 
 
 %package -n python-avocado-examples

@@ -42,7 +42,6 @@ BuildRequires: msgpack-devel
 BuildRequires: netcdf-devel
 BuildRequires: catch-devel
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-simplejson
 BuildRequires: python3-mmtf
 BuildRequires: python3-numpy
@@ -81,9 +80,12 @@ assist you in your research.
 
 ln -sr modules/web modules/pymol_web
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
 export CXXFLAGS="%{optflags}"
-%py3_build -- --use-msgpackc=c++11 --use-openmp=yes --jobs `/usr/bin/getconf _NPROCESSORS_ONLN`
+%pyproject_wheel -C--global-option='--use-msgpackc=c++11 --use-openmp=yes --jobs `/usr/bin/getconf _NPROCESSORS_ONLN`'
 
 %install
 %py3_install -- --use-msgpackc=c++11 --use-openmp=yes --pymol-path=%{python3_sitearch}/%{name}
@@ -125,7 +127,7 @@ appstream-util validate-relax --nonet %{buildroot}/%{_metainfodir}/*.appdata.xml
 %files
 %doc AUTHORS DEVELOPERS README.* ChangeLog
 %license LICENSE
-%{python3_sitearch}/*.egg-info
+%{python3_sitearch}/*.dist-info
 %{python3_sitearch}/chempy/
 %{python3_sitearch}/pmg_tk/
 %{python3_sitearch}/pmg_qt/

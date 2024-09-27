@@ -10,7 +10,6 @@ BuildArch:     noarch
 
 BuildRequires: python3-pytest
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 Requires:      python3-gerrymander
 
 %package -n python3-gerrymander
@@ -35,11 +34,14 @@ find . -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python3}|'
 # egg info)
 rm -rf *.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest
@@ -51,7 +53,7 @@ rm -rf *.egg-info
 %files -n python3-gerrymander
 %doc README LICENSE
 %{python3_sitelib}/gerrymander/
-%{python3_sitelib}/%{name}-%{version}-py3.*.egg-info
+%{python3_sitelib}/%{name}-%{version}-py3.*.dist-info
 
 %changelog
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.5-33

@@ -18,7 +18,6 @@ work with the data in an easy way with concise syntax.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pytest
 %{?python_provide:%python_provide python3-%{srcname}}
 
@@ -29,11 +28,14 @@ work with the data in an easy way with concise syntax.
 %prep
 %autosetup -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %pytest -v test
@@ -42,7 +44,7 @@ work with the data in an easy way with concise syntax.
 %doc README.md
 %license LICENSE
 %{python3_sitelib}/%{srcname}.py*
-%{python3_sitelib}/%{srcname}*.egg-info
+%{python3_sitelib}/%{srcname}*.dist-info
 %{python3_sitelib}/__pycache__/*
 
 %changelog

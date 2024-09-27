@@ -23,7 +23,6 @@ nor has any extra requirements.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 Requires:       python3-XStatic
 Requires:       xstatic-termjs-common
@@ -61,11 +60,14 @@ This package contains the javascript files.
 # patch to use webassets dir
 sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/termjs'|" xstatic/pkg/termjs/__init__.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 mkdir -p %{buildroot}%{_jsdir}/termjs
 mv %{buildroot}%{python3_sitelib}/xstatic/pkg/termjs/data/term.js %{buildroot}%{_jsdir}/termjs
 rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/termjs/data/
@@ -75,7 +77,7 @@ chmod 644 %{buildroot}%{_jsdir}/termjs/term.js
 %files -n python3-%{pkgname}
 %doc README.rst
 %{python3_sitelib}/xstatic/pkg/termjs
-%{python3_sitelib}/XStatic_term.js-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/XStatic_term.js-%{version}.dist-info
 %{python3_sitelib}/XStatic_term.js-%{version}-py%{python3_version}-nspkg.pth
 
 %files -n xstatic-termjs-common

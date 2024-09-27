@@ -12,7 +12,6 @@ Source0:        http://code.x2go.org/releases/source/%{name}/%{name}-%{version}.
 
 BuildArch:      noarch
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
 Requires:       python%{python3_pkgversion}-setproctitle
 Requires:       python%{python3_pkgversion}-x2go
 
@@ -35,14 +34,18 @@ on desktops and thin clients.
 %autosetup -p1
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
 # Fix shebang of pyhoca-cli executable.
 %py3_shebang_fix %{name}
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 mkdir -p %{buildroot}/%{_bindir}/
 cp -p %{name} %{buildroot}/%{_bindir}/
 mkdir -p %{buildroot}/%{_mandir}/

@@ -14,7 +14,6 @@ Source0:    %{pypi_source %{name}}
 
 BuildRequires: desktop-file-utils
 BuildRequires: python3-devel > 3.6
-BuildRequires: python3dist(setuptools)
 BuildRequires: python3dist(setuptools-scm)
 # BuildRequires: python3dist(vdf) >= 3.4
 %if %{with tests}
@@ -43,12 +42,16 @@ repository is available at Sirmentio/protontricks.
 %autosetup
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 # Remove `protontricks-desktop-install`, since we already install .desktop
 # files properly
@@ -70,7 +73,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_bindir}/%{name}
 %{_datadir}/applications/*.desktop
 %{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}-%{version}*.egg-info
+%{python3_sitelib}/%{name}-%{version}*.dist-info
 
 
 %changelog

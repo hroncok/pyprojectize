@@ -36,7 +36,6 @@ contains shared libraries and the command-line interface.
 Summary: Build system tools python library
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{name}}
 BuildRequires: python%{python3_pkgversion}-devel
-BuildRequires: python%{python3_pkgversion}-setuptools
 BuildRequires: make
 BuildRequires: python3-pip
 BuildRequires: python3-wheel
@@ -211,6 +210,9 @@ koji-web is a web UI to the Koji system.
 # we'll be packaging these separately and don't want them registered
 # to the wheel we will produce.
 sed -e '/util\/koji/g' -e '/koji_cli_plugins/g' -i setup.py
+
+%generate_buildrequires
+%pyproject_buildrequires
 
 %build
 %py3_build_wheel

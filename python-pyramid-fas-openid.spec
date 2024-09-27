@@ -20,7 +20,6 @@ BuildRequires:      python3-openid
 BuildRequires:      python3-openid-cla
 BuildRequires:      python3-openid-teams
 BuildRequires:      python3-pyramid
-BuildRequires:      python3-setuptools
 
 
 %description %_description
@@ -45,12 +44,16 @@ Requires:           python3-openid-cla
 rm -rf %{modname}.egg-info
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %files -n python3-pyramid-fas-openid

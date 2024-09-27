@@ -12,7 +12,6 @@ BuildRequires:  libappstream-glib
 BuildRequires:  folks-devel
 BuildRequires:  gettext
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pillow
 BuildRequires:  python3-pyxdg
 BuildRequires:  vala
@@ -42,11 +41,14 @@ sed -i '1{\@^#!/usr/bin/env python@d}' \
         bubblemail/plugins/spamfilterplugin.py \
         bubblemail/plugins/userscriptplugin.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 %find_lang %{name}
 
 %check
@@ -64,7 +66,7 @@ desktop-file-validate \
 %{_bindir}/%{name}
 %{_bindir}/%{name}-avatar-provider
 %{_bindir}/%{name}d
-%{python3_sitelib}/%{name}-%{version}-py*.egg-info
+%{python3_sitelib}/%{name}-%{version}.dist-info
 %{python3_sitelib}/%{name}/
 %{_datadir}/applications/bubblemail.desktop
 %{_datadir}/%{name}/

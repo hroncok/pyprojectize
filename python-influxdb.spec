@@ -10,7 +10,6 @@ URL:            https://github.com/influxdb/influxdb-python
 Source0:        https://pypi.python.org/packages/e1/af/94faea244de2a73b7a0087637660db2d638edaae58f22d3f0d0d219ad8b7/%{pypi_name}-%{version}.tar.gz
 BuildArch:      noarch
  
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-devel
 
 %description
@@ -32,11 +31,14 @@ InfluxDB Python is a client for interacting with InfluxDB.
 %autosetup -n %{pypi_name}-%{version}
 rm -rf %{pypi_name}.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %license LICENSE

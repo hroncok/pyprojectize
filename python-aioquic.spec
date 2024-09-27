@@ -77,7 +77,7 @@ export LDFLAGS="%{__global_ldflags} %(pkg-config --libs python3-embed)"
 %if %{with pyproject}
 %pyproject_wheel
 %else
-%py3_build
+%pyproject_wheel
 %endif
 
 
@@ -91,7 +91,7 @@ export LDFLAGS="%{__global_ldflags} %(pkg-config --libs python3-embed)"
 %pyproject_install
 %pyproject_save_files %{pypi_name}
 %else
-%py3_install
+%pyproject_install
 %endif
 
 
@@ -100,7 +100,7 @@ export LDFLAGS="%{__global_ldflags} %(pkg-config --libs python3-embed)"
 %else
 %files -n python3-%{pypi_name}
 %{python3_sitearch}/%{pypi_name}/
-%{python3_sitearch}/%{pypi_name}-%{version}*.egg-info/
+%{python3_sitearch}/%{pypi_name}-%{version}*.dist-info/
 %license LICENSE
 %endif
 %doc README.rst

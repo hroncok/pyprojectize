@@ -22,7 +22,6 @@ objects, easy to analyze, transform, parse, print, and extend.
 %package -n python3-%{pypi_name}
 Summary:        %{sumary}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-ply
 BuildRequires:  python3-decorator
 BuildRequires:  python3-six
@@ -39,11 +38,14 @@ objects, easy to analyze, transform, parse, print, and extend.
 %prep
 %autosetup -n %{name}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} setup.py test

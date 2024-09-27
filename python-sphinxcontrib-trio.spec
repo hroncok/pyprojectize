@@ -29,7 +29,6 @@ especially inadequate in this case.)
 
 %package -n python3-%{srcname}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-sphinx
 BuildRequires:  %{_bindir}/rst2html
 BuildRequires:  make
@@ -43,14 +42,18 @@ Summary: %{summary}
 %autosetup -p1 -n %{srcname}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 make -C docs html SPHINXBUILD=%{_bindir}/sphinx-build-3
 rm -f docs/build/html/.buildinfo
 rst2html README.rst README.html
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check

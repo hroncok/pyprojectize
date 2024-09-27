@@ -20,7 +20,6 @@ Source0:        https://files.pythonhosted.org/packages/source/C/%{camelname}/ch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(setuptools-scm)
 %if %{with tests}
 # Test dependencies
@@ -63,11 +62,14 @@ Obsoletes: python2-cherrypy < 3.5.1
 # These tests still fail (reason unknown):
 rm cherrypy/test/test_session.py
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with tests}
 %check

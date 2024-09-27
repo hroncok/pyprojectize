@@ -19,7 +19,6 @@ BuildRequires:  python3dist(aiodns)
 BuildRequires:  python3dist(authres)
 BuildRequires:  python3dist(dnspython) >= 1.16
 BuildRequires:  python3dist(pynacl)
-BuildRequires:  python3dist(setuptools)
 
 %description
 dkimpy is a library that implements DKIM (DomainKeys Identified Mail)
@@ -41,11 +40,14 @@ rm -rf %{pypi_name}.egg-info
 # Drop shebang for these files, as we don't need them
 sed -e "s|#!/usr/bin/env python||" -i dkim/{arcsign.py,arcverify.py,dkimsign.py,dkimverify.py,dknewkey.py}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %if %{with check}
 %check
@@ -66,7 +68,7 @@ sed -e "s|#!/usr/bin/env python||" -i dkim/{arcsign.py,arcverify.py,dkimsign.py,
 %{_mandir}/man1/dkimverify.1*
 %{_mandir}/man1/dknewkey.1*
 %{python3_sitelib}/dkim/
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.5-14

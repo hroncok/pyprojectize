@@ -23,7 +23,6 @@ BuildArch: noarch
 %package -n python3-%{pname}
 Summary: %{summary}
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 %{?python_provide:%python_provide python3-%{pname}}
 
 %description -n python3-%{pname}
@@ -33,16 +32,19 @@ BuildRequires: python3-setuptools
 %setup -q -n %{pname}-%{version}
 rm -r tempdir.egg-info
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pname}
 %license docs/license.rst
 %doc docs/use.rst
-%{python3_sitelib}/%{pname}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pname}-%{version}.dist-info
 %{python3_sitelib}/__pycache__/*
 %{python3_sitelib}/tempdir.py
 

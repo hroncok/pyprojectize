@@ -13,7 +13,6 @@ Source0: https://github.com/theojulienne/%{srcname}/archive/%{version}.tar.gz#/%
 BuildArch: noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  %{py3_dist setuptools}
 
 # required for check
 BuildRequires: %{py3_dist six}
@@ -36,11 +35,14 @@ Summary:        %{summary}
 %prep
 %autosetup -p 1 -n PySignals-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 %{python3} setup.py test
@@ -48,7 +50,7 @@ Summary:        %{summary}
 %files -n python3-%{srcname}
 %license LICENSE.txt license.python.txt
 %doc README.rst
-%{python3_sitelib}/%{srcname}-*.egg-info/
+%{python3_sitelib}/%{srcname}.dist-info/
 %{python3_sitelib}/%{srcname}/
 
 %changelog

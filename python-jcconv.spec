@@ -27,7 +27,6 @@ BuildArch:	noarch
 Summary:%{summary}
 
 BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
 BuildRequires:	python3-six
 
 Requires:	python3-six
@@ -42,12 +41,16 @@ Requires:	python3-six
 %autosetup -n %{pypi_name}-%{version}
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
 
 
 %check
@@ -56,9 +59,9 @@ Requires:	python3-six
 
 %files -n python3-%{pypi_name}
 %license LICENSE.txt
-%doc %{pypi_name}.egg-info/PKG-INFO README.rst
+%doc %{pypi_name}.dist-info/PKG-INFO README.rst
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 
 %changelog

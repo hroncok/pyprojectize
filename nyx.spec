@@ -15,7 +15,6 @@ Source0: %{pypi_source}
 Patch0: nyx-2.1.0-replace-inspect.getargspec-usage.patch
 BuildArch: noarch
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 # Tests
 BuildRequires: python3-stem
 BuildRequires: python3-pyflakes
@@ -35,11 +34,14 @@ Summary: %summary
 %prep
 %autosetup -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 install -D -m 0644 nyx.1 %{buildroot}%{_mandir}/man1/nyx.1
 
 %check
@@ -49,7 +51,7 @@ install -D -m 0644 nyx.1 %{buildroot}%{_mandir}/man1/nyx.1
 %license LICENSE
 %{_bindir}/%{name}
 %{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}-%{version}*-py*.egg-info
+%{python3_sitelib}/%{name}-%{version}*.dist-info
 
 %files doc
 %license LICENSE

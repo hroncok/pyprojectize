@@ -27,7 +27,6 @@ Summary: Schema migration tools for SQLAlchemy
 BuildRequires: python3-devel
 BuildRequires: python3-sqlalchemy >= 0.9.6
 BuildRequires: python3-sqlalchemy < 2
-BuildRequires: python3-setuptools
 BuildRequires: python3-nose
 BuildRequires: python3-sphinx
 BuildRequires: python3-decorator
@@ -66,11 +65,14 @@ sed -i "s/import unittest2/import unittest as unittest2/g" \
 # for setuptools 66+
 sed -i 's/2010h/2010/' test-requirements.txt
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 # Need to set PATH for two reasons:

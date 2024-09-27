@@ -14,7 +14,6 @@ Patch0:         0001-Enable-building-on-python3-along-with-changes-to-doc.patch
 Patch1:         0002-python3-2to3-including-doc.patch
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 
 %global _description\
 A module that provides lazy strings for translations. Basically you get an\
@@ -39,11 +38,14 @@ This package provides the python3 version of the module.
 %patch -P0 -p1
 %patch -P1 -p1
 
+%generate_buildrequires
+%pyproject_buildrequires
+
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %check
 pushd build/lib

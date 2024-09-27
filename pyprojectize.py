@@ -201,17 +201,19 @@ def remove_setuptools_br(sections: specfile.sections.Sections) -> ResultMsg:
     """
     ret = Result.NOT_NEEDED, "no BuildRequires for setuptools found"
 
-    pkg_re = r"(python(3|%{python3_pkgversion})-setuptools|python3dist\(setuptools\)|%{py3_dist setuptools})"
-    rich = rf"\({pkg_re}\s+.+\)\s*"
-    regular = rf"{pkg_re}(\s+[<>=]{{1,3}}\s+\S+)?\s*"
+    setuptools = r"(python(3|%{python3_pkgversion})-setuptools|python3dist\(setuptools\)|%{py3_dist setuptools})"
+    rich = rf"\({setuptools}\s+.+\)\s*"
+    last_rich = rf"\s*{rich}$"
+    regular = rf"{setuptools}(\s+[<>=]{{1,3}}\s+\S+)?\s*"
+    last_regular = rf"\s*{regular}$"
+    drop_me = rf"({last_rich}|{rich}|{last_regular}|{regular})"
 
     for section in sections:
         if section.name == "package":  # the spec preamble is also here
             del_lines = []
             for idx, line in enumerate(section):
                 if line.lstrip().lower().startswith("buildrequires:"):
-                    newline = re.sub(rich, "", line)
-                    newline = re.sub(regular, "", newline)
+                    newline = re.sub(drop_me, "", line)
                     if line != newline:
                         section[idx] = newline
                         ret = Result.UPDATED, "removed BuildRequires for setuptools"

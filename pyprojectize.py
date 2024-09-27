@@ -203,11 +203,11 @@ def remove_setuptools_br(sections: specfile.sections.Sections) -> ResultMsg:
 
     setuptools = r"(python(3|%{python3_pkgversion})-setuptools|python3dist\(setuptools\)|%{py3_dist setuptools})"
     rich = rf"\({setuptools}\s+.+\)"
-    last_rich = rf"\s*{rich}\s*$"
-    nolast_rich = rf"{rich}(\s+|$)"
+    last_rich = rf",?\s*{rich}\s*$"
+    nolast_rich = rf"{rich}\s*,?(\s+|$)"
     regular = rf"{setuptools}(\s+[<>=]{{1,3}}\s+\S+)?"
-    last_regular = rf"\s*{regular}\s*$"
-    nolast_regular = rf"{regular}(\s+|$)"
+    last_regular = rf",?\s*{regular}\s*$"
+    nolast_regular = rf"{regular}\s*,?(\s+|$)"
     drop_me = rf"({last_rich}|{nolast_rich}|{last_regular}|{nolast_regular})"
 
     for section in sections:

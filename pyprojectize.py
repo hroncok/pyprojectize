@@ -2,6 +2,7 @@
 
 import collections.abc
 import enum
+import fnmatch
 import glob
 import re
 import shlex
@@ -510,10 +511,30 @@ def add_pyproject_files(spec: Specfile, sections: Sections) -> ResultMsg:
                     "%files with %{python3_sitelib}/%{python3_sitearch} already has -f",
                 )
             section.options.f = "%{pyproject_files}"
+            assert_license = False
+            for idx, line in enumerate(section):
+                if line.startswith("%license"):
+                    tokens = shlex.split(line)
+                    for token in tokens.copy()[1:]:
+                        for pattern in (
+                            "LICEN[CS]E*",
+                            "COPYING*",
+                            "NOTICE*",
+                            "AUTHORS*",
+                        ):
+                            if fnmatch.fnmatch(token, pattern):
+                                assert_license = True
+                                tokens.remove(token)
+                                break
+                    if len(tokens) == 1:
+                        pysite_lines.append(line)
+                    else:
+                        section[idx] = " ".join(tokens)
             for line in pysite_lines:
                 section.remove(line)
-    pyproject_save_files = "%pyproject_save_files " + " ".join(
-        shlex_quote_with_macros(t, spec=spec) for t in sorted(topnames)
+    pyproject_save_files = (
+        f"%pyproject_save_files{' -l' if assert_license else ''} "
+        + " ".join(shlex_quote_with_macros(t, spec=spec) for t in sorted(topnames))
     )
     sections.install.insert(pyproject_install_index + 1, pyproject_save_files)
     return (

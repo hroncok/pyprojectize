@@ -7,7 +7,8 @@ import re
 import shlex
 import sys
 
-import specfile
+from specfile import Specfile
+from specfile.sections import Section, Sections
 
 
 class Result(enum.Enum):
@@ -17,7 +18,7 @@ class Result(enum.Enum):
 
 
 ResultMsg = tuple[Result, str]
-ModFunc = collections.abc.Callable[[specfile.Specfile, specfile.sections.Sections], ResultMsg]
+ModFunc = collections.abc.Callable[[Specfile, Sections], ResultMsg]
 
 _modifiers: list[ModFunc] = []
 
@@ -28,7 +29,7 @@ def register(func: ModFunc) -> ModFunc:
 
 
 @register
-def add_pyproject_buildrequires(spec: specfile.Specfile, sections: specfile.sections.Sections) -> ResultMsg:
+def add_pyproject_buildrequires(spec: Specfile, sections: Sections) -> ResultMsg:
     """
     If there is no %generate_buildrequires section, add it after %prep.
 
@@ -47,7 +48,7 @@ def add_pyproject_buildrequires(spec: specfile.Specfile, sections: specfile.sect
     if "generate_buildrequires" not in sections:
         if "prep" not in sections:
             return Result.ERROR, "no %prep section"
-        gb = specfile.sections.Section("generate_buildrequires", data=pb)
+        gb = Section("generate_buildrequires", data=pb)
         index = sections.index(sections.prep) + 1  # this could be missing?
         sections.insert(index, gb)
         return (
@@ -70,7 +71,7 @@ def add_pyproject_buildrequires(spec: specfile.Specfile, sections: specfile.sect
 
 
 @register
-def py3_build_to_pyproject_wheel(spec: specfile.Specfile, sections: specfile.sections.Sections) -> ResultMsg:
+def py3_build_to_pyproject_wheel(spec: Specfile, sections: Sections) -> ResultMsg:
     """
     In the %build section, replace %py3_build with %pyproject_wheel.
     Arguments (if any) are passed to -C--global-option.
@@ -131,7 +132,7 @@ def py3_build_to_pyproject_wheel(spec: specfile.Specfile, sections: specfile.sec
 
 
 @register
-def py3_install_to_pyproject_install(spec: specfile.Specfile, sections: specfile.sections.Sections) -> ResultMsg:
+def py3_install_to_pyproject_install(spec: Specfile, sections: Sections) -> ResultMsg:
     """
     In the %install section, replace %py3_install with %pyproject_install.
     Arguments are discarded (should we error instead?).
@@ -184,7 +185,7 @@ def py3_install_to_pyproject_install(spec: specfile.Specfile, sections: specfile
 
 
 @register
-def egginfo_to_distinfo(spec: specfile.Specfile, sections: specfile.sections.Sections) -> ResultMsg:
+def egginfo_to_distinfo(spec: Specfile, sections: Sections) -> ResultMsg:
     """
     In all the %files sections, replace .egg-info with .dist-info.
     """
@@ -211,7 +212,7 @@ def egginfo_to_distinfo(spec: specfile.Specfile, sections: specfile.sections.Sec
 
 
 @register
-def remove_setuptools_br(spec: specfile.Specfile, sections: specfile.sections.Sections) -> ResultMsg:
+def remove_setuptools_br(spec: Specfile, sections: Sections) -> ResultMsg:
     """
     Remove BuildRequires for setuptools, they should be generated
     """
@@ -244,7 +245,7 @@ def remove_setuptools_br(spec: specfile.Specfile, sections: specfile.sections.Se
 
 
 @register
-def update_extras_subpkg(spec: specfile.Specfile, sections: specfile.sections.Sections) -> ResultMsg:
+def update_extras_subpkg(spec: Specfile, sections: Sections) -> ResultMsg:
     """
     %{?python_extras_subpkg:%python_extras_subpkg -n python3-ipython -i %{python3_sitelib}/*.egg-info notebook}
     ->
@@ -275,7 +276,7 @@ def update_extras_subpkg(spec: specfile.Specfile, sections: specfile.sections.Se
 
 
 @register
-def remove_python_provide(spec: specfile.Specfile, sections: specfile.sections.Sections) -> ResultMsg:
+def remove_python_provide(spec: Specfile, sections: Sections) -> ResultMsg:
     """
     Remove %python_provide or replace it with %py_provides if the name isn't the same.
 
@@ -321,7 +322,7 @@ def specfile_path() -> str:
 
 
 def main() -> int:
-    spec = specfile.Specfile(specfile_path(), sourcedir=".")
+    spec = Specfile(specfile_path(), sourcedir=".")
     results = set()
 
     with spec.sections() as sections:

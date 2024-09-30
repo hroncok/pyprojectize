@@ -258,14 +258,14 @@ def egginfo_to_distinfo(spec: Specfile, sections: Sections) -> ResultMsg:
             name, sep, rest = filename.partition(sep)
             name = canonicalize_name_with_macros(name, spec=spec)
             filename = f"{name}{sep}{rest}"
-        return f"/{filename}.dist-info{m['end']}"
+        return f"/{filename}{m['dot'] or ''}dist-info{m['end']}"
 
     for section in sections:
         if section.name == "files":
             for idx, line in enumerate(section):
-                if ".egg-info" in line:
+                if "egg-info" in line:
                     newline = re.sub(
-                        r"/((?P<name>[^/-]+)-(?P<version>[^/-]+)-[^/-]+|(?P<all>[^/]+))\.egg-info(?P<end>(/|}|$))",
+                        r"/((?P<name>[^/-]+)-(?P<version>[^/-]+)-[^/-]*[^/\.-]|(?P<all>[^/]*[^/\.]))(?P<dot>\.)?egg-info(?P<end>(/|}|$))",
                         repl,
                         line,
                     )

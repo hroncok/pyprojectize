@@ -100,7 +100,7 @@ chmod 755 %{buildroot}%{python3_sitearch}/pymongo/*.so
 %license LICENSE
 %doc README.rst
 %{python3_sitearch}/pymongo
-%{python3_sitearch}/pymongo-%{version}.dist-info
+%{python3_sitearch}/pymongo-*.dist-info
 
 
 %files -n python3-pymongo-gridfs

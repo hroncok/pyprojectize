@@ -112,7 +112,7 @@ rmdir %{buildroot}/%{python3_sitelib}/xstatic/pkg/angular_fileupload/data/
 %doc README.txt
 %license LICENSE
 %{python2_sitelib}/xstatic/pkg/angular_fileupload
-%{python2_sitelib}/XStatic_Angular_FileUpload-%{version}.dist-info
+%{python2_sitelib}/xstatic_angular_fileupload-*.dist-info
 %{python2_sitelib}/XStatic_Angular_FileUpload-%{version}-py?.?-nspkg.pth
 %endif
 
@@ -126,7 +126,7 @@ rmdir %{buildroot}/%{python3_sitelib}/xstatic/pkg/angular_fileupload/data/
 %doc README.txt
 %license LICENSE
 %{python3_sitelib}/xstatic/pkg/angular_fileupload
-%{python3_sitelib}/XStatic_Angular_FileUpload-%{version}.dist-info
+%{python3_sitelib}/xstatic_angular_fileupload-*.dist-info
 %{python3_sitelib}/XStatic_Angular_FileUpload-%{version}-py%{python3_version}-nspkg.pth
 %endif
 

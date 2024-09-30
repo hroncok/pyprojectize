@@ -149,7 +149,7 @@ rm -r src/%{name}.egg-info
 %doc README.md
 %doc CHANGELOG.md
 %{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}-%{version}.dist-info
+%{python3_sitelib}/%{name}-*.dist-info
 %exclude %{python3_sitelib}/%{name}/{,__pycache__/}run.*
 %exclude %{python3_sitelib}/%{name}/providers/utils/{,__pycache__/}osapi.*
 %exclude %{python3_sitelib}/%{name}/providers/utils/{,__pycache__/}testcloud.*

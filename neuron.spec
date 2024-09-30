@@ -485,7 +485,7 @@ export MY_CMAKE_BUILDDIR="%_vpath_builddir""-openmpi"
 # The libraries are here
 %{python3_sitearch}/%{name}
 # Egg info
-%{python3_sitearch}/NEURON-*.dist-info
+%{python3_sitearch}/neuron-*.dist-info
 
 %files devel
 %license Copyright
@@ -533,7 +533,7 @@ export MY_CMAKE_BUILDDIR="%_vpath_builddir""-openmpi"
 # The libraries are here
 %{python3_sitearch}/mpich/%{name}
 # Egg info
-%{python3_sitearch}/mpich/NEURON-*.dist-info
+%{python3_sitearch}/mpich/neuron-*.dist-info
 
 %files mpich-devel
 %license Copyright
@@ -578,7 +578,7 @@ export MY_CMAKE_BUILDDIR="%_vpath_builddir""-openmpi"
 # The libraries are here
 %{python3_sitearch}/openmpi/%{name}
 # Egg info
-%{python3_sitearch}/openmpi/NEURON-*.dist-info
+%{python3_sitearch}/openmpi/neuron-*.dist-info
 
 %files openmpi-devel
 %license Copyright

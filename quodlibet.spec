@@ -157,7 +157,7 @@ desktop-file-install \
 %{_datadir}/icons/hicolor/scalable/apps/*.svg
 %{_datadir}/appdata/io.github.quodlibet.ExFalso.appdata.xml
 
-%{python3_sitelib}/quodlibet-%{version}.dist-info
+%{python3_sitelib}/quodlibet-*.dist-info
 %{python3_sitelib}/quodlibet
 
 

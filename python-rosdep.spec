@@ -117,7 +117,7 @@ install -D -p -m 0644 /dev/null %{buildroot}%{_sysconfdir}/ros/rosdep/sources.li
 %files -n python%{python3_pkgversion}-%{srcname} -f py3_bins
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{srcname}-%{version}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 %{python3_sitelib}/%{srcname}2/
 %{_mandir}/man1/%{srcname}.1.gz
 %dir %{_sysconfdir}/ros/rosdep/

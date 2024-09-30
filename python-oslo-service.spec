@@ -139,7 +139,7 @@ rm -rf .testrepository
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/oslo_service
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
+%{python3_sitelib}/oslo_service-*.dist-info
 %exclude %{python3_sitelib}/oslo_service/tests
 
 %files -n python3-%{pkg_name}-tests

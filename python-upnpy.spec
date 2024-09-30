@@ -49,7 +49,7 @@ rm -rf html/.{doctrees,buildinfo}
 %license LICENSE
 %exclude %{python3_sitelib}/tests
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/UPnPy-%{version}.dist-info/
+%{python3_sitelib}/upnpy-%{version}.dist-info/
 
 %files -n python-%{pypi_name}-doc
 %doc html

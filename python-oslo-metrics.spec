@@ -113,7 +113,7 @@ rm -rf doc/build/html/.{doctrees,buildinfo}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/oslo_metrics
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
+%{python3_sitelib}/oslo_metrics-*.dist-info
 %{_bindir}/oslo-metrics
 %exclude %{python3_sitelib}/oslo_metrics/tests/
 

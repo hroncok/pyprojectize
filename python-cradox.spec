@@ -88,7 +88,7 @@ Python libraries for the Ceph librados library with use cython instead of ctypes
 %doc README.rst
 %license LICENSE
 %{python2_sitearch}/cradox.so
-%{python2_sitearch}/%{pypi_name}-%{version}.dist-info
+%{python2_sitearch}/%{pypi_name}-*.dist-info
 %exclude %{_usrsrc}/debug/*
 %exclude %{_libdir}/debug/*
 %endif

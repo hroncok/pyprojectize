@@ -55,7 +55,7 @@ rm -rf %{pypi_name}.egg-info
 %license LICENSE
 %{python3_sitelib}/devolo_home_control_api
 %exclude %{python3_sitelib}/tests
-%{python3_sitelib}/devolo_home_control_api-%{version}.dist-info/
+%{python3_sitelib}/devolo_home_control_api-*.dist-info/
 
 %changelog
 * Mon Jul 29 2024 Miroslav Suchý <msuchy@redhat.com> - 0.16.0-16

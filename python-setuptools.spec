@@ -225,7 +225,7 @@ PYTHONPATH=$(pwd) %pytest \
 %doc docs/* NEWS.rst README.rst
 %{python3_sitelib}/distutils-precedence.pth
 %if %{with bootstrap}
-%{python3_sitelib}/setuptools-%{version}.dist-info/
+%{python3_sitelib}/setuptools-*.dist-info/
 %{python3_sitelib}/pkg_resources/
 %{python3_sitelib}/setuptools/
 %{python3_sitelib}/_distutils_hack/

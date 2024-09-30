@@ -248,7 +248,7 @@ popd
 %doc README.md CHANGES.rst
 %license docs/COPYING
 %{python3_sitearch}/PIL/
-%{python3_sitearch}/pillow-%{version}.dist-info/
+%{python3_sitearch}/pillow-*.dist-info/
 # These are in subpackages
 %exclude %{python3_sitearch}/PIL/_imagingtk*
 %exclude %{python3_sitearch}/PIL/ImageTk*
@@ -281,13 +281,13 @@ popd
 %files -n mingw32-python3-%{srcname}
 %license docs/COPYING
 %{mingw32_python3_sitearch}/PIL/
-%{mingw32_python3_sitearch}/pillow-%{version}.dist-info/
+%{mingw32_python3_sitearch}/pillow-*.dist-info/
 %{mingw32_py3_incdir}/Imaging/
 
 %files -n mingw64-python3-%{srcname}
 %license docs/COPYING
 %{mingw64_python3_sitearch}/PIL/
-%{mingw64_python3_sitearch}/pillow-%{version}.dist-info/
+%{mingw64_python3_sitearch}/pillow-*.dist-info/
 %{mingw64_py3_incdir}/Imaging/
 %endif
 

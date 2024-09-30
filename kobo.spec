@@ -157,7 +157,7 @@ rm -rf $RPM_BUILD_ROOT/%{python3_sitelib}/kobo/worker
 %{python3_sitelib}/kobo/*.py*
 %{python3_sitelib}/kobo/__pycache__
 %exclude %{python3_sitelib}/kobo/rpmlib.py*
-%{python3_sitelib}/%{name}-%{version}.dist-info
+%{python3_sitelib}/%{name}-*.dist-info
 %doc AUTHORS
 %license COPYING LICENSE
 

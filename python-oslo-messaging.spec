@@ -177,7 +177,7 @@ stestr-3 run || true
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/oslo_messaging
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
+%{python3_sitelib}/oslo_messaging-*.dist-info
 %{_bindir}/oslo-messaging-send-notification
 %{_bindir}/oslo-messaging-send-notification-3
 %exclude %{python3_sitelib}/oslo_messaging/tests

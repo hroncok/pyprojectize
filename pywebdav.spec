@@ -60,7 +60,7 @@ mv doc/LICENSE .
 %doc doc/
 
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{pypiname}*.dist-info
+%{python3_sitelib}/pywebdav3*.dist-info
 %exclude %{python3_sitelib}/%{srcname}/server
 %exclude %{_bindir}/*
 

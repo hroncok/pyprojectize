@@ -146,7 +146,7 @@ PYTHONPATH=../lib PYCHESS_UNITTEST=true xvfb-run -a coverage run \
 %doc utilities
 %license LICENSE
 %{python3_sitelib}/%{name}
-%{python3_sitelib}/PyChess-%{version}.dist-info
+%{python3_sitelib}/pychess-%{version}.dist-info
 %{_bindir}/%{name}
 %{_datadir}/%{name}
 %{_datadir}/gtksourceview-3.0/language-specs/pgn.lang

@@ -62,7 +62,7 @@ Summary:        %{summary}
 %doc README.md
 %{python3_sitelib}/%{srcname}/
 %exclude %{python3_sitelib}/%{srcname}/py.typed
-%{python3_sitelib}/%{srcname}-%{version}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 
 
 %changelog

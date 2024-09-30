@@ -175,7 +175,7 @@ nosetests-%{python3_version} -v
 %dir %{python3_sitelib}/odcs/
 %{python3_sitelib}/odcs/__init__.py*
 %{python3_sitelib}/odcs/common/
-%{python3_sitelib}/odcs-%{version}.dist-info/
+%{python3_sitelib}/odcs-*.dist-info/
 %exclude %{python3_sitelib}/odcs/__pycache__
 
 %files -n python3-odcs-client

@@ -49,7 +49,7 @@ rm -rf %{pypi_name}.egg-info
 %license LICENSE
 %{python3_sitelib}/%{pypi_name}/
 %exclude %{python3_sitelib}/test
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
+%{python3_sitelib}/%{pypi_name}-*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.23.0-14

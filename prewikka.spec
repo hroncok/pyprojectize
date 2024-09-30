@@ -112,7 +112,7 @@ ln -s %{_datadir}/locale %{buildroot}%{python3_sitelib}/%{name}/locale
 %{_sbindir}/%{name}-cli-3
 %{_sbindir}/%{name}-cli-%{python3_version}
 %{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}-%{version}.dist-info
+%{python3_sitelib}/%{name}-*.dist-info
 
 %changelog
 * Fri Jul 26 2024 Miroslav Suchý <msuchy@redhat.com> - 5.2.0-19

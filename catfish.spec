@@ -171,7 +171,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{name}.appdat
 %{_metainfodir}/%{name}.appdata.xml
 %{python3_sitelib}/%{name}/
 %{python3_sitelib}/%{name}_lib/
-%{python3_sitelib}/%{name}-%{version}.dist-info
+%{python3_sitelib}/%{name}-*.dist-info
 
 
 %changelog

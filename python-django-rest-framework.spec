@@ -86,7 +86,7 @@ find . -name *.po -exec rm -f '{}' \;
 %{python3_sitelib}/rest_framework/templatetags
 %{python3_sitelib}/rest_framework/utils
 %{python3_sitelib}/rest_framework/*.py*
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
+%{python3_sitelib}/%{pypi_name}-*.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 3.14.0-8

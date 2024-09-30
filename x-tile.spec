@@ -62,7 +62,7 @@ appstream-util validate-relax --nonet $RPM_BUILD_ROOT%{_metainfodir}/%{name}.app
 %files -f %{name}.lang
 %license license
 %{_bindir}/%{name}
-%{python3_sitelib}/X_Tile-*.dist-info
+%{python3_sitelib}/x_tile-*.dist-info
 %{_datadir}/%{name}/
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.*

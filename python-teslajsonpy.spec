@@ -48,7 +48,7 @@ rm -rf %{pypi_name}.egg-info
 %doc README.md
 %{python3_sitelib}/%{pypi_name}/
 %exclude %{python3_sitelib}/tests/
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
+%{python3_sitelib}/%{pypi_name}-*.dist-info/
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 0.11.0-14

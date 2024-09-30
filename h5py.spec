@@ -214,14 +214,14 @@ mpirun %{__python3} -m pytest --pyargs h5py -rxXs --with-mpi ${PYTHONPATH} || ex
 #doc serial/ANN.rst serial/README.rst serial/examples
 %doc serial/README.rst serial/examples
 %{python3_sitearch}/%{name}/
-%{python3_sitearch}/%{name}-%{version}.dist-info
+%{python3_sitearch}/%{name}-*.dist-info
 
 %if %{with openmpi}
 %files -n python%{python3_pkgversion}-h5py-openmpi
 %license openmpi/licenses/*.txt
 %doc openmpi/README.rst
 %{python3_sitearch}/openmpi/%{name}/
-%{python3_sitearch}/openmpi/%{name}-%{version}.dist-info
+%{python3_sitearch}/openmpi/%{name}-*.dist-info
 %endif
 
 %if %{with mpich}
@@ -229,7 +229,7 @@ mpirun %{__python3} -m pytest --pyargs h5py -rxXs --with-mpi ${PYTHONPATH} || ex
 %license mpich/licenses/*.txt
 %doc mpich/README.rst
 %{python3_sitearch}/mpich/%{name}/
-%{python3_sitearch}/mpich/%{name}-%{version}.dist-info
+%{python3_sitearch}/mpich/%{name}-*.dist-info
 %endif
 
 

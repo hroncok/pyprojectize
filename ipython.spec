@@ -239,7 +239,7 @@ rm -r %{buildroot}%{python3_sitelib}/IPython/*/tests
 %{python3_sitelib}/IPython/testing/__pycache__/
 %{python3_sitelib}/IPython/testing/*.py*
 %{python3_sitelib}/IPython/testing/plugin
-%{python3_sitelib}/ipython-%{version}.dist-info/
+%{python3_sitelib}/ipython-*.dist-info/
 
 %{python3_sitelib}/IPython/core/
 %{python3_sitelib}/IPython/extensions/
@@ -256,7 +256,7 @@ rm -r %{buildroot}%{python3_sitelib}/IPython/*/tests
 
 %if %{with check}
 %files -n python3-ipython+test
-%ghost %{python3_sitelib}/ipython-%{version}.dist-info/
+%ghost %{python3_sitelib}/ipython-*.dist-info/
 %{python3_sitelib}/IPython/*/tests
 %endif
 

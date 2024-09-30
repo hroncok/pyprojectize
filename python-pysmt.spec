@@ -63,7 +63,7 @@ sed -i -e '/^#!\//, 1d' pysmt/{cmd/shell.py,constants.py}
 %license LICENSE
 %doc README.rst docs/*.rst docs/tutorials/
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/PySMT-%{version}.dist-info/
+%{python3_sitelib}/pysmt-%{version}.dist-info/
 %exclude %{python3_sitelib}/%{pypi_name}/test/
 %{_bindir}/pysmt-install
 

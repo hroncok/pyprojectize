@@ -87,7 +87,7 @@ find $RPM_BUILD_ROOT -name "*.po" | xargs rm -f
 %{python3_sitelib}/reversion/management/
 %{python3_sitelib}/reversion/templates/
 %{python3_sitelib}/reversion/migrations/
-%{python3_sitelib}/django_reversion-%{version}.dist-info
+%{python3_sitelib}/django_reversion-*.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 4.0.0-12

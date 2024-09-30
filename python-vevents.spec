@@ -55,7 +55,7 @@ vEvents is an application that allows you to view and monitor
 #%%license add-license-file-here
 %doc README.md
 # egg-info only due to single binary
-%{python3_sitelib}/vevents-%{version}.dist-info/
+%{python3_sitelib}/vevents-*.dist-info/
 %{_bindir}/vevents-cli
 
 

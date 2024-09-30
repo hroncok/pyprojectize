@@ -112,7 +112,7 @@ ln -s vcs %{buildroot}%{_datadir}/bash-completion/completions/vcs-%{python3_vers
 %license LICENSE
 %doc CONTRIBUTING.md README.rst
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 %{_datadir}/%{srcname}-completion
 %{_datadir}/bash-completion/completions/vcs
 %{_datadir}/bash-completion/completions/vcs-3

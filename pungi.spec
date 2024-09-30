@@ -130,7 +130,7 @@ rm %{buildroot}%{_bindir}/pungi
 
 %files -n python3-%{name}
 %{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}-%{version}.dist-info
+%{python3_sitelib}/%{name}-*.dist-info
 
 %files utils
 %{python3_sitelib}/%{name}_utils

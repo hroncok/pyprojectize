@@ -92,7 +92,7 @@ rm -rf %{buildroot}%{_prefix}/lib/python*/site-packages/flufl/i18n/{*.rst,docs,c
 %license LICENSE
 %doc flufl/i18n/*.rst flufl/i18n/docs/*.rst
 %{python3_other_sitelib}/flufl/
-%{python3_other_sitelib}/%{srcname}-%{version}*.dist-info/
+%{python3_other_sitelib}/flufl_i18n-%{version}*.dist-info/
 %{python3_other_sitelib}/%{srcname}-%{version}*-py%{python3_other_version}-nspkg.pth
 %endif
 

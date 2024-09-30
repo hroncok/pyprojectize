@@ -79,7 +79,7 @@ sed -i '/volatile/d' requirements.txt
 %{_bindir}/%{srcname}
 %{python3_sitelib}/%{srcname}/
 %exclude %{python3_sitelib}/%{srcname}/tests
-%{python3_sitelib}/%{srcname}-%{version}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 
 %files -n python3-%{srcname}-docs
 %doc docs/*.md

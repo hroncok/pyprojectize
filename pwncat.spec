@@ -53,7 +53,7 @@ install -Dp -m 0644 man/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 %files -n python3-%{pypi_name}
 %doc CHANGELOG.md CONTRIBUTING.md README.md
 %license LICENSE.txt
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
+%{python3_sitelib}/%{pypi_name}-*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.0-16

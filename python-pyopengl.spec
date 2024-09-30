@@ -113,11 +113,11 @@ PYTHONPATH=%{buildroot}%{python3_sitearch}:%{buildroot}%{python3_sitelib} \
 
 %files -n python3-%{shortname}
 %license %{srcname}-%{version}/license.txt
-%{python3_sitelib}/%{srcname}-%{version}.dist-info
+%{python3_sitelib}/%{shortname}-%{version}.dist-info
 %{python3_sitelib}/OpenGL/
 %exclude %{python3_sitelib}/OpenGL/Tk
 %{python3_sitearch}/OpenGL_accelerate/
-%{python3_sitearch}/%{srcname}_accelerate-%{version}.dist-info/
+%{python3_sitearch}/%{shortname}_accelerate-%{version}.dist-info/
 
 
 %files -n python3-%{shortname}-tk

@@ -83,7 +83,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} -v || :
 %license LICENSE
 %doc CHANGELOG PKG-INFO README.rst
 %{python2_sitelib}/pytest_cache.py*
-%{python2_sitelib}/pytest_cache-*.dist-info/
+%{python2_sitelib}/pytest_cache-*.egg-info/
 %endif
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}

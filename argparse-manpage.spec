@@ -165,7 +165,7 @@ PYTHONPATH=%buildroot%python3_sitearch %__python3 -m pytest -vv
 %license LICENSE
 %python2_sitelib/build_manpages
 %python2_sitelib/argparse_manpage
-%python2_sitelib/argparse_manpage-%{version}*.dist-info
+%python2_sitelib/argparse_manpage-%{version}*.egg-info
 %exclude %python2_sitelib/argparse_manpages/cli.py
 %endif
 

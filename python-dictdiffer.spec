@@ -166,7 +166,7 @@ PYTHONPATH=%{buildroot}/%{python3_sitelib} sphinx-build docs/ html
 %files -n python2-%{library}
 %license LICENSE
 %{python2_sitelib}/%{library}/*
-%{python2_sitelib}/%{library}-*.dist-info
+%{python2_sitelib}/%{library}-*.egg-info
 %endif
 
 %if 0%{?with_python3}

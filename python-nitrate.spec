@@ -116,7 +116,7 @@ install -pm 644 docs/*.1.gz %{buildroot}%{_mandir}/man1
 %if %{with python2}
 %files -n python2-nitrate
 %{python2_sitelib}/nitrate/
-%{python2_sitelib}/nitrate-*.dist-info/
+%{python2_sitelib}/nitrate-*.egg-info/
 %license LICENSE
 %endif
 

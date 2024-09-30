@@ -61,7 +61,7 @@ Summary:        %{summary}
 %doc README.md
 %license LICENSE
 %{python2_sitelib}/%{srcname}/
-%{python2_sitelib}/%{srcname}*.dist-info/
+%{python2_sitelib}/%{srcname}*.egg-info/
 %else
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md

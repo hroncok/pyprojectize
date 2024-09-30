@@ -99,7 +99,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/appdata/*.appdata.
 
 %if %without python3
 %files -n python2-%{name}
-%{python2_sitelib}/%{name}-%{version}.dist-info
+%{python2_sitelib}/%{name}-%{version}-py%{python2_version}.egg-info
 %{python2_sitelib}/%{name}/
 %else
 %files -n python3-%{name} -f %{pyproject_files}

@@ -55,7 +55,7 @@ A python parser for the Coffeescript Object Notation (CSON).
 %files -n python2-%{srcname}
 %license LICENSE
 %doc README.md
-%{python2_sitelib}/%{srcname}-*.dist-info/
+%{python2_sitelib}/%{srcname}-*.egg-info/
 %{python2_sitelib}/%{srcname}/
 %endif
 

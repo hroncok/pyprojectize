@@ -96,7 +96,7 @@ desktop-file-install --delete-original  \
 %{_datadir}/icons/hicolor/*/mimetypes/*
 %{_mandir}/man1/%{name}.1.gz
 %{_metainfodir}/org.gramps_project.Gramps.metainfo.xml
-%{python3_sitelib}/gramps*egg-info
+%{python3_sitelib}/gramps*dist-info
 %{python3_sitelib}/gramps/__init*
 %{python3_sitelib}/gramps/__main*
 %{python3_sitelib}/gramps/grampsapp*

@@ -82,7 +82,7 @@ find "$RPM_BUILD_ROOT%{python3_sitelib}/pysollib" -name '*.py' | xargs -L1 perl 
 %license COPYING
 %doc README.md
 %{python3_sitelib}/pysollib
-%{python3_sitelib}/*egg-info
+%{python3_sitelib}/*dist-info
 %{_bindir}/pysol
 %{_datadir}/%{name}
 %{_datadir}/icons/hicolor/*/apps/*.png

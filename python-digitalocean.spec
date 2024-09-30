@@ -112,7 +112,7 @@ This is the Python 3 version of the package.
 %license LICENSE.txt
 %doc README.md
 %{python2_sitelib}/digitalocean
-%{python2_sitelib}/python_digitalocean-%{version}*.dist-info
+%{python2_sitelib}/python_digitalocean-%{version}*.egg-info
 %endif
 
 %if %{with python3}

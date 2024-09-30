@@ -107,7 +107,7 @@ PYTHONPATH=%{buildroot}%{python2_sitelib} nosetests-%{python2_version} --verbose
 %license LICENSE
 %doc AUTHORS CHANGELOG README.rst
 %{python2_sitelib}/%{srcname}
-%{python2_sitelib}/%{srcname}-%{version}.dist-info
+%{python2_sitelib}/%{srcname}-%{version}-py%{python2_version}.egg-info
 %endif
 
 %if %{with python3}

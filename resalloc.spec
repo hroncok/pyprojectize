@@ -326,7 +326,7 @@ ln -s "%{default_sitelib}/%{name}server" %buildroot%_homedir/project
 %doc %doc_files
 %license COPYING
 %{python2_sitelib}/%{name}
-%{python2_sitelib}/%{name}-*.dist-info
+%{python2_sitelib}/%{name}-*.egg-info
 %endif
 
 

@@ -127,7 +127,7 @@ Requires:       python%{python3_other_pkgversion}-oletools >= 0.54
 %license LICENSE
 %doc README.md
 %{python2_sitelib}/pcodedmp/
-%{python2_sitelib}/pcodedmp-*.dist-info
+%{python2_sitelib}/pcodedmp-*.egg-info
 %endif
 
 %files -n python%{python3_pkgversion}-pcodedmp

@@ -85,7 +85,7 @@ built with the Pecan WSGI object-dispatching web framework and WSME
 %doc README.rst
 %license LICENSE
 %{python2_sitelib}/sphinxcontrib/pecanwsme
-%{python2_sitelib}/*.dist-info
+%{python2_sitelib}/*.egg-info
 %{python2_sitelib}/*-nspkg.pth
 %endif
 

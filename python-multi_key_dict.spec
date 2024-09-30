@@ -101,7 +101,7 @@ is extended to support multiple keys referring to the same element.
 %doc README.txt
 %{python2_sitelib}/%{srcname}.py
 %{python2_sitelib}/%{srcname}.py[co]
-%{python2_sitelib}/%{srcname}-%{version}.dist-info
+%{python2_sitelib}/%{srcname}-%{version}-py%{python2_version}.egg-info
 %endif
 
 %if 0%{?with_python3}

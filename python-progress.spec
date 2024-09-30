@@ -89,7 +89,7 @@ rm -rf %{pypi_name}.egg-info
 %files -n python2-%{pypi_name}
 %doc README.rst LICENSE
 %{python2_sitelib}/%{pypi_name}
-%{python2_sitelib}/%{pypi_name}-%{version}.dist-info
+%{python2_sitelib}/%{pypi_name}-%{version}-py?.?.egg-info
 %endif
 
 %if 0%{with python3}

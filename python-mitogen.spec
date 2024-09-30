@@ -113,7 +113,7 @@ rm -r mitogen/compat ansible_mitogen/compat
 %doc README.md
 %{python2_sitelib}/%{libname}
 %{python2_sitelib}/ansible_%{libname}
-%{python2_sitelib}/%{eggname}-%{version}.dist-info
+%{python2_sitelib}/%{eggname}-%{version}-py%{python2_version}.egg-info
 %endif
 
 

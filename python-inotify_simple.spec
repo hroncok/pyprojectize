@@ -88,7 +88,7 @@ Summary:        %{sum Python 3}
 %files -n python2-%sname
 %license LICENSE
 %python2_sitelib/%sname.py*
-%python2_sitelib/%sname-%{version}*.dist-info
+%python2_sitelib/%sname-%{version}*.egg-info
 %endif
 
 

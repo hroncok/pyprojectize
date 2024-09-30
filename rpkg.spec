@@ -258,7 +258,7 @@ example_cli_dir=$RPM_BUILD_ROOT%{_datadir}/%{name}/examples/cli
 %endif
 # For noarch packages: sitelib
 %{python2_sitelib}/pyrpkg
-%{python2_sitelib}/%{name}-%{version}.dist-info
+%{python2_sitelib}/%{name}-%{version}-py*.egg-info
 %endif
 
 %if 0%{?with_python3}

@@ -104,7 +104,7 @@ popd
 %{_bindir}/coverage2
 %{_bindir}/coverage-2*
 %{python2_sitearch}/coverage/
-%{python2_sitearch}/coverage*.dist-info/
+%{python2_sitearch}/coverage*.egg-info/
 %endif
 
 %files -n python%{python3_pkgversion}-coverage -f %{pyproject_files}

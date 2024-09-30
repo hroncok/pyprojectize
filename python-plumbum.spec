@@ -77,7 +77,7 @@ rm -rf %{pypi_name}.egg-info
 %files -n python2-%{pypi_name}
 %doc LICENSE README.rst
 %{python2_sitelib}/%{pypi_name}
-%{python2_sitelib}/%{pypi_name}-%{version}.dist-info
+%{python2_sitelib}/%{pypi_name}-%{version}-py?.?.egg-info
 %endif # with_python2
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

@@ -88,7 +88,7 @@ Python 3 version.
 %files -n python2-%{srcname}
 %doc README.rst
 %license LICENSE
-%{python2_sitelib}/%{srcname}-*.dist-info/
+%{python2_sitelib}/%{srcname}-*.egg-info/
 %{python2_sitelib}/%{srcname}/
 %endif
 

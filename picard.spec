@@ -67,7 +67,7 @@ desktop-file-install \
 %{_datadir}/applications/org.musicbrainz.Picard.desktop
 %{_datadir}/icons/hicolor/*/apps/org.musicbrainz.Picard.*
 %{_datadir}/metainfo/org.musicbrainz.Picard.appdata.xml
-%{python3_sitearch}/*egg-info
+%{python3_sitearch}/*dist-info
 %{python3_sitearch}/picard/
 
 %changelog

@@ -205,7 +205,7 @@ ln -s %{_bindir}/scapy3   %{buildroot}%{_bindir}/scapy
 %endif
 %{_bindir}/scapy2
 %{python2_sitelib}/scapy/
-%{python2_sitelib}/scapy-*.dist-info
+%{python2_sitelib}/scapy-*.egg-info
 %exclude %{python2_sitelib}/test/
 %endif
 

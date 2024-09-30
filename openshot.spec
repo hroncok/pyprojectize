@@ -123,7 +123,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 %{_metainfodir}/%{distrdnn}.appdata.xml
 %{python3_sitelib}/%{name}_qt/
 %exclude %{python3_sitelib}/%{name}_qt/language/*
-%{python3_sitelib}/*egg-info/
+%{python3_sitelib}/*dist-info/
 
 %files lang -f OpenShot.lang
 %dir %{python3_sitelib}/%{name}_qt/language

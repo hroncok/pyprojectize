@@ -162,7 +162,7 @@ py.test test/unit -c /dev/null -v -r s
 %files -n python2-%{library}
 %license LICENSE
 %{python2_sitelib}/%{library}
-%{python2_sitelib}/%{library}-*.dist-info
+%{python2_sitelib}/%{library}-*.egg-info
 %exclude %{python2_sitelib}/scripts
 %endif
 

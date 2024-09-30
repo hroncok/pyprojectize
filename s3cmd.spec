@@ -80,7 +80,7 @@ install -D -p -m 0644 -t %{buildroot}%{_mandir}/man1 %{name}.1
 %{_mandir}/man1/%{name}.1*
 %if %{with python3}
 %else
-%{python2_sitelib}/%{name}-*.dist-info/
+%{python2_sitelib}/%{name}-*.egg-info/
 %{python2_sitelib}/S3/
 %endif
 

@@ -420,7 +420,7 @@ find %{buildroot} -name '*.a' -exec rm -f {} ';'
 %if 0%{?with_python2}
 %files -n python2-libemu
 %{python2_sitearch}/%{name}.so
-%{python2_sitearch}/%{name}-*.dist-info
+%{python2_sitearch}/%{name}-*.egg-info
 %endif
 
 %if 0%{?with_python3}

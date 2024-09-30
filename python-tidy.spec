@@ -67,7 +67,7 @@ Requires:       python3-six
 %license LICENSE
 %doc README.rst
 %{python2_sitelib}/tidy
-%{python2_sitelib}/utidylib-*.dist-info
+%{python2_sitelib}/uTidylib-*-py2*.egg-info
 %endif
 
 %files -n python3-tidy -f %{pyproject_files}

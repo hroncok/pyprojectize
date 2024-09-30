@@ -112,7 +112,7 @@ install -D docs/_build/man/%{module_name}.1 %{buildroot}%{_mandir}/man1/%{module
 %{_bindir}/pycodestyle-2
 %{_bindir}/pycodestyle-2.7
 %{python2_sitelib}/%{module_name}.py*
-%{python2_sitelib}/%{module_name}-%{version}.dist-info
+%{python2_sitelib}/%{module_name}-%{version}-*.egg-info
 %endif
 
 %files -n python%{python3_pkgversion}-pycodestyle -f %{pyproject_files}

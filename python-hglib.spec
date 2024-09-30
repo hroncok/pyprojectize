@@ -68,7 +68,7 @@ hg.
 %files -n python2-hglib
 %license LICENSE
 %{python2_sitelib}/hglib
-%{python2_sitelib}/python_hglib-*.dist-info
+%{python2_sitelib}/python_hglib-*-py*.egg-info
 %endif
 
 %files -n python3-hglib -f %{pyproject_files}

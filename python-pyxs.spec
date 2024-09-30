@@ -98,7 +98,7 @@ BuildRequires:  python%{python3_pkgversion}-pytest >= 2.4
 %license LICENSE
 %doc README
 %{python2_sitelib}/%{libname}
-%{python2_sitelib}/%{eggname}-%{version}.dist-info
+%{python2_sitelib}/%{eggname}-%{version}-py%{python2_version}.egg-info
 %endif
 
 

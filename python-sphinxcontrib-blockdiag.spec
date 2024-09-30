@@ -73,7 +73,7 @@ rm -rf %{pypi_name}.egg-info
 %license LICENSE
 %doc README.rst
 %{python2_sitelib}/sphinxcontrib
-%{python2_sitelib}/sphinxcontrib_blockdiag-*.dist-info
+%{python2_sitelib}/sphinxcontrib_blockdiag-*.egg-info
 %{python2_sitelib}/sphinxcontrib_blockdiag-*.pth
 %exclude %{python2_sitelib}/sphinxcontrib/tests
 %endif

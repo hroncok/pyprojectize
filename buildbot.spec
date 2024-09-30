@@ -158,7 +158,7 @@ done
 %{_bindir}/buildbot
 %{_mandir}/man1/buildbot.1*
 %{python3_sitelib}/buildbot/
-%{python3_sitelib}/buildbot-*egg-info/
+%{python3_sitelib}/buildbot-*dist-info/
 %dir %{_sharedstatedir}/buildbot
 %dir %attr(-, buildbot-master, buildbot-master) %{_sharedstatedir}/buildbot/master
 %{_unitdir}/buildbot-master@.service
@@ -282,7 +282,7 @@ done
 %{_bindir}/buildbot-worker
 %{_mandir}/man1/buildbot-worker.1*
 %{python3_sitelib}/buildbot_worker/
-%{python3_sitelib}/buildbot_worker-*egg-info/
+%{python3_sitelib}/buildbot_worker-*dist-info/
 %dir %{_sharedstatedir}/buildbot
 %dir %attr(-, buildbot-worker, buildbot-worker) %{_sharedstatedir}/buildbot/worker
 %{_unitdir}/buildbot-worker@.service
@@ -301,15 +301,15 @@ Provides web frontend for buildbot.
 %{python3_sitelib}/buildbot_www/
 %{python3_sitelib}/buildbot_www-*.dist-info/
 %{python3_sitelib}/buildbot_waterfall_view/
-%{python3_sitelib}/buildbot_waterfall_view-*egg-info/
+%{python3_sitelib}/buildbot_waterfall_view-*dist-info/
 %{python3_sitelib}/buildbot_grid_view/
-%{python3_sitelib}/buildbot_grid_view-*egg-info/
+%{python3_sitelib}/buildbot_grid_view-*dist-info/
 %{python3_sitelib}/buildbot_console_view/
-%{python3_sitelib}/buildbot_console_view-*egg-info/
+%{python3_sitelib}/buildbot_console_view-*dist-info/
 %{python3_sitelib}/buildbot_badges/
-%{python3_sitelib}/buildbot_badges-*egg-info/
+%{python3_sitelib}/buildbot_badges-*dist-info/
 %{python3_sitelib}/buildbot_wsgi_dashboards/
-%{python3_sitelib}/buildbot_wsgi_dashboards-*egg-info/
+%{python3_sitelib}/buildbot_wsgi_dashboards-*dist-info/
 
 # ---------------------------------------------------------------------
 

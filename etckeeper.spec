@@ -265,7 +265,7 @@ fi
 %files bzr
 %{python2_sitelib}/bzrlib/plugins/%{name}
 # exclude egg-info dir, doesn't contain meaningful information
-%exclude %{python2_sitelib}/bzr_%{name}-*.dist-info
+%exclude %{python2_sitelib}/bzr_%{name}-*.egg-info
 %endif # with_bzr
 
 
@@ -293,7 +293,7 @@ fi
 %{python2_sitelib}/dnf-plugins/%{name}.py*
 %exclude %{python2_sitelib}/dnf-plugins/__init__.py*
 # exclude egg-info dir, doesn't contain meaningful information
-%exclude %{python2_sitelib}/dnf_%{name}-*.dist-info
+%exclude %{python2_sitelib}/dnf_%{name}-*.egg-info
 %endif # dnf_uses_python3
 
 

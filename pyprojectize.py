@@ -80,6 +80,11 @@ def py3_build_to_pyproject_wheel(sections: specfile.sections.Sections) -> Result
 
     index = None
     for idx, line in enumerate(sections.build):
+        if re.search(r"%({\??)?pyproject_wheel\b", line):
+            return (
+                Result.NOT_NEEDED,
+                "%build already has %pyproject_wheel",
+            )
         found = re.findall(r"%{?\??py3_build\b", line)
         if found:
             if index is not None or len(found) > 1:
@@ -136,6 +141,11 @@ def py3_install_to_pyproject_install(sections: specfile.sections.Sections) -> Re
 
     index = None
     for idx, line in enumerate(sections.install):
+        if re.search(r"%({\??)?pyproject_install\b", line):
+            return (
+                Result.NOT_NEEDED,
+                "%install already has %pyproject_install",
+            )
         found = re.findall(r"%{?\??py3_install\b", line)
         if found:
             if index is not None or len(found) > 1:

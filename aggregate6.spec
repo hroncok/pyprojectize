@@ -45,7 +45,7 @@ filters.
 %if 0%{?fedora} || 0%{?rhel} >= 9
 %pyproject_wheel
 %else
-%pyproject_wheel
+%py3_build
 %endif
 
 %install
@@ -53,7 +53,7 @@ filters.
 %pyproject_install
 %pyproject_save_files %{name}
 %else
-%pyproject_install
+%py3_install
 %{?el8:%py3_shebang_fix $RPM_BUILD_ROOT%{_bindir}/%{name}}
 %endif
 

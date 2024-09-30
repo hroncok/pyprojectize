@@ -50,11 +50,11 @@ BuildArch: noarch
 %pyproject_buildrequires
 
 %build
-#%%pyproject_wheel
+#%%py3_build
 %pyproject_wheel
 
 %install
-#%%pyproject_install
+#%%py3_install
 %pyproject_install
 %pyproject_save_files %{pname}
 

@@ -70,7 +70,7 @@ PYTESTINI
 %if %{with pyproject_build}
 %pyproject_wheel
 %else
-%pyproject_wheel
+%py3_build
 %endif
 
 %install
@@ -80,7 +80,7 @@ PYTESTINI
 # Work around poetry not listing license files as such in package metadata.
 sed -i -e 's|^\(.*/LICENSE\)|%%license \1|g' %{pyproject_files}
 %else
-%pyproject_install
+%py3_install
 echo '%{python3_sitelib}/%{srcname}*' > %{pyproject_files}
 %endif
 

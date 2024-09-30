@@ -61,7 +61,7 @@ rm -rf %{srcname}.egg-info
 %build
 export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 %pyproject_wheel
-# %pyproject_wheel
+# %py3_build
 
 pushd docs
 %{__python3} -m sphinx source html

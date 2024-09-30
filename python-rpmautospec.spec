@@ -142,7 +142,7 @@ sed -i -e '/pytest-cov/d; /addopts.*--cov/d' pyproject.toml
 %if %{with poetry}
 %pyproject_wheel
 %else
-%pyproject_wheel
+%py3_build
 %endif
 
 %install
@@ -152,7 +152,7 @@ sed -i -e '/pytest-cov/d; /addopts.*--cov/d' pyproject.toml
 # Work around poetry not listing license files as such in package metadata.
 sed -i -e 's|^\(.*/LICENSE\)|%%license \1|g' %{pyproject_files}
 %else
-%pyproject_install
+%py3_install
 cat << EOF > %{pyproject_files}
 %{python3_sitelib}/%{srcname}/
 %{python3_sitelib}/*.egg-info/

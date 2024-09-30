@@ -203,7 +203,7 @@ Common files for python2-%{name} and python3-%{name}.
 %if 0%{?with_hatchling}
 %pyproject_wheel
 %else
-%pyproject_wheel
+%py3_build
 %endif
 %endif
 
@@ -217,7 +217,7 @@ Common files for python2-%{name} and python3-%{name}.
 %if 0%{?with_hatchling}
 %pyproject_install
 %else
-%pyproject_install
+%py3_install
 %endif
 %endif
 

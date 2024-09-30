@@ -122,7 +122,7 @@ sed -i.shbang \
 # do a proper guideline-compliant build of the python library
 %if 0%{?rhel} && 0%{?rhel} < 9
 pushd apps
-%pyproject_wheel
+%py3_build
 %else
 pushd %_vpath_builddir/apps
 %pyproject_wheel
@@ -136,7 +136,7 @@ popd
 # do a proper guideline-compliant install of the python library
 %if 0%{?rhel} && 0%{?rhel} < 9
 pushd apps
-%pyproject_install
+%py3_install
 %else
 pushd %_vpath_builddir/apps
 %pyproject_install

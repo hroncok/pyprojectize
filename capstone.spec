@@ -205,7 +205,7 @@ pushd bindings/python
 
 %if %{with python3}
 # %%pyproject_wheel
-%pyproject_wheel
+%py3_build
 %endif
 popd
 
@@ -259,7 +259,7 @@ rm -rf %{buildroot}%{python2_sitelib}/capstone/include/capstone
 %endif
 
 %if %{with python3}
-%pyproject_install
+%py3_install
 # %%pyproject_install
 # %%pyproject_save_files capstone
 

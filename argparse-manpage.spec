@@ -115,7 +115,7 @@ Requires:       python3-setuptools
 %py2_build
 %endif
 %if %{with python3}
-%pyproject_wheel
+%py3_build
 %endif
 %if %{with pyproject}
 %pyproject_wheel
@@ -127,7 +127,7 @@ Requires:       python3-setuptools
 %py2_install
 %endif
 %if %{with python3}
-%pyproject_install
+%py3_install
 %endif
 %if %{with pyproject}
 %pyproject_install

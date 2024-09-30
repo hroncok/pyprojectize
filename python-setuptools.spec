@@ -151,7 +151,7 @@ rm -r docs/conf.py
 
 %build
 %if %{with bootstrap}
-%pyproject_wheel
+%py3_build
 %else
 %pyproject_wheel
 %endif
@@ -163,7 +163,7 @@ rm -r docs/conf.py
 # but the distutils-precedence.pth file is not yet respected
 # and Python 3.12+ no longer has distutils in the standard library.
 ln -s setuptools/_distutils distutils
-PYTHONPATH=$PWD %pyproject_install
+PYTHONPATH=$PWD %py3_install
 unlink distutils
 %else
 %pyproject_install

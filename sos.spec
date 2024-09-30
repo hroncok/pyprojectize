@@ -41,7 +41,7 @@ support technicians and developers.
 %if 0%{?fedora} >= 39
 %pyproject_wheel
 %else
-%pyproject_wheel
+%py3_build
 %endif
 
 %install

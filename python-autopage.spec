@@ -61,7 +61,7 @@ cp %{SOURCE1} ./
 %if %{with pyproject}
 %pyproject_wheel
 %else
-%pyproject_wheel
+%py3_build
 %endif
 
 %install
@@ -69,7 +69,7 @@ cp %{SOURCE1} ./
 %pyproject_install
 %pyproject_save_files autopage
 %else
-%pyproject_install
+%py3_install
 %endif
 
 %check

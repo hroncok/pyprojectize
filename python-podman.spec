@@ -67,7 +67,7 @@ Summary: %{summary}
 %build
 export PBR_VERSION="0.0.0"
 %if %{defined rhel8_py}
-%pyproject_wheel
+%py3_build
 %else
 %pyproject_wheel
 %endif
@@ -75,7 +75,7 @@ export PBR_VERSION="0.0.0"
 %install
 export PBR_VERSION="0.0.0"
 %if %{defined rhel8_py}
-%pyproject_install
+%py3_install
 %else
 %pyproject_install
 %pyproject_save_files %{pypi_name}

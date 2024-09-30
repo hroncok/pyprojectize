@@ -61,7 +61,7 @@ Unit tests for python3-kgb
 
 %build
 %if 0%{?el8}
-%pyproject_wheel
+%py3_build
 %else
 %pyproject_wheel
 %endif
@@ -69,7 +69,7 @@ Unit tests for python3-kgb
 
 %install
 %if 0%{?el8}
-%pyproject_install
+%py3_install
 %else
 %pyproject_install
 %endif

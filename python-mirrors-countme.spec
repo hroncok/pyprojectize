@@ -73,7 +73,7 @@ BuildRequires: python%{python3_pkgversion}-pytest-xdist
 %if %{with poetry_compatible}
 %pyproject_wheel
 %else
-%pyproject_wheel
+%py3_build
 %endif
 
 %install
@@ -81,7 +81,7 @@ BuildRequires: python%{python3_pkgversion}-pytest-xdist
 %pyproject_install
 %pyproject_save_files %{pkgname}
 %else
-%pyproject_install
+%py3_install
 
 pushd %{buildroot}
 find "./%{python3_sitelib}/%{pkgname}"* -type d | while read d; do

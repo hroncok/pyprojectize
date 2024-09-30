@@ -264,6 +264,8 @@ def egginfo_to_distinfo(spec: Specfile, sections: Sections) -> ResultMsg:
         if section.name == "files":
             for idx, line in enumerate(section):
                 if "egg-info" in line:
+                    if "python2" in line or "python3_other" in line:
+                        continue
                     newline = re.sub(
                         r"/((?P<name>[^/-]+)-(?P<version>[^/-]+)-[^/-]*[^/\.-]|(?P<all>[^/]*[^/\.]))(?P<dot>\.)?egg-info(?P<end>(/|}|$))",
                         repl,

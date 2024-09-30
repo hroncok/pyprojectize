@@ -184,12 +184,18 @@ def egginfo_to_distinfo(sections: specfile.sections.Sections) -> ResultMsg:
         if section.name == "files":
             for idx, line in enumerate(section):
                 if ".egg-info" in line:
-                    section[idx] = re.sub(
-                        r"(-(\*|py\*|py%{python3_version}))?.egg-info",
-                        ".dist-info",
+                    # TODO check if the name part does not need to be canonized
+                    newline = re.sub(
+                        r"/((?P<nv>[^/-]+-[^/-]+)-[^/-]+|(?P<all>[^/]+))\.egg-info(?P<end>(/|}|$))",
+                        r"/\g<nv>\g<all>.dist-info\g<end>",
                         line,
                     )
-                    ret = Result.UPDATED, "replaced .egg-info with .dist-info in %files"
+                    if line != newline:
+                        ret = (
+                            Result.UPDATED,
+                            "replaced .egg-info with .dist-info in %files",
+                        )
+                        section[idx] = newline
 
     return ret
 

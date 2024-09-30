@@ -42,15 +42,14 @@ sed -i -e '/import pycodestyle/d' -e 's/test_pep8_conformance/notest_pep8_confor
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %check
 %{__python3} -m unittest
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc CHANGES.rst README.rst
 %license LICENSE.txt
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.18.0-17

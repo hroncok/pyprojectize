@@ -40,6 +40,7 @@ sed -i 's/\r//' LICENSE
 
 %install
 %pyproject_install
+%pyproject_save_files git_review
 mkdir -p %{buildroot}%{_sysconfdir}/%{name}/
 
 # We do not save ".gitreview" as dot.gitreview because the man page has it too.
@@ -47,14 +48,12 @@ mkdir -p %{buildroot}%{_sysconfdir}/%{name}/
 
 install -p -m 0644 -D git-review.1 %{buildroot}%{_mandir}/man1/git-review.1
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc AUTHORS README.rst
 %{_bindir}/git-review
 %{_mandir}/man1/git-review.1.gz
 # Our package name is git-review, but setup.py installs with underscore.
-%{python3_sitelib}/git_review/
-%{python3_sitelib}/git_review-%{version}.dist-info/
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 2.3.1-9

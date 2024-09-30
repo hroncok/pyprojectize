@@ -52,6 +52,7 @@ rm -rf %{srcname}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files pytest_mpl
 
 
 %check
@@ -60,11 +61,9 @@ MPLBACKEND=Agg %{pytest} --mpl tests -k 'not test_succeeds_remote and not test_s
 MPLBACKEND=Agg %{pytest} tests -k 'not test_succeeds_remote and not test_succeeds_faulty_mirror'
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/pytest_mpl/
-%{python3_sitelib}/pytest_mpl-%{version}.dist-info/
 
 
 %changelog

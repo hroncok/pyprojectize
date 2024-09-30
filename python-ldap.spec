@@ -76,17 +76,11 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} %{__python3} -m unittest discover -v 
 
 %install
 %pyproject_install
+%pyproject_save_files _ldap ldap ldapurl ldif slapdtest
 
-%files -n python3-ldap
+%files -n python3-ldap -f %{pyproject_files}
 %license LICENCE
 %doc CHANGES README TODO Demo
-%{python3_sitearch}/_ldap.cpython-*.so
-%{python3_sitearch}/ldapurl.py*
-%{python3_sitearch}/ldif.py*
-%{python3_sitearch}/__pycache__/*
-%{python3_sitearch}/slapdtest/
-%{python3_sitearch}/ldap/
-%{python3_sitearch}/python_ldap-%{version}%{?prerelease}.dist-info/
 
 %changelog
 %autochangelog

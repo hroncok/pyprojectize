@@ -60,6 +60,7 @@ popd
 
 %install
 %{pyproject_install}
+%pyproject_save_files %{pname}
 
 %check
 %if 0%{?fedora} || 0%{?rhel} > 7
@@ -69,7 +70,7 @@ popd
 %endif
 
 
-%files -n python%{python3_pkgversion}-%{pname}
+%files -n python%{python3_pkgversion}-%{pname} -f %{pyproject_files}
 %{_bindir}/%{pname}-dumpdynamicrules
 %{_bindir}/%{pname}-eve2pcap
 %{_bindir}/%{pname}-gensidmsgmap
@@ -79,8 +80,6 @@ popd
 %{_bindir}/%{pname}-u2fast
 %{_bindir}/%{pname}-u2json
 %{_bindir}/%{pname}-u2spewfoo
-%{python3_sitelib}/%{pname}-%{version}.dist-info
-%{python3_sitelib}/%{pname}
 %doc README.rst
 
 %changelog

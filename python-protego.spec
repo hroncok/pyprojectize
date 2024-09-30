@@ -42,15 +42,14 @@ BuildRequires:	python3-pytest
 
 %install
 %pyproject_install
+%pyproject_save_files protego
 
 %check
 %pytest
 
-%files -n python3-%{pkg_name}
+%files -n python3-%{pkg_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%pycached %{python3_sitelib}/protego.py
-%{python3_sitelib}/Protego-*.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.3.0-6

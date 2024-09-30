@@ -54,17 +54,16 @@ BuildRequires:  python3dist(terminaltables)
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %if %{with tests}
 %check
 %pytest -v
 %endif
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE.md
 %doc README.md tutorial.md
-%{python3_sitelib}/%{srcname}-*.dist-info/
-%{python3_sitelib}/%{srcname}/
 %{_bindir}/%{srcname}
 
 %changelog

@@ -53,6 +53,7 @@ BUILD_DEBIAN_PACKAGE=1 \
 %install
 BUILD_DEBIAN_PACKAGE=1 \
     %pyproject_install
+%pyproject_save_files colcon_argcomplete
 
 
 %check
@@ -62,11 +63,9 @@ BUILD_DEBIAN_PACKAGE=1 \
     test
 
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/colcon_argcomplete/
-%{python3_sitelib}/colcon_argcomplete-%{version}.dist-info/
 %{_datadir}/colcon_argcomplete/
 
 

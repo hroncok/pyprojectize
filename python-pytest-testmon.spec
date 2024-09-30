@@ -41,15 +41,14 @@ This a Python 3 version of the package.
 
 %install
 %pyproject_install
+%pyproject_save_files testmon
 
 %check
 # This project doesn't appear to have tests
 
-%files -n python3-%{pypi_name} 
+%files -n python3-%{pypi_name}  -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/testmon
-%{python3_sitelib}/pytest_testmon-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.1.1-3

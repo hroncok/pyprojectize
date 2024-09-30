@@ -102,6 +102,7 @@ rm -f tests/test_http.py
 
 %install
 %pyproject_install
+%pyproject_save_files 'osbs*'
 
 
 %if 0%{?with_check}
@@ -115,12 +116,11 @@ py.test-3 -vv tests
 %{_bindir}/osbs
 
 
-%files -n python3-osbs-client
+%files -n python3-osbs-client -f %{pyproject_files}
 %doc README.md
 %{!?_licensedir:%global license %doc}
 %license LICENSE
 %{_bindir}/osbs
-%{python3_sitelib}/osbs*
 %dir %{_datadir}/osbs
 %{_datadir}/osbs/*.json
 

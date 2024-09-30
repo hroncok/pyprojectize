@@ -34,15 +34,14 @@ isolated_cli_runner.
 
 %install
 %pyproject_install
+%pyproject_save_files pytest_click
 
 %check
 %pytest
 
-%files -n python3-pytest-click
+%files -n python3-pytest-click -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/pytest_click/
-%{python3_sitelib}/pytest_click-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.1.0-8

@@ -50,12 +50,11 @@ speed! Don't delay! Pick up your copy of Kajiki today!
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 
-%files -n python3-kajiki
+%files -n python3-kajiki -f %{pyproject_files}
 %doc README.rst LICENSE.rst CHANGES.rst PKG-INFO
 %{_bindir}/kajiki
-%{python3_sitelib}/%{modname}/
-%{python3_sitelib}/kajiki-%{version}-*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.2-8

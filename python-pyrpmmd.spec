@@ -48,13 +48,12 @@ This package provides the Python 3 version.
 
 %install
 %pyproject_install
+%pyproject_save_files rpmmd
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license COPYING
 %doc README.md ChangeLog
-%{python3_sitelib}/rpmmd/
-%{python3_sitelib}/%{srcname}-%{version}*/
 
 
 %changelog

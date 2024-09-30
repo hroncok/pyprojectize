@@ -43,12 +43,11 @@ simple.
 
 %install
 %pyproject_install
+%pyproject_save_files tagging
 
 
-%files -n python3-django-tagging
+%files -n python3-django-tagging -f %{pyproject_files}
 %doc CHANGELOG.txt LICENSE.txt README.rst docs/*
-%{python3_sitelib}/tagging/
-%{python3_sitelib}/django_tagging-%{version}.dist-info/
 
 
 %changelog

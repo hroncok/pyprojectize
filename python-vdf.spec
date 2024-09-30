@@ -45,6 +45,7 @@ Summary:    %{summary}
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 
 %if %{with tests}
@@ -55,11 +56,9 @@ Summary:    %{summary}
 %endif
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}*.dist-info
 
 
 %changelog

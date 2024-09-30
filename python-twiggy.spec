@@ -57,16 +57,15 @@ rm -rf %{distname}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 
 # There are errors in the test suite.
 #%%check
 #./scripts/run-twiggy-tests.sh
 
-%files -n python3-%{modname}
+%files -n python3-%{modname} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/%{modname}/
-%{python3_sitelib}/%{distname}-%{version}-*
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.5.1-14

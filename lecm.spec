@@ -47,6 +47,7 @@ sed -i '/acme-tiny/d' requirements.txt
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 mkdir -p %{buildroot}%{_sysconfdir}/cron.d/
 install -p -m 0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/cron.d/lecm
@@ -58,10 +59,8 @@ mkdir -p %{buildroot}%{_datadir}/%{srcname}/sample/
 install -p -m 0644 sample/*.conf %{buildroot}%{_datadir}/%{srcname}/sample/
 
 
-%files
+%files -f %{pyproject_files}
 %doc README.rst
-%{python3_sitelib}/%{srcname}
-%{python3_sitelib}/*.dist-info
 %{_bindir}/%{srcname}
 %{_datadir}/%{srcname}
 %{_mandir}/man1/%{srcname}.1.gz

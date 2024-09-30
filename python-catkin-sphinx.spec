@@ -49,12 +49,11 @@ Sphinx domain for CMake.
 
 %install
 %pyproject_install
+%pyproject_save_files catkin_sphinx
 
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %doc README.md
-%{python3_sitelib}/catkin_sphinx-%{version}.dist-info
-%{python3_sitelib}/catkin_sphinx/
 
 
 %changelog

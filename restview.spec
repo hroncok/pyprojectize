@@ -44,6 +44,7 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %check
 %pytest -v src/restview/tests.py -k "not restview.tests.doctest_RestViewer_rest_to_html"
@@ -51,11 +52,9 @@ rm -rf %{pypi_name}.egg-info
 %files
 %{_bindir}/%{pypi_name}
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Thu Jul 25 2024 Miroslav Suchý <msuchy@redhat.com> - 3.0.0-9

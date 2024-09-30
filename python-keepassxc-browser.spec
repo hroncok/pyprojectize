@@ -36,12 +36,11 @@ Summary:        %{summary}
 
 %install
 %pyproject_install
+%pyproject_save_files keepassxc_browser
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/keepassxc_browser-%{version}.dist-info
-%{python3_sitelib}/keepassxc_browser
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.8-10

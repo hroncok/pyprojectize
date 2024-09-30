@@ -45,10 +45,10 @@ find -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python3}|'
 
 %install
 %pyproject_install
+%pyproject_save_files '%{pypi_name}*'
 
-%files -n python3-dpath
+%files -n python3-dpath -f %{pyproject_files}
 %doc LICENSE.txt README.rst
-%{python3_sitelib}/%{pypi_name}*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.2.0-2

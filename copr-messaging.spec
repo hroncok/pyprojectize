@@ -70,17 +70,16 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
+%pyproject_save_files copr_messaging
 
 
 %check
 ./run_tests.sh -vv
 
 
-%files -n python3-%name
+%files -n python3-%name -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%python3_sitelib/copr_messaging
-%python3_sitelib/copr_messaging*egg-info
 
 %files -n python3-%name-doc
 %license LICENSE

@@ -46,12 +46,11 @@ eventually think about finding another module to use.
 
 %install
 %pyproject_install
+%pyproject_save_files sgmllib
 
 
-%files -n  python%{python3_pkgversion}-%{pypi_name}
+%files -n  python%{python3_pkgversion}-%{pypi_name} -f %{pyproject_files}
 %doc README
-%pycached %{python3_sitelib}/sgmllib.py
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.0.0-16

@@ -39,12 +39,10 @@ It's just one file and is implemented using ctypes.
 
 %install
 %pyproject_install
+%pyproject_save_files fuse
 
-%files -n python3-fusepy
+%files -n python3-fusepy -f %{pyproject_files}
 %doc README.rst
-%{python3_sitelib}/fuse.py
-%{python3_sitelib}/fusepy-*egg-info/
-%{python3_sitelib}/__pycache__
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.0.4-31

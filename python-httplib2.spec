@@ -56,6 +56,7 @@ sed -i '/--cov/d' setup.cfg
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 
 %check
@@ -72,10 +73,8 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} pytest -k "not test_unknown_server \
 	test_client_cert_verified and not test_inject_space and not test_get_301_no_redirect"
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md
-%{python3_sitelib}/%{srcname}-*.dist-info/
-%{python3_sitelib}/%{srcname}/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.21.0-8

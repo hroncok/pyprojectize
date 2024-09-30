@@ -50,6 +50,7 @@ sed -i '/fileio\/tests\/data\//d' setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 %check
 
@@ -60,10 +61,9 @@ PYTHONPATH="%{buildroot}%{python3_sitelib}" %{__python3} test_pipe.py
 
 popd
 
-%files -n python3-%{pkgname}
+%files -n python3-%{pkgname} -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.rst TODO.txt
-%{python3_sitelib}/*
 
 %changelog
 %autochangelog

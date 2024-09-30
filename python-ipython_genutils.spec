@@ -55,6 +55,7 @@ IPython/Jupyter should depend on it.
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 
 %check
@@ -62,10 +63,9 @@ export LANG=C.UTF-8
 nosetests-%{python3_version} -v
 
  
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %doc README.md
 %license COPYING.md
-%{python3_sitelib}/*
 
 
 %changelog

@@ -34,15 +34,10 @@ text; it takes an EmPy source file, processes it, and produces output.
 
 %install
 %pyproject_install
+%pyproject_save_files em emdoc emhelp emlib
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %{_bindir}/em.py
-%{python3_sitelib}/__pycache__/em*.pyc
-%{python3_sitelib}/em.py
-%{python3_sitelib}/emdoc.py
-%{python3_sitelib}/emhelp.py
-%{python3_sitelib}/emlib.py
-%{python3_sitelib}/empy-*.dist-info
 
 
 %changelog

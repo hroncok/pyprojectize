@@ -56,6 +56,7 @@ cp -p %{SOURCE1} .
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 %if 0%{?with_python3_other}
 %py3_other_install
 %endif
@@ -66,12 +67,9 @@ cp -p %{SOURCE1} .
 %{__python3_other} setup.py test
 %endif
 
-%files -n python%{python3_pkgversion}-%{upstream_name}
+%files -n python%{python3_pkgversion}-%{upstream_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{modname}.py*
-%{python3_sitelib}/__pycache__/%{modname}.*
-%{python3_sitelib}/%{modname}-*.dist-info
 
 %if 0%{?with_python3_other}
 %files -n python%{python3_other_pkgversion}-%{upstream_name}

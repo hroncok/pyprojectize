@@ -99,6 +99,7 @@ done
 
 %install
 %pyproject_install
+%pyproject_save_files 'pdc_client*'
 
 # Plugins are only required in the "pdc" script (not the Python packages). So
 # move plugins to pdc-client package from Python package (this should also
@@ -135,10 +136,9 @@ EOF
 %dir %{plugin_install_path}
 %{plugin_install_path}/*
 
-%files -n python%{python3_pkgversion}-pdc-client
+%files -n python%{python3_pkgversion}-pdc-client -f %{pyproject_files}
 %doc README.markdown
 %license LICENSE
-%{python3_sitelib}/pdc_client*
 
 
 %changelog

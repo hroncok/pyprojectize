@@ -46,17 +46,16 @@ rm -vr *.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files django_prometheus
 
 %if %{with check}
 %check
 %python3 setup.py test
 %endif
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/django_prometheus-*.dist-info/
-%{python3_sitelib}/django_prometheus/
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 2.1.0-15

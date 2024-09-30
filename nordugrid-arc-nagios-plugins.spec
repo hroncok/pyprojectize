@@ -68,10 +68,11 @@ rm -f doc/_build/html/.buildinfo
 
 %install
 %pyproject_install
+%pyproject_save_files arcnagios
 
 install -m755 -d %{buildroot}%{pkg_spooldir}
 
-%files
+%files -f %{pyproject_files}
 %dir %{pkg_sysconfdir}
 %dir %{pkg_sysconfdir}/20-dist.d
 %config(noreplace) %{pkg_sysconfdir}/20-dist.ini
@@ -83,8 +84,6 @@ install -m755 -d %{buildroot}%{pkg_spooldir}
 %{nagios_bindir}/check_egiis
 %{nagios_bindir}/check_arcservice
 %{nagios_bindir}/check_gridstorage
-%{python3_sitelib}/arcnagios
-%{python3_sitelib}/nordugrid_arc_nagios_plugins-*.dist-info
 %dir %{arc_spooldir}
 %attr(-,nagios,nagios) %{pkg_spooldir}
 %license LICENSE NOTICE

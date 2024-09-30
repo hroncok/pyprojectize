@@ -45,11 +45,11 @@ find . -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python3}|'
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
-%files -n python3-d2to1
+%files -n python3-d2to1 -f %{pyproject_files}
 %doc CHANGES.rst README.rst
 %license LICENSE
-%{python3_sitelib}/*
 
 
 %changelog

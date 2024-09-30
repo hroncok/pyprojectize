@@ -37,13 +37,12 @@ chmod -x LICENSE
 
 %install
 %pyproject_install
+%pyproject_save_files pcapkit
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
 %{_bindir}/pcapkit*
-%{python3_sitelib}/pcapkit/
-%{python3_sitelib}/%{pypi_name}*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.15.5-12

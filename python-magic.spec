@@ -41,12 +41,11 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files magic
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/magic/
-%{python3_sitelib}/python_magic-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.4.27-9

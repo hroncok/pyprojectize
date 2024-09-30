@@ -70,6 +70,7 @@ sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/angular_mock'|" xstatic/pkg/angul
 
 %install
 %pyproject_install
+%pyproject_save_files xstatic
 
 mkdir -p %{buildroot}%{_jsdir}/angular_mock
 mv %{buildroot}%{python3_sitelib}/xstatic/pkg/angular_mock/data/angular-mock.js %{buildroot}%{_jsdir}/angular_mock
@@ -78,10 +79,8 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/angular_mock/data/
 chmod 644 %{buildroot}%{_jsdir}/angular_mock/angular-mock.js
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
-%{python3_sitelib}/xstatic/pkg/angular_mock
-%{python3_sitelib}/XStatic_Angular_Mock-%{version}.dist-info
 %{python3_sitelib}/XStatic_Angular_Mock-%{version}-py%{python3_version}-nspkg.pth
 
 %files -n xstatic-angular-mock-common

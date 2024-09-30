@@ -54,6 +54,7 @@ element.
 
 %install
 %pyproject_install
+%pyproject_save_files untangle
 
 
 %check
@@ -66,12 +67,9 @@ export LANG=en_US.UTF-8
 %pytest -sv
 
 
-%files -n python%{python3_pkgversion}-untangle
+%files -n python%{python3_pkgversion}-untangle -f %{pyproject_files}
 %license LICENSE
 %doc README.md AUTHORS CHANGELOG.md
-%{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/untangle.py
-%{python3_sitelib}/untangle-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.2.1-5

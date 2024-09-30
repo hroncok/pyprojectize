@@ -89,6 +89,7 @@ find tests/ -type f | xargs sed -i s/assertItemsEqual/assertCountEqual/
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 # Generate cloud-config file
 python3 tools/render-template --variant %{?rhel:rhel}%{!?rhel:fedora} > $RPM_BUILD_ROOT/%{_sysconfdir}/cloud/cloud.cfg
@@ -134,7 +135,7 @@ python3 -m pytest tests/unittests
 %systemd_postun cloud-config.service cloud-config.target cloud-final.service cloud-init.service cloud-init.target cloud-init-local.service
 
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE LICENSE-Apache2.0 LICENSE-GPLv3
 %doc ChangeLog
 %doc doc/*
@@ -159,7 +160,6 @@ python3 -m pytest tests/unittests
 %{_unitdir}/cloud-init-hotplugd.socket
 %{_unitdir}/sshd-keygen@.service.d/disable-sshd-keygen-if-cloud-init-active.conf
 %{_tmpfilesdir}/%{name}.conf
-%{python3_sitelib}/*
 %{_libexecdir}/%{name}
 %{_bindir}/cloud-init*
 %{_bindir}/cloud-id

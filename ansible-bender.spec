@@ -60,6 +60,7 @@ tl;dr Ansible is the frontend, buildah is the backend.
 
 %install
 %pyproject_install
+%pyproject_save_files ansible_bender
 
 
 %if %{with check}
@@ -76,9 +77,7 @@ tl;dr Ansible is the frontend, buildah is the backend.
 %endif
 
 
-%files
-%{python3_sitelib}/ansible_bender-*.dist-info/
-%{python3_sitelib}/ansible_bender/
+%files -f %{pyproject_files}
 %{_bindir}/ansible-bender
 %license LICENSE
 %doc docs/* README.md

@@ -64,6 +64,7 @@ popd
 %install
 pushd py_ext
 %pyproject_install
+%pyproject_save_files '*'
 popd
 
 %global _docdir_fmt %{name}
@@ -87,10 +88,9 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} %{__python3} \
 %doc TLSH_Introduction.pdf
 %doc Attacking_LSH_and_Sim_Dig.pdf
 
-%files -n python3-tlsh
+%files -n python3-tlsh -f %{pyproject_files}
 %license LICENSE NOTICE.txt
 %doc README.md
-%{python3_sitearch}/*
 
 %changelog
 %autochangelog

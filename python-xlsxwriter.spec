@@ -60,12 +60,11 @@ rm -rf %{src_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE.txt
-%{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{src_name}-%{version}.dist-info
 %{_bindir}/vba_extract.py
 
 %changelog

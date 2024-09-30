@@ -99,6 +99,7 @@ source control system.
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 install -p -m0755 clients/cli/rabbitvcs -D %{buildroot}%{_bindir}/rabbitvcs
 install -p -m0644 clients/caja/RabbitVCS.py -D %{buildroot}%{_datadir}/caja-python/extensions/RabbitVCS.py
 install -p -m0644 clients/nautilus/RabbitVCS.py -D %{buildroot}%{_datadir}/nautilus-python/extensions/RabbitVCS.py
@@ -115,8 +116,7 @@ install -p -m0644 clients/nemo/RabbitVCS.py -D %{buildroot}%{_datadir}/nemo-pyth
 %{_datadir}/icons/hicolor/16x16/actions/rabbitvcs-push.png
 %{_datadir}/icons/hicolor/scalable/*/*.svg
 
-%files -n python3-rabbitvcs
-%{python3_sitelib}/*
+%files -n python3-rabbitvcs -f %{pyproject_files}
 
 %files cli
 %{_bindir}/rabbitvcs

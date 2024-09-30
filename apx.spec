@@ -73,6 +73,7 @@ sed -i '/"install":/d' setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 # avoid misplaced license file
 find %{buildroot} -name '*LICENSE' -print -delete
 
@@ -81,13 +82,12 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 appstream-util validate-relax --nonet %{buildroot}%{_datadir}/appdata/%{name}.appdata.xml
 
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc AUTHORS README.md
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/*.sqlite
 %{_datadir}/icons/hicolor/scalable/*.svg
-%{python3_sitelib}/*
 %{_bindir}/%{name}
 %{_datadir}/applications/*.desktop
 %{_datadir}/appdata/*.appdata.xml

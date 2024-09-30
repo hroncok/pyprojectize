@@ -32,12 +32,11 @@ A Python client for interacting with the openSenseMap API.
 
 %install
 %pyproject_install
+%pyproject_save_files opensensemap_api
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst example.py
 %license LICENSE
-%{python3_sitelib}/opensensemap_api/
-%{python3_sitelib}/opensensemap_api*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.5-22

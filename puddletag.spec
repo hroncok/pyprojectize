@@ -47,17 +47,16 @@ WavPack (wv).
 
 %install
 %{pyproject_install}
+%pyproject_save_files puddlestuff
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 find %{buildroot} -name exampletags\* -delete
 chmod 0644 %{buildroot}%{python3_sitelib}/puddlestuff/data/{menus,shortcuts}
 
-%files
+%files -f %{pyproject_files}
 %license copyright
 %doc NEWS THANKS TODO
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*
-%{python3_sitelib}/puddlestuff/
-%{python3_sitelib}/%{name}-%{version}.dist-info
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
 

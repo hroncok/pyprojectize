@@ -39,12 +39,11 @@ rm -rf python_gettext.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files pythongettext
 
-%files -n python3-%{module}
+%files -n python3-%{module} -f %{pyproject_files}
 %doc CHANGES.rst README.rst
 %license LICENSE.rst
-%{python3_sitelib}/pythongettext/
-%{python3_sitelib}/python_gettext-%{version}.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 4.0-15

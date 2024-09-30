@@ -88,6 +88,7 @@ epydoc --no-sourcecode --html -n rtslib -o doc/html rtslib/*.py
 %install
 # remove py2 scripts if py3 enabled
 %pyproject_install
+%pyproject_save_files 'rtslib*'
 
 mkdir -p %{buildroot}%{_mandir}/man8/
 mkdir -p %{buildroot}%{_mandir}/man5/
@@ -109,9 +110,8 @@ install -m 644 doc/saveconfig.json.5 %{buildroot}%{_mandir}/man5/
 %systemd_postun_with_restart target.service
 
 
-%files -n python3-rtslib
+%files -n python3-rtslib -f %{pyproject_files}
 %license COPYING
-%{python3_sitelib}/rtslib*
 %doc README.md doc/getting_started.md
 
 %files -n target-restore

@@ -758,6 +758,7 @@ cp -r %{_builddir}/%{name}-%{version}/man/man3 $RPM_BUILD_ROOT/%{_mandir}/man3
 # lib389
 pushd src/lib389
 %pyproject_install
+%pyproject_save_files 'lib389*'
 popd
 
 # Register CLI tools for bash completion
@@ -992,9 +993,8 @@ exit 0
 %{_libdir}/%{pkgname}/plugins/libback-bdb.so
 %endif
 
-%files -n python%{python3_pkgversion}-lib389
+%files -n python%{python3_pkgversion}-lib389 -f %{pyproject_files}
 %doc LICENSE LICENSE.GPLv3+
-%{python3_sitelib}/lib389*
 %{_sbindir}/dsconf
 %{_mandir}/man8/dsconf.8.gz
 %{_sbindir}/dscreate

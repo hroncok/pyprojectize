@@ -41,12 +41,11 @@ cp %{SOURCE1} .
 
 %install
 %pyproject_install
+%pyproject_save_files algosdk
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/algosdk
-%{python3_sitelib}/py_algorand_sdk-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.6.1-2

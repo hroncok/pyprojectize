@@ -54,6 +54,7 @@ popd
 
 %install
 %pyproject_install
+%pyproject_save_files dbutils
 
 # install docs
 install -t '%{buildroot}%{_pkgdocdir}' -D -p -m 0644 README.md
@@ -66,10 +67,8 @@ popd
 %{python3} -m unittest discover -v .
 
 
-%files -n python3-dbutils
+%files -n python3-dbutils -f %{pyproject_files}
 %license LICENSE
-%{python3_sitelib}/dbutils
-%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 %files doc
 %license LICENSE

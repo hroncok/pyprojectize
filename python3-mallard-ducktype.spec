@@ -31,17 +31,17 @@ Parse Ducktype files and convert them to Mallard.
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 
 %check
 %{__python3} setup.py test
 
 
-%files
+%files -f %{pyproject_files}
 %doc AUTHORS README.md
 %license COPYING
 %{_bindir}/ducktype
-%{python3_sitelib}/*
 
 
 

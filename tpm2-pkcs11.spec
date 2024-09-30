@@ -84,6 +84,7 @@ rm $RPM_BUILD_ROOT%{_libdir}/pkgconfig/tpm2-pkcs11.pc
   rm $RPM_BUILD_ROOT%{_libdir}/pkcs11/libtpm2_pkcs11.a
 cd tools
 %pyproject_install
+%pyproject_save_files tpm2_pkcs11
 install -Dpm 755 tpm2_ptool $RPM_BUILD_ROOT%{_bindir}/tpm2_ptool
 
 
@@ -100,10 +101,8 @@ cd tools
 %{_libdir}/pkcs11/libtpm2_pkcs11.so
 %{_libdir}/pkcs11/libtpm2_pkcs11.so.0*
 
-%files tools
+%files tools -f %{pyproject_files}
 %{_bindir}/tpm2_ptool
-%{python3_sitelib}/tpm2_pkcs11/*
-%{python3_sitelib}/tpm2_pkcs11_tools-*/*
 
 
 %changelog

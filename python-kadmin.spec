@@ -42,12 +42,11 @@ export CFLAGS="$CFLAGS -fcommon"
 
 %install
 %pyproject_install
+%pyproject_save_files '%{modname}*'
 
-%files -n python%{python3_pkgversion}-%{modname}
+%files -n python%{python3_pkgversion}-%{modname} -f %{pyproject_files}
 %doc README.md
 %license LICENSE.txt
-%{python3_sitearch}/%{modname}*.so
-%{python3_sitearch}/python_%{modname}*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.2-25.20181207git94e50ed

@@ -45,15 +45,14 @@ Python 3 version.
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 
 %check
 %{__python3} setup.py ptr
 
-%files -n python3-%{modname}
+%files -n python3-%{modname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst NEWS
-%{python3_sitelib}/%{modname}-*.dist-info/
-%{python3_sitelib}/%{modname}/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.7.0-9

@@ -116,6 +116,7 @@ install -d -m 755 $RPM_BUILD_ROOT%{_httpd_modconfdir}
 install -p -m 644 %{SOURCE2} $RPM_BUILD_ROOT%{_httpd_modconfdir}/10-wsgi-python3.conf
 
 %pyproject_install
+%pyproject_save_files mod_wsgi
 mv $RPM_BUILD_ROOT%{_bindir}/mod_wsgi-express{,-3}
 popd
 
@@ -147,13 +148,11 @@ ln -s %{_bindir}/mod_wsgi-express-2 $RPM_BUILD_ROOT%{_bindir}/mod_wsgi-express
 %endif
 
 %if %{with python3}
-%files -n python3-%{name}
+%files -n python3-%{name} -f %{pyproject_files}
 %license LICENSE
 %doc CREDITS.rst README.rst
 %config(noreplace) %{_httpd_modconfdir}/*wsgi-python3.conf
 %{_httpd_moddir}/mod_wsgi_python3.so
-%{python3_sitearch}/mod_wsgi-*.dist-info
-%{python3_sitearch}/mod_wsgi
 %{_bindir}/mod_wsgi-express-3
 %endif
 

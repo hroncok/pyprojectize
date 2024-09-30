@@ -43,6 +43,7 @@ Python 3 version.
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 
 %if %{with tests}
 %check
@@ -50,11 +51,9 @@ export LANG=C.UTF-8
 py.test-%{python3_version} -v tests
 %endif
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{modname}-*.dist-info/
-%{python3_sitelib}/%{modname}/
 
 
 %changelog

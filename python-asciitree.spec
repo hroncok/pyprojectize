@@ -36,16 +36,15 @@ Read the documentation at http://pythonhosted.org/asciitree
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 # Need fixing by upstream
 #%check
 #PYTHONPATH=%{buildroot}/%{python3_sitelib} %{__python3} -v -m unittest discover %{pypi_name}
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.3.3-30

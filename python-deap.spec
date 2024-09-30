@@ -87,6 +87,7 @@ rm -rf build/html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
+%pyproject_save_files deap
 
 %check
 OPTIONS=(
@@ -97,11 +98,9 @@ OPTIONS=(
 %pytest tests/
 PYTHONPATH=%{buildroot}%{python3_sitearch} pytest -v "${OPTIONS[@]}"
 
-%files -n python3-deap
+%files -n python3-deap -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.md
-%{python3_sitearch}/deap
-%{python3_sitearch}/deap-*.dist-info
 
 %if %{with docs}
 %files -n python-deap-doc

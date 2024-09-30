@@ -62,6 +62,7 @@ find . \
 
 %install
 %pyproject_install
+%pyproject_save_files py
 
 # Remove bundled dist/egg-info directories, they shouldn't be shipped for
 # bundled modules and in some cases they could confuse automatic generators
@@ -72,12 +73,10 @@ rm -rf %{buildroot}%{python3_sitelib}/py/_vendored_packages/*.{dist,egg}-info
 %check
 %py3_check_import %{srcname}
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc CHANGELOG.rst
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/py-*.dist-info/
-%{python3_sitelib}/py/
 
 
 %changelog

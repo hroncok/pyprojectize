@@ -59,17 +59,16 @@ popd
 
 %install
 %pyproject_install
+%pyproject_save_files pycparser
 
 %check
 %if %{with tests}
 %{python3} tests/all_tests.py
 %endif
  
-%files -n python3-pycparser
+%files -n python3-pycparser -f %{pyproject_files}
 %license LICENSE
 %doc examples
-%{python3_sitelib}/pycparser/
-%{python3_sitelib}/pycparser-*.dist-info/
 
 %changelog
 %autochangelog

@@ -48,15 +48,14 @@ rm -vrf *.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 
 %check
 %{__python3} setup.py test || :
 
-%files -n python3-%{modname}
+%files -n python3-%{modname} -f %{pyproject_files}
 %license LICENSE.txt
 %doc CHANGELOG.txt README.txt
-%{python3_sitelib}/%{srcname}-*.dist-info/
-%{python3_sitelib}/%{modname}/
 
 %changelog
 %autochangelog

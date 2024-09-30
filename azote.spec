@@ -48,6 +48,7 @@ window managers, on Arch Linux, Void Linux, Debian and Fedora.
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 #desktop-file-edit --set-icon %{_datadir}/pixmaps/%{name}.svg dist/%{name}.desktop
 install -p -D -m 0644 -t %{buildroot}/%{_datadir}/applications dist/%{name}.desktop
 install -p -D -m 0644 -t %{buildroot}/%{_datadir}/%{name} dist/*.png dist/*.svg
@@ -59,9 +60,7 @@ for lib in %{buildroot}%{python3_sitelib}/%{name}/*.py; do
  mv $lib.new $lib
 done
 
-%files
-%{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}-*.dist-info/
+%files -f %{pyproject_files}
 %{_bindir}/%{name}
 %{_datadir}/%{name}/
 %{_datadir}/pixmaps/*

@@ -89,6 +89,7 @@ Summary:        %summary
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 pushd docs
 # Add folder containing subliminal script to PATH
@@ -104,11 +105,9 @@ install -D -m 0644 docs/_build/man/%{srcname}.1 %{buildroot}%{_mandir}/man1/%{sr
 # Tests disabled because they connect to online services
 #%%{__python3} setup.py test
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %{_bindir}/subliminal
-%{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 %files doc
 %doc README.rst docs/_build/html docs/_build/text

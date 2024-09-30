@@ -56,19 +56,18 @@ find -name '*.pyc' -delete
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 
 %check
 PYTHONPATH="$(pwd)" pytest-%{python3_version} -v
 
 
-%files -n python3-%{pkg_name}
+%files -n python3-%{pkg_name} -f %{pyproject_files}
 %doc README.rst
 %license UNLICENSE
 %{_bindir}/rst-lint
 %{_bindir}/restructuredtext-lint
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
-%{python3_sitelib}/%{pypi_name}/
 
 
 %changelog

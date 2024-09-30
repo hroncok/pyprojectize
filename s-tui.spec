@@ -43,6 +43,7 @@ rm -rf %{name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{sys_name}
 
 # Remove shebang from Python libraries
 for lib in %{buildroot}%{python3_sitelib}/%{sys_name}/{/,sources,sturwid}/*.py; do
@@ -58,12 +59,10 @@ for lib in %{buildroot}%{python3_sitelib}/%{sys_name}/{/,sources,sturwid}/*.py; 
 done
 
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc README.md
 %{_bindir}/%{name}
-%{python3_sitelib}/%{sys_name}-%{version}.dist-info/
-%{python3_sitelib}/%{sys_name}/
 
 
 %changelog

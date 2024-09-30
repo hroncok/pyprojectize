@@ -70,15 +70,14 @@ rm -f doc/_build/html/index.html doc/_build/html/.buildinfo
 
 %install
 %pyproject_install
+%pyproject_save_files flent
 
 %check
 %make_build test PYTHON=%{__python3}
 desktop-file-validate %{buildroot}/%{_datadir}/applications/flent.desktop
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 
-%files
-%{python3_sitelib}/flent
-%{python3_sitelib}/%{srcname}-*.dist-info/
+%files -f %{pyproject_files}
 %{_bindir}/flent
 %{_bindir}/flent-gui
 %{_datadir}/applications/flent.desktop

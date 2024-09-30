@@ -56,14 +56,13 @@ rm -rf %{modname}/tests/integration/tests.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 
 %check
 %pytest
 
-%files -n python3-%{modname}
+%files -n python3-%{modname} -f %{pyproject_files}
 %doc README.rst LICENSE.txt
-%{python3_sitelib}/%{modname}
-%{python3_sitelib}/%{modname}-%{version}*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.2-42

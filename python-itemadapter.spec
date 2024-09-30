@@ -43,12 +43,11 @@ Requires:	python3-attrs
 
 %install
 %pyproject_install
+%pyproject_save_files itemadapter
 
-%files -n python3-%{pkg_name}
+%files -n python3-%{pkg_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/itemadapter
-%{python3_sitelib}/itemadapter-*.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.9.0-11

@@ -35,13 +35,11 @@ Summary:	Python module for writing pandoc filters
 
 %install
 %pyproject_install
+%pyproject_save_files pandocfilters
 
-%files -n python3-pandocfilters
+%files -n python3-pandocfilters -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/pandocfilters.py
-%{python3_sitelib}/pandocfilters-%{version}.dist-info
-%{python3_sitelib}/__pycache__/*
 
 %changelog
 %autochangelog

@@ -46,14 +46,14 @@ sed -i "s/if .--inplace. in sys.argv:/if True:/" setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitearch} py.test-%{python3_version} -vv
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc AUTHORS.md CHANGELOG.md README.rst
-%{python3_sitearch}/*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.6.6-5

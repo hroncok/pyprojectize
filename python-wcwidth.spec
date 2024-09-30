@@ -43,17 +43,16 @@ sed -i -e 's|--cov[^[:space:]]*||g' tox.ini
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %if %{with tests}
 %check
 %pytest -v
 %endif
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 %autochangelog

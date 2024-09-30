@@ -48,14 +48,12 @@ that produces data in the same format
 %install
 rm -rf $RPM_BUILD_ROOT
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE.txt
-%{python3_sitelib}/%{srcname}.py
-%{python3_sitelib}/__pycache__/%{srcname}.cpython-%{python3_version_nodots}.*
-%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 
 
 %changelog

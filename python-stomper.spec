@@ -81,6 +81,7 @@ sed -i "s/'future'//" setup.py
 %endif
 %if %{with python3}
 %{pyproject_install}
+%pyproject_save_files 'stomper*'
 %endif
 
 %check
@@ -98,9 +99,8 @@ PYTHONPATH=. nosetests-%{python3_version} -q
 %endif
 
 %if %{with python3}
-%files -n python3-stomper
+%files -n python3-stomper -f %{pyproject_files}
 %doc README.rst
-%{python3_sitelib}/stomper*
 %endif
 
 %changelog

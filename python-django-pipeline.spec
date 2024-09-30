@@ -42,14 +42,13 @@ This package provides Python 3 build of %{pypi_name}.
 
 %install
 %pyproject_install
+%pyproject_save_files pipeline
 # Remove the "tests" subdirectory to avoid it polluting the main python
 # namespace:
 rm -rf %{buildroot}%{python3_sitelib}/tests
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/django_pipeline*.dist-info/
-%{python3_sitelib}/pipeline/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.6.8-28

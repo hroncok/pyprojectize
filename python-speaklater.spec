@@ -45,15 +45,14 @@ This package provides the python3 version of the module.
 
 %install
 %pyproject_install
+%pyproject_save_files 'speaklater*'
 
 %check
 pushd build/lib
 %{__python3} -m doctest speaklater.py
 popd
 
-%files -n python3-speaklater
-%{python3_sitelib}/speaklater*
-%{python3_sitelib}/__pycache__/*
+%files -n python3-speaklater -f %{pyproject_files}
 %license LICENSE
 %doc PKG-INFO README
 

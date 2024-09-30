@@ -76,6 +76,7 @@ rm -f src_c/ffmovie.[ch]
 
 %install
 %pyproject_install
+%pyproject_save_files %{name} '%{name}*'
 
 #use system font.
 rm -f $RPM_BUILD_ROOT%{python3_sitearch}/%{name}/freesansbold.ttf
@@ -91,10 +92,8 @@ PYTHONPATH="$RPM_BUILD_ROOT%{python3_sitearch}" %{__python3} test/rect_test.py
 #image_test now fails in mock, unable to find video device.
 #PYTHONPATH="$RPM_BUILD_ROOT%{python3_sitearch}" %{__python3} test/image_test.py
  
-%files -n python%{python3_pkgversion}-pygame
+%files -n python%{python3_pkgversion}-pygame -f %{pyproject_files}
 %doc docs/ README* WHATSNEW*
-%dir %{python3_sitearch}/%{name}
-%{python3_sitearch}/%{name}*
 
 %files devel
 %doc examples/

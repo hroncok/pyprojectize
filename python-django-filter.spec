@@ -54,15 +54,14 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
+%pyproject_save_files django_filters
 
 # https://github.com/carltongibson/django-filter/issues/1069
 # %check
 # %{__python3} runtests.py
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc CHANGES.rst README.rst LICENSE docs/
-%{python3_sitelib}/django_filters
-%{python3_sitelib}/django_filter-%{version}.dist-info
 
 %files -n python-%{pypi_name}-doc
 %doc html

@@ -55,6 +55,7 @@ sed -e "s|/usr/bin/python|%{__python3}|" -i scripts/*
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 rm -rf %{buildroot}%{_docdir}/urlgrabber-%{version}
 
 %if %{with check}
@@ -64,13 +65,11 @@ export URLGRABBER_EXT_DOWN="%{buildroot}%{_libexecdir}/urlgrabber-ext-down"
 %{__python3} test/runtests.py
 %endif
 
-%files -n python%{python3_pkgversion}-%{pypi_name}
+%files -n python%{python3_pkgversion}-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc ChangeLog README TODO
 %{_bindir}/urlgrabber
 %{_libexecdir}/urlgrabber-ext-down
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 4.1.0-19

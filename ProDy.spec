@@ -81,6 +81,7 @@ find prody/proteins/ccealign -name '*.cpp' -exec chmod 0644 '{}' \;
 
 %install
 %pyproject_install
+%pyproject_save_files prody
 
 mkdir -p $RPM_BUILD_ROOT%{_bindir}
 rm -f $RPM_BUILD_ROOT%{_bindir}/*
@@ -120,7 +121,7 @@ PYTHONPATH=$RPM_BUILD_ROOT%{python3_sitearch} nosetests-%{python3_version} --ver
 popd
 %endif
 
-%files -n python3-%{name}
+%files -n python3-%{name} -f %{pyproject_files}
 %license LICENSE.rst
 %doc README.rst
 %{_bindir}/prody
@@ -129,8 +130,6 @@ popd
 %{_bindir}/evol
 %{_bindir}/evol-%{python3_version}
 %{_bindir}/python%{python3_version}-evol
-%{python3_sitearch}/prody/
-%{python3_sitearch}/%{name}-*.dist-info
 
 %changelog
 %autochangelog

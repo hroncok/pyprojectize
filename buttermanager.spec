@@ -34,6 +34,7 @@ and upgrading the system safely.
 
 %install
 %pyproject_install
+%pyproject_save_files 'buttermanager*'
 
 install -Dpm644 packaging/%{name}.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
 
@@ -47,11 +48,10 @@ desktop-file-install \
   packaging/%{name}.desktop
 
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc README.md doc
 %{_bindir}/buttermanager
-%{python3_sitelib}/buttermanager*
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
 

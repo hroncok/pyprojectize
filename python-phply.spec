@@ -34,18 +34,17 @@ phply is a parser for the PHP programming language written using PLY
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 rm -rf %{buildroot}/%{python3_sitelib}/tests
 
 %check
 %py3_check_import %{pypi_name}
 
-%files -n python%{python3_pkgversion}-%{pypi_name}
+%files -n python%{python3_pkgversion}-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
 %{_bindir}/phplex
 %{_bindir}/phpparse
-%{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}-nspkg.pth
 
 %changelog

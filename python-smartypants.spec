@@ -63,19 +63,17 @@ rm -rf _build/html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %check
 %{__python3} setup.py test
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %doc CHANGES.rst
 %license COPYING
 %{_bindir}/%{pypi_name}
-%{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/%{pypi_name}.py
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %files -n python-%{pypi_name}-doc
 %doc docs/_build/html

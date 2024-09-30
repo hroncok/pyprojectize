@@ -40,19 +40,18 @@ Summary: %{global_desc}. This package includes a commandline interface.
 
 %install
 %pyproject_install
+%pyproject_save_files pyjokes
 
 %check
 %if %{with_tests}
 %{__python3} setup.py test
 %endif
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENCE.txt
 %doc docs/*
 # For noarch packages: sitelib
 %{_bindir}/pyjoke*
-%{python3_sitelib}/pyjokes-*
-%{python3_sitelib}/pyjokes/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.5.0-31

@@ -75,6 +75,7 @@ sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/angular_vis'|" xstatic/pkg/angula
 
 %install
 %pyproject_install
+%pyproject_save_files xstatic
 
 mkdir -p %{buildroot}/%{_jsdir}/angular_vis
 mv %{buildroot}/%{python3_sitelib}/xstatic/pkg/angular_vis/data/angular-vis.js %{buildroot}/%{_jsdir}/angular_vis
@@ -84,10 +85,8 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/angular_vis/data/
 %doc README.txt
 %{_jsdir}/angular_vis
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
-%{python3_sitelib}/xstatic/pkg/angular_vis
-%{python3_sitelib}/XStatic_Angular_Vis-%{version}.dist-info
 %{python3_sitelib}/XStatic_Angular_Vis-%{version}-py3.*-nspkg.pth
 
 %changelog

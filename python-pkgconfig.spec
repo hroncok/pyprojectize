@@ -92,6 +92,7 @@ sed -i -e s/distutils.core/setuptools/ setup.py
 %py2_install
 %endif
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %if %{with python2}
 %files -n python2-%{srcname}
@@ -101,11 +102,9 @@ sed -i -e s/distutils.core/setuptools/ setup.py
 %{python2_sitelib}/%{srcname}/
 %endif
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{srcname}-*.dist-info/
-%{python3_sitelib}/%{srcname}/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.5.5-11

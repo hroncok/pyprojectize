@@ -51,13 +51,12 @@ shell is bash.
 
 %install
 %pyproject_install
+%pyproject_save_files colcon_spawn_shell
 
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.rst
-%{python3_sitelib}/colcon_spawn_shell/
-%{python3_sitelib}/colcon_spawn_shell-%{version}.dist-info/
 
 
 %changelog

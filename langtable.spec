@@ -45,6 +45,7 @@ perl -pi -e "s,_DATADIR = '(.*)',_DATADIR = '%{_datadir}/langtable'," langtable/
 %install
 
 %pyproject_install
+%pyproject_save_files langtable
 
 %check
 (cd $RPM_BUILD_DIR/%{name}-%{version}/langtable; %{__python3} langtable.py)
@@ -69,11 +70,7 @@ xmllint --noout --relaxng \
 %license COPYING unicode-license.txt
 %doc README* ChangeLog test_cases.py langtable/schemas/*.rng
 
-%files -n python3-langtable
-%dir %{python3_sitelib}/langtable
-%{python3_sitelib}/langtable/*
-%dir %{python3_sitelib}/langtable-*.dist-info
-%{python3_sitelib}/langtable-*.dist-info/*
+%files -n python3-langtable -f %{pyproject_files}
 
 %changelog
 %autochangelog

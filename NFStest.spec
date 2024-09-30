@@ -28,8 +28,9 @@ most of the functionality is focused mainly on testing the client.
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
-%files
+%files -f %{pyproject_files}
 %{_bindir}/nfstest_alloc
 %{_bindir}/nfstest_cache
 %{_bindir}/nfstest_delegation
@@ -49,7 +50,6 @@ most of the functionality is focused mainly on testing the client.
 %{_bindir}/nfstest_xattr
 %{_mandir}/*/*
 #For noarch packages: sitelib
-%{python3_sitelib}/*
 
 %doc COPYING README
 

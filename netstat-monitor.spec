@@ -38,6 +38,7 @@ sed -i -e '/^#!\//, 1d' netstat.py
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 mkdir -p %{buildroot}%{_datadir}/%{name}
 mv %{buildroot}/usr/sample-filters \
     %{buildroot}%{_datadir}/%{name}/sample-filters
@@ -45,13 +46,11 @@ mv %{buildroot}/usr/sample-filters \
 %check
 PYTHONPATH=./ %{__python3} test/test-netstat
 
-%files
+%files -f %{pyproject_files}
 %doc README.md
 %license LICENSE 
 %{_bindir}/%{name}
-%{python3_sitelib}/*
 %{_datadir}/%{name}/sample-filters
-%{python3_sitelib}/__pycache__/*
 
 %changelog
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.1.3-30

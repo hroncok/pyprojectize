@@ -45,6 +45,7 @@ Python 3 version.
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %check
 %if %{with tests}
@@ -55,11 +56,9 @@ TEST_SELECTOR="not test_fixtures and not test_replays_response_from_cassette and
 py.test-%{python3_version} -vk "$TEST_SELECTOR"
 %endif
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.0-3

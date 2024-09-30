@@ -61,16 +61,15 @@ Enum capabilities, however.
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %check
 # https://github.com/ethanfurman/aenum/issues/7
 # PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} %{pypi_name}/test.py
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README aenum/doc aenum/CHANGES
 %license aenum/LICENSE
-%{python3_sitelib}/*.dist-info
-%{python3_sitelib}/%{pypi_name}/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 3.1.0-12

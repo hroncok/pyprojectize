@@ -55,16 +55,15 @@ entrypoints and no code changes...
 
 %install
 %pyproject_install
+%pyproject_save_files sqlalchemy_collectd
 
 %check
 %if 0%{?with_checks} > 0
 %{__python3} -m pytest
 %endif
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst LICENSE examples/
-%{python3_sitelib}/sqlalchemy_collectd
-%{python3_sitelib}/sqlalchemy_collectd-%{version}.dist-info
 %{_bindir}/connmon
 
 %changelog

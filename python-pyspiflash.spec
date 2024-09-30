@@ -35,16 +35,15 @@ products, to store firmware, microcode or configuration parameters.
 
 %install
 %pyproject_install
+%pyproject_save_files spiflash
 
 # Not running tests as they try to create a device
 #%check
 #PYTHONPATH=%{buildroot}/%{python3_sitelib} %{__python3} i2cflash/tests/serialeeprom.py
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst spiflash/AUTHORS
 %license LICENSE
-%{python3_sitelib}/spiflash/
-%{python3_sitelib}/%{pypi_name}*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.6.3-16

@@ -53,6 +53,7 @@ supported (JavaScript evaluation).
 %install
 
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 # link for backwards compatibility. consider removal in Fedora 30+
 ln -s ./lesscpy %{buildroot}/%{_bindir}/py3-lesscpy
 
@@ -61,12 +62,10 @@ ln -s ./lesscpy %{buildroot}/%{_bindir}/py3-lesscpy
 %pytest
 
 
-%files -n python3-lesscpy
+%files -n python3-lesscpy -f %{pyproject_files}
 %doc LICENSE
 %{_bindir}/lesscpy
 %{_bindir}/py3-lesscpy
-%{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}*.dist-info
 
 
 %changelog

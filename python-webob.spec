@@ -63,17 +63,16 @@ rm docs/_static/.empty
 
 %install
 %pyproject_install
+%pyproject_save_files webob
 
 %check
 %if 0%{?with_tests}
 %pytest
 %endif
 
-%files -n python3-webob
+%files -n python3-webob -f %{pyproject_files}
 %license docs/license.txt
 %doc docs/*
-%{python3_sitelib}/webob/
-%{python3_sitelib}/WebOb-%{version}.dist-info
 
 %changelog
 * Sat Aug 17 2024 Ján ONDREJ (SAL) <ondrejj(at)salstar.sk> - 1.8.8-2

@@ -75,6 +75,7 @@ BuildRequires:  python%{python3_pkgversion}-pytest
 
 %install
 %pyproject_install
+%pyproject_save_files '%{srcname}*' tlz
 
 
 %check
@@ -82,10 +83,8 @@ BuildRequires:  python%{python3_pkgversion}-pytest
 PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v -k 'not test_shakespeare'
 
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE.txt
-%{python3_sitelib}/%{srcname}*
-%{python3_sitelib}/tlz/
 
 
 %changelog

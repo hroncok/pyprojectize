@@ -35,11 +35,11 @@ Summary: %summary
 
 %install
 %{pyproject_install}
+%pyproject_save_files '*'
  
 
-%files -n python3-oauth
+%files -n python3-oauth -f %{pyproject_files}
 %doc LICENSE.txt
-%{python3_sitelib}/*
 
 
 %changelog

@@ -47,16 +47,15 @@ cp -p %SOURCE2 .
 
 %install
 %pyproject_install
+%pyproject_save_files ropgadget
 for lib in $(find %{buildroot}%{python3_sitelib}/ropgadget/ -name "*.py"); do
   sed '1{\@^#!/usr/bin/env python@d}' $lib > $lib.new &&
   touch -r $lib $lib.new &&
   mv $lib.new $lib
 done
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc LICENSE_BSD.txt README.md
-%{python3_sitelib}/ropgadget
-%{python3_sitelib}/%{srcname}-%{version}.dist-info
 %{_bindir}/*
 
 %changelog

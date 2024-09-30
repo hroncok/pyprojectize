@@ -39,15 +39,15 @@ sed -i s/1\.5\.6/%{version}/ setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 %{__install} -m 0644 -D rpl.1 %{buildroot}%{_mandir}/man1/rpl.1
 
 
 
-%files
+%files -f %{pyproject_files}
 %doc LICENSE README.md
 %{_bindir}/rpl
 %{_mandir}/man1/rpl.1.gz
-%{python3_sitelib}/*
 
 %changelog
 * Fri Jul 26 2024 Miroslav Suchý <msuchy@redhat.com> - 1.5.7-30

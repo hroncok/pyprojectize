@@ -39,16 +39,15 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files comfoair
 
 # https://github.com/mtdcr/pycomfoair/issues/2
 %check
 %pytest -v test -k "not test_create_parse and not test_create_parse_hex and not test_bytes"
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/comfoair/
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.0.4-14

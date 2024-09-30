@@ -76,6 +76,7 @@ sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/angular_uuid'|" xstatic/pkg/angul
 
 %install
 %pyproject_install
+%pyproject_save_files xstatic
 
 mkdir -p %{buildroot}/%{_jsdir}/angular_uuid
 mv %{buildroot}/%{python3_sitelib}/xstatic/pkg/angular_uuid/data/angular-uuid.js %{buildroot}/%{_jsdir}/angular_uuid
@@ -87,10 +88,8 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/angular_uuid/data/
 %doc README.txt
 %{_jsdir}/angular_uuid
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
-%{python3_sitelib}/xstatic/pkg/angular_uuid
-%{python3_sitelib}/XStatic_Angular_UUID-%{version}.dist-info
 %{python3_sitelib}/XStatic_Angular_UUID-%{version}-py3.*-nspkg.pth
 
 

@@ -62,6 +62,7 @@ rm docs/_build/html/.buildinfo
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 
 # check
@@ -70,10 +71,9 @@ rm docs/_build/html/.buildinfo
 # nosetests-3
 
 
-%files -n python3-%{pkgname}
+%files -n python3-%{pkgname} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/*
 
 
 %files doc

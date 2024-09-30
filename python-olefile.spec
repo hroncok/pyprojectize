@@ -64,6 +64,7 @@ make -C doc html BUILDDIR=_doc_build SPHINXBUILD=sphinx-build-%{python3_version}
 
 %install
 %pyproject_install
+%pyproject_save_files olefile
 
 
 %check
@@ -73,11 +74,9 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} tests/test_olefile.py
 %files doc
 %doc doc/_doc_build/html
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md
 %license doc/License.rst
-%{python3_sitelib}/olefile-*.dist-info
-%{python3_sitelib}/olefile/
 
 
 %changelog

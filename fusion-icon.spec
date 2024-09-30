@@ -48,6 +48,7 @@ appear.
 
 %install
 %pyproject_install
+%pyproject_save_files FusionIcon
 
 mv %{buildroot}%{_datadir}/{metainfo,appdata}/
 
@@ -56,18 +57,13 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/fusion-icon.desktop
 
 
 
-%files
+%files -f %{pyproject_files}
 %doc COPYING
 %{_bindir}/fusion-icon
 %{_datadir}/applications/fusion-icon.desktop
-%dir %{python3_sitelib}/FusionIcon/
-%{python3_sitelib}/FusionIcon/*py*
 %{_datadir}/appdata/fusion-icon.appdata.xml
 %{_datadir}/icons/hicolor/*/apps/fusion-icon.png
 %{_datadir}/icons/hicolor/scalable/apps/fusion-icon.svg
-%{python3_sitelib}/fusion_icon-%{version}.dist-info
-%{python3_sitelib}/FusionIcon/interface_gtk/
-%{python3_sitelib}/FusionIcon/interface_qt/
 
 
 %changelog

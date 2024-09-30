@@ -52,6 +52,7 @@ BuildRequires:  python3-testresources
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %check
 PYTHON=python3 stestr-3 run
@@ -59,10 +60,8 @@ PYTHON=python3 stestr-3 run
 # FIXME: add license files as soon as upstream adds them
 # https://github.com/mozilla-services/ldappool/issues/2
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
-%{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 3.0.0-12

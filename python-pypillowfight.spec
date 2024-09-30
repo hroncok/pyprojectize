@@ -57,6 +57,7 @@ echo "#define INTERNAL_PILLOWFIGHT_VERSION \"%{version}\"" > src/pillowfight/_ve
 
 %install
 %pyproject_install
+%pyproject_save_files pillowfight
 
 
 %check
@@ -65,11 +66,9 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} \
     nosetests-3 -v -P tests -I 'tests_swt.py' -I 'tests_canny.py'
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitearch}/pillowfight
-%{python3_sitearch}/%{srcname}-%{version}.dist-info
 
 
 %changelog

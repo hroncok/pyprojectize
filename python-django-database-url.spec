@@ -38,16 +38,14 @@ DATABASE_URL environment variable to configure your Django application.
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %check
 %{__python3} test_dj_database_url.py
 
-%files -n python3-django-database-url
+%files -n python3-django-database-url -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/%{srcname}.py*
-%{python3_sitelib}/__pycache__/%{srcname}.cpython-*.py*
-%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.5.0-24

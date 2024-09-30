@@ -38,16 +38,14 @@ sed -i -e '/^#!\//, 1d' %{name}.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
 %files
 %{_bindir}/%{name}
 
-%files -n python3-%{name}
+%files -n python3-%{name} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/%{name}.py
-%{python3_sitelib}/Slowloris-%{version}.dist-info
 
 %changelog
 * Sat Jul 20 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.2.1-15

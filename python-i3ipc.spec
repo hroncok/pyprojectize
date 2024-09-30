@@ -58,17 +58,16 @@ sed -i '/^#!/d' i3ipc/connection.py
 
 %install
 %pyproject_install
+%pyproject_save_files i3ipc
 
 %if %{with tests}
 %check
 %python3 run-tests.py --timeout 20
 %endif
 
-%files -n python3-i3ipc
+%files -n python3-i3ipc -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/i3ipc/
-%{python3_sitelib}/i3ipc-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 2.2.1-14

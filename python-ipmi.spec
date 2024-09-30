@@ -41,15 +41,14 @@ find . -type f -name "*.py" -exec sed -i '/^#![  ]*\/usr\/bin\/env.*$/ d' {} ';'
 
 %install
 %pyproject_install
+%pyproject_save_files pyipmi
 
 %check
 export PYTHONPATH=$RPM_BUILD_ROOT/%{python3_sitelib}
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
 %{_bindir}/ipmitool.py
-%{python3_sitelib}/pyipmi
-%{python3_sitelib}/*-py%{python3_version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.5.5-2

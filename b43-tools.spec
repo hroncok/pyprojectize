@@ -65,9 +65,10 @@ install -p -m 0755 disassembler/brcm80211-ivaldump %{buildroot}%{_bindir}
 install -p -m 0755 ssb_sprom/ssb-sprom %{buildroot}%{_bindir}
 cd debug
 %pyproject_install
+%pyproject_save_files '*'
 
 
-%files
+%files -f %{pyproject_files}
 %doc README.*
 %license COPYING.*
 %{_bindir}/b43-asm
@@ -79,7 +80,6 @@ cd debug
 %{_bindir}/brcm80211-fwconv
 %{_bindir}/brcm80211-ivaldump
 %{_bindir}/ssb-sprom
-%{python3_sitelib}/*
 
 
 %changelog

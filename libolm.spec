@@ -63,6 +63,7 @@ popd
 
 pushd python
 %pyproject_install
+%pyproject_save_files %{appname} _%{name}
 popd
 
 %files
@@ -76,10 +77,7 @@ popd
 %{_libdir}/cmake/Olm
 %{_libdir}/pkgconfig/%{appname}.pc
 
-%files python3
-%{python3_sitearch}/%{appname}
-%{python3_sitearch}/_%{name}.abi3.so
-%{python3_sitearch}/python_%{appname}-*.dist-info
+%files python3 -f %{pyproject_files}
 
 %changelog
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 3.2.16-4

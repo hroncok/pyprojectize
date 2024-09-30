@@ -80,6 +80,7 @@ autoreconf -vif
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 %make_install
 find %{buildroot} -type f -name "*.la" -delete
 
@@ -104,9 +105,7 @@ rm -fr %{buildroot}%{_docdir}/%{name}
 %{_libdir}/lib%{name}.so.*
 %{_libdir}/lib%{name}-script.so.*
 
-%files -n python3-%{name}
-%{python3_sitearch}/%{name}.so
-%{python3_sitearch}/VapourSynth-*.dist-info
+%files -n python3-%{name} -f %{pyproject_files}
 
 %files devel
 %{_includedir}/%{name}/

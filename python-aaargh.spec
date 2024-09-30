@@ -44,15 +44,14 @@ Python 3 version.
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %check
 py.test-3 -v
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE.rst
-%{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 
 
 %changelog

@@ -44,13 +44,13 @@ sed -i -e '/setuptools-git/d' common_setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 %check
 %{__python3} setup.py test
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md CHANGES.md
-%{python3_sitelib}/*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.7.0-22

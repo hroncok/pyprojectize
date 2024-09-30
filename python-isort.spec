@@ -39,6 +39,7 @@ Python %{python3_pkgversion} version.
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 mv %{buildroot}%{_bindir}/%{modname}{,-%{python3_version}}
 ln -s %{modname}-%{python3_version} %{buildroot}%{_bindir}/%{modname}-%{python3_pkgversion}
 ln -s %{modname}-3 %{buildroot}%{_bindir}/%{modname}
@@ -47,15 +48,13 @@ ln -s %{modname}-3 %{buildroot}%{_bindir}/%{modname}
 #%check
 #%{__python3} setup.py test
 
-%files -n python%{python3_pkgversion}-%{modname}
+%files -n python%{python3_pkgversion}-%{modname} -f %{pyproject_files}
 %doc *.md
 %license LICENSE
 %{_bindir}/%{modname}
 %{_bindir}/%{modname}-%{python3_pkgversion}
 %{_bindir}/%{modname}-%{python3_version}
 %{_bindir}/%{modname}-identify-imports
-%{python3_sitelib}/%{modname}/
-%{python3_sitelib}/%{modname}-*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 5.13.2-5

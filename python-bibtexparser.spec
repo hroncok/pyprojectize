@@ -47,12 +47,11 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
+%pyproject_save_files bibtexparser
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc CHANGELOG README.rst requirements.txt
 %license COPYING
-%{python3_sitelib}/%{srcname}-%{version}.dist-info/
-%{python3_sitelib}/bibtexparser/
 
 %files doc
 %doc html

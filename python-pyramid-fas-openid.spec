@@ -53,13 +53,12 @@ rm -rf %{modname}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 
 
-%files -n python3-pyramid-fas-openid
+%files -n python3-pyramid-fas-openid -f %{pyproject_files}
 %doc README.txt
 %license LICENSE.txt
-%{python3_sitelib}/%{modname}/
-%{python3_sitelib}/%{modname}-%{version}*
 
 
 %changelog

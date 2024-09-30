@@ -47,17 +47,16 @@ BuildRequires:	python3-Cython
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 
 %check
 %python3 setup.py test
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.rst CHANGES.rst INSTALL.rst
-%{python3_sitearch}/%{srcname}/
-%{python3_sitearch}/%{srcname}-*.dist-info
 
 
 %changelog

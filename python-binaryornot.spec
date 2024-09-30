@@ -77,6 +77,7 @@ make -C docs html PYTHONPATH=$(pwd)
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 
 %check
 %{__python3} setup.py test
@@ -84,11 +85,9 @@ make -C docs html PYTHONPATH=$(pwd)
 rm -rf docs/_build/html/.buildinfo
 
 
-%files -n python3-%{modname}
+%files -n python3-%{modname} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/%{modname}/
-%{python3_sitelib}/%{modname}-%{version}-*
 
 %files -n python-%{modname}-docs
 %doc docs/_build/html

@@ -67,6 +67,7 @@ sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/hogan'|" xstatic/pkg/hogan/__init
 
 %install
 %pyproject_install
+%pyproject_save_files xstatic
 
 mkdir -p %{buildroot}%{_jsdir}/hogan
 mv %{buildroot}%{python3_sitelib}/xstatic/pkg/hogan/data/hogan.js %{buildroot}%{_jsdir}/hogan
@@ -74,10 +75,8 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/hogan/data/
 # fix execute flags for js
 chmod 644 %{buildroot}%{_jsdir}/hogan/hogan.js
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
-%{python3_sitelib}/xstatic/pkg/hogan
-%{python3_sitelib}/XStatic_Hogan-%{version}.dist-info
 %{python3_sitelib}/XStatic_Hogan-%{version}-py%{python3_version}-nspkg.pth
 
 %files -n xstatic-hogan-common

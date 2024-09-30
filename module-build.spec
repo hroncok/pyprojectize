@@ -38,17 +38,16 @@ A library and a cli tool for building module streams.
 
 %install
 %pyproject_install
+%pyproject_save_files module_build
 
 
 %check
 %pytest
 
 
-%files
+%files -f %{pyproject_files}
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/module_build
-%{python3_sitelib}/module_build-*.dist-info/
 %{_bindir}/module-build
 
 

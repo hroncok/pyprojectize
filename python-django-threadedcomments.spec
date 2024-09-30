@@ -45,10 +45,9 @@ This package provides Python 3 build of %{pypi_name}.
 
 %install
 %pyproject_install
+%pyproject_save_files threadedcomments
 
-%files -n python3-%{pypi_name}
-%{python3_sitelib}/threadedcomments
-%{python3_sitelib}/django_threadedcomments-%{version}.dist-info
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.rst LICENSE.txt CHANGELOG.rst
 

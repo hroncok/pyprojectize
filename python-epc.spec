@@ -51,17 +51,16 @@ rm -rf *.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 
 %check
 pytest
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
 %license COPYING
-%{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-*.dist-info
 
 
 %changelog

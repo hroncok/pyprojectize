@@ -45,16 +45,15 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files pythonjsonlogger
 
 
 %check
 PYTHONPATH=%{buildroot}/%{python3_sitelib} %{__python3} -m unittest discover
 
 
-%files -n python3-json-logger
+%files -n python3-json-logger -f %{pyproject_files}
 %license LICENSE
-%{python3_sitelib}/pythonjsonlogger
-%{python3_sitelib}/python_json_logger-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 2.0.4-9

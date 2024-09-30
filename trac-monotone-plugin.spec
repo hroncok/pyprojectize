@@ -38,13 +38,12 @@ This Trac plugin provides support for the Monotone SCM.
 
 %install
 %pyproject_install
+%pyproject_save_files tracmtn
 
 
-%files
+%files -f %{pyproject_files}
 %doc README
 %license COPYING
-%{python3_sitelib}/TracMonotone-*.dist-info/
-%{python3_sitelib}/tracmtn/
 
 
 %changelog

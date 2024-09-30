@@ -49,16 +49,15 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 # Cannot test as we cannot use loop filesystems in a systemd-nspawnd container
 #%check
 #%{__python3} setup.py test
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst docs/readme.rst
-%{python3_sitearch}/%{pypi_name}
-%{python3_sitearch}/%{pypi_name}-%{pypi_version}.dist-info
 
 %files -n python-%{pypi_name}-doc
 %doc html

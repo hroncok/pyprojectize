@@ -81,6 +81,7 @@ make -C docs html
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 
 %check
 %if %{with tests}
@@ -89,11 +90,9 @@ make -C docs html
 %py3_check_import dateutil dateutil.easter dateutil.parser dateutil.relativedelta dateutil.rrule dateutil.tz dateutil.utils dateutil.zoneinfo
 %endif
 
-%files -n python3-%{modname}
+%files -n python3-%{modname} -f %{pyproject_files}
 %license LICENSE
 %doc NEWS README.rst
-%{python3_sitelib}/%{modname}/
-%{python3_sitelib}/*.dist-info
 
 %files doc
 %license LICENSE

@@ -65,6 +65,7 @@ UKI (unified kernel image) updates.
 
 %install
 %pyproject_install
+%pyproject_save_files virt
 # manpages
 install -m 755 -d      %{buildroot}%{_mandir}/man1
 install -m 644 man/*.1 %{buildroot}%{_mandir}/man1
@@ -86,7 +87,7 @@ install -m 755 systemd/99-uki-uefi-setup.install %{buildroot}%{_prefix}/lib/kern
 %postun -n uki-direct
 %systemd_postun kernel-bootcfg-boot-successful.service
 
-%files -n python3-virt-firmware
+%files -n python3-virt-firmware -f %{pyproject_files}
 %license LICENSE
 %doc README.md experimental
 %{_bindir}/host-efi-vars
@@ -104,10 +105,6 @@ install -m 755 systemd/99-uki-uefi-setup.install %{buildroot}%{_prefix}/lib/kern
 %{_mandir}/man1/kernel-bootcfg.1*
 %{_mandir}/man1/uefi-boot-menu.1*
 %{_mandir}/man1/pe-*.1*
-%dir %{python3_sitelib}/virt
-%{python3_sitelib}/virt/firmware
-%{python3_sitelib}/virt/peutils
-%{python3_sitelib}/virt_firmware-%{pypi_version}.dist-info
 
 %files -n python3-virt-firmware-tests
 %{_datadir}/%{name}/tests

@@ -80,15 +80,14 @@ BuildRequires:  python%{python3_pkgversion}-pyparsing
 
 %install
 %pyproject_install
+%pyproject_save_files %{pname}
 
 %if %{with check}
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} -v
 %endif
 
-%files -n python%{python3_pkgversion}-%{pname}
-%{python3_sitelib}/*egg-info/
-%{python3_sitelib}/%{pname}/
+%files -n python%{python3_pkgversion}-%{pname} -f %{pyproject_files}
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.6.1-11

@@ -44,16 +44,15 @@ rm -rf adapt-parser.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
 %check
 %if %{with_tests}
 %{__python3} setup.py test
 %endif
 
-%files -n python3-adapt
+%files -n python3-adapt -f %{pyproject_files}
 %license LICENSE.md
-%{python3_sitelib}/%{name}_parser-%{version}*
-%{python3_sitelib}/%{name}/
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 1.0.0-11

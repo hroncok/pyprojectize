@@ -70,6 +70,7 @@ dates.  Unicode-aware.
 %py3_other_install
 %endif
 %pyproject_install
+%pyproject_save_files xlrd
 
 # remove .py extension from binary
 mv $RPM_BUILD_ROOT%{_bindir}/runxlrd.py $RPM_BUILD_ROOT%{_bindir}/runxlrd
@@ -80,12 +81,9 @@ rm -rf $RPM_BUILD_ROOT%{_bindir}/runxlrd.py* \
 %check
 %tox
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst CHANGELOG.rst
-%attr(755,root,root) %dir %{python3_sitelib}/xlrd
-%{python3_sitelib}/xlrd/*
-%{python3_sitelib}/xlrd-*egg-info
 %attr(755,root,root) %{_bindir}/*
 
 %if 0%{?with_python3_other}

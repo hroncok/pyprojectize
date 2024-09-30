@@ -89,6 +89,7 @@ PYTHONPATH=. argparse-manpage \
 
 %install
 %pyproject_install
+%pyproject_save_files 'osc*'
 
 mkdir -p %{buildroot}%{_localstatedir}/lib/osc-plugins
 # mkdir -p %{buildroot}%{_datadir}/bash-completion/completions/
@@ -112,11 +113,10 @@ install -Dm0644 osc.1 %{buildroot}%{_mandir}/man1/osc.1
 %check
 python3 -m unittest
 
-%files
+%files -f %{pyproject_files}
 %doc AUTHORS README.md NEWS
 %license COPYING
 %{_bindir}/osc*
-%{python3_sitelib}/osc*
 %{_sysconfdir}/profile.d/osc.csh
 %{_datadir}/bash-completion/completions/osc
 %{_datadir}/fish/vendor_completions.d/osc.fish

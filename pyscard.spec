@@ -47,15 +47,14 @@ This is the python3 package.
 
 %install
 %pyproject_install
+%pyproject_save_files smartcard
 chmod 755 %{buildroot}%{python3_sitearch}/smartcard/scard/*.so
 
 
-%files -n python%{python3_pkgversion}-%{name}
+%files -n python%{python3_pkgversion}-%{name} -f %{pyproject_files}
 %license LICENSE
 %doc ACKS README.md
 %doc smartcard/doc/*
-%{python3_sitearch}/smartcard/
-%{python3_sitearch}/%{name}-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 2.0.5-9

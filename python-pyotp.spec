@@ -46,13 +46,12 @@ methods in web applications and in other systems that require users to log in.
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 
 
 %changelog

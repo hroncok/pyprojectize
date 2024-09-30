@@ -48,16 +48,14 @@ so that applications can drop-in replace it.
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname} '*'
 
 # there is an asterisk in the name of the file,
 # because sometimes the suffix of the architecture is added
 chmod 755 $RPM_BUILD_ROOT%{python3_sitearch}/_pylibmc.cpython-%{python3_version_nodots}*.so
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc docs/ LICENSE README.rst
-%{python3_sitearch}/%{srcname}-%{version}*.dist-info
-%{python3_sitearch}/%{srcname}/
-%{python3_sitearch}/*.so
 
 
 %changelog

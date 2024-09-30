@@ -82,18 +82,17 @@ rm -rf .testrepository
 
 %install
 %{pyproject_install}
+%pyproject_save_files toscaparser
 
 # Set executable permission on test scripts
 find %{buildroot}/%{python3_sitelib}/toscaparser/tests -name '*.sh' -execdir chmod +x '{}' \;
 # Fix shebang on some test scripts
 find %{buildroot}/%{python3_sitelib}/toscaparser/tests -name '*.py' -exec sed -i 's/^#!\/usr\/bin\/python/#!\/usr\/bin\/python3/' {} \;
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
 %{_bindir}/tosca-parser
-%{python3_sitelib}/toscaparser
-%{python3_sitelib}/tosca_parser-%{version}.dist-info
 
 %files -n python-%{pypi_name}-doc
 %doc html README.rst

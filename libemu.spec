@@ -390,6 +390,7 @@ popd
 pushd bindings/python3
 mkdir -p %{buildroot}/%{python3_sitearch}
 %pyproject_install
+%pyproject_save_files %{name}
 popd
 %endif
 
@@ -423,9 +424,7 @@ find %{buildroot} -name '*.a' -exec rm -f {} ';'
 %endif
 
 %if 0%{?with_python3}
-%files -n python%{python3_pkgversion}-libemu
-%{python3_sitearch}/%{name}.*.so
-%{python3_sitearch}/%{name}-*.dist-info
+%files -n python%{python3_pkgversion}-libemu -f %{pyproject_files}
 # with_python3
 %endif
 

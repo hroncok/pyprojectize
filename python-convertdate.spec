@@ -40,16 +40,15 @@ Julian, Mayan and Persian.
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %check
 %pytest -v tests -k "not testPersian"
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc HISTORY.rst README.md
 %license LICENSE
 %{_bindir}/censusgeocode
-%{python3_sitelib}/*.dist-info
-%{python3_sitelib}/%{pypi_name}/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.4.0-9

@@ -58,14 +58,13 @@ sed -i -e '/^#!\//, 1d' %{srcname}/__main__.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 
 %files -n %{srcname}
 %{_bindir}/glad
 
-%files -n python3-%{srcname}
-%{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-%{version}.dist-info
+%files -n python3-%{srcname} -f %{pyproject_files}
 
 
 %changelog

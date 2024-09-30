@@ -32,12 +32,12 @@ diskimage-builder and its dependencies.
 
 %install
 %pyproject_install
+%pyproject_save_files 'dib_utils*'
 
 
-%files
+%files -f %{pyproject_files}
 %doc README.md
 %{_bindir}/dib-run-parts
-%{python3_sitelib}/dib_utils*
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 0.0.11-20

@@ -79,6 +79,7 @@ rm -f docs/Makefile docs/conf.py docs/changelog.rst
 %install
 %{__rm} -rf %{buildroot}
 %pyproject_install
+%pyproject_save_files webtest
 
 
 %if 0%{?with_tests}
@@ -86,10 +87,8 @@ rm -f docs/Makefile docs/conf.py docs/changelog.rst
 %pytest
 %endif
 
-%files -n python3-webtest
+%files -n python3-webtest -f %{pyproject_files}
 %doc docs/* CHANGELOG.rst
-%{python3_sitelib}/webtest
-%{python3_sitelib}/WebTest-*.dist-info
 
 %changelog
 * Tue Sep 03 2024 Ján ONDREJ (SAL) <ondrejj(at)salstar.sk> - 3.0.1-1

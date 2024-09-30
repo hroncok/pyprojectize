@@ -56,6 +56,7 @@ BuildArch:      noarch
 
 %install
 %pyproject_install
+%pyproject_save_files dijitso
 
 %check
 # We test with both mpi implementations, just because we can :_]
@@ -68,13 +69,11 @@ BuildArch:      noarch
 %__python3 -m pytest -v test/
 %_openmpi_unload
 
-%files -n python3-dijitso
+%files -n python3-dijitso -f %{pyproject_files}
 %license COPYING
 %license COPYING.LESSER
 %doc README.rst
 %{_bindir}/dijitso
-%{python3_sitelib}/dijitso
-%{python3_sitelib}/fenics_dijitso-%{version}.dist-info/
 %{_mandir}/man1/dijitso.1*
 
 %changelog

@@ -41,17 +41,16 @@ BuildRequires: python3-devel
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 
 %check
 %{python3} -m authres
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license COPYING
 %doc CHANGES README
-%{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-*.dist-info/
 
 
 %changelog

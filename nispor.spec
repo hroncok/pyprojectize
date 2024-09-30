@@ -118,6 +118,7 @@ env SKIP_PYTHON_INSTALL=1 PREFIX=%{_prefix} LIBDIR=%{_libdir} %make_install
 
 pushd src/python
 %pyproject_install
+%pyproject_save_files 'nispor*'
 popd
 
 %if %{with check}
@@ -135,9 +136,8 @@ popd
 %{_bindir}/npc
 %{_libdir}/libnispor.so.*
 
-%files -n       python3-%{name}
+%files -n       python3-%{name} -f %{pyproject_files}
 %license LICENSE
-%{python3_sitelib}/nispor*
 
 %files devel
 %license LICENSE

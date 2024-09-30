@@ -47,13 +47,12 @@ sed -e "\|#!/usr/bin/env python3|d" -i %{pypi_name}/*.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
-%files -n %{pypi_name}
+%files -n %{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.md CHANGELOG.md
 %{_bindir}/op1repacker
-%{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.2.6-13

@@ -90,6 +90,7 @@ sed -i -e 's/GROUP="@UBERTOOTH_GROUP@"/ENV{ID_SOFTWARE_RADIO}="1"/g' host/misc/u
 (
   cd host/python/specan_ui
   %pyproject_install
+%pyproject_save_files specan
   install -Dp -m755 ubertooth-specan-ui %{buildroot}%{_bindir}
 )
 
@@ -119,11 +120,9 @@ sed -i -e 's/GROUP="@UBERTOOTH_GROUP@"/ENV{ID_SOFTWARE_RADIO}="1"/g' host/misc/u
 %{_includedir}/*
 %{_libdir}/lib%{name}.so
 
-%files specan-ui
+%files specan-ui -f %{pyproject_files}
 %doc host/python/specan_ui/README
 %{_bindir}/%{name}-specan-ui
-%{python3_sitelib}/specan
-%{python3_sitelib}/specan-%{POSTYEAR}.%{POSTMONTH}.post%{POSTNUM}.dist-info
 
 
 %changelog

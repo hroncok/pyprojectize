@@ -46,12 +46,11 @@ chmod -x {LICENSE.txt,README.rst,samples/*/*.py}
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.rst samples/
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Wed Aug 07 2024 Miroslav Suchý <msuchy@redhat.com> - 1.4.9-15

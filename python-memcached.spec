@@ -51,6 +51,7 @@ sed -i -e 's/^import mock/from unittest import mock/' \
 
 %install
 %pyproject_install
+%pyproject_save_files memcache
 
 
 %check
@@ -62,12 +63,8 @@ memcached -d -P $pidfile
 kill $(cat $pidfile)
 
 
-%files -n python3-memcached
+%files -n python3-memcached -f %{pyproject_files}
 %doc ChangeLog README.md
-%attr(755,root,root) %{python3_sitelib}/memcache.py
-%{python3_sitelib}/memcache.py
-%{python3_sitelib}/__pycache__/memcache.*
-%{python3_sitelib}/python_memcached-%{version}.dist-info/
 
 
 %changelog

@@ -47,6 +47,7 @@ argparse to add these features.
 
 %install
 %pyproject_install
+%pyproject_save_files configargparse
 
 %check
 # the compared outputs of testBasicCase2 and testMutuallyExclusiveArgs don't
@@ -55,12 +56,9 @@ argparse to add these features.
 PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -k "not TestMisc \
   and not testBasicCase2 and not testMutuallyExclusiveArgs"
 
-%files -n python3-configargparse
+%files -n python3-configargparse -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/configargparse.py*
-%{python3_sitelib}/%{srcname}*.dist-info
-%{python3_sitelib}/__pycache__/configargparse*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.7-5

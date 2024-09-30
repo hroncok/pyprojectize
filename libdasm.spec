@@ -253,6 +253,7 @@ popd
 sed -i -e 's|^#!/usr/bin/.*|#!/usr/bin/python3|;' pydasm/das.py
 pushd pydasm
 %pyproject_install
+%pyproject_save_files 'pydasm*'
 install -m 755 -p -D das.py "%{buildroot}%{_bindir}/das-%{python3_version}"
 pushd %{buildroot}%{_bindir}
 ln -s "das-%{python3_version}" "das-3"
@@ -300,8 +301,7 @@ find %{buildroot} -name '*.a' -exec rm -f {} ';'
 %endif
 
 %if %{with python3}
-%files -n python%{python3_pkgversion}-pydasm
-%{python3_sitearch}/pydasm*
+%files -n python%{python3_pkgversion}-pydasm -f %{pyproject_files}
 %{_bindir}/das-%{python3_version}
 %{_bindir}/das-3
 %{_bindir}/das.py

@@ -69,6 +69,7 @@ popd
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 %py3_shebang_fix %{buildroot}%{_bindir}/tor-prompt
 find docs/_build -name .buildinfo -delete
 install -D -m 0644 docs/_build/man/%{srcname}.1 %{buildroot}%{_mandir}/man1/%{srcname}.1
@@ -78,11 +79,9 @@ install -D -m 0644 docs/_build/man/%{srcname}.1 %{buildroot}%{_mandir}/man1/%{sr
 %{__python3} run_tests.py --unit
 %endif
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %{_bindir}/tor-prompt
-%{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-*.dist-info
 
 %files doc
 %doc README.md docs/_build/html docs/_build/text

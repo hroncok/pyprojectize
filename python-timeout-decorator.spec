@@ -33,16 +33,15 @@ A python module which provides a timeout decorator.
 
 %install
 %pyproject_install
+%pyproject_save_files timeout_decorator
 
 %if %{with tests}
 %check
 %{__python3} setup.py test
 %endif
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
-%{python3_sitelib}/timeout_decorator
-%{python3_sitelib}/timeout_decorator-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.4.1-18

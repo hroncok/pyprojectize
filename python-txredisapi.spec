@@ -49,12 +49,10 @@ rm -rf txredisapi.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files txredisapi
 
 
-%files -n python3-txredisapi
-%{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/txredisapi.py
-%{python3_sitelib}/txredisapi-%{version}.dist-info
+%files -n python3-txredisapi -f %{pyproject_files}
 
 
 %changelog

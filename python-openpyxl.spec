@@ -44,16 +44,15 @@ rm -rf *.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 
 # No tests
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENCE.rst
 %doc README.rst AUTHORS.rst
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
-%{python3_sitelib}/%{pypi_name}/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 3.1.2-8

@@ -81,6 +81,7 @@ rm -rf docs/_build/html/.buildinfo
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 
 %check
@@ -94,11 +95,9 @@ PYTHONPATH="./src" py.test-3
 %doc README.rst
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.rst
-%{python3_sitelib}/%{srcname}
-%{python3_sitelib}/*.dist-info
 
 
 %changelog

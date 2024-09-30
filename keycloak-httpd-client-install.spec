@@ -111,6 +111,7 @@ rm %{buildroot}%{_bindir}/keycloak-httpd-client-install
 %endif
 # ^^^ with_python2
 %pyproject_install
+%pyproject_save_files '*'
 %endif
 
 install -d -m 755 %{buildroot}/%{_mandir}/man8
@@ -135,8 +136,7 @@ install -c -m 644 doc/keycloak-httpd-client-install.8 %{buildroot}/%{_mandir}/ma
 # ^^^ with_python2
 
 %if 0%{?with_python3}
-%files -n python3-%{srcname}
-%{python3_sitelib}/*
+%files -n python3-%{srcname} -f %{pyproject_files}
 %{_bindir}/keycloak-httpd-client-install
 %{_bindir}/keycloak-rest
 %{_mandir}/man8/*

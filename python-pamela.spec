@@ -34,16 +34,15 @@ Yet another Python wrapper for PAM.
 
 %install
 %pyproject_install
+%pyproject_save_files '%{srcname}*'
 
 %check
 py.test-%{python3_version} -v
 
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license COPYING
 %doc README.md
-%{python3_sitelib}/%{srcname}*
-%{python3_sitelib}/__pycache__/%{srcname}*
 
 
 %changelog

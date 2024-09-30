@@ -209,6 +209,7 @@ sed -i 's|-mfpmath=387|-mfloat-abi=hard|' setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files xpra
 
 mkdir -p %{buildroot}%{_unitdir}
 mv %{buildroot}/lib/systemd/system/xpra.*  %{buildroot}%{_unitdir}/
@@ -276,7 +277,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %pre
 getent group xpra >/dev/null || groupadd -r xpra
 
-%files
+%files -f %{pyproject_files}
 %license COPYING
 %dir %{_sysconfdir}/xpra
 %dir %{_sysconfdir}/xpra/conf.d
@@ -300,8 +301,6 @@ getent group xpra >/dev/null || groupadd -r xpra
 %{_bindir}/xpra_launcher
 %{_bindir}/run_scaled
 %{_sysusersdir}/*.conf
-%{python3_sitearch}/xpra/
-%{python3_sitearch}/*.dist-info
 %{_datadir}/applications/xpra*.desktop
 %{_datadir}/icons/hicolor/48x48/apps/xpra-mdns.png
 %{_datadir}/icons/hicolor/48x48/apps/xpra-shadow.png

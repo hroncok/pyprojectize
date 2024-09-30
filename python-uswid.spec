@@ -42,16 +42,15 @@ sed -i -e '/^#!\//, 1d' %{srcname}/*.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %check
 #%{python3} setup.py test
 %pytest
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{srcname}-*.dist-info/
-%{python3_sitelib}/%{srcname}/
 %{_bindir}/uswid
 
 %changelog

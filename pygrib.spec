@@ -91,6 +91,7 @@ Requires:  python3-pyproj
 export MAN_DIR=/usr/share/man/
 
 %pyproject_install
+%pyproject_save_files %{name}
 
 # copy documentation
 mkdir -p %{buildroot}%{_datadir}/doc/%{name}
@@ -152,11 +153,9 @@ cd  $TESTROOT/test
 # This has been reported here:
 # https://github.com/jswhit/pygrib/issues/188
 
-%files -n python3-%{name}
+%files -n python3-%{name} -f %{pyproject_files}
 %doc LICENSE PKG-INFO README.md
 %doc %{_datadir}/doc/%{name}/
-%{python3_sitearch}/%{name}
-%{python3_sitearch}/%{name}-*.dist-info
 %{_bindir}/cnv*
 %{_bindir}/grib_*
 %{_mandir}/man1/cnv*

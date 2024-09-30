@@ -55,6 +55,7 @@ sed -i "/namespace_packages/d" setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files moksha
 
 # Add __init__.py files to namespace packages not installed by setuptools
 cp moksha/__init__.py %{buildroot}/%{python3_sitelib}/moksha/
@@ -62,10 +63,8 @@ cp moksha/__init__.py %{buildroot}/%{python3_sitelib}/moksha/
 %check
 %{__python3} -m nose
 
-%files -n python3-moksha-common
+%files -n python3-moksha-common -f %{pyproject_files}
 %doc README COPYING AUTHORS
-%{python3_sitelib}/moksha/
-%{python3_sitelib}/%{modname}-%{version}*
 # The CLI tool.  :)
 %{_bindir}/moksha
 

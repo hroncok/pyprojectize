@@ -78,6 +78,7 @@ rm doc/build/html/.buildinfo
 export PBR_VERSION=%{version}
 
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 install -D -m0644 -p doc/build/man/pythonjenkins.1 %{buildroot}%{_mandir}/man1/pythonjenkins.1
 
@@ -86,11 +87,9 @@ install -D -m0644 -p doc/build/man/pythonjenkins.1 %{buildroot}%{_mandir}/man1/p
 %{__python3} -m testtools.run discover tests
 
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %doc README.rst doc/build/html
 %license COPYING
-%{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/python_jenkins-%{version}.dist-info/
 %{_mandir}/man1/pythonjenkins.1.*
 
 

@@ -58,15 +58,14 @@ function update_scripts() {
 }
 
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 update_scripts "%{buildroot}/%{python3_sitelib}/%{pypi_name}"
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license docs/LICENSE lib/Naked/templates/licenses.py
 %doc docs/README.rst lib/Naked/templates/readme_md_file.py
 %{_bindir}/naked
-%{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.31-27

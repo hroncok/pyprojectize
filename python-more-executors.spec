@@ -47,16 +47,15 @@ the behavior of Future objects.
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname_py}
 
 %check
 %{__python3} -m pytest -v
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
 
-%{python3_sitelib}/%{srcname_py}*.dist-info/
-%{python3_sitelib}/%{srcname_py}/
 
 %changelog
 %autochangelog

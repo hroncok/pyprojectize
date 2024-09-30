@@ -55,16 +55,14 @@ rm -rf libusb1.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files libusb1 usb1
 
 %check
 %{python3} setup.py test
 
-%files -n python3-libusb1
+%files -n python3-libusb1 -f %{pyproject_files}
 %license COPYING COPYING.LESSER
 %doc README.rst PKG-INFO
-%pycached %{python3_sitelib}/libusb1.py
-%{python3_sitelib}/usb1/
-%{python3_sitelib}/libusb1-*.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 3.1.0-5

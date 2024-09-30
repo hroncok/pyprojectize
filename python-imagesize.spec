@@ -54,6 +54,7 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 %if %{with tests}
 %check
@@ -61,10 +62,9 @@ rm -rf %{pypi_name}.egg-info
 py.test-3 -k 'not test_get_filelike'
 %endif
 
-%files -n python%{python3_pkgversion}-%{pypi_name}
+%files -n python%{python3_pkgversion}-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE.rst
-%{python3_sitelib}/*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.4.1-9

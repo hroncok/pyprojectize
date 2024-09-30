@@ -72,6 +72,7 @@ find . -type f -name "*.py" -exec sed -i '/^#![  ]*\/usr\/bin\/env.*$/ d' {} 2>/
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %check
 %if %{with tests}
@@ -79,11 +80,9 @@ find . -type f -name "*.py" -exec sed -i '/^#![  ]*\/usr\/bin\/env.*$/ d' {} 2>/
 %pytest --deselect neurodsp/tests/utils/test_download.py
 %endif
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst paper/*
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
-%{python3_sitelib}/%{pypi_name}
 
 %changelog
 %autochangelog

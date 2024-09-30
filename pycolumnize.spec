@@ -39,16 +39,14 @@ sed -i /nose/d setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %check
 %pytest -v test_columnize.py
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc ChangeLog README.rst SECURITY.md THANKS
 %license LICENSE
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
-%{python3_sitelib}/__pycache__/%{pypi_name}*
-%{python3_sitelib}/%{pypi_name}.py*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.3.10-14

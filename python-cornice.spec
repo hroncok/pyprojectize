@@ -61,16 +61,16 @@ Requires:   %{py3_dist venusian}
 
 %install
 %pyproject_install
+%pyproject_save_files '%{module}*'
 
 
 %check
 %pytest -v
 
 
-%files -n python3-cornice
+%files -n python3-cornice -f %{pyproject_files}
 %license LICENSE
 %doc CHANGES.txt CONTRIBUTORS.txt README.rst
-%{python3_sitelib}/%{module}*
 
 
 %changelog

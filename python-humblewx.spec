@@ -34,11 +34,11 @@ Library that simplifies creating user interfaces with wxPython.
 
 %install
 %pyproject_install
+%pyproject_save_files '%{srcname}*'
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license COPYING
 %doc README.rst AUTHORS
-%{python3_sitelib}/%{srcname}*/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.2.2-9

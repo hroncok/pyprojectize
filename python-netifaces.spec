@@ -38,12 +38,11 @@ from network interfaces.
 
 %install
 %pyproject_install
+%pyproject_save_files '%{pypi_name}*'
 
 
-%files -n python%{python3_pkgversion}-%{pypi_name}
+%files -n python%{python3_pkgversion}-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
-%{python3_sitearch}/%{pypi_name}-%{version}.dist-info/
-%{python3_sitearch}/%{pypi_name}*.so
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.11.0-11

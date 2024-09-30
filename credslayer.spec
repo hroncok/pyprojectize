@@ -58,6 +58,7 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %check
 %if %{with local}
@@ -67,11 +68,9 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v tests/tes
 %files
 %{_bindir}/credslayer
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/CredSLayer-%{version}.dist-info
 
 %files -n python-%{pypi_name}-doc
 %doc html

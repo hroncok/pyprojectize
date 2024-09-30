@@ -204,11 +204,9 @@ bluechi is a python module to access the public D-Bus API of BlueChi project.
 It contains typed python code that is auto-generated from BlueChi's
 API description and manually written code to simplify recurring tasks.
 
-%files -n python3-bluechi
+%files -n python3-bluechi -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/bluechi-*.dist-info/
-%{python3_sitelib}/bluechi/
 
 %endif
 
@@ -237,6 +235,7 @@ popd
 %if %{with_python}
 pushd src/bindings/python
 %pyproject_install
+%pyproject_save_files bluechi
 popd
 %endif
 

@@ -59,12 +59,11 @@ rm -rf spec.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files spec
 
-%files -n python3-spec
+%files -n python3-spec -f %{pyproject_files}
 %license LICENSE
 %{_bindir}/spec
-%{python3_sitelib}/spec/
-%{python3_sitelib}/spec-*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.4.1-18

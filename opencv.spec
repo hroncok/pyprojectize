@@ -507,6 +507,7 @@ install -pm 0644 %{S:4} .cache/ade/
 %cmake_install
 cd %{__cmake_builddir}/python_loader/
 %pyproject_install}
+%pyproject_save_files cv2
 
 rm -rf %{buildroot}%{_datadir}/OpenCV/licenses/
 %if %{with java}
@@ -567,9 +568,7 @@ ln -s -r %{buildroot}%{_jnidir}/opencv-%{javaver}.jar %{buildroot}%{_jnidir}/ope
 %files doc
 %{_datadir}/opencv4/samples
 
-%files -n python3-opencv
-%{python3_sitearch}/cv2
-%{python3_sitearch}/opencv-*.dist-info
+%files -n python3-opencv -f %{pyproject_files}
 
 %if %{with java}
 %files java

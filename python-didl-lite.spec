@@ -40,15 +40,14 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files didl_lite
 
 #%%check
 #%%pytest -v tests
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE.md
 %doc README.rst
-%{python3_sitelib}/didl_lite/
-%{python3_sitelib}/python_didl_lite-%{version}.dist-info/
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 1.2.5-16

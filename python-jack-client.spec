@@ -37,19 +37,16 @@ This package installs the library for Python.
 
 %install
 %pyproject_install
+%pyproject_save_files _jack jack
 
 %check
 %{__python3} setup.py test
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
 %doc NEWS.rst
 %doc CONTRIBUTING.rst
-%{python3_sitelib}/%{srcname2}-*.dist-info/
-%{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/_jack.py
-%{python3_sitelib}/jack.py
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.5.2-16

@@ -54,6 +54,7 @@ Requires:       tzdata
 
 %install
 %pyproject_install
+%pyproject_save_files pytz
 rm -r %{buildroot}%{python3_sitelib}/pytz/zoneinfo
 
 
@@ -63,11 +64,9 @@ rm -r %{buildroot}%{python3_sitelib}/pytz/zoneinfo
 %endif
 
 
-%files -n python3-pytz
+%files -n python3-pytz -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.rst
-%{python3_sitelib}/pytz/
-%{python3_sitelib}/*.dist-info/
 
 
 %changelog

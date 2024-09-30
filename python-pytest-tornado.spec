@@ -46,6 +46,7 @@ BuildRequires:  python3-tornado >= 4.1
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname_}
 
 
 %check
@@ -53,11 +54,9 @@ PYTHONPATH="%{buildroot}%{python3_sitelib}" PYTHONDONTWRITEBYTECODE=1 \
     py.test-%{python3_version}
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{srcname_}
-%{python3_sitelib}/%{srcname_}-%{version}.dist-info
 
 
 %changelog

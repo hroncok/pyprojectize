@@ -41,16 +41,15 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files async_upnp_client
 
 %check
 %pytest -v tests
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE.md
 %doc README.rst
 %{_bindir}/upnp-client
-%{python3_sitelib}/async_upnp_client/
-%{python3_sitelib}/async_upnp_client-%{version}.dist-info/
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 0.14.15-15

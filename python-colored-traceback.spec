@@ -30,14 +30,13 @@ Colored-traceback is a python library to color exception traces.
 
 %install
 %pyproject_install
+%pyproject_save_files colored_traceback
 
 %check
 %py3_check_import colored_traceback
 
-%files -n python3-colored-traceback
+%files -n python3-colored-traceback -f %{pyproject_files}
 %doc README.rst
-%{python3_sitelib}/colored_traceback-%{version}.dist-info/
-%{python3_sitelib}/colored_traceback/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.3.0-11

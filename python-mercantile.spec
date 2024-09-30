@@ -52,16 +52,15 @@ rm -rf html/.{buildinfo,doctrees}
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %check
 %{pytest}
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst html
 %license LICENSE.txt
 %{_bindir}/mercantile
-%{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.2.1-14

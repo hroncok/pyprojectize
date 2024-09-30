@@ -68,6 +68,7 @@ Documentation for python-amqp
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %if %{with sphinx_docs}
 # docs generation requires everything to be installed first
@@ -90,11 +91,9 @@ popd
 %pytest t/unit
 %endif
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc Changelog README.rst
 %license LICENSE
-%{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 %files doc
 %license LICENSE

@@ -41,18 +41,14 @@ Python 3 version.
 
 %install
 %pyproject_install
+%pyproject_save_files %{dir_name}
 
 %check
 %pytest
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license MIT-LICENSE
 %doc README.md
-%{python3_sitelib}/%{dir_name}-*.dist-info/
-%dir %{python3_sitelib}/%{dir_name}
-%{python3_sitelib}/%{dir_name}/*.py
-%{python3_sitelib}/%{dir_name}/__pycache__
-%{python3_sitelib}/%{dir_name}/py.typed
 
 %changelog
 %autochangelog

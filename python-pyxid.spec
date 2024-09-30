@@ -46,12 +46,12 @@ Python 3 version.
 
 %install
 %pyproject_install
+%pyproject_save_files '%{modname}*'
 
 
-%files -n python3-%{modname}
+%files -n python3-%{modname} -f %{pyproject_files}
 %license COPYING
 %doc README.txt
-%{python3_sitelib}/%{modname}*
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.1-0.31.gitc84afe9

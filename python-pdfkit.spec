@@ -51,6 +51,7 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %check
 mkdir -p tests/fixtures
@@ -62,11 +63,9 @@ find tests -type f |\
  mv -v $a $b; done
 %{__python3} setup.py test
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst HISTORY.rst
-%{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.6.1-16

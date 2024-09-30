@@ -74,17 +74,16 @@ rm -rf docs/_build/html/.{doctrees,buildinfo}
 
 %install
 %{pyproject_install}
+%pyproject_save_files %{srcname}
 
 
 %files doc
 %license LICENSE
 %doc docs/_build/html/
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 %{_bindir}/%{srcname}-tui
 
 

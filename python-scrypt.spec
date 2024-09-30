@@ -51,13 +51,11 @@ sed -i '1d' scrypt/scrypt.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name} '_%{pypi_name}*'
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
-%{python3_sitearch}/%{pypi_name}
-%{python3_sitearch}/_%{pypi_name}*.so
-%{python3_sitearch}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.8.20-8

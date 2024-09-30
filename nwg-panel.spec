@@ -61,6 +61,7 @@ you may need, there's an executor for that.
 
 %install
 %pyproject_install
+%pyproject_save_files %{sys_name}
 
 # Remove shebang from Python libraries
 for lib in %{buildroot}%{python3_sitelib}/%{sys_name}/{/,modules}/*.py; do
@@ -96,7 +97,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %systemd_user_postun_with_restart %{name}.service
 
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc README.md
 %{_bindir}/%{name}
@@ -106,8 +107,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_datadir}/applications/*.desktop
 %{_datadir}/pixmaps/*.svg
 %{_userunitdir}/%{name}.service
-%{python3_sitelib}/%{sys_name}-%{version}.dist-info/
-%{python3_sitelib}/%{sys_name}/
 
 
 %changelog

@@ -53,17 +53,16 @@ A fallback to ip is included for newer Unix systems w/o ifconfig.
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 
 %check
 %{__python3} -m nose tests
 
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 
 
 %changelog

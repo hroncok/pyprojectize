@@ -51,6 +51,7 @@ Obsoletes:      python2-%{upname} <= %{version}-%{release}
 %{__mkdir} -p %{buildroot}%{_mandir}/man1
 
 %pyproject_install
+%pyproject_save_files %{upname}
 %{__mv} -f %{buildroot}%{_bindir}/%{upname} %{buildroot}%{_bindir}/python3-%{upname}
 export PYTHONPATH="%{buildroot}%{python3_sitelib}"
 help2man --no-discard-stderr -s 1 -N -o %{buildroot}%{_mandir}/man1/python3-%{upname}.1 %{buildroot}%{_bindir}/python3-%{upname}
@@ -68,7 +69,7 @@ popd
 %{__python3} -m pytest
 
 
-%files -n python3-%{upname}
+%files -n python3-%{upname} -f %{pyproject_files}
 %license AUTHORS.* COPYING
 %doc README.* ChangeLog.* PKG-INFO
 %{_bindir}/python3-%{upname}
@@ -77,8 +78,6 @@ popd
 %{_mandir}/man1/python3-%{upname}.1*
 %{_mandir}/man1/%{upname}.1*
 %{_mandir}/man1/%{name}.1*
-%{python3_sitelib}/%{upname}
-%{python3_sitelib}/%{upname}-%{version}.dist-info
 
 
 %changelog

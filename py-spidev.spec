@@ -32,10 +32,10 @@ space via the spidev linux kernel driver.
 
 %install
 %pyproject_install
+%pyproject_save_files 'spidev*'
 
-%files -n python3-spidev
+%files -n python3-spidev -f %{pyproject_files}
 %license LICENSE
-%{python3_sitearch}/spidev*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 3.4-19

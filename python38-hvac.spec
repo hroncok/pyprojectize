@@ -36,12 +36,11 @@ sed -e "s/requests>=2.21.0/requests>=2.20.0/" -i setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.md CHANGELOG.md
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-*.dist-info/
 
 %changelog
 * Thu Jul 21 2022 Maxwell G <gotmax@e.email> - 0.11.2-2

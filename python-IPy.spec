@@ -49,13 +49,12 @@ PYTHONPATH=$PWD %{__python3} test/test_IPy.py
 
 %install
 %pyproject_install
+%pyproject_save_files '%{oname}*'
 
 
-%files -n python3-%{oname}
+%files -n python3-%{oname} -f %{pyproject_files}
 %license COPYING
 %doc AUTHORS ChangeLog README.rst
-%{python3_sitelib}/%{oname}*
-%{python3_sitelib}/__pycache__/%{oname}*
 
 
 %changelog

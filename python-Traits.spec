@@ -81,6 +81,7 @@ sed -i -e '/extra_compile_args=/d' setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files '%{modname}*'
 
 %check
 pushd build/lib.%{python3_platform}-*
@@ -88,10 +89,9 @@ pushd build/lib.%{python3_platform}-*
   xvfb-run %__python3 -s -m unittest discover -v
 popd
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE.txt
 %doc CHANGES.rst examples/tutorials README.rst
-%{python3_sitearch}/%{modname}*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 6.4.3-4

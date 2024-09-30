@@ -49,17 +49,16 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
+%pyproject_save_files Adafruit_PureIO
 
 %ifarch %{arm} %{arm64}
 %check
 %pytest -v tests
 %endif
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/Adafruit_PureIO
-%{python3_sitelib}/Adafruit_PureIO-%{version}.dist-info
 
 %files -n python-%{pypi_name}-doc
 %doc html

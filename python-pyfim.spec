@@ -74,17 +74,16 @@ sed -i "s/version=.*/version='6.28',/" setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files fim
 
 %check
 %if %{with tests}
 %{__python3} setup.py test
 %endif
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 # All sub directories contain this file
 %license pyfim/doc/mit-license.txt
-%{python3_sitearch}/fim-%{version}.dist-info
-%{python3_sitearch}/fim.cpython-%{python3_version_nodots}*.so
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 6.28-18

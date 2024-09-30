@@ -60,15 +60,14 @@ touch inet_ntop.c strlcpy.c
 
 %install
 %pyproject_install
+%pyproject_save_files 'py_radix*' 'radix*'
 
 %check
 %pytest -v
 
-%files -n python3-%{name}
+%files -n python3-%{name} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%{python3_sitearch}/py_radix*
-%{python3_sitearch}/radix*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.10.0-12

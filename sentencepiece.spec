@@ -77,6 +77,7 @@ popd
 
 pushd python
 %pyproject_install
+%pyproject_save_files %{name}
 popd
 
 rm %{buildroot}%{_libdir}/libsentencepiece*.a
@@ -94,9 +95,7 @@ rm %{buildroot}%{_libdir}/libsentencepiece*.a
 %files tools
 %{_bindir}/spm*
 
-%files -n python3-%{name}
-%{python3_sitearch}/%{name}/
-%{python3_sitearch}/%{name}-*.dist-info/
+%files -n python3-%{name} -f %{pyproject_files}
 
 
 %changelog

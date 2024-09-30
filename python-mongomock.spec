@@ -40,17 +40,16 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %check
 %pytest -v tests -k "not BulkOperationsWithPymongoTest and not CollectionComparisonTest \
   and not MongoClientCollectionTest and not MongoClientSortSkipLimitTest \
   and not test__insert_do_not_modify_input"
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Tue Sep 17 2024 Fabian Affolter <mail@fabian-affolter.ch> - 4.1.2-1

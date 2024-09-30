@@ -41,6 +41,7 @@ It is under active development and will be gaining new features over time.
 
 %install
 %pyproject_install
+%pyproject_save_files pag
 
 # For rpmlint
 find %{buildroot}/%{python3_sitelib}/pag -name "*.py" -exec chmod -x {} \;
@@ -51,11 +52,9 @@ rm -f %{buildroot}/%{_bindir}/pagcli
 # And, we're on python3, thank you setuptools.
 sed -i 's|/usr/bin/python$|/usr/bin/python3|' %{buildroot}/%{_bindir}/pag
 
-%files
+%files -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/pag/
-%{python3_sitelib}/pag-%{version}*
 %{_bindir}/pag
 
 %changelog

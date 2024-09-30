@@ -35,15 +35,14 @@ rm MANIFEST.in
 
 %install
 %pyproject_install
+%pyproject_save_files mopidy_mpd
 
 %check
 %{__python3} setup.py test
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/Mopidy_MPD-*.dist-info/
-%{python3_sitelib}/mopidy_mpd/
 
 
 %changelog

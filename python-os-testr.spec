@@ -86,6 +86,7 @@ rm -rf doc/build/html/.{doctrees,buildinfo}
 
 %install
 %{pyproject_install}
+%pyproject_save_files os_testr
 for file in %{buildroot}%{python3_sitelib}/os_testr/{subunit_trace,subunit2html}.py; do
     chmod a+x $file
 done
@@ -93,14 +94,12 @@ done
 # Fix ambiguous shebangs for RHEL > 7 and Fedora > 29
 %py3_shebang_fix %{buildroot}%{python3_sitelib}/os_testr/
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
 %{_bindir}/generate-subunit
 %{_bindir}/subunit-trace
 %{_bindir}/subunit2html
-%{python3_sitelib}/os_testr
-%{python3_sitelib}/os_testr-*.dist-info
 
 %if 0%{?with_doc}
 %files -n python-%{pypi_name}-doc

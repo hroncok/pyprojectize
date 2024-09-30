@@ -54,17 +54,16 @@ Python %{python3_version} version.
 
 %install
 %pyproject_install
+%pyproject_save_files boxsdk
 
 %if %{with tests}
 %check
 pytest-3
 %endif
 
-%files -n python%{python3_pkgversion}-%{modname}
+%files -n python%{python3_pkgversion}-%{modname} -f %{pyproject_files}
 %doc *.md
 %license LICENSE
-%{python3_sitelib}/boxsdk/
-%{python3_sitelib}/%{modname}-*.dist-info/
 
 %changelog
 * Thu Aug 22 2024 Gwyn Ciesla <gwync@protonmail.com> - 3.13.0-1

@@ -43,13 +43,12 @@ Summary: Realistic password strength estimator python3 module
 
 %install
 %pyproject_install
+%pyproject_save_files zxcvbn
 
-%files -n python3-zxcvbn
+%files -n python3-zxcvbn -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.rst
 %{_bindir}/zxcvbn
-%{python3_sitelib}/zxcvbn-*.dist-info/
-%{python3_sitelib}/zxcvbn
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 4.4.28-14

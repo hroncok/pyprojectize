@@ -44,14 +44,12 @@ rm -rf *.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{file_name}
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/%{file_name}-%{version}.dist-info/
-%{python3_sitelib}/%{file_name}.py*
-%{python3_sitelib}/__pycache__/%{file_name}*.py*
 
 
 %changelog

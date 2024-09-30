@@ -43,17 +43,16 @@ find -name .gitignore -delete
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 
 %check
 %{__python3} setup.py test
 
  
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc AUTHORS CHANGES docs README.md
-%{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-*.dist-info/
 
 
 %changelog

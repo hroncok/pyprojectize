@@ -41,15 +41,14 @@ pushd docs && make all
 
 %install
 %pyproject_install
+%pyproject_save_files pyte
 
 %check
 %{__python3} setup.py test
 
-%files -n python3-pyte
+%files -n python3-pyte -f %{pyproject_files}
 %license LICENSE
 %doc AUTHORS CHANGES README 
-%{python3_sitelib}/pyte/
-%{python3_sitelib}/pyte-%{version}.dist-info
 
 %files -n python3-pyte-docs
 %license LICENSE

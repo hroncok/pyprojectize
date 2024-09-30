@@ -36,6 +36,7 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %check
 %if %{with local}
@@ -44,11 +45,9 @@ rm -rf %{pypi_name}.egg-info
 %pytest -v tests --ignore tests/test_connection.py --ignore tests/test_exceptions.py --ignore tests/test_snmp.py
 %endif
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.5.0-11

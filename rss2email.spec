@@ -55,6 +55,7 @@ cp -p %{SOURCE3} .
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
 install -D -m 644 -p completion/r2e.zsh %{buildroot}%{_datadir}/zsh/functions/Completion/Unix/_r2e
 
@@ -68,15 +69,13 @@ install -D -m 644 -p %{SOURCE2} %{buildroot}%{_mandir}/man1/r2e-migrate.1
 PATH="${PATH}:%{buildroot}%{_bindir}" PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} ./test/test.py
 
 
-%files
+%files -f %{pyproject_files}
 %license COPYING
 %doc AUTHORS CHANGELOG README.rst README.migrate
 %{_bindir}/r2e
 %{_bindir}/r2e-migrate
 %{_mandir}/man1/r2e.1*
 %{_mandir}/man1/r2e-migrate.1*
-%{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}-%{version}.dist-info/
 
 %files zsh-completion
 %{_datadir}/zsh/functions/Completion/Unix/_r2e

@@ -42,15 +42,14 @@ BuildRequires:  python3dist(wadllib)
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %check
 %{__python3} setup.py test
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license COPYING.txt
 %doc README.rst
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 %autochangelog

@@ -46,13 +46,12 @@ rm -r src/%{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 rm %{buildroot}%{python3_sitelib}/%{pypi_name}/public_suffix_list.dat
 ln -s ../../../../share/publicsuffix/public_suffix_list.dat %{buildroot}%{python3_sitelib}/%{pypi_name}
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
-%{python3_sitelib}/%{pypi_name}
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.20191221-15

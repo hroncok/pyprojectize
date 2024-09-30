@@ -33,16 +33,15 @@ Scrapes and parses application data from Google Play Store.
 
 %install
 %pyproject_install
+%pyproject_save_files play_scraper
 
 # https://github.com/danieliu/play-scraper/issues/64
 #%check
 #%{__python3} setup.py test
 
-%files
+%files -f %{pyproject_files}
 %doc CHANGELOG.md README.md
 %license LICENSE
-%{python3_sitelib}/play_scraper/
-%{python3_sitelib}/play_scraper-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.6.0-19

@@ -53,12 +53,10 @@ rm -f docs/._.DS_Store
 
 %install
 %pyproject_install
+%pyproject_save_files flask_openid
 
-%files -n python3-flask-openid
+%files -n python3-flask-openid -f %{pyproject_files}
 %doc docs README.rst LICENSE PKG-INFO
-%{python3_sitelib}/Flask_OpenID-*.dist-info/
-%{python3_sitelib}/flask_openid.py
-%{python3_sitelib}/__pycache__/*
 
 %changelog
 %autochangelog

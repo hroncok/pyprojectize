@@ -44,6 +44,7 @@ sed -i '1{/^#!/d}' vulture/*.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 mv %{buildroot}%{_bindir}/%{pypi_name} %{buildroot}%{_bindir}/%{pypi_name}-%{python3_version}
 ln -s %{_bindir}/vulture-%{python3_version} %{buildroot}/%{_bindir}/vulture-3
 ln -s %{_bindir}/vulture-%{python3_version} %{buildroot}/%{_bindir}/vulture
@@ -51,14 +52,12 @@ ln -s %{_bindir}/vulture-%{python3_version} %{buildroot}/%{_bindir}/vulture
 %check
 %pytest -v tests
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc CHANGELOG.md README.md
 %license LICENSE.txt
 %{_bindir}/%{pypi_name}
 %{_bindir}/%{pypi_name}-3
 %{_bindir}/%{pypi_name}-%{python3_version}
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Wed Sep 18 2024 Fabian Affolter <mail@fabian-affolter.ch> - 2.12-1

@@ -79,18 +79,16 @@ and sets up the environment to use the packages.
 
 %install
 %pyproject_install
+%pyproject_save_files colcon colcon_core
 
 
 %check
 %pytest -m 'not linter' test
 
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/colcon/
-%{python3_sitelib}/colcon_core/
-%{python3_sitelib}/colcon_core-%{version}.dist-info/
 %{_bindir}/colcon
 
 

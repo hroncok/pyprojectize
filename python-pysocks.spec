@@ -81,6 +81,7 @@ rm -rfv test/bin
 
 %install
 %pyproject_install
+%pyproject_save_files socks sockshandler
 %{?python3_other_pkgversion: %py3_other_install}
 
 %check
@@ -95,13 +96,9 @@ rm -rfv test/bin
 
 
 
-%files -n python%{python3_pkgversion}-%{modname}
+%files -n python%{python3_pkgversion}-%{modname} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/socks.py*
-%{python3_sitelib}/sockshandler.py*
-%{python3_sitelib}/__pycache__/*socks*
-%{python3_sitelib}/%{pypi_name}-%{version}-*
 
 %if 0%{?python3_other_pkgversion}
 %files -n python%{python3_other_pkgversion}-%{modname}

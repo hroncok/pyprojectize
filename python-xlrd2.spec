@@ -90,18 +90,17 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
+%pyproject_save_files xlrd2
 
 
 %check
 %pytest -sv -k "not test_names_demo"
 
 
-%files -n python%{python3_pkgversion}-xlrd2
+%files -n python%{python3_pkgversion}-xlrd2 -f %{pyproject_files}
 %license LICENSE
 %doc README.md
 %{_bindir}/runxlrd2.py
-%{python3_sitelib}/xlrd2
-%{python3_sitelib}/xlrd2-%{version}.dist-info
 
 # on rhel7 there is missing package python3-pkginfo
 %files -n python-xlrd2-doc

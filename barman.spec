@@ -55,6 +55,7 @@ find -type f -executable -exec sed -i '1s=^#!/usr/bin/\(python\|env python\)[23]
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
 mkdir -p %{buildroot}%{_sysconfdir}/%{name}/conf.d
 mkdir -p %{buildroot}%{_sysconfdir}/cron.d/
@@ -108,11 +109,9 @@ sed -i 's|/etc/%{name}.d|/etc/%{name}/conf.d|g' %{buildroot}%{_sysconfdir}/%{nam
 %{_mandir}/man1/%{name}-wal-archive.1*
 %{_mandir}/man1/%{name}-wal-restore.1*
 
-%files -n python3-%{name}
+%files -n python3-%{name} -f %{pyproject_files}
 %license LICENSE
 %doc NEWS README.rst
-%{python3_sitelib}/%{name}-%{version}.dist-info
-%{python3_sitelib}/%{name}/
 
 %pre
 getent group %{name} >/dev/null || groupadd -r %{name}

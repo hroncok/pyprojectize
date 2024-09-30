@@ -50,13 +50,12 @@ BuildRequires:	python3-w3lib
 
 %install
 %pyproject_install
+%pyproject_save_files itemloaders
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/itemloaders
-%{python3_sitelib}/itemloaders-*.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.0.4-14

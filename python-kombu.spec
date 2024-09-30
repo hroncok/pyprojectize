@@ -80,17 +80,16 @@ also provide proven and tested solutions to common messaging problems.
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %check
 %if %{with tests}
 %pytest
 %endif
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc AUTHORS FAQ READ* THANKS TODO examples/
 %license LICENSE
-%{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}*.dist-info
 
 %changelog
 %autochangelog

@@ -76,6 +76,7 @@ sed -i -e '/^#!/,1d' demos/*
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 sphinx-build -b html sites/docs/ html/
 rm html/.buildinfo
@@ -84,11 +85,9 @@ rm -r html/.doctrees
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version}
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{srcname}-*.dist-info/
-%{python3_sitelib}/%{srcname}/
 
 %files doc
 %doc html/ demos/

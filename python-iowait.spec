@@ -44,17 +44,15 @@ Python 3 version.
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 
 %check
 %{__python3} test.py -v
 
-%files -n python3-%{modname}
+%files -n python3-%{modname} -f %{pyproject_files}
 %license COPYING.LESSER
 %doc README
 
-%{python3_sitelib}/%{modname}-*.dist-info
-%{python3_sitelib}/%{modname}.py
-%{python3_sitelib}/__pycache__/%{modname}.*
 
 %changelog
 %autochangelog

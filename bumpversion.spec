@@ -52,14 +52,13 @@ commits and tags:
 
 %install
 %pyproject_install
+%pyproject_save_files bumpversion
 
 
-%files
+%files -f %{pyproject_files}
 %doc README.md
 %license LICENSE.rst
 %attr(0755,root,root) %{_bindir}/{bumpversion,bump2version}
-%{python3_sitelib}/bumpversion/
-%{python3_sitelib}/bump2version-%{version}*egg-info/
 
 
 %changelog

@@ -73,6 +73,7 @@ done
 
 %install
 %pyproject_install
+%pyproject_save_files %{upname}
 
 %if %{with test}
 %check
@@ -80,11 +81,9 @@ done
 %endif # with test
 
 
-%files -n python3-%{upname}
+%files -n python3-%{upname} -f %{pyproject_files}
 %license COPYING*
 %doc README.rst
-%{python3_sitelib}/%{upname}
-%{python3_sitelib}/%{upname}-%{version}.dist-info
 
 %files -n python3-%{upname}-doc
 %doc CHANGES.rst docs/build-%{python3_version}/html

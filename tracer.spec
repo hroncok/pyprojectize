@@ -155,6 +155,7 @@ python2 -m pytest -v tests
 # @TODO use following macros
 # %%py2_install
 # %%pyproject_install
+%pyproject_save_files %{name}
 
 mkdir -p %{buildroot}%{_datadir}/%{name}/
 cp -a data/* %{buildroot}%{_datadir}/%{name}/
@@ -190,8 +191,7 @@ make DESTDIR=%{buildroot}%{_datadir} mo
 %endif
 
 %if %{with python3}
-%files -n python3-%{name}
-%{python3_sitelib}/%{name}/
+%files -n python3-%{name} -f %{pyproject_files}
 %endif
 
 %{_bindir}/%{name}

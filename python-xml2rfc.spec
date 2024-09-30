@@ -54,12 +54,11 @@ sed -i "s/jinja2>=2.11,<3.0/jinja2>=2.11/" requirements.txt
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license PKG-INFO
 %doc changelog README
-%{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-*.dist-info/
 %{_bindir}/xml2rfc
 
 %changelog

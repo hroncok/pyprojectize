@@ -48,12 +48,11 @@ version="%version" %pyproject_wheel
 
 %install
 version=%version %pyproject_install
+%pyproject_save_files templated_dictionary
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
-%{python3_sitelib}/templated_dictionary-*.dist-info/
-%{python3_sitelib}/templated_dictionary/
 
 
 %changelog

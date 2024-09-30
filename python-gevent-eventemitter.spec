@@ -48,17 +48,16 @@ Summary:    %{summary}
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 
 
 %check
 %{python3} -m pytest -v
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %dnl %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{eggname}-%{version}.dist-info
-%{python3_sitelib}/%{modname}/
 
 
 %changelog

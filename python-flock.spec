@@ -40,13 +40,11 @@ when entering (resp. leaving) runtime context related to it.
 
 %install
 %{pyproject_install}
+%pyproject_save_files flock
 
 
-%files -n python3-flock
+%files -n python3-flock -f %{pyproject_files}
 %doc README.md LICENSE
-%{python3_sitelib}/flock.py
-%{python3_sitelib}/__pycache__/flock.*
-%{python3_sitelib}/flock-%{version}.dist-info
 
 
 %changelog

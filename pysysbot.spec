@@ -35,6 +35,7 @@ get information about the remote system.
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 install -Dp -m 0644 data/%{name}.service %{buildroot}%{_unitdir}/%{name}.service
 install -Dp -m 0644 data/%{name}.conf %{buildroot}%{_sysconfdir}/%{name}/%{name}.conf
 install -Dp -m 0644 man/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
@@ -49,15 +50,13 @@ rm -rf %{buildroot}%{_defaultdocdir}
 %postun
 %systemd_postun_with_restart %{name}.service
 
-%files
+%files -f %{pyproject_files}
 %doc AUTHORS ChangeLog README.rst
 %license COPYING
 %{_mandir}/man*/%{name}*.*
 %{_bindir}/%{name}
 %config(noreplace) %{_sysconfdir}/%{name}/
 %{_unitdir}/%{name}.service
-%{python3_sitelib}/%{name}-*.dist-info/
-%{python3_sitelib}/%{name}/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.3.0-22

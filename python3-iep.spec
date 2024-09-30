@@ -51,6 +51,7 @@ done
 
 %install
 %pyproject_install
+%pyproject_save_files iep
 install -D -m0644 iep/resources/appicons/ieplogo16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/iep.png
 install -D -m0644 iep/resources/appicons/ieplogo32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/iep.png
 install -D -m0644 iep/resources/appicons/ieplogo48.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/iep.png
@@ -67,12 +68,10 @@ install -D -m0644 %{SOURCE2} %{buildroot}%{_datadir}/appdata/iep.appdata.xml
 %check
 desktop-file-validate %{buildroot}/%{_datadir}/applications/iep.desktop
 
-%files
+%files -f %{pyproject_files}
 %doc iep/contributors.txt
 %license iep/license.txt
 %{_bindir}/iep
-%{python3_sitelib}/iep
-%{python3_sitelib}/iep-%{version}.dist-info
 %{_datadir}/icons/hicolor/*/apps/iep.png
 %{_datadir}/appdata/iep.appdata.xml
 %{_datadir}/applications/iep.desktop

@@ -52,6 +52,7 @@ rm -rf *.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files paste
 rm -rf %{buildroot}%{python3_sitelib}/test
 
 
@@ -59,10 +60,8 @@ rm -rf %{buildroot}%{python3_sitelib}/test
 %pytest
 
 
-%files -n python3-paste-deploy
+%files -n python3-paste-deploy -f %{pyproject_files}
 %license license.txt
-%{python3_sitelib}/PasteDeploy-*
-%{python3_sitelib}/paste/deploy
 
 
 %changelog

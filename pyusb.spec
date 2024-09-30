@@ -36,15 +36,15 @@ sed -i -e 's/\r//g' README.rst
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 %check
 cd tests
 %{py3_test_envvars} %{python3} ./testall.py
 
-%files -n python3-pyusb
+%files -n python3-pyusb -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.2.1-11

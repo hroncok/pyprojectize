@@ -43,15 +43,14 @@ sed -i -e 's/2.1/2.3/g' setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files detective
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v tests
 
-%files -n python3-%{pkg_name}
+%files -n python3-%{pkg_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/detective/
-%{python3_sitelib}/HASS_data_detective-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.4-14

@@ -38,15 +38,14 @@ BuildRequires:  (python3dist(legacy-cgi) if python3 >= 3.13)
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %check
 %{__python3} setup.py test
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license COPYING.txt
 # README is installed in sitelib and used at runtime
-%{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 %autochangelog

@@ -43,6 +43,7 @@ with definitions for the basic TCP/IP protocols.
 
 %install
 %pyproject_install
+%pyproject_save_files dpkt
 
 %check
 # One test, "test_deprecated_decorator" fails, but doesn't appear
@@ -52,11 +53,9 @@ with definitions for the basic TCP/IP protocols.
 %endif
 
 
-%files -n python3-dpkt
+%files -n python3-dpkt -f %{pyproject_files}
 %license LICENSE 
 %doc AUTHORS LICENSE README.md examples docs
-%{python3_sitelib}/dpkt
-%{python3_sitelib}/dpkt*.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.9.8-8

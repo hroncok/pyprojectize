@@ -43,6 +43,7 @@ An extension for colcon-core to provide PowerShell scripts.
 
 %install
 %pyproject_install
+%pyproject_save_files colcon_powershell
 
 
 %check
@@ -52,11 +53,9 @@ An extension for colcon-core to provide PowerShell scripts.
     test
 
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/colcon_powershell/
-%{python3_sitelib}/colcon_powershell-%{version}.dist-info/
 
 
 %changelog

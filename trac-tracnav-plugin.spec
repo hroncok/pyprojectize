@@ -37,13 +37,12 @@ that was originally supplied with Trac.
 
 %install
 %pyproject_install
+%pyproject_save_files tracnav
 
 
-%files
+%files -f %{pyproject_files}
 %doc README.md
 %license COPYING
-%{python3_sitelib}/TracNav-*.dist-info/
-%{python3_sitelib}/tracnav/
 
 
 %changelog

@@ -66,6 +66,7 @@ sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/angular_lrdragndrop'|" xstatic/pk
 
 %install
 %pyproject_install
+%pyproject_save_files xstatic
 
 mkdir -p %{buildroot}%{_jsdir}/angular_lrdragndrop
 mv %{buildroot}%{python3_sitelib}/xstatic/pkg/angular_lrdragndrop/data/lrdragndrop.js %{buildroot}%{_jsdir}/angular_lrdragndrop
@@ -73,10 +74,8 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/angular_lrdragndrop/data/
 # fix execute flags for js
 chmod 644 %{buildroot}%{_jsdir}/angular_lrdragndrop/lrdragndrop.js
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
-%{python3_sitelib}/xstatic/pkg/angular_lrdragndrop
-%{python3_sitelib}/XStatic_Angular_lrdragndrop-%{version}.dist-info
 %{python3_sitelib}/XStatic_Angular_lrdragndrop-%{version}-py%{python3_version}-nspkg.pth
 
 %files -n xstatic-angular-lrdragndrop-common

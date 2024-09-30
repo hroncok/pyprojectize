@@ -55,15 +55,14 @@ rm -vrf *.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %check
 %pytest
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst PKG-INFO
-%{python3_sitelib}/%{srcname}-*.dist-info/
-%{python3_sitelib}/%{srcname}/
 
 %changelog
 %autochangelog

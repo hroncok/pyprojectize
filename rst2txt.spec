@@ -39,16 +39,15 @@ sed -i -e 's/use_scm_version=True,/version="%{version}",/g' setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
     
 %check
 PYTHONPATH=%{buildroot}/%{python3_sitelib}/ pytest-%{python3_version} -v tests
 
-%files
+%files -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
 %{_bindir}/%{name}
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}*.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.1.0-24

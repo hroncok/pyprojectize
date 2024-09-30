@@ -56,17 +56,16 @@ Requires: python3-msgpack
 
 %install
 %pyproject_install
+%pyproject_save_files mmtf
 
 %if %{with check}
 %check
 %pytest mmtf/tests/codec_tests.py
 %endif
 
-%files -n python3-mmtf
+%files -n python3-mmtf -f %{pyproject_files}
 %license LICENSE.txt
 %doc CHANGELOG.md README.md
-%{python3_sitelib}/mmtf_python-%{version}.dist-info
-%{python3_sitelib}/mmtf
 
 %changelog
 %autochangelog

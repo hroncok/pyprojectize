@@ -52,20 +52,17 @@ sed -i -e '1{\@^#!/usr/bin/env python@d}' src/pyprinttags.py
 
 %install
 %pyproject_install
+%pyproject_save_files pyprinttags taglib
 # Not interested in having 2 binaries doing same thing
 mv -f %{buildroot}%{_bindir}/pyprinttags{3,}
 
 %check
 %{__python3} setup.py ptr
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license COPYING
 %doc README.md CHANGELOG.md
 %{_bindir}/pyprinttags
-%{python3_sitearch}/%{srcname}-*.dist-info/
-%{python3_sitearch}/taglib.*.so
-%{python3_sitearch}/pyprinttags.py
-%{python3_sitearch}/__pycache__/pyprinttags.*
 
 %changelog
 * Thu Jul 25 2024 Miroslav Suchý <msuchy@redhat.com> - 1.4.5-20

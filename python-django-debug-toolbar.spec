@@ -51,16 +51,15 @@ rm -vr *.egg-info/
 
 %install
 %pyproject_install
+%pyproject_save_files debug_toolbar
 
 %check
 # test needs config
 # %{__python3} setup.py test
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/debug_toolbar/
-%{python3_sitelib}/django_debug_toolbar-*.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 3.2.1-14

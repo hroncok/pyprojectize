@@ -38,6 +38,7 @@ rm test/external_tools/readelf
 
 %install
 %{pyproject_install}
+%pyproject_save_files elftools
 pushd %{buildroot}%{_bindir}
 mv readelf.py pyreadelf-%{python3_version}
 ln -s pyreadelf-%{python3_version} pyreadelf-3
@@ -52,14 +53,12 @@ popd
 # https://github.com/eliben/pyelftools/wiki/Hacking-guide#tests
 %{__python3} test/run_readelf_tests.py || :
 
-%files -n python3-%{name}
+%files -n python3-%{name} -f %{pyproject_files}
 %license LICENSE
 %doc CHANGES
 %{_bindir}/pyreadelf
 %{_bindir}/pyreadelf-%{python3_version}
 %{_bindir}/pyreadelf-3
-%{python3_sitelib}/elftools
-%{python3_sitelib}/pyelftools-*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.31-3

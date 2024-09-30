@@ -69,15 +69,14 @@ ln -s /usr/share/javascript/jquery/latest/jquery.min.js _build/html/_static/jque
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %check
 %pytest -v test
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
-%{python3_sitelib}/%{pypi_name}/
 
 %files doc
 %license LICENSE

@@ -54,6 +54,7 @@ games.
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
 
 %check
@@ -61,7 +62,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.xml
 desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE THIRD-PARTY-LICENSES.md
 %doc README.md CHANGELOG.md
 %{_bindir}/%{name}
@@ -69,8 +70,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_datadir}/applications/*.desktop
 %{_datadir}/icons/hicolor/*/*/*.png
 %{_metainfodir}/*.xml
-%{python3_sitelib}/%{name}-*.dist-info/
-%{python3_sitelib}/%{name}/
 
 
 %changelog

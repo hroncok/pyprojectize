@@ -40,15 +40,14 @@ A set of objects for performing math operations on font data.
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
  
 %check
 export LC_ALL=C.UTF-8
 %{__python3} setup.py test
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license License.txt
-%{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-%{version}*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.6.0-15

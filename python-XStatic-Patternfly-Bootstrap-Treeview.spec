@@ -67,6 +67,7 @@ sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/patternfly_bootstrap_treeview'|" 
 
 %install
 %pyproject_install
+%pyproject_save_files xstatic
 
 mkdir -p %{buildroot}%{_jsdir}/patternfly_bootstrap_treeview
 mv %{buildroot}%{python3_sitelib}/xstatic/pkg/patternfly_bootstrap_treeview/data/* %{buildroot}%{_jsdir}/patternfly_bootstrap_treeview
@@ -74,10 +75,8 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/patternfly_bootstrap_treeview/d
 # fix execute flags for js
 chmod 644 %{buildroot}%{_jsdir}/patternfly_bootstrap_treeview/js/*.js
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
-%{python3_sitelib}/xstatic/pkg/patternfly_bootstrap_treeview
-%{python3_sitelib}/XStatic_Patternfly_Bootstrap_Treeview-%{version}.dist-info
 %{python3_sitelib}/XStatic_Patternfly_Bootstrap_Treeview-%{version}-py%{python3_version}-nspkg.pth
 
 %files -n xstatic-patternfly-bootstrap-treeview-common

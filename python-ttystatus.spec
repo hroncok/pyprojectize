@@ -62,6 +62,7 @@ BuildRequires:  python3-pep8
 %install
 %py2_install
 %pyproject_install
+%pyproject_save_files '*'
 
 
 %check
@@ -79,10 +80,9 @@ rm -rf .coverage
 %doc NEWS README
 %{python2_sitelib}/*
 
-%files -n python3-%{pkgname}
+%files -n python3-%{pkgname} -f %{pyproject_files}
 %license COPYING
 %doc NEWS README
-%{python3_sitelib}/*
 
 
 %changelog

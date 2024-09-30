@@ -77,6 +77,7 @@ Python libraries for the Ceph librados library with use cython instead of ctypes
 %install
 %if 0%{with python3}
 %pyproject_install
+%pyproject_save_files cradox
 %endif
 %if %{with python2}
 %py2_install
@@ -93,11 +94,9 @@ Python libraries for the Ceph librados library with use cython instead of ctypes
 %endif
 
 %if %{with python3}
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%{python3_sitearch}/cradox.*.so
-%{python3_sitearch}/%{pypi_name}-%{version}.dist-info
 %endif
 
 %changelog

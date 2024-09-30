@@ -40,11 +40,10 @@ sed -i -e '/^#!\//, 1d' CppHeaderParser/CppHeaderParser.py
 
 %install
 %pyproject_install
+%pyproject_save_files CppHeaderParser
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt README.html
-%{python3_sitelib}/CppHeaderParser/
-%{python3_sitelib}/CppHeaderParser-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.7.4-15

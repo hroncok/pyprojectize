@@ -42,13 +42,12 @@ sed -i 's|curses||' setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files smbcmp
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc README.md
 %{_bindir}/%{name}
-%{python3_sitelib}/smbcmp/
-%{python3_sitelib}/smbcmp*egg-info*
 
 %files gui
 %{_bindir}/%{name}-gui

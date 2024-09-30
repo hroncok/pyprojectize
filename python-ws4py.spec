@@ -43,12 +43,11 @@ Provides:       bundled(utf8validator)
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{srcname}-*.dist-info/
-%{python3_sitelib}/%{srcname}/
 
 %check
 sed -i 's/^from mock import /from unittest.mock import /' test/test_*.py

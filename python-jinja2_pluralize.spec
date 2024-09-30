@@ -48,17 +48,16 @@ Requires:       python3-inflect
 
 %install
 %pyproject_install
+%pyproject_save_files jinja2_pluralize
 
 
 %check
 %{__python3} setup.py test
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc AUTHORS.rst CONTRIBUTING.rst HISTORY.rst README.rst
-%{python3_sitelib}/jinja2_pluralize
-%{python3_sitelib}/jinja2_pluralize-%{version}.dist-info
 
 
 %changelog

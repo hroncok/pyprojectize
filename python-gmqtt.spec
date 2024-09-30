@@ -39,6 +39,7 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 # Requires access to a third-party MQTT Broker
 %if %{with network}
@@ -46,11 +47,9 @@ rm -rf %{pypi_name}.egg-info
 %{__python3} setup.py test
 %endif
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 %autochangelog

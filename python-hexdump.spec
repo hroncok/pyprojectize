@@ -54,14 +54,14 @@ sed -i -e 's|#!/usr/bin/env python|#|' hexdump.py
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 mkdir -p %{buildroot}%{_mandir}/man1
 install -m 644 %{SOURCE1} %{buildroot}%{_mandir}/man1/hexdumpy.1
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license UNLICENSE
 %doc README.txt
-%{python3_sitelib}/*
 %{_bindir}/hexdumpy
 %{_mandir}/man1/hexdumpy.1*
 

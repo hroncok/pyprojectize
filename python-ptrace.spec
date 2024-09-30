@@ -38,6 +38,7 @@ chmod 0644 examples/*.py
 
 %install
 %{pyproject_install}
+%pyproject_save_files cptrace ptrace
 %{__python3} setup_cptrace.py install -O1 --skip-build --root %{buildroot}
 
 rm -f %{buildroot}%{_bindir}/{gdb,strace}.{pyo,pyc}
@@ -45,16 +46,12 @@ rm -f %{buildroot}%{_bindir}/{gdb,strace}.{pyo,pyc}
 %check
 %{__python3} runtests.py || :
 
-%files -n python3-ptrace
+%files -n python3-ptrace -f %{pyproject_files}
 %license COPYING
 %doc README.rst
 %doc doc/* examples
 %{_bindir}/gdb.py
 %{_bindir}/strace.py
-%{python3_sitelib}/ptrace/
-%{python3_sitelib}/python_ptrace-*.dist-info
-%{python3_sitearch}/cptrace.cpython-*.so
-%{python3_sitearch}/cptrace-*.dist-info
 
 %changelog
 * Mon Jul 29 2024 Miroslav Suchý <msuchy@redhat.com> - 0.9.9-4

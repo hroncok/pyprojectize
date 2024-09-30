@@ -244,6 +244,7 @@ export CXXFLAGS="%{optflags} -fno-strict-aliasing"
 mkdir -p %{buildroot}%{python3_sitearch}
 pushd redhat-linux-build/src/mapscript/python
 %pyproject_install
+%pyproject_save_files '*mapscript*'
 popd
 
 mkdir -p %{buildroot}%{_datadir}/%{name}
@@ -317,11 +318,10 @@ rm %{buildroot}%{_usr}/%{_sysconfdir}/mapserver-sample.conf
 %{perl_vendorarch}/mapscript.pm
 
 %if 0%{python_mapscript}
-%files -n python3-mapserver
+%files -n python3-mapserver -f %{pyproject_files}
 %doc src/mapscript/python/README.rst
 %doc src/mapscript/python/examples
 %doc src/mapscript/python/tests
-%{python3_sitearch}/*mapscript*
 %endif
 
 %if %{with java}

@@ -38,16 +38,15 @@ No magic, no special types, no polluting your objects.
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %check
 %pytest -v tests --ignore tests/test_performance.py \
   -k "not test_dump_list_strict_no_cls and not test_dump_union and not test_dump_load_parameterized_collections"
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.5.0-12

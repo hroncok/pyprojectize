@@ -122,6 +122,7 @@ install -vDt %{buildroot}%{_libdir}/ %{__cmake_builddir}/libmoose.so
 
 pushd %{__cmake_builddir}/python
 %pyproject_install}
+%pyproject_save_files moose rdesigneur
 # this is necessary for the dependency generator to work
 chmod +x %{buildroot}%{python3_sitearch}/moose/_moose*.so
 popd
@@ -146,10 +147,7 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} %{__python3} -c \
 %license LICENSE
 %doc README.md
 
-%files -n python3-%{name}
-%{python3_sitearch}/moose
-%{python3_sitearch}/rdesigneur
-%{python3_sitearch}/pymoose-%{version}.dist-info
+%files -n python3-%{name} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
 

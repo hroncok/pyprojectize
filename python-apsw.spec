@@ -62,15 +62,14 @@ rm -f doc/.buildinfo
 
 %install
 %pyproject_install
+%pyproject_save_files apsw
 
 %check
 %{__python3} setup.py build_test_extension
 PYTHONPATH=%{buildroot}%{python3_sitearch} %{__python3} setup.py test
 
-%files -n python%{python3_pkgversion}-apsw
+%files -n python%{python3_pkgversion}-apsw -f %{pyproject_files}
 %doc doc/*
-%{python3_sitearch}/apsw
-%{python3_sitearch}/apsw*.dist-info
 
 
 %changelog

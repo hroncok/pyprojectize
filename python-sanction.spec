@@ -99,14 +99,13 @@ rm -rf %{modname}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 
 %check
 %{python3} -m unittest discover -v
 
-%files -n python3-sanction
+%files -n python3-sanction -f %{pyproject_files}
 %doc README LICENSE
-%{python3_sitelib}/%{modname}/
-%{python3_sitelib}/%{modname}-%{version}*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.4.1-10

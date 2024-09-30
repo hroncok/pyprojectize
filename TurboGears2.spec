@@ -79,6 +79,7 @@ Requires:       python3-zope-sqlalchemy >= 0.4
 
 %install
 %pyproject_install
+%pyproject_save_files tg
 rm -fr %{buildroot}%{python3_sitelib}/tests
 
 # Tests cannot be included because some test dependencies
@@ -86,10 +87,8 @@ rm -fr %{buildroot}%{python3_sitelib}/tests
 #%check
 #PYTHONPATH=$(pwd) %{__python3} setup.py test
 
-%files -n python3-%{name}
+%files -n python3-%{name} -f %{pyproject_files}
 %doc README.rst
-%{python3_sitelib}/%{name}-%{version}.dist-info/
-%{python3_sitelib}/tg/
 
 %changelog
 * Wed Jul 17 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.4.3-18

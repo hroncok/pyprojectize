@@ -44,14 +44,13 @@ rm -rf %{modname}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files repoze
 
 %check
 %{__python3} setup.py test
 
-%files -n python3-repoze-lru
+%files -n python3-repoze-lru -f %{pyproject_files}
 %doc README.rst LICENSE.txt COPYRIGHT.txt CONTRIBUTORS.txt
-%{python3_sitelib}/repoze/lru
-%{python3_sitelib}/%{modname}-%{version}*
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.7-23

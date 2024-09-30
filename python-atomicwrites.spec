@@ -61,6 +61,7 @@ unset PYTHONPATH
 %install
 
 %pyproject_install
+%pyproject_save_files '%{short_name}*'
 
 %if %{with docs}
 install -d "$RPM_BUILD_ROOT%{_mandir}/man1"
@@ -73,9 +74,8 @@ cp -r docs/_build/man/*.1 "$RPM_BUILD_ROOT%{_mandir}/man1"
 %{__python3} -m pytest -v
 %endif
 
-%files -n python3-%{short_name}
+%files -n python3-%{short_name} -f %{pyproject_files}
 %doc README.rst LICENSE
-%{python3_sitelib}/%{short_name}*/
 %if %{with docs}
 %{_mandir}/man1/atomicwrites.1.*
 %endif

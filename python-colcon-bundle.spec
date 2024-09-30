@@ -60,6 +60,7 @@ installed locally.
 
 %install
 %pyproject_install
+%pyproject_save_files colcon_bundle
 
 
 %check
@@ -68,11 +69,9 @@ installed locally.
     test
 
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc NOTICE README.md
-%{python3_sitelib}/colcon_bundle/
-%{python3_sitelib}/colcon_bundle-%{version}.dist-info/
 
 
 %changelog

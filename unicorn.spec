@@ -67,6 +67,7 @@ popd
 
 pushd bindings/python
 %pyproject_install
+%pyproject_save_files %{name}
 popd
 
 rm $RPM_BUILD_ROOT%{_libdir}/libunicorn.a
@@ -84,9 +85,7 @@ rm $RPM_BUILD_ROOT%{_libdir}/libunicorn.a
 %{_libdir}/pkgconfig/unicorn.pc
 %{_includedir}/unicorn/
 
-%files -n python3-unicorn
-%{python3_sitelib}/%{name}-%{version}.dist-info/
-%{python3_sitelib}/%{name}/
+%files -n python3-unicorn -f %{pyproject_files}
 
 %changelog
 %autochangelog

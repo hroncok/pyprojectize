@@ -41,15 +41,14 @@ Summary:        %{summary}
 
 %install
 %pyproject_install
+%pyproject_save_files ntlm_auth
 
 %check
 %python3 -m pytest -vv
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %doc CHANGES.md README.md
 %license LICENSE
-%{python3_sitelib}/ntlm_auth-*.dist-info/
-%{python3_sitelib}/ntlm_auth/
 
 %changelog
 * Thu Jul 21 2022 Maxwell G <gotmax@e.email> - 1.5.0-2

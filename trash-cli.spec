@@ -25,13 +25,12 @@ compatible with rm and you can use trash-put as an alias to rm.
 
 %install
 %pyproject_install
+%pyproject_save_files trashcli
 
-%files
+%files -f %{pyproject_files}
 %doc README.rst
 
 %{_bindir}/trash*
-%{python3_sitelib}/trashcli/
-%{python3_sitelib}/trash_cli-*.dist-info
 %{_mandir}/man1/trash*
 
 %changelog

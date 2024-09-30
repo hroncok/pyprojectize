@@ -47,11 +47,10 @@ cp -p %{SOURCE1} .
 
 %install
 %pyproject_install
+%pyproject_save_files pysimplesoap
 
-%files -n python3-%{rpmname}
+%files -n python3-%{rpmname} -f %{pyproject_files}
 %license license.txt
-%{python3_sitelib}/pysimplesoap
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.16.2-23

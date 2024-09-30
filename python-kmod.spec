@@ -35,10 +35,9 @@ Linux kernel modules, using libkmod.
 
 %install
 %pyproject_install
+%pyproject_save_files kmod
 
-%files -n python3-kmod
-%{python3_sitearch}/kmod/
-%{python3_sitearch}/kmod*.dist-info
+%files -n python3-kmod -f %{pyproject_files}
 %doc COPYING.LESSER README
 
 %changelog

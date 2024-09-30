@@ -43,6 +43,7 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files confluent_kafka
 # Remove license file installed in weird place
 rm -f  %{buildroot}/%{_prefix}/LICENSE.txt
 
@@ -52,11 +53,9 @@ rm -f  %{buildroot}/%{_prefix}/LICENSE.txt
 %py3_check_import confluent_kafka
 #py.test-3 -v --ignore=tests/integration ./tests/
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.md
-%{python3_sitearch}/confluent_kafka
-%{python3_sitearch}/confluent_kafka-%{version}.dist-info
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 1.6.1-9

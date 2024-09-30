@@ -40,16 +40,15 @@ sed -i "s/^from mock import /from unittest.mock import /" vex/tests/test_config.
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
 %check
 %{__python3} -m pytest %{name}/tests/
 
-%files
+%files -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
 %{_bindir}/%{name}
-%{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}-%{version}.dist-info
 
 %changelog
 %autochangelog

@@ -78,6 +78,7 @@ popd # doc/
 
 %install
 %pyproject_install
+%pyproject_save_files %{name} %{name}_plugins %{name}_themes
 
 # Remove sources from doc subpackage, but not from html/ subdirectory
 rm -rf %{buildroot}%{_pkgdocdir}/source/
@@ -95,7 +96,7 @@ rm -f %{buildroot}%{_pkgdocdir}/html/.buildinfo
 
 
 
-%files
+%files -f %{pyproject_files}
 %license COPYING
 %doc CHANGELOG README.rst
 %{_bindir}/%{name}
@@ -104,12 +105,8 @@ rm -f %{buildroot}%{_pkgdocdir}/html/.buildinfo
 %{_mandir}/man1/%{name}_logs.1*
 %{_datadir}/applications/io.poez.Poezio.desktop
 %{_datadir}/metainfo/io.poez.Poezio.appdata.xml
-%{python3_sitearch}/%{name}/
 # Plugins and theme dirs are internal resources of Poezio; they cannot
 # be splitted in a separate subpackage.
-%{python3_sitearch}/%{name}_plugins/
-%{python3_sitearch}/%{name}_themes/
-%{python3_sitearch}/%{name}-%{version}.dist-info/
 
 
 %files doc

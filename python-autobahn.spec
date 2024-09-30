@@ -82,6 +82,7 @@ AUTOBAHN_USE_NVX=false %pyproject_wheel
 
 %install
 AUTOBAHN_USE_NVX=false %pyproject_install
+%pyproject_save_files %{pypi_name} twisted
 
 %check
 # Ignore tests that rely on optional and not packaged deps.
@@ -105,19 +106,12 @@ k="${k-}${k+ and }not TestDecimalSerializer"
 USE_ASYNCIO=1 %pytest --ignore=xbr/test --pyargs autobahn ${k+ -k} "${k-}"
 %endif
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc docs README.rst
 %{_bindir}/wamp
 %{_bindir}/xbrnetwork
 %{_bindir}/xbrnetwork-ui
-%{python3_sitelib}/%{pypi_name}-%{version}*.dist-info/
-%{python3_sitelib}/%{pypi_name}/
-%dir %{python3_sitelib}/twisted
-%dir %{python3_sitelib}/twisted/plugins
-%dir %{python3_sitelib}/twisted/plugins/__pycache__
-%{python3_sitelib}/twisted/plugins/autobahn*.py
-%{python3_sitelib}/twisted/plugins/__pycache__/autobahn*.py*
 
 %files -n python-%{pypi_name}-doc
 %license LICENSE

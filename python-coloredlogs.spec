@@ -78,6 +78,7 @@ rm docs/build/html/.buildinfo
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 
 %check
@@ -99,11 +100,9 @@ PATH=%{buildroot}%{_bindir}:$PATH \
 %license LICENSE.txt
 %doc docs/build/html
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE.txt
 %doc CHANGELOG.rst README.rst
-%{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 %{python3_sitelib}/%{srcname}.pth
 %{_bindir}/%{srcname}
 

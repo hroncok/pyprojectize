@@ -57,6 +57,7 @@ This package contains the Python 3 module.
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 mkdir -p %{buildroot}%{_mandir}/man1
 install -pm 644 fmf.1* %{buildroot}%{_mandir}/man1
 
@@ -73,9 +74,7 @@ install -pm 644 fmf.1* %{buildroot}%{_mandir}/man1
 %doc README.rst examples
 %license LICENSE
 
-%files -n python%{python3_pkgversion}-%{name}
-%{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}-*.dist-info
+%files -n python%{python3_pkgversion}-%{name} -f %{pyproject_files}
 %license LICENSE
 
 

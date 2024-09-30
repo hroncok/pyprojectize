@@ -70,6 +70,7 @@ sed -i -e 's|build/libminiupnpc.a|build/libminiupnpc.so.%{version}|g' setup.py
 %install
 %cmake_install
 %pyproject_install
+%pyproject_save_files 'miniupnpc*'
 
 mv %{buildroot}%{_bindir}/upnpc-shared %{buildroot}%{_bindir}/upnpc
 mv %{buildroot}%{_bindir}/listdevices %{buildroot}%{_bindir}/upnp-listdevices
@@ -95,9 +96,7 @@ make CFLAGS="%{optflags} -DMINIUPNPC_SET_SOCKET_TIMEOUT" check
 %{_libdir}/pkgconfig/%{name}.pc
 %{_mandir}/man3/%{name}.3*
 
-%files -n python3-%{name}
-%{python3_sitearch}/miniupnpc-%{version}.dist-info/
-%{python3_sitearch}/miniupnpc*.so
+%files -n python3-%{name} -f %{pyproject_files}
 
 %changelog
 * Mon Sep 02 2024 Miroslav Suchý <msuchy@redhat.com> - 2.2.5-8

@@ -50,17 +50,15 @@ and other generic functions found in the Python standard library.
 
 %install
 %pyproject_install
+%pyproject_save_files simplegeneric
 
 
 %check
 PYTHONPATH=$(pwd) %{__python3} setup.py test
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
-%{python3_sitelib}/__pycache__/simplegeneric.cpython*
-%{python3_sitelib}/simplegeneric.py
-%{python3_sitelib}/simplegeneric-%{version}.dist-info/
 
 
 %changelog

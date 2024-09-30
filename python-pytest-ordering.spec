@@ -55,16 +55,15 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
+%pyproject_save_files pytest_ordering
 
 %check
 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=%{buildroot}%{python3_sitelib} \
   pytest-%{python3_version} -v tests -k "not test_run_marker_registered"
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/pytest_ordering/
-%{python3_sitelib}/pytest_ordering-%{version}.dist-info/
 
 %files -n %{name}-doc
 %doc html

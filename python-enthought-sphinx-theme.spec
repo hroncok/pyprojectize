@@ -39,15 +39,14 @@ Provides:       bundled(bootstrap) = 2.3.2
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 
 #check
 # No tests
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE licenses/*.txt
 %doc CHANGES.rst README.rst
-%{python3_sitelib}/%{modname}-*.dist-info/
-%{python3_sitelib}/%{modname}/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.7.3-7

@@ -73,6 +73,7 @@ XML and HTML manipulation.
 
 %install
 %pyproject_install
+%pyproject_save_files pyquery
 
 
 %check
@@ -81,10 +82,8 @@ nosetests-%{python3_version}
 
 %endif
 
-%files -n python3-pyquery
+%files -n python3-pyquery -f %{pyproject_files}
 %doc CHANGES.rst README.rst
-%{python3_sitelib}/pyquery/
-%{python3_sitelib}/pyquery*.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.4.3-20

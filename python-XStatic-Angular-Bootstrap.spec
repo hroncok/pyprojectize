@@ -73,6 +73,7 @@ sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/angular_bootstrap'|" xstatic/pkg/
 
 %install
 %pyproject_install
+%pyproject_save_files xstatic
 
 mkdir -p %{buildroot}%{_jsdir}/angular_bootstrap
 mv %{buildroot}%{python3_sitelib}/xstatic/pkg/angular_bootstrap/data/angular-bootstrap.js %{buildroot}%{_jsdir}/angular_bootstrap
@@ -84,10 +85,8 @@ chmod 644 %{buildroot}%{_jsdir}/angular_bootstrap/angular-bootstrap.js
 %doc README.txt
 %{_jsdir}/angular_bootstrap
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
-%{python3_sitelib}/xstatic/pkg/angular_bootstrap
-%{python3_sitelib}/XStatic_Angular_Bootstrap-%{version}.dist-info
 %{python3_sitelib}/XStatic_Angular_Bootstrap-%{version}-py%{python3_version}-nspkg.pth
 
 %changelog

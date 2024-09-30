@@ -54,6 +54,7 @@ rm -rf %{pypi_name}.egg-info
 %install
 
 %pyproject_install
+%pyproject_save_files sphinxcontrib
 
 # %check
 # FIXME(chkumar246): Tests are broken in current version, So
@@ -64,12 +65,10 @@ rm -rf %{pypi_name}.egg-info
 # py.test-3 ||
 # %endif
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/sphinxcontrib_apidoc*nspkg.pth
-%{python3_sitelib}/sphinxcontrib/apidoc
-%{python3_sitelib}/sphinxcontrib_apidoc-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.3.0-15

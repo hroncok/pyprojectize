@@ -70,11 +70,11 @@ popd
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE.md
-%{python3_sitelib}/*
 
 %files -n python-%{srcname}-doc
 %license LICENSE.md

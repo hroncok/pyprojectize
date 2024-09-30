@@ -107,6 +107,7 @@ popd
 # Installing Python version...
 pushd python
 %pyproject_install
+%pyproject_save_files qrcodegen
 popd
 
 # Installing a legacy symlink for compatibility...
@@ -132,11 +133,8 @@ ln -s qrcodegen.hpp %{buildroot}%{_includedir}/qrcodegencpp/QrCode.hpp
 %{_libdir}/libqrcodegencpp.so
 %{_libdir}/pkgconfig/qrcodegencpp.pc
 
-%files -n python3-qrcodegen
+%files -n python3-qrcodegen -f %{pyproject_files}
 %license Readme.markdown
-%{python3_sitelib}/qrcodegen.py
-%{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/qrcodegen-*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.8.0-11

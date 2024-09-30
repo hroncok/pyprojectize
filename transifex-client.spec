@@ -43,13 +43,13 @@ need of an elaborate UI system.
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 %check            
 %{__python3} setup.py test
 
-%files
+%files -f %{pyproject_files}
 %doc LICENSE README.md
-%{python3_sitelib}/*
 %{_bindir}/*
 
 %changelog

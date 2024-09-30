@@ -51,15 +51,14 @@ sed -e "\|#!/usr/bin/env python3|d" -i %{pypi_name}/*.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 mkdir -p %{buildroot}%{_mandir}/man1
 cp -P %{SOURCE1} %{buildroot}%{_mandir}/man1
 
-%files -n %{pypi_name}
+%files -n %{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.md template
 %{_bindir}/op1svg
-%{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %{_mandir}/man1/op1svg.1*
 
 %changelog

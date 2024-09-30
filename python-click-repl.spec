@@ -37,15 +37,14 @@ Summary:        %{summary}
 
 %install
 %pyproject_install
+%pyproject_save_files click_repl
 
 %check
 %pytest
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/click_repl/
-%{python3_sitelib}/click_repl-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.2.0-12

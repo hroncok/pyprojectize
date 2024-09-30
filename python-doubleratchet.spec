@@ -53,6 +53,7 @@ class.
 
 %install
 %pyproject_install
+%pyproject_save_files doubleratchet
 
 
 %check
@@ -60,12 +61,10 @@ class.
 
 
 
-%files -n python3-doubleratchet
+%files -n python3-doubleratchet -f %{pyproject_files}
 %license LICENSE
 %doc README.md
 # For noarch packages: sitelib
-%{python3_sitelib}/doubleratchet/
-%{python3_sitelib}/DoubleRatchet-%{version}.dist-info/
 
 
 

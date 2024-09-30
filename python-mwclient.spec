@@ -51,15 +51,15 @@ provides access to most API functionality. This is the Python 3 build of
 
 %install
 %pyproject_install
+%pyproject_save_files '%{github_name}*'
 
 
 %check
 %{__python3} setup.py test
 
-%files -n python3-%{github_name}
+%files -n python3-%{github_name} -f %{pyproject_files}
 %doc README.md CHANGELOG.md
 %license LICENSE.md
-%{python3_sitelib}/%{github_name}*
 
 
 %changelog

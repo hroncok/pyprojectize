@@ -44,17 +44,15 @@ sed -i -e '/^#!\//, 1d' python3/smb/utils/sha256.py
 
 %install
 %pyproject_install
+%pyproject_save_files nmb smb
 
 #%%check
 # https://github.com/miketeo/pysmb/issues/165
 #%%pytest -v python3/tests
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc CHANGELOG README.txt python3/tests/README_1st.txt
-%{python3_sitelib}/nmb/
-%{python3_sitelib}/smb/
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.2.4-14

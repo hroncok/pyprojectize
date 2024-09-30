@@ -50,12 +50,11 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files django_pytest
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc LICENSE.txt README.md
-%{python3_sitelib}/django_pytest/
-%{python3_sitelib}/django_pytest-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.2.0-40

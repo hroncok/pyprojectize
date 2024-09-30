@@ -38,9 +38,9 @@ sed -r -i "s/'pyparsing.*'/'pyparsing'/" setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files 'configshell*'
 
-%files -n python3-configshell
-%{python3_sitelib}/configshell*
+%files -n python3-configshell -f %{pyproject_files}
 %doc COPYING README.md
 
 %changelog

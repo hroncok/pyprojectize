@@ -51,13 +51,12 @@ the 29 (xprint and xkb are missing) X extensions in 1.10.
 
 %install
 %pyproject_install
+%pyproject_save_files xcffib
 
 
-%files -n python3-xcffib
+%files -n python3-xcffib -f %{pyproject_files}
 %doc LICENSE
 %doc README.md
-%{python3_sitelib}/xcffib
-%{python3_sitelib}/xcffib*.dist-info
 
 
 %changelog

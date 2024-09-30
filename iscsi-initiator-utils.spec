@@ -180,6 +180,7 @@ pushd libiscsi
 %if %{with python3}
   %{__install} -d $RPM_BUILD_ROOT%{python3_sitearch}
   %pyproject_install
+%pyproject_save_files '*'
 %endif
 popd
 
@@ -267,8 +268,7 @@ systemctl --no-reload preset iscsi.service iscsi-starter.service &>/dev/null || 
 # ended with python2
 
 %if %{with python3}
-%files -n python3-%{name}
-%{python3_sitearch}/*
+%files -n python3-%{name} -f %{pyproject_files}
 %endif
 
 %changelog

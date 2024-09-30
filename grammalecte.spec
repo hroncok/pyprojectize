@@ -123,6 +123,7 @@ find $RPM_BUILD_ROOT%{_libdir}/libreoffice/share/extensions/%{name}/ -type f | x
 # Install Python module
 pushd python/
 %pyproject_install
+%pyproject_save_files %{name}
 popd
 
 # Unbundle bottle library
@@ -152,13 +153,11 @@ appstream-util validate-relax --nonet $RPM_BUILD_ROOT%{_metainfodir}/%{name}.app
 %{_metainfodir}/%{name}.appdata.xml
 
 
-%files -n python3-%{name}
+%files -n python3-%{name} -f %{pyproject_files}
 %doc python/README.txt
 %license python/{LICENSE.txt,LICENSE.fr.txt}
 %{_bindir}/%{name}-cli.py
 %{_bindir}/%{name}-server.py
-%{python3_sitelib}/%{name}/
-%{python3_sitelib}/Grammalecte_fr-*.dist-info/
 
 
 %changelog

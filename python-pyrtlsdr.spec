@@ -39,11 +39,10 @@ find . -name '*.py' | xargs sed -i '1s|^#!.*|#!%{__python3}|'
 
 %install
 %pyproject_install
+%pyproject_save_files rtlsdr
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md
-%{python3_sitelib}/rtlsdr/
-%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 %changelog
 * Mon Jul 29 2024 Miroslav Suchý <msuchy@redhat.com> - 0.3.0-7

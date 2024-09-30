@@ -52,17 +52,16 @@ Summary: %summary
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %check
 PYTHON=%{__python3} testr init
 PYTHON=%{__python3} testr run
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst CONTRIBUTING.rst doc
 %license LICENSE
 %{_bindir}/*
-%{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-*egg-info
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 0.16.0-9

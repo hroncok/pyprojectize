@@ -51,16 +51,15 @@ module. This is the python%{python3_pkgversion} build.
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %check
 %{python3} tests.py
 
 
-%files -n python%{python3_pkgversion}-%{pypi_name}
+%files -n python%{python3_pkgversion}-%{pypi_name} -f %{pyproject_files}
 %doc README.txt README.html CHANGES.txt
 %license LICENSE
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{upstream_version}.dist-info/
 
 
 %changelog

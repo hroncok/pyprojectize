@@ -45,17 +45,16 @@ popd
 %install
 pushd src
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 popd
 
 # TShark is crashing during the tests, need upstream fix
 #%%check
 #%%pytest tests
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %license LICENSE.txt
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.4.3-11

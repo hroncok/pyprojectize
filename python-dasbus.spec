@@ -47,15 +47,14 @@ Requires:       python3-gobject-base
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 %if %{defined suse_version}
 %python_expand %fdupes %{buildroot}%{python3_sitelib}
 %endif
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{srcname}-*.dist-info/
-%{python3_sitelib}/%{srcname}/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.7-8

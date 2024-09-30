@@ -34,11 +34,11 @@ support a developer working with PostgreSQL databases.
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
  
-%files
+%files -f %{pyproject_files}
 %doc AUTHORS LICENSE README
-%{python3_sitearch}/*
 
 
 %changelog

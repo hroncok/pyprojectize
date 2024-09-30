@@ -45,6 +45,7 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files ndg
 
 %check
 pushd ndg/httpsclient/test/
@@ -61,10 +62,8 @@ killall openssl
 # Make sure the script uses the expected python version
 grep -qv python2 %{buildroot}%{_bindir}/ndg_httpclient
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %{_bindir}/ndg_httpclient
-%{python3_sitelib}/ndg/
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.5.1-22

@@ -35,12 +35,11 @@ sed -i -e '/scm/d' setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc README.md CHANGELOG.md
-%{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-*.dist-info/
 
 %changelog
 %autochangelog

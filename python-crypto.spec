@@ -127,6 +127,7 @@ rm -rf src/libtom
 
 %install
 %pyproject_install
+%pyproject_save_files Crypto
 
 # Remove group write permissions on shared objects
 find %{buildroot}%{python3_sitearch} -name '*.so' -exec chmod -c g-w {} \;
@@ -138,11 +139,9 @@ find %{buildroot}%{python3_sitearch} -name '*.so' -exec chmod -c g-w {} \;
 # Benchmark
 %{py3_test_envvars} %{__python3} pct-speedtest.py
 
-%files -n python%{python3_pkgversion}-crypto
+%files -n python%{python3_pkgversion}-crypto -f %{pyproject_files}
 %license COPYRIGHT LEGAL/
 %doc README TODO ACKS ChangeLog Doc/
-%{python3_sitearch}/Crypto/
-%{python3_sitearch}/pycrypto-%{version}.dist-info
 
 %changelog
 * Wed Aug 14 2024 Paul Howarth <paul@city-fan.org> - 2.6.1-53

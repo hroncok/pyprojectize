@@ -44,17 +44,16 @@ Python 3 version.
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 
 %if %{with tests}
 %check
 %pytest
 %endif
 
-%files -n python3-%{modname}
+%files -n python3-%{modname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst CHANGES AUTHORS
-%{python3_sitelib}/%{modname}-*.dist-info/
-%{python3_sitelib}/%{modname}/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.1.0-11

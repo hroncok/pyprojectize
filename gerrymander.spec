@@ -41,6 +41,7 @@ rm -rf *.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files gerrymander
 
 %check
 %pytest
@@ -49,10 +50,8 @@ rm -rf *.egg-info
 %doc conf/gerrymander.conf-example
 %{_bindir}/gerrymander
 
-%files -n python3-gerrymander
+%files -n python3-gerrymander -f %{pyproject_files}
 %doc README LICENSE
-%{python3_sitelib}/gerrymander/
-%{python3_sitelib}/%{name}-%{version}.dist-info
 
 %changelog
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.5-33

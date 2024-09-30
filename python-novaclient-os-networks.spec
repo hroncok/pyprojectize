@@ -38,10 +38,10 @@ Requires:	python3-novaclient
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
-%{python3_sitelib}/*
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 0.26-30

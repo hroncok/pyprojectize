@@ -38,10 +38,10 @@ rm -rf %{srcname}.egg-info
 # Must do the subpackages' install first because the scripts in /usr/bin are
 # overwritten with every setup.py install.
 %pyproject_install
+%pyproject_save_files '*'
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst AUTHORS.rst HISTORY.rst
-%{python3_sitelib}/*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.2.0-12

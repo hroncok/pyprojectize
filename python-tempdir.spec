@@ -39,13 +39,11 @@ rm -r tempdir.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files tempdir
 
-%files -n python3-%{pname}
+%files -n python3-%{pname} -f %{pyproject_files}
 %license docs/license.rst
 %doc docs/use.rst
-%{python3_sitelib}/%{pname}-%{version}.dist-info
-%{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/tempdir.py
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.7.1-29

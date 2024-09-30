@@ -54,18 +54,16 @@ rm -rf %{eggname}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{libname}
 
 %check
 %if %{with tests}
 PYTHONPATH=$(pwd) trial-3 tests
 %endif
 
-%files -n python3-%{pkgname}
+%files -n python3-%{pkgname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{libname}.py
-%{python3_sitelib}/__pycache__/%{libname}.cpython-%{python3_version_nodots}*.py*
-%{python3_sitelib}/%{eggname}-%{version}.dist-info
 
 
 %changelog

@@ -39,17 +39,16 @@ package contains a Python 3 version of PyXDG.
 
 %install
 %pyproject_install
+%pyproject_save_files xdg
 
 %check
 # icon-test currently fails
 # https://bugs.freedesktop.org/show_bug.cgi?id=104846
 nosetests-%{python3_version} || :
 
-%files -n python%{python3_pkgversion}-pyxdg
+%files -n python%{python3_pkgversion}-pyxdg -f %{pyproject_files}
 %license COPYING
 %doc AUTHORS ChangeLog README TODO
-%{python3_sitelib}/xdg
-%{python3_sitelib}/pyxdg-*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.27-13

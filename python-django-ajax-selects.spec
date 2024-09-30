@@ -47,12 +47,11 @@ Obsoletes:      python-django-ajax-selects < 1.3.4-14
 
 %install
 %pyproject_install
+%pyproject_save_files ajax_select
 
-%files -n python3-django-ajax-selects
+%files -n python3-django-ajax-selects -f %{pyproject_files}
 %license ajax_select/LICENSE.txt
 %doc README.md CHANGELOG.md
-%{python3_sitelib}/ajax_select
-%{python3_sitelib}/django_ajax_selects-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 2.2.0-10

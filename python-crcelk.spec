@@ -37,12 +37,10 @@ sed -i -e '/^#!\//, 1d' crcelk.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
-%{python3_sitelib}/%{pypi_name}.py
-%{python3_sitelib}/%{pypi_name}*.dist-info
-%{python3_sitelib}/__pycache__/*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.3-21

@@ -45,12 +45,11 @@ Summary:        %summary
 
 %install
 %{pyproject_install}
+%pyproject_save_files unipath
 
-%files -n python3-unipath
+%files -n python3-unipath -f %{pyproject_files}
 %license CHANGES
 %doc BUGS.txt PKG-INFO README.html README.rst
-%{python3_sitelib}/unipath/
-%{python3_sitelib}/%{oname}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.1-27

@@ -167,6 +167,7 @@ ln -s ./moksha-hub-%{python2_version} %{buildroot}%{_bindir}/moksha-hub-2
 
 %if 0%{?with_python3}
 %pyproject_install
+%pyproject_save_files moksha
 ln -s ./moksha-hub %{buildroot}%{_bindir}/moksha-hub-3
 ln -s ./moksha-hub %{buildroot}%{_bindir}/moksha-hub-%{python3_version}
 %endif
@@ -201,11 +202,9 @@ ln -s ./moksha-hub %{buildroot}%{_bindir}/moksha-hub-%{python3_version}
 %endif
 
 %if 0%{?with_python3}
-%files -n python3-moksha-hub
+%files -n python3-moksha-hub -f %{pyproject_files}
 %doc README AUTHORS
 %license COPYING
-%{python3_sitelib}/moksha/hub/
-%{python3_sitelib}/%{modname}-%{version}*
 %{_bindir}/moksha-hub
 %{_bindir}/moksha-hub-3
 %{_bindir}/moksha-hub-%{python3_version}

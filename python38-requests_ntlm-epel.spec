@@ -43,16 +43,15 @@ Python 3 version.
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %check
 #python3 -m tests.test_server &
 #python3 -m pytest --ignore=tests/functional/test_functional.py --ignore=tests/test_server.py -vv
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc CONTRIBUTORS.rst README.rst
-%{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-*.dist-info/
 
 %changelog
 * Thu Jul 21 2022 Maxwell G <gotmax@e.email> - 1.1.0-2

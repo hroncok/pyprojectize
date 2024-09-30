@@ -92,6 +92,7 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name} _%{pypi_name}
 mkdir -p %{buildroot}%{_datadir}/drgn
 cp -PR contrib tools %{buildroot}%{_datadir}/drgn
 
@@ -100,16 +101,12 @@ cp -PR contrib tools %{buildroot}%{_datadir}/drgn
 %pytest
 %endif
 
-%files -n %{pypi_name}
+%files -n %{pypi_name} -f %{pyproject_files}
 %license COPYING
 %license LICENSES
 %doc README.rst
 %{_bindir}/drgn
 %{_datadir}/drgn
-%{python3_sitearch}/_%{pypi_name}.pyi
-%{python3_sitearch}/_%{pypi_name}.cpython*.so
-%{python3_sitearch}/%{pypi_name}
-%{python3_sitearch}/%{pypi_name}-%{version}.dist-info
 
 %if %{with docs}
 %files -n %{pypi_name}-doc

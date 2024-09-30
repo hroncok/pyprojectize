@@ -37,6 +37,7 @@ rm -rf examples/__init__.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 rm -rf %{buildroot}%{python3_sitelib}/examples
 
 %check
@@ -44,12 +45,10 @@ rm -rf %{buildroot}%{python3_sitelib}/examples
   -k "not test_guess_memoryview and not test_guess_extension_memoryview \
     and not test_guess_mime_memoryview and not test_guess_zstd"
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst History.md examples
 %license LICENSE
 %{_bindir}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.2.0-5

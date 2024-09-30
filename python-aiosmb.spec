@@ -38,8 +38,9 @@ commons/connection/target.py,crypto/pure/RC4/RC4.py}
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 # Missing license file: https://github.com/skelsec/aiosmb/pull/4
 #%license LICENSE
@@ -48,8 +49,6 @@ commons/connection/target.py,crypto/pure/RC4/RC4.py}
 %{_bindir}/asmbprotocolenum
 %{_bindir}/asmbosenum
 %{_bindir}/asmbgetfile
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.2.35-13

@@ -44,6 +44,7 @@ find . -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python3}|'
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 # Directories used in windows build
 rm -rf $RPM_BUILD_ROOT/%{python3_sitelib}/%{srcname}/lib
@@ -55,22 +56,9 @@ rm -rf $RPM_BUILD_ROOT/%{python3_sitelib}/%{srcname}/share
 %py3_check_import %{srcname} %{srcname}.checker %{srcname}.tokenize
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE.txt
-%dir %{python3_sitelib}/%{srcname}
-%dir %{python3_sitelib}/%{srcname}/__pycache__
-%dir %{python3_sitelib}/%{srcname}/checker
-%dir %{python3_sitelib}/%{srcname}/checker/__pycache__
-%dir %{python3_sitelib}/%{srcname}/tokenize
-%dir %{python3_sitelib}/%{srcname}/tokenize/__pycache__
-%{python3_sitelib}/%{srcname}/*.py
-%{python3_sitelib}/%{srcname}/__pycache__/*.py[co]
-%{python3_sitelib}/%{srcname}/checker/*.py
-%{python3_sitelib}/%{srcname}/checker/__pycache__/*.py[co]
-%{python3_sitelib}/%{srcname}/tokenize/*.py
-%{python3_sitelib}/%{srcname}/tokenize/__pycache__/*.py[co]
-%{python3_sitelib}/py%{srcname}-%{version}.dist-info
 
 
 %changelog

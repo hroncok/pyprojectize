@@ -67,17 +67,16 @@ rm docs/_build/html/.buildinfo
 
 %install
 %pyproject_install
+%pyproject_save_files crochet
 
 
 %check
 %{__python3} -m unittest discover -v crochet.tests
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/crochet/
-%{python3_sitelib}/crochet-*.dist-info/
 
 
 %files doc

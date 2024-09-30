@@ -33,16 +33,14 @@ sed -i -e '/^#!\//, 1d' hashid.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 install -Dp -m 0644 doc/man/%{name}.7 %{buildroot}%{_mandir}/man7/%{name}.7
 
-%files
+%files -f %{pyproject_files}
 %doc README.rst doc/CHANGELOG
 %license doc/LICENSE
 %{_mandir}/man*/%{name}*.*
 %{_bindir}/%{name}
-%{python3_sitelib}/*.dist-info
-%{python3_sitelib}/%{name}.py
-%{python3_sitelib}/__pycache__/*
 
 %changelog
 * Thu Jul 25 2024 Miroslav Suchý <msuchy@redhat.com> - 3.1.4-22

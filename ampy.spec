@@ -51,18 +51,17 @@ sed -i '1d' $(grep -lr '#!/usr/')
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
 
 %check
 %{__python3} -m unittest tests/test_*.py -v
 
 
-%files
+%files -f %{pyproject_files}
 %doc README.md
 %license LICENSE
 %{_bindir}/%{name}
-%{python3_sitelib}/%{name}
-%{python3_sitelib}/adafruit_ampy-%{version}.dist-info
 
 
 %changelog

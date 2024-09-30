@@ -54,6 +54,7 @@ sed -r -i '1d' ffc/__main__.py ffc/main.py
 
 %install
 %pyproject_install
+%pyproject_save_files ffc
 
 %check
 OPTIONS=(
@@ -62,14 +63,12 @@ OPTIONS=(
 )
 %python3 -m pytest -v test/ "${OPTIONS[@]}"
 
-%files -n python3-ffc
+%files -n python3-ffc -f %{pyproject_files}
 %license COPYING COPYING.LESSER
 %doc README.rst ChangeLog.rst AUTHORS
 %doc demo
 %{_bindir}/ffc
 %{_bindir}/ffc-3
-%{python3_sitelib}/ffc
-%{python3_sitelib}/fenics_ffc-%{version}.dist-info/
 %{_mandir}/man1/ffc.1*
 
 %changelog

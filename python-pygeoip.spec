@@ -82,6 +82,7 @@ rm -rf %{modname}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 
 ## The tests require some files not in sdist
 # FileNotFoundError: [Errno 2] No such file or directory:
@@ -89,10 +90,8 @@ rm -rf %{modname}.egg-info
 #%%check
 #PYTHONPATH=$(pwd) nosetests-3
 
-%files -n python3-pygeoip
+%files -n python3-pygeoip -f %{pyproject_files}
 %doc README.md COPYING DEVELOPER INSTALL apidocs/
-%{python3_sitelib}/%{modname}/
-%{python3_sitelib}/%{modname}-%{version}-*
 
 
 %changelog

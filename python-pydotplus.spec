@@ -42,6 +42,7 @@ rm -rf lib/*.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files '%{modname}*'
 
 %check
 # https://github.com/carlos-jenkins/pydotplus/issues/2
@@ -49,10 +50,9 @@ pushd test
   PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} pydot_unittest.py -v || :
 popd
 
-%files -n python3-%{modname}
+%files -n python3-%{modname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{modname}*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.0.2-32

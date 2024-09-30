@@ -52,6 +52,7 @@ sed -i '1d' fissix/pgen2/token.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 cp -p fissix/*.txt %{buildroot}%{python3_sitelib}/%{srcname}/
 
 
@@ -60,11 +61,9 @@ cp -p fissix/*.txt %{buildroot}%{python3_sitelib}/%{srcname}/
 %{python3} -m pytest --verbose fissix/tests
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 
 %changelog

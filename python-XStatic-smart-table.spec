@@ -68,6 +68,7 @@ sed -i 's/smart-table.min.js/smart-table.js/' xstatic/pkg/angular_smart_table/__
 
 %install
 %pyproject_install
+%pyproject_save_files xstatic
 
 mkdir -p %{buildroot}%{_jsdir}/angular_smart_table
 mv %{buildroot}%{python3_sitelib}/xstatic/pkg/angular_smart_table/data/smart-table.js %{buildroot}%{_jsdir}/angular_smart_table
@@ -75,10 +76,8 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/angular_smart_table/data/
 # fix execute flags for js
 chmod 644 %{buildroot}%{_jsdir}/angular_smart_table/smart-table.js
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
-%{python3_sitelib}/xstatic/pkg/angular_smart_table
-%{python3_sitelib}/XStatic_smart_table-%{version}.dist-info
 %{python3_sitelib}/XStatic_smart_table-%{version}-py%{python3_version}-nspkg.pth
 
 %files -n xstatic-smart-table-common

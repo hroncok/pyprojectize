@@ -29,14 +29,11 @@ Python objects. Lookups are performed by longest-prefix matching.
 
 %install
 %pyproject_install
+%pyproject_save_files SubnetTree _SubnetTree
 
-%files
+%files -f %{pyproject_files}
 %doc CHANGES README
 %license COPYING
-%{python3_sitearch}/SubnetTree.py
-%{python3_sitearch}/_SubnetTree.cpython*.so
-%{python3_sitearch}/__pycache__/*
-%{python3_sitearch}/%{name}-%{version}.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.35-12

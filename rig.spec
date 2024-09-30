@@ -30,13 +30,12 @@ troubleshooting and data collection for randomly occurring events.
 mkdir -p ${RPM_BUILD_ROOT}%{_mandir}/man1
 install -p -m644 man/en/rig.1 ${RPM_BUILD_ROOT}%{_mandir}/man1/
 %pyproject_install
+%pyproject_save_files rigging
 
-%files
+%files -f %{pyproject_files}
 %{_bindir}/rig
 %{_mandir}/man1/*
 
-%{python3_sitelib}/rig-*.dist-info/
-%{python3_sitelib}/rigging/
 
 %license LICENSE
 %doc README.md

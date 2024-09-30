@@ -33,15 +33,14 @@ Summary: %summary
 
 %install
 %pyproject_install
+%pyproject_save_files 'schedutils*'
 
-%files -n python3-schedutils
+%files -n python3-schedutils -f %{pyproject_files}
 %license COPYING
 %{_bindir}/pchrt
 %{_bindir}/ptaskset
 %{_mandir}/man1/pchrt.1*
 %{_mandir}/man1/ptaskset.1*
-%{python3_sitearch}/schedutils*.so
-%{python3_sitearch}/*.dist-info
 
 %changelog
 * Mon Jul 29 2024 Miroslav Suchý <msuchy@redhat.com> - 0.6-26

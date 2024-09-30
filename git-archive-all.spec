@@ -30,14 +30,12 @@ BuildArch:      noarch
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.rst
 %{_bindir}/%{name}
-%{python3_sitelib}/%{modname}-*.dist-info/
-%{python3_sitelib}/%{modname}.py
-%{python3_sitelib}/__pycache__/%{modname}.*
 
 %changelog
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.23.1-8

@@ -60,6 +60,7 @@ sed -i "/'future'/d" setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{shortname}
 
 # Fixup the script's executable features
 chmod +x %{buildroot}%{python3_sitelib}/%{shortname}/doxytag2zealdb.py
@@ -72,12 +73,10 @@ chmod +x %{buildroot}%{python3_sitelib}/%{shortname}/doxytag2zealdb.py
 %doc README.md
 %{_bindir}/doxytag2zealdb
 
-%files -n python3-%{shortname}
+%files -n python3-%{shortname} -f %{pyproject_files}
 %license COPYING
 %doc CONTRIBUTORS
 %doc README.md
-%{python3_sitelib}/%{shortname}
-%{python3_sitelib}/%{shortname}-%{version}.dist-info
 
 
 

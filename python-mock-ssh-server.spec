@@ -41,13 +41,12 @@ rm -rf *.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files mockssh
 
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/mockssh/
-%{python3_sitelib}/mock_ssh_server-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.8.2-14

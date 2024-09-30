@@ -144,6 +144,7 @@ cd build
 
 cd ../python
 VERBOSE=1 CMAKE_PREFIX_PATH=%{buildroot}/usr/share/dolfin/cmake CMAKE_SKIP_INSTALL_RPATH=yes CMAKE_SKIP_RPATH=yes %pyproject_install
+%pyproject_save_files dolfin dolfin_utils fenics
 
 sed -r -i '1 {s|#!/usr/bin/env python.*|#!%{__python3}|}' \
     %{buildroot}%{_bindir}/dolfin-order \
@@ -182,14 +183,10 @@ ctest -V %{?_smp_mflags}
 %{_bindir}/dolfin-get-demos
 /usr/share/dolfin/demo/
 
-%files -n python3-dolfin
+%files -n python3-dolfin -f %{pyproject_files}
 %{_bindir}/dolfin-convert
 %{_bindir}/dolfin-order
 %{_bindir}/dolfin-plot
-%{python3_sitearch}/dolfin/
-%{python3_sitearch}/dolfin_utils/
-%{python3_sitearch}/fenics/
-%{python3_sitearch}/fenics_dolfin-%{fenics_version}*.dist-info/
 
 %changelog
 %autochangelog

@@ -49,13 +49,12 @@ Summary:        %{summary}
 #------------------------------------------------------------------------------
 %install
 %pyproject_install
+%pyproject_save_files evdev
 
 #------------------------------------------------------------------------------
-%files -n python3-evdev
+%files -n python3-evdev -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitearch}/evdev/
-%{python3_sitearch}/evdev-%{version}.dist-info/
 
 
 #------------------------------------------------------------------------------

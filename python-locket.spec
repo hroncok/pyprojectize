@@ -67,15 +67,15 @@ module in the standard library. Specifically, their behaviour is:
 
 %install
 %pyproject_install
+%pyproject_save_files '%{srcname}*'
 
 %check
 %pytest
 
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{srcname}*
 
 
 %changelog

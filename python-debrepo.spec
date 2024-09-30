@@ -47,14 +47,13 @@ composes.
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 sed -i -e 's|#!/usr/bin/env python|#!%{__python3}|' \
    %{buildroot}%{_bindir}/debrepodiff
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE.rst
 %doc README.rst
-%{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 %{_bindir}/debrepodiff
 
 

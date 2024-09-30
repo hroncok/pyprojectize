@@ -40,12 +40,11 @@ sed -i '1d' cma/{bbobbenchmarks.py,purecma.py,test.py}
 
 %install
 %pyproject_install
+%pyproject_save_files cma
 
-%files -n python3-cma
+%files -n python3-cma -f %{pyproject_files}
 %doc README.txt
 %license LICENSE
-%{python3_sitelib}/cma/
-%{python3_sitelib}/cma-*.dist-info/
 
 %changelog
 %autochangelog

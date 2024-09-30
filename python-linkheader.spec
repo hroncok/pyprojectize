@@ -33,11 +33,9 @@ Parse and format link headers according to RFC 5988 "Web Linking".
 
 %install
 %pyproject_install
+%pyproject_save_files link_header
 
-%files -n python3-%{pypi_name}
-%{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/link_header.py
-%{python3_sitelib}/LinkHeader-%{version}.dist-info
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.4.3-16

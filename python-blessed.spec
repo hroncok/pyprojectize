@@ -149,6 +149,7 @@ rm -rf %{pypi_name}.egg-info
 
 %if %{with python3}
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 %endif
 
 %if %{with python2}
@@ -183,11 +184,9 @@ export TERM=xterm-256color
 %endif
 
 %if %{with python3}
-%files -n python%{python3_pkgversion}-%{pypi_name}
+%files -n python%{python3_pkgversion}-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst docs/*.rst
-%{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-*.dist-info
 %endif
 
 %if 0%{?with_python3_other}

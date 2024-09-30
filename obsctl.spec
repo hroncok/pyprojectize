@@ -49,20 +49,19 @@ and continuous deployment infrastructure.
 
 %install
 %pyproject_install
+%pyproject_save_files obsctl
 
 # Setup obsauth ghost config file
 mkdir -p %{buildroot}%{_sysconfdir}/obsctl
 touch %{buildroot}%{_sysconfdir}/obsctl/obsauth.json
 
 
-%files
+%files -f %{pyproject_files}
 %doc README.md TODO contrib obsauth.json.dist
 %license COPYING
 %dir %{_sysconfdir}/obsctl
 %ghost %{_sysconfdir}/obsctl/obsauth.json
 %{_bindir}/obsctl
-%{python3_sitelib}/obsctl-*.dist-info/
-%{python3_sitelib}/obsctl/
 
 
 %changelog

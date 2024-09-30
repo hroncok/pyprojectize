@@ -58,14 +58,14 @@ rm -f docs/_build/html/.buildinfo
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 %check
 %{__python3} setup.py test
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.txt
-%{python3_sitelib}/*
 
 %files doc
 %license LICENSE.txt

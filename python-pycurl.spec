@@ -76,6 +76,7 @@ sed -e 's|python |%{python3} |' -i tests/ext/test-suite.sh
 %install
 export PYCURL_SSL_LIBRARY=openssl
 %pyproject_install
+%pyproject_save_files %{modname} curl
 rm -rf %{buildroot}%{_datadir}/doc/pycurl
 
 %if %{with tests}
@@ -94,12 +95,9 @@ export PYTEST_ADDOPTS="--ignore examples -m 'not online' -k 'not (test_http_vers
 %py3_test_envvars make test PYTHON='%{python3}' PYTEST="%{__pytest}" PYFLAKES=true
 %endif
 
-%files -n python3-%{modname}
+%files -n python3-%{modname} -f %{pyproject_files}
 %license COPYING-LGPL COPYING-MIT
 %doc ChangeLog README.rst examples doc
-%{python3_sitearch}/curl/
-%{python3_sitearch}/%{modname}.*.so
-%{python3_sitearch}/%{modname}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 7.45.3-4

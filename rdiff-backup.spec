@@ -41,19 +41,17 @@ differences from the previous backup will be transmitted.
 
 %install
 %pyproject_install
+%pyproject_save_files rdiff_backup rdiffbackup
 
 # Remove doc files so we package them with rpmbuild
 rm -rf $RPM_BUILD_ROOT/usr/share/doc/*
 
-%files
+%files -f %{pyproject_files}
 %defattr(-,root,root)
 %{_bindir}/rdiff-backup
 %{_bindir}/rdiff-backup-statistics
 %{_bindir}/rdiff-backup-delete
 %{_mandir}/man1/rdiff-backup*
-%{python3_sitearch}/rdiff_backup/
-%{python3_sitearch}/rdiff_backup-*.dist-info
-%{python3_sitearch}/rdiffbackup/
 %{_datadir}/bash-completion/completions/rdiff-backup
 %doc CHANGELOG.adoc README.adoc
 %doc docs/credits.adoc docs/DEVELOP.adoc docs/examples.adoc

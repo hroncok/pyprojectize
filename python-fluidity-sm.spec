@@ -42,17 +42,16 @@ State machine implementation for Python objects.
 
 %install
 %pyproject_install
+%pyproject_save_files fluidity
 
 %if %{with tests}
 %check
 nosetests-3 -i spec --with-specplugin
 %endif
 
-%files -n python3-fluidity-sm
+%files -n python3-fluidity-sm -f %{pyproject_files}
 %license LICENSE
 %doc CHANGELOG README.rst
-%{python3_sitelib}/fluidity/
-%{python3_sitelib}/fluidity_sm-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.2.0-34

@@ -71,17 +71,16 @@ sed -i -E '/--(no-)?cov/d' pytest.ini
 
 %install
 %pyproject_install
+%pyproject_save_files progressbar
 
 %check
 %if %{with tests}
 PYTHONPATH=. %pytest tests
 %endif
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst CHANGES.rst CONTRIBUTING.rst
-%{python3_sitelib}/%{srcname}-%{version}.dist-info/
-%{python3_sitelib}/progressbar
 
 %changelog
 %autochangelog

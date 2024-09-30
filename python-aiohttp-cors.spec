@@ -83,15 +83,14 @@ rm tox.ini
 
 %install
 %pyproject_install
+%pyproject_save_files aiohttp_cors
 
 %check
 %{python3} -m pytest -v --ignore tests/integration/test_real_browser.py
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst CHANGES.rst
-%{python3_sitelib}/aiohttp_cors
-%{python3_sitelib}/aiohttp_cors-*.dist-info/
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 0.7.0-25

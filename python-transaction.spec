@@ -45,16 +45,15 @@ rm -rf %{modname}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files transaction
 
 
 %check
 %pytest
 
 
-%files -n python3-transaction
+%files -n python3-transaction -f %{pyproject_files}
 %doc README.rst LICENSE.txt COPYRIGHT.txt
-%{python3_sitelib}/transaction/
-%{python3_sitelib}/transaction-*.dist-info
 
 
 %changelog

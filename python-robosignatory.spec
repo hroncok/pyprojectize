@@ -63,14 +63,13 @@ rm -rf %{modname}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 
 %check
 %{__python3} -m pytest -v
 
-%files -n python3-robosignatory
+%files -n python3-robosignatory -f %{pyproject_files}
 %doc README.rst LICENSE
-%{python3_sitelib}/%{modname}/
-%{python3_sitelib}/%{modname}-%{version}*
 %{_bindir}/robosignatory
 
 

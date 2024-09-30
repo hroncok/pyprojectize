@@ -43,15 +43,15 @@ periodogram, the Supersmoother method, and others.
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 %check
 # Disabled for now as tests require online access
 #nosetests-%{python3_version} %{srcname}
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc CHANGES.md README.md
-%{python3_sitelib}/*
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.3-31

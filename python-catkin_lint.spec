@@ -69,6 +69,7 @@ ln -s %{srcname}-%{python3_version} build/scripts-%{python3_version}/%{srcname}
 %install
 SETUPTOOLS_SCM_PRETEND_VERSION=%{version} \
   %pyproject_install
+%pyproject_save_files %{srcname}
 
 install -p -D -m0644 shell/bash/%{srcname} %{buildroot}%{_sysconfdir}/bash_completion.d/%{srcname}
 
@@ -77,11 +78,9 @@ install -p -D -m0644 shell/bash/%{srcname} %{buildroot}%{_sysconfdir}/bash_compl
 %{__python3} -m nose2 test
 
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc changelog.txt README.rst
-%{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 %{_bindir}/%{srcname}
 %{_bindir}/%{srcname}-3
 %{_bindir}/%{srcname}-%{python3_version}

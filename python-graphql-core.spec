@@ -46,6 +46,7 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files graphql
 # Not docs because of https://bugzilla.redhat.com/show_bug.cgi?id=1900509
 #PYTHONPATH=%{buildroot}%{python3_sitelib} sphinx-build-3 docs html
 #rm -rf html/.{doctrees,buildinfo}
@@ -53,11 +54,9 @@ rm -rf %{pypi_name}.egg-info
 %check
 %pytest -v tests
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/graphql/
-%{python3_sitelib}/graphql_core-%{version}.dist-info
 
 %files -n python-%{pypi_name}-doc
 #%%doc html

@@ -73,6 +73,7 @@ Requires(postun): systemd
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 install -d        %{buildroot}/etc/logrotate.d
 install -d        %{buildroot}/%{_sysconfdir}/%{pkgname}
@@ -107,7 +108,7 @@ exit 0
 %postun -n python3-%{pkgname}
 %systemd_postun_with_restart onionbalance.service
 
-%files -n python3-%{pkgname}
+%files -n python3-%{pkgname} -f %{pyproject_files}
 %doc README.rst
 %doc README.fedora
 %doc onionbalance.torrc.example
@@ -119,7 +120,6 @@ exit 0
 %if 0%{?for_el7}
 %{python2_sitelib}/*
 %else
-%{python3_sitelib}/*
 %endif
 %{_bindir}/%{pkgname}
 %{_bindir}/%{pkgname}-config

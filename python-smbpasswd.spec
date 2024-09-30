@@ -43,6 +43,7 @@ This is a ported release for python 3.
 
 %install
 %pyproject_install
+%pyproject_save_files smbpasswd
 
 %check
 # there are no tests, let's do some sanity check ourselves
@@ -54,11 +55,9 @@ assert smbpasswd.lmhash("check") == lmhash
 assert smbpasswd.nthash("check") == nthash
 assert smbpasswd.hash("check") == (lmhash, nthash)'
 
-%files -n python3-smbpasswd
+%files -n python3-smbpasswd -f %{pyproject_files}
 %license COPYING.txt
 %doc README.txt
-%{python3_sitearch}/smbpasswd.cpython-3*.so
-%{python3_sitearch}/*egg-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.2-20

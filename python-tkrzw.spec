@@ -65,6 +65,7 @@ This package contains API documentation of it.
 
 %install
 %pyproject_install
+%pyproject_save_files tkrzw
 
 
 %check
@@ -72,13 +73,10 @@ export PYTHONPATH=%{buildroot}%{python3_sitearch}
 %make_build check
 
 
-%files -n python3-%{module}
+%files -n python3-%{module} -f %{pyproject_files}
 %license COPYING
-%{python3_sitearch}/%{module}-%{version}.dist-info
 %if 0%{?epel} && 0%{?epel} < 9
-%{python3_sitearch}/tkrzw.cpython-%{python3_version_nodots}m-*-linux-gnu*.so
 %else
-%{python3_sitearch}/tkrzw.cpython-%{python3_version_nodots}-*-linux-gnu*.so
 %endif
 
 %files doc

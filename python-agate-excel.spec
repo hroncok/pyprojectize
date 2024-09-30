@@ -71,17 +71,16 @@ popd
 
 %install
 %pyproject_install
+%pyproject_save_files %{file_name}
 
 
 %check
 nosetests-%{python3_version} tests -v
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst AUTHORS.rst CHANGELOG.rst
 %license COPYING
-%{python3_sitelib}/agate_excel-%{version}.dist-info/
-%{python3_sitelib}/%{file_name}/
 
 
 %files -n python-%{pypi_name}-doc

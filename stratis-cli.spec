@@ -46,6 +46,7 @@ a2x -f manpage docs/stratis.txt
 
 %install
 %pyproject_install
+%pyproject_save_files stratis_cli
 # Do not install tab-completion files for RHEL
 %if !0%{?rhel}
 %{__install} -Dpm0644 -t %{buildroot}%{_datadir}/bash-completion/completions \
@@ -57,7 +58,7 @@ a2x -f manpage docs/stratis.txt
 %endif
 %{__install} -Dpm0644 -t %{buildroot}%{_mandir}/man8 docs/stratis.8
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
 %{_bindir}/stratis
@@ -73,8 +74,6 @@ a2x -f manpage docs/stratis.txt
 %dir %{_datadir}/fish/vendor_completions.d
 %{_datadir}/fish/vendor_completions.d/stratis.fish
 %endif
-%{python3_sitelib}/stratis_cli/
-%{python3_sitelib}/stratis_cli-*.dist-info/
 
 %changelog
 * Sat Jul 20 2024 Fedora Release Engineering <releng@fedoraproject.org> - 3.6.2-4

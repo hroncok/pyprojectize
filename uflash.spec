@@ -44,6 +44,7 @@ uflash that will flash Python scripts onto a BBC micro:bit.
 
 %install
 %pyproject_install
+%pyproject_save_files 'uflash*'
 
 %check
 tar -xf %{SOURCE1}
@@ -52,13 +53,11 @@ rm -rf %{name}-%{hash}
 
 py.test-3 -vv
 
-%files
+%files -f %{pyproject_files}
 %doc README.rst CHANGES.rst
 %license LICENSE
 %{_bindir}/uflash
 %{_bindir}/py2hex
-%{python3_sitelib}/uflash*
-%{python3_sitelib}/__pycache__/uflash*
 
 
 

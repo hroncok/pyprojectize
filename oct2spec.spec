@@ -33,11 +33,11 @@ oct2spec API.
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc README CHANGELOG
-%{python3_sitelib}/*
 %config(noreplace) %{_sysconfdir}/%{name}.conf
 %{_bindir}/%{name}
 %{_bindir}/oct2rpm

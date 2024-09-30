@@ -95,6 +95,7 @@ rm -f *requirements.txt
 
 %if %{with python3}
 %pyproject_install
+%pyproject_save_files %{srcname}
 %endif
 
 %check
@@ -119,11 +120,9 @@ py.test-3
 %endif
 
 %if %{with python3}
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.md CONTRIBUTING.rst HACKING.rst
-%{python3_sitelib}/%{srcname}-*.dist-info/
-%{python3_sitelib}/%{srcname}/
 %endif
 
 

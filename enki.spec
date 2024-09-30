@@ -120,6 +120,7 @@ rm -rv html/.buildinfo html/.doctrees
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
@@ -136,11 +137,9 @@ xvfb-run -s '-screen :0 1024x768x16' %{__python3} run_all.py
 %endif
 
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE.GPL2
 %doc README.md ChangeLog
-%{python3_sitelib}/%{name}*.dist-info
-%{python3_sitelib}/%{name}/
 %{_datadir}/icons/hicolor/*/apps/%{name}.*
 %{_datadir}/pixmaps/%{name}.png
 %{_datadir}/applications/%{name}.desktop

@@ -45,18 +45,16 @@ sed -r -i '1{/^#!/d}' %{srcname}.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname} c%{srcname}%{python3_ext_suffix}
 
 
 %check
 %pytest
 
 
-%files -n  python3-%{srcname}
+%files -n  python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc changelog.txt README.rst
-%pycached %{python3_sitearch}/%{srcname}.py
-%{python3_sitearch}/c%{srcname}%{python3_ext_suffix}
-%{python3_sitearch}/%{srcname}-%{version}.dist-info/
 
 
 %changelog

@@ -69,22 +69,13 @@ exit 1
 
 %install
 %pyproject_install
+%pyproject_save_files libvirt libvirt_lxc libvirt_qemu libvirtaio 'libvirtmod*'
 
 %check
 %pytest
 
-%files -n python3-libvirt
+%files -n python3-libvirt -f %{pyproject_files}
 %doc ChangeLog AUTHORS README COPYING examples/
-%{python3_sitearch}/libvirt.py*
-%{python3_sitearch}/libvirtaio.py*
-%{python3_sitearch}/libvirt_qemu.py*
-%{python3_sitearch}/libvirt_lxc.py*
-%{python3_sitearch}/__pycache__/libvirt.cpython-*.py*
-%{python3_sitearch}/__pycache__/libvirt_qemu.cpython-*.py*
-%{python3_sitearch}/__pycache__/libvirt_lxc.cpython-*.py*
-%{python3_sitearch}/__pycache__/libvirtaio.cpython-*.py*
-%{python3_sitearch}/libvirtmod*
-%{python3_sitearch}/*egg-info
 
 
 %changelog

@@ -39,15 +39,14 @@ rm -vr *.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files inflection
 
 %check
 %python3 -m pytest -v
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/inflection-*.dist-info/
-%{python3_sitelib}/inflection/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.5.1-14

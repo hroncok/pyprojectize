@@ -37,16 +37,15 @@ sed -i '1c#! %{__python3}' python3/pyinotify.py
 
 %install
 %pyproject_install
+%pyproject_save_files '%{oname}*'
 
 %check
 %py3_check_import pyinotify
 
-%files -n python%{python3_pkgversion}-inotify
+%files -n python%{python3_pkgversion}-inotify -f %{pyproject_files}
 %license COPYING
 %doc ACKS README.md
 %{_bindir}/%{oname}
-%{python3_sitelib}/%{oname}*
-%{python3_sitelib}/__pycache__/%{oname}*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.6-36

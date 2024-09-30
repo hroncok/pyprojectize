@@ -39,12 +39,11 @@ BuildRequires:  python%{python3_pkgversion}-devel
 
 %install
 %pyproject_install
+%pyproject_save_files pyzolib
 
 
-%files -n python%{python3_pkgversion}-pyzolib
+%files -n python%{python3_pkgversion}-pyzolib -f %{pyproject_files}
 %doc
-%{python3_sitelib}/pyzolib/
-%{python3_sitelib}/pyzolib-%{version}.dist-info/
 
 
 %changelog

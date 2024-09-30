@@ -37,12 +37,11 @@ rm -vr *.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files taggit_serializer
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.md HISTORY.rst
-%{python3_sitelib}/django_taggit_serializer-*.dist-info/
-%{python3_sitelib}/taggit_serializer/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.1.7-18

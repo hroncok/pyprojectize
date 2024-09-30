@@ -62,16 +62,16 @@ as well as in-place editing.
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
  
 %check
 %{__python3} setup.py test
 
 
-%files -n python%{python3_pkgversion}-collada
+%files -n python%{python3_pkgversion}-collada -f %{pyproject_files}
 %license COPYING
 %doc AUTHORS.md CHANGELOG.rst README.markdown
-%{python3_sitelib}/*
 
 
 %changelog

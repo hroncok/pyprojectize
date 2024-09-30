@@ -60,6 +60,7 @@ rm -f ./rencode/rencode.c
 
 %install
 %pyproject_install
+%pyproject_save_files rencode
 
 
 %check
@@ -69,9 +70,7 @@ PYTHONPATH=$RPM_BUILD_ROOT%{python3_sitearch} %{__python3} timetest.py
 popd
 
 
-%files -n python%{python3_pkgversion}-rencode
-%{python3_sitearch}/rencode
-%{python3_sitearch}/rencode*.dist-info
+%files -n python%{python3_pkgversion}-rencode -f %{pyproject_files}
 %doc README.md
 %license COPYING
 

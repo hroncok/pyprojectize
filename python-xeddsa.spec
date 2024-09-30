@@ -54,18 +54,17 @@ and X448 elliptic curve Diffie-Hellman functions.
 
 %install
 %pyproject_install
+%pyproject_save_files xeddsa
 # Manual installation:
 mkdir -p %{buildroot}%{python3_sitearch}/xeddsa/
 cp -a xeddsa/* %{buildroot}%{python3_sitearch}/xeddsa/
 
 
 
-%files -n python3-xeddsa
+%files -n python3-xeddsa -f %{pyproject_files}
 %license LICENSE
 %doc README.md
 # For arch-specific packages: sitearch
-%{python3_sitearch}/xeddsa/
-%{python3_sitearch}/XEdDSA-%{version}.dist-info/
 
 
 

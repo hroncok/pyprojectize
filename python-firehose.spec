@@ -59,6 +59,7 @@ sed -i 's/distutils\.core/setuptools/' setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files firehose
 chmod +x %{buildroot}/%{python3_sitelib}/firehose/parsers/cppcheck.py
 chmod +x %{buildroot}/%{python3_sitelib}/firehose/parsers/gcc.py
 
@@ -67,10 +68,8 @@ chmod +x %{buildroot}/%{python3_sitelib}/firehose/parsers/gcc.py
 %{__python3} -m unittest discover -v
 
 
-%files -n python3-firehose
+%files -n python3-firehose -f %{pyproject_files}
 %doc README.rst lgpl-2.1.txt examples firehose.rng
-%{python3_sitelib}/firehose/
-%{python3_sitelib}/firehose-%{version}.dist-info
 
 
 %changelog

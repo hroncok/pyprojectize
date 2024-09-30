@@ -40,11 +40,11 @@ or through the C interface liberasurecode.
 
 %install
 %pyproject_install
+%pyproject_save_files 'pyeclib*'
  
-%files -n python3-pyeclib
+%files -n python3-pyeclib -f %{pyproject_files}
 %license License.txt
 %doc README.rst
-%{python3_sitearch}/pyeclib*
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.6.0-17

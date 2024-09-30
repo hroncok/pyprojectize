@@ -76,6 +76,7 @@ rm -f %{buildroot}%{_libdir}/*.a
 %find_lang %{name}
 pushd bindings/python/
 %pyproject_install
+%pyproject_save_files 'urjtag*'
 
 %ldconfig_scriptlets
  
@@ -98,8 +99,7 @@ pushd bindings/python/
 %{_libdir}/liburjtag.so
 %{_libdir}/pkgconfig/urjtag.pc
 
-%files -n %{py3_prefix}-%{name}
-%{python3_sitearch}/urjtag*
+%files -n %{py3_prefix}-%{name} -f %{pyproject_files}
 %doc doc/urjtag-python.txt 
 %doc bindings/python/t_urjtag_chain.py
 %doc bindings/python/t_srst.py

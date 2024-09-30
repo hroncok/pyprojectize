@@ -31,13 +31,12 @@ sed -i -e '/^#!\//, 1d' webtech/*.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
-%files
+%files -f %{pyproject_files}
 %doc README.md
 %license LICENSE
 %{_bindir}/%{name}
-%{python3_sitelib}/%{name}-*.dist-info/
-%{python3_sitelib}/%{name}/
 
 %changelog
 * Thu Jul 25 2024 Miroslav Suchý <msuchy@redhat.com> - 1.2.11-11

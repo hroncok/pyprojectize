@@ -37,12 +37,11 @@ done
 
 %install
 %pyproject_install
+%pyproject_save_files pdftools
 
-%files
+%files -f %{pyproject_files}
 %doc README.txt
 %{_bindir}/%{name}
-%{python3_sitelib}/pdftools/
-%{python3_sitelib}/pdftools.*
 
 %changelog
 * Thu Jul 25 2024 Miroslav Suchý <msuchy@redhat.com> - 0.7.post1-23

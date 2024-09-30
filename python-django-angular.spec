@@ -109,6 +109,7 @@ popd
 
 %install
 %pyproject_install
+%pyproject_save_files djng
 
 # Documentation
 %{__mkdir} -p %{buildroot}%{?_py3docdir}
@@ -123,15 +124,13 @@ popd
 # noop
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc %dir %{?_py3docdir}
 %if 0%{fedora} || 0%{?rhel} >= 7
 %license LICENSE.txt
 %else
 %doc %{?_py3docdir}/LICENSE.txt
 %endif
-%{python3_sitelib}/djng
-%{python3_sitelib}/django_angular-%{version}.dist-info
 
 %files -n python3-%{pypi_name}-doc
 %if 0%{fedora} || 0%{?rhel} >= 7

@@ -52,16 +52,15 @@ rm -rf %{srcname}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname_}
 
 
 %check
 %{__python3} setup.py test
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
-%{python3_sitelib}/%{srcname_}
-%{python3_sitelib}/%{Srcname_}-%{version}.dist-info
 
 
 %changelog

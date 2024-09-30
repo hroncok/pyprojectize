@@ -49,12 +49,11 @@ sed -i '1,1s@^#!.*$@@' inema/frank.py inema/inema.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %{_bindir}/frank
 %doc README.rst
-%{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-*.dist-info/
 
 
 %changelog

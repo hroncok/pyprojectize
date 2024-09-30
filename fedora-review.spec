@@ -121,6 +121,7 @@ Tests are packaged separately due to space concerns.
 
 %install
 %pyproject_install
+%pyproject_save_files FedoraReview
 pkg_dir="%{buildroot}/%{python3_sitelib}/FedoraReview"
 ln -s %{_datadir}/%{name}/scripts $pkg_dir/scripts
 ln -s %{_datadir}/%{name}/plugins $pkg_dir/plugins
@@ -143,11 +144,9 @@ mock --quiet -r fedora-38-x86_64 --uniqueext=hugo --init
 %endif
 
 
-%files
+%files -f %{pyproject_files}
 %doc README
 %license COPYING AUTHORS
-%{python3_sitelib}/FedoraReview
-%{python3_sitelib}/fedora_review-%{version}.dist-info
 %{_bindir}/fedora-review
 %{_bindir}/fedora-create-review
 %{_bindir}/koji-download-scratch

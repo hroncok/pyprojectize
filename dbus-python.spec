@@ -66,6 +66,7 @@ export DBUS_PYTHON_USE_AUTOTOOLS=1
 %install
 export DBUS_PYTHON_USE_AUTOTOOLS=1
 %pyproject_install
+%pyproject_save_files '*' dbus
 %make_install
 
 # unpackaged files
@@ -75,12 +76,9 @@ rm -rfv $RPM_BUILD_ROOT%{_datadir}/doc/dbus-python/
 %check
 make check -k || (cat test-suite.log && false)
 
-%files -n python%{python3_pkgversion}-dbus
+%files -n python%{python3_pkgversion}-dbus -f %{pyproject_files}
 %doc NEWS
 %license COPYING
-%{python3_sitearch}/*.so
-%{python3_sitearch}/dbus/
-%{python3_sitearch}/dbus_python*egg-info
 
 %files devel
 %doc README ChangeLog doc/API_CHANGES.txt doc/tutorial.txt

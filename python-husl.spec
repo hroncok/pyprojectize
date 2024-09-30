@@ -42,12 +42,11 @@ cp -p %{SOURCE1} .
 
 %install
 %pyproject_install
+%pyproject_save_files 'husl*'
 
-%files -n python3-%{upname}
+%files -n python3-%{upname} -f %{pyproject_files}
 %doc README.md
 %license LICENSE.txt
-%{python3_sitelib}/husl*
-%{python3_sitelib}/__pycache__/*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 4.0.3-31

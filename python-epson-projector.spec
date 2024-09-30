@@ -35,16 +35,15 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files epson_projector
 
 # Not all tests are not ported to Python 3.8 yet
 #%%check
 #%%pytest -v test_*.py
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/epson_projector/
-%{python3_sitelib}/epson_projector-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.2.3-14

@@ -57,19 +57,17 @@ This package provides Python 3 build of %{srcname}.
 
 %install
 %pyproject_install
+%pyproject_save_files spf
 mv %{buildroot}%{_bindir}/type99.py %{buildroot}%{_bindir}/type99
 mv %{buildroot}%{_bindir}/spfquery.py %{buildroot}%{_bindir}/spfquery
 rm -f %{buildroot}%{_bindir}/*.py{o,c}
 # Remove shebang from python libraries
 sed -i -e '/^#!\//, 1d' %{buildroot}%{python3_sitelib}/*.py
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc CHANGELOG PKG-INFO README.md
-%{python3_sitelib}/__pycache__
 %{_bindir}/type99
 %{_bindir}/spfquery
-%{python3_sitelib}/spf.py*
-%{python3_sitelib}/pyspf-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 2.0.14-21

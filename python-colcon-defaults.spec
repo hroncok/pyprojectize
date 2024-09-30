@@ -46,6 +46,7 @@ line arguments from a configuration file.
 
 %install
 %pyproject_install
+%pyproject_save_files colcon_defaults
 
 
 %check
@@ -55,11 +56,9 @@ line arguments from a configuration file.
     test
 
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/colcon_defaults/
-%{python3_sitelib}/colcon_defaults-%{version}.dist-info/
 
 
 %changelog

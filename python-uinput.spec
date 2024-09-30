@@ -59,15 +59,13 @@ find . -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python3}|'
 
 %install
 %pyproject_install
+%pyproject_save_files _libsuinput uinput
 
 chmod a-x examples/*
 
 
-%files -n python3-uinput
+%files -n python3-uinput -f %{pyproject_files}
 %doc COPYING NEWS README examples
-%{python3_sitearch}/python_uinput-%{version}.dist-info
-%{python3_sitearch}/_libsuinput.*.so
-%{python3_sitearch}/uinput
 
 
 %changelog

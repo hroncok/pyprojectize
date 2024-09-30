@@ -36,12 +36,11 @@ sed -i -e 's/pycryptodome/pycryptodomex/g' setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files adb_shell
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/adb_shell/
-%{python3_sitelib}/adb_shell-%{version}.dist-info/
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 0.4.2-12

@@ -53,6 +53,7 @@ chmod 0644 examples/*
 
 %install
 %pyproject_install
+%pyproject_save_files RPi
 rm -rf %{buildroot}%{python3_sitelib}/tests
 rm -rf %{buildroot}%{python3_sitelib}/examples
 
@@ -62,11 +63,9 @@ rm -rf %{buildroot}%{python3_sitelib}/examples
 # The tests rely on the presence of the actual physical GPIO pins on the system for now and though we may develop emulation functionality to run the tests on any system in the future we think the software is ready to be packaged as-is and we will just update it when the better tests are done
 
 
-%files -n python3-rpi-gpio2
+%files -n python3-rpi-gpio2 -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.md
-%{python3_sitelib}/RPi/
-%{python3_sitelib}/RPi.GPIO2-%{version}.dist-info
 
 %files doc
 %license LICENSE.txt

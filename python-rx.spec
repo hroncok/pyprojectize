@@ -62,6 +62,7 @@ rm -rf %{eggname}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{libname}
 
 
 %if %{with tests}
@@ -70,11 +71,9 @@ rm -rf %{eggname}.egg-info
 %endif
 
 
-%files -n python3-%{pkgname}
+%files -n python3-%{pkgname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst authors.txt changes.md
-%{python3_sitelib}/%{libname}
-%{python3_sitelib}/%{eggname}-%{version}.dist-info
 
 
 %changelog

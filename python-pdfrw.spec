@@ -38,12 +38,12 @@ of existing PDFs in new PDFs created with reportlab.
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %{!?_licensedir:%global license %%doc}
 %license LICENSE.txt
 %doc README.rst examples
-%{python3_sitelib}/*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.4-25

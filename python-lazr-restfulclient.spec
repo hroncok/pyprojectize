@@ -42,17 +42,16 @@ BuildRequires:  python3dist(wadllib) >= 1.1.4
 
 %install
 %pyproject_install
+%pyproject_save_files lazr
 
 #check
 #lazr.restful test dependency not packaged
 #{__python3} setup.py test
 
-%files -n python3-lazr-restfulclient
+%files -n python3-lazr-restfulclient -f %{pyproject_files}
 %license COPYING.txt
 %doc README.rst
-%{python3_sitelib}/lazr
 %{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}-*.pth
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 %autochangelog

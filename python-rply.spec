@@ -41,15 +41,14 @@ sed -i "s/py\.test/pytest/" tests/test_*
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 
 %check
 pytest-%{python3_version} -v
 
-%files -n python3-%{modname}
+%files -n python3-%{modname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{modname}-*.dist-info/
-%{python3_sitelib}/%{modname}/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.7.8-13

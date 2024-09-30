@@ -33,18 +33,17 @@ battery saver mode, data saver mode, doze mode, permission grant/revocation.
 
 %install
 %pyproject_install
+%pyproject_save_files adbe
 
 %if %{with tests}
 %check
 %pytest -v tests/adbe_tests.py
 %endif
 
-%files
+%files -f %{pyproject_files}
 %doc README.md
 %license LICENSE
 %{_bindir}/adbe
-%{python3_sitelib}/adbe/
-%{python3_sitelib}/adb_enhanced*.dist-info/
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 2.5.14-11

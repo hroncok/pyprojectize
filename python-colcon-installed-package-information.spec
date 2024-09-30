@@ -53,17 +53,16 @@ extensions provided by colcon_core.
 
 %install
 %pyproject_install
+%pyproject_save_files colcon_installed_package_information
 
 
 %check
 %pytest -m 'not linter' test
 
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/colcon_installed_package_information/
-%{python3_sitelib}/colcon_installed_package_information-%{version}.dist-info/
 
 
 %changelog

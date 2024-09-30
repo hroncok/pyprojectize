@@ -37,18 +37,16 @@ Python 3 version.
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %check
 pushd tests
   PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} -v
 popd
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{srcname}-*.dist-info/
-%{python3_sitelib}/%{srcname}.py
-%{python3_sitelib}/__pycache__/%{srcname}.*
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.0.1-12

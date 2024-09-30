@@ -44,13 +44,12 @@ Provides:       python%{python3_pkgversion}-%{pypi_name} = %{version}-%{release}
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 
-%files -n python%{python3_pkgversion}-%{pkgname}
+%files -n python%{python3_pkgversion}-%{pkgname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
-%{python3_sitelib}/%{pypi_name}/
 
 
 %changelog

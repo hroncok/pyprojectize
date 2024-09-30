@@ -42,15 +42,14 @@ Requires:           python3-pygments
 
 %install
 %pyproject_install
+%pyproject_save_files pygments_markdown_lexer
 
 # Well this is weird...
 rm -rf %{buildroot}/usr/EGG-INFO
 
-%files -n python3-%{modname}
+%files -n python3-%{modname} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/pygments_markdown_lexer/
-%{python3_sitelib}/pygments_markdown_lexer-%{version}-*
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.1.0.dev39-33

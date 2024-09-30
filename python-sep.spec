@@ -49,12 +49,11 @@ functions and classes. These operate directly on in-memory numpy arrays
 
 %install
 %pyproject_install
+%pyproject_save_files 'sep*'
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc AUTHORS.md README.md CHANGES.md
 %license licenses/MIT_LICENSE.txt licenses/LGPL_LICENSE.txt licenses/BSD_LICENSE.txt
-%{python3_sitearch}/sep-*.dist-info
-%{python3_sitearch}/sep*.so
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.2.1-12

@@ -29,17 +29,16 @@ unmodified and rootless.
  
 %install
 %pyproject_install
+%pyproject_save_files 'podman_compose*'
 
 #Drop spurious shebang
 sed -i /python3/d %{buildroot}%{python3_sitelib}/podman_compose.py
 
 
-%files
+%files -f %{pyproject_files}
 %doc README.md CONTRIBUTING.md docs/ examples
 %license LICENSE
 %{_bindir}/podman-compose
-%{python3_sitelib}/__pycache__/podman_compose*pyc
-%{python3_sitelib}/podman_compose*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.2.0-2

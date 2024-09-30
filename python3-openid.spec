@@ -44,6 +44,7 @@ sed -i -r '1 s|^#!/usr/bin/env python$|#!%{__python3}|g'
 
 %install
 %pyproject_install
+%pyproject_save_files openid
 
 # remove .po files
 find %{buildroot} -name "*.po" | xargs rm -f
@@ -53,37 +54,8 @@ find %{buildroot} -name "*.po" | xargs rm -f
 %{python3} -m unittest openid.test.test_suite
 
 
-%files
+%files -f %{pyproject_files}
 %doc LICENSE NEWS.md
-%dir %{python3_sitelib}/openid
-%{python3_sitelib}/openid/*.py
-%dir %{python3_sitelib}/openid/__pycache__
-%{python3_sitelib}/openid/__pycache__/*.pyc
-%dir %{python3_sitelib}/openid/consumer
-%{python3_sitelib}/openid/consumer/*.py
-%dir %{python3_sitelib}/openid/consumer/__pycache__
-%{python3_sitelib}/openid/consumer/__pycache__/*.pyc
-%dir %{python3_sitelib}/openid/extensions
-%{python3_sitelib}/openid/extensions/*.py
-%dir %{python3_sitelib}/openid/extensions/__pycache__
-%{python3_sitelib}/openid/extensions/__pycache__/*.pyc
-%dir %{python3_sitelib}/openid/extensions/draft
-%{python3_sitelib}/openid/extensions/draft/*.py
-%dir %{python3_sitelib}/openid/extensions/draft/__pycache__
-%{python3_sitelib}/openid/extensions/draft/__pycache__/*.pyc
-%dir %{python3_sitelib}/openid/server
-%{python3_sitelib}/openid/server/*.py
-%dir %{python3_sitelib}/openid/server/__pycache__
-%{python3_sitelib}/openid/server/__pycache__/*.pyc
-%dir %{python3_sitelib}/openid/store
-%{python3_sitelib}/openid/store/*.py
-%dir %{python3_sitelib}/openid/store/__pycache__
-%{python3_sitelib}/openid/store/__pycache__/*.pyc
-%dir %{python3_sitelib}/openid/yadis
-%{python3_sitelib}/openid/yadis/*.py
-%dir %{python3_sitelib}/openid/yadis/__pycache__
-%{python3_sitelib}/openid/yadis/__pycache__/*.pyc
-%{python3_sitelib}/python3_openid-%{version}.dist-info/
 
 
 %changelog

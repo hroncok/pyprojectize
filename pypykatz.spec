@@ -31,13 +31,12 @@ sed -i "s|\r||g" README.md
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
-%files
+%files -f %{pyproject_files}
 %doc README.md
 %license LICENSE
 %{_bindir}/*
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.3.15-14

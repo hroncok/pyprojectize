@@ -39,12 +39,11 @@ rm -vr *.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files js_asset
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/django_js_asset-*.dist-info/
-%{python3_sitelib}/js_asset/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.2.2-18

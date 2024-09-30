@@ -66,6 +66,7 @@ sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/angular_gettext'|" xstatic/pkg/an
 
 %install
 %pyproject_install
+%pyproject_save_files xstatic
 
 mkdir -p %{buildroot}%{_jsdir}/angular_gettext
 mv %{buildroot}%{python3_sitelib}/xstatic/pkg/angular_gettext/data/angular-gettext.js %{buildroot}%{_jsdir}/angular_gettext
@@ -73,10 +74,8 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/angular_gettext/data/
 # fix execute flags for js
 chmod 644 %{buildroot}%{_jsdir}/angular_gettext/angular-gettext.js
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
-%{python3_sitelib}/xstatic/pkg/angular_gettext
-%{python3_sitelib}/XStatic_Angular_Gettext-%{version}.dist-info
 %{python3_sitelib}/XStatic_Angular_Gettext-%{version}-py%{python3_version}-nspkg.pth
 
 %files -n xstatic-angular-gettext-common

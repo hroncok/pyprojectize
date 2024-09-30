@@ -39,6 +39,7 @@ using the Gtk3 toolkit. Some of the features are:
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
 install -p -Dm644 config/vimivrc $RPM_BUILD_ROOT/%{_sysconfdir}/%{name}/vimivrc
 install -p -Dm644 config/keys.conf $RPM_BUILD_ROOT/%{_sysconfdir}/%{name}/keys.conf
@@ -59,9 +60,7 @@ done
 
 install -p -Dm644 icons/%{name}.svg $RPM_BUILD_ROOT/%{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
 
-%files
-%{python3_sitearch}/%{name}-%{version}.dist-info
-%{python3_sitearch}/%{name}/
+%files -f %{pyproject_files}
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
 %{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
 %{_datadir}/applications/%{name}.desktop

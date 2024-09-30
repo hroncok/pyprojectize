@@ -47,11 +47,11 @@ sed -i -e '1d' %{module}/interact.py
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
-%files -n python3-%{module}
+%files -n python3-%{module} -f %{pyproject_files}
 %license COPYING LICENSE-gpl-3.0.txt
 %doc README sample-scripts
-%{python3_sitelib}/*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1-0.49.20110209

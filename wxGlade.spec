@@ -32,6 +32,7 @@ and <= 2.7.
 
 %install
 %pyproject_install
+%pyproject_save_files wxglade
 
 # Let's handle licenses by ourselves.
 rm -frv %{buildroot}%{_docdir}/wxglade/LICENSE.txt
@@ -41,15 +42,13 @@ desktop-file-install --dir=%{buildroot}%{_datadir}/applications %{S:1}
 install -pm 755 -d %{buildroot}%{_datadir}/icons/hicolor/32x32/apps
 install -pm 644 %{S:2} %{buildroot}%{_datadir}/icons/hicolor/32x32/apps
 
-%files
+%files -f %{pyproject_files}
 %{_docdir}/wxglade/
 %license LICENSE.txt
 %{_bindir}/wxglade*
 %{_datadir}/icons/hicolor/*x*/apps/*
 %{_datadir}/applications/*
 %{_datadir}/wxglade
-%{python3_sitelib}/wxglade/
-%{python3_sitelib}/%{name}-%{version}.dist-info
 
 %changelog
 * Sat Jul 20 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.5-7

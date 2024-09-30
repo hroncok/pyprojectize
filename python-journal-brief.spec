@@ -58,6 +58,7 @@ journal entries.
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 
 %if 0%{?with_check}
@@ -70,10 +71,9 @@ journal entries.
 %{_bindir}/%{srcname}
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/*
 
 
 %changelog

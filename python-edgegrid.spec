@@ -51,15 +51,13 @@ find akamai -name '*.py' -exec sed -r -e 's|^#!/usr/bin/env.*|#|' -i '{}' ';'
 
 %install
 %pyproject_install
+%pyproject_save_files akamai
 
-%files -n python3-edgegrid
+%files -n python3-edgegrid -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
 
-%{python3_sitelib}/edgegrid_python*.dist-info/
 %{python3_sitelib}/edgegrid_python*.pth
-%dir %{python3_sitelib}/akamai
-%{python3_sitelib}/akamai/edgegrid
 
 
 %changelog

@@ -34,12 +34,11 @@ Summary:        %{summary}
 
 %install
 %pyproject_install
+%pyproject_save_files sphinx_epytext
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/sphinx_epytext/
-%{python3_sitelib}/sphinx_epytext-%{version}.dist-info/
 
 %changelog
 %autochangelog

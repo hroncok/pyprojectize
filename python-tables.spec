@@ -87,6 +87,7 @@ chmod -x examples/check_examples.sh
 sed -i 's|bin/env |bin/|' utils/*
 
 %pyproject_install
+%pyproject_save_files tables
 
 %check
 %if %{with tests}
@@ -100,14 +101,12 @@ cd /
 PYTHONPATH=%{buildroot}%{python3_sitearch} %{python3} -m tables.tests.test_all -v || $skip
 %endif
 
-%files -n python%{python3_pkgversion}-tables
+%files -n python%{python3_pkgversion}-tables -f %{pyproject_files}
 %license LICENSE.txt LICENSES
 %{_bindir}/ptdump
 %{_bindir}/ptrepack
 %{_bindir}/pt2to3
 %{_bindir}/pttree
-%{python3_sitearch}/tables/
-%{python3_sitearch}/tables-%{version}*.dist-info/
 
 %files doc
 %license LICENSE.txt LICENSES

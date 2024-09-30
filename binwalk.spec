@@ -41,16 +41,15 @@ it is compatible with magic signatures created for the Unix file utility.
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} setup.py test
 
-%files
+%files -f %{pyproject_files}
 %doc API.md INSTALL.md README.md
 %license LICENSE
 %{_bindir}/%{name}
-%{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}-%{version}*.dist-info
 
 %changelog
 * Wed Jul 31 2024 Scott Talbert <swt@techie.net> - 2.3.4-9

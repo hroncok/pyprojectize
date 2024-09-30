@@ -55,12 +55,12 @@ PYTHONPATH=./ sphinx-build-3 -a -b html ./docs/ ./docs/html/
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 cp %{buildroot}%{_bindir}/coveralls %{buildroot}%{_bindir}/coveralls-py3
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE.txt
 %doc CHANGELOG.md README.rst
-%{python3_sitelib}/*
 %{_bindir}/coveralls
 %{_bindir}/coveralls-py3
 

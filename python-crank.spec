@@ -43,6 +43,7 @@ rm -rf %{modname}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 
 
 # The current upstream tarball doesn't contain the tests
@@ -50,9 +51,7 @@ rm -rf %{modname}.egg-info
 #%{__python3} setup.py test
 
 
-%files -n python3-%{modname}
-%{python3_sitelib}/%{modname}/
-%{python3_sitelib}/%{modname}-%{version}*
+%files -n python3-%{modname} -f %{pyproject_files}
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.8.1-27

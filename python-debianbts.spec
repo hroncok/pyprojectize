@@ -53,13 +53,12 @@ cp -p %{SOURCE1} .
 
 %install
 %pyproject_install
+%pyproject_save_files debianbts
 
-%files -n python3-%{rpmname}
+%files -n python3-%{rpmname} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
 %{_bindir}/debianbts
-%{python3_sitelib}/debianbts
-%{python3_sitelib}/python_debianbts-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.8.2-17

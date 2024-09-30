@@ -98,6 +98,7 @@ rm -r mitogen/compat ansible_mitogen/compat
 %install
 %{?with_python2:%py2_install}
 %{?with_python3:%pyproject_install}
+%pyproject_save_files %{libname} ansible_%{libname}
 
 
 %check
@@ -117,12 +118,9 @@ rm -r mitogen/compat ansible_mitogen/compat
 
 
 %if %{with python3}
-%files -n python%{python3_pkgversion}-%{pkgname}
+%files -n python%{python3_pkgversion}-%{pkgname} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{libname}
-%{python3_sitelib}/ansible_%{libname}
-%{python3_sitelib}/%{eggname}-%{version}.dist-info
 %endif
 
 

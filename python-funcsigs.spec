@@ -68,6 +68,7 @@ rm -rf html/.{doctrees,buildinfo}
 # Must do the subpackages' install first because the scripts in /usr/bin are
 # overwritten with every setup.py install.
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 
 %check
@@ -75,11 +76,9 @@ rm -rf html/.{doctrees,buildinfo}
 %{__python3} -m unittest tests.test_funcsigs
 %{__python3} -m unittest tests.test_inspect
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %if %{with doc}
 %files -n python-%{pypi_name}-doc

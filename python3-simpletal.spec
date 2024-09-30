@@ -31,6 +31,7 @@ METAL specifications used in Zope to power HTML and XML templates.
 
 %install
 %pyproject_install
+%pyproject_save_files %{pkgname}
 
 # remove x-bits from example files
 find examples -name '*.py' -exec chmod -x {} \;
@@ -40,13 +41,11 @@ find examples -name '*.py' -exec chmod -x {} \;
 %{__python3} runtests.py || :
 
 
-%files
+%files -f %{pyproject_files}
 %doc Changes.txt README.txt
 %doc documentation/html
 %doc examples
 %license LICENSE.txt
-%{python3_sitelib}/%{pkgname}
-%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 
 %changelog

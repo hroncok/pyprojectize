@@ -73,6 +73,7 @@ sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/roboto_fontface'|" xstatic/pkg/ro
 
 %install
 %pyproject_install
+%pyproject_save_files xstatic
 
 # Move fonts to the right directory
 mkdir -p %{buildroot}/%{_datadir}/fonts/roboto_fontface
@@ -101,10 +102,8 @@ popd
 %doc README.txt
 %{_datadir}/fonts/roboto_fontface
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
-%{python3_sitelib}/xstatic/pkg/roboto_fontface
-%{python3_sitelib}/XStatic_roboto_fontface-%{version}.dist-info
 %{python3_sitelib}/XStatic_roboto_fontface-%{version}-py%{python3_version}-nspkg.pth
 
 %changelog

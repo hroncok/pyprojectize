@@ -75,6 +75,7 @@ PYTHONPATH=: ./man/generate-manpages.sh
 
 %install
 %pyproject_install
+%pyproject_save_files modulemd_tools
 
 install -d %{buildroot}%{_mandir}/man1
 cp man/*.1 %{buildroot}%{_mandir}/man1/
@@ -84,12 +85,10 @@ cp man/*.1 %{buildroot}%{_mandir}/man1/
 %{python3} -m pytest -vv
 
 
-%files
+%files -f %{pyproject_files}
 %doc README.md
 %license LICENSE
 
-%{python3_sitelib}/modulemd_tools
-%{python3_sitelib}/modulemd_tools-*.dist-info/
 
 %{_bindir}/repo2module
 %{_bindir}/dir2module

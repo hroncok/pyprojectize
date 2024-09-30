@@ -47,15 +47,14 @@ added to a Box or BoxList object are converted automatically.
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %check
 %pytest -v test -k "not test_msgpack"
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/python_box-%{version}.dist-info/
 
 %changelog
 * Tue Sep 17 2024 Fabian Affolter <mail@fabian-affolter.ch> - 7.2.0-1

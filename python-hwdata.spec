@@ -45,16 +45,16 @@ popd
 %install
 pushd %{py3dir}
 %pyproject_install
+%pyproject_save_files '*'
 popd
 
 %check
 pylint-3 hwdata.py example.py || :
 
-%files -n python3-hwdata
+%files -n python3-hwdata -f %{pyproject_files}
 %license LICENSE
 %doc README.md example.py
 %doc html
-%{python3_sitelib}/*
 
 %changelog
 * Fri Nov 10 2023 Miroslav Suchý <msuchy@redhat.com> 2.4.1-1

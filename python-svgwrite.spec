@@ -38,6 +38,7 @@ Python 3 library to create SVG drawings.
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 # Remove shebang
 for lib in %{buildroot}%{python3_sitelib}/%{pypi_name}/{,*/}/*.py; do
  sed '1{\@^#!/usr/bin/env python@d}' $lib > $lib.new &&
@@ -48,11 +49,9 @@ done
 %check
 %{__python3} -m unittest discover -s tests
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE.TXT
 %doc NEWS.rst README.rst
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
-%{python3_sitelib}/%{pypi_name}/
 
 
 %changelog

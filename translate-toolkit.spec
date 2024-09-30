@@ -95,6 +95,7 @@ make html -C docs/
 %install
 LANG=C.utf8
 %pyproject_install
+%pyproject_save_files 'translate*'
 
 # create manpages
 mkdir -p %{buildroot}%{_mandir}/man1
@@ -113,11 +114,10 @@ for prog in %{buildroot}%{_bindir}/*; do
     esac
 done
 
-%files
+%files -f %{pyproject_files}
 %doc docs/license.rst
 %{_bindir}/*
 %{_mandir}/man1/*
-%{python3_sitelib}/translate*
 
 %files docs
 %doc docs/_build/html

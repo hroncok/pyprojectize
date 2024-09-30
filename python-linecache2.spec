@@ -53,6 +53,7 @@ sed -i 's/import unittest2 as unittest/import unittest/' tests/*.py
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 
 %if %{with tests}
@@ -63,9 +64,8 @@ mv %{pkgname}/tests .
 %endif
 
 
-%files -n python3-%{pkgname}
+%files -n python3-%{pkgname} -f %{pyproject_files}
 %doc AUTHORS ChangeLog README.rst
-%{python3_sitelib}/*
 
 
 %changelog

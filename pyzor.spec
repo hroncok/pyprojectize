@@ -44,6 +44,7 @@ is highly recommended.
 
 %install
 %pyproject_install
+%pyproject_save_files '%{name}*'
 install -d -m 755 %{buildroot}%{_sysconfdir}/%{name}
 
 
@@ -54,14 +55,13 @@ install -d -m 755 %{buildroot}%{_sysconfdir}/%{name}
 %endif
 
 
-%files
+%files -f %{pyproject_files}
 %license COPYING
 %doc config/ README.rst THANKS
 %dir %{_sysconfdir}/%{name}/
 %{_bindir}/%{name}
 %{_bindir}/%{name}-migrate
 %{_bindir}/%{name}d
-%{python3_sitelib}/%{name}*
 
 
 %changelog

@@ -66,6 +66,7 @@ sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/spin'|" xstatic/pkg/spin/__init__
 
 %install
 %pyproject_install
+%pyproject_save_files xstatic
 
 mkdir -p %{buildroot}%{_jsdir}/spin
 mv %{buildroot}%{python3_sitelib}/xstatic/pkg/spin/data/*.js %{buildroot}%{_jsdir}/spin
@@ -73,10 +74,8 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/spin/data/
 # fix execute flags for js
 chmod 644 %{buildroot}%{_jsdir}/spin/*.js
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
-%{python3_sitelib}/xstatic/pkg/spin
-%{python3_sitelib}/XStatic_Spin-%{version}.dist-info
 %{python3_sitelib}/XStatic_Spin-%{version}-py%{python3_version}-nspkg.pth
 
 %files -n xstatic-spin-common

@@ -94,6 +94,7 @@ version="%version" %py2_build
 %install
 %if %{with python3}
 version=%version %pyproject_install
+%pyproject_save_files '*'
 %endif
 
 %if %{with python2}
@@ -106,9 +107,8 @@ version=%version %py2_install
 
 
 %if %{with python3}
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
-%{python3_sitelib}/*
 %endif
 
 

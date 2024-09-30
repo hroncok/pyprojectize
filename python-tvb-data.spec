@@ -66,13 +66,12 @@ sed -i 's/1.5.10/1.5.9/' setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{module_name}
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{module_name}-%{version}.dist-info
-%{python3_sitelib}/%{module_name}
 
 %changelog
 * Thu Jul 25 2024 Miroslav Suchý <msuchy@redhat.com> - 1.5.9-18

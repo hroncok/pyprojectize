@@ -62,15 +62,14 @@ rm -fr *egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %check
 %{__python3} setup.py test
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/%{srcname}-%{version}.dist-info
-%{python3_sitelib}/%{srcname}/
 %{_bindir}/%{srcname}
 
 %changelog

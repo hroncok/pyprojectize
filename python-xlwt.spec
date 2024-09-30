@@ -60,15 +60,14 @@ PYTHONPATH=.. %{__python3} -m unittest discover
 
 %install
 %pyproject_install
+%pyproject_save_files xlwt
 mkdir tmp_docs
 cp -ar examples docs tmp_docs
 
 
-%files -n python3-xlwt
+%files -n python3-xlwt -f %{pyproject_files}
 %license docs/licenses.rst
 %doc README.rst tmp_docs/*
-%{python3_sitelib}/xlwt
-%{python3_sitelib}/*.dist-info
 
 
 %changelog

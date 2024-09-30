@@ -49,17 +49,16 @@ sed -i "/>=0.3.2,<0.4/d" setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files homeassistant_cli
 
 %check
 PYTHONPATH=%{buildroot}/%{python3_sitelib}/ pytest-%{python3_version} -v tests \
   -k "not test_commands_loads[template]"
 
-%files
+%files -f %{pyproject_files}
 %doc README.rst
 %license LICENSE.md
 %{_bindir}/hass-cli
-%{python3_sitelib}/homeassistant_cli/
-%{python3_sitelib}/homeassistant_cli*.dist-info/
 
 %changelog
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.6-11

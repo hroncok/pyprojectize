@@ -72,17 +72,16 @@ Summary:    %{summary}
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 
 %check
 %{python3} -m pytest -v
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst CHANGES.md
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 
 %changelog

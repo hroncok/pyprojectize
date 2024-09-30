@@ -46,12 +46,11 @@ Friedmann-Lemaître-Robertson-Walker metric.
 
 %install
 %pyproject_install
+%pyproject_save_files milia
 
-%files -n python3-pymilia
+%files -n python3-pymilia -f %{pyproject_files}
 %doc README.txt NEWS.txt
 %license LICENSE.txt
-%{python3_sitearch}/milia/
-%{python3_sitearch}/*.dist-info
 
 %changelog
 * Thu Jul 25 2024 Miroslav Suchý <msuchy@redhat.com> - 1.0.0-45

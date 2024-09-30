@@ -50,18 +50,16 @@ sed -i -e 's|/usr/include/hidapi|%{_includedir}/hidapi|' setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files hid%{python3_ext_suffix} hidraw%{python3_ext_suffix}
 
 
 %check
 %{pytest} tests.py
 
 
-%files -n python3-hidapi
+%files -n python3-hidapi -f %{pyproject_files}
 %license LICENSE*.txt
 %doc README.rst try.py
-%{python3_sitearch}/hid%{python3_ext_suffix}
-%{python3_sitearch}/hidraw%{python3_ext_suffix}
-%{python3_sitearch}/hidapi-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.14.0.post2-3

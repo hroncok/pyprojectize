@@ -68,6 +68,7 @@ rm Makefile
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 chmod a-x examples/*.py
 
 %check
@@ -86,10 +87,9 @@ export DISPLAY=:99
 kill %1 || :
 cat xorg.log
 
-%files -n python%{python3_pkgversion}-xlib
+%files -n python%{python3_pkgversion}-xlib -f %{pyproject_files}
 %license LICENSE
 %doc CHANGELOG.md README.rst TODO
-%{python3_sitelib}/*
 
 %files doc
 %license LICENSE

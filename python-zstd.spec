@@ -52,15 +52,14 @@ sed -i -e '/test_version/d' tests/__init__.py
 
 %install
 %pyproject_install
+%pyproject_save_files '%{pypi_name}*'
 
 %check
 %{__python3} setup.py test
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitearch}/%{pypi_name}-%{version}.dist-info
-%{python3_sitearch}/%{pypi_name}*.so
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.5.5.1-5

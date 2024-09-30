@@ -36,16 +36,16 @@ Python 3 version.
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 %check
 %{__python3} -m unittest discover -v
 
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.* 
-%{python3_sitelib}/*
 
 
 %changelog

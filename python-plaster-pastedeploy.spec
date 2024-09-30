@@ -51,18 +51,17 @@ Requires: python3-setuptools
 
 %install
 %pyproject_install
+%pyproject_save_files plaster_pastedeploy
 
 
 %check
 PYTHONPATH="./src" py.test-3
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE.txt
 %doc CHANGES.rst
 %doc README.rst
-%{python3_sitelib}/plaster_pastedeploy
-%{python3_sitelib}/*.dist-info
 
 
 %changelog

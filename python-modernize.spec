@@ -48,12 +48,10 @@ dependency on python-six.
 
 %install
 %pyproject_install
+%pyproject_save_files 'libmodernize*' 'modernize*'
 
-%files -n python3-modernize
+%files -n python3-modernize -f %{pyproject_files}
 %doc README.rst
-%{python3_sitelib}/modernize*
-%{python3_sitelib}/libmodernize*
-%{python3_sitelib}/__pycache__/modernize*
 %{_bindir}/python-modernize
 %{_bindir}/modernize
 

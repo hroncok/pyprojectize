@@ -41,13 +41,12 @@ sed -e "/LICENSE/d" -i setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 
 
-%files -n python3-anytree
+%files -n python3-anytree -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{modname}/
-%{python3_sitelib}/%{modname}-%{version}*
 
 
 %changelog

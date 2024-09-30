@@ -73,6 +73,7 @@ sed -i 's/2010h/2010/' test-requirements.txt
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 %check
 # Need to set PATH for two reasons:
@@ -88,11 +89,10 @@ echo 'sqlite:///__tmp__' > test_db.cfg
 # Disable temporarily until tests are adjusted to support testtools >= 0.9.36
 #nosetests-3
 
-%files -n python3-migrate
+%files -n python3-migrate -f %{pyproject_files}
 %doc README.rst doc/
 %{_bindir}/sqlalchemy-migrate
 %{_bindir}/sqlalchemy-migrate-repository
-%{python3_sitelib}/*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.13.0-19

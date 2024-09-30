@@ -39,14 +39,12 @@ A Flask extension for sending email messages.
 
 %install
 %pyproject_install
+%pyproject_save_files flask_mail
 
 
-%files -n python3-%{pkg_name}
+%files -n python3-%{pkg_name} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/flask_mail.py
-%{python3_sitelib}/__pycache__/flask_mail*.py*
-%{python3_sitelib}/Flask_Mail*.dist-info/
 
 
 %changelog

@@ -62,20 +62,12 @@ find -type f -exec chmod 644 {} +
 
 %install
 %pyproject_install
+%pyproject_save_files pg pgdb
 
 
-%files -n python3-pygresql
+%files -n python3-pygresql -f %{pyproject_files}
 %license docs/copyright.rst
 %doc docs/*.rst
-%{python3_sitearch}/pg/*.so
-%{python3_sitearch}/pg/*.py
-%{python3_sitearch}/pg/__pycache__/*.py{c,o}
-%{python3_sitearch}/pg/py.typed
-%{python3_sitearch}/pg/_pg.pyi
-%{python3_sitearch}/pgdb/*.py
-%{python3_sitearch}/pgdb/__pycache__/*.py{c,o}
-%{python3_sitearch}/pgdb/py.typed
-%{python3_sitearch}/*.dist-info
 
 
 %check

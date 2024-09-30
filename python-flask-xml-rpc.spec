@@ -46,14 +46,13 @@ Requires:           python3-flask
 
 %install
 %pyproject_install
+%pyproject_save_files flaskext
 
 %check
 %{__python3} setup.py test
 
-%files -n python3-flask-xml-rpc
+%files -n python3-flask-xml-rpc -f %{pyproject_files}
 %doc README
-%{python3_sitelib}/flaskext/
-%{python3_sitelib}/%{modname}-%{version}*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.2-34

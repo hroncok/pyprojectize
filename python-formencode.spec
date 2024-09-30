@@ -66,6 +66,7 @@ sed -i "s|'setuptools_scm_git_archive',||" setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files formencode
 
 rm -rf $RPM_BUILD_ROOT%{python3_sitelib}/docs/
 # packaged as license, remove this file with wrong path
@@ -94,11 +95,9 @@ rm -rf $RPM_BUILD_ROOT%{python3_sitelib}/formencode/i18n
 #PYTHONPATH=$(pwd) nosetests-%%{python3_version}
 
 
-%files -n python3-formencode
+%files -n python3-formencode -f %{pyproject_files}
 %doc PKG-INFO docs
 %license LICENSE.txt
-%{python3_sitelib}/formencode/
-%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 
 %files -n python-formencode-langpacks -f %{srcname}.lang
 

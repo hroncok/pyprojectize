@@ -57,6 +57,7 @@ An extension for colcon-core to support Bazel projects.
 
 %install
 %pyproject_install
+%pyproject_save_files colcon_bazel
 
 
 %check
@@ -66,11 +67,9 @@ An extension for colcon-core to support Bazel projects.
     test
 
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/colcon_bazel/
-%{python3_sitelib}/colcon_bazel-%{version}.dist-info/
 
 
 %changelog

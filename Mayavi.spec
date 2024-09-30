@@ -114,6 +114,7 @@ SPHINXBUILD=/usr/bin/sphinx-build-3 xvfb-run %{__python3} setup.py build_docs
 
 %install
 %pyproject_install
+%pyproject_save_files mayavi tvtk
 
 # fix wrong-file-end-of-line-encoding
 for file in docs/build/mayavi/html/_downloads/wx_mayavi*.py; do
@@ -147,13 +148,9 @@ xvfb-run env %pytest -v mayavi
 %{_datadir}/applications/mayavi2.desktop
 %{_datadir}/icons/hicolor/48x48/apps/mayavi2.png
 
-%files -n python%{python3_pkgversion}-mayavi
+%files -n python%{python3_pkgversion}-mayavi -f %{pyproject_files}
 %license *LICENSE*
 %doc docs/*.txt README-tvtk.txt
-%dir %{python3_sitearch}/mayavi
-%{python3_sitearch}/mayavi/[_a-gi-z]*
-%{python3_sitearch}/mayavi*.dist-info
-%{python3_sitearch}/tvtk/
 
 %files doc
 %license *LICENSE*

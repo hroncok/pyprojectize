@@ -73,6 +73,7 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 
 %if %{with tests}
@@ -80,11 +81,9 @@ rm -rf html/.{doctrees,buildinfo}
 %pytest -xv --cov=vine --cov-report=xml --no-cov-on-fail
 %endif
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc docs/templates/readme.txt README.rst
-%{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %if %{with docs}
 %files -n python-%{pypi_name}-doc

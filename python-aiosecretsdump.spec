@@ -35,15 +35,13 @@ sed -i -e '/^#!\//, 1d' aiosecretsdump/__init__.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name} bins
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
 %{_bindir}/aiosecretsdump
-%{python3_sitelib}/%{pypi_name}
 # https://github.com/skelsec/aiosecretsdump/issues/2
-%{python3_sitelib}/bins
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.0.2-14

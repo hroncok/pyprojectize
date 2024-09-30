@@ -91,6 +91,7 @@ installations, with minimal input from the user.
 
 %install
 %pyproject_install
+%pyproject_save_files oz
 
 mkdir -p $RPM_BUILD_ROOT%{_localstatedir}/lib/oz/
 mkdir -p $RPM_BUILD_ROOT%{_localstatedir}/lib/oz/isocontent/
@@ -114,7 +115,7 @@ fi
 libvirtd -d
 %pytest tests/
 
-%files
+%files -f %{pyproject_files}
 %license COPYING
 %doc README examples
 %dir %attr(0755, root, root) %{_sysconfdir}/oz/
@@ -133,8 +134,6 @@ libvirtd -d
 %{_bindir}/oz-customize
 %{_bindir}/oz-cleanup-cache
 %{_mandir}/man1/*
-%{python3_sitelib}/oz
-%{python3_sitelib}/%{name}*.dist-info
 
 %changelog
 * Mon Sep 02 2024 Miroslav Suchý <msuchy@redhat.com> - 0.18.1-16

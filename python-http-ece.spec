@@ -40,16 +40,15 @@ cd python
 %install
 cd python
 %pyproject_install
+%pyproject_save_files http_ece
 
 %check
 cd python
 %pytest
 
-%files -n python%{python3_pkgversion}-%{modname}
+%files -n python%{python3_pkgversion}-%{modname} -f %{pyproject_files}
 %doc python/README.rst python/*.md
 %license LICENSE
-%{python3_sitelib}/http_ece/
-%{python3_sitelib}/http_ece-*.dist-info/
 
 %changelog
 * Thu Aug 01 2024 Gwyn Ciesla <gwync@protonmail.com> - 1.2.1-1

@@ -40,13 +40,11 @@ and using the distance to it as .post marker.
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc CHANGELOG.rst README.rst 
 %license LICENSE
-%{python3_sitelib}/%{srcname}.py
-%{python3_sitelib}/%{srcname}*.dist-info
-%{python3_sitelib}/__pycache__/%{srcname}*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.25-30

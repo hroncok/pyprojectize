@@ -62,16 +62,15 @@ Manager. Complete support for Oracle Berkeley DB Base Replication.
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 chrpath --delete $RPM_BUILD_ROOT%{python3_sitearch}/berkeleydb/_berkeleydb.cpython-*-linux-gnu*so
 
 sed -i /env\ python/d $RPM_BUILD_ROOT%{python3_sitearch}/berkeleydb/dbshelve.py
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE.txt licenses.txt
 %doc README.txt
-%{python3_sitearch}/%{pypi_name}
-%{python3_sitearch}/%{pypi_name}-%{pypi_version}.dist-info
 
 %files -n python3-%{pypi_name}-devel
 %{_includedir}/python%{python3_version}/berkeleydb/

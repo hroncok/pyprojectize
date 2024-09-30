@@ -75,6 +75,7 @@ sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/angular'|" xstatic/pkg/angular/__
 
 %install
 %pyproject_install
+%pyproject_save_files xstatic
 
 # move angular.js to appropriate _jsdir
 mkdir -p %{buildroot}/%{_jsdir}/angular
@@ -85,10 +86,8 @@ mv %{buildroot}/%{python3_sitelib}/xstatic/pkg/angular/data/angular* %{buildroot
 %{_jsdir}/angular
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
-%{python3_sitelib}/xstatic/pkg/angular
-%{python3_sitelib}/XStatic_Angular-%{version}.dist-info
 %{python3_sitelib}/XStatic_Angular-%{version}-py%{python3_version}-nspkg.pth
 
 

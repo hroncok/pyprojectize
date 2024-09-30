@@ -35,6 +35,7 @@ notifications, compression of transferred data, and syslog logging.
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 install -d %{buildroot}/%{_mandir}/man1
 install -p -m644 man/* %{buildroot}/%{_mandir}/man1
 install -d %{buildroot}/%{_sysconfdir}
@@ -45,11 +46,10 @@ install -p -m644 etc/btrfs-sxbackup.conf %{buildroot}/%{_sysconfdir}
 %{__python3} setup.py test
 
 
-%files
+%files -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
 %{_bindir}/btrfs-sxbackup
-%{python3_sitelib}/*
 %{_mandir}/man1/*
 %config(noreplace) %{_sysconfdir}/btrfs-sxbackup.conf
 

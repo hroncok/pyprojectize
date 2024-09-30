@@ -43,15 +43,14 @@ rm -rf b2sdk.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files b2sdk
 rm -rf %{buildroot}%{python3_sitelib}/test
 
 
-%files -n python3-b2sdk
+%files -n python3-b2sdk -f %{pyproject_files}
 %doc CHANGELOG.md
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/b2sdk-*.dist-info/
-%{python3_sitelib}/b2sdk/
 
 
 %changelog

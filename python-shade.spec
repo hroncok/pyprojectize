@@ -73,15 +73,15 @@ Requires:       python3-netifaces                >= 0.10.4
 
 %install
 %pyproject_install
+%pyproject_save_files 'shade*'
 mv $RPM_BUILD_ROOT%{_bindir}/shade-inventory \
         $RPM_BUILD_ROOT%{_bindir}/shade-inventory-3
 ln -s shade-inventory-3 \
         $RPM_BUILD_ROOT%{_bindir}/shade-inventory
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst AUTHORS
-%{python3_sitelib}/shade*
 
 %{_bindir}/shade-inventory-3
 %{_bindir}/shade-inventory

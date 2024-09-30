@@ -67,6 +67,7 @@ sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/jquery_quicksearch'|" xstatic/pkg
 
 %install
 %pyproject_install
+%pyproject_save_files xstatic
 
 mkdir -p %{buildroot}%{_jsdir}/jquery_quicksearch
 mv %{buildroot}%{python3_sitelib}/xstatic/pkg/jquery_quicksearch/data/jquery.quicksearch.js %{buildroot}%{_jsdir}/jquery_quicksearch
@@ -74,10 +75,8 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/jquery_quicksearch/data/
 # fix execute flags for js
 chmod 644 %{buildroot}%{_jsdir}/jquery_quicksearch/jquery.quicksearch.js
 
-%files -n python3-%{pkgname}
+%files -n python3-%{pkgname} -f %{pyproject_files}
 %doc README.txt
-%{python3_sitelib}/xstatic/pkg/jquery_quicksearch
-%{python3_sitelib}/XStatic_JQuery.quicksearch-%{version}.dist-info
 %{python3_sitelib}/XStatic_JQuery.quicksearch-%{version}-py%{python3_version}-nspkg.pth
 
 %files -n xstatic-jquery-quicksearch-common

@@ -49,6 +49,7 @@ rm tests/test_pylama_linter.py
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 
 %check
@@ -60,10 +61,9 @@ mv flake8_import_order/pylama_linter.py flake8_import_order/pylama_linter.NOT
 %python3 -m pytest -v
 
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license COPYING
 %doc README.rst
-%{python3_sitelib}/*
 
 
 %changelog

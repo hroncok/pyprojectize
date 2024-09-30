@@ -37,11 +37,11 @@ A Python library for Pagure APIs
 
 %install
 %pyproject_install
+%pyproject_save_files 'libpagure*'
 
-%files -n python3-libpagure
+%files -n python3-libpagure -f %{pyproject_files}
 %doc README.md
 %license LICENSE.txt
-%{python3_sitelib}/libpagure*/
 
 %changelog
 * Fri Jul 26 2024 Miroslav Suchý <msuchy@redhat.com> - 0.22-4

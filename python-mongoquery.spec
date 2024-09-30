@@ -40,15 +40,14 @@ parsers. It follows the specification of queries for MongoDB version 3.2.
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %check
 %pytest -v tests
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.4.2-8

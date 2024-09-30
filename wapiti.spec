@@ -44,6 +44,7 @@ find -name '*.py' | xargs sed -i '/^#!\//, 1d'
 
 %install
 %pyproject_install
+%pyproject_save_files wapitiCore
 rm -rf %{buildroot}%{_defaultdocdir}/%{name}/
 
 %if %{with tests}
@@ -51,13 +52,11 @@ rm -rf %{buildroot}%{_defaultdocdir}/%{name}/
 PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v tests
 %endif
 
-%files
+%files -f %{pyproject_files}
 %doc README.md doc/FAQ.md doc/example.txt
 %license doc/COPYING
 %{_mandir}/man*/%{name}*.*
 %{_bindir}/%{name}*
-%{python3_sitelib}/wapitiCore/
-%{python3_sitelib}/%{name}3-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 3.0.2-18

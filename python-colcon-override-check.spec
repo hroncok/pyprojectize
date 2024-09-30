@@ -49,6 +49,7 @@ overridden.
 
 %install
 %pyproject_install
+%pyproject_save_files colcon_override_check
 
 
 %check
@@ -58,11 +59,9 @@ overridden.
     test
 
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/colcon_override_check/
-%{python3_sitelib}/colcon_override_check-%{version}.dist-info/
 
 
 %changelog

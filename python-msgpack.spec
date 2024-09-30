@@ -45,15 +45,14 @@ rm -rf test/test_timestamp.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %check
 %pytest -v test
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %doc README.md
 %license COPYING
-%{python3_sitearch}/%{srcname}/
-%{python3_sitearch}/%{srcname}*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.7-5

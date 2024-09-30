@@ -42,15 +42,14 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files advisory_parser
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v tests
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE COPYRIGHT
 %doc README.rst
-%{python3_sitelib}/advisory_parser
-%{python3_sitelib}/advisory_parser-%{version}.dist-info
 
 %changelog
 * Wed Aug 07 2024 Miroslav Suchý <msuchy@redhat.com> - 1.10-15

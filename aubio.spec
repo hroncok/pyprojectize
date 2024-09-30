@@ -110,6 +110,7 @@ cp -r %{buildroot}%{_docdir}/libaubio-doc libaubio-doc
 rm -rf %{buildroot}%{_docdir}/libaubio-doc
 
 %pyproject_install
+%pyproject_save_files %{name}
 
 # Remove shebang from python files
 sed -i -e '/^#![[:blank:]]*\//, 1d' %{buildroot}%{python3_sitearch}/%{name}/*.py
@@ -130,9 +131,7 @@ sed -i -e '/^#![[:blank:]]*\//, 1d' %{buildroot}%{python3_sitearch}/%{name}/*.py
 %{_libdir}/*.so
 %{_includedir}/aubio
 
-%files python3
-%{python3_sitearch}/%{name}
-%{python3_sitearch}/%{name}*.dist-info
+%files python3 -f %{pyproject_files}
 
 %changelog
 * Thu Jul 25 2024 Miroslav Suchý <msuchy@redhat.com> - 0.4.9-24

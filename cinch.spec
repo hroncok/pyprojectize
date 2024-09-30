@@ -36,18 +36,17 @@ find . -name '*.py' -exec chmod -x '{}' \;
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
 # This is improperly installed by pip
 rm -rf %{buildroot}%{python3_sitelib}/tests
 
 
-%files
+%files -f %{pyproject_files}
 %doc README.md
 %license LICENSE
 %{_bindir}/cinch
 %{_bindir}/teardown
-%{python3_sitelib}/%{name}-%{version}.dist-info/
-%{python3_sitelib}/%{name}
 
 
 %changelog

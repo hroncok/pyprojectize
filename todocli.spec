@@ -35,17 +35,17 @@ rm -rf %{name}.egg.info
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 mkdir -p %{buildroot}/%{_mandir}/man1
 install -p -m 0644 %{SOURCE1} %{buildroot}/%{_mandir}/man1/
  
-%files
+%files -f %{pyproject_files}
 %doc README.md
 %{!?_licensedir:%global license %%doc}
 %license LICENSE
 %{_bindir}/*
 %{_mandir}/man1/* 
-%{python3_sitelib}/*
 
 %changelog
 * Sat Jul 20 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1-32.20151115git219db73

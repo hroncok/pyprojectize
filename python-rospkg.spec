@@ -75,6 +75,7 @@ rm doc/_build/html/.buildinfo
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 # backwards compatibility symbolic links
 pushd %{buildroot}%{_bindir}
@@ -96,10 +97,8 @@ export LANG=en_US.UTF-8
 %files doc
 %doc doc/_build/html
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %doc README.md
-%{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 %{_bindir}/rosversion
 %{_bindir}/python3-rosversion
 %{_mandir}/man1/rosversion.1.*

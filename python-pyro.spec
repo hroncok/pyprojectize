@@ -47,6 +47,7 @@ chmod -x examples/gui_eventloop/{gui_threads.py,gui_nothreads.py}
 chmod -x examples/maxsize/Readme.txt
 
 %pyproject_install
+%pyproject_save_files Pyro4
 find examples -type f -exec sed -i 's/\r//' {} \;
 find docs -type f -exec sed -i 's/\r//' {} \;
 sed -i 's/\r//' LICENSE
@@ -54,10 +55,8 @@ chmod -x examples/echoserver/{Readme.txt,client.py}
 chmod -x examples/gui_eventloop/{gui_threads.py,gui_nothreads.py}
 chmod -x examples/maxsize/Readme.txt
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc docs/* examples LICENSE
-%{python3_sitelib}/Pyro4
-%{python3_sitelib}/Pyro4-*.dist-info
 %{_bindir}/pyro4*
 
 %changelog

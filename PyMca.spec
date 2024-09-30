@@ -81,6 +81,7 @@ PYMCA_DOC_DIR=/usr/share/doc/PyMca \
 PYMCA_DATA_DIR=/usr/share/PyMca \
 PYMCA_DOC_DIR=/usr/share/doc/PyMca \
 %pyproject_install
+%pyproject_save_files PyMca5
 
 # Install desktop file.
 desktop-file-install --dir=%{buildroot}%{_datadir}/applications %{S:1}
@@ -203,7 +204,7 @@ LC_ALL=pl_PL.utf8 \
 # FAIL: testNxExtStringDataset (NexusUtilsTest.testNexusUtils)
 # FAIL: testNxStringDataset (NexusUtilsTest.testNexusUtils)
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE.GPL
 %doc changelog.txt README.rst
 %{_bindir}/edfviewer
@@ -216,8 +217,6 @@ LC_ALL=pl_PL.utf8 \
 %{_datadir}/applications/*.desktop
 %{_datadir}/icons/hicolor/*x*/apps/%{name}.png
 %{_mandir}/man1/*.1*
-%{python3_sitearch}/PyMca5/
-%{python3_sitearch}/PyMca5-%{version}.dist-info
 %exclude %{_pkgdocdir}
 
 %files data

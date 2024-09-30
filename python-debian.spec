@@ -68,6 +68,7 @@ sed -e 's/__CHANGELOG_VERSION__/%{version}/' < lib/debian/_version.py.in > lib/d
 
 %install
 %pyproject_install
+%pyproject_save_files deb822 debian debian_bundle 'python_debian*'
 
 %check
 %if 0%{?rhel}
@@ -85,19 +86,7 @@ touch lib/debian/tests/test_debfile.py
 %endif
 %pytest
 
-%files -n python3-debian
-%dir %{python3_sitelib}/debian
-%dir %{python3_sitelib}/debian_bundle
-%{python3_sitelib}/deb822.py*
-%{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/debian/py.typed
-%{python3_sitelib}/debian/*.py*
-%{python3_sitelib}/debian/__pycache__
-%{python3_sitelib}/debian/_deb822_repro/*.py*
-%{python3_sitelib}/debian/_deb822_repro/__pycache__
-%{python3_sitelib}/debian_bundle/__init__.py*
-%{python3_sitelib}/debian_bundle/__pycache__
-%{python3_sitelib}/python_debian*
+%files -n python3-debian -f %{pyproject_files}
 %doc README.rst HISTORY.deb822
 
 %changelog

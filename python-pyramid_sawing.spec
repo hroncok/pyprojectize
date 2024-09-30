@@ -49,18 +49,17 @@ Summary: %{summary}
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 
 %check
 %{__python3} setup.py test
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE.txt
 %doc CHANGES.rst
 %doc README.rst
-%{python3_sitelib}/%{srcname}
-%{python3_sitelib}/*.dist-info
 
 
 %changelog

@@ -42,16 +42,15 @@ Summary: %summary
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 install -D -m 0644 nyx.1 %{buildroot}%{_mandir}/man1/nyx.1
 
 %check
 %{__python3} run_tests.py
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %{_bindir}/%{name}
-%{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}-%{version}*.dist-info
 
 %files doc
 %license LICENSE

@@ -52,6 +52,7 @@ export PYTHONPATH=%{buildroot}/%{python3_sitelib}
 export LC_ALL=C.UTF-8
 export LANG=C.UTF-8
 %pyproject_install
+%pyproject_save_files %{distname}
 
 cat >append-to-manual <<EOF
 [see also]
@@ -62,11 +63,9 @@ mkdir -p %{buildroot}/%{_mandir}/man1
 help2man -N --no-discard-stderr --version-string=%{version} --include=append-to-manual %{buildroot}/%{_bindir}/fedscm-admin > %{buildroot}/%{_mandir}/man1/fedscm-admin.1
 unset FEDSCM_ADMIN_CONFIG
 
-%files
+%files -f %{pyproject_files}
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/%{distname}-*.dist-info/
-%{python3_sitelib}/%{distname}/
 %{_bindir}/fedscm-admin
 %dir %{_sysconfdir}/fedscm-admin
 %{_sysconfdir}/fedscm-admin/config.ini

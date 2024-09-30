@@ -41,17 +41,16 @@ Pretend is a library to make stubbing with Python easier.
 
 %install
 %pyproject_install
+%pyproject_save_files pretend
 
 
 %check
 %pytest -v
 
 
-%files -n python3-pretend
+%files -n python3-pretend -f %{pyproject_files}
 %doc README.rst
 %license LICENSE.rst
-%pycached %{python3_sitelib}/pretend.py
-%{python3_sitelib}/pretend-%{version}.dist-info/
 
 
 %changelog

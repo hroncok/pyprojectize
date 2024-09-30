@@ -114,6 +114,7 @@ semodule_package -o pymilter.pp -m pymilter.mod
 %py2_install
 %endif
 %pyproject_install
+%pyproject_save_files '*'
 
 mkdir -p %{buildroot}/run/milter
 mkdir -p %{buildroot}%{_localstatedir}/log/milter
@@ -140,10 +141,9 @@ PYTHONPATH=${py3path}:. python3 test.py
 %{python2_sitearch}/*
 %endif
 
-%files -n python%{python3_pkgversion}-pymilter
+%files -n python%{python3_pkgversion}-pymilter -f %{pyproject_files}
 %license COPYING
 %doc README.md ChangeLog NEWS TODO CREDITS sample.py milter-template.py
-%{python3_sitearch}/*
 
 %files common
 %dir %{_libexecdir}/milter

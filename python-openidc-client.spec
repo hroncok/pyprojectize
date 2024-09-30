@@ -43,15 +43,14 @@ Python 3 version.
 
 %install
 %pyproject_install
+%pyproject_save_files %{pkgname}
 
 %check
 %{__python3} setup.py test
 
-%files -n python3-openidc-client
+%files -n python3-openidc-client -f %{pyproject_files}
 %license COPYING
 %doc README.md
-%{python3_sitelib}/%{pkgname}-*.dist-info/
-%{python3_sitelib}/%{pkgname}/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.6.0-24.20220119git0e2ed81

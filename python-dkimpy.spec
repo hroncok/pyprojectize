@@ -47,13 +47,14 @@ sed -e "s|#!/usr/bin/env python||" -i dkim/{arcsign.py,arcverify.py,dkimsign.py,
 
 %install
 %pyproject_install
+%pyproject_save_files dkim
 
 %if %{with check}
 %check
 %{__python3} setup.py test
 %endif
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
 %{_bindir}/arcsign
@@ -66,8 +67,6 @@ sed -e "s|#!/usr/bin/env python||" -i dkim/{arcsign.py,arcverify.py,dkimsign.py,
 %{_mandir}/man1/dkimsign.1*
 %{_mandir}/man1/dkimverify.1*
 %{_mandir}/man1/dknewkey.1*
-%{python3_sitelib}/dkim/
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.5-14

@@ -104,6 +104,7 @@ This is the Python 3 version of the package.
 
 %if %{with python3}
 %pyproject_install
+%pyproject_save_files digitalocean
 %endif
 
 %if %{with python2}
@@ -115,11 +116,9 @@ This is the Python 3 version of the package.
 %endif
 
 %if %{with python3}
-%files -n %{py3_prefix}-%{pkgname}
+%files -n %{py3_prefix}-%{pkgname} -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.md
-%{python3_sitelib}/digitalocean
-%{python3_sitelib}/python_digitalocean-%{version}*.dist-info
 %endif
 
 %changelog

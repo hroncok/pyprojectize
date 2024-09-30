@@ -46,15 +46,14 @@ sphinx-build -W -b html -d docs/_build/.doctrees/ docs/ docs/_build/html/
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 rm -f docs/_build/html/.buildinfo
 
 %check
 %{__python3} test.py -v
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
-%{python3_sitelib}/%{eggname}-*.dist-info/
-%{python3_sitelib}/%{modname}/
 
 %files doc
 %license LICENSE

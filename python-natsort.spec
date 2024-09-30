@@ -49,16 +49,15 @@ Summary:	%{summary}
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %check
 %pytest
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
 %{_bindir}/%{srcname}
-%{python3_sitelib}/%{srcname}-*.dist-info/
-%{python3_sitelib}/%{srcname}/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 8.4.0-2

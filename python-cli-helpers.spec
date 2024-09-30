@@ -44,15 +44,14 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %check
 PYTHONPATH=build/lib/ py.test-3
 
-%files -n python3-cli-helpers
+%files -n python3-cli-helpers -f %{pyproject_files}
 %license LICENSE
 %doc AUTHORS CHANGELOG README.rst
-%{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 2.3.1-4

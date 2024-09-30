@@ -42,15 +42,14 @@ sed -i "s/\['python', 'yajl', 'yajl2', 'yajl2_cffi', 'yajl2_c']/\['python', 'yaj
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib}:$PWD %{python3} -m unittest discover
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.rst
-%{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 %changelog
 %autochangelog

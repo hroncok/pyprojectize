@@ -58,12 +58,11 @@ export PYTHONPATH=%{buildroot}%{python3_sitelib}
 
 %install
 %pyproject_install
+%pyproject_save_files sphinx_kr_theme
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/sphinx_kr_theme
-%{python3_sitelib}/sphinx_kr_theme-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.2.1-17

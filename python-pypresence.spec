@@ -42,17 +42,16 @@ rm -rf %{buildroot}/docs
 
 %install
 %pyproject_install
+%pyproject_save_files pypresence
 
 
 %check
 %py3_check_import pypresence
 
 
-%files -n python3-pypresence
+%files -n python3-pypresence -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/pypresence/
-%{python3_sitelib}/pypresence-%{version}.dist-info/
 
 
 %changelog

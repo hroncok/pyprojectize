@@ -29,6 +29,7 @@ Goobook is a command-line interface to Google contacts. It includes
 
 %install
 %pyproject_install
+%pyproject_save_files 'goobook*'
 
 # Remove shebang
 for lib in %{buildroot}%{python3_sitelib}/goobook/*.py; do
@@ -37,9 +38,8 @@ for lib in %{buildroot}%{python3_sitelib}/goobook/*.py; do
 	mv $lib.new $lib
 done
 
-%files
+%files -f %{pyproject_files}
 %doc LICENSE.txt README.rst CHANGES.rst CONTRIBUTORS.rst TODO.rst HACKING.rst
-%{python3_sitelib}/goobook*
 %{_bindir}/goobook
 
 %changelog

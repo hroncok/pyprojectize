@@ -43,14 +43,13 @@ done
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc README.md
 %{_bindir}/%{name}
-%{python3_sitelib}/%{name}*.dist-info/
-%{python3_sitelib}/%{name}/
 
 
 %changelog

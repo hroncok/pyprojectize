@@ -104,6 +104,7 @@ rm -rf html/.doctrees html/.buildinfo
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 # backwards compatibility helpers
 ln -s ./pelican %{buildroot}/%{_bindir}/pelican-3
@@ -117,7 +118,7 @@ ln -s ./pelican-themes %{buildroot}/%{_bindir}/pelican-themes-3
 # re-checked tests, upstream is on python3.8, we are using 3.9.
 # pytest -s --cov=pelican pelican
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc html README.rst
 %license LICENSE
 
@@ -132,8 +133,6 @@ ln -s ./pelican-themes %{buildroot}/%{_bindir}/pelican-themes-3
 %{_bindir}/pelican-quickstart-3
 %{_bindir}/pelican-themes-3
 
-%{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-*.dist-info
 
 
 %changelog

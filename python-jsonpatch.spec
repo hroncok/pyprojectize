@@ -45,6 +45,7 @@ Library to apply JSON Patches according to RFC 6902 - Python 3 build.
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 # remove jsondiff binary conflicting with python-jsondiff
 # https://bugzilla.redhat.com/show_bug.cgi?id=2029805
 rm %{buildroot}%{_bindir}/jsondiff
@@ -55,14 +56,11 @@ ln -s ./jsonpatch-%{python3_version} %{buildroot}%{_bindir}/jsonpatch
 %check
 %{__python3} tests.py
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
 %{_bindir}/jsonpatch
 %{_bindir}/jsonpatch-3*
-%{python3_sitelib}/%{pypi_name}.py*
-%{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.33-6

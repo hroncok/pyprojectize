@@ -93,13 +93,12 @@ This package contains the documentation for %{name}
 
 %install
 %pyproject_install
+%pyproject_save_files scrapy
 
 
-%files -n python3-%{pkg_name}
+%files -n python3-%{pkg_name} -f %{pyproject_files}
 %license LICENSE
 %doc AUTHORS PKG-INFO
-%{python3_sitelib}/scrapy
-%{python3_sitelib}/Scrapy-*.dist-info
 %{_bindir}/scrapy
 
 #%files doc

@@ -85,6 +85,7 @@ popd
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 # Install config files
 mkdir -p -m 0750  %{buildroot}%{_sysconfdir}/totpcgi
@@ -191,9 +192,8 @@ fi
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/totpcgi.conf
 %attr(-, %{totpcgiprovuser}, %{totpcgiuser}) %{_localstatedir}/lib/totpcgi
 
-%files -n python3-totpcgi
+%files -n python3-totpcgi -f %{pyproject_files}
 %doc COPYING
-%{python3_sitelib}/*
 %dir %attr(-, %{totpcgiprovuser}, %{totpcgiuser}) %{_sysconfdir}/totpcgi
 %dir %attr(-, %{totpcgiprovuser}, %{totpcgiuser}) %{_sysconfdir}/totpcgi/totp
 %config(noreplace) %attr(-, -, %{totpcgiprovuser}) %{_sysconfdir}/totpcgi/provisioning.conf

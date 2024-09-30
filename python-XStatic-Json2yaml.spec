@@ -77,6 +77,7 @@ sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/json2yaml'|" xstatic/pkg/json2yam
 
 %install
 %pyproject_install
+%pyproject_save_files xstatic
 
 mkdir -p %{buildroot}/%{_jsdir}/json2yaml
 mv %{buildroot}/%{python3_sitelib}/xstatic/pkg/json2yaml/data/json2yaml.js %{buildroot}/%{_jsdir}/json2yaml
@@ -86,10 +87,8 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/json2yaml/data/
 %doc README.txt
 %{_jsdir}/json2yaml
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
-%{python3_sitelib}/xstatic/pkg/json2yaml
-%{python3_sitelib}/XStatic_Json2yaml-%{version}.dist-info
 %{python3_sitelib}/XStatic_Json2yaml-%{version}-py3.*-nspkg.pth
 
 

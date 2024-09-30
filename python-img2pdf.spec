@@ -91,6 +91,7 @@ sed -i '1{/^#!\//d}' src/*.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname} jp2
 
 %check
 
@@ -107,13 +108,9 @@ PYTHONPATH=src %{__python3} -m pytest src/img2pdf_test.py -v -k 'not miff_c and 
 
 %endif
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %{_bindir}/%{srcname}
 %{_bindir}/%{srcname}-gui
-%{python3_sitelib}/%{srcname}.py
-%{python3_sitelib}/jp2.py
-%{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/%{srcname}-%{version}*.dist-info
 %doc README.md
 
 

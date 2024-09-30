@@ -40,14 +40,13 @@ Conflicts:	python2-%{srcname} <= 0.8.0-1
 
 %install
 %pyproject_install
+%pyproject_save_files tftpy
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README
 %{_bindir}/tftpy_client.py
 %{_bindir}/tftpy_server.py
-%{python3_sitelib}/tftpy/
-%{python3_sitelib}/*.dist-info
 
 
 %changelog

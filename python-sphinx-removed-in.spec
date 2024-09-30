@@ -41,17 +41,16 @@ directives.
 
 %install
 %pyproject_install
+%pyproject_save_files sphinx_removed_in
 # https://github.com/MrSenko/sphinx-removed-in/pull/10
 rm -rf %{buildroot}%{python3_sitelib}/tests
 
 %check
 %pytest
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/sphinx_removed_in/
-%{python3_sitelib}/sphinx_removed_in-%{version}.dist-info/
 
 %changelog
 %autochangelog

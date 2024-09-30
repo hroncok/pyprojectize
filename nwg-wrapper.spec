@@ -47,18 +47,17 @@ compositors.
 
 %install
 %pyproject_install
+%pyproject_save_files %{sys_name}
 for lib in %{buildroot}%{python3_sitelib}/%{sys_name}/*.py; do
  sed '1{\@^#!/usr/bin/env python@d}' $lib > $lib.new &&
  touch -r $lib $lib.new &&
  mv $lib.new $lib
 done
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc README.md
 %{_bindir}/%{name}
-%{python3_sitelib}/%{sys_name}/
-%{python3_sitelib}/%{sys_name}-%{version}.dist-info/
 
 %changelog
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.3-9

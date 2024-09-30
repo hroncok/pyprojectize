@@ -29,16 +29,15 @@ A simple tool to visualize the progress of the year based on the past days.
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %check
 %{__python3} setup.py test
 
-%files
+%files -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
 %{_bindir}/%{name}
-%{python3_sitelib}/*.dist-info
-%{python3_sitelib}/%{pypi_name}
 
 %changelog
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.2.0-21

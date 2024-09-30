@@ -51,13 +51,11 @@ Python 3 version.
 
 %install
 %pyproject_install
+%pyproject_save_files flask_whooshee
 
 
-%files -n python3-%{mod_name}
+%files -n python3-%{mod_name} -f %{pyproject_files}
 %doc LICENSE README.md
-%{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/*.dist-info
-%{python3_sitelib}/flask_whooshee.py
 
 
 %changelog

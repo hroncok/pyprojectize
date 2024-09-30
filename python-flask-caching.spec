@@ -65,17 +65,16 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
+%pyproject_save_files flask_caching
 
 %check
 redis-server &
 %pytest
 kill %1
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE docs/license.rst
 %doc README.rst
-%{python3_sitelib}/flask_caching
-%{python3_sitelib}/Flask_Caching-%{version}.dist-info
 
 %files -n python-%{srcname}-doc
 %doc html

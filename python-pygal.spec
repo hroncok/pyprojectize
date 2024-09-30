@@ -53,6 +53,7 @@ rm -rf %{modname}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 
 
 %check
@@ -61,11 +62,9 @@ rm -rf %{modname}.egg-info
 #py.test-%{python3_version} pygal/test
 
 
-%files -n python3-pygal
+%files -n python3-pygal -f %{pyproject_files}
 %doc README
 %{_bindir}/pygal_gen.py
-%{python3_sitelib}/%{modname}/
-%{python3_sitelib}/%{modname}-%{version}-*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 3.0.0-12

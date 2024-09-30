@@ -42,6 +42,7 @@ libvirt containers.
 
 %install
 %pyproject_install
+%pyproject_save_files virtBootstrap
 %fdupes %{buildroot}%{_prefix}
 
 # Replace '#!/usr/bin/env python3' with '#!/usr/bin/python3'
@@ -58,12 +59,10 @@ for f in $(find %{buildroot} -type f \! -executable -print); do
     sed -i '/^#!\/usr\/bin\/env python/d' $f || :
 done
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc README.md ChangeLog AUTHORS
 %{_bindir}/virt-bootstrap
-%{python3_sitelib}/virtBootstrap
-%{python3_sitelib}/virt_bootstrap-*.dist-info
 %{_mandir}/man1/virt-bootstrap*
 
 %changelog

@@ -82,6 +82,7 @@ rm -rf %{pypi_name}.egg-info
 %install
 %{?with_python2: %py2_install}
 %{?with_python3: %pyproject_install}
+%pyproject_save_files %{pypi_name}
 
 
 %if 0%{with python2}
@@ -92,10 +93,8 @@ rm -rf %{pypi_name}.egg-info
 %endif
 
 %if 0%{with python3}
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst LICENSE
-%{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %endif
 
 

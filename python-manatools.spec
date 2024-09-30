@@ -47,12 +47,11 @@ sed -i 's|0.0.1|%{version}|' manatools/version.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{module}
 
-%files -n python3-%{module}
+%files -n python3-%{module} -f %{pyproject_files}
 %doc README.md NEWS
 %license LICENSE
-%{python3_sitelib}/%{module}/
-%{python3_sitelib}/python_manatools-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.0.4-11

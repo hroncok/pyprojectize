@@ -39,13 +39,12 @@ Requires: python3-six
 %install
 rm -rf %{buildroot}
 %pyproject_install
+%pyproject_save_files procfs
 
-%files -n python3-linux-procfs
+%files -n python3-linux-procfs -f %{pyproject_files}
 %defattr(0755,root,root,0755)
 %{_bindir}/pflags
-%{python3_sitelib}/procfs/
 %defattr(0644,root,root,0755)
-%{python3_sitelib}/python_linux_procfs*.dist-info
 %license COPYING
 
 %changelog

@@ -54,15 +54,14 @@ secrecy and cryptographic deniability.
 
 %install
 %pyproject_install
+%pyproject_save_files x3dh
 
 
 
-%files -n python3-x3dh
+%files -n python3-x3dh -f %{pyproject_files}
 %license LICENSE
 %doc README.md
 # For noarch packages: sitelib
-%{python3_sitelib}/x3dh/
-%{python3_sitelib}/X3DH-%{version}.dist-info/
 
 
 

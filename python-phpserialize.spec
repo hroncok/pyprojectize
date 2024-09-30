@@ -41,6 +41,7 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %check
 # tests fail with "ModuleNotFoundError: No module named 'tests'"
@@ -48,10 +49,7 @@ rm -rf %{pypi_name}.egg-info
 # %{__python3} setup.py test
 
 
-%files -n python3-%{pypi_name}
-%{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/%{pypi_name}.py
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.3-22

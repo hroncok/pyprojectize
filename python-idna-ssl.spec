@@ -43,18 +43,16 @@ BuildRequires:  python3dist(idna) >= 2
 
 %install
 %pyproject_install
+%pyproject_save_files idna_ssl
 
 %if %{with check}
 %check
 %{__python3} setup.py pytest
 %endif
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc README.rst example.py
-%{python3_sitelib}/idna_ssl-*.dist-info/
-%{python3_sitelib}/idna_ssl.py
-%{python3_sitelib}/__pycache__/idna_ssl.*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.1.0-23

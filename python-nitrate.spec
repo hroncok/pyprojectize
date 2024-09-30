@@ -106,6 +106,7 @@ export LANG=en_US.utf-8
 %py2_install
 %endif
 %pyproject_install
+%pyproject_save_files nitrate
 mkdir -p %{buildroot}%{_mandir}/man1
 install -pm 644 docs/*.1.gz %{buildroot}%{_mandir}/man1
 
@@ -119,9 +120,7 @@ install -pm 644 docs/*.1.gz %{buildroot}%{_mandir}/man1
 %license LICENSE
 %endif
 
-%files -n python%{python3_pkgversion}-nitrate
-%{python3_sitelib}/nitrate/
-%{python3_sitelib}/nitrate-*.dist-info/
+%files -n python%{python3_pkgversion}-nitrate -f %{pyproject_files}
 %{_mandir}/man1/*
 %{_bindir}/nitrate
 %doc README.rst examples

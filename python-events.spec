@@ -39,16 +39,15 @@ Summary:        %{summary}
 
 %install
 %pyproject_install
+%pyproject_save_files events
 
 
 %check
 %{__python3} setup.py test
 
-%files -n python3-events
+%files -n python3-events -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/events
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.4-11

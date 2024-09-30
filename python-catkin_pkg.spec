@@ -66,6 +66,7 @@ rm doc/_build/html/.buildinfo
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 # backwards compatibility symbolic links
 pushd %{buildroot}%{_bindir}
@@ -85,11 +86,9 @@ popd
 %license LICENSE
 %doc doc/_build/html
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc CHANGELOG.rst README.rst
-%{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 %{_bindir}/catkin_create_pkg
 %{_bindir}/catkin_find_pkg
 %{_bindir}/catkin_generate_changelog

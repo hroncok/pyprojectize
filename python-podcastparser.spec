@@ -42,14 +42,13 @@ find . -type f -name '*.py' -exec sed -i /env\ python/d {} ';'
 
 %install
 %pyproject_install
+%pyproject_save_files '%{modname}*'
 
 %{!?_licensedir: %global license %doc}
 
-%files -n python3-%{modname}
+%files -n python3-%{modname} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/%{modname}*
-%{python3_sitelib}/__pycache__/%{modname}*
 
 
 %changelog

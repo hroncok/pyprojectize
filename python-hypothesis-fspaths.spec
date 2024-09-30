@@ -37,16 +37,14 @@ Anything the built-in Python function open() accepts can be generated.
 
 %install
 %pyproject_install
+%pyproject_save_files %{modulename}
 
 %check
 %{__python3} setup.py test
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{modulename}-%{version}.dist-info
-%{python3_sitelib}/%{modulename}.py
-%{python3_sitelib}/__pycache__/%{modulename}.*.py*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1-20

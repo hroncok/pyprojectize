@@ -80,13 +80,13 @@ mv pcapy.html.tmp pcapy.html
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 rm -rf %{buildroot}/usr/share/doc/pcapy
 
-%files -n python3-%{gitname}
+%files -n python3-%{gitname} -f %{pyproject_files}
 %license LICENSE
 %doc README pcapy.html
-%{python3_sitearch}/*
 
 
 %changelog

@@ -35,17 +35,16 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 #%%check
 # Upstream has a different idea about how Open Source works
 # and is hostile against everything that doesn't match that idea.
 # Thus, the only thing that matters is that tests work in their CI
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc CHANGELOG.rst README.rst
 %license LICENSE.txt
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/*.dist-info/
 
 %changelog
 * Wed Sep 18 2024 Fabian Affolter <mail@fabian-affolter.ch> - 8.3.0-1

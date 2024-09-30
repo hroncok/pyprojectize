@@ -55,6 +55,7 @@ export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 %install
 export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 %pyproject_install
+%pyproject_save_files %{srcname} 'accuraterip*'
 
 %if "%_metainfodir" != "%{_datadir}/metainfo"
 mv %{buildroot}%{_datadir}/metainfo/ \
@@ -63,13 +64,10 @@ mv %{buildroot}%{_datadir}/metainfo/ \
 
 appstream-util validate-relax --nonet %{buildroot}/%{_metainfodir}/com.github.whipper_team.Whipper.metainfo.xml
 
-%files
+%files -f %{pyproject_files}
 %{_bindir}/whipper
 %{_bindir}/accuraterip-checksum
 %{_metainfodir}/com.github.whipper_team.Whipper.metainfo.xml
-%{python3_sitearch}/%{srcname}/
-%{python3_sitearch}/%{srcname}-*.dist-info/
-%{python3_sitearch}/accuraterip*
 %license LICENSE
 %doc README.md TODO CHANGELOG.md HACKING COVERAGE
 

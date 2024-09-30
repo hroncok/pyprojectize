@@ -49,12 +49,10 @@ need a database connection.
 
 %install
 %pyproject_install
+%pyproject_save_files bottle_sqlite
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc PKG-INFO README.rst
-%{python3_sitelib}/bottle_sqlite.py*
-%{python3_sitelib}/__pycache__/bottle_sqlite*
-%{python3_sitelib}/bottle_sqlite*.dist-info
 
 
 %changelog

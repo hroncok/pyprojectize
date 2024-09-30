@@ -80,6 +80,7 @@ useradd -r -m -g copr-dist-git -G packager,apache -c "copr-dist-git user" copr-d
 
 %install
 %pyproject_install
+%pyproject_save_files copr_dist_git
 
 install -d %{buildroot}%{_datadir}/copr/dist_git
 install -d %{buildroot}%{_sysconfdir}/copr
@@ -118,10 +119,8 @@ touch %{buildroot}%{_var}/log/copr-dist-git/main.log
 %postun
 %systemd_postun_with_restart copr-dist-git.service
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
-%python3_sitelib/copr_dist_git
-%python3_sitelib/copr_dist_git*egg-info
 
 %{_bindir}/*
 %dir %{_datadir}/copr

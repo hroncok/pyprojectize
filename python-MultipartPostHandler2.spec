@@ -52,6 +52,7 @@ sed -i 's|http://www.google.com|https://getfedora.org/|' examples/MultipartPostH
 
 %install
 %pyproject_install
+%pyproject_save_files 'MultipartPostHandler*'
 
 %if %{with internet}
 %check
@@ -60,10 +61,8 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} examples/MultipartPostHan
 # with internet
 %endif 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt examples/MultipartPostHandler-example.py
-%{python3_sitelib}/MultipartPostHandler*
-%{python3_sitelib}/__pycache__/MultipartPostHandler*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.5-36

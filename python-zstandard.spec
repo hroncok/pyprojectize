@@ -58,6 +58,7 @@ rm -r %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %if %{with check}
 %check
@@ -68,11 +69,9 @@ export ZSTD_SLOW_TESTS=1
 mv zstandard{.src,}
 %endif
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE zstd/COPYING
 %doc README.rst
-%{python3_sitearch}/%{pypi_name}-%{version}.dist-info
-%{python3_sitearch}/%{pypi_name}
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.22.0-5

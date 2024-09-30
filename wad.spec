@@ -35,16 +35,15 @@ mv wad/etc/README.md wad/etc/README-wappalyzer.md
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
 %check
 %pytest -v %{name}/tests
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc README.md wad/etc/README-wappalyzer.md
 %{_bindir}/wad
-%{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}-%{version}.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.4.6-16

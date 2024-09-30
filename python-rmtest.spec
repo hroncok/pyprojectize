@@ -71,6 +71,7 @@ cp %{S:1} %{S:2} .
 %py2_install
 %endif
 %pyproject_install
+%pyproject_save_files '*'
 
 %check
 %if !%{disable_python2}
@@ -85,10 +86,9 @@ PYTHONPATH=%{buildroot}/%{python3_sitelib}/rmtest %{__python3} setup.py test
 %{python2_sitelib}/*
 %endif
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/*
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.0.1-18

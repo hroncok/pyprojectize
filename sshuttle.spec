@@ -50,6 +50,7 @@ popd
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
 # Install docs
 pushd docs
@@ -67,12 +68,10 @@ popd
 %pytest
 %endif
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %{_mandir}/man1/%{name}.1.*
 %{_infodir}/%{name}.info.*
-%{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}*.dist-info
 %{_bindir}/sshuttle
 
 

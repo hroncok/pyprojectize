@@ -52,11 +52,10 @@ Detta paket tillhandahåller ett Python 3-bygge av %{pypi_name}.
 
 %install
 %pyproject_install
+%pyproject_save_files annoying
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc PKG-INFO
-%{python3_sitelib}/annoying/
-%{python3_sitelib}/*.dist-info/
 
 
 %changelog

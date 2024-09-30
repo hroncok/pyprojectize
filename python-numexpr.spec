@@ -49,6 +49,7 @@ sed -i 's/unittest.makeSuite/unittest.defaultTestLoader.loadTestsFromTestCase/g'
 
 %install
 %pyproject_install
+%pyproject_save_files numexpr
 chmod 0755 %{buildroot}%{python3_sitearch}/numexpr/cpuinfo.py
 sed -i "1s|/usr/bin/env python$|%{python3}|" %{buildroot}%{python3_sitearch}/numexpr/cpuinfo.py
 
@@ -57,11 +58,9 @@ pushd build/lib.linux*
 %py3_test_envvars %python3 -c 'import numexpr, sys; sys.exit(not numexpr.test().wasSuccessful())'
 popd
 
-%files -n python%{python3_pkgversion}-numexpr
+%files -n python%{python3_pkgversion}-numexpr -f %{pyproject_files}
 %license LICENSE.txt
 %doc ANNOUNCE.rst RELEASE_NOTES.rst README.rst
-%{python3_sitearch}/numexpr/
-%{python3_sitearch}/numexpr-%{version}.dist-info
 
 %changelog
 %autochangelog

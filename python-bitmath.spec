@@ -85,6 +85,7 @@ always at 100%.
 ######################################################################
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 
 mkdir -p $RPM_BUILD_ROOT/%{_mandir}/man1/
@@ -94,8 +95,7 @@ cp -v -r docsite/source/* $RPM_BUILD_ROOT/%{_docdir}/%{name}/docs/
 rm -f $RPM_BUILD_ROOT/%{_docdir}/%{name}/docs/NEWS.rst
 
 ######################################################################
-%files -n python3-bitmath
-%{python3_sitelib}/*
+%files -n python3-bitmath -f %{pyproject_files}
 %doc README.rst NEWS.rst LICENSE
 %doc %{_mandir}/man1/bitmath.1*
 %doc %{_docdir}/%{name}/docs/

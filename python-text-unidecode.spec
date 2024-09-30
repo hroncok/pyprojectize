@@ -33,12 +33,11 @@ text-unidecode is the most basic port of the Text::Unidecode Perl library.
 
 %install
 %pyproject_install
+%pyproject_save_files text_unidecode
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/text_unidecode/
-%{python3_sitelib}/text_unidecode-%{version}.dist-info
 
 %changelog
 * Tue Aug 06 2024 Miroslav Suchý <msuchy@redhat.com> - 1.3-18

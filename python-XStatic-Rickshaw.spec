@@ -66,16 +66,15 @@ sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/rickshaw'|" xstatic/pkg/rickshaw/
 
 %install
 %pyproject_install
+%pyproject_save_files xstatic
 mkdir -p %{buildroot}%{_jsdir}/rickshaw
 mv %{buildroot}%{python3_sitelib}/xstatic/pkg/rickshaw/data/rickshaw.* %{buildroot}%{_jsdir}/rickshaw
 rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/rickshaw/data/
 # fix execute flags for js
 chmod 644 %{buildroot}%{_jsdir}/rickshaw/rickshaw.js
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
-%{python3_sitelib}/xstatic/pkg/rickshaw
-%{python3_sitelib}/XStatic_Rickshaw-%{version}.dist-info
 %{python3_sitelib}/XStatic_Rickshaw-%{version}-py%{python3_version}-nspkg.pth
 
 %files -n xstatic-rickshaw-common

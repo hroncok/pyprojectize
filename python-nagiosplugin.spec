@@ -47,15 +47,14 @@ Summary:        %{summary}
 
 %install
 %pyproject_install
+%pyproject_save_files nagiosplugin
 
 %check
 %pytest
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.txt
-%{python3_sitelib}/nagiosplugin-*.dist-info/
-%{python3_sitelib}/nagiosplugin/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.3.3-9

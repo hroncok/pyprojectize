@@ -43,6 +43,7 @@ An extension for colcon-core to provide information about the test results.
 
 %install
 %pyproject_install
+%pyproject_save_files colcon_test_result
 
 
 %check
@@ -52,11 +53,9 @@ An extension for colcon-core to provide information about the test results.
     test
 
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/colcon_test_result/
-%{python3_sitelib}/colcon_test_result-%{version}.dist-info/
 
 
 %changelog

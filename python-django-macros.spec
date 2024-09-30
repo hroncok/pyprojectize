@@ -78,12 +78,11 @@ dos2unix -- README.rst
 
 %install
 %pyproject_install
+%pyproject_save_files macros
 
-%files -n python3-%srcname
+%files -n python3-%srcname -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%python3_sitelib/macros
-%python3_sitelib/django_macros-%version.dist-info
 
 
 %changelog

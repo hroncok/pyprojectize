@@ -40,6 +40,7 @@ rm -vrf *.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files citeproc
 
 sed -i -e '1s|^.*$|#!%{__python3}|' %{buildroot}%{_bindir}/csl_unsorted
 
@@ -47,11 +48,9 @@ sed -i -e '1s|^.*$|#!%{__python3}|' %{buildroot}%{_bindir}/csl_unsorted
 %{pytest}
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst examples CHANGES.rst
-%{python3_sitelib}/citeproc/
-%{python3_sitelib}/citeproc_py-%{version}.dist-info
 
 %{_bindir}/csl_unsorted
 

@@ -62,13 +62,13 @@ the plugins in it for some particular purpose or intent.
 
 %install
 %pyproject_install
+%pyproject_save_files 'straight*'
 
 #%check
 #%{__python3} tests.py
 
-%files -n python3-straight-plugin
+%files -n python3-straight-plugin -f %{pyproject_files}
 # For noarch packages: sitelib
-%{python3_sitelib}/straight*
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.5.0-29

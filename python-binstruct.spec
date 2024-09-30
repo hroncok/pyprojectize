@@ -55,18 +55,16 @@ BuildRequires:	python3-pytest
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 
 %check
 %{_bindir}/nosetests-%{python3_version} -vv
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE.txt
 %doc PKG-INFO README.rst
-%{python3_sitelib}/%{pypi_name}.py
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
-%{python3_sitelib}/__pycache__/%{pypi_name}.cpython-%{python3_version_nodots}*.pyc
 
 
 %changelog

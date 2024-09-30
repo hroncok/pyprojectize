@@ -87,14 +87,14 @@ rm documentation/build/html/.buildinfo
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 %check
 %make_build dev-test
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %doc README.rst
 %{_bindir}/breathe-apidoc
-%{python3_sitelib}/*
 %license LICENSE
 
 %if %{with doc}

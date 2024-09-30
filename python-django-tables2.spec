@@ -39,12 +39,11 @@ rm -vr *.egg-info/
 
 %install
 %pyproject_install
+%pyproject_save_files django_tables2
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.md CHANGELOG.md
-%{python3_sitelib}/django_tables2/
-%{python3_sitelib}/django_tables2-*.dist-info/
 
 %changelog
 %autochangelog

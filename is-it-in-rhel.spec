@@ -29,14 +29,12 @@ packaged in RHEL or not.
 
 %install
 %pyproject_install
+%pyproject_save_files is_it_in_rhel
 
 
-%files
+%files -f %{pyproject_files}
 %license COPYING
 %doc README.rst
-%{python3_sitelib}/is_it_in_rhel.py
-%{python3_sitelib}/__pycache__/is_it_in_rhel.cpython-%{python3_version_nodots}*.py*
-%{python3_sitelib}/is_it_in_rhel-%{version}.dist-info
 %{_bindir}/is-it-in-rhel
 
 

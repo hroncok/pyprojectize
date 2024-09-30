@@ -56,6 +56,7 @@ Requires:       python3-cryptography
 # version can take it's place.
 rm -rf %{_bindir}/bucky
 %pyproject_install
+%pyproject_save_files bucky
 %{__mkdir_p} %{buildroot}%{_localstatedir}/log/bucky
 %{__mkdir_p} %{buildroot}%{_localstatedir}/run/bucky
 %{__mkdir_p} %{buildroot}%{_sysconfdir}/bucky
@@ -76,15 +77,13 @@ if [ $1 = 0 ]; then
 fi
 
  
-%files -n python3-bucky
+%files -n python3-bucky -f %{pyproject_files}
 %license LICENSE
 %doc THANKS README.rst python-bucky-supervisord-example.conf
 %{_bindir}/bucky
 %attr(-,bucky,bucky) %{_localstatedir}/log/bucky
 %attr(-,bucky,bucky) %{_localstatedir}/run/bucky
 %config(noreplace) %{_sysconfdir}/bucky/bucky.conf
-%{python3_sitelib}/bucky/
-%{python3_sitelib}/bucky-%{version}.dist-info
 
 
 %changelog

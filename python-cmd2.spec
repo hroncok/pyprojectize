@@ -57,12 +57,11 @@ Requires:         /usr/bin/which
 
 %install
 %pyproject_install
+%pyproject_save_files cmd2
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc CHANGELOG.md README.md docs
-%{python3_sitelib}/cmd2
-%{python3_sitelib}/%{pypi_name}-%{version}*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.4.2-8

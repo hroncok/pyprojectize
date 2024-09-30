@@ -37,6 +37,7 @@ BuildRequires:	python3-devel
 %install
 %{__mkdir} -p %{buildroot}%{_mandir}/man1
 %pyproject_install
+%pyproject_save_files 'speedtest*'
 export PYTHONPATH="%{buildroot}%{python3_sitelib}"
 for f in $(%{_bindir}/find %{buildroot}%{_bindir} -type f -name '*' | /bin/sort )
 do
@@ -45,14 +46,11 @@ do
 done
 unset PYTHONPATH
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
 %{_bindir}/speedtest*
 %{_mandir}/man1/speedtest*.1*
-%{python3_sitelib}/speedtest*.py
-%{python3_sitelib}/speedtest_cli-%{version}.dist-info
-%{python3_sitelib}/__pycache__/speedtest*.cpython-%{python3_version_nodots}*.pyc
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 2.1.3-14

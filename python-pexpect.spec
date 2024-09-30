@@ -76,6 +76,7 @@ pty module.
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 rm -rf %{buildroot}%{python3_sitelib}/pexpect/tests
 
 %if %{with check}
@@ -94,11 +95,9 @@ export INPUTRC=$PWD/.inputrc
 CI=true py.test-3 --verbose
 %endif
 
-%files -n python3-%{modname}
+%files -n python3-%{modname} -f %{pyproject_files}
 %license LICENSE
 %doc doc examples
-%{python3_sitelib}/%{modname}/
-%{python3_sitelib}/%{modname}-*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 4.9.0-6

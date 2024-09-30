@@ -109,6 +109,7 @@ rm -v %{buildroot}%{_libdir}/*.a
 
 pushd libbtrfsutil/python
 %pyproject_install
+%pyproject_save_files btrfsutil
 popd
 
 %files
@@ -145,10 +146,8 @@ popd
 %{_libdir}/pkgconfig/libbtrfsutil.pc
 %{_mandir}/man2/*btrfs*
 
-%files -n python3-btrfsutil
+%files -n python3-btrfsutil -f %{pyproject_files}
 %license libbtrfsutil/COPYING
-%{python3_sitearch}/btrfsutil.*.so
-%{python3_sitearch}/btrfsutil-*.dist-info/
 
 %changelog
 * Tue Sep 17 2024 Neal Gompa <ngompa@fedoraproject.org> - 6.11-1

@@ -43,14 +43,13 @@ commands in SVG, and a parser for SVG path definitions.
 
 %install
 %{pyproject_install}
+%pyproject_save_files svg
 
 %check
 %{__python3} setup.py test
 
-%files -n python3-svg-path
+%files -n python3-svg-path -f %{pyproject_files}
 %doc README.rst CHANGES.txt CONTRIBUTORS.txt
-%{python3_sitelib}/svg/
-%{python3_sitelib}/%{modname}-%{version}.dist-info/
 
 %changelog
 * Wed Aug 07 2024 Miroslav Suchý <msuchy@redhat.com> - 4.1-13

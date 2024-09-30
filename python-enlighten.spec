@@ -127,6 +127,7 @@ find -name '*.pyc' -delete
 
 %if %{with python3}
 %pyproject_install
+%pyproject_save_files 'enlighten*'
 %endif
 
 %if %{with python2}
@@ -157,11 +158,10 @@ find -name '*.pyc' -delete
 %endif
 
 %if %{with python3}
-%files -n python%{python3_pkgversion}-%{pypi_name}
+%files -n python%{python3_pkgversion}-%{pypi_name} -f %{pyproject_files}
 %doc README*
 %doc examples
 %license LICENSE
-%{python3_sitelib}/enlighten*
 %endif
 
 %if 0%{?with_python3_other}

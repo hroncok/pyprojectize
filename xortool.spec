@@ -29,14 +29,13 @@ sed -i -e '/^#!\//, 1d' xortool/*.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
-%files
+%files -f %{pyproject_files}
 %doc README.md
 %license LICENSE
 %{_bindir}/%{name}
 %{_bindir}/%{name}-xor
-%{python3_sitelib}/*.dist-info/
-%{python3_sitelib}/%{pypi_name}/
 
 %changelog
 * Sat Jul 20 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.99-16

@@ -38,6 +38,7 @@ rm -f src/slingshot/data/FreeSansBold.ttf
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
 rm -rf $RPM_BUILD_ROOT/slingshot
 rm -rf $RPM_BUILD_ROOT/home
@@ -62,10 +63,8 @@ appstream-util validate-relax --nonet $RPM_BUILD_ROOT/%{_metainfodir}/*.appdata.
 #Link to font
 ln -s %{_datadir}/fonts/gnu-free/FreeSansBold.ttf $RPM_BUILD_ROOT%{python3_sitelib}/%{name}/data/FreeSansBold.ttf
 
-%files
+%files -f %{pyproject_files}
 %{_bindir}/slingshot
-%{python3_sitelib}/%{name}-*.dist-info
-%{python3_sitelib}/%{name}/
 %doc README
 %license LICENSE
 %{_datadir}/applications/slingshot.desktop

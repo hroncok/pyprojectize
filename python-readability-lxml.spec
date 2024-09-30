@@ -62,17 +62,16 @@ done
 
 %install
 %pyproject_install
+%pyproject_save_files readability
 
 
 %check
 %{python3} -m pytest -v
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/readability_lxml-*.dist-info
-%{python3_sitelib}/readability/
 
 
 %changelog

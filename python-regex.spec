@@ -47,13 +47,13 @@ rst2html README.rst > README.html
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %doc README.html
 %doc docs/Features.html
 %doc docs/UnicodeProperties.html
-%{python3_sitearch}/*
 
 
 %changelog

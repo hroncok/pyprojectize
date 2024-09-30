@@ -33,11 +33,11 @@ Robust and effective logging for Python 3.
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.md CONTRIBUTING.rst HISTORY.md
-%{python3_sitelib}/*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.7.0-13

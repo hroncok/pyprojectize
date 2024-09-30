@@ -62,6 +62,7 @@ popd
 
 %install
 %pyproject_install
+%pyproject_save_files pure_protobuf
 
 # E: non-executable-script
 pushd %{buildroot}%{python3_sitelib}/pure_protobuf/
@@ -73,11 +74,9 @@ popd
 %{python3} -m pytest -v
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/pure_protobuf-%{version}.dist-info
-%{python3_sitelib}/pure_protobuf/
 
 
 %changelog

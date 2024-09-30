@@ -93,6 +93,7 @@ cd -
 # python bindings
 cd %{libpkg}/bindings/python
 %pyproject_install
+%pyproject_save_files '*'
 cd -
 
 cd %{name}
@@ -118,9 +119,8 @@ make DESTDIR=%{buildroot} install
 %{_includedir}/*.h
 %{_libdir}/*.so
 
-%files -n python3-%{libpkg}
+%files -n python3-%{libpkg} -f %{pyproject_files}
 %doc %{libpkg}/bindings/python/README
-%{python3_sitelib}/*
 
 
 %changelog

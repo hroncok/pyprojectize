@@ -45,6 +45,7 @@ Summary:        %{summary}
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 
 %check
@@ -53,10 +54,9 @@ Summary:        %{summary}
 # PYTHONPATH=$RPM_BUILD_ROOT%%{python3_sitelib}/:$PWD/ %%{__python3} tests/tests.py
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc CHANGES.rst README.rst
 %license LICENSE.txt
-%{python3_sitelib}/*
 
 
 %changelog

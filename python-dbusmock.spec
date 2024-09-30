@@ -46,13 +46,13 @@ rm -rf python-%{modname}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files '*%{modname}*'
 
 %check
 %{__python3} -m unittest -v
 
-%files -n python3-dbusmock
+%files -n python3-dbusmock -f %{pyproject_files}
 %doc README.md COPYING
-%{python3_sitelib}/*%{modname}*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.32.1-2

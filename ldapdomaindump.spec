@@ -38,6 +38,7 @@ sed -i -e '/^#!\//, 1d' ldapdomaindump/__main__.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %files
 %doc Readme.md
@@ -46,9 +47,7 @@ sed -i -e '/^#!\//, 1d' ldapdomaindump/__main__.py
 %{_bindir}/ldd2bloodhound
 %{_bindir}/ldd2pretty
 
-%files -n python3-%{pypi_name}
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 
 %changelog
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.3-17

@@ -297,6 +297,7 @@ pushd src/libcharon/plugins/vici
     # propose better way to upstream
     %py3_build
     %pyproject_install
+%pyproject_save_files vici
   popd
 %endif
 %if %{with perl}
@@ -409,11 +410,9 @@ install -D -m 0644 %{SOURCE3} %{buildroot}/%{_tmpfilesdir}/strongswan-starter.co
 %{_libexecdir}/strongswan/charon-nm
 
 %if %{with python3}
-%files -n python3-vici
+%files -n python3-vici -f %{pyproject_files}
 %license COPYING
 %doc src/libcharon/plugins/vici/python/README.rst
-%{python3_sitelib}/vici
-%{python3_sitelib}/vici-%{version}.dist-info
 %endif
 
 %if %{with perl}

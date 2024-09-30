@@ -87,13 +87,12 @@ popd
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license *LICENSE*.txt
 %doc CHANGES.txt
-%{python3_sitelib}/*.dist-info
-%{python3_sitelib}/%{srcname}/
 
 %files -n python-%{srcname}-doc
 %license *LICENSE*.txt

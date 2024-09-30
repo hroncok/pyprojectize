@@ -45,16 +45,15 @@ sed -i "s/teardown(/teardown_method(/" test.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{pkg_name}
 
 %check
 %pytest test.py
 
 
-%files -n python3-%{pkg_name}
+%files -n python3-%{pkg_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst CHANGES
-%{python3_sitelib}/%{pkg_name}-%{pypi_version}.dist-info
-%{python3_sitelib}/%{pkg_name}/
 
 
 %changelog

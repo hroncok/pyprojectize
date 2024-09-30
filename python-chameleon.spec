@@ -46,6 +46,7 @@ Requires:   python3-lxml
 
 %install
 %pyproject_install
+%pyproject_save_files chameleon
 
 # No need to ship tests as part of the module
 rm -rf  %{buildroot}%{python3_sitelib}/chameleon/tests
@@ -57,10 +58,8 @@ find %{buildroot}%{python3_sitelib}/chameleon -name '*.txt' -exec rm \{\} \;
 %tox
 
 
-%files -n python3-chameleon
+%files -n python3-chameleon -f %{pyproject_files}
 %doc README.rst
-%{python3_sitelib}/chameleon/
-%{python3_sitelib}/Chameleon-%{version}*
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 4.5.4-5

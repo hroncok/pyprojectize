@@ -32,10 +32,9 @@ Database update scripts for prewikka.
 
 %install
 %pyproject_install
+%pyproject_save_files prewikkaupdatedb
 
-%files -n python3-%{name}
-%{python3_sitelib}/prewikkaupdatedb/
-%{python3_sitelib}/prewikka_updatedb-%{version}.dist-info
+%files -n python3-%{name} -f %{pyproject_files}
 
 %changelog
 * Fri Jul 26 2024 Miroslav Suchý <msuchy@redhat.com> - 5.2.0-15

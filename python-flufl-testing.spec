@@ -62,15 +62,14 @@ Summary:        %{summary}
 
 %install
 %pyproject_install
+%pyproject_save_files flufl
 %if 0%{?with_python3_other}
 %py3_other_install
 %endif
 
 
-%files -n python%{python3_pkgversion}-%{pkgname}
+%files -n python%{python3_pkgversion}-%{pkgname} -f %{pyproject_files}
 %doc README.rst NEWS.rst
-%{python3_sitelib}/flufl/
-%{python3_sitelib}/%{srcname}-%{version}*.dist-info/
 %{python3_sitelib}/%{srcname}-%{version}*-py%{python3_version}-nspkg.pth
 
 %if 0%{?with_python3_other}

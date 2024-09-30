@@ -199,6 +199,7 @@ bzip2 -9 %{srcname}.pp
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 mkdir -p %{buildroot}/%{_sharedstatedir}/%{srcname}
 mkdir -p --mode=0700 %{buildroot}/%{_rundir}/%{srcname}
 
@@ -356,10 +357,8 @@ fi
 %config(noreplace) %verify(not md5 size mode mtime) %attr(400,%{srcname},%{srcname}) %{_sysconfdir}/%{srcname}/tenant.conf
 %{_bindir}/%{srcname}_tenant
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
-%{python3_sitelib}/%{srcname}-*.dist-info/
-%{python3_sitelib}/%{srcname}
 %{_datadir}/%{srcname}/scripts/create_mb_refstate
 %{_bindir}/keylime_attest
 %{_bindir}/keylime_convert_runtime_policy

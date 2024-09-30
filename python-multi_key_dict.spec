@@ -81,6 +81,7 @@ is extended to support multiple keys referring to the same element.
 
 %if 0%{?with_python3}
 %pyproject_install
+%pyproject_save_files %{srcname}
 %endif
 
 
@@ -104,12 +105,9 @@ is extended to support multiple keys referring to the same element.
 %endif
 
 %if 0%{?with_python3}
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.txt
-%{python3_sitelib}/__pycache__/%{srcname}*
-%{python3_sitelib}/%{srcname}.py
-%{python3_sitelib}/%{srcname}-%{version}.dist-info
 %endif
 
 

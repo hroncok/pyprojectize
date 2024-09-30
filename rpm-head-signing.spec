@@ -66,6 +66,7 @@ done
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 
 %if %{with tests}
@@ -77,12 +78,10 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} SKIP_IMA_LIVE_CHECK=true python3 test
 %endif
 
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc README.md
 %{_bindir}/verify-rpm-ima-signatures
-%{python3_sitearch}/%{srcname}/
-%{python3_sitearch}/%{srcname}-*/
 
 
 %changelog

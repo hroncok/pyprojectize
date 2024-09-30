@@ -44,6 +44,7 @@ A colcon extension for collecting coverage.py results.
 
 %install
 %pyproject_install
+%pyproject_save_files colcon_coveragepy_result
 
 
 %check
@@ -53,11 +54,9 @@ A colcon extension for collecting coverage.py results.
     test
 
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/colcon_coveragepy_result/
-%{python3_sitelib}/colcon_coveragepy_result-%{version}.dist-info/
 
 
 %changelog

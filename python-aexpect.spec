@@ -67,6 +67,7 @@ sftp, telnet, among others.
 
 %install
 %pyproject_install
+%pyproject_save_files aexpect
 ln -s aexpect_helper %{buildroot}%{_bindir}/aexpect_helper-%{python3_pkgversion}
 ln -s aexpect_helper %{buildroot}%{_bindir}/aexpect_helper-%{python3_version}
 
@@ -75,11 +76,9 @@ ln -s aexpect_helper %{buildroot}%{_bindir}/aexpect_helper-%{python3_version}
 selftests/checkall
 %endif
 
-%files -n python%{python3_pkgversion}-aexpect
+%files -n python%{python3_pkgversion}-aexpect -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/aexpect/
-%{python3_sitelib}/aexpect-%{version}.dist-info/
 %{_bindir}/aexpect_helper*
 
 %changelog

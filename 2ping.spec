@@ -27,6 +27,7 @@ a 2ping client to determine which direction packet loss occurs.
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 install -Dp -m 0644 2ping.service %{buildroot}/%{_unitdir}/2ping.service
 install -Dp -m 0644 doc/2ping.1 %{buildroot}/%{_mandir}/man1/2ping.1
 install -Dp -m 0644 doc/2ping.1 %{buildroot}/%{_mandir}/man1/2ping6.1
@@ -43,10 +44,9 @@ install -Dp -m 0644 doc/2ping.1 %{buildroot}/%{_mandir}/man1/2ping6.1
 %postun
 %systemd_postun 2ping.service
 
-%files
+%files -f %{pyproject_files}
 %doc ChangeLog.md README.md
 %license COPYING.md
-%{python3_sitelib}/*
 %{_bindir}/%{name}
 %{_bindir}/%{name}6
 %{_mandir}/man1/%{name}.1*

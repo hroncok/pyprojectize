@@ -37,17 +37,16 @@ sure they follow the specification.
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 rm -rf %{buildroot}%{_defaultdocdir}/%{pypi_name}/LICENSE
 
 %check
 PYTHONPATH=%{buildroot}/%{python3_sitelib}/ pytest-%{python3_version} -v tests
 
-%files
+%files -f %{pyproject_files}
 %doc ACKNOWLEDGEMENTS AUTHORS README
 %license LICENSE
 %{_bindir}/{stats,validator}
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{date}*.dist-info
 
 %changelog
 %autochangelog

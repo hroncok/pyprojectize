@@ -84,6 +84,7 @@ cp %{SOURCE1} LICENSE
 %py2_install
 %endif
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 
 %if %{with python2}
@@ -94,12 +95,9 @@ cp %{SOURCE1} LICENSE
 %{python2_sitelib}/%{mod_name}-%{version}.dist-info
 %endif
 
-%files -n python%{python3_pkgversion}-%{pypi_name}
+%files -n python%{python3_pkgversion}-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/%{pypi_name}.py
-%{python3_sitelib}/%{mod_name}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.0-22

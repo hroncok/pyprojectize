@@ -45,16 +45,15 @@ make compile
 
 %install
 %pyproject_install
+%pyproject_save_files biscuits
 
 
 %check
 %pytest
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
-%{python3_sitearch}/biscuits.cpython-%{python3_version_nodots}*.so
-%{python3_sitearch}/%{pypi_name}-%{version}.dist-info
 
 
 %changelog

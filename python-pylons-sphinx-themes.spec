@@ -44,13 +44,12 @@ Summary: %{summary}
 
 %install
 %pyproject_install
+%pyproject_save_files pylons_sphinx_themes
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.rst
-%{python3_sitelib}/pylons_sphinx_themes
-%{python3_sitelib}/*.dist-info
 
 
 %changelog

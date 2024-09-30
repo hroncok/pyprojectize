@@ -40,6 +40,7 @@ Documentation for %{name}.
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 PYTHONPATH=${PWD} sphinx-build-3 docs html
 rm -rf html/.{doctrees,buildinfo}
 
@@ -47,12 +48,10 @@ rm -rf html/.{doctrees,buildinfo}
 #%check
 #%{__python3} setup.py test
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
 %{_bindir}/mido-*
-%{python3_sitelib}/*.dist-info
-%{python3_sitelib}/%{pypi_name}/
 
 %files -n python-%{pypi_name}-doc
 %doc html

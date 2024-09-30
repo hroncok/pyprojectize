@@ -41,14 +41,13 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files click_man
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
 %{_bindir}/click-man
-%{python3_sitelib}/click_man
-%{python3_sitelib}/click_man-%{version}.dist-info
 
 
 %changelog

@@ -65,17 +65,16 @@ sed -i -e '/^#!\//, 1d' cpuinfo/cpuinfo.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 
 %check
 %{__python3} setup.py test
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst ChangeLog
 %license LICENSE
 %{_bindir}/cpuinfo
-%{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/py_%{srcname}-%{version}.dist-info
 
 
 %changelog

@@ -36,10 +36,10 @@ rm -vrf *.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files '%{srcname}*'
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
-%{python3_sitelib}/%{srcname}*
 
 %changelog
 * Fri Jul 26 2024 Miroslav Suchý <msuchy@redhat.com> - 0.3-23

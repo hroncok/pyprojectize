@@ -33,6 +33,7 @@ Pretty-print git repository collaborators sorted by contributions.
 
 %install
 %pyproject_install
+%pyproject_save_files gitfame
 mkdir -p %{buildroot}%{_libexecdir}/git-core
 ln -s %{_bindir}/%{name} %{buildroot}%{_libexecdir}/git-core/%{name}
 install -Dpm0644 -t %{buildroot}%{_mandir}/man1 gitfame/git-fame.1
@@ -40,14 +41,12 @@ install -Dpm0644 -t %{buildroot}%{_mandir}/man1 gitfame/git-fame.1
 %check
 # Tests depend on real git repo
 
-%files
+%files -f %{pyproject_files}
 %license LICENCE
 %doc README.rst
 %{_bindir}/%{name}
 %{_libexecdir}/git-core/%{name}
 %{_mandir}/man1/%{name}.1*
-%{python3_sitelib}/git_fame-*.dist-info/
-%{python3_sitelib}/gitfame/
 
 %changelog
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.0.1-8

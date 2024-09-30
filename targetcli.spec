@@ -32,16 +32,16 @@ users will also need to install and use fcoe-utils.
 
 %install
 %pyproject_install
+%pyproject_save_files 'targetcli*'
 mkdir -p %{buildroot}%{_sysconfdir}/target/backup
 mkdir -p %{buildroot}%{_mandir}/man8/
 install -m 644 targetcli*.8 %{buildroot}%{_mandir}/man8/
 mkdir -p %{buildroot}%{_unitdir}/
 install -m 644 systemd/* %{buildroot}%{_unitdir}/
 
-%files
+%files -f %{pyproject_files}
 %doc README.md
 %license COPYING
-%{python3_sitelib}/targetcli*
 %{_bindir}/targetcli
 %{_bindir}/targetclid
 %{_mandir}/man8/targetcli*.8*

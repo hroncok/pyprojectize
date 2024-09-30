@@ -47,12 +47,11 @@ Obsoletes:      python-%{srcname} < 0.2.7-7
 
 %install
 %pyproject_install
+%pyproject_save_files pysword
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/pysword/
-%{python3_sitelib}/pysword-%{version}.dist-info/
 
 %changelog
 * Thu Aug 22 2024 Tim.Bentley <tim.bentley@openlp.org> - 0.2.8-10

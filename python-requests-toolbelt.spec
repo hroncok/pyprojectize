@@ -50,6 +50,7 @@ sed -i -E -e 's/^(\s*)import mock/\1from unittest import mock/' \
 
 %install
 %pyproject_install
+%pyproject_save_files %{altname}
 
 %check
 # Some tests are disabled due to compatibility issues with Python 3.10, once it is fixed it
@@ -57,11 +58,9 @@ sed -i -E -e 's/^(\s*)import mock/\1from unittest import mock/' \
 # Downstream issue: https://bugzilla.redhat.com/show_bug.cgi?id=1926358
 py.test-%{python3_version} -v --ignore=tests/test_x509_adapter.py -k "not test_stream_response_to_specific_filename and not test_stream_response_to_directory and not test_stream_response_to_existing_file and not test_stream_response_to_file_like_object and not test_stream_response_to_file_chunksize"
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst HISTORY.rst
-%{python3_sitelib}/%{altname}/
-%{python3_sitelib}/%{altname}-*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.0-7

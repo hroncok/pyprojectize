@@ -33,16 +33,14 @@ Python library that implements API used by ydiff tool.
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
 %files
 %doc README.rst
 %license LICENSE
 %{_bindir}/ydiff
 
-%files -n python3-%{name}
-%{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/%{name}.py
-%{python3_sitelib}/%{name}-%{version}.dist-info
+%files -n python3-%{name} -f %{pyproject_files}
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.3-4

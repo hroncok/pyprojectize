@@ -54,6 +54,7 @@ Summary: Documentation for %{name}
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %if %{with tests}
 %check
@@ -61,11 +62,9 @@ Summary: Documentation for %{name}
 %pytest --ignore-glob='tests/sphinx/*'
 %endif
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE.txt
 %{_bindir}/faker
-%{python3_sitelib}/%{srcname}
-%{python3_sitelib}/Faker-%{version}.dist-info
 
 %files doc
 %license LICENSE.txt

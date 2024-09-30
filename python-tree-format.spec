@@ -36,15 +36,14 @@ Python library to generate nicely formatted trees, like the UNIX `tree` command
 
 %install
 %{pyproject_install}
+%pyproject_save_files tree_format
 
 %check
 %{__python3} setup.py test
 
-%files -n python3-%{pkgname}
+%files -n python3-%{pkgname} -f %{pyproject_files}
 %license LICENSE
 # TODO this is listed as 0.1.0, but our %%{version} is 0.1.2 :(
-%{python3_sitelib}/tree_format-0.1.2.dist-info/
-%{python3_sitelib}/tree_format/
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 0.1.2-25

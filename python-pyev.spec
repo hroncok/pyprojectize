@@ -97,6 +97,7 @@ to libev library to be called from Python scripts.
 
 %if 0%{?with_python3}
 %pyproject_install
+%pyproject_save_files '%{gitname}*'
 %endif # with_python3
 
 
@@ -104,10 +105,9 @@ to libev library to be called from Python scripts.
 
 
 %if 0%{?with_python3}
-%files -n python%{python3_pkgversion}-%{gitname}
+%files -n python%{python3_pkgversion}-%{gitname} -f %{pyproject_files}
 #license LICENSE
 %doc README.md
-%{python3_sitearch}/%{gitname}*
 %endif # with_python3
 
 

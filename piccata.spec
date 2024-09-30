@@ -39,13 +39,11 @@ communication over different link types. Transport for a UDP socket is provided.
 
 %install
 %pyproject_install
+%pyproject_save_files piccata transport
 
-%files -n python3-piccata
+%files -n python3-piccata -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/piccata/
-%{python3_sitelib}/transport/
-%{python3_sitelib}/piccata-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.0.1-8

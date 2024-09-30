@@ -48,12 +48,11 @@ browsing history).
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{srcname}-*.dist-info/
-%{python3_sitelib}/%{srcname}/
 %{_bindir}/protonvpn
 
 

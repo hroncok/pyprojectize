@@ -56,6 +56,7 @@ hg.
 %{py2_install}
 %endif
 %{pyproject_install}
+%pyproject_save_files hglib
 
 %check
 %if 0%{?with_python2}
@@ -70,10 +71,8 @@ hg.
 %{python2_sitelib}/python_hglib-*.dist-info
 %endif
 
-%files -n python3-hglib
+%files -n python3-hglib -f %{pyproject_files}
 %license LICENSE
-%{python3_sitelib}/hglib
-%{python3_sitelib}/python_hglib-*-py*egg-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.6.2-15

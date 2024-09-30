@@ -35,15 +35,15 @@ providing policy visualization.
 %install
 #mkdir -p % {buildroot}% {_mandir}/man1
 %pyproject_install
+%pyproject_save_files '*'
 
 %check
 %if %{?_with_check:1}%{!?_with_check:0}
 %{__python3} setup.py test
 %endif
 
-%files
+%files -f %{pyproject_files}
 %license COPYING
-%{python3_sitelib}/*
 %{_bindir}/seextract_cil
 %{_bindir}/sebuild_graph
 %{_bindir}/seexport_graph

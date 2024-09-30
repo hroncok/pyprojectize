@@ -27,13 +27,12 @@ sed -i -e '/^#!\//, 1d' {wafw00f/*.py,wafw00f/*/*.py}
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
-%files
+%files -f %{pyproject_files}
 %doc CREDITS.txt README.md
 %license LICENSE
 %{_bindir}/%{name}
-%{python3_sitelib}/%{name}-*.dist-info/
-%{python3_sitelib}/%{name}/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 2.1.0-17

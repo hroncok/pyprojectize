@@ -60,6 +60,7 @@ sed -i "s|version=''|version='%{version}'|g" setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
 
 %check
@@ -76,7 +77,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %systemd_user_postun_with_restart %{name}.service
 
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc README.md AUTHORS
 %{_bindir}/%{name}
@@ -96,8 +97,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.svg
 %{_datadir}/icons/ubuntu-mono-*/scalable/apps/%{name}-indicator.svg
 %{_userunitdir}/%{name}.service
-%{python3_sitelib}/%{name}-*.dist-info
-%{python3_sitelib}/%{name}/
 
 
 %changelog

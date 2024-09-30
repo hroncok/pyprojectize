@@ -39,14 +39,12 @@ sed -i -e '1d' grin.py
 
 %install
 %{pyproject_install}
+%pyproject_save_files grin
 
-%files
+%files -f %{pyproject_files}
 %doc README.rst
 %{_bindir}/grin
 %{_bindir}/grind
-%{python3_sitelib}/grin.py*
-%{python3_sitelib}/grin-*.dist-info/
-%{python3_sitelib}/__pycache__/grin.*
 
 %changelog
 * Mon Sep 02 2024 Miroslav Suchý <msuchy@redhat.com> - 1.3.0-16

@@ -47,16 +47,14 @@ sphinx-build -b html docs/ docs/html
 
 %install
 %pyproject_install
+%pyproject_save_files scripttest
 
 %check
 %{__python3} setup.py test
 
-%files -n python%{python3_pkgversion}-scripttest
+%files -n python%{python3_pkgversion}-scripttest -f %{pyproject_files}
 %doc docs/html
 %license docs/license.rst
-%{python3_sitelib}/scripttest.py
-%{python3_sitelib}/__pycache__/scripttest.cpython-%{python3_version_nodots}*
-%{python3_sitelib}/scripttest*.dist-info/
 
 
 %changelog

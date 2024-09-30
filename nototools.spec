@@ -103,6 +103,7 @@ popd
 %if %{with python3}
 pushd python3
 %pyproject_install
+%pyproject_save_files %{name} third_party
 for lib in %{buildroot}%{python3_sitelib}/nototools/*.py; do
  sed '1{\@^#!/usr/bin/env python@d}' $lib > $lib.new &&
  touch -r $lib $lib.new &&
@@ -168,10 +169,7 @@ popd
 %endif
 
 %if %{with python3}
-%files -n python3-nototools
-%{python3_sitelib}/%{name}
-%{python3_sitelib}/%{srcname}-%{version}.dist-info
-%{python3_sitelib}/third_party
+%files -n python3-nototools -f %{pyproject_files}
 %endif
 
 

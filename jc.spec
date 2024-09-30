@@ -55,6 +55,7 @@ tools and file types into structured JSON, for easier further processing.
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
 install -m 755 -d %{buildroot}%{_mandir}/man1
 install -m 644 -p man/jc.1 %{buildroot}%{_mandir}/man1/
@@ -78,11 +79,9 @@ TZ="America/Los_Angeles" ./runtests.sh
 %{_datadir}/bash-completion/completions/*
 
 
-%files -n python3-%{name}
+%files -n python3-%{name} -f %{pyproject_files}
 %doc docs/
 %license LICENSE.md
-%{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}-%{version}.dist-info
 
 
 %changelog

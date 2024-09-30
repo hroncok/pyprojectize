@@ -50,6 +50,7 @@ BuildArch: noarch
 
 %install
 %pyproject_install
+%pyproject_save_files %{pname}
 
 %if %{with check}
 %check
@@ -59,13 +60,11 @@ PYTHONPATH=%{buildroot}%{python3_sitearch}:%{buildroot}%{python3_sitelib} \
 python3 -m unittest tests
 %endif
 
-%files -n python3-%{pname}
+%files -n python3-%{pname} -f %{pyproject_files}
 %license LICENSE.txt
 %doc CHANGELOG.txt README.rst
 %{_bindir}/mrcfile-header
 %{_bindir}/mrcfile-validate
-%{python3_sitelib}/%{pname}-%{version}.dist-info
-%{python3_sitelib}/%{pname}
 
 %changelog
 %autochangelog

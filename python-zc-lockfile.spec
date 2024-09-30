@@ -48,17 +48,15 @@ database files. The database files and lock file files are separate files.
 
 %install
 %pyproject_install
+%pyproject_save_files zc
 rm -f %{buildroot}%{python3_sitelib}/zc/lockfile/*.txt
 
 %check
 %{__python3} setup.py test
 
-%files -n python3-zc-lockfile
+%files -n python3-zc-lockfile -f %{pyproject_files}
 %doc src/zc/lockfile/*.txt
-%{python3_sitelib}/zc.lockfile-*.dist-info
 %{python3_sitelib}/zc.lockfile-*-nspkg.pth
-%{python3_sitelib}/zc/lockfile/
-%dir %{python3_sitelib}/zc/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 3.0.post1-8

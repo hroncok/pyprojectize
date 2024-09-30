@@ -75,6 +75,7 @@ sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/js_yaml'|" xstatic/pkg/js_yaml/__
 
 %install
 %pyproject_install
+%pyproject_save_files xstatic
 mkdir -p %{buildroot}/%{_jsdir}/js_yaml
 mv %{buildroot}/%{python3_sitelib}/xstatic/pkg/js_yaml/data/js-yaml.js %{buildroot}/%{_jsdir}/js_yaml
 rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/js_yaml/data/
@@ -84,10 +85,8 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/js_yaml/data/
 %doc README.txt
 %{_jsdir}/js_yaml
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
-%{python3_sitelib}/xstatic/pkg/js_yaml
-%{python3_sitelib}/XStatic_JS_Yaml-%{version}.dist-info
 %{python3_sitelib}/XStatic_JS_Yaml-%{version}-py3.*-nspkg.pth
 
 

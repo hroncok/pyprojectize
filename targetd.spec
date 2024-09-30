@@ -37,6 +37,7 @@ install -m 644 targetd.yaml %{buildroot}%{_sysconfdir}/target/targetd.yaml
 install -m 644 targetd.8 %{buildroot}%{_mandir}/man8/
 install -m 644 targetd.yaml.5 %{buildroot}%{_mandir}/man5/
 %pyproject_install
+%pyproject_save_files targetd
 
 %post
 %systemd_post targetd.service
@@ -47,11 +48,9 @@ install -m 644 targetd.yaml.5 %{buildroot}%{_mandir}/man5/
 %postun
 %systemd_postun_with_restart targetd.service
 
-%files
+%files -f %{pyproject_files}
 %{_bindir}/targetd
 %{_unitdir}/targetd.service
-%{python3_sitelib}/targetd/
-%{python3_sitelib}/*.dist-info
 %license LICENSE
 %doc README.md API.md client
 %{_mandir}/man8/targetd.8*

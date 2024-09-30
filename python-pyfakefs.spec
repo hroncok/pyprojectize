@@ -46,12 +46,11 @@ rm -f {,test-}requirements.txt
 
 %install
 %pyproject_install
+%pyproject_save_files %{package_name}
 
-%files -n python3-%{package_name}
+%files -n python3-%{package_name} -f %{pyproject_files}
 %license COPYING
 %doc README.md
-%{python3_sitelib}/%{package_name}
-%{python3_sitelib}/*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 5.2.4-5

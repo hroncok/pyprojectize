@@ -34,13 +34,12 @@ rm -rf %{realname}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files webthing
 
 
-%files -n python3-webthing
+%files -n python3-webthing -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.rst
-%{python3_sitelib}/webthing/
-%{python3_sitelib}/webthing-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.15.0-15

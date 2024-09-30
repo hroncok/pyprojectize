@@ -43,14 +43,12 @@ Txt2tags is a document generator. It reads a text file with minimal markup as
 
 %install
 %{pyproject_install}
+%pyproject_save_files %{name}
 
-%files
+%files -f %{pyproject_files}
 %doc CHANGELOG.md README.md
 %license COPYING
 %{_bindir}/txt2tags
-%{python3_sitelib}/%{name}-%{version}.dist-info
-%{python3_sitelib}/%{name}.py
-%{python3_sitelib}/__pycache__/%{name}*
 
 %changelog
 * Mon Jul 29 2024 Miroslav Suchý <msuchy@redhat.com> - 3.3-17

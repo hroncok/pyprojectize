@@ -68,6 +68,7 @@ lit is a tool used by the LLVM project for executing its test suites.
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 # Strip out #!/usr/bin/env python
 sed -i -e '1{\@^#!/usr/bin/env python@d}' %{buildroot}%{python3_sitelib}/lit/*.py
@@ -77,10 +78,9 @@ sed -i -e '1{\@^#!/usr/bin/env python@d}' %{buildroot}%{python3_sitelib}/lit/*.p
 %{__python3} lit.py -v tests
 %endif
 
-%files -n python3-lit
+%files -n python3-lit -f %{pyproject_files}
 %license LICENSE.TXT
 %doc README.rst
-%{python3_sitelib}/*
 %{_bindir}/lit
 
 %changelog

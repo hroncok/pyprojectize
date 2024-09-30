@@ -33,6 +33,7 @@ This spying framework allows to easily create mocks with a very readable syntax.
 
 %install
 %{pyproject_install}
+%pyproject_save_files mockito
 
 %package -n python3-mockito
 Summary: %{summary}
@@ -40,12 +41,10 @@ Summary: %{summary}
 %description -n python3-mockito
 %{_description}
 
-%files -n python3-mockito
+%files -n python3-mockito -f %{pyproject_files}
 %doc AUTHORS
 %doc CHANGES.txt
 %doc README.rst
-%{python3_sitelib}/mockito/
-%{python3_sitelib}/mockito-*.dist-info
 %license LICENSE
 
 %changelog

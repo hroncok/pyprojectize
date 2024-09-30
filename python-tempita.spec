@@ -51,11 +51,10 @@ sed -i '/use_2to3/d' setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files tempita
 
 
-%files -n python3-tempita
-%{python3_sitelib}/tempita/
-%{python3_sitelib}/*.dist-info/
+%files -n python3-tempita -f %{pyproject_files}
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.5.2-14

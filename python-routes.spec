@@ -46,16 +46,16 @@ Summary: %{summary}
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 
 %check
 PYTHONPATH=$(pwd) python3 -m pytest
 
 
-%files -n python3-routes
+%files -n python3-routes -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.rst CHANGELOG.rst docs
-%{python3_sitelib}/*
 
 
 %changelog

@@ -33,14 +33,13 @@ A Django application to retrieve client's IP address.
 
 %install
 %pyproject_install
+%pyproject_save_files 'django_ipware*' ipware
 
 %check
 %{__python3} manage.py test
 
-%files -n python3-%{shortname}
+%files -n python3-%{shortname} -f %{pyproject_files}
 %license LICENSE
-%{python3_sitelib}/ipware/
-%{python3_sitelib}/django_ipware*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 4.0.2-10

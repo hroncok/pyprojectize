@@ -68,13 +68,11 @@ cp %{SOURCE1} .
 
 %install
 %pyproject_install
+%pyproject_save_files testconfig
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE-2.0
 %doc ACKS TODO docs/index.txt
-%{python3_sitelib}/testconfig.py*
-%{python3_sitelib}/__pycache__/testconfig.*
-%{python3_sitelib}/nose_testconfig-%{version}.dist-info
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 0.10-34

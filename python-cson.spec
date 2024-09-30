@@ -48,6 +48,7 @@ A python parser for the Coffeescript Object Notation (CSON).
 %py2_install
 %endif
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 # Note that there is no %%files section for the unversioned python module
 %if %{py2support}
@@ -58,11 +59,9 @@ A python parser for the Coffeescript Object Notation (CSON).
 %{python2_sitelib}/%{srcname}/
 %endif
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{srcname}-*.dist-info/
-%{python3_sitelib}/%{srcname}/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.8-20

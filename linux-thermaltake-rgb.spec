@@ -72,6 +72,7 @@ rm -rf %{name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 mkdir -p %{buildroot}%{_unitdir}
 mv %{buildroot}%{_datadir}/%{pypi_name}/%{name}.service \
@@ -98,15 +99,13 @@ mv %{buildroot}%{_datadir}/%{pypi_name}/config.yml \
 %systemd_postun_with_restart %{name}.service
 
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.md roadmap.txt protocol.txt
 %config(noreplace) %{_sysconfdir}/%{pypi_name}/config.yml
 %dir %{_sysconfdir}/%{pypi_name}
 %{_bindir}/%{name}
 %{_unitdir}/*.service
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
-%{python3_sitelib}/%{pypi_name}/
 
 
 %changelog

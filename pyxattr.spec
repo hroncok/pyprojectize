@@ -38,6 +38,7 @@ Summary: %{summary}
 
 %install
 %pyproject_install
+%pyproject_save_files xattr
 
 %check
 # selinux in koji produces unexpected xattrs for tests
@@ -48,9 +49,7 @@ export PYTHONPATH=%{buildroot}%{python3_sitearch}:$PYTHONPATH
 # in Copr, skip tests that fail with OSError: [Errno 95] Operation not supported
 python3 -m pytest tests %{?copr_projectname:-k 'not (binary_payload or create_on_existing or empty_value or large_value or many_ops or mixed_access or set_get_remove)'}
 
-%files -n python3-%{name}
-%{python3_sitearch}/xattr.cpython-%{python3_version_nodots}*
-%{python3_sitearch}/*egg-info
+%files -n python3-%{name} -f %{pyproject_files}
 %license COPYING
 %doc NEWS README.md
 

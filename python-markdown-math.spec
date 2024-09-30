@@ -40,17 +40,15 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files mdx_math
 
 %check
 %{__python3} test.py
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/mdx_math.py
-%{python3_sitelib}/python_markdown_math-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.8-15

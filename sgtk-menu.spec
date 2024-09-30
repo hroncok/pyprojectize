@@ -41,17 +41,16 @@ done
 
 %install
 %pyproject_install
+%pyproject_save_files %{sysname}
 
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc README.md examples/
 %{_bindir}/%{name}
 %{_bindir}/sgtk-bar
 %{_bindir}/sgtk-dmenu
 %{_bindir}/sgtk-grid
-%{python3_sitelib}/%{sysname}-*.dist-info/
-%{python3_sitelib}/%{sysname}/
 
 
 %changelog

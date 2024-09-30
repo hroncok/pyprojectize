@@ -52,6 +52,7 @@ cp %{SOURCE1} test/
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitearch} py.test-3 -v \
@@ -59,11 +60,9 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} py.test-3 -v \
   -k "not test_saved_equals_original_binary" # likely a bug in admesh itself
 %endif
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %license COPYING
-%attr(0755,root,root) %{python3_sitearch}/%{pypi_name}.*.so
-%{python3_sitearch}/%{pypi_name}-%{version}.dist-info
 
 
 %changelog

@@ -83,6 +83,7 @@ rm -vf licenses/BUNCH_LICENSE moss/external/bunch.py
 
 %install
 %pyproject_install
+%pyproject_save_files '%{modname}*'
 
 # Depends on 'freeview' utility
 rm -vf %{buildroot}%{_bindir}/recon_qc
@@ -92,7 +93,7 @@ rm -vf %{buildroot}%{_bindir}/recon_qc
 PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} -v
 %endif
 
-%files -n python3-%{modname}
+%files -n python3-%{modname} -f %{pyproject_files}
 %license LICENSE licenses/*
 %doc README.md
 %{_bindir}/check_mni_reg
@@ -101,7 +102,6 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} -v
 %{_bindir}/recon_process_stats
 %{_bindir}/ts_movie
 %{_bindir}/warp_qc
-%{python3_sitelib}/%{modname}*
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.5.0-25

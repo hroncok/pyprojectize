@@ -47,14 +47,13 @@ This package contains the python3 version of the library.
 
 %install
 %pyproject_install
+%pyproject_save_files repoze
 
 
 
-%files -n python3-repoze-tm2
+%files -n python3-repoze-tm2 -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.rst COPYRIGHT.txt CHANGES.rst
-%{python3_sitelib}/repoze.tm2-*
-%{python3_sitelib}/repoze/tm
 
 
 %changelog

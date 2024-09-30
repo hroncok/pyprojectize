@@ -106,6 +106,7 @@ number of notable differences exist between this code and its forefathers:
 %py2_install
 %endif
 %pyproject_install
+%pyproject_save_files '*'
 
 # Do not package the "tests"
 %if 0%{?with_py2}
@@ -124,9 +125,8 @@ rm -rf %{buildroot}%{python3_sitelib}/tests/
 %{python2_sitelib}/*
 %endif
 
-%files -n python3-oauth2
+%files -n python3-oauth2 -f %{pyproject_files}
 %doc PKG-INFO
-%{python3_sitelib}/*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.9.0-33.post1

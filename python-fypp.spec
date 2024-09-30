@@ -39,18 +39,15 @@ rm -rf src/%{pname}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{pname}
 
 %check
 test/runtests.sh %{__python3}
 
-%files -n python3-%{pname}
+%files -n python3-%{pname} -f %{pyproject_files}
 %license LICENSE.txt
 %doc CHANGELOG.rst README.rst
 %{_bindir}/%{pname}
-%{python3_sitelib}/%{pname}.py
-%{python3_sitelib}/%{pname}-%{version}.dist-info
-%{python3_sitelib}/__pycache__/%{pname}.cpython-%{python3_version_nodots}.opt-1.pyc
-%{python3_sitelib}/__pycache__/%{pname}.cpython-%{python3_version_nodots}.pyc
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 3.2-5

@@ -65,6 +65,7 @@ sed -Ei 's,(a href=")(git),\1%{_docdir}/git/\2,g' Documentation/html/git-filter-
 
 %install
 %pyproject_install}
+%pyproject_save_files git_filter_repo
 
 install -d -m 0755 %{buildroot}%{_mandir}/man1
 install -m 0644 Documentation/man1/git-filter-repo.1 %{buildroot}%{_mandir}/man1/git-filter-repo.1
@@ -72,12 +73,10 @@ install -m 0644 Documentation/man1/git-filter-repo.1 %{buildroot}%{_mandir}/man1
 %check
 t/run_tests
 
-%files
+%files -f %{pyproject_files}
 %license COPYING
 %doc README.md Documentation/*.md Documentation/html/*.html contrib/filter-repo-demos
 %{gitexecdir}/git-filter-repo
-%pycached %{python3_sitelib}/git_filter_repo.py
-%{python3_sitelib}/git_filter_repo-%{version}.dist-info/
 %{_mandir}/man1/git-filter-repo.1*
 
 %changelog

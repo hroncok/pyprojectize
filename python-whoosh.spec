@@ -56,18 +56,17 @@ rm -rf docs/html/.doctrees
 
 %install
 %pyproject_install
+%pyproject_save_files whoosh
 
 %check
 %{__python3} setup.py test
 
-%files -n python%{python3_pkgversion}-whoosh
+%files -n python%{python3_pkgversion}-whoosh -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.txt
 %if %{with docs}
 %doc docs/html/
 %endif
-%{python3_sitelib}/whoosh/
-%{python3_sitelib}/*.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 2.7.4-34

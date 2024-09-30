@@ -37,13 +37,11 @@ cd testcases/ && ./py3_test.sh
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
-%files
+%files -f %{pyproject_files}
 %license COPYING
 %doc README.md
-%{python3_sitelib}/%{name}-%{version}.dist-info/
-%{python3_sitelib}/%{name}.py
-%{python3_sitelib}/__pycache__/%{name}.*.pyc
 %{_mandir}/man1/%{name}.1*
 %{_bindir}/%{name}
 

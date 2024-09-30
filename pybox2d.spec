@@ -45,12 +45,12 @@ This package provides the Python 3 build of %{name}.
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
  
-%files -n python3-%{name}
+%files -n python3-%{name} -f %{pyproject_files}
 %license LICENSE
 %doc README.md examples/*
-%{python3_sitearch}/*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.3.2-27

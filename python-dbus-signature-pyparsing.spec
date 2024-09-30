@@ -35,12 +35,11 @@ Python 3 version.
 
 %install
 %pyproject_install
+%pyproject_save_files dbus_signature_pyparsing
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/dbus_signature_pyparsing/
-%{python3_sitelib}/dbus_signature_pyparsing-*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.4.1-9

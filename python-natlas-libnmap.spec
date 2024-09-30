@@ -37,12 +37,11 @@ sed -i -e '/^#!\//, 1d' libnmap/reportjson.py
 
 %install
 %pyproject_install
+%pyproject_save_files libnmap
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.md
-%{python3_sitelib}/libnmap
-%{python3_sitelib}/natlas_libnmap-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.7.1-16

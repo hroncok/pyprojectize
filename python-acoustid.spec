@@ -39,14 +39,10 @@ which provides fingerprint look ups.
 
 %install
 %{pyproject_install}
+%pyproject_save_files acoustid chromaprint
 
-%files -n python3-acoustid
+%files -n python3-acoustid -f %{pyproject_files}
 %doc README.rst aidmatch.py fpcalc.py
-%{python3_sitelib}/acoustid.py
-%{python3_sitelib}/chromaprint.py
-%{python3_sitelib}/pyacoustid-%{version}.dist-info/
-%{python3_sitelib}/__pycache__/acoustid.*.py*
-%{python3_sitelib}/__pycache__/chromaprint.*.py*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.3.0-5

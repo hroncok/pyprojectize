@@ -73,6 +73,7 @@ popd
 %install
 export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 
 %check
@@ -80,11 +81,9 @@ export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 %{pytest}
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}_ng-%{version}.dist-info
 
 %files -n python3-%{srcname}-doc
 %doc docs/html

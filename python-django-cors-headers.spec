@@ -38,12 +38,11 @@ rm -vrf *.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files corsheaders
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst HISTORY.rst
-%{python3_sitelib}/django_cors_headers-*.dist-info/
-%{python3_sitelib}/corsheaders/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 3.7.0-13

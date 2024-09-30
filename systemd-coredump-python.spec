@@ -34,17 +34,15 @@ Conflicts:      systemd < 233
 
 %install
 %pyproject_install
+%pyproject_save_files systemd_coredump_exception_handler
 
 # %%check
 # there are no useful checks, the stuff in tests/ is only useful for development so far
 
-%files -n python3-systemd-coredump
+%files -n python3-systemd-coredump -f %{pyproject_files}
 %license COPYING
 %doc README
-%{python3_sitelib}/systemd_coredump_exception_handler.py
-%{python3_sitelib}/__pycache__/*
 %{python3_sitelib}/systemd_coredump.pth
-%{python3_sitelib}/systemd_coredump_python-%{version}.dist-info
 
 %changelog
 %autochangelog

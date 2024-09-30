@@ -40,16 +40,15 @@ sed -i -E '/--(no-)?cov/d' setup.cfg
 
 %install
 %pyproject_install
+%pyproject_save_files %{pkgname}
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} -v tests 
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc AUTHORS.md CHANGELOG.md README.md
 %{_bindir}/cph
-%{python3_sitelib}/%{pkgname}-*.dist-info/
-%{python3_sitelib}/%{pkgname}/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.3.0-3

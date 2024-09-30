@@ -39,12 +39,12 @@ of YAML file.
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/*
 %{_bindir}/shyaml
 
 

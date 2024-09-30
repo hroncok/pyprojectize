@@ -59,16 +59,15 @@ Documentation for python-cups.
 %install
 make install-rpmhook DESTDIR="%{buildroot}"
 %pyproject_install
+%pyproject_save_files cups
 export PYTHONPATH=%{buildroot}%{python3_sitearch}
 %{__python3} -m pydoc -w cups
 %{_bindir}/mkdir html
 %{_bindir}/mv cups.html html
 
-%files -n python3-cups
+%files -n python3-cups -f %{pyproject_files}
 %doc README NEWS TODO
 %license COPYING
-%{python3_sitearch}/cups.cpython-3*.so
-%{python3_sitearch}/pycups*.dist-info
 %{_rpmconfigdir}/fileattrs/psdriver.attr
 %{_rpmconfigdir}/postscriptdriver.prov
 

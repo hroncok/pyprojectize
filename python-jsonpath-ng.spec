@@ -46,15 +46,14 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files jsonpath_ng
 
 %check
 %{__python3} setup.py test
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %{_bindir}/jsonpath_ng
-%{python3_sitelib}/jsonpath_ng/
-%{python3_sitelib}/jsonpath_ng-%{version}.dist-info/
 
 %changelog
 * Wed Aug 07 2024 Miroslav Suchý <msuchy@redhat.com> - 1.5.1-16

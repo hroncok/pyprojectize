@@ -43,17 +43,16 @@ Purge API, including authentication and error recovery.
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %check
 %{__python3} -m pytest -v
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md
 %doc CHANGELOG.md
 %license LICENSE
 
-%{python3_sitelib}/%{srcname}*.dist-info/
-%{python3_sitelib}/%{srcname}/
 
 %changelog
 * Thu Jul 25 2024 Miroslav Suchý <msuchy@redhat.com> - 1.0.3-12

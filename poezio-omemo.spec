@@ -42,6 +42,7 @@ find ./%{srcname}/ -type f '(' -name __init__.py -o -name version.py ')' -ls -ex
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 
 %check
@@ -49,12 +50,10 @@ find ./%{srcname}/ -type f '(' -name __init__.py -o -name version.py ')' -ls -ex
 
 
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc README.rst ChangeLog CONTRIBUTING.rst
 # For noarch packages: sitelib
-%{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 
 
 

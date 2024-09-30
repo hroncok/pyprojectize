@@ -56,6 +56,7 @@ Python 3 version.
 %install
 
 %pyproject_install
+%pyproject_save_files 'ntplib*'
 
 %if 0%{?with_tests}
 
@@ -63,10 +64,8 @@ Python 3 version.
 %endif # with_tests
 
 
-%files -n python3-ntplib
+%files -n python3-ntplib -f %{pyproject_files}
 %doc CHANGELOG
-%{python3_sitelib}/ntplib*
-%{python3_sitelib}/__pycache__/*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.3.3-33

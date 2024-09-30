@@ -63,13 +63,13 @@ popd
 
 %install
 %pyproject_install
+%pyproject_save_files 'pathtools*'
 
 
-%files -n python3-%{upname}
+%files -n python3-%{upname} -f %{pyproject_files}
 %license LICENSE
 %doc AUTHORS LICENSE README
 %doc docs/build/html
-%{python3_sitelib}/pathtools*/
 
 
 %changelog

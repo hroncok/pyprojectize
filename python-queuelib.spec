@@ -37,15 +37,14 @@ Python. Queuelib goals are speed and simplicity.
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %check
 nosetests-%{python3_version} queuelib/tests
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc NEWS README.rst
 %license LICENSE
-%{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}*.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.5.0-22

@@ -316,6 +316,7 @@ find examples/ -type f -exec chmod 0644 {} \;
 # Reinstall python
 pushd bindings/python
 %pyproject_install
+%pyproject_save_files 'rrdtool*'
 popd
 
 # Clean up the buildroot
@@ -375,10 +376,8 @@ LD_LIBRARY_PATH=%{buildroot}%{_libdir} php -n \
 %attr(0755,root,root) %{perl_vendorarch}/auto/RRDs/
 
 
-%files -n python3-rrdtool
+%files -n python3-rrdtool -f %{pyproject_files}
 %doc bindings/python/COPYING bindings/python/README.md
-%{python3_sitearch}/rrdtool*.so
-%{python3_sitearch}/rrdtool-*.dist-info
 
 %if %{with_php}
 %files php

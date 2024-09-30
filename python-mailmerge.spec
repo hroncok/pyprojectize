@@ -33,13 +33,12 @@ BuildRequires: python3-devel
 
 %install
 %{pyproject_install}
+%pyproject_save_files mailmerge
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
 %{_bindir}/mailmerge
-%{python3_sitelib}/mailmerge/
-%{python3_sitelib}/mailmerge-*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.2.1-11

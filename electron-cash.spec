@@ -73,6 +73,7 @@ pyrcc5 icons.qrc -o electroncash_gui/qt/icons_rc.py
 
 %install
 %{pyproject_install}
+%pyproject_save_files electroncash electroncash_gui electroncash_plugins
 
 # Remove shebang lines from .py files that aren't executable, and
 # remove executability from .py files that don't have a shebang line:
@@ -91,7 +92,7 @@ desktop-file-install                                    \
 %check
 appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/org.electroncash.ElectronCash.appdata.xml
 
-%files
+%files -f %{pyproject_files}
 %doc AUTHORS
 %doc README.rst
 %doc RELEASE-NOTES
@@ -102,10 +103,6 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/org.elect
 %{_datadir}/pixmaps/%{name}.png
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/metainfo/org.electroncash.ElectronCash.appdata.xml
-%{python3_sitelib}/electroncash/
-%{python3_sitelib}/electroncash_gui/
-%{python3_sitelib}/electroncash_plugins/
-%{python3_sitelib}/Electron_Cash-%{version}.dist-info
 
 %changelog
 * Wed Jul 17 2024 Fedora Release Engineering <releng@fedoraproject.org> - 4.4.1-3

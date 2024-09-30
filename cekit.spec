@@ -88,6 +88,7 @@ mkdir -p %{buildroot}/%{_datadir}/zsh/site-functions
 cp support/completion/zsh/_cekit %{buildroot}/%{_datadir}/zsh/site-functions/_cekit
 
 %pyproject_install
+%pyproject_save_files cekit
 
 %files -n %{modname}-bash-completion
 %doc README.rst
@@ -99,12 +100,10 @@ cp support/completion/zsh/_cekit %{buildroot}/%{_datadir}/zsh/site-functions/_ce
 %license LICENSE
 %{_datadir}/zsh/site-functions/_cekit
 
-%files -n %{modname}
+%files -n %{modname} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
 
-%{python3_sitelib}/cekit/
-%{python3_sitelib}/cekit-*.dist-info/
 
 %{_bindir}/cekit
 %{_bindir}/cekit-cache

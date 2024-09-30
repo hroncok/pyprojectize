@@ -60,18 +60,15 @@ export DEBVER="%{version}"
 # Deal with python-apt not having proper default version set by using debver hack
 export DEBVER="%{version}"
 %pyproject_install
+%pyproject_save_files apt 'apt_*' aptsources
 
 # Get rid of unused garbage
 rm -rf %{buildroot}%{python3_sitelib}/apt_*-stubs*
 
 
-%files -n  python3-apt
+%files -n  python3-apt -f %{pyproject_files}
 %license COPYING.GPL
 %doc README.md
-%{python3_sitearch}/apt/
-%{python3_sitearch}/apt_*
-%{python3_sitearch}/aptsources/
-%{python3_sitearch}/python_apt-%{version}.dist-info/
 %{_datadir}/%{name}/
 
 

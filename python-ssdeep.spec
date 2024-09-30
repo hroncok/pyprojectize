@@ -66,6 +66,7 @@ make html
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 install -d -m 755 %{buildroot}%{_mandir}/man5/
 install -m 644 docs/build/man/pythonssdeep.1 %{buildroot}%{_mandir}/man5/python3-%{pypi_name}.5
@@ -75,11 +76,9 @@ install -m 644 docs/build/man/pythonssdeep.1 %{buildroot}%{_mandir}/man5/python3
 %{__python3} setup.py test
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc CHANGELOG.rst CONTRIBUTING.rst
-%{python3_sitearch}/%{pypi_name}/
-%{python3_sitearch}/%{pypi_name}-*.dist-info/
 
 %files -n python3-%{pypi_name}-doc
 %doc docs/build/html/*

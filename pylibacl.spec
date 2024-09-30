@@ -41,6 +41,7 @@ Obsoletes: py3libacl < 0.5.4
 
 %install
 %pyproject_install
+%pyproject_save_files posix1e
 
 %check
 # the module is just a C extension => need to add the installed destination to
@@ -52,9 +53,7 @@ python3 -m pytest tests -v \
   -k 'not TestAclExtensions and not test_acl_init_copy_ext_invalid'
 %endif
 
-%files -n python3-%{name}
-%{python3_sitearch}/posix1e.cpython-%{python3_version_nodots}*
-%{python3_sitearch}/*egg-info
+%files -n python3-%{name} -f %{pyproject_files}
 %license COPYING
 %doc README.md NEWS
 

@@ -59,6 +59,7 @@ CFLAGS="%{optflags}" %{__python3} setup.py build_ext --inplace
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 # make Python scripts with shebangs executable
 for f in `find %{buildroot}%{python3_sitearch}/%{name} -name \*.py`
 do
@@ -74,13 +75,11 @@ install -Dpm 0644 %{SOURCE2} \
 install -Dpm 0644 %{SOURCE3} \
   %{buildroot}%{_metainfodir}/name.ahlstrom.james.Quisk.metainfo.xml
 
-%files
+%files -f %{pyproject_files}
 %license license.txt
 %doc docs.html defaults.html
 %doc help.html help_vna.html
 %{_bindir}/%{name}{,_vna}
-%{python3_sitearch}/%{name}
-%{python3_sitearch}/%{name}-%{version}.dist-info
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/128x128/apps/%{name}.png
 %{_metainfodir}/name.ahlstrom.james.Quisk.metainfo.xml

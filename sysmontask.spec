@@ -44,6 +44,7 @@ Manager to allow higher control and monitoring.
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
 sed -i 's|/usr/bin/env python3|%{__python3}|' \
     %{buildroot}%{python3_sitelib}/%{name}/*.py
@@ -59,7 +60,7 @@ rm %{buildroot}%{_docdir}/%{name}/LICENSE
 desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc AUTHORS
 %doc README.md
@@ -67,8 +68,6 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_datadir}/%{name}/
 %{_datadir}/applications/%{srcname}.desktop
 %{_datadir}/glib-2.0/schemas/%{uuid}.gschema.xml
-%{python3_sitelib}/%{name}-*.dist-info/
-%{python3_sitelib}/%{name}/
 
 
 %changelog

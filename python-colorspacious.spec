@@ -73,6 +73,7 @@ popd
 
 %install
 %pyproject_install
+%pyproject_save_files %{pname}
 
 %if %{with check}
 %check
@@ -84,10 +85,8 @@ nosetests-3 --all-modules colorspacious
 %doc doc/_build/html/*
 %endif
 
-%files -n python3-%{pname}
+%files -n python3-%{pname} -f %{pyproject_files}
 %doc README.rst
-%{python3_sitelib}/%{pname}-%{version}.dist-info
-%{python3_sitelib}/%{pname}
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.1.2-24

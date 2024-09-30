@@ -54,6 +54,7 @@ Requires:       python3-six
 %install
 %{?py2:%{py2_install}}
 %{pyproject_install}
+%pyproject_save_files tidy
 
 %check
 # fail after tidy 5.6
@@ -69,11 +70,9 @@ Requires:       python3-six
 %{python2_sitelib}/uTidylib-*.dist-info
 %endif
 
-%files -n python3-tidy
+%files -n python3-tidy -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/tidy
-%{python3_sitelib}/uTidylib-*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.6-18

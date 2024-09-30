@@ -64,17 +64,16 @@ rm -rf %{modname}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files repoze
 
 %check
 #PYTHONPATH=$(pwd) %%{__python3} setup.py test
 %pytest -k "not test_crypt_check"
 
 
-%files -n python3-repoze-who
+%files -n python3-repoze-who -f %{pyproject_files}
 %doc README.rst CHANGES.rst CONTRIBUTORS.txt
 %license COPYRIGHT.txt LICENSE.txt
-%{python3_sitelib}/repoze/who/
-%{python3_sitelib}/%{modname}-*
 
 
 %changelog

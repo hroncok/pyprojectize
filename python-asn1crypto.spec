@@ -82,6 +82,7 @@ rm -rf %{pypi_name}.egg-info
 %endif
 %if 0%{?with_python3}
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 %endif
 
 
@@ -100,10 +101,8 @@ rm -rf %{pypi_name}.egg-info
 %endif
 
 %if 0%{?with_python3}
-%files -n python%{python3_pkgversion}-%{pypi_name}
+%files -n python%{python3_pkgversion}-%{pypi_name} -f %{pyproject_files}
 %doc
-%{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 %endif
 
 %changelog

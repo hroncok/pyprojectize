@@ -55,14 +55,13 @@ rm -rf xdot.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files xdot
 
 
-%files
+%files -f %{pyproject_files}
 %doc README.md
 %license LICENSE.txt
 %{_bindir}/xdot
-%{python3_sitelib}/xdot
-%{python3_sitelib}/xdot-%{version}.dist-info
 
 
 %changelog

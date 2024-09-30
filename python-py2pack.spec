@@ -59,6 +59,7 @@ universal tool to package Python modules.
 %install
 %if 0%{?with_python3}
 %pyproject_install
+%pyproject_save_files '%{mod_name}*'
 %endif
 
 mkdir -p  %{buildroot}/%{_mandir}/man1/
@@ -67,11 +68,10 @@ rm -rf %{buildroot}/%{_docdir}/%{mod_name}
 
 
 %if 0%{?with_python3}
-%files -n python3-%{mod_name}
+%files -n python3-%{mod_name} -f %{pyproject_files}
 %license LICENSE
 %doc AUTHORS README.rst
 %doc doc/%{mod_name}.html
-%{python3_sitelib}/%{mod_name}*
 %{_mandir}/man1/%{mod_name}.1.*
 %{_bindir}/%{mod_name}
 %endif

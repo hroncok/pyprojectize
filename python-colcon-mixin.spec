@@ -48,6 +48,7 @@ For an example repository containing mixins see colcon-mixin-repository.
 
 %install
 %pyproject_install
+%pyproject_save_files colcon_mixin
 
 
 %check
@@ -57,11 +58,9 @@ For an example repository containing mixins see colcon-mixin-repository.
     test
 
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/colcon_mixin/
-%{python3_sitelib}/colcon_mixin-%{version}.dist-info/
 
 
 %changelog

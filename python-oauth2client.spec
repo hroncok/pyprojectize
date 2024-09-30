@@ -75,6 +75,7 @@ sed -r -i 's/\bmock.*//' tox.ini
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %check
 #tox -v --sitepackages -e py%%{python3_version_nodots}
@@ -84,11 +85,9 @@ sed -r -i 's/\bmock.*//' tox.ini
 rm -r $(find %{_buildrootdir} -type d -name 'tests') || /bin/true
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE 
 %doc CHANGELOG.md CONTRIBUTING.md README.md 
-%{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 4.1.3-27

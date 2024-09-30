@@ -35,12 +35,11 @@ BuildRequires:  python3-devel
 
 %install
 %pyproject_install
+%pyproject_save_files %{pretty_name}
 
-%files -n python3-%{new_name}
+%files -n python3-%{new_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{pretty_name}-%{version}.dist-info
-%pycached %{python3_sitelib}/%{pretty_name}.py
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.3.1-13

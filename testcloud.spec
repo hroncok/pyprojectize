@@ -70,6 +70,7 @@ sed -i 's/ --cov-report=term-missing --cov testcloud//g' tox.ini
 
 %install
 %pyproject_install
+%pyproject_save_files testcloud
 
 # Docs
 install -d %{buildroot}%{_mandir}/man1
@@ -119,9 +120,7 @@ rm -rf %{buildroot}%{_sysconfdir}/testcloud/__pycache__
 %{_bindir}/t7d
 %{_datadir}/bash-completion/completions/testcloud
 
-%files -n python3-%{name}
-%{python3_sitelib}/testcloud
-%{python3_sitelib}/*.dist-info
+%files -n python3-%{name} -f %{pyproject_files}
 
 %changelog
 * Wed Jul 24 2024 Frantisek Zatloukal <fzatlouk@redhat.com> - 0.9.13-1

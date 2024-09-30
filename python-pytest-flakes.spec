@@ -38,16 +38,14 @@ rm -rf *.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files pytest_flakes
 
 %check
 %{__python3} setup.py test
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/pytest_flakes-*.dist-info/
-%{python3_sitelib}/pytest_flakes.py
-%{python3_sitelib}/__pycache__/pytest_flakes.*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 4.0.5-11

@@ -55,6 +55,7 @@ done
 
 %install
 %pyproject_install
+%pyproject_save_files %{mod_name}
 
 
 %check
@@ -63,12 +64,10 @@ done
 #%%{__python3} %%{mod_name}/test/runtests.py
 
 
-%files -n python3-%{mod_name}
+%files -n python3-%{mod_name} -f %{pyproject_files}
 %{_bindir}/%{mod_name}
 %license LICENSE.txt
 %doc AUTHORS.md CONTRIBUTING.md ChangeLog README.md
-%{python3_sitelib}/%{mod_name}/
-%{python3_sitelib}/%{mod_name}-*.dist-info/
 
 
 %changelog

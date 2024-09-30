@@ -35,14 +35,13 @@ sed -i -e "/cchardet/d" setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
-%files
+%files -f %{pyproject_files}
 %doc README.md
 # License file was removed: https://github.com/orf/xcat/pull/35
 #%%license LICENSE
 %{_bindir}/%{name}
-%{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}-*.dist-info/
 
 %changelog
 * Sat Jul 20 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.4-16

@@ -50,6 +50,7 @@ make PYTHON=python3
 
 %install
 %pyproject_install
+%pyproject_save_files youtube_dl
 
 install -Dpm644 %{S:3} -t %{buildroot}%{_sysconfdir}
 install -Dpm644 youtube-dl.bash-completion %{buildroot}%{_datadir}/bash-completion/completions/youtube-dl
@@ -64,10 +65,8 @@ install -Dpm644 youtube-dl.fish %{buildroot}%{_datadir}/fish/vendor_functions.d/
 # make offlinetest
 
 
-%files
+%files -f %{pyproject_files}
 %doc AUTHORS ChangeLog README.md
-%{python3_sitelib}/youtube_dl/
-%{python3_sitelib}/youtube_dl*.dist-info
 %license LICENSE
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*

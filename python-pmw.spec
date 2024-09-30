@@ -45,6 +45,7 @@ widgets, paned widgets, scrolled widgets and dialog windows.
 
 %install
 %pyproject_install
+%pyproject_save_files Pmw
 
 # file fixes
 chmod 644 Pmw/Pmw_1_3_3/doc/*
@@ -52,10 +53,8 @@ chmod 644 Pmw/Pmw_2_1_1/doc/*
 
 rm -rf %{buildroot}%{python3_sitelib}/Pmw/Pmw_1_3_3
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc Pmw/Pmw_2_1_1/doc
-%{python3_sitelib}/*egg-info
-%{python3_sitelib}/Pmw/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 2.1.1-9

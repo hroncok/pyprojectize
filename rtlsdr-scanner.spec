@@ -56,6 +56,7 @@ rm -f rtlsdr_scanner/res/__init__.py
 
 %install
 %pyproject_install
+%pyproject_save_files rtlsdr_scanner
 
 install -Dpm 0755 ./rtlsdr_scan %{buildroot}%{_bindir}/rtlsdr_scan
 
@@ -71,15 +72,13 @@ desktop-file-install --add-category="Utility" \
   --dir=%{buildroot}%{_datadir}/applications \
   %{SOURCE1}
 
-%files
+%files -f %{pyproject_files}
 %license COPYING
 %doc readme.md
 %{_bindir}/rtlsdr_scan
 %{_datadir}/icons/hicolor/256x256/apps/rtlsdr_scan.png
 %{_datadir}/applications/rtlsdr-scanner.desktop
 %{_datadir}/%{name}
-%{python3_sitelib}/rtlsdr_scanner
-%{python3_sitelib}/rtlsdr_scanner-*.dist-info
 
 %files doc
 %doc doc/Manual.pdf

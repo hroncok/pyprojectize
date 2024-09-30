@@ -35,10 +35,10 @@ communication and hence it easily integrates with the GLib mainloop.
 
 %install
 %pyproject_install
+%pyproject_save_files '%{name}*'
 
-%files -n python3-%{name}
+%files -n python3-%{name} -f %{pyproject_files}
 %license LICENSE
-%{python3_sitelib}/%{name}*
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 0.7-17

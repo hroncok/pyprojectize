@@ -72,6 +72,7 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 mv %{buildroot}/%{_bindir}/%{pypi_name} %{buildroot}/%{_bindir}/python3-%{pypi_name}
 
 pushd %{buildroot}%{_bindir}
@@ -87,14 +88,12 @@ popd
 rm -fr %{buildroot}%{python3_sitelib}/yaql/tests
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc doc/source/readme.rst README.rst
 %{_bindir}/python3-%{pypi_name}
 %{_bindir}/%{pypi_name}-3*
 %{_bindir}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %if 0%{?with_docs}
 %files -n python-%{pypi_name}-doc

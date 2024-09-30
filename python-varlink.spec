@@ -45,11 +45,11 @@ CFLAGS="%{optflags}" %{__python3} %{py_setup} %{?py_setup_args} check
 %install
 export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 %pyproject_install
+%pyproject_save_files '*'
 
-%files -n python3-varlink
+%files -n python3-varlink -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.md
-%{python3_sitelib}/*
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 31.0.0-12

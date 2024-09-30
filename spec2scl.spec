@@ -34,6 +34,7 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 install -D -m 644 spec2scl.1 %{buildroot}%{_mandir}/man1/spec2scl.1
 
 %check
@@ -41,13 +42,11 @@ install -D -m 644 spec2scl.1 %{buildroot}%{_mandir}/man1/spec2scl.1
 PYTHONPATH=$(pwd) py.test-%{python3_version}
 %endif
 
-%files
+%files -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
 %{_bindir}/%{pypi_name}
 %{_mandir}/man1/spec2scl.1*
-%{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 %changelog
 * Sat Jul 20 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.2.2-18

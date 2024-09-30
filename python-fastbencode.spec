@@ -44,15 +44,14 @@ Summary:        %{summary}
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %check
 %{py3_test_envvars} %{python3} -m unittest
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license COPYING
 %doc README.md
-%{python3_sitearch}/%{pypi_name}/
-%{python3_sitearch}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.2-5

@@ -102,6 +102,7 @@ stop daemons for a quick throw-away usage.
 
 %if %{with python3}
 %pyproject_install
+%pyproject_save_files '*'
 %endif
 
 
@@ -114,11 +115,10 @@ stop daemons for a quick throw-away usage.
 %endif
 
 %if %{with python3}
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
 %{_bindir}/pifpaf
-%{python3_sitelib}/*
 %endif
 
 %changelog

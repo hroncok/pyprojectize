@@ -58,6 +58,7 @@ rm -f doc/_build/html/.buildinfo
 
 %install
 %pyproject_install
+%pyproject_save_files %{lowname} ometa terml
 mkdir -p %{buildroot}%{_mandir}/man1
 cp -a %{_builddir}/%{oname}-%{version}/doc/_build/man/%{lowname}.1* %{buildroot}%{_mandir}/man1
 
@@ -65,15 +66,10 @@ cp -a %{_builddir}/%{oname}-%{version}/doc/_build/man/%{lowname}.1* %{buildroot}
 # Exclude only test_vm_builder tests, as they are failing due to missing vm files.
 py.test-%{python3_version} terml/test ometa/test --ignore=ometa/test/test_vm_builder.py
 
-%files -n python3-parsley
+%files -n python3-parsley -f %{pyproject_files}
 %license LICENSE
 %doc NEWS README
 %{_mandir}/man1/%{lowname}.1*
-%{python3_sitelib}/%{oname}-%{version}.dist-info
-%{python3_sitelib}/ometa/
-%{python3_sitelib}/__pycache__/%{lowname}.*
-%{python3_sitelib}/%{lowname}.*
-%{python3_sitelib}/terml/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.3-32

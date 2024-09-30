@@ -57,16 +57,15 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %check
 for test in test/*; do
   PYTHONPATH="%{buildroot}%{python3_sitearch}" %python3 $test
 done
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
-%{python3_sitearch}/%{pypi_name}
-%{python3_sitearch}/%{pypi_name}-%{pypi_version}.dist-info
 
 %files -n python-%{pypi_name}-doc
 %doc html

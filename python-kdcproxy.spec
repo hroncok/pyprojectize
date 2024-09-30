@@ -46,15 +46,14 @@ minimal configuration.
 
 %install
 %pyproject_install
+%pyproject_save_files %{realname}
 
 %check
 %{__python3} -m pytest
 
-%files -n python3-%{realname}
+%files -n python3-%{realname} -f %{pyproject_files}
 %doc README
 %license COPYING
-%{python3_sitelib}/%{realname}/
-%{python3_sitelib}/%{realname}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.0-17

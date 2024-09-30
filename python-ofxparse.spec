@@ -44,15 +44,14 @@ accounts also provide account statements in OFX files.
 
 %install
 %pyproject_install
+%pyproject_save_files %{upstream_name}
 
 %check
 %pytest
 
-%files -n python3-%{upstream_name}
+%files -n python3-%{upstream_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst AUTHORS
-%{python3_sitelib}/%{upstream_name}
-%{python3_sitelib}/%{upstream_name}*.dist-info
 
 %changelog
 * Sun Sep 01 2024 Rajeesh K V <rajeeshknambiar@gmail.com> - 0.21-7

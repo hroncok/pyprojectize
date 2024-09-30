@@ -67,6 +67,7 @@ sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/datatables'|" xstatic/pkg/datatab
 
 %install
 %pyproject_install
+%pyproject_save_files xstatic
 
 mkdir -p %{buildroot}%{_jsdir}/datatables
 mv %{buildroot}%{python3_sitelib}/xstatic/pkg/datatables/data/* %{buildroot}%{_jsdir}/datatables
@@ -74,10 +75,8 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/datatables/data/
 # fix execute flags for js
 chmod 644 %{buildroot}%{_jsdir}/datatables/js/*.js
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
-%{python3_sitelib}/xstatic/pkg/datatables
-%{python3_sitelib}/XStatic_DataTables-%{version}.dist-info
 %{python3_sitelib}/XStatic_DataTables-%{version}-py%{python3_version}-nspkg.pth
 
 %files -n xstatic-datatables-common

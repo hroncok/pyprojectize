@@ -55,14 +55,14 @@ a2x -d manpage -f manpage man/prunerepo.1.asciidoc
 
 %install
 name="%{name}" version="%{version}" summary="%{summary}" %pyproject_install
+%pyproject_save_files '*'
 
 install -d %{buildroot}%{_mandir}/man1
 install -p -m 644 man/prunerepo.1 %{buildroot}/%{_mandir}/man1/
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 
-%{python3_sitelib}/*
 %{_bindir}/prunerepo
 %{_mandir}/man1/prunerepo.1*
 

@@ -67,16 +67,15 @@ sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/termjs'|" xstatic/pkg/termjs/__in
 
 %install
 %pyproject_install
+%pyproject_save_files xstatic
 mkdir -p %{buildroot}%{_jsdir}/termjs
 mv %{buildroot}%{python3_sitelib}/xstatic/pkg/termjs/data/term.js %{buildroot}%{_jsdir}/termjs
 rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/termjs/data/
 # fix execute flags for js
 chmod 644 %{buildroot}%{_jsdir}/termjs/term.js
 
-%files -n python3-%{pkgname}
+%files -n python3-%{pkgname} -f %{pyproject_files}
 %doc README.rst
-%{python3_sitelib}/xstatic/pkg/termjs
-%{python3_sitelib}/XStatic_term.js-%{version}.dist-info
 %{python3_sitelib}/XStatic_term.js-%{version}-py%{python3_version}-nspkg.pth
 
 %files -n xstatic-termjs-common

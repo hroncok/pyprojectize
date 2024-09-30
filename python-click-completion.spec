@@ -52,12 +52,12 @@ chmod -x examples/click-completion-*
 
 %install
 %{pyproject_install}
+%pyproject_save_files 'click_completion*'
 
 
-%files -n python3-%{pkgname}
+%files -n python3-%{pkgname} -f %{pyproject_files}
 %license LICENSE
 %doc examples README.md
-%{python3_sitelib}/click_completion*/
 
 
 %changelog

@@ -68,6 +68,7 @@ sed -i 's/\"pathlib\"//g' setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 install -Dpm 0644 %{pypi_name}.1.txt %{buildroot}%{_mandir}/man1/%{pypi_name}.1
 
 %check
@@ -86,11 +87,9 @@ EXCLUDE_ARG="$EXCLUDE_ARG -e tests_plugin_postgresql"
 # https://github.com/turicas/rows/issues/283
 EXCLUDE_ARG="$EXCLUDE_ARG -e test_table_add_time"
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc AUTHORS.md README.md
 %license LICENSE
-%{python3_sitelib}/%{pypi_name}-*.dist-info/
-%{python3_sitelib}/%{pypi_name}/
 
 %files -n %{pypi_name}
 %doc AUTHORS.md README.md

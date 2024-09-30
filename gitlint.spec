@@ -35,13 +35,12 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} -m coverage run --omit='/
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 rm -rf %{buildroot}%{python3_sitelib}/qa
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{name}-*.dist-info/
-%{python3_sitelib}/%{name}/
 %{_bindir}/gitlint
 
 %changelog

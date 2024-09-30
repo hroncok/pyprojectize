@@ -51,17 +51,16 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files pydispatch
 
 
 %check
 %{__python3} setup.py test -s tests
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license license.txt
 %doc PKG-INFO
-%{python3_sitelib}/pydispatch
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 
 %changelog

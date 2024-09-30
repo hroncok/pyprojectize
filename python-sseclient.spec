@@ -43,18 +43,16 @@ is then an iterator over messages coming from the server.
 
 %install
 %pyproject_install
+%pyproject_save_files sseclient
 
 %if %{with network}
 %check
 pytest-%{python3_version} -v
 %endif
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{srcname}-%{version}.dist-info
-%{python3_sitelib}/sseclient.py*
-%{python3_sitelib}/__pycache__/sseclient*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.0.27-15

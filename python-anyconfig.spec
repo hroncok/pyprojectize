@@ -80,6 +80,7 @@ rm -frv docs/build/html/_sources
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 %if %{with tests}
 %check
@@ -87,10 +88,9 @@ export WITH_PYTHON_3=1
 ./pkg/runtest.sh
 %endif
 
-%files -n python3-%{pkgname}
+%files -n python3-%{pkgname} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE.MIT
-%{python3_sitelib}/*
 %{_bindir}/anyconfig*
 %{_mandir}/*/anyconfig*.*.gz
 

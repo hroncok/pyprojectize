@@ -48,13 +48,12 @@ sed -i 's/\r$//' README.rst
 
 %install
 %pyproject_install
+%pyproject_save_files gitapi
 
 
-%files -n python3-gitapi
+%files -n python3-gitapi -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/gitapi-%{version}a2.dist-info/
-%{python3_sitelib}/gitapi/
 
 
 %changelog

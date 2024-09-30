@@ -53,6 +53,7 @@ Summary:        %{summary}
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %if %{with tests}
 %check
@@ -62,11 +63,9 @@ Summary:        %{summary}
 %{python3} -m pytest --ignore tests/test_ftpfs.py -k "not test_seek_current and not test_seek_end"
 %endif
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.md examples
-%{python3_sitelib}/%{srcname}-*.dist-info/
-%{python3_sitelib}/%{srcname}/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.4.16-9

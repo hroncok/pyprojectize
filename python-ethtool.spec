@@ -53,6 +53,7 @@ a2x -d manpage -f manpage man/pifconfig.8.asciidoc
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 mkdir -p %{buildroot}%{_sbindir}
 mv %{buildroot}{%{_bindir},%{_sbindir}}/pifconfig
 mv %{buildroot}{%{_bindir},%{_sbindir}}/pethtool
@@ -69,14 +70,12 @@ export PYTHONPATH=%{buildroot}%{python3_sitearch}
 %endif
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst CHANGES.rst
 %license COPYING
 %{_sbindir}/pifconfig
 %{_sbindir}/pethtool
 %doc %{_mandir}/man8/*
-%{python3_sitearch}/%{pypi_name}.cpython-%{python3_version_nodots}*.so
-%{python3_sitearch}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Mon Jul 29 2024 Miroslav Suchý <msuchy@redhat.com> - 0.15-12

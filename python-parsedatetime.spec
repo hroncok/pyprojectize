@@ -45,6 +45,7 @@ strings.
 
 %install
 %pyproject_install
+%pyproject_save_files %{realname}
 # It makes no sense to ship all these tests in the package
 # just use them during the build
 rm -rf %{buildroot}%{python3_sitelib}/%{realname}/tests
@@ -54,11 +55,9 @@ rm -rf %{buildroot}%{python3_sitelib}/%{realname}/tests
 py.test-3 -x tests/*.py
 %endif
 
-%files -n python3-%{realname}
+%files -n python3-%{realname} -f %{pyproject_files}
 %license LICENSE.txt
 %doc AUTHORS.txt CHANGES.txt README.rst
-%{python3_sitelib}/%{realname}
-%{python3_sitelib}/%{realname}*.dist-info
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 2.6-15

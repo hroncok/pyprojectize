@@ -40,15 +40,13 @@ done
 
 %install
 %pyproject_install
+%pyproject_save_files firkin
 
 #%check
 #nosetests-%{python3_version} test/test_groups.py
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README PKG-INFO
-%{python3_sitelib}/firkin.p*
-%{python3_sitelib}/firkin*.dist-info
-%{python3_sitelib}/__pycache__/%{srcname}.*
 
 %changelog
 * Fri Jul 26 2024 Miroslav Suchý <msuchy@redhat.com> - 0.02-44

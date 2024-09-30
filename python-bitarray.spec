@@ -53,10 +53,10 @@ This is Python 3 version.
 
 %install
 %pyproject_install
+%pyproject_save_files '%{srcname}*'
 
 
-%files -n python%{python3_pkgversion}-%{srcname}
-%{python3_sitearch}/%{srcname}*
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 
 
 %changelog

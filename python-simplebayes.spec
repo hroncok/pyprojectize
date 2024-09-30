@@ -54,17 +54,16 @@ rm -rf %{srcname}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 
 %check
 nosetests-3
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 
 %changelog

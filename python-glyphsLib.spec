@@ -47,6 +47,7 @@ This library provides a bridge from Glyphs source files (.glyphs) to UFOs
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 # Skipping check for now due to missing dependencies
 %if 0%{?with_check}
@@ -54,12 +55,9 @@ This library provides a bridge from Glyphs source files (.glyphs) to UFOs
 %{__python3} setup.py test
 %endif
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst CONTRIBUTING.md
-%dir %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-*.dist-info
-%{python3_sitelib}/%{srcname}/*
 %{_bindir}/glyphs2ufo
 %{_bindir}/ufo2glyphs
 

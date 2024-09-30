@@ -39,13 +39,14 @@ development.
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 # remove shebangs from all scripts
 find %{buildroot}%{python3_sitelib} -name '*.py' \
      -exec sed -i -e '1{/^#!/d}' {} \;
 
 
-%files -n python%{python3_pkgversion}-pycmd
+%files -n python%{python3_pkgversion}-pycmd -f %{pyproject_files}
 %doc README.txt
 %doc CHANGELOG
 %license LICENSE
@@ -55,7 +56,6 @@ find %{buildroot}%{python3_sitelib} -name '*.py' \
 %{_bindir}/py.lookup
 %{_bindir}/py.svnwcrevert
 %{_bindir}/py.which
-%{python3_sitelib}/*
 
 
 %changelog

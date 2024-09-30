@@ -45,14 +45,13 @@ popd
 %install
 pushd src/
 %pyproject_install
+%pyproject_save_files grpc_gcp
 popd
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc src/{CHANGELOG.rst,README.md}
 %license src/LICENSE
-%{python3_sitelib}/grpc_gcp/
-%{python3_sitelib}/grpcio_gcp-*.dist-info/
 
 
 %changelog

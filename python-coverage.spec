@@ -85,6 +85,7 @@ rm %{buildroot}/%{_bindir}/coverage
 %endif
 
 %pyproject_install
+%pyproject_save_files coverage
 rm %{buildroot}/%{_bindir}/coverage
 
 # make compat symlinks
@@ -106,14 +107,12 @@ popd
 %{python2_sitearch}/coverage*.dist-info/
 %endif
 
-%files -n python%{python3_pkgversion}-coverage
+%files -n python%{python3_pkgversion}-coverage -f %{pyproject_files}
 %license LICENSE.txt NOTICE.txt
 %doc README.rst
 %{_bindir}/coverage
 %{_bindir}/coverage3
 %{_bindir}/coverage-3*
-%{python3_sitearch}/coverage/
-%{python3_sitearch}/coverage*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 7.3.2-5

@@ -35,9 +35,9 @@ low, dim the screen when you switch from AC to battery, etc.
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
-%files
-%{python3_sitelib}/*
+%files -f %{pyproject_files}
 %{_bindir}/%{name}
 %{_datadir}/%{name}
 %doc README.markdown

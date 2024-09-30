@@ -140,6 +140,7 @@ cd ..
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
 cd %{buildroot}%{_bindir}
 for FILE in *.py; do
@@ -161,9 +162,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.appdata
 %doc README*
 %license COPYING
 
-%files common
-%{python3_sitearch}/%{name}/
-%{python3_sitearch}/Printrun-*.dist-info/
+%files common -f %{pyproject_files}
 %{_bindir}/printcore*
 %doc README*
 %license COPYING

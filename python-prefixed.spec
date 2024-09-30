@@ -33,14 +33,14 @@ Summary:        %{summary}
 
 %install
 %pyproject_install
+%pyproject_save_files 'prefixed*'
 
 %check
 %{__python3} -m unittest
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README*
 %license LICENSE
-%{python3_sitelib}/prefixed*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.7.1-3

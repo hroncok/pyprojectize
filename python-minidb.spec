@@ -35,16 +35,14 @@ work with the data in an easy way with concise syntax.
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %check
 %pytest -v test
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/%{srcname}.py*
-%{python3_sitelib}/%{srcname}*.dist-info
-%{python3_sitelib}/__pycache__/*
 
 %changelog
 %autochangelog

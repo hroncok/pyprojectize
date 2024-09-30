@@ -49,6 +49,7 @@ find . -type f -exec sed -i 's/^#!\/usr\/bin\/python$/#!\/usr\/bin\/python3/' {}
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
 # Restore executable bit on scripts (remove by `python setup.py ...`).
 (cd %{buildroot}; grep -l -R -m 1 "^#!\/" . | xargs  chmod +x)
@@ -57,9 +58,7 @@ mkdir -p %{buildroot}%{_mandir}/man1/ %{buildroot}%{_mandir}/man7/
 cp docs/dist/man/man1/*.1 %{buildroot}%{_mandir}/man1/
 cp docs/dist/man/man7/*.7 %{buildroot}%{_mandir}/man7/
 
-%files
-%{python3_sitelib}/%{name}-%{version}.dist-info
-%{python3_sitelib}/%{name}
+%files -f %{pyproject_files}
 %{_bindir}/%{name}
 %{_bindir}/%{name}-*
 %{_mandir}/man1/%{name}.1*

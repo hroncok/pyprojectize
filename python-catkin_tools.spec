@@ -71,6 +71,7 @@ rm docs/_build/html/.buildinfo
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 install -p -m0644 -D docs/_build/man/%{srcname}.1 %{buildroot}%{_mandir}/man1/%{srcname}.1
 
@@ -83,11 +84,9 @@ install -p -m0644 -D docs/_build/man/%{srcname}.1 %{buildroot}%{_mandir}/man1/%{
 %license LICENSE
 %doc docs/_build/html
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 %{_bindir}/catkin
 %{_mandir}/man1/%{srcname}.1.*
 %{_datadir}/zsh/site-functions/_catkin

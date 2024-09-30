@@ -50,17 +50,16 @@ Requires:	python3-six
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 
 %check
 %{__python3} setup.py test -vv
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE.txt
 %doc %{pypi_name}.egg-info/PKG-INFO README.rst
-%{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 
 %changelog

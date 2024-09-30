@@ -120,6 +120,7 @@ popd
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %check
 %if %{with tests}
@@ -127,11 +128,9 @@ popd
 PYTHONPATH=$RPM_BUILD_ROOT/%{python3_sitearch} nosetests-3 '--exclude=test_(coherence_linear_dependence|lazy_reload)' nitime
 %endif
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.txt THANKS
-%{python3_sitearch}/%{srcname}-%{version}.dist-info
-%{python3_sitearch}/%{srcname}
 
 %if %{with docs}
 %files doc

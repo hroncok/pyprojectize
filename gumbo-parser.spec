@@ -95,6 +95,7 @@ install -m 644 doc/*.md ${RPM_BUILD_ROOT}%{_pkgdocdir}
 
 # python bindings
 %pyproject_install
+%pyproject_save_files '*'
 
 %ldconfig_scriptlets
 
@@ -113,8 +114,7 @@ install -m 644 doc/*.md ${RPM_BUILD_ROOT}%{_pkgdocdir}
 %{_libdir}/pkgconfig/gumbo.pc
 %{_mandir}/man3/*.3*
 
-%files python
-%{python3_sitelib}/*
+%files python -f %{pyproject_files}
 
 %changelog
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1:0.12.1-2

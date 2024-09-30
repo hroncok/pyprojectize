@@ -49,17 +49,16 @@ rm -rf %{srcname}.egg-info PKG-INFO
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 
 %check
 pytest-3 -v
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst AUTHORS.txt CHANGES.txt
 %license LICENSE
-%{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 
 %changelog

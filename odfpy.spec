@@ -84,16 +84,15 @@ find -type f -exec sed -i '1s=^#!/usr/bin/\(python\|env python\)[23]\?=#!%{__pyt
 
 %install
 %pyproject_install
+%pyproject_save_files odf
 
 %check
 PYTHONPATH=%{_builddir}/%{name}-release-%{version} pytest
 
-%files -n python3-%{name}
+%files -n python3-%{name} -f %{pyproject_files}
 %license GPL-LICENSE-2.txt APACHE-LICENSE-2.0.txt
 %{_bindir}/*
 %{_mandir}/man1/*
-%{python3_sitelib}/*egg-info
-%{python3_sitelib}/odf
 
 %files doc
 %license GPL-LICENSE-2.txt APACHE-LICENSE-2.0.txt

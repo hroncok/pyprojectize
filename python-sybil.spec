@@ -46,15 +46,14 @@ sed -i "/seeddir/d" setup.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %check
 %{pytest} tests
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %license docs/license.rst
-%{python3_sitelib}/*.dist-info
-%{python3_sitelib}/%{pypi_name}/
 
 %changelog
 * Wed Sep 18 2024 Fabian Affolter <mail@fabian-affolter.ch> - 7.1.1-1

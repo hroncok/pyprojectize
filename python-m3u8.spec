@@ -42,6 +42,7 @@ Python module %srcname parser
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %if %{with tests}
 %check
@@ -49,14 +50,9 @@ Python module %srcname parser
 %pytest -vv -k "not (test_load_should_ and (uri or redirect))"
 %endif
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%dir %{python3_sitelib}/%{srcname}/
-%dir %{python3_sitelib}/%{srcname}/__pycache__/
-%{python3_sitelib}/%{srcname}-%{version}.dist-info
-%{python3_sitelib}/%{srcname}/__pycache__/*.pyc
-%{python3_sitelib}/%{srcname}/*.py
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 3.6.0-5

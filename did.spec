@@ -42,6 +42,7 @@ range. By default all available stats for this week are reported.
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 mkdir -p %{buildroot}%{_mandir}/man1
 install -pm 644 did.1.gz %{buildroot}%{_mandir}/man1
 
@@ -49,11 +50,9 @@ install -pm 644 did.1.gz %{buildroot}%{_mandir}/man1
 export LANG=en_US.utf-8
 %{__python3} -m pytest -vv tests/test*.py -k 'not smoke'
 
-%files
+%files -f %{pyproject_files}
 %{_mandir}/man1/*
 %{_bindir}/did
-%{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}-*.dist-info/
 %doc README.rst examples
 %license LICENSE
 

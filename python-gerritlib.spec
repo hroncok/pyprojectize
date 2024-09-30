@@ -64,15 +64,14 @@ cp %{SOURCE2} ChangeLog
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %check
 %{__python3} setup.py test
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst AUTHORS ChangeLog
 %license LICENSE
-%{python3_sitelib}/*.dist-info
-%{python3_sitelib}/%{pypi_name}
 
 %changelog
 * Mon Aug 26 2024 Neil Hanlon <neil@shrug.pw> - 0.11.0-1~pre20240620gitc754757a

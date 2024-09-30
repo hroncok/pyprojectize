@@ -110,6 +110,7 @@ sed -i -e 's/-n auto //' setup.cfg
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 # We run this in %%install, since Sphinx imports __version__ from pyunicorn.
 # So, that needs to be installed first.
@@ -124,11 +125,9 @@ sed -i -e 's/-n auto //' setup.cfg
 %pytest
 %endif
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst examples/
 %license LICENSE.txt
-%{python3_sitearch}/%{pypi_name}
-%{python3_sitearch}/%{pypi_name}-%{upstream_version}.dist-info
 
 %files doc
 %doc README.rst

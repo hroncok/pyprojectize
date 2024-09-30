@@ -61,6 +61,7 @@ rm -rf %{modname}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 
 # Prepend a shebang to these so they are not stripped of executable bits
 sed -i '1i #!/bin/sh' %{buildroot}/%{_bindir}/%{modname}.sh
@@ -76,11 +77,9 @@ ln -s %{_bindir}/virtualenvwrapper.sh %{buildroot}/%{_bindir}/virtualenvwrapper-
 # Tests won't fly in koji since they try to install stuff from pypi
 #tox -e py27
 
-%files -n python3-%{modname}
+%files -n python3-%{modname} -f %{pyproject_files}
 %doc PKG-INFO docs
 %license LICENSE
-%{python3_sitelib}/%{modname}
-%{python3_sitelib}/%{modname}-%{version}*
 %{_bindir}/virtualenvwrapper.sh
 %{_bindir}/virtualenvwrapper_lazy.sh
 %{_bindir}/virtualenvwrapper-3.sh

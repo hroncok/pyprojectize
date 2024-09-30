@@ -68,18 +68,17 @@ make html
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
 install -m 755 -d %{buildroot}%{_mandir}/man1/
 install -m 644 build/sphinx/man/%{name}.1 %{buildroot}%{_mandir}/man1/
 
 
-%files
+%files -f %{pyproject_files}
 %doc AUTHORS.rst CHANGELOG.rst README.md
 %license LICENSE.txt
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*
-%{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}-*.dist-info/
 
 
 %files doc

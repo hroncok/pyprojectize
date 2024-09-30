@@ -39,15 +39,14 @@ Requires:       python3-cwcwidth
 
 %install
 %{pyproject_install}
+%pyproject_save_files curtsies
 
 %check
 nosetests .
 
-%files -n python3-curtsies
+%files -n python3-curtsies -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/curtsies
-%{python3_sitelib}/curtsies-*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.4.2-6

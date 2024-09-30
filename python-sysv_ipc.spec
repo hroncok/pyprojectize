@@ -43,13 +43,12 @@ Summary:        %{sum}
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 chmod -x demos/*/*.{py,sh}
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE 
 %doc LICENSE README ReadMe.html VERSION
-%{python3_sitearch}/*
-%{python3_sitearch}/%{srcname}-%{version}.dist-info
 
 
 %files examples

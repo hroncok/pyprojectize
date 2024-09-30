@@ -101,6 +101,7 @@ find $RPM_BUILD_ROOT -name \*.la -delete
 %if %{with python3}
 pushd ./python/
 %pyproject_install
+%pyproject_save_files netlink
 popd
 %endif
 
@@ -148,9 +149,7 @@ popd
 %doc libnl-doc-%{version}/api/*
 
 %if %{with python3}
-%files -n python3-libnl3
-%{python3_sitearch}/netlink
-%{python3_sitearch}/netlink-*.dist-info
+%files -n python3-libnl3 -f %{pyproject_files}
 %endif
 
 %changelog

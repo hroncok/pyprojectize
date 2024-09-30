@@ -42,16 +42,16 @@ Pure-python library for interacting with Yubikeys. For Python 3.
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 
 %check
 %pytest test/soft/
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license COPYING
 %doc NEWS README
-%{python3_sitelib}/*
 
 
 %changelog

@@ -45,15 +45,14 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
+%pyproject_save_files boolean
 
 %check
 %pytest
 
-%files -n python%{python3_pkgversion}-%{pypi_name}
+%files -n python%{python3_pkgversion}-%{pypi_name} -f %{pyproject_files}
 %license LICENSE.txt
 %doc CHANGELOG.rst README.rst html/
-%{python3_sitelib}/boolean.py*.dist-info/
-%{python3_sitelib}/boolean/
 
 %changelog
 %autochangelog

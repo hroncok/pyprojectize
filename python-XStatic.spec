@@ -47,13 +47,12 @@ XStatic-* packages.
 
 %install
 %pyproject_install
+%pyproject_save_files xstatic
 mkdir %{buildroot}/%{python3_sitelib}/xstatic/pkg
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
-%{python3_sitelib}/xstatic
-%{python3_sitelib}/XStatic-%{version}.dist-info
 %{python3_sitelib}/XStatic-%{version}-py%{python3_version}-nspkg.pth
 
 

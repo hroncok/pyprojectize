@@ -46,6 +46,7 @@ messages in larger applications.
 
 %install
 %pyproject_install
+%pyproject_save_files '%{src_name}*' pubsub
 
 %check
 pushd tests/suite
@@ -53,11 +54,9 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} PYTHONDONTWRITEBYTECODE=1 py.test-%{py
 popd
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst src/pubsub/RELEASE_NOTES.txt
 %license src/pubsub/LICENSE_BSD_Simple.txt
-%{python3_sitelib}/%{src_name}*
-%{python3_sitelib}/pubsub/
 
 %changelog
 * Thu Aug 01 2024 Scott Talbert <swt@techie.net> - 4.0.3-23

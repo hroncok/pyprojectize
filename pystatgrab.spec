@@ -36,14 +36,14 @@ rm -rf statgrab.c
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 %check
 PYTHONPATH=%{buildroot}/%{python3_sitearch} %{__python3} test.py
 
-%files -n python3-%{name}
+%files -n python3-%{name} -f %{pyproject_files}
 %doc AUTHORS NEWS README
 %license COPYING.LGPL
-%{python3_sitearch}/*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.7.3-2

@@ -47,12 +47,11 @@ rm -rf %{name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
-%files
+%files -f %{pyproject_files}
 %doc README.rst
 %{_bindir}/reprotest
-%{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}-%{version}.dist-info
 
 %changelog
 * Tue Sep 10 2024 Frédéric Pierret (fepitre) <frederic@invisiblethingslab.com> - 0.7.28-1

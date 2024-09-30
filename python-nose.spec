@@ -83,6 +83,7 @@ dos2unix examples/attrib_plugin.py
 %install
 mkdir -p %{buildroot}%{_mandir}/man1
 %pyproject_install
+%pyproject_save_files nose
 mv %{buildroot}%{_bindir}/nosetests{,-%{python3_version}}
 ln -sf nosetests-%{python3_version} %{buildroot}%{_bindir}/nosetests-3
 mv %{buildroot}%{_prefix}/man/man1/nosetests.1 %{buildroot}%{_mandir}/man1/nosetests-%{python3_version}.1
@@ -94,7 +95,7 @@ ln -sf nosetests-3.1 %{buildroot}%{_mandir}/man1/nosetests.1
 %{__python3} setup.py build_tests
 %{__python3} selftest.py
 
-%files -n python3-%{modname}
+%files -n python3-%{modname} -f %{pyproject_files}
 %license lgpl.txt
 %doc AUTHORS CHANGELOG NEWS README.txt
 %{_bindir}/nosetests
@@ -103,8 +104,6 @@ ln -sf nosetests-3.1 %{buildroot}%{_mandir}/man1/nosetests.1
 %{_mandir}/man1/nosetests.1*
 %{_mandir}/man1/nosetests-3.1*
 %{_mandir}/man1/nosetests-%{python3_version}.1*
-%{python3_sitelib}/nose-*.dist-info/
-%{python3_sitelib}/nose/
 
 %changelog
 %autochangelog

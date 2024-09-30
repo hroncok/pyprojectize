@@ -60,6 +60,7 @@ rm -r build/html/.buildinfo build/html/.doctrees
 
 %install
 %pyproject_install
+%pyproject_save_files sphinxcontrib 'sphinxcontrib_programoutput*info'
 mkdir -p %{buildroot}%{_pkgdocdir}
 cp -rv build/html %{buildroot}%{_pkgdocdir}/
 ln -vsf %{_jsdir}/jquery/latest/jquery.min.js %{buildroot}%{_pkgdocdir}/html/_static/jquery.js
@@ -80,11 +81,9 @@ OPTIONS=(
 %pytest -v %{buildroot}%{python3_sitelib}/sphinxcontrib "${OPTIONS[@]}"
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc %{_pkgdocdir}
-%{python3_sitelib}/sphinxcontrib/*
-%{python3_sitelib}/sphinxcontrib_programoutput*info/
 
 %changelog
 %autochangelog

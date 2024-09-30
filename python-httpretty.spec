@@ -85,17 +85,16 @@ sed -i 's/^rednose = 1$//' setup.cfg
 
 %install
 %pyproject_install
+%pyproject_save_files httpretty
 
 %check
 %if %{run_tests}
 %{__python3} -m nose -v
 %endif
 
-%files -n python3-httpretty
+%files -n python3-httpretty -f %{pyproject_files}
 %doc README.rst
 %license COPYING
-%{python3_sitelib}/httpretty
-%{python3_sitelib}/httpretty-%{version}.dist-info
 
 
 %changelog

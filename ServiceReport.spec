@@ -28,6 +28,7 @@ the incorrect configuration
 
 %install
 %pyproject_install
+%pyproject_save_files servicereportpkg
 
 %post
 %systemd_post servicereport.service
@@ -38,14 +39,12 @@ the incorrect configuration
 %postun
 %systemd_postun servicereport.service
 
-%files
+%files -f %{pyproject_files}
 %doc README.md
 %license COPYING
 %{_mandir}/man8/*
 %{_bindir}/servicereport
 %{_unitdir}/servicereport.service
-%{python3_sitelib}/servicereportpkg
-%{python3_sitelib}/ServiceReport*.dist-info
 
 %changelog
 * Wed Jul 17 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.2.4-3

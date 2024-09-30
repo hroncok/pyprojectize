@@ -66,16 +66,15 @@ sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/jquery_migrate'|" xstatic/pkg/jqu
 
 %install
 %pyproject_install
+%pyproject_save_files xstatic
 mkdir -p %{buildroot}%{_jsdir}/jquery_migrate
 mv %{buildroot}%{python3_sitelib}/xstatic/pkg/jquery_migrate/data/* %{buildroot}%{_jsdir}/jquery_migrate
 rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/jquery_migrate/data/
 # fix execute flags for js
 chmod 644 %{buildroot}%{_jsdir}/jquery_migrate/*.js
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
-%{python3_sitelib}/xstatic/pkg/jquery_migrate
-%{python3_sitelib}/XStatic_JQuery_Migrate-%{version}.dist-info
 %{python3_sitelib}/XStatic_JQuery_Migrate-%{version}-py%{python3_version}-nspkg.pth
 
 %files -n xstatic-jquery-migrate-common

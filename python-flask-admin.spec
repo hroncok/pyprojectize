@@ -62,25 +62,15 @@ rm flask_admin/translations/README.md
 
 %install
 %pyproject_install
+%pyproject_save_files flask_admin
 
 %check
 # Tests are not included as they require mongod running
 
 
-%files -n python%{python3_pkgversion}-%{pkgname}
+%files -n python%{python3_pkgversion}-%{pkgname} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%dir %{python3_sitelib}/flask_admin
-%{python3_sitelib}/flask_admin/translations
-%{python3_sitelib}/flask_admin/static
-%{python3_sitelib}/flask_admin/*.py*
-%{python3_sitelib}/flask_admin/__pycache__/
-%{python3_sitelib}/flask_admin/tests/
-%{python3_sitelib}/flask_admin/contrib/
-%{python3_sitelib}/flask_admin/model/
-%{python3_sitelib}/flask_admin/templates/
-%{python3_sitelib}/flask_admin/form/
-%{python3_sitelib}/*.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.6.1-6

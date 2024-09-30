@@ -54,16 +54,15 @@ find example -name '._*.py' -exec rm '{}' \;
 
 %install
 %pyproject_install
+%pyproject_save_files authority
 
 # example gets accidently installed to python_sitelib, too
 rm -rf %{buildroot}/%{python3_sitelib}/example
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc AUTHORS README.rst docs/ example/
-%{python3_sitelib}/authority/
-%{python3_sitelib}/django_authority-%{version}.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.11-29

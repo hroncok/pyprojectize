@@ -41,16 +41,15 @@ sed -i 's/unittest.findTestCases(module)/unittest.TestLoader().loadTestsFromModu
 
 %install
 %pyproject_install
+%pyproject_save_files serial
 
 
 %check
 PYTHONPATH=%{buildroot}/%{python3_sitelib} %{python3} test/run_all_tests.py
 
 
-%files -n python3-pyserial
+%files -n python3-pyserial -f %{pyproject_files}
 %doc LICENSE.txt CHANGES.rst README.rst examples
-%{python3_sitelib}/serial
-%{python3_sitelib}/%{name}-%{version}.dist-info
 %{_bindir}/pyserial-miniterm
 %{_bindir}/pyserial-ports
 

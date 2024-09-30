@@ -47,16 +47,15 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc README.md
 %{_bindir}/wfencode
 %{_bindir}/wfpayload
 %{_bindir}/wfuzz
 %{_bindir}/wxfuzz
-%{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}-%{version}.dist-info/
 
 %files -n %{name}-doc
 %doc html

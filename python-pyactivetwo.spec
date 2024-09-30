@@ -38,14 +38,14 @@ cp -p %{SOURCE1} .
 
 %install
 %pyproject_install
+%pyproject_save_files '%{srcname}*'
 
 # No tests
 #check
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.rst example.py
-%{python3_sitelib}/%{srcname}*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1-30

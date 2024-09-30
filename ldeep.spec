@@ -35,15 +35,14 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %files
 %doc README.rst
 %license LICENSE
 %{_bindir}/%{pypi_name}
 
-%files -n python3-%{pypi_name}
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-*.dist-info
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 
 %changelog
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.9-14

@@ -81,16 +81,16 @@ popd
 
 %install
 %pyproject_install
+%pyproject_save_files 'patsy*'
 
 %check
 %if %{with check}
 %pytest -v --deselect "patsy/eval.py::test_EvalEnvironment_eq"
 %endif
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md TODO
 %license LICENSE.txt
-%{python3_sitelib}/patsy*
 
 %files -n python3-%{srcname}-doc
 %doc README.md TODO doc/_build/html

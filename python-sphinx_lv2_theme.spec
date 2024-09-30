@@ -53,14 +53,13 @@ Summary:        %{summary}
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 
-%files -n  python%{python3_pkgversion}-%{pypi_name}
+%files -n  python%{python3_pkgversion}-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
 # For noarch packages: sitelib
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 
 %changelog

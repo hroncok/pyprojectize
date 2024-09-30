@@ -51,6 +51,7 @@ sed -i '1{\@^#!/usr/bin/env python@d}' recommonmark/scripts.py
 %install
 #  install python3 first to have unversioned binaries for python 3
 %pyproject_install
+%pyproject_save_files recommonmark
 pushd %{buildroot}%{_bindir}  # Enter buildroot bindir to ease symlink creation
 for cm2bin in cm2*; do
     mv "${cm2bin}" "${cm2bin}-%{python3_version}"
@@ -65,11 +66,9 @@ popd  # Leave buildroot bindir
 %pytest --ignore tests/test_sphinx.py
 
 
-%files -n python%{python3_pkgversion}-recommonmark
+%files -n python%{python3_pkgversion}-recommonmark -f %{pyproject_files}
 %doc README.md
 %license license.md
-%{python3_sitelib}/recommonmark-%{version}*.dist-info/
-%{python3_sitelib}/recommonmark/
 %{_bindir}/cm2*-3
 %{_bindir}/cm2*-%{python3_version}
 

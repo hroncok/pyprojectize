@@ -39,16 +39,15 @@ Python utilities for Kerberos Credential Cache Collections
 
 %install
 %pyproject_install
+%pyproject_save_files 'cccolutils*'
 
 
 %check
 %{__python3} setup.py test
 
 
-%files -n python3-cccolutils
+%files -n python3-cccolutils -f %{pyproject_files}
 %license COPYING
-%{python3_sitearch}/cccolutils*.so
-%{python3_sitearch}/CCColUtils-*.dist-info
 
 
 %changelog

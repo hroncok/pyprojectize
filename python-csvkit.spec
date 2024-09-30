@@ -68,6 +68,7 @@ make man
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 mkdir -p %{buildroot}%{_mandir}/man1
 for file in docs/_build/man/*.1; do
@@ -85,13 +86,11 @@ chmod -x examples/realdata/census_2000/VROUTFSJ.TXt
 # This tests fails because of local error.
 pytest-%{python3_version} tests -v -k "not test_convert_dbf and not test_decimal_format"
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license COPYING
 %doc README.rst CHANGELOG.rst AUTHORS.rst
 %{_bindir}/*
 %{_mandir}/man1/*
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
-%{python3_sitelib}/%{pypi_name}/
 
 
 %files doc

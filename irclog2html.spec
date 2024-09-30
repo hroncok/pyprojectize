@@ -30,10 +30,11 @@ echo "You may need the irclog.css file. It is available at
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 mkdir -p %{buildroot}%{_datadir}/%{name}
 install -Dpm 0644 src/%{name}/irclog.css %{buildroot}%{_datadir}/%{name}
 
-%files
+%files -f %{pyproject_files}
 %doc CHANGES.rst HACKING.rst README.rst README.fedora
 %license COPYING
 %{_bindir}/%{name}
@@ -41,8 +42,6 @@ install -Dpm 0644 src/%{name}/irclog.css %{buildroot}%{_datadir}/%{name}
 %{_bindir}/irclogserver
 %{_bindir}/logs2html
 %{_datadir}/%{name}/
-%{python3_sitelib}/%{name}/
-%{python3_sitelib}/*.dist-info
 
 %changelog
 * Fri Jul 26 2024 Miroslav Suchý <msuchy@redhat.com> - 2.17.2-22

@@ -45,6 +45,7 @@ BuildRequires:  python3-pytest-cov
 
 %install
 %pyproject_install
+%pyproject_save_files %{pretty_name}
 
 %check
 #skipping three tests
@@ -55,12 +56,9 @@ k="${k-}${k+ and }not test_unit_error"
 %pytest -k "${k-}"
 %endif
 
-%files -n python3-%{pretty_name}
+%files -n python3-%{pretty_name} -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.md
-%{python3_sitelib}/%{pretty_name}-%{version}.dist-info
-%pycached %{python3_sitelib}/%{pretty_name}/main.py
-%pycached %{python3_sitelib}/%{pretty_name}/__init__.py
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.2.4-18

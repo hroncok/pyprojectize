@@ -31,6 +31,7 @@ number of processes on UNIX-like operating systems.
 
 %install
 %pyproject_install
+%pyproject_save_files 'supervisor*'
 
 mkdir -p %{buildroot}/%{_sysconfdir}
 mkdir -p %{buildroot}/%{_sysconfdir}/supervisord.d
@@ -56,12 +57,11 @@ rm -f %{buildroot}%{_prefix}/doc/*.txt
 %postun
 %systemd_postun %{name}d.service
 
-%files
+%files -f %{pyproject_files}
 %doc CHANGES.rst README.rst
 %license COPYRIGHT.txt LICENSES.txt
 %dir %{_localstatedir}/log/%{name}
 %{_unitdir}/supervisord.service
-%{python3_sitelib}/supervisor*
 %{_bindir}/supervisor*
 %{_bindir}/echo_supervisord_conf
 %{_bindir}/pidproxy

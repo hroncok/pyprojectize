@@ -36,12 +36,11 @@ source to the .pbf or .osm output.
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
 
-%files
+%files -f %{pyproject_files}
 %{_bindir}/%{name}
-%{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}-*.dist-info
 %doc README.md
 %license LICENSE
 

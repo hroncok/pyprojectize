@@ -62,6 +62,7 @@ make -C doc html
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 rm -rf %{buildroot}/%{python3_sitelib}/pyqtgraph/examples
 rm -f doc/build/html/.buildinfo
 rm -f doc/build/html/objects.inv
@@ -71,10 +72,9 @@ rm -f doc/build/html/objects.inv
 # https://github.com/pyqtgraph/pyqtgraph/issues/2110 (test_PolyLineROI)
 %pytest -k "not (test_reload or test_PolyLineROI)"
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE.txt
 %doc CHANGELOG README.md
-%{python3_sitelib}/*
 
 %if %{with docs}
 %files doc

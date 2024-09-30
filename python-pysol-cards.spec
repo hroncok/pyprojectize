@@ -42,13 +42,12 @@ sed -i '/^#! \/usr\/bin\/env python$/d' pysol_cards/*.py
 # Must do the default python version install last because
 # the scripts in /usr/bin are overwritten with every setup.py install.
 %pyproject_install
+%pyproject_save_files pysol_cards
 rm -rf %{buildroot}/%{_bindir}
 
-%files -n python%{python3_pkgversion}-%{pypi_name}
+%files -n python%{python3_pkgversion}-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/pysol_cards
-%{python3_sitelib}/pysol_cards-%{version}.dist-info
 
 %changelog
 * Sun Sep 15 2024 Fedora Release Monitoring <release-monitoring@fedoraproject.org> - 0.18.0-1

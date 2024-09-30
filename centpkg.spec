@@ -52,6 +52,7 @@ Provides the centpkg-sig command for working with dist-git.
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 install -D -p -m 0644 src/stream.conf      %{buildroot}%{_sysconfdir}/koji.conf.d/stream.conf
 install -D -p -m 0644 src/centpkg.conf     %{buildroot}%{_sysconfdir}/rpkg/centpkg.conf
 install -D -p -m 0644 src/centpkg-sig.conf %{buildroot}%{_sysconfdir}/rpkg/centpkg-sig.conf
@@ -63,14 +64,12 @@ install -D -p -m 0644 centpkg.1            %{buildroot}%{_mandir}/man1/centpkg.1
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{python3} -m unittest discover --verbose
 
 
-%files
+%files -f %{pyproject_files}
 %license COPYING
 %doc README.md
 %config(noreplace) %{_sysconfdir}/koji.conf.d/stream.conf
 %config(noreplace) %{_sysconfdir}/rpkg/centpkg.conf
 %{_bindir}/%{name}
-%{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}-%{version}.dist-info
 %{_datadir}/bash-completion/completions/centpkg
 %{_mandir}/man1/centpkg.1*
 

@@ -77,6 +77,7 @@ find . -type f -name '*.py' -exec sed -i -e 's/of ubuntu/of %{osname}/Ig' \
 %py2_install
 %else
 %pyproject_install
+%pyproject_save_files %{name}
 %endif
 desktop-file-install --dir=%{buildroot}%{_datadir}/applications %{name}.desktop
 DESTDIR="%{buildroot}" appstream-util install %{name}.appdata.xml
@@ -101,9 +102,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/appdata/*.appdata.
 %{python2_sitelib}/%{name}-%{version}.dist-info
 %{python2_sitelib}/%{name}/
 %else
-%files -n python3-%{name}
-%{python3_sitelib}/%{name}-%{version}.dist-info
-%{python3_sitelib}/%{name}/
+%files -n python3-%{name} -f %{pyproject_files}
 %endif
 %license LICENSE
 

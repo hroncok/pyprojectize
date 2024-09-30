@@ -76,6 +76,7 @@ https://github.com/redhat-imaging/imagefactory for more information.
 
 %install
 %pyproject_install
+%pyproject_save_files imgfac
 
 
 install -d %{buildroot}/%{_sysconfdir}/imagefactory/jeos_images
@@ -98,7 +99,7 @@ rm -f %{buildroot}/%{_initddir}/imagefactoryd
 %systemd_postun imagefactoryd.service
 
 
-%files
+%files -f %{pyproject_files}
 %license COPYING
 %{_unitdir}/imagefactoryd.service
 %config(noreplace) %{_sysconfdir}/imagefactory/imagefactory.conf
@@ -109,10 +110,6 @@ rm -f %{buildroot}/%{_initddir}/imagefactoryd
 %dir %attr(0755, root, root) %{_sysconfdir}/imagefactory/plugins.d/
 %dir %attr(0755, root, root) %{_localstatedir}/lib/imagefactory/images
 %config %{_sysconfdir}/pki/imagefactory/cert-ec2.pem
-%{python3_sitelib}/imgfac/*.py*
-%{python3_sitelib}/imgfac/__pycache__/*.py*
-%{python3_sitelib}/imgfac/rest
-%{python3_sitelib}/imagefactory-*.dist-info
 %{_bindir}/imagefactory
 %{_bindir}/imagefactoryd
 

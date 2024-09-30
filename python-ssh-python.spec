@@ -67,6 +67,7 @@ export CXXFLAGS="${CXXFLAGS:-${RPM_OPT_FLAGS}}"
 
 %install
 %pyproject_install
+%pyproject_save_files ssh
 # remove 0 length files
 rm -f %{buildroot}/%{python3_sitearch}/ssh/__init__.pxd
 chmod 0755 %{buildroot}/%{python3_sitearch}/ssh/*.so
@@ -80,11 +81,9 @@ echo StrictModes no >> tests/embedded_server/sshd_config.tmpl
 rm -f tests/test_sftp.py
 %pytest -v tests
 
-%files -n python3-%{modname}
+%files -n python3-%{modname} -f %{pyproject_files}
 %license COPYING LICENSE
 %doc README.rst Changelog.rst
-%{python3_sitearch}/ssh_python-*.dist-info/
-%{python3_sitearch}/ssh/
 
 %package -n python3-%{modname}-doc
 Summary:        %{summary} documentation

@@ -41,14 +41,14 @@ When files are changed the process is restarted.
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} -m pytest
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE.txt
 %doc CHANGES.rst CONTRIBUTING.rst docs/ LICENSE.txt PKG-INFO README.rst rtd.txt
-%{python3_sitelib}/*
 %{_bindir}/hupper
 
 %changelog

@@ -56,16 +56,15 @@ cp -a . %{py3dir}
 
 %install
 %pyproject_install
+%pyproject_save_files hgapi
 
 
 %check
 %{__python3} setup.py test || true
 
 
-%files -n python3-hgapi
+%files -n python3-hgapi -f %{pyproject_files}
 %doc README.rst LICENSE
-%{python3_sitelib}/hgapi-%{version}.dist-info
-%{python3_sitelib}/hgapi/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.7.4-26

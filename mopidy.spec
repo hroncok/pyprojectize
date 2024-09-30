@@ -63,6 +63,7 @@ rm _build/html/.buildinfo
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
 install -d -m 0755 %{buildroot}%{homedir}
 install -d -m 0755 %{buildroot}%{_var}/cache/%{name}
@@ -93,7 +94,7 @@ exit 0
 %postun
 %systemd_postun %{name}.service
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
 # Note: these directories needs to be writable by the mopidy service
@@ -104,8 +105,6 @@ exit 0
                      %dir %{_datadir}/%{name}/conf.d
 # Note: users are expected to put streaming service credentials here
 %attr(0640,%name,%name) %ghost %config(noreplace) %{_sysconfdir}/%{name}/%{name}.conf
-%{python3_sitelib}/%{srcname}-*.dist-info/
-%{python3_sitelib}/%{name}/
 %{_bindir}/%{name}
 %{_sbindir}/mopidyctl
 %{_unitdir}/%{name}.service

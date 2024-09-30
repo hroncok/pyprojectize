@@ -165,6 +165,7 @@ pushd bindings/python
 %py2_install
 %endif
 %pyproject_install
+%pyproject_save_files '_marisa*' marisa
 rm -rf %{buildroot}/%{python3_sitearch}/marisa-0.0.0-py%{python3_version}.egg-info
 popd
 
@@ -217,10 +218,7 @@ rm -f $RPM_BUILD_ROOT%{perl_vendorarch}/sample.pl
 %{python2_sitearch}/marisa-0.0.0.dist-info
 %endif
 
-%files -n python3-%{name}
-%{python3_sitearch}/__pycache__/marisa*
-%{python3_sitearch}/_marisa*.so
-%{python3_sitearch}/marisa.py
+%files -n python3-%{name} -f %{pyproject_files}
 
 %files ruby
 %{ruby_vendorarchdir}/marisa.so

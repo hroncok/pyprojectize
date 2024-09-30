@@ -54,6 +54,7 @@ rm -rf %{modname}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 
 %check
 # Ignore two tests that are broken when run on systems in certain timezones.
@@ -63,10 +64,8 @@ pytest-3 --deselect tests/test_datetimes.py::TestUnitTestMethodDecorator::test_m
 
 
 
-%files -n python3-freezegun
+%files -n python3-freezegun -f %{pyproject_files}
 %doc README.rst LICENSE
-%{python3_sitelib}/%{modname}/
-%{python3_sitelib}/%{modname}-%{version}-*
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 1.2.2-9

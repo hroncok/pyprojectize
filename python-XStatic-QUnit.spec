@@ -66,6 +66,7 @@ sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/qunit'|" xstatic/pkg/qunit/__init
 
 %install
 %pyproject_install
+%pyproject_save_files xstatic
 
 mkdir -p %{buildroot}%{_jsdir}/qunit
 mv %{buildroot}%{python3_sitelib}/xstatic/pkg/qunit/data/* %{buildroot}%{_jsdir}/qunit
@@ -73,10 +74,8 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/qunit/data/
 # fix execute flags for js
 chmod 644 %{buildroot}%{_jsdir}/qunit/qunit.js
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
-%{python3_sitelib}/xstatic/pkg/qunit
-%{python3_sitelib}/XStatic_QUnit-%{version}.dist-info
 %{python3_sitelib}/XStatic_QUnit-%{version}-py%{python3_version}-nspkg.pth
 
 %files -n xstatic-qunit-common

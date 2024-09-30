@@ -41,12 +41,11 @@ rm -vrf *.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
 %license LICENCE
-%{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{pypi_name}-*.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.23.1-3

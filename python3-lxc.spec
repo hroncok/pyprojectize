@@ -48,6 +48,7 @@ Summary: Python binding for LXC
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 # fix examples
 chmod -x examples/*.py
@@ -58,10 +59,9 @@ sed -i -e '1 s@^#!.*@#!%{__python3}@' examples/*.py
 %{__python3} setup.py test
 
 
-%files %{?subpkg}
+%files %{?subpkg} -f %{pyproject_files}
 %license COPYING
 %doc README.md examples
-%{python3_sitearch}/*
 
 
 %changelog

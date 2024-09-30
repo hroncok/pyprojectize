@@ -208,6 +208,7 @@ cd -
 
 %install
 %pyproject_install
+%pyproject_save_files %{name}
 
 # move scripts away from _bindir to avoid conflicts and create a wrapper scripts
 install -d -p %{buildroot}%{_libexecdir}/%{name}
@@ -406,10 +407,8 @@ fi
 %{_datadir}/selinux/*/%{name}.pp
 
 
-%files -n python3-%{radicale_package_name}
+%files -n python3-%{radicale_package_name} -f %{pyproject_files}
 %license COPYING.md
-%{python3_sitelib}/%{name}
-%{python3_sitelib}/Radicale-*.dist-info
 
 
 %files -n %{radicale_package_name}-httpd

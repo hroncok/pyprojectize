@@ -59,17 +59,16 @@ cp %SOURCE3 . -vp
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %check
 %if %{with tests}
 PYTHONPATH=%{buildroot}/%{python3_sitelib} %{__python3} -m unittest
 %endif
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
-%{python3_sitelib}/%{pypi_name}
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.2.0-16

@@ -37,16 +37,15 @@ rm -r unidiff.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} -m unittest discover -s tests/
 
-%files -n python%{python3_pkgversion}-%{modname}
+%files -n python%{python3_pkgversion}-%{modname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst HISTORY
 %{_bindir}/%{modname}
-%{python3_sitelib}/%{modname}
-%{python3_sitelib}/%{modname}*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.7.5-5

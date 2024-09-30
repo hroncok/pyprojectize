@@ -144,6 +144,7 @@ make -C doc
 
 %install
 %pyproject_install
+%pyproject_save_files 'diffoscope*'
 echo %{buildroot}%{python3_sitelib}
 install -Dm0644 -t %{buildroot}%{_mandir}/man1/ doc/diffoscope.1
 install -Dm0644 -t %{buildroot}/usr/share/zsh/site-functions/ debian/zsh-completion/_diffoscope
@@ -175,10 +176,9 @@ TZ=UTC \
 PYTHONPATH=build/lib/ \
 %python3 -m pytest tests/ -vv "${DESELECT[@]}"
 
-%files
+%files -f %{pyproject_files}
 %doc README.rst debian/changelog
 %license COPYING
-%{python3_sitelib}/diffoscope*
 %{_bindir}/diffoscope
 /usr/share/zsh/site-functions/_diffoscope
 %doc %{_mandir}/man1/diffoscope.1*

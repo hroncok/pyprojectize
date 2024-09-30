@@ -70,6 +70,7 @@ cp %{SOURCE1} .
 
 %install
 %pyproject_install
+%pyproject_save_files xstatic
 
 mkdir -p %{buildroot}%{_jsdir}/bootstrap_scss
 mv %{buildroot}%{python3_sitelib}/xstatic/pkg/bootstrap_scss/data/* %{buildroot}%{_jsdir}/bootstrap_scss
@@ -78,10 +79,8 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/bootstrap_scss/data/
 chmod 644 %{buildroot}%{_jsdir}/bootstrap_scss/js/*.js
 chmod 644 %{buildroot}%{_jsdir}/bootstrap_scss/js/bootstrap/*.js
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
-%{python3_sitelib}/xstatic/pkg/bootstrap_scss
-%{python3_sitelib}/XStatic_Bootstrap_SCSS-%{version}.dist-info
 %{python3_sitelib}/XStatic_Bootstrap_SCSS-%{version}-py%{python3_version}-nspkg.pth
 
 %files -n xstatic-bootstrap-scss-common

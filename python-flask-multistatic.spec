@@ -48,14 +48,12 @@ rm -rf %{modname}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files flask_multistatic
 
 
-%files -n python3-%{modname}
+%files -n python3-%{modname} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/flask_multistatic.py*
-%{python3_sitelib}/__pycache__/flask_multistatic*
-%{python3_sitelib}/flask_multistatic-%{version}-*
 
 
 %changelog

@@ -42,16 +42,15 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files gtts_token
 
 %check
 %if %{with_tests}
 %{__python3} setup.py test
 %endif
 
-%files -n python3-gtts-token
+%files -n python3-gtts-token -f %{pyproject_files}
 %license LICENSE
-%{python3_sitelib}/gTTS_token-*
-%{python3_sitelib}/gtts_token/
 
 %changelog
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.1.4-14

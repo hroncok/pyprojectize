@@ -57,6 +57,7 @@ export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 # since we are not importing a .git repository in the tarball
 export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %check
 %if 0%{?with_tests}
@@ -68,11 +69,9 @@ export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 %{__python3} setup.py test
 %endif
 
-%files -n python3-%{pkgname}
+%files -n python3-%{pkgname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{srcname}-*.dist-info
-%{python3_sitelib}/%{srcname}
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.0-17

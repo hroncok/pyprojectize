@@ -38,13 +38,12 @@ Tools for testing processes for Python 3.
 
 %install
 %{pyproject_install}
+%pyproject_save_files 'process_tests*'
 
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/process_tests*
 
 
 %changelog

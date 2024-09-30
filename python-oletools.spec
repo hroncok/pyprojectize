@@ -270,6 +270,7 @@ sed -e 's|infixNotation|operatorPrecedence|g' -i %{buildroot}%{python2_sitelib}/
 %if 0%{?with_python3}
 # Install python3 files
 %pyproject_install
+%pyproject_save_files '*'
 
 # Move executables to python3 versioned names
 pushd %{buildroot}%{_bindir}
@@ -405,10 +406,9 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %{buildroot}%{_bindir}/mraptor-3 cheat
 %endif
 
 %if 0%{?with_python3}
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license %{srcname}/LICENSE.txt xglob-LICENSE.txt xxxswf-LICENSE.txt
 %doc README.md
-%{python3_sitelib}/*
 %{_bindir}/ezhexviewer-3*
 %{_bindir}/msodde-3*
 %{_bindir}/olebrowse-3*

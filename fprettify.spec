@@ -46,6 +46,7 @@ rm -rf %{name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files fprettify
 
 %check
 %{__python3} setup.py test
@@ -53,11 +54,9 @@ rm -rf %{name}.egg-info
 %files
 %{_bindir}/fprettify
 
-%files -n python3-fprettify
+%files -n python3-fprettify -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/fprettify/
-%{python3_sitelib}/fprettify-%{version}.dist-info
 
 %changelog
 * Mon Jul 29 2024 Miroslav Suchý <msuchy@redhat.com> - 0.3.7-12

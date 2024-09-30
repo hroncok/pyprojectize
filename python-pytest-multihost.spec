@@ -51,12 +51,11 @@ specify how many machines they need and commands/checks to run on them.
 
 %install
 %pyproject_install
+%pyproject_save_files %{modulename}
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license COPYING
 %doc README.rst
-%{python3_sitelib}/%{modulename}-*.dist-info/
-%{python3_sitelib}/%{modulename}/
 
 %changelog
 * Thu Jul 25 2024 Miroslav Suchý <msuchy@redhat.com> - 3.0-26

@@ -36,16 +36,15 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files syslog_rfc5424_formatter
 
 %check
 %py3_check_import syslog_rfc5424_formatter
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.md
 %doc CHANGES.md
-%{python3_sitelib}/syslog_rfc5424_formatter
-%{python3_sitelib}/syslog_rfc5424_formatter-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.2.3-8

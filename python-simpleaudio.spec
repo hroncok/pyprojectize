@@ -42,12 +42,11 @@ Summary: %{summary}
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE.txt
-%{python3_sitearch}/%{pypi_name}/
-%{python3_sitearch}/%{pypi_name}-*.dist-info/
 
 
 %changelog

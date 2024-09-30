@@ -109,6 +109,7 @@ popd
 %make_install
 pushd python
 %pyproject_install
+%pyproject_save_files tre%{python3_ext_suffix}
 popd
 rm $RPM_BUILD_ROOT%{_libdir}/*.la
 %find_lang %{name}
@@ -131,9 +132,7 @@ rm $RPM_BUILD_ROOT%{_libdir}/*.la
 %{_libdir}/pkgconfig/*
 %{_includedir}/*
 
-%files -n python3-%{name}
-%attr(0755,root,root) %{python3_sitearch}/tre%{python3_ext_suffix}
-%{python3_sitearch}/tre-%{version}.dist-info
+%files -n python3-%{name} -f %{pyproject_files}
 
 %files -n agrep
 %{_bindir}/agrep

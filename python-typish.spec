@@ -39,16 +39,15 @@ checks considering generics and typesafe duck-typing.
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 %check
 # https://github.com/ramonhagenaars/typish/issues/18
 %pytest -v tests -k "not test_instance_of_union and not test_is_type_annotation and not test_subclass_of_union and not test_get_origin and not test_instance_of_nptyping_ndarray"
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.9.3-13

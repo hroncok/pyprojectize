@@ -45,16 +45,15 @@ grep -rl '\.ply' | xargs -t sed -i -e 's/\.ply/ply/'
 
 %install
 %pyproject_install
+%pyproject_save_files hcl
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} %python3 -m pytest tests
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
 %{_bindir}/hcltool
-%{python3_sitelib}/hcl/
-%{python3_sitelib}/pyhcl-*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.4.5-5

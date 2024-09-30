@@ -44,13 +44,12 @@ rm -rf *.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 # No License, see https://github.com/baserge/osa/issues/1
 %doc README
-%{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/osa-%{version}.dist-info
 
 
 %changelog

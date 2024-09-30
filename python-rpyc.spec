@@ -39,13 +39,13 @@ Obsoletes:      python2-%{modname} < 4.0.1-4
 
 %install
 %pyproject_install
+%pyproject_save_files 'rpyc*'
 # The binaries should not have .py extension
 mv %{buildroot}%{_bindir}/rpyc_classic.py %{buildroot}%{_bindir}/rpyc_classic
 mv %{buildroot}%{_bindir}/rpyc_registry.py %{buildroot}%{_bindir}/rpyc_registry
 
-%files -n python3-%{modname}
+%files -n python3-%{modname} -f %{pyproject_files}
 %{_bindir}/rpyc_*
-%{python3_sitelib}/rpyc*
 
 %changelog
 %autochangelog

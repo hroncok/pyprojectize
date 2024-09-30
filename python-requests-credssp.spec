@@ -64,15 +64,14 @@ rm -rf %{gh_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %check
 %{pytest} -k "not test_invalid_auth_mechanism"
 
-%files -n python3-%{gh_name}
+%files -n python3-%{gh_name} -f %{pyproject_files}
 %license LICENSE
 %doc CHANGELOG.md README.md
-%{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.0.0-9

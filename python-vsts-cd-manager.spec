@@ -41,15 +41,11 @@ sed -i 's/\r$//' README.rst
 
 %install
 %pyproject_install
+%pyproject_save_files aex_accounts continuous_delivery vsts_cd_manager vsts_info_provider
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
-%{python3_sitelib}/aex_accounts
-%{python3_sitelib}/continuous_delivery
-%{python3_sitelib}/vsts_cd_manager
-%{python3_sitelib}/vsts_info_provider
-%{python3_sitelib}/vsts_cd_manager-%{version}.dist-info
 
 
 %changelog

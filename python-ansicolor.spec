@@ -93,6 +93,7 @@ rm -f docs/_build/html/.buildinfo
 %install
 %{?with_python2:%py2_install}
 %{?with_python3:%pyproject_install}
+%pyproject_save_files '*'
 
 
 %check
@@ -108,10 +109,9 @@ rm -f docs/_build/html/.buildinfo
 %endif
 
 %if %{with python3}
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/*
 %endif
 
 %files doc

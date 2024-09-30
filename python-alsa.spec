@@ -35,9 +35,9 @@ Summary: %summary
 	
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
-%files -n python3-alsa
-%{python3_sitearch}/*
+%files -n python3-alsa -f %{pyproject_files}
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.2.12-3

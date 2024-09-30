@@ -48,6 +48,7 @@ Summary:        %sum
 
 %install
 %pyproject_install
+%pyproject_save_files eralchemy
 
 
 %check
@@ -58,10 +59,7 @@ Summary:        %sum
 %_bindir/eralchemy
 
 
-%files -n python3-%name
-%python3_sitelib/ERAlchemy-%version.dist-info
-%python3_sitelib/eralchemy/*.py
-%python3_sitelib/eralchemy/__pycache__
+%files -n python3-%name -f %{pyproject_files}
 
 
 %changelog

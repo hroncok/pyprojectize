@@ -37,17 +37,16 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 # Ignore the L10n parts (wrong location)
 rm -rf %{buildroot}%{python3_sitelib}/%{pypi_name}/i18n
 
 %check
 %pytest -v tests -k "not test_data"
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc CHANGES.txt CONTRIBUTORS.md README.md
 %{_bindir}/habitipy
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.3.0-14

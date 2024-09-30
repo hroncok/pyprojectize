@@ -59,16 +59,15 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 mv %{buildroot}%{_bindir}/testr{,-%{python3_version}}
 ln -s ./testr-%{python3_version} %{buildroot}%{_bindir}/testr
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt Apache-2.0
 %{_bindir}/testr
 %{_bindir}/testr-%{python3_version}
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 0.0.20-37

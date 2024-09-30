@@ -73,6 +73,7 @@ icoextract aims to be:
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 # Exec permission
 pushd %{buildroot}%{python3_sitelib}/%{pypi_name}
@@ -94,14 +95,12 @@ popd
 %endif
 
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.md CHANGELOG.md
 %{_bindir}/%{pypi_name}
 %{_bindir}/exe-thumbnailer
 %{_bindir}/icolist
-%{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{pypi_version}.dist-info
 
 
 %changelog

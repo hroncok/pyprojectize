@@ -67,6 +67,7 @@ sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/d3'|" xstatic/pkg/d3/__init__.py
 
 %install
 %pyproject_install
+%pyproject_save_files xstatic
 
 mkdir -p %{buildroot}%{_jsdir}/d3
 mv %{buildroot}%{python3_sitelib}/xstatic/pkg/d3/data/d3.js %{buildroot}%{_jsdir}/d3
@@ -74,10 +75,8 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/d3/data/
 # fix execute flags for js
 chmod 644 %{buildroot}%{_jsdir}/d3/d3.js
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
-%{python3_sitelib}/xstatic/pkg/d3
-%{python3_sitelib}/XStatic_D3-%{version}.dist-info
 %{python3_sitelib}/XStatic_D3-%{version}-py%{python3_version}-nspkg.pth
 
 %files -n xstatic-d3-common

@@ -76,6 +76,7 @@ sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/filesaver'|" xstatic/pkg/filesave
 
 %install
 %pyproject_install
+%pyproject_save_files xstatic
 
 mkdir -p %{buildroot}/%{_jsdir}/filesaver
 mv %{buildroot}/%{python3_sitelib}/xstatic/pkg/filesaver/data/FileSaver.js %{buildroot}/%{_jsdir}/filesaver
@@ -85,10 +86,8 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/filesaver/data/
 %doc README.txt
 %{_jsdir}/filesaver
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
-%{python3_sitelib}/xstatic/pkg/filesaver
-%{python3_sitelib}/XStatic_FileSaver-%{version}.dist-info
 %{python3_sitelib}/XStatic_FileSaver-%{version}-py3.*-nspkg.pth
 
 

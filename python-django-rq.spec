@@ -38,12 +38,11 @@ rm -vr *.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files django_rq
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.rst
-%{python3_sitelib}/django_rq-*.dist-info/
-%{python3_sitelib}/django_rq/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.4.1-13

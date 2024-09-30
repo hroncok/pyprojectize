@@ -56,17 +56,16 @@ An extension for colcon-core to support ROS packages.
 
 %install
 %pyproject_install
+%pyproject_save_files colcon_ros
 
 
 %check
 %pytest -m 'not linter' test
 
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/colcon_ros/
-%{python3_sitelib}/colcon_ros-%{version}.dist-info/
 
 
 %changelog

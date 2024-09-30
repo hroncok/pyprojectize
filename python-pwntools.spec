@@ -137,6 +137,7 @@ chmod -x docs/requirements.txt
 
 %install
 %pyproject_install
+%pyproject_save_files pwn pwnlib
 
 mv %{buildroot}%{_bindir}/checksec %{buildroot}%{_bindir}/checksec-pwntools
 
@@ -153,12 +154,9 @@ export PYTHONPATH="${PYTHONPATH:-%{buildroot}%{python3_sitearch}:%{buildroot}%{p
 %{__python3} -c "from pwn import *; sh=process('bash'); sh.sendline(b'echo hello | md5sum'); x=sh.read(); assert (x == b'b1946ac92492d2347c6235b4d2611184  -\n');"
 
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %doc CHANGELOG.md CONTRIBUTING.md README.md TESTING.md docs/requirements.txt
 %license LICENSE-pwntools.txt
-%{python3_sitelib}/%{srcname}-%{version}.dist-info/
-%{python3_sitelib}/pwn/
-%{python3_sitelib}/pwnlib/
 %{_bindir}/asm
 %{_bindir}/checksec-pwntools
 %{_bindir}/common

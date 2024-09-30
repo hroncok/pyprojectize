@@ -49,18 +49,17 @@ rm vobject/win32tz.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{modname}
 
 
 %check
 %{__python3} tests.py
 
 
-%files -n python3-%{modname}
+%files -n python3-%{modname} -f %{pyproject_files}
 %doc README.md
 # ACKNOWLEDGEMENTS.txt
 %license LICENSE-2.0.txt
-%{python3_sitelib}/%{modname}/
-%{python3_sitelib}/%{modname}-%{version}-*
 %{_bindir}/change_tz
 %{_bindir}/ics_diff
 

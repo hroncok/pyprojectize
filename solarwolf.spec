@@ -41,6 +41,7 @@ powerups for your only chance.
 
 %install
 %pyproject_install
+%pyproject_save_files solarwolf
 #mkdir -p  %{buildroot}%{_bindir}
 #install -p -m 755 solarwolf.py %{buildroot}%{_bindir}/solarwolf
 
@@ -61,11 +62,9 @@ install -p -m 644 dist/solarwolf.png \
   $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/64x64/apps
 
 
-%files
+%files -f %{pyproject_files}
 %{_bindir}/solarwolf
 #%{_datadir}/solarwolf/
-%{python3_sitelib}/solarwolf/
-%{python3_sitelib}/solarwolf-*.dist-info/
 %license lgpl.txt
 %doc README.rst
 %{_datadir}/applications/solarwolf.desktop

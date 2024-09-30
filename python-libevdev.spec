@@ -42,12 +42,11 @@ devices and create uinput devices.
 
 %install
 %pyproject_install
+%pyproject_save_files libevdev
 
 
-%files -n	python3-libevdev
+%files -n	python3-libevdev -f %{pyproject_files}
 %license COPYING
-%{python3_sitelib}/libevdev/
-%{python3_sitelib}/libevdev-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.11-10

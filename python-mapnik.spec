@@ -80,6 +80,7 @@ export PYCAIRO=true
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
 
 %check
@@ -91,10 +92,9 @@ psql -c "CREATE EXTENSION postgis" template_postgis
 PGHOST="$PWD" LANG="C.UTF-8" %pytest test/python_tests
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md AUTHORS.md CHANGELOG.md CONTRIBUTING.md
 %license COPYING
-%{python3_sitearch}/*
 
 
 %changelog

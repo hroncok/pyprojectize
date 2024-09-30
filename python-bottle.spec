@@ -43,17 +43,15 @@ sed -i '/^#!/d' bottle.py
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 rm %{buildroot}%{_bindir}/bottle.py
 
 %check
 %{pytest} test
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc AUTHORS README.rst docs/*
-%{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/*.dist-info
-%{python3_sitelib}/*.py
 
 %changelog
 * Fri Sep 06 2024 Federico Pellegrin <fede@evolware.org> - 0.13.0-1

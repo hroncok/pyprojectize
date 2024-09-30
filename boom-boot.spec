@@ -89,6 +89,7 @@ rm -r doc/_build
 
 %install
 %pyproject_install
+%pyproject_save_files boom
 
 # Make configuration directories
 # mode 0700 - in line with /boot/grub2 directory:
@@ -116,11 +117,9 @@ rm doc/conf.py
 %{_bindir}/boom
 %doc %{_mandir}/man*/boom.*
 
-%files -n python3-boom
+%files -n python3-boom -f %{pyproject_files}
 %license COPYING
 %doc README.md
-%{python3_sitelib}/boom/*
-%{python3_sitelib}/boom_boot-*.dist-info/
 %doc doc
 %doc examples
 %doc tests

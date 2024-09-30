@@ -47,6 +47,7 @@ Summary: %{summary}
 %install
 
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 # note: sample file is not present anymore in pypi version
 # remove executable permissions from sample.py to
@@ -64,13 +65,11 @@ Summary: %{summary}
 PYTHONPATH="%{buildroot}%{python3_sitelib}" %{_bindir}/pytest-3
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 
 %doc LICENSE README.md PKG-INFO CHANGELOG.md 
 # sample.py
 
-%{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}*egg-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.11.0-5

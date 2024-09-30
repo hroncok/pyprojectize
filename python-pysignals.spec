@@ -42,15 +42,14 @@ Summary:        %{summary}
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %check
 %{python3} setup.py test
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE.txt license.python.txt
 %doc README.rst
-%{python3_sitelib}/%{srcname}-*.dist-info/
-%{python3_sitelib}/%{srcname}/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.1.4-6

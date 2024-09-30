@@ -41,17 +41,16 @@ Lexicon is a simple collection of dict sub-classes providing extra power.
 
 %install
 %pyproject_install
+%pyproject_save_files lexicon
 
 %if %{with tests}
 %check
 %pytest
 %endif
 
-%files -n python3-lexicon
+%files -n python3-lexicon -f %{pyproject_files}
 %license LICENSE
 %doc docs/changelog.rst README.rst
-%{python3_sitelib}/lexicon/
-%{python3_sitelib}/lexicon-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.0.1-14

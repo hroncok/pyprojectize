@@ -40,16 +40,14 @@ Python 3 version.
 
 %install
 %pyproject_install
+%pyproject_save_files ptr
 
 %check
 %{__python3} setup.py test
 
-%files -n python3-%{modulename}
+%files -n python3-%{modulename} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/ptr.py
-%{python3_sitelib}/%{_modulename}-%{version}.dist-info/
-%{python3_sitelib}/__pycache__/ptr.*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 4.0-24

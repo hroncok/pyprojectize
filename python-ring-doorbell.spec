@@ -42,15 +42,14 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files ring_doorbell
 
 %check
 %pytest -v tests
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/ring_doorbell/
-%{python3_sitelib}/ring_doorbell-%{version}.dist-info/
 
 %changelog
 %autochangelog

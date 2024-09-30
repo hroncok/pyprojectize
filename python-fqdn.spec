@@ -33,6 +33,7 @@ BuildRequires:  python3-pytest-cov
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %check
 mkdir tests/
@@ -40,10 +41,8 @@ touch tests/__init__.py
 cp %{SOURCE1} tests/
 %pytest
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
-%{python3_sitelib}/%{srcname}-*.dist-info/
-%{python3_sitelib}/%{srcname}
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.5.1-14

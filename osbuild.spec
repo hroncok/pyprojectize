@@ -174,6 +174,7 @@ bzip2 -9 osbuild.pp
 
 %install
 %pyproject_install
+%pyproject_save_files %{pypi_name}
 
 mkdir -p %{buildroot}%{pkgdir}/stages
 install -p -m 0755 $(find stages -type f -not -name "test_*.py") %{buildroot}%{pkgdir}/stages/
@@ -263,11 +264,9 @@ exit 0
 %exclude %{pkgdir}/stages/org.osbuild.experimental.ostree*
 %exclude %{pkgdir}/stages/org.osbuild.rpm-ostree
 
-%files -n       python3-%{pypi_name}
+%files -n       python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{pypi_name}-*.dist-info/
-%{python3_sitelib}/%{pypi_name}/
 
 %files lvm2
 %{pkgdir}/devices/org.osbuild.lvm2*

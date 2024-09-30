@@ -82,6 +82,7 @@ rm -r tests/test_django
 
 %install
 %pyproject_install
+%pyproject_save_files %{libname}
 
 
 %if %{with tests}
@@ -90,11 +91,9 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} --verbose t
 %endif
 
 
-%files -n python3-%{pkgname}
+%files -n python3-%{pkgname} -f %{pyproject_files}
 %license LICENSE
 %doc AUTHORS.rst HISTORY.rst README.rst
-%{python3_sitelib}/%{libname}
-%{python3_sitelib}/%{eggname}-%{version}.dist-info
 
 
 %changelog

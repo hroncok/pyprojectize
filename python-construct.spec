@@ -35,12 +35,11 @@ Requires:       python3-six
 
 %install
 %{pyproject_install}
+%pyproject_save_files construct
 
-%files -n python3-construct
+%files -n python3-construct -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/construct
-%{python3_sitelib}/construct-%{version}.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.10.70-5

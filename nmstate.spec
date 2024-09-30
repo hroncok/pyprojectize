@@ -192,6 +192,7 @@ env SKIP_PYTHON_INSTALL=1 \
 
 pushd rust/src/python
 %pyproject_install
+%pyproject_save_files %{libname}
 popd
 
 %if ! 0%{?rhel}
@@ -234,10 +235,8 @@ popd
 %{_includedir}/nmstate.h
 %{_libdir}/pkgconfig/nmstate.pc
 
-%files -n python3-%{libname}
+%files -n python3-%{libname} -f %{pyproject_files}
 %license LICENSE
-%{python3_sitelib}/%{libname}
-%{python3_sitelib}/%{srcname}-*.dist-info/
 
 %files static
 %{_libdir}/libnmstate.a

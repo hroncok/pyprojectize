@@ -300,6 +300,7 @@ patchelf --set-rpath %{_libdir}/OpenMS %{buildroot}%{_libdir}/OpenMS/*.so
 %if 0%{?with_pyOpenMS}
 pushd build/pyOpenMS
 %pyproject_install
+%pyproject_save_files pyopenms
 
 ln -s -f %{_libdir}/OpenMS/libOpenMS.so %{buildroot}%{python3_sitearch}/pyopenms/libOpenMS.so
 ln -s -f %{_libdir}/OpenMS/libOpenSwathAlgo.so %{buildroot}%{python3_sitearch}/pyopenms/libOpenSwathAlgo.so
@@ -589,11 +590,9 @@ ctest -j 1 -VV --force-new-ctest-process --output-on-failure --test-dir build -E
 %{_includedir}/OpenMS/
 
 %if 0%{?with_pyOpenMS}
-%files -n python3-openms
+%files -n python3-openms -f %{pyproject_files}
 %license License.txt
 %doc src/pyOpenMS/README_WRAPPING_NEW_CLASSES
-%{python3_sitearch}/pyopenms/
-%{python3_sitearch}/pyopenms-*.dist-info/
 %endif
 
 %changelog

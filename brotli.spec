@@ -101,6 +101,7 @@ chmod 644 c/tools/brotli.c
 #rm "%{buildroot}%{_libdir}/"*.a
 
 %pyproject_install
+%pyproject_save_files _brotli brotli
 install -dm755 "%{buildroot}%{_mandir}/man3"
 cd docs
 for i in *.3;do
@@ -128,12 +129,8 @@ done
 
 # Note that there is no %%files section for the unversioned python module
 # if we are building for several python runtimes
-%files -n python%{python3_pkgversion}-%{name}
+%files -n python%{python3_pkgversion}-%{name} -f %{pyproject_files}
 %license LICENSE
-%{python3_sitearch}/brotli.py
-%{python3_sitearch}/_brotli.cpython-%{python3_version_nodots}*.so
-%{python3_sitearch}/__pycache__/brotli.cpython-%{python3_version_nodots}*.py*
-%{python3_sitearch}/Brotli-1.1.0.dist-info/
 
 %files devel
 %{_includedir}/brotli

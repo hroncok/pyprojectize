@@ -46,6 +46,7 @@ sed -i 's/assertEquals/assertEqual/' test/test-cdtext.py
 
 %install
 %pyproject_install
+%pyproject_save_files '_pycdio*' '_pyiso9660*' cdio iso9660 pycdio pyiso9660
 chmod 755 %{buildroot}/%{python3_sitearch}/*.so
 
 %if 0%{?fedora}
@@ -53,17 +54,9 @@ chmod 755 %{buildroot}/%{python3_sitearch}/*.so
 %python3 setup.py nosetests
 %endif
 
-%files -n python3-pycdio
+%files -n python3-pycdio -f %{pyproject_files}
 %license COPYING
 %doc README.rst ChangeLog AUTHORS NEWS.md THANKS
-%{python3_sitearch}/__pycache__/*
-%{python3_sitearch}/_pycdio*
-%{python3_sitearch}/_pyiso9660*
-%{python3_sitearch}/cdio.py
-%{python3_sitearch}/iso9660.py
-%{python3_sitearch}/pycdio.py
-%{python3_sitearch}/pyiso9660.py
-%{python3_sitearch}/pycdio-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.1.0-16

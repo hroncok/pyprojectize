@@ -44,6 +44,7 @@ rm -vrf *.egg-info/
 
 %install
 %pyproject_install
+%pyproject_save_files mypy mypyc
 
 # Generate man pages
 mkdir -p %{buildroot}%{_mandir}/man1
@@ -66,12 +67,9 @@ if st and st.type == "link" then
   os.remove(path)
 end
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/mypy
-%{python3_sitelib}/mypy-*.dist-info
-%{python3_sitelib}/mypyc
 %{_bindir}/mypy
 %{_bindir}/mypyc
 %{_bindir}/dmypy

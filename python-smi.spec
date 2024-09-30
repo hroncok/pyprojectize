@@ -52,6 +52,7 @@ and pysnmp modules can be generated from ASN.1 MIBs.
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 mv %{buildroot}%{_bindir}/mibcopy.py %{buildroot}%{_bindir}/mibcopy
 mv %{buildroot}%{_bindir}/mibdump.py %{buildroot}%{_bindir}/mibdump
 
@@ -60,13 +61,11 @@ mv %{buildroot}%{_bindir}/mibdump.py %{buildroot}%{_bindir}/mibdump
 #%check
 #%{__python3} setup.py test
 
-%files -n python3-smi
+%files -n python3-smi -f %{pyproject_files}
 %doc CHANGES.rst README.md THANKS.txt TODO.txt examples/*.py
 %license LICENSE.rst
 %{_bindir}/mibcopy
 %{_bindir}/mibdump
-%{python3_sitelib}/*.dist-info
-%{python3_sitelib}/%{srcname}/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.3.4-23

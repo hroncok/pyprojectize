@@ -40,10 +40,10 @@ from Python3.
 
 %install
 %pyproject_install
+%pyproject_save_files '*'
 
-%files -n python3-pyhunspell
+%files -n python3-pyhunspell -f %{pyproject_files}
 %doc AUTHORS.md CHANGELOG.md COPYING COPYING.LESSER gpl-3.0.txt lgpl-3.0.txt PKG-INFO README.md
-%{python3_sitearch}/*
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.5.5-8

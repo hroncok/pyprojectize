@@ -66,17 +66,16 @@ popd
 
 %install
 %pyproject_install
+%pyproject_save_files %{file_name}
 
 
 %check
 # Some tests fails here but they pass on travis. We should check how this environment differs to explain this.
 nosetests-%{python3_version} tests -v -e test_to_sql_create_statement_unique_constraint -e test_to_sql_create_statement
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst AUTHORS.rst CHANGELOG.rst
 %license COPYING
-%{python3_sitelib}/agate_sql-%{version}.dist-info/
-%{python3_sitelib}/%{file_name}/
 
 
 %files -n python-%{pypi_name}-doc

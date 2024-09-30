@@ -60,6 +60,7 @@ sed -i '/tag_build = dev/d' setup.cfg
 
 %install
 %pyproject_install
+%pyproject_save_files mako
 
 mv %{buildroot}/%{_bindir}/mako-render %{buildroot}/%{_bindir}/mako-render-%{python3_version}
 ln -s ./mako-render-%{python3_version} %{buildroot}/%{_bindir}/mako-render-3
@@ -70,14 +71,12 @@ ln -s ./mako-render-%{python3_version} %{buildroot}/%{_bindir}/mako-render
 pytest-3
 
 
-%files -n python3-mako
+%files -n python3-mako -f %{pyproject_files}
 %license LICENSE
 %doc CHANGES README.rst examples
 %{_bindir}/mako-render
 %{_bindir}/mako-render-3
 %{_bindir}/mako-render-%{python3_version}
-%{python3_sitelib}/mako/
-%{python3_sitelib}/Mako-*.dist-info/
 
 
 %changelog

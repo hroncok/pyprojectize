@@ -49,16 +49,15 @@ Python 3 version.
 
 %install
 %pyproject_install
+%pyproject_save_files obd
 
 %if %{with check}
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-3 -v
 %endif
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
-%{python3_sitelib}/obd-%{version}.dist-info
-%{python3_sitelib}/obd
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.7.2-5

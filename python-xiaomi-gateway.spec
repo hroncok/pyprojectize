@@ -37,17 +37,16 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files xiaomi_gateway
 
 %if %{with network}
 %check
 %pytest -v tests
 %endif
 
-%files -n python3-%{pkg_name}
+%files -n python3-%{pkg_name} -f %{pyproject_files}
 %doc README.md
 %license License.txt
-%{python3_sitelib}/xiaomi_gateway/
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.13.3-14

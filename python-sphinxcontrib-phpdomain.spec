@@ -37,13 +37,12 @@ sed -i 's/install\_requires=requirements/install\_requires=\[\"sphinx\"\]/g' set
 
 %install
 %pyproject_install
+%pyproject_save_files sphinxcontrib
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/sphinxcontrib/
 %{python3_sitelib}/sphinxcontrib_phpdomain-%{version}-py*-*.pth
-%{python3_sitelib}/sphinxcontrib_phpdomain-%{version}.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.9.0-9

@@ -53,6 +53,7 @@ rm -rf %{eggname}.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files %{libname}
 
 
 %check
@@ -61,11 +62,9 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} trial-3 txzmq
 %endif
 
 
-%files -n python3-%{pkgname}
+%files -n python3-%{pkgname} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE.txt
-%{python3_sitelib}/%{libname}
-%{python3_sitelib}/%{eggname}-%{version}.dist-info
 
 
 %changelog

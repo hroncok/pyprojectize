@@ -77,6 +77,7 @@ built with the Pecan WSGI object-dispatching web framework and WSME
 %endif
 %if %{with python3}
 %pyproject_install
+%pyproject_save_files sphinxcontrib
 %endif
 
 %if %{with python2}
@@ -89,11 +90,9 @@ built with the Pecan WSGI object-dispatching web framework and WSME
 %endif
 
 %if %{with python3}
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/sphinxcontrib/pecanwsme
-%{python3_sitelib}/*.dist-info
 %{python3_sitelib}/*-nspkg.pth
 %endif
 

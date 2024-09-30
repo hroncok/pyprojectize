@@ -44,6 +44,7 @@ Requires:      libarchive
 
 %install
 %pyproject_install
+%pyproject_save_files 'libarchive*'
 %{_fixperms} %{buildroot}
 
 %check
@@ -52,10 +53,9 @@ pytest-%{python3_version} -s -vv tests %{?el7:-k "not test_check_archiveentry_us
 
 %global _docdir_fmt %{name}
 
-%files -n python%{python3_pkgversion}-libarchive-c
+%files -n python%{python3_pkgversion}-libarchive-c -f %{pyproject_files}
 %doc README.rst
 %license LICENSE.md
-%{python3_sitelib}/libarchive*
 
 %changelog
 %autochangelog

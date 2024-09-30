@@ -42,16 +42,15 @@ rm -f tests/test_fast/test_deadlock.py
 
 %install
 %pyproject_install
+%pyproject_save_files %{dist_name}
 
 %check
 %pytest
 
 
-%files -n python3-%{dist_name}
+%files -n python3-%{dist_name} -f %{pyproject_files}
 %doc README.md
 %license LICENSE.txt
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
-%{python3_sitelib}/%{dist_name}/
 
 %changelog
 * Thu Aug 01 2024 Scott Talbert <swt@techie.net> - 1.1-4

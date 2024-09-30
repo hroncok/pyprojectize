@@ -69,6 +69,7 @@ rm -rf docs/_build/html/.buildinfo docs/_build/html/.doctrees
 
 %install
 %pyproject_install
+%pyproject_save_files %{srcname}
 
 %check
 # Perf tests require unmaintained 'characteristic' module
@@ -80,11 +81,9 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} \
 %license LICENSE
 %doc docs/_build/html
 
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license LICENSE
 %doc AUTHORS.rst CHANGELOG.rst README.rst
-%{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 5.0.0-21

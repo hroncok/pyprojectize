@@ -95,6 +95,7 @@ CFLAGS="-I../include -L../" %pyproject_wheel
 %cmake_install
 cd cffi
 %pyproject_install
+%pyproject_save_files '*' notcurses
 
 %files
 %doc CONTRIBUTING.md doc/CURSES.md doc/HACKING.md doc/HISTORY.md INSTALL.md doc/OTHERS.md README.md USAGE.md NEWS.md TERMINALS.md
@@ -151,15 +152,11 @@ cd cffi
 %{_mandir}/man1/tfman.1*
 %{_datadir}/%{name}
 
-%files -n python3-%{name}
+%files -n python3-%{name} -f %{pyproject_files}
 %{_bindir}/notcurses-pydemo
 %{_bindir}/ncdirect-pydemo
 %{_mandir}/man1/notcurses-pydemo.1*
 %{_mandir}/man1/ncdirect-pydemo.1*
-%{python3_sitearch}/*egg-info/
-%{python3_sitearch}/notcurses/
-%attr(0755, -, -) %{python3_sitearch}/notcurses/notcurses.py
-%{python3_sitearch}/*.so
 
 %changelog
 %autochangelog

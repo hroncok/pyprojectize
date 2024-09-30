@@ -45,16 +45,15 @@ have one-time or recurring tasks run as needed. Python 3 version.
 
 %install
 %pyproject_install
+%pyproject_save_files tgscheduler
 
 %check
 %{__python3} setup.py test
 
 
-%files -n python3-%{srcname}
+%files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
 
-%{python3_sitelib}/tgscheduler
-%{python3_sitelib}/%{srcname}-%{version}.dist-info
 
 
 %changelog

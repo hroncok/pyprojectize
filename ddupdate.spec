@@ -72,10 +72,11 @@ sed -i 's|systemd_unitdir(),|"lib/systemd/user",|' setup.py
 %install
 export FINAL_PREFIX=/
 %pyproject_install
+%pyproject_save_files '*'
 %py_byte_compile %{__python3} %{buildroot}%{_datadir}/ddupdate/plugins
 
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE.txt
 %doc README.md NEWS CONTRIBUTE.md CONFIGURATION.md
 %{_bindir}/ddupdate
@@ -88,7 +89,6 @@ export FINAL_PREFIX=/
 %{_mandir}/man8/ddupdate-config.8*
 %{_mandir}/man8/ddupdate-netrc-to-keyring.8*
 %{_mandir}/man5/ddupdate.conf.5*
-%{python3_sitelib}/*
 
 
 %changelog

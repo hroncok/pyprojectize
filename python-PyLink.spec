@@ -48,15 +48,14 @@ rm -rf *.egg-info
 
 %install
 %pyproject_install
+%pyproject_save_files pylink
 
 %check
 # No network things available
 
-%files -n python3-%{modname}
+%files -n python3-%{modname} -f %{pyproject_files}
 %license LICENSE
 %doc AUTHORS CHANGES.rst README.rst
-%{python3_sitelib}/%{modname}*.dist-info/
-%{python3_sitelib}/pylink/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.3.2-31

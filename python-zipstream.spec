@@ -36,7 +36,7 @@ Python 3 version.
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 %check
 %{__python3} -m unittest discover -v
@@ -44,7 +44,6 @@ Python 3 version.
 
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.* 
 
 

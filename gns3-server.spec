@@ -71,7 +71,7 @@ sed -i -r 's/truststore.*//g' requirements.txt
 
 %install
 %pyproject_install
-%pyproject_save_files gns3server
+%pyproject_save_files -l gns3server
 
 # Remove shebang
 find %{buildroot}/%{python3_sitelib}/ -name '*.py' -print \
@@ -96,7 +96,6 @@ rm -fv %{buildroot}/%{python3_sitelib}/gns3server/disks/OVMF_VARS.fd
 
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc README.md AUTHORS CHANGELOG
 %{_bindir}/gns3server
 %{_bindir}/gns3vmnet

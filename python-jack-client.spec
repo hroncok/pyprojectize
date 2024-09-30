@@ -37,13 +37,12 @@ This package installs the library for Python.
 
 %install
 %pyproject_install
-%pyproject_save_files _jack jack
+%pyproject_save_files -l _jack jack
 
 %check
 %{__python3} setup.py test
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 %doc NEWS.rst
 %doc CONTRIBUTING.rst

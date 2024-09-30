@@ -58,7 +58,7 @@ cp -p %{SOURCE1} .
 
 %install
 %pyproject_install
-%pyproject_save_files %{modname}
+%pyproject_save_files -l %{modname}
 %if 0%{?with_python3_other}
 %py3_other_install
 %endif
@@ -67,7 +67,6 @@ cp -p %{SOURCE1} .
 # No tests. :-(
 
 %files -n python%{python3_pkgversion}-%{upstream_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %if 0%{?with_python3_other}

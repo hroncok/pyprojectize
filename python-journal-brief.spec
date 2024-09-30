@@ -58,7 +58,7 @@ journal entries.
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 
 %if 0%{?with_check}
@@ -72,7 +72,6 @@ journal entries.
 
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 

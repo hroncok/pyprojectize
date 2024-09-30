@@ -63,14 +63,12 @@ sed -r -i 's/np[.]float/float/g' test/unit/test_discontinuous_taylor.py
 
 %install
 %pyproject_install
-%pyproject_save_files FIAT
+%pyproject_save_files -l FIAT
 
 %check
 %__python3 -m pytest -v test/ --skip-download
 
 %files -n python3-fiat -f %{pyproject_files}
-%license COPYING
-%license COPYING.LESSER
 %doc README.rst
 %doc AUTHORS
 

@@ -45,13 +45,12 @@ grep -rl '\.ply' | xargs -t sed -i -e 's/\.ply/ply/'
 
 %install
 %pyproject_install
-%pyproject_save_files hcl
+%pyproject_save_files -l hcl
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} %python3 -m pytest tests
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 %{_bindir}/hcltool
 

@@ -43,11 +43,10 @@ CLI tool to interact with myStrom devices (bulbs, buttons and plugs).
 
 %install
 %pyproject_install
-%pyproject_save_files py%{pypi_name}
+%pyproject_save_files -l py%{pypi_name}
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE
 
 %files -n %{pypi_name}
 %{_bindir}/%{pypi_name}

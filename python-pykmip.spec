@@ -105,7 +105,7 @@ Structured InformationStandards`_ (OASIS).
 
 %if %{with python3}
 %pyproject_install
-%pyproject_save_files kmip
+%pyproject_save_files -l kmip
 %endif
 
 %if %{with python2}
@@ -122,7 +122,6 @@ Structured InformationStandards`_ (OASIS).
 %if %{with python3}
 %files -n python3-%{sname} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE.txt
 %{_bindir}/pykmip-server
 %endif
 

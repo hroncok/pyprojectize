@@ -63,14 +63,13 @@ popd
 
 %install
 %pyproject_install
-%pyproject_save_files 'intelhex*'
+%pyproject_save_files -l 'intelhex*'
 
 %files
 %doc NEWS.rst README.rst
 %{_bindir}/*.py
 
 %files -n python3-intelhex -f %{pyproject_files}
-%license LICENSE.txt
 
 %files docs
 %doc docs/intelhex.pdf docs/manual.txt

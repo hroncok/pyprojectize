@@ -43,7 +43,7 @@ An extension for colcon-core to customize the output in various ways.
 
 %install
 %pyproject_install
-%pyproject_save_files colcon_output
+%pyproject_save_files -l colcon_output
 
 
 %check
@@ -54,7 +54,6 @@ An extension for colcon-core to customize the output in various ways.
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

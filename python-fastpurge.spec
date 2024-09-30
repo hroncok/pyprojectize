@@ -43,7 +43,7 @@ Purge API, including authentication and error recovery.
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 %check
 %{__python3} -m pytest -v
@@ -51,7 +51,6 @@ Purge API, including authentication and error recovery.
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md
 %doc CHANGELOG.md
-%license LICENSE
 
 
 %changelog

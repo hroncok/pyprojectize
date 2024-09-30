@@ -46,7 +46,7 @@ introspecting the arguments to the setup() function call of setuptools.
 
 %install
 %pyproject_install
-%pyproject_save_files colcon_python_setup_py
+%pyproject_save_files -l colcon_python_setup_py
 
 
 %check
@@ -57,7 +57,6 @@ introspecting the arguments to the setup() function call of setuptools.
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

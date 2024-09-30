@@ -33,11 +33,10 @@ BuildRequires: python3-devel
 
 %install
 %{pyproject_install}
-%pyproject_save_files mailmerge
+%pyproject_save_files -l mailmerge
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md
-%license LICENSE
 %{_bindir}/mailmerge
 
 %changelog

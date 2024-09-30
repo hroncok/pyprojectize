@@ -33,10 +33,9 @@ oct2spec API.
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc README CHANGELOG
 %config(noreplace) %{_sysconfdir}/%{name}.conf
 %{_bindir}/%{name}

@@ -68,7 +68,7 @@ sed -i 's/\"pathlib\"//g' setup.py
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 install -Dpm 0644 %{pypi_name}.1.txt %{buildroot}%{_mandir}/man1/%{pypi_name}.1
 
 %check
@@ -89,7 +89,6 @@ EXCLUDE_ARG="$EXCLUDE_ARG -e test_table_add_time"
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc AUTHORS.md README.md
-%license LICENSE
 
 %files -n %{pypi_name}
 %doc AUTHORS.md README.md

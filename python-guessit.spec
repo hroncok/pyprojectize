@@ -58,7 +58,7 @@ Summary: Documentation for %{srcname} python library
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 # Remove shebang from Python3 libraries
 for lib in `find %{buildroot}%{python3_sitelib} -name "*.py"`; do
  sed '1{\@^#!/usr/bin/env python@d}' $lib > $lib.new &&
@@ -72,7 +72,6 @@ done
 %endif
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %{_bindir}/%{srcname}
 
 %files doc

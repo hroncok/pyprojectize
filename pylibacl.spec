@@ -41,7 +41,7 @@ Obsoletes: py3libacl < 0.5.4
 
 %install
 %pyproject_install
-%pyproject_save_files posix1e
+%pyproject_save_files -l posix1e
 
 %check
 # the module is just a C extension => need to add the installed destination to
@@ -54,7 +54,6 @@ python3 -m pytest tests -v \
 %endif
 
 %files -n python3-%{name} -f %{pyproject_files}
-%license COPYING
 %doc README.md NEWS
 
 

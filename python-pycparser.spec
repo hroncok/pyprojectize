@@ -59,7 +59,7 @@ popd
 
 %install
 %pyproject_install
-%pyproject_save_files pycparser
+%pyproject_save_files -l pycparser
 
 %check
 %if %{with tests}
@@ -67,7 +67,6 @@ popd
 %endif
  
 %files -n python3-pycparser -f %{pyproject_files}
-%license LICENSE
 %doc examples
 
 %changelog

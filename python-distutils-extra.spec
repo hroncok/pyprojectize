@@ -37,11 +37,10 @@ scrollkeeper based documentation into Python's distutils.
 
 %install
 %pyproject_install
-%pyproject_save_files DistUtilsExtra
+%pyproject_save_files -l DistUtilsExtra
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc doc/*
-%license LICENSE
 
 %changelog
 * Fri Jul 26 2024 Miroslav Suchý <msuchy@redhat.com> - 2.39-32

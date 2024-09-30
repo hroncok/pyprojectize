@@ -63,7 +63,7 @@ cd src
 %install
 cd src
 %pyproject_install
-%pyproject_save_files radexreader
+%pyproject_save_files -l radexreader
 mkdir -p %{buildroot}%{_bindir}/
 install -pm 755 radexreader.py %{buildroot}%{_bindir}/radexreader
 
@@ -75,7 +75,6 @@ mkdir -p %{buildroot}/lib/udev/rules.d/
 install -pm 644 ../debian/udev %{buildroot}/lib/udev/rules.d/60-%{name}.rules
 
 %files -n python3-radexreader -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 %{_bindir}/radexreader
 %{_mandir}/man1/radexreader.1*

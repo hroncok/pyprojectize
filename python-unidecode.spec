@@ -45,11 +45,10 @@ characters.
 
 %install
 %pyproject_install
-%pyproject_save_files unidecode
+%pyproject_save_files -l unidecode
 
 
 %files -n python3-unidecode -f %{pyproject_files}
-%license LICENSE
 %doc README.rst ChangeLog
 %{_bindir}/unidecode
 

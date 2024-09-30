@@ -45,7 +45,7 @@ This package provides the python3 version of the module.
 
 %install
 %pyproject_install
-%pyproject_save_files 'speaklater*'
+%pyproject_save_files -l 'speaklater*'
 
 %check
 pushd build/lib
@@ -53,7 +53,6 @@ pushd build/lib
 popd
 
 %files -n python3-speaklater -f %{pyproject_files}
-%license LICENSE
 %doc PKG-INFO README
 
 %changelog

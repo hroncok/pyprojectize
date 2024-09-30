@@ -36,10 +36,9 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files pytest_isort
+%pyproject_save_files -l pytest_isort
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE.rst
 %doc README.rst
 
 %changelog

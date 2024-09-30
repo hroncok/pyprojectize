@@ -38,14 +38,13 @@ sed -i -e '/^#!\//, 1d' %{name}.py
 
 %install
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 
 %files
 %{_bindir}/%{name}
 
 %files -n python3-%{name} -f %{pyproject_files}
 %doc README.md
-%license LICENSE
 
 %changelog
 * Sat Jul 20 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.2.1-15

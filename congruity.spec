@@ -42,13 +42,12 @@ This includes the Harmony 200 and Harmony 300. To use it, simply run
 
 %install
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}.desktop
 desktop-file-validate %{buildroot}/%{_datadir}/applications/mhgui.desktop
 
 %files -f %{pyproject_files}
 %doc Changelog COPYING README.txt
-%license LICENSE.txt
 %{_bindir}/*
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/applications/mhgui.desktop

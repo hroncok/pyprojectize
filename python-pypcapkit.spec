@@ -37,11 +37,10 @@ chmod -x LICENSE
 
 %install
 %pyproject_install
-%pyproject_save_files pcapkit
+%pyproject_save_files -l pcapkit
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
-%license LICENSE
 %{_bindir}/pcapkit*
 
 %changelog

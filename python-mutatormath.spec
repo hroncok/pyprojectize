@@ -46,13 +46,12 @@ interpolating data related to fonts, but if can handle any arithmetic object.
 
 %install
 %pyproject_install
-%pyproject_save_files %{libname}
+%pyproject_save_files -l %{libname}
 
 %check
 %{__python3} setup.py test
 
 %files -n python3-%{pkgname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

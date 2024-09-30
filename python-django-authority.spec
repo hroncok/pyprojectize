@@ -54,14 +54,13 @@ find example -name '._*.py' -exec rm '{}' \;
 
 %install
 %pyproject_install
-%pyproject_save_files authority
+%pyproject_save_files -l authority
 
 # example gets accidently installed to python_sitelib, too
 rm -rf %{buildroot}/%{python3_sitelib}/example
 
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc AUTHORS README.rst docs/ example/
 
 %changelog

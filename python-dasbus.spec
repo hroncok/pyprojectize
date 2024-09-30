@@ -47,13 +47,12 @@ Requires:       python3-gobject-base
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 %if %{defined suse_version}
 %python_expand %fdupes %{buildroot}%{python3_sitelib}
 %endif
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 %changelog

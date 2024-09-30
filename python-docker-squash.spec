@@ -47,11 +47,10 @@ py.test-%{python3_version} -v tests/test_unit*.py
 
 %install
 %pyproject_install
-%pyproject_save_files docker_squash
+%pyproject_save_files -l docker_squash
 
 %files -n python3-%{modname} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE
 %{_bindir}/docker-squash
 
 %changelog

@@ -81,7 +81,7 @@ popd
 
 %install
 %pyproject_install
-%pyproject_save_files 'patsy*'
+%pyproject_save_files -l 'patsy*'
 
 %check
 %if %{with check}
@@ -90,7 +90,6 @@ popd
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md TODO
-%license LICENSE.txt
 
 %files -n python3-%{srcname}-doc
 %doc README.md TODO doc/_build/html

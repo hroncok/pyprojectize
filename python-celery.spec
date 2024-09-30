@@ -100,7 +100,7 @@ cp %{SOURCE1} .
 
 %install
 %pyproject_install
-%pyproject_save_files celery
+%pyproject_save_files -l celery
 pushd %{buildroot}%{_bindir}
 mv celery celery-%{python3_version}
 ln -s celery-%{python3_version} celery-3
@@ -132,7 +132,6 @@ export TEST_BACKEND=rpc
 %license LICENSE
 
 %files -n python3-celery -f %{pyproject_files}
-%license LICENSE
 %doc README.rst TODO CONTRIBUTORS.txt examples
 %{_bindir}/celery
 %{_bindir}/celery-3*

@@ -59,10 +59,9 @@ rm -rf spec.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files spec
+%pyproject_save_files -l spec
 
 %files -n python3-spec -f %{pyproject_files}
-%license LICENSE
 %{_bindir}/spec
 
 %changelog

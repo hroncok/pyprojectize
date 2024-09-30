@@ -94,7 +94,7 @@ Python bindings for the docker credentials store API
 %endif # with python2
 %if %{with python3}
 %pyproject_install
-%pyproject_save_files dockerpycreds
+%pyproject_save_files -l dockerpycreds
 %endif # with python3
 
 
@@ -126,7 +126,6 @@ PYTHONPATH="${PWD}" py.test-%{python3_version} -vv tests/
 %if %{with python3}
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
-%license LICENSE
 %endif # python3
 
 

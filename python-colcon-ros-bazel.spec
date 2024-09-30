@@ -46,7 +46,7 @@ An extension for colcon-core to support ROS2 Bazel projects.
 
 %install
 %pyproject_install
-%pyproject_save_files colcon_ros_bazel
+%pyproject_save_files -l colcon_ros_bazel
 
 
 %check
@@ -57,7 +57,6 @@ An extension for colcon-core to support ROS2 Bazel projects.
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 

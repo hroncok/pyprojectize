@@ -63,7 +63,7 @@ Recommends: python3dist(pycryptopp)
 
 %install
 %pyproject_install
-%pyproject_save_files 'Beaker*' beaker
+%pyproject_save_files -l 'Beaker*' beaker
 
 
 %check
@@ -75,7 +75,6 @@ redis-server &
 %pytest
 
 %files -n python3-beaker -f %{pyproject_files}
-%license LICENSE
 %doc README.rst CHANGELOG
 
 

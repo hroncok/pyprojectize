@@ -48,7 +48,7 @@ An extension for colcon-core to support CMake projects.
 
 %install
 %pyproject_install
-%pyproject_save_files colcon_cmake
+%pyproject_save_files -l colcon_cmake
 
 
 %check
@@ -59,7 +59,6 @@ An extension for colcon-core to support CMake projects.
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

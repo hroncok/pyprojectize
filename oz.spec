@@ -91,7 +91,7 @@ installations, with minimal input from the user.
 
 %install
 %pyproject_install
-%pyproject_save_files oz
+%pyproject_save_files -l oz
 
 mkdir -p $RPM_BUILD_ROOT%{_localstatedir}/lib/oz/
 mkdir -p $RPM_BUILD_ROOT%{_localstatedir}/lib/oz/isocontent/
@@ -116,7 +116,6 @@ libvirtd -d
 %pytest tests/
 
 %files -f %{pyproject_files}
-%license COPYING
 %doc README examples
 %dir %attr(0755, root, root) %{_sysconfdir}/oz/
 %config(noreplace) %{_sysconfdir}/oz/oz.cfg

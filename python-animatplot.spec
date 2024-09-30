@@ -73,7 +73,7 @@ popd
 %install
 export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 
 %check
@@ -83,7 +83,6 @@ export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md
-%license LICENSE
 
 %files -n python3-%{srcname}-doc
 %doc docs/html

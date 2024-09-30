@@ -68,7 +68,7 @@ rm -f doc/_build/html/.buildinfo
 
 %install
 %pyproject_install
-%pyproject_save_files arcnagios
+%pyproject_save_files -l arcnagios
 
 install -m755 -d %{buildroot}%{pkg_spooldir}
 
@@ -86,7 +86,6 @@ install -m755 -d %{buildroot}%{pkg_spooldir}
 %{nagios_bindir}/check_gridstorage
 %dir %{arc_spooldir}
 %attr(-,nagios,nagios) %{pkg_spooldir}
-%license LICENSE NOTICE
 %doc AUTHORS README.rst
 %doc doc/arcnagios.ini.example
 %doc doc/services.cfg.example

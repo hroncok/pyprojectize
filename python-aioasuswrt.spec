@@ -34,11 +34,10 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
-%license LICENSE.md
 
 %changelog
 %autochangelog

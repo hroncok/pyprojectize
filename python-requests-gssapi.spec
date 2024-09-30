@@ -44,14 +44,13 @@ Requires:       python3-requests
 
 %install
 %pyproject_install
-%pyproject_save_files '%{s_name}*'
+%pyproject_save_files -l '%{s_name}*'
 
 %check
 %{__python3} -m unittest
 
 %files -n python3-%{sname} -f %{pyproject_files}
 %doc README.rst AUTHORS HISTORY.rst
-%license LICENSE
 
 
 %changelog

@@ -37,13 +37,12 @@ Anything the built-in Python function open() accepts can be generated.
 
 %install
 %pyproject_install
-%pyproject_save_files %{modulename}
+%pyproject_save_files -l %{modulename}
 
 %check
 %{__python3} setup.py test
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

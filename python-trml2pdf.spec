@@ -42,7 +42,7 @@ Open source implementation of RML (Report Markup Language) from ReportLab
 
 %install
 %pyproject_install
-%pyproject_save_files %{module}
+%pyproject_save_files -l %{module}
 %{__install} -Dp -m0644 doc/trml2pdf.1 %{buildroot}%{_mandir}/man1/trml2pdf.1
 
 
@@ -51,7 +51,7 @@ Open source implementation of RML (Report Markup Language) from ReportLab
 
 
 %files -n python3-%{module} -f %{pyproject_files}
-%license LICENSE.txt doc/COPYRIGHT.txt
+%license doc/COPYRIGHT.txt
 %doc README.md doc/CREDITS.md
 %{_bindir}/%{module}
 %{_mandir}/man1/trml2pdf.1.*

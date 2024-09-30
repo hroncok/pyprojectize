@@ -88,7 +88,7 @@ PYTHONPATH=. py.test-3
 
 %if 0%{?with_python3}
 %pyproject_install
-%pyproject_save_files 'retryz*'
+%pyproject_save_files -l 'retryz*'
 %endif
 
 %if 0%{?with_python2}
@@ -100,7 +100,6 @@ PYTHONPATH=. py.test-3
 
 %if 0%{?with_python3}
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.rst
 %endif
 

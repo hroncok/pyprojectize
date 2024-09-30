@@ -138,7 +138,7 @@ bzip2 -9 %{name}.pp
 . ./distro_build_configs.sh
 # bypass install errors ( don't chown in install step)
 %pyproject_install
-%pyproject_save_files cobbler
+%pyproject_save_files -l cobbler
 
 # cobbler
 rm %{buildroot}%{_sysconfdir}/cobbler/cobbler.conf
@@ -250,7 +250,6 @@ fi
 
 
 %files -f %{pyproject_files}
-%license COPYING
 %doc AUTHORS.in README.md
 %doc docs/developer-guide.rst docs/quickstart-guide.rst docs/installation-guide.rst
 %dir %{_sysconfdir}/cobbler

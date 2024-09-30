@@ -35,11 +35,10 @@ cp -a %{SOURCE1} LICENSE
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
-%license LICENSE
 %{_bindir}/awinreg
 
 %changelog

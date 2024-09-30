@@ -55,7 +55,7 @@ Requires:       python3-sphinx
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 
 %if %{with tests}
@@ -64,7 +64,6 @@ Requires:       python3-sphinx
 
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 

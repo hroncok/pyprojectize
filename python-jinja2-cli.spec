@@ -50,7 +50,7 @@ Requires:       python3-toml
 
 %install
 %pyproject_install
-%pyproject_save_files jinja2cli
+%pyproject_save_files -l jinja2cli
 
 # Remove tests from install (not good folder)
 rm -rf %{buildroot}%{python3_sitelib}/tests
@@ -62,7 +62,6 @@ py.test-%{python3_version}
 
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 %{_bindir}/jinja2
 

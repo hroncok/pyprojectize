@@ -64,7 +64,7 @@ rm -rf %{modname}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files repoze
+%pyproject_save_files -l repoze
 
 %check
 #PYTHONPATH=$(pwd) %%{__python3} setup.py test
@@ -73,7 +73,7 @@ rm -rf %{modname}.egg-info
 
 %files -n python3-repoze-who -f %{pyproject_files}
 %doc README.rst CHANGES.rst CONTRIBUTORS.txt
-%license COPYRIGHT.txt LICENSE.txt
+%license COPYRIGHT.txt
 
 
 %changelog

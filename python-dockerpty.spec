@@ -62,7 +62,7 @@ Requires:       python%{python3_pkgversion}-six
 %install
 %{?with_python2:%py2_install}
 %{?with_python3:%pyproject_install}
-%pyproject_save_files %{libname}
+%pyproject_save_files -l %{libname}
 
 # we are missing the 'expects' library to run the tests
 # %%check
@@ -79,7 +79,6 @@ Requires:       python%{python3_pkgversion}-six
 
 %if %{with python3}
 %files -n python%{python3_pkgversion}-%{pkgname} -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.md MANIFEST.in
 %endif
 

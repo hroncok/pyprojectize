@@ -50,7 +50,7 @@ find ./%{srcname}/ -type f '(' -name __init__.py -o -name stanza.py -o -name ver
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 
 %check
@@ -59,7 +59,6 @@ find ./%{srcname}/ -type f '(' -name __init__.py -o -name stanza.py -o -name ver
 
 
 %files -n python3-slixmpp-omemo -f %{pyproject_files}
-%license LICENSE
 %doc CONTRIBUTING.rst ChangeLog README.rst
 # For noarch packages: sitelib
 

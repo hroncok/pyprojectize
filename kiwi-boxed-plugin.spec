@@ -55,7 +55,7 @@ This package provides the Python 3 library plugin.
 
 %install
 %pyproject_install
-%pyproject_save_files '%{srcname}*'
+%pyproject_save_files -l '%{srcname}*'
 
 # Install documentation
 make buildroot=%{buildroot}/ docdir=%{_defaultdocdir}/ install
@@ -69,7 +69,6 @@ rm -f %{buildroot}%{_defaultdocdir}/python-%{srcname}/README
 %{_mandir}/man8/*.8*
 
 %files -n python3-%{name} -f %{pyproject_files}
-%license LICENSE
 
 %changelog
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.2.32-2

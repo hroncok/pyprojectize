@@ -52,11 +52,10 @@ Converts and manipulates common color representation (RGB, HSL, web, etc.)
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst TODO.rst
-%license LICENSE
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.1.5-21

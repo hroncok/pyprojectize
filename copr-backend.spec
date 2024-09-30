@@ -139,7 +139,7 @@ make -C docs %{?_smp_mflags} html
 
 %install
 %pyproject_install
-%pyproject_save_files copr_backend
+%pyproject_save_files -l copr_backend
 
 
 install -d %{buildroot}%{_sharedstatedir}/copr/public_html/results
@@ -207,7 +207,6 @@ useradd -r -g copr -G lighttpd -s /bin/bash -c "COPR user" copr
 %systemd_postun_with_restart copr-backend-action.service
 
 %files -f %{pyproject_files}
-%license LICENSE
 
 %dir %{_sharedstatedir}/copr
 %dir %attr(0755, copr, copr) %{_sharedstatedir}/copr/public_html/

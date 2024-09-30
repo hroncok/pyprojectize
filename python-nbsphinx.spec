@@ -77,11 +77,10 @@ rm -rf html/{.doctrees,.buildinfo,conf.py,_sources}
 
 %install
 %pyproject_install
-%pyproject_save_files nbsphinx
+%pyproject_save_files -l nbsphinx
 
 
 %files -n python3-nbsphinx -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %files -n python-nbsphinx-doc

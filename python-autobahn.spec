@@ -82,7 +82,7 @@ AUTOBAHN_USE_NVX=false %pyproject_wheel
 
 %install
 AUTOBAHN_USE_NVX=false %pyproject_install
-%pyproject_save_files %{pypi_name} twisted
+%pyproject_save_files -l %{pypi_name} twisted
 
 %check
 # Ignore tests that rely on optional and not packaged deps.
@@ -107,7 +107,6 @@ USE_ASYNCIO=1 %pytest --ignore=xbr/test --pyargs autobahn ${k+ -k} "${k-}"
 %endif
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc docs README.rst
 %{_bindir}/wamp
 %{_bindir}/xbrnetwork

@@ -44,13 +44,12 @@ sed -i -e 's/1.26.0b1/1.24.4/' requirements.txt
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitearch} py.test-%{python3_version} -v
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 %changelog

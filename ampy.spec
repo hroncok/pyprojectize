@@ -51,7 +51,7 @@ sed -i '1d' $(grep -lr '#!/usr/')
 
 %install
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 
 
 %check
@@ -60,7 +60,6 @@ sed -i '1d' $(grep -lr '#!/usr/')
 
 %files -f %{pyproject_files}
 %doc README.md
-%license LICENSE
 %{_bindir}/%{name}
 
 

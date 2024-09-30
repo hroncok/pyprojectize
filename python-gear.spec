@@ -52,7 +52,7 @@ Summary: %summary
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 %check
 PYTHON=%{__python3} testr init
@@ -60,7 +60,6 @@ PYTHON=%{__python3} testr run
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst CONTRIBUTING.rst doc
-%license LICENSE
 %{_bindir}/*
 
 %changelog

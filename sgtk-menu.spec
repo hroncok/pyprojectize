@@ -41,11 +41,10 @@ done
 
 %install
 %pyproject_install
-%pyproject_save_files %{sysname}
+%pyproject_save_files -l %{sysname}
 
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc README.md examples/
 %{_bindir}/%{name}
 %{_bindir}/sgtk-bar

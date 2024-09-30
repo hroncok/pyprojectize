@@ -85,7 +85,7 @@ mv  ./lector/rarfile/LICENSE  ./LICENSE-rarfile
 
 %install
 %pyproject_install
-%pyproject_save_files 'lector*'
+%pyproject_save_files -l 'lector*'
 
 # TODO: When upstream merges the .metainfo.xml and .desktop file changes and adds them to setup.py, I won't need to manually install SOURCE1 metainfo, nor rename the .desktop file anymore.
 # Solved by a pull request here <https://github.com/BasioMeusPuga/Lector/pull/120>
@@ -112,7 +112,6 @@ appstream-util validate-relax --nonet %{buildroot}/%{_metainfodir}/io.github.Bas
 
 %files -f %{pyproject_files}
 %doc      AUTHORS  README.md
-%license  LICENSE  LICENSE-rarfile
 %{_bindir}/%{name}
 %{_datadir}/applications/io.github.BasioMeusPuga.Lector.desktop
 %{_datadir}/icons/hicolor/512x512/apps/Lector.png

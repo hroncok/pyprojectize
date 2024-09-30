@@ -55,7 +55,7 @@ sed -e "s|/usr/bin/python|%{__python3}|" -i scripts/*
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 rm -rf %{buildroot}%{_docdir}/urlgrabber-%{version}
 
 %if %{with check}
@@ -66,7 +66,6 @@ export URLGRABBER_EXT_DOWN="%{buildroot}%{_libexecdir}/urlgrabber-ext-down"
 %endif
 
 %files -n python%{python3_pkgversion}-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc ChangeLog README TODO
 %{_bindir}/urlgrabber
 %{_libexecdir}/urlgrabber-ext-down

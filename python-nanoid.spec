@@ -39,12 +39,11 @@ cp -a %{SOURCE1} LICENSE
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 # License file missing: https://github.com/puyuan/py-nanoid/pull/19
-%license LICENSE
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.0.0-16

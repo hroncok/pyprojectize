@@ -51,13 +51,12 @@ Python 3 version.
 
 %install
 %pyproject_install
-%pyproject_save_files '%{modname}*'
+%pyproject_save_files -l '%{modname}*'
 
 #check
 # Requires multiple DBs to be running
 
 %files -n python3-%{modname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst CHANGES.rst
 %{_bindir}/%{modname}
 

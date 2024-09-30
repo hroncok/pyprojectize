@@ -238,7 +238,7 @@ sed "1c#! $python" %SOURCE6 > %{name}-wait-for-ssh
 rm -r %buildroot%python2_sitelib/%{name}webui
 %else
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 install -d -m 755 %buildroot%_datadir/%{name}webui
 cp -r %{name}webui/templates %buildroot%_datadir/%{name}webui/
 cp -r %{name}webui/static %buildroot%_datadir/%{name}webui/
@@ -317,7 +317,6 @@ ln -s "%{default_sitelib}/%{name}server" %buildroot%_homedir/project
 %if %{with python3}
 %files -n python3-%srcname -f %{pyproject_files}
 %doc %doc_files
-%license COPYING
 %endif
 
 

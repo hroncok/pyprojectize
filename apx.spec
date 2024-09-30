@@ -73,7 +73,7 @@ sed -i '/"install":/d' setup.py
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 # avoid misplaced license file
 find %{buildroot} -name '*LICENSE' -print -delete
 
@@ -83,7 +83,6 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/appdata/%{name}.ap
 
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc AUTHORS README.md
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/*.sqlite

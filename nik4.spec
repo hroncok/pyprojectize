@@ -28,12 +28,11 @@ Nik4 is a mapnik-to-image exporting script.
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 mv %{buildroot}/%{_bindir}/nik4.py %{buildroot}/%{_bindir}/nik4
 
 %files -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.md CHANGELOG.md
 %{_bindir}/%{name}
 

@@ -49,14 +49,13 @@ BuildRequires:  python3dist(pytest)
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 %check
 %pytest -v setuptools_git/tests.py
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc PKG-INFO README.rst TODO.txt
-%license AUTHORS.txt LICENSE.txt
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.2-15

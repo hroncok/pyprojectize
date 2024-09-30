@@ -91,7 +91,7 @@ rm -rf %{srcname}.egg-info
 %endif
 %if %{with python3}
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 %endif
 
 %check
@@ -112,7 +112,6 @@ PYTHONPATH=%{buildroot}%{python2_sitelib} nosetests-%{python2_version} --verbose
 
 %if %{with python3}
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc AUTHORS CHANGELOG README.rst
 %endif
 

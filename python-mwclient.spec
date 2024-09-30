@@ -51,7 +51,7 @@ provides access to most API functionality. This is the Python 3 build of
 
 %install
 %pyproject_install
-%pyproject_save_files '%{github_name}*'
+%pyproject_save_files -l '%{github_name}*'
 
 
 %check
@@ -59,7 +59,6 @@ provides access to most API functionality. This is the Python 3 build of
 
 %files -n python3-%{github_name} -f %{pyproject_files}
 %doc README.md CHANGELOG.md
-%license LICENSE.md
 
 
 %changelog

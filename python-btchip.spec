@@ -59,7 +59,7 @@ sed -i 's/1.6.12-4build1/1.6.12/' setup.py
 
 %install
 %pyproject_install
-%pyproject_save_files btchip
+%pyproject_save_files -l btchip
 mkdir -p %{buildroot}%{_udevrulesdir}
 install -m644 %{SOURCE1} %{buildroot}%{_udevrulesdir}/20-ledger.rules
 
@@ -69,7 +69,6 @@ install -m644 %{SOURCE1} %{buildroot}%{_udevrulesdir}/20-ledger.rules
 
 
 %files -n python3-%{libname} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 %files -n python-%{libname}-common

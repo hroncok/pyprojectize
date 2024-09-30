@@ -43,10 +43,9 @@ Requires:	python3-attrs
 
 %install
 %pyproject_install
-%pyproject_save_files itemadapter
+%pyproject_save_files -l itemadapter
 
 %files -n python3-%{pkg_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 %changelog

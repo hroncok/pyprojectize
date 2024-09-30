@@ -53,11 +53,10 @@ cp -p %{SOURCE1} .
 
 %install
 %pyproject_install
-%pyproject_save_files debianbts
+%pyproject_save_files -l debianbts
 
 %files -n python3-%{rpmname} -f %{pyproject_files}
 %doc README.md
-%license LICENSE
 %{_bindir}/debianbts
 
 %changelog

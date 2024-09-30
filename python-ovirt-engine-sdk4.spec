@@ -51,12 +51,11 @@ done
 
 %install
 %pyproject_install
-%pyproject_save_files ovirtsdk4
+%pyproject_save_files -l ovirtsdk4
 
 %files -n python3-ovirt-engine-sdk4 -f %{pyproject_files}
 %doc README.adoc
 %doc examples
-%license LICENSE.txt
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 4.6.2-6

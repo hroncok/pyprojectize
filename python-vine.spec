@@ -73,7 +73,7 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 
 %if %{with tests}
@@ -82,7 +82,6 @@ rm -rf html/.{doctrees,buildinfo}
 %endif
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc docs/templates/readme.txt README.rst
 
 %if %{with docs}

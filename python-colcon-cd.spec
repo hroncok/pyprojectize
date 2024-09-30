@@ -46,7 +46,7 @@ A shell function for colcon-core to change the current working directory.
 
 %install
 %pyproject_install
-%pyproject_save_files colcon_cd
+%pyproject_save_files -l colcon_cd
 
 install -p -D function/colcon_cd.sh %{buildroot}%{_datadir}/colcon_cd/function/colcon_cd.sh
 
@@ -59,7 +59,6 @@ install -p -D function/colcon_cd.sh %{buildroot}%{_datadir}/colcon_cd/function/c
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 %{_datadir}/colcon_cd/
 

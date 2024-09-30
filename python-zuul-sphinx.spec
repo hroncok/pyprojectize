@@ -47,11 +47,10 @@ export PBR_VERSION=%{version}
 %install
 export PBR_VERSION=%{version}
 %pyproject_install
-%pyproject_save_files zuul_sphinx
+%pyproject_save_files -l zuul_sphinx
 
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

@@ -81,7 +81,7 @@ make -C docs html
 
 %install
 %pyproject_install
-%pyproject_save_files %{modname}
+%pyproject_save_files -l %{modname}
 
 %check
 %if %{with tests}
@@ -91,7 +91,6 @@ make -C docs html
 %endif
 
 %files -n python3-%{modname} -f %{pyproject_files}
-%license LICENSE
 %doc NEWS README.rst
 
 %files doc

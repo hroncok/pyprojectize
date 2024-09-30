@@ -41,13 +41,12 @@ sed -i "s/py\.test/pytest/" tests/test_*
 
 %install
 %pyproject_install
-%pyproject_save_files %{modname}
+%pyproject_save_files -l %{modname}
 
 %check
 pytest-%{python3_version} -v
 
 %files -n python3-%{modname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

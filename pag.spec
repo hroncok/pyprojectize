@@ -41,7 +41,7 @@ It is under active development and will be gaining new features over time.
 
 %install
 %pyproject_install
-%pyproject_save_files pag
+%pyproject_save_files -l pag
 
 # For rpmlint
 find %{buildroot}/%{python3_sitelib}/pag -name "*.py" -exec chmod -x {} \;
@@ -54,7 +54,6 @@ sed -i 's|/usr/bin/python$|/usr/bin/python3|' %{buildroot}/%{_bindir}/pag
 
 %files -f %{pyproject_files}
 %doc README.rst
-%license LICENSE
 %{_bindir}/pag
 
 %changelog

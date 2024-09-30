@@ -80,7 +80,7 @@ rm -frv docs/build/html/_sources
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 %if %{with tests}
 %check
@@ -90,7 +90,6 @@ export WITH_PYTHON_3=1
 
 %files -n python3-%{pkgname} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE.MIT
 %{_bindir}/anyconfig*
 %{_mandir}/*/anyconfig*.*.gz
 

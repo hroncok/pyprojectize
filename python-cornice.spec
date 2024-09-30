@@ -61,7 +61,7 @@ Requires:   %{py3_dist venusian}
 
 %install
 %pyproject_install
-%pyproject_save_files '%{module}*'
+%pyproject_save_files -l '%{module}*'
 
 
 %check
@@ -69,7 +69,6 @@ Requires:   %{py3_dist venusian}
 
 
 %files -n python3-cornice -f %{pyproject_files}
-%license LICENSE
 %doc CHANGES.txt CONTRIBUTORS.txt README.rst
 
 

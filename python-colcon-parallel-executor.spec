@@ -47,7 +47,7 @@ An extension for colcon-core to process packages in parallel.
 
 %install
 %pyproject_install
-%pyproject_save_files colcon_parallel_executor
+%pyproject_save_files -l colcon_parallel_executor
 
 
 %check
@@ -58,7 +58,6 @@ An extension for colcon-core to process packages in parallel.
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

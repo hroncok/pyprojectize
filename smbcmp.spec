@@ -42,10 +42,9 @@ sed -i 's|curses||' setup.py
 
 %install
 %pyproject_install
-%pyproject_save_files smbcmp
+%pyproject_save_files -l smbcmp
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 %{_bindir}/%{name}
 

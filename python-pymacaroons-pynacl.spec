@@ -62,7 +62,7 @@ rm docs/_build/html/.buildinfo
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 
 # check
@@ -72,7 +72,6 @@ rm docs/_build/html/.buildinfo
 
 
 %files -n python3-%{pkgname} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 

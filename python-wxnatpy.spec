@@ -50,13 +50,12 @@ find . -type f -name "*.py" -exec sed -i '/^#![  ]*\/usr\/bin\/env.*$/ d' {} 2>/
 
 %install
 %pyproject_install
-%pyproject_save_files wxnat
+%pyproject_save_files -l wxnat
 
 #%check
 #%{__python3} setup.py test
  
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 %changelog

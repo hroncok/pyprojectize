@@ -90,7 +90,7 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
-%pyproject_save_files xlrd2
+%pyproject_save_files -l xlrd2
 
 
 %check
@@ -98,7 +98,6 @@ rm -rf html/.{doctrees,buildinfo}
 
 
 %files -n python%{python3_pkgversion}-xlrd2 -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 %{_bindir}/runxlrd2.py
 

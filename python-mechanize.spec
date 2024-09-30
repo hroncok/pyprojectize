@@ -69,7 +69,7 @@ rm -rf SPECPARTS
 
 %install
 %pyproject_install
-%pyproject_save_files mechanize
+%pyproject_save_files -l mechanize
 
 %check
 chmod +x examples/forms/{echo.cgi,example.py,simple.py}
@@ -77,7 +77,6 @@ python3 run_tests.py
 chmod -x examples/forms/{echo.cgi,example.py,simple.py}
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst ChangeLog COPYRIGHT
 
 %changelog

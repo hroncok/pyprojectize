@@ -66,7 +66,7 @@ popd
 
 %install
 %pyproject_install
-%pyproject_save_files %{file_name}
+%pyproject_save_files -l %{file_name}
 
 
 %check
@@ -75,7 +75,6 @@ nosetests-%{python3_version} tests -v -e test_to_sql_create_statement_unique_con
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst AUTHORS.rst CHANGELOG.rst
-%license COPYING
 
 
 %files -n python-%{pypi_name}-doc

@@ -46,10 +46,9 @@ rm -f {,test-}requirements.txt
 
 %install
 %pyproject_install
-%pyproject_save_files %{package_name}
+%pyproject_save_files -l %{package_name}
 
 %files -n python3-%{package_name} -f %{pyproject_files}
-%license COPYING
 %doc README.md
 
 %changelog

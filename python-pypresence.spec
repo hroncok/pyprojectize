@@ -42,7 +42,7 @@ rm -rf %{buildroot}/docs
 
 %install
 %pyproject_install
-%pyproject_save_files pypresence
+%pyproject_save_files -l pypresence
 
 
 %check
@@ -50,7 +50,6 @@ rm -rf %{buildroot}/docs
 
 
 %files -n python3-pypresence -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 

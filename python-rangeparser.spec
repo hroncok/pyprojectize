@@ -35,13 +35,12 @@ RangeParser is a Python package to parse ranges easily.
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 %check
 %pytest -v rangeparser/test
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.txt
 
 %changelog

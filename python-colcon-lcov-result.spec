@@ -65,7 +65,7 @@ the following coverage metrics:
 
 %install
 %pyproject_install
-%pyproject_save_files colcon_lcov_result
+%pyproject_save_files -l colcon_lcov_result
 
 
 %check
@@ -76,7 +76,6 @@ the following coverage metrics:
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

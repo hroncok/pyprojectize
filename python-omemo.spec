@@ -55,7 +55,7 @@ are offline.
 
 %install
 %pyproject_install
-%pyproject_save_files omemo
+%pyproject_save_files -l omemo
 
 
 %check
@@ -65,7 +65,6 @@ are offline.
 
 
 %files -n python3-omemo -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 # For noarch packages: sitelib
 

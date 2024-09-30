@@ -47,12 +47,11 @@ This is the python3 package.
 
 %install
 %pyproject_install
-%pyproject_save_files smartcard
+%pyproject_save_files -l smartcard
 chmod 755 %{buildroot}%{python3_sitearch}/smartcard/scard/*.so
 
 
 %files -n python%{python3_pkgversion}-%{name} -f %{pyproject_files}
-%license LICENSE
 %doc ACKS README.md
 %doc smartcard/doc/*
 

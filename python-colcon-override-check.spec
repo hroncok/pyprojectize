@@ -49,7 +49,7 @@ overridden.
 
 %install
 %pyproject_install
-%pyproject_save_files colcon_override_check
+%pyproject_save_files -l colcon_override_check
 
 
 %check
@@ -60,7 +60,6 @@ overridden.
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

@@ -37,13 +37,12 @@ find examples -name '*.py' -print -exec sed -r -i 's|(.!)\s+/usr/bin/env python.
 
 %install
 %pyproject_install
-%pyproject_save_files dialog
+%pyproject_save_files -l dialog
 
 %check
 %py3_check_import dialog
 
 %files -n python3-dialog -f %{pyproject_files}
-%license COPYING
 %doc README.rst examples/
 
 %changelog

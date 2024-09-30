@@ -37,13 +37,12 @@ Summary:        %{summary}
 
 %install
 %pyproject_install
-%pyproject_save_files click_repl
+%pyproject_save_files -l click_repl
 
 %check
 %pytest
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

@@ -31,14 +31,13 @@ rm -rf ./setuptools_gettext.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files setuptools_gettext
+%pyproject_save_files -l setuptools_gettext
 
 %check
 %py3_check_import setuptools_gettext
 
 %files -n python3-setuptools-gettext -f %{pyproject_files}
 %doc README.md
-%license COPYING
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.8-6

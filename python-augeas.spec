@@ -37,13 +37,12 @@ python3-augeas is a set of Python bindings around augeas.
 
 %install
 %{pyproject_install}
-%pyproject_save_files augeas
+%pyproject_save_files -l augeas
 
 %check
 pytest-3
 
 %files -n python3-augeas -f %{pyproject_files}
-%license COPYING
 %doc AUTHORS README.txt
 
 

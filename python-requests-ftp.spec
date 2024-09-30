@@ -97,7 +97,7 @@ rm -rf requests_ftp.egg-info
 
 %if %{with python3}
 %pyproject_install
-%pyproject_save_files requests_ftp
+%pyproject_save_files -l requests_ftp
 %endif
 
 %if %{with python2}
@@ -111,7 +111,6 @@ rm -rf requests_ftp.egg-info
 %if %{with python3}
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE
 %endif
 
 %changelog

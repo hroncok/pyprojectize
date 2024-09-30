@@ -120,7 +120,7 @@ popd
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 %check
 %if %{with tests}
@@ -129,7 +129,6 @@ PYTHONPATH=$RPM_BUILD_ROOT/%{python3_sitearch} nosetests-3 '--exclude=test_(cohe
 %endif
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.txt THANKS
 
 %if %{with docs}

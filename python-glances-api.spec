@@ -32,11 +32,10 @@ A Python client for interacting with Glances.
 
 %install
 %pyproject_install
-%pyproject_save_files glances_api
+%pyproject_save_files -l glances_api
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc CHANGES.rst README.rst example.py
-%license LICENSE
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.2.0-22

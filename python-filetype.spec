@@ -37,7 +37,7 @@ rm -rf examples/__init__.py
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 rm -rf %{buildroot}%{python3_sitelib}/examples
 
 %check
@@ -47,7 +47,6 @@ rm -rf %{buildroot}%{python3_sitelib}/examples
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst History.md examples
-%license LICENSE
 %{_bindir}/%{pypi_name}
 
 %changelog

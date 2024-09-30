@@ -39,7 +39,7 @@ etc.  The core of this module is a decorator factory called decorator.
 
 %install
 %pyproject_install
-%pyproject_save_files decorator
+%pyproject_save_files -l decorator
 
 # Remove this when https://github.com/micheles/decorator/issues/32 is fixed.
 find %{buildroot} -name SOURCES.txt~ -exec rm -f {} \;
@@ -49,7 +49,6 @@ find %{buildroot} -name SOURCES.txt~ -exec rm -f {} \;
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst CHANGES.md
-%license LICENSE.txt
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 5.1.1-11

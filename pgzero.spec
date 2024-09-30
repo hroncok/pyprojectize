@@ -45,7 +45,7 @@ sed -i "s/\(pygame.*\), <2.0.*/\1'/" setup.py
 
 %install
 %pyproject_install
-%pyproject_save_files %{name} pgzrun
+%pyproject_save_files -l %{name} pgzrun
 
 %check
 # Some tests cannot be run in a headles environment without display
@@ -53,7 +53,6 @@ rm test/test_screen.py test/test_actor.py test/test_sound_formats.py
 %{__python3} -m unittest discover test/
 
 %files -f %{pyproject_files}
-%license COPYING
 %doc README.rst examples
 %{_bindir}/pgzrun
 

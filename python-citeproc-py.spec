@@ -40,7 +40,7 @@ rm -vrf *.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files citeproc
+%pyproject_save_files -l citeproc
 
 sed -i -e '1s|^.*$|#!%{__python3}|' %{buildroot}%{_bindir}/csl_unsorted
 
@@ -49,7 +49,6 @@ sed -i -e '1s|^.*$|#!%{__python3}|' %{buildroot}%{_bindir}/csl_unsorted
 
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst examples CHANGES.rst
 
 %{_bindir}/csl_unsorted

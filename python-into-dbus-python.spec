@@ -38,10 +38,9 @@ Python 3 version.
 
 %install
 %pyproject_install
-%pyproject_save_files into_dbus_python
+%pyproject_save_files -l into_dbus_python
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

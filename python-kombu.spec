@@ -80,7 +80,7 @@ also provide proven and tested solutions to common messaging problems.
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 %check
 %if %{with tests}
@@ -89,7 +89,6 @@ also provide proven and tested solutions to common messaging problems.
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc AUTHORS FAQ READ* THANKS TODO examples/
-%license LICENSE
 
 %changelog
 %autochangelog

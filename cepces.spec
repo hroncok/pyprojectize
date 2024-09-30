@@ -95,7 +95,7 @@ done
 
 %install
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 
 install -d  %{buildroot}%{logdir}
 
@@ -185,7 +185,6 @@ fi
 %config(noreplace) %{_sysconfdir}/logrotate.d/%{name}
 
 %files -n python%{python3_pkgversion}-%{name} -f %{pyproject_files}
-%license LICENSE
 
 %files certmonger
 %{_libexecdir}/certmonger/%{name}-submit

@@ -57,10 +57,9 @@ Requires:         /usr/bin/which
 
 %install
 %pyproject_install
-%pyproject_save_files cmd2
+%pyproject_save_files -l cmd2
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc CHANGELOG.md README.md docs
 
 %changelog

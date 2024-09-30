@@ -89,7 +89,7 @@ find tests/ -type f | xargs sed -i s/assertItemsEqual/assertCountEqual/
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 # Generate cloud-config file
 python3 tools/render-template --variant %{?rhel:rhel}%{!?rhel:fedora} > $RPM_BUILD_ROOT/%{_sysconfdir}/cloud/cloud.cfg
@@ -136,7 +136,6 @@ python3 -m pytest tests/unittests
 
 
 %files -f %{pyproject_files}
-%license LICENSE LICENSE-Apache2.0 LICENSE-GPLv3
 %doc ChangeLog
 %doc doc/*
 %{_mandir}/man1/*

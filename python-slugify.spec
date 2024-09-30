@@ -35,14 +35,13 @@ A Python slugify application that handles Unicode.
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 %check
 %{__python3} test.py
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc CHANGELOG.md README.md
-%license LICENSE
 %{_bindir}/%{pypi_name}
 
 %changelog

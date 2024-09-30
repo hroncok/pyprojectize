@@ -55,7 +55,7 @@ patches to Radicale but was eventually split off as a separate project.
 
 %install
 %pyproject_install
-%pyproject_save_files calypso
+%pyproject_save_files -l calypso
 mkdir -p %{buildroot}%{_sharedstatedir}/calypso
 install -Dpm644 calypso.1 %{buildroot}%{_mandir}/man1/calypso.1
 install -Dpm644 %{S:2} %{buildroot}%{_sysconfdir}/calypso/config
@@ -95,7 +95,6 @@ fi
 %systemd_postun_with_restart calypso.service
 
 %files -f %{pyproject_files}
-%license COPYING
 %doc README collection-config config
 %dir %attr(0750,root,calypso) %{_sysconfdir}/calypso
 %config(noreplace) %{_sysconfdir}/calypso/config

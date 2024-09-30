@@ -67,7 +67,7 @@ its dependencies installed in the root filesystem.
 
 %install
 %pyproject_install
-%pyproject_save_files colcon_ros_bundle
+%pyproject_save_files -l colcon_ros_bundle
 
 
 %check
@@ -77,7 +77,6 @@ its dependencies installed in the root filesystem.
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc NOTICE README.md
 
 

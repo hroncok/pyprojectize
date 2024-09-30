@@ -42,11 +42,10 @@ networking.
 
 %install
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 
 %files -n python3-%{name} -f %{pyproject_files}
 %doc CHANGES.txt README.md THANKS.txt TODO.txt examples/ docs/
-%license LICENSE.rst
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 4.4.12-18

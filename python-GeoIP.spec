@@ -38,11 +38,10 @@ location lookups to country, city and organization level within Python code.
 
 %install
 %pyproject_install
-%pyproject_save_files 'GeoIP*'
+%pyproject_save_files -l 'GeoIP*'
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst examples/
-%license LICENSE
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.3.2-32

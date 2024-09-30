@@ -51,10 +51,9 @@ rm -rf django_uuslug.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files uuslug
+%pyproject_save_files -l uuslug
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 %changelog

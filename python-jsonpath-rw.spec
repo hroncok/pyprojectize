@@ -45,14 +45,13 @@ objects, easy to analyze, transform, parse, print, and extend.
 
 %install
 %pyproject_install
-%pyproject_save_files jsonpath_rw
+%pyproject_save_files -l jsonpath_rw
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} setup.py test
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE
 %{_bindir}/jsonpath.py
 
 %changelog

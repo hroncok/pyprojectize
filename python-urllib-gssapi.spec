@@ -42,14 +42,13 @@ Requires:       python3-gssapi
 
 %install
 %pyproject_install
-%pyproject_save_files '%{s_name}*'
+%pyproject_save_files -l '%{s_name}*'
 
 %check
 %py3_check_import %{s_name}
 
 %files -n python3-%{sname} -f %{pyproject_files}
 %doc README.md
-%license COPYING
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.2-14

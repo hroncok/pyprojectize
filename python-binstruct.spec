@@ -55,7 +55,7 @@ BuildRequires:	python3-pytest
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 
 %check
@@ -63,7 +63,6 @@ BuildRequires:	python3-pytest
 
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE.txt
 %doc PKG-INFO README.rst
 
 

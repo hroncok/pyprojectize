@@ -40,13 +40,12 @@ sed -i -E '/--(no-)?cov/d' setup.cfg
 
 %install
 %pyproject_install
-%pyproject_save_files %{pkgname}
+%pyproject_save_files -l %{pkgname}
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} -v tests 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc AUTHORS.md CHANGELOG.md README.md
 %{_bindir}/cph
 

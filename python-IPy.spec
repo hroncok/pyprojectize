@@ -49,11 +49,10 @@ PYTHONPATH=$PWD %{__python3} test/test_IPy.py
 
 %install
 %pyproject_install
-%pyproject_save_files '%{oname}*'
+%pyproject_save_files -l '%{oname}*'
 
 
 %files -n python3-%{oname} -f %{pyproject_files}
-%license COPYING
 %doc AUTHORS ChangeLog README.rst
 
 

@@ -63,7 +63,7 @@ Summary:        %{summary}
 
 %install
 %pyproject_install
-%pyproject_save_files '%{pypi_name}*'
+%pyproject_save_files -l '%{pypi_name}*'
 %{__mkdir} -p %{buildroot}/%{_pkgdocdir}
 
 
@@ -73,7 +73,6 @@ Summary:        %{summary}
 
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc %dir %{_pkgdocdir}
 %doc README.rst
 

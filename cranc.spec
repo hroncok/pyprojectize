@@ -36,7 +36,7 @@ Cranc is a Pagure command line interface tool
 
 %install
 %pyproject_install
-%pyproject_save_files cranc
+%pyproject_save_files -l cranc
 
 %if %{with tests}
 %check
@@ -46,7 +46,6 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} -m pytest -v
 
 %files -f %{pyproject_files}
 %doc README.rst
-%license LICENSE
 # For noarch packages: sitelib
 %{_bindir}/cranc
 

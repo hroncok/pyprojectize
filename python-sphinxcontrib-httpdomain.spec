@@ -40,11 +40,10 @@ rm -r *.egg-info
 
 %install
 %{pyproject_install}
-%pyproject_save_files 'sphinxcontrib*'
+%pyproject_save_files -l 'sphinxcontrib*'
 
 %files -n python3-%{upstream_name} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.7.0-24

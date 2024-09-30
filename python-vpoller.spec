@@ -99,7 +99,7 @@ grep -rl "/usr/bin/env" | xargs sed -i "s|#!/usr/bin/env |/usr/bin/|"
 
 %install
 %pyproject_install
-%pyproject_save_files %{modname}
+%pyproject_save_files -l %{modname}
 # manpages
 pushd %{buildroot}
 install -d .%{_mandir}/man1
@@ -111,7 +111,6 @@ popd
 
 
 %files -n python%{python3_pkgversion}-%{modname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst AUTHORS.txt
 
 %files -n %{modname}

@@ -31,7 +31,7 @@ Parse Ducktype files and convert them to Mallard.
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 
 %check
@@ -40,7 +40,6 @@ Parse Ducktype files and convert them to Mallard.
 
 %files -f %{pyproject_files}
 %doc AUTHORS README.md
-%license COPYING
 %{_bindir}/ducktype
 
 

@@ -76,7 +76,7 @@ sed -e 's|python |%{python3} |' -i tests/ext/test-suite.sh
 %install
 export PYCURL_SSL_LIBRARY=openssl
 %pyproject_install
-%pyproject_save_files %{modname} curl
+%pyproject_save_files -l %{modname} curl
 rm -rf %{buildroot}%{_datadir}/doc/pycurl
 
 %if %{with tests}
@@ -96,7 +96,6 @@ export PYTEST_ADDOPTS="--ignore examples -m 'not online' -k 'not (test_http_vers
 %endif
 
 %files -n python3-%{modname} -f %{pyproject_files}
-%license COPYING-LGPL COPYING-MIT
 %doc ChangeLog README.rst examples doc
 
 %changelog

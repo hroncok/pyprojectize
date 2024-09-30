@@ -34,11 +34,10 @@ rm -rf %{realname}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files webthing
+%pyproject_save_files -l webthing
 
 
 %files -n python3-webthing -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.rst
 
 %changelog

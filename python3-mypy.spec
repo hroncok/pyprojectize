@@ -44,7 +44,7 @@ rm -vrf *.egg-info/
 
 %install
 %pyproject_install
-%pyproject_save_files mypy mypyc
+%pyproject_save_files -l mypy mypyc
 
 # Generate man pages
 mkdir -p %{buildroot}%{_mandir}/man1
@@ -68,7 +68,6 @@ if st and st.type == "link" then
 end
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 %{_bindir}/mypy
 %{_bindir}/mypyc

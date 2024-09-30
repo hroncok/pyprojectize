@@ -45,7 +45,7 @@ Summary:        %{summary}
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 
 %check
@@ -56,7 +56,6 @@ Summary:        %{summary}
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc CHANGES.rst README.rst
-%license LICENSE.txt
 
 
 %changelog

@@ -44,7 +44,7 @@ Python 3 version.
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 %check
 %python3 -m tests.test_server &
@@ -71,7 +71,6 @@ export OPENSSL_CONF=${PWD}/openssl.cnf
 %python3 -m pytest --ignore=tests/functional/test_functional.py --ignore=tests/test_server.py -vv -k '(TestRequestsNtlm and not username)'
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc CONTRIBUTORS.rst README.rst
 
 %changelog

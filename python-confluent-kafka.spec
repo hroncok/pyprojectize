@@ -43,7 +43,7 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files confluent_kafka
+%pyproject_save_files -l confluent_kafka
 # Remove license file installed in weird place
 rm -f  %{buildroot}/%{_prefix}/LICENSE.txt
 
@@ -54,7 +54,6 @@ rm -f  %{buildroot}/%{_prefix}/LICENSE.txt
 #py.test-3 -v --ignore=tests/integration ./tests/
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.md
 
 %changelog

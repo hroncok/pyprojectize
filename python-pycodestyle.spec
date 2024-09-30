@@ -88,7 +88,7 @@ ln -s ./pycodestyle-%{python2_version} %{buildroot}%{_bindir}/pycodestyle-2
 %endif
 
 %pyproject_install
-%pyproject_save_files %{module_name}
+%pyproject_save_files -l %{module_name}
 mv %{buildroot}%{_bindir}/pycodestyle %{buildroot}%{_bindir}/pycodestyle-%{python3_version}
 ln -s ./pycodestyle-%{python3_version} %{buildroot}%{_bindir}/pycodestyle-3
 ln -s ./pycodestyle-3 %{buildroot}%{_bindir}/pycodestyle
@@ -117,7 +117,6 @@ install -D docs/_build/man/%{module_name}.1 %{buildroot}%{_mandir}/man1/%{module
 
 %files -n python%{python3_pkgversion}-pycodestyle -f %{pyproject_files}
 %doc README.rst CHANGES.txt
-%license LICENSE
 %{_mandir}/man1/%{module_name}.1.gz
 %{_bindir}/pycodestyle
 %{_bindir}/pycodestyle-3

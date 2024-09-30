@@ -45,7 +45,7 @@ This package provides documentation for Diceware.
 
 %install
 %pyproject_install
-%pyproject_save_files '%{name}*'
+%pyproject_save_files -l '%{name}*'
 mkdir -p %{buildroot}%{_mandir}/man1
 rst2man docs/manpage.rst %{buildroot}%{_mandir}/man1/diceware.1
 
@@ -67,7 +67,6 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version}
 
 %files -f %{pyproject_files}
 %doc README.rst COPYRIGHT
-%license LICENSE
 %{_bindir}/%{name}
 %{_mandir}/man1/diceware.1*
 

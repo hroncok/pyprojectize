@@ -40,13 +40,12 @@ sed -i 's/0.0.0/%{pypi_version}/g' setup.py
 
 %install
 %pyproject_install
-%pyproject_save_files uri_template
+%pyproject_save_files -l uri_template
 
 %check
 %{python3} test.py
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 %changelog

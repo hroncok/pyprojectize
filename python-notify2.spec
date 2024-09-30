@@ -59,10 +59,10 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 %files -n python%{python3_pkgversion}-%{pypi_name} -f %{pyproject_files}
-%license docs/license.rst LICENSE
+%license docs/license.rst
 
 %files -n python-%{pypi_name}-doc
 %doc html

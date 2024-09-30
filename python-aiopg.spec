@@ -48,7 +48,7 @@ sed -i -e 's/"psycopg2-binary>=2.8.4"/"psycopg2"/g' setup.py
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 %if %{with docker}
 %check
@@ -56,7 +56,6 @@ sed -i -e 's/"psycopg2-binary>=2.8.4"/"psycopg2"/g' setup.py
 %endif
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

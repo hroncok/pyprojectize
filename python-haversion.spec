@@ -43,14 +43,13 @@ sed -i -e 's/main/%{version}/g' setup.py
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 %check
 %pytest -v tests -k "not test_stable_version and not test_etag" 
 
 %files -n python3-%{pkg_name} -f %{pyproject_files}
 %doc README.md
-%license LICENSE
 
 %changelog
 %autochangelog

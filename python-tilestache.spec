@@ -94,7 +94,7 @@ sed -i '1{s@^#!/usr/bin/env python@#!%{__python3}@}' examples/geotiff/server.py
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 install -d %{buildroot}%{_mandir}/man1
 install -p -m0644 man/tilestache-clean.1 %{buildroot}%{_mandir}/man1/
@@ -120,7 +120,6 @@ NO_DATABASE=1 OFFLINE_TESTS=1 %{__python3} -m nose \
 %{_datadir}/%{srcname}
 
 %files -n python%{python3_pkgversion}-%{pkgname} -f %{pyproject_files}
-%license LICENSE
 %doc API.html CHANGELOG README.md
 %{_bindir}/tilestache-clean.py
 %{_bindir}/tilestache-compose.py

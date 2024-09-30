@@ -44,7 +44,7 @@ find . -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python3}|'
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 # Directories used in windows build
 rm -rf $RPM_BUILD_ROOT/%{python3_sitelib}/%{srcname}/lib
@@ -58,7 +58,6 @@ rm -rf $RPM_BUILD_ROOT/%{python3_sitelib}/%{srcname}/share
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE.txt
 
 
 %changelog

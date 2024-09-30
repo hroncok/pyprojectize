@@ -67,12 +67,11 @@ rm -rf %{pypi_name}.egg-info
 %py3_other_install
 %endif
 %pyproject_install
-%pyproject_save_files 'cov_core*'
+%pyproject_save_files -l 'cov_core*'
 
 
 # Python3
 %files -n python%{python3_pkgversion}-%{pypi_name} -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.rst
 
 %if 0%{?with_python3_other}

@@ -35,10 +35,9 @@ python objects.
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.09-16

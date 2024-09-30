@@ -34,7 +34,7 @@ rawkit is a ctypes-based set of LibRaw bindings for Python
 
 %install
 %pyproject_install
-%pyproject_save_files libraw rawkit
+%pyproject_save_files -l libraw rawkit
 
 # One test is currently failing
 #%check
@@ -42,7 +42,6 @@ rawkit is a ctypes-based set of LibRaw bindings for Python
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.6.0-20

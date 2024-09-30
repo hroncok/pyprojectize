@@ -78,7 +78,7 @@ Python 3 version.
 %endif
 %if %{with python3}
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 %endif
 
 # Tests are not ran (have to patch code and use nose/pytest)
@@ -95,7 +95,6 @@ Python 3 version.
 %if %{with python3}
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE
 %endif
 
 %{_bindir}/cvss_calculator

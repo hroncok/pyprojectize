@@ -39,13 +39,12 @@ rm -rf src/%{pname}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files %{pname}
+%pyproject_save_files -l %{pname}
 
 %check
 test/runtests.sh %{__python3}
 
 %files -n python3-%{pname} -f %{pyproject_files}
-%license LICENSE.txt
 %doc CHANGELOG.rst README.rst
 %{_bindir}/%{pname}
 

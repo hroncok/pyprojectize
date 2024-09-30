@@ -205,7 +205,6 @@ It contains typed python code that is auto-generated from BlueChi's
 API description and manually written code to simplify recurring tasks.
 
 %files -n python3-bluechi -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 %endif
@@ -235,7 +234,7 @@ popd
 %if %{with_python}
 pushd src/bindings/python
 %pyproject_install
-%pyproject_save_files bluechi
+%pyproject_save_files -l bluechi
 popd
 %endif
 

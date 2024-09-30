@@ -35,13 +35,12 @@ mv wad/etc/README.md wad/etc/README-wappalyzer.md
 
 %install
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 
 %check
 %pytest -v %{name}/tests
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc README.md wad/etc/README-wappalyzer.md
 %{_bindir}/wad
 

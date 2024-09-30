@@ -44,7 +44,7 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 %check
 %pytest -v src/restview/tests.py -k "not restview.tests.doctest_RestViewer_rest_to_html"
@@ -53,7 +53,6 @@ rm -rf %{pypi_name}.egg-info
 %{_bindir}/%{pypi_name}
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

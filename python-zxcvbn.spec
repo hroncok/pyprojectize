@@ -43,10 +43,9 @@ Summary: Realistic password strength estimator python3 module
 
 %install
 %pyproject_install
-%pyproject_save_files zxcvbn
+%pyproject_save_files -l zxcvbn
 
 %files -n python3-zxcvbn -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.rst
 %{_bindir}/zxcvbn
 

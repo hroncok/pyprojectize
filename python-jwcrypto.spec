@@ -55,7 +55,7 @@ sed -i -e '/^from deprecated/d' -e '/@deprecated/d' %{srcname}/*.py
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 rm -rf %{buildroot}%{_docdir}/%{srcname}
 rm -rf %{buildroot}%{python3_sitelib}/%{srcname}/tests{,-cookbook}.py*
@@ -64,7 +64,6 @@ rm -rf %{buildroot}%{python3_sitelib}/%{srcname}/__pycache__/tests{,-cookbook}.*
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %doc README.md
-%license LICENSE
 
 
 %changelog

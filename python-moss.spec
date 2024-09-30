@@ -83,7 +83,7 @@ rm -vf licenses/BUNCH_LICENSE moss/external/bunch.py
 
 %install
 %pyproject_install
-%pyproject_save_files '%{modname}*'
+%pyproject_save_files -l '%{modname}*'
 
 # Depends on 'freeview' utility
 rm -vf %{buildroot}%{_bindir}/recon_qc
@@ -94,7 +94,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} -v
 %endif
 
 %files -n python3-%{modname} -f %{pyproject_files}
-%license LICENSE licenses/*
+%license licenses/*
 %doc README.md
 %{_bindir}/check_mni_reg
 %{_bindir}/recon_status

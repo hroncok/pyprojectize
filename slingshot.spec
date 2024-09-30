@@ -38,7 +38,7 @@ rm -f src/slingshot/data/FreeSansBold.ttf
 
 %install
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 
 rm -rf $RPM_BUILD_ROOT/slingshot
 rm -rf $RPM_BUILD_ROOT/home
@@ -66,7 +66,6 @@ ln -s %{_datadir}/fonts/gnu-free/FreeSansBold.ttf $RPM_BUILD_ROOT%{python3_sitel
 %files -f %{pyproject_files}
 %{_bindir}/slingshot
 %doc README
-%license LICENSE
 %{_datadir}/applications/slingshot.desktop
 %{_datadir}/icons/hicolor/64x64/apps/slingshot.png
 %{_datadir}/pixmaps/slingshot.xpm

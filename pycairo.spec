@@ -45,13 +45,12 @@ libraries so that they interoperate with py3cairo.
 
 %install
 %pyproject_install
-%pyproject_save_files cairo
+%pyproject_save_files -l cairo
 
 %check
 %{__python3} setup.py test
 
 %files -n python3-cairo -f %{pyproject_files}
-%license COPYING*
 %doc README.rst
 
 %files -n python3-cairo-devel

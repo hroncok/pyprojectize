@@ -45,10 +45,9 @@ sed -i -e '/setup_requires/,+3d' setup.py
 
 %install
 %pyproject_install
-%pyproject_save_files ns1
+%pyproject_save_files -l ns1
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 %changelog

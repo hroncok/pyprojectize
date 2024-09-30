@@ -66,7 +66,7 @@ Requires:       python%{python3_other_pkgversion}-atpublic
 
 %install
 %pyproject_install
-%pyproject_save_files flufl
+%pyproject_save_files -l flufl
 %if 0%{?with_python3_other}
 %py3_other_install
 %endif
@@ -83,7 +83,6 @@ rm -rf %{buildroot}%{_prefix}/lib/python*/site-packages/flufl/i18n/{*.rst,docs,c
 
 
 %files -n python%{python3_pkgversion}-%{pkgname} -f %{pyproject_files}
-%license LICENSE
 %doc flufl/i18n/*.rst flufl/i18n/docs/*.rst
 %{python3_sitelib}/%{srcname}-%{version}*-py%{python3_version}-nspkg.pth
 

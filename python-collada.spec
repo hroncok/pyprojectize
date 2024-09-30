@@ -62,7 +62,7 @@ as well as in-place editing.
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
  
 %check
@@ -70,7 +70,6 @@ as well as in-place editing.
 
 
 %files -n python%{python3_pkgversion}-collada -f %{pyproject_files}
-%license COPYING
 %doc AUTHORS.md CHANGELOG.rst README.markdown
 
 

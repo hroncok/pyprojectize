@@ -40,7 +40,7 @@ Summary: %{global_desc}. This package includes a commandline interface.
 
 %install
 %pyproject_install
-%pyproject_save_files pyjokes
+%pyproject_save_files -l pyjokes
 
 %check
 %if %{with_tests}
@@ -48,7 +48,6 @@ Summary: %{global_desc}. This package includes a commandline interface.
 %endif
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENCE.txt
 %doc docs/*
 # For noarch packages: sitelib
 %{_bindir}/pyjoke*

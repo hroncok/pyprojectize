@@ -52,7 +52,7 @@ Summary:        %{sum}
 %install
 install -m 644 $RPM_SOURCE_DIR/LICENSE LICENSE 
 %{pyproject_install}
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 %check
 # Regression test for https://bugzilla.redhat.com/2008899
@@ -60,7 +60,6 @@ export PYTHONPATH=%{buildroot}%{python3_sitearch}
 %{python3} -c 'import kerberos; kerberos.channelBindings(application_data=b"")'
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

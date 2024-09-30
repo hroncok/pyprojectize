@@ -46,11 +46,10 @@ Python 3 version.
 
 %install
 %pyproject_install
-%pyproject_save_files '%{modname}*'
+%pyproject_save_files -l '%{modname}*'
 
 
 %files -n python3-%{modname} -f %{pyproject_files}
-%license COPYING
 %doc README.txt
 
 %changelog

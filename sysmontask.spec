@@ -44,7 +44,7 @@ Manager to allow higher control and monitoring.
 
 %install
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 
 sed -i 's|/usr/bin/env python3|%{__python3}|' \
     %{buildroot}%{python3_sitelib}/%{name}/*.py
@@ -61,7 +61,6 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc AUTHORS
 %doc README.md
 %{_bindir}/%{name}*

@@ -48,14 +48,13 @@ Fedora Python Packaging Guidelines.
 
 %install
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 
 %check
 # TestMetadataExtractor requires Python 2 setuptools
 PYTHONPATH="." py.test-3 -vv -m "not webtest" -k "not TestMetadataExtractor"
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 %{_bindir}/pyp2rpm
 

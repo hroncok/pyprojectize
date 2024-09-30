@@ -33,10 +33,9 @@ Summary: %summary
 
 %install
 %pyproject_install
-%pyproject_save_files 'schedutils*'
+%pyproject_save_files -l 'schedutils*'
 
 %files -n python3-schedutils -f %{pyproject_files}
-%license COPYING
 %{_bindir}/pchrt
 %{_bindir}/ptaskset
 %{_mandir}/man1/pchrt.1*

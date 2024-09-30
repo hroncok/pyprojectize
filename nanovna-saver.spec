@@ -42,7 +42,7 @@ sed -i '/^\s*version\s=/ s/attr: NanoVNASaver.About.version/%{version}/' setup.c
 
 %install
 %pyproject_install
-%pyproject_save_files NanoVNASaver
+%pyproject_save_files -l NanoVNASaver
 
 # Drop tests
 rm -rf %{buildroot}%{python3_sitelib}/test
@@ -62,7 +62,6 @@ install -Dpm 0644 icon_48x48.png %{buildroot}%{_datadir}/icons/hicolor/48x48/app
 #%%{python3} setup.py test
 
 %files -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.rst docs/CODE_OF_CONDUCT.md docs/CONTRIBUTING.md AUTHORS.rst
 %{_bindir}/NanoVNASaver
 %{_mandir}/man1/NanoVNASaver.1*

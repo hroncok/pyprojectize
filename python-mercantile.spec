@@ -52,14 +52,13 @@ rm -rf html/.{buildinfo,doctrees}
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 %check
 %{pytest}
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst html
-%license LICENSE.txt
 %{_bindir}/mercantile
 
 %changelog

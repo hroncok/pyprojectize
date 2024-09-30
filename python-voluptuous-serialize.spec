@@ -40,14 +40,13 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files voluptuous_serialize
+%pyproject_save_files -l voluptuous_serialize
 
 %check
 %pytest -v tests
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
-%license LICENSE
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 2.4.0-15

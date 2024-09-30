@@ -52,7 +52,7 @@ export PYTHONPATH=%{buildroot}/%{python3_sitelib}
 export LC_ALL=C.UTF-8
 export LANG=C.UTF-8
 %pyproject_install
-%pyproject_save_files %{distname}
+%pyproject_save_files -l %{distname}
 
 cat >append-to-manual <<EOF
 [see also]
@@ -65,7 +65,6 @@ unset FEDSCM_ADMIN_CONFIG
 
 %files -f %{pyproject_files}
 %doc README.md
-%license LICENSE
 %{_bindir}/fedscm-admin
 %dir %{_sysconfdir}/fedscm-admin
 %{_sysconfdir}/fedscm-admin/config.ini

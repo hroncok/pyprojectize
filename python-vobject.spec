@@ -49,7 +49,7 @@ rm vobject/win32tz.py
 
 %install
 %pyproject_install
-%pyproject_save_files %{modname}
+%pyproject_save_files -l %{modname}
 
 
 %check
@@ -59,7 +59,6 @@ rm vobject/win32tz.py
 %files -n python3-%{modname} -f %{pyproject_files}
 %doc README.md
 # ACKNOWLEDGEMENTS.txt
-%license LICENSE-2.0.txt
 %{_bindir}/change_tz
 %{_bindir}/ics_diff
 

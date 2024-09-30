@@ -42,7 +42,7 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 # https://github.com/EnableSecurity/sipvicious/issues/77
 mkdir -p %{buildroot}/%{_mandir}/man1/
 mv %{buildroot}/usr/man/man1/sv*.* %{buildroot}/%{_mandir}/man1/ 
@@ -58,7 +58,6 @@ mv %{buildroot}/usr/man/man1/sv*.* %{buildroot}/%{_mandir}/man1/
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc Changelog README.md THANKS TODO
-%license LICENSE
 
 %changelog
 * Thu Jul 25 2024 Miroslav Suchý <msuchy@redhat.com> - 0.3.3-13

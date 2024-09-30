@@ -83,7 +83,7 @@ BuildRequires:  python%{python3_pkgversion}-pytest >= 2.4
 %install
 %{?with_python2:%py2_install}
 %{?with_python3:%pyproject_install}
-%pyproject_save_files %{libname}
+%pyproject_save_files -l %{libname}
 
 
 %if %{with tests}
@@ -104,7 +104,6 @@ BuildRequires:  python%{python3_pkgversion}-pytest >= 2.4
 
 %if %{with python3}
 %files -n python%{python3_pkgversion}-%{pkgname} -f %{pyproject_files}
-%license LICENSE
 %doc README
 %endif
 

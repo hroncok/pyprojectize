@@ -131,7 +131,7 @@ PYTHONPATH="${PWD}/src" %make_build -C docs latex \
 
 %install
 %pyproject_install
-%pyproject_save_files pyperclip
+%pyproject_save_files -l pyperclip
 
 %check
 %global __pytest /usr/bin/xvfb-run -a %{python3} -m pytest
@@ -144,7 +144,6 @@ k="${k-}${k+ and }not TestXSel"
 %pytest -k "${k-}" -v
 
 %files -n python3-pyperclip -f %{pyproject_files}
-%license LICENSE.txt
 %doc AUTHORS.txt
 %doc CHANGES.txt
 %doc README.md

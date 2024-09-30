@@ -43,7 +43,7 @@ An extension for colcon-core to edit a file within a package.
 
 %install
 %pyproject_install
-%pyproject_save_files colcon_ed
+%pyproject_save_files -l colcon_ed
 
 
 %check
@@ -54,7 +54,6 @@ An extension for colcon-core to edit a file within a package.
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

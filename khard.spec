@@ -36,7 +36,7 @@ removes carddav address book entries at your local machine.
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 mkdir -p %{buildroot}%{_datadir}/khard/examples/
 mkdir -p %{buildroot}%{_datadir}/khard/examples/davcontroller/
 install -p -m 0644 misc/davcontroller/davcontroller.py %{buildroot}%{_datadir}/khard/examples/davcontroller/davcontroller.py
@@ -50,7 +50,6 @@ install -p -m 0644 misc/zsh/_khard %{buildroot}%{_datadir}/zsh/site-functions/_k
 
 %files -f %{pyproject_files}
 %doc CHANGES README.md todo.txt
-%license LICENSE
 %{_bindir}/khard
 %{_datadir}/khard/
 %{_datadir}/zsh/site-functions/

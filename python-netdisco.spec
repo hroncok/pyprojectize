@@ -58,14 +58,13 @@ Current methods of scanning:
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 %check
 %{pytest} -v tests --ignore "tests/test_xboxone.py"
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md
-%license LICENSE.md
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 3.0.0-10

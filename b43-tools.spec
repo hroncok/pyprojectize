@@ -65,12 +65,11 @@ install -p -m 0755 disassembler/brcm80211-ivaldump %{buildroot}%{_bindir}
 install -p -m 0755 ssb_sprom/ssb-sprom %{buildroot}%{_bindir}
 cd debug
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 
 %files -f %{pyproject_files}
 %doc README.*
-%license COPYING.*
 %{_bindir}/b43-asm
 %{_bindir}/b43-asm.bin
 %{_bindir}/b43-beautifier

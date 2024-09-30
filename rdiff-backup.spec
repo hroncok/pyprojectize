@@ -41,7 +41,7 @@ differences from the previous backup will be transmitted.
 
 %install
 %pyproject_install
-%pyproject_save_files rdiff_backup rdiffbackup
+%pyproject_save_files -l rdiff_backup rdiffbackup
 
 # Remove doc files so we package them with rpmbuild
 rm -rf $RPM_BUILD_ROOT/usr/share/doc/*
@@ -56,7 +56,6 @@ rm -rf $RPM_BUILD_ROOT/usr/share/doc/*
 %doc CHANGELOG.adoc README.adoc
 %doc docs/credits.adoc docs/DEVELOP.adoc docs/examples.adoc
 %doc docs/FAQ.adoc docs/migration.adoc
-%license COPYING
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.2.6-7

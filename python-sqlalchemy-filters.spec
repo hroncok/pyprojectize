@@ -40,13 +40,12 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files sqlalchemy_filters
+%pyproject_save_files -l sqlalchemy_filters
 
 %check
 # Tests are not included in the tarball
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

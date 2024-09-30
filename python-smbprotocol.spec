@@ -42,7 +42,7 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name} smbclient
+%pyproject_save_files -l %{pypi_name} smbclient
 
 %check
 %pytest -v tests \
@@ -52,7 +52,6 @@ rm -rf %{pypi_name}.egg-info
   and not dfs"
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 %changelog

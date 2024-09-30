@@ -162,7 +162,7 @@ PYTHONPATH=$BUILD_ROOT/usr/lib/python%{python3_version}/site-packages/ python3 -
 #===== Install
 %install
 %pyproject_install
-%pyproject_save_files %{gitname}
+%pyproject_save_files -l %{gitname}
 
 #now in license directory
 rm -f %{buildroot}%{_defaultdocdir}/%{name}/LICENSE
@@ -171,7 +171,6 @@ rm -f %{buildroot}%{_defaultdocdir}/%{name}/LICENSE
 #===== files for python3 package
 %if %{with python3}
 %files -n       python%{python3_pkgversion}-%{gitname} -f %{pyproject_files}
-%license        LICENSE
 %doc            ChangeLog.md README.md
 %exclude %{_defaultdocdir}/%{gitname}
 # %%exclude %%{_defaultdocdir}/%%{gitname}/testcases/*

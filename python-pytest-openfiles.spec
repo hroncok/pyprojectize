@@ -54,13 +54,12 @@ no longer needed.
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 # Remove source tests directory installed by mistake
 rm -fr %{buildroot}%{python3_sitelib}/tests
 
 # Note that there is no %%files section for the unversioned python module if we are building for several python runtimes
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE.rst
 %doc CHANGES.rst README.rst
 
 %changelog

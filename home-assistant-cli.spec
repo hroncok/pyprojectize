@@ -49,7 +49,7 @@ sed -i "/>=0.3.2,<0.4/d" setup.py
 
 %install
 %pyproject_install
-%pyproject_save_files homeassistant_cli
+%pyproject_save_files -l homeassistant_cli
 
 %check
 PYTHONPATH=%{buildroot}/%{python3_sitelib}/ pytest-%{python3_version} -v tests \
@@ -57,7 +57,6 @@ PYTHONPATH=%{buildroot}/%{python3_sitelib}/ pytest-%{python3_version} -v tests \
 
 %files -f %{pyproject_files}
 %doc README.rst
-%license LICENSE.md
 %{_bindir}/hass-cli
 
 %changelog

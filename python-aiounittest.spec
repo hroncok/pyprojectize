@@ -51,14 +51,13 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 # %%check
 # No support for pytest 8, https://github.com/kwarunek/aiounittest/issues/25
 # %%pytest -v
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

@@ -83,7 +83,7 @@ popd
 %install
 rm -rf %{buildroot}
 %{pyproject_install}
-%pyproject_save_files pyx
+%pyproject_save_files -l pyx
 
 %{__mkdir} %{buildroot}%{_sysconfdir}
 %{__cp} -a pyx/data/pyxrc %{buildroot}%{_sysconfdir}/pyxrc
@@ -95,7 +95,6 @@ done
 
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc AUTHORS CHANGES PKG-INFO README.md
 %config(noreplace) %{_sysconfdir}/pyxrc
 

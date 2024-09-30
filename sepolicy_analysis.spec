@@ -35,7 +35,7 @@ providing policy visualization.
 %install
 #mkdir -p % {buildroot}% {_mandir}/man1
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 %check
 %if %{?_with_check:1}%{!?_with_check:0}
@@ -43,7 +43,6 @@ providing policy visualization.
 %endif
 
 %files -f %{pyproject_files}
-%license COPYING
 %{_bindir}/seextract_cil
 %{_bindir}/sebuild_graph
 %{_bindir}/seexport_graph

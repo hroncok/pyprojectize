@@ -80,7 +80,7 @@ export PYCAIRO=true
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 
 %check
@@ -94,7 +94,6 @@ PGHOST="$PWD" LANG="C.UTF-8" %pytest test/python_tests
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md AUTHORS.md CHANGELOG.md CONTRIBUTING.md
-%license COPYING
 
 
 %changelog

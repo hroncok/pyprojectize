@@ -46,7 +46,7 @@ Requires:       python3-jdcal
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 
 %check
@@ -56,7 +56,6 @@ py.test-%{python3_version}
 
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENCE.rst
 %doc README.rst
 
 %changelog

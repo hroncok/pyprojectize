@@ -39,7 +39,7 @@ Casttube is a python library to interact with the Youtube Chromecast api.
 
 %install
 %pyproject_install
-%pyproject_save_files casttube
+%pyproject_save_files -l casttube
 rm -f %{buildroot}/usr/LICENSE
 
 %check
@@ -48,7 +48,6 @@ rm -f %{buildroot}/usr/LICENSE
 %endif
 
 %files -n python3-casttube -f %{pyproject_files}
-%license LICENSE
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.2.1-14

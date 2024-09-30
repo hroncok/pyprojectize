@@ -46,7 +46,7 @@ Provides:       deprecated()
 
 %install
 %pyproject_install
-%pyproject_save_files %{upname}
+%pyproject_save_files -l %{upname}
 
 %py3_shebang_fix %{buildroot}%{python3_sitelib}
 %{_fixperms} %{buildroot}/*
@@ -58,7 +58,6 @@ Provides:       deprecated()
 
 %files -n python3-%{upname}08 -f %{pyproject_files}
 %doc README.rst
-%license LICENSE
 
 
 %changelog

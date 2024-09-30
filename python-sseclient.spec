@@ -43,7 +43,7 @@ is then an iterator over messages coming from the server.
 
 %install
 %pyproject_install
-%pyproject_save_files sseclient
+%pyproject_save_files -l sseclient
 
 %if %{with network}
 %check
@@ -51,7 +51,6 @@ pytest-%{python3_version} -v
 %endif
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

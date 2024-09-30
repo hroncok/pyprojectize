@@ -62,7 +62,7 @@ sed -i 1s:python\$:%{__python3}: src/%{srcname}-cli
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 # W: no-manual-page-for-binary
 mkdir -p %{buildroot}%{_mandir}/man1
 help2man src/%{srcname}-cli >%{buildroot}%{_mandir}/man1/%{srcname}-cli.1
@@ -73,7 +73,6 @@ src/%{srcname}-cli -v
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 %{_bindir}/%{srcname}-cli
 %{_mandir}/man1/%{srcname}-cli.1*

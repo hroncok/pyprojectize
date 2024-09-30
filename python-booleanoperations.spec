@@ -57,7 +57,7 @@ export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 # since we are not importing a .git repository in the tarball
 export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 %check
 %if 0%{?with_tests}
@@ -70,7 +70,6 @@ export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 %endif
 
 %files -n python3-%{pkgname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

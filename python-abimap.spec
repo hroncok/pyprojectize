@@ -92,7 +92,7 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
-%pyproject_save_files abimap
+%pyproject_save_files -l abimap
 # Install man page
 mkdir -p %{buildroot}%{_mandir}/man1
 install ${PWD}/man/abimap.1 %{buildroot}%{_mandir}/man1/abimap.1
@@ -105,7 +105,6 @@ PYTHONPATH=%{buildroot}%{python3_sitelib}:$PWD/tests \
     py.test-%{python3_version} -vv tests
 
 %files -n python%{python3_pkgversion}-%{module_name} -f %{pyproject_files}
-%license LICENSE
 %doc AUTHORS.rst CHANGELOG.rst README.rst
 %{_bindir}/abimap
 %{_mandir}/man1/abimap.1*

@@ -36,13 +36,12 @@ source to the .pbf or .osm output.
 
 %install
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 
 
 %files -f %{pyproject_files}
 %{_bindir}/%{name}
 %doc README.md
-%license LICENSE
 
 
 %changelog

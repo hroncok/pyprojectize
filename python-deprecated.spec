@@ -34,10 +34,9 @@ rm -rf %{pkgname}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files %{pkgname}
+%pyproject_save_files -l %{pkgname}
 
 %files -n python3-%{pkgname} -f %{pyproject_files}
-%license LICENSE.rst
 %doc README.md
 
 

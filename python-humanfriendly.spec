@@ -109,7 +109,7 @@ rm docs/build/html/.buildinfo
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 
 %check
@@ -125,7 +125,6 @@ PYTHONUNBUFFERED=1 py.test-%{python3_version} %{srcname}/tests.py
 %doc docs/build/html
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE.txt
 %doc CHANGELOG.rst README.rst
 %{_bindir}/%{srcname}
 

@@ -43,7 +43,7 @@ applications via a simple object model and in a human-friendly fashion.
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 # Strip out #!/usr/bin/env python
 sed -i -e '1{\@^#!/usr/bin/env python@d}' %{buildroot}%{python3_sitelib}/%{pypi_name}/*.py
@@ -55,7 +55,6 @@ sed -i -e '1{\@^#!/usr/bin/env python@d}' %{buildroot}%{python3_sitelib}/%{pypi_
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md CONTRIBUTORS.md
-%license LICENSE
 
 
 %changelog

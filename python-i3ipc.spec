@@ -58,7 +58,7 @@ sed -i '/^#!/d' i3ipc/connection.py
 
 %install
 %pyproject_install
-%pyproject_save_files i3ipc
+%pyproject_save_files -l i3ipc
 
 %if %{with tests}
 %check
@@ -66,7 +66,6 @@ sed -i '/^#!/d' i3ipc/connection.py
 %endif
 
 %files -n python3-i3ipc -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

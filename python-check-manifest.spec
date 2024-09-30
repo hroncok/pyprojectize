@@ -54,13 +54,12 @@ sed -i -e '/^#!\//, 1d' check_manifest.py
 
 %install
 %pyproject_install
-%pyproject_save_files check_manifest
+%pyproject_save_files -l check_manifest
 
 %check
 %pytest -v tests.py -k "not vcs and not git and not sdist"
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE.rst
 %doc README.rst CHANGES.rst
 
 %files -n %{pypi_name}

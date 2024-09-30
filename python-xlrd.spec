@@ -70,7 +70,7 @@ dates.  Unicode-aware.
 %py3_other_install
 %endif
 %pyproject_install
-%pyproject_save_files xlrd
+%pyproject_save_files -l xlrd
 
 # remove .py extension from binary
 mv $RPM_BUILD_ROOT%{_bindir}/runxlrd.py $RPM_BUILD_ROOT%{_bindir}/runxlrd
@@ -82,7 +82,6 @@ rm -rf $RPM_BUILD_ROOT%{_bindir}/runxlrd.py* \
 %tox
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst CHANGELOG.rst
 %attr(755,root,root) %{_bindir}/*
 

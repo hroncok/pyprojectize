@@ -39,10 +39,9 @@ rm -rf *.egg-info/
 
 %install
 %pyproject_install
-%pyproject_save_files shamir_mnemonic
+%pyproject_save_files -l shamir_mnemonic
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 %doc CHANGELOG.rst
 %{_bindir}/shamir

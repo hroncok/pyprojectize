@@ -72,7 +72,7 @@ bzip2 -9 %{modulename}.pp
 
 %install
 %pyproject_install
-%pyproject_save_files dnsconfd
+%pyproject_save_files -l dnsconfd
 mkdir   -m 0755 -p %{buildroot}%{_datadir}/dbus-1/system.d/
 mkdir   -m 0755 -p %{buildroot}%{_sysconfdir}/unbound/conf.d/
 mkdir   -m 0755 -p %{buildroot}%{_unitdir}
@@ -145,7 +145,6 @@ fi
 %systemd_postun_with_restart %{name}.service
 
 %files -f %{pyproject_files}
-%license LICENSE
 %{_sbindir}/dnsconfd
 %{_datadir}/dbus-1/system.d/com.redhat.dnsconfd.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/dnsconfd

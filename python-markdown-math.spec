@@ -40,14 +40,13 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files mdx_math
+%pyproject_save_files -l mdx_math
 
 %check
 %{__python3} test.py
 
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 %changelog

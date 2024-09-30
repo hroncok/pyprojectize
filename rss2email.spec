@@ -55,7 +55,7 @@ cp -p %{SOURCE3} .
 
 %install
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 
 install -D -m 644 -p completion/r2e.zsh %{buildroot}%{_datadir}/zsh/functions/Completion/Unix/_r2e
 
@@ -70,7 +70,6 @@ PATH="${PATH}:%{buildroot}%{_bindir}" PYTHONPATH=%{buildroot}%{python3_sitelib} 
 
 
 %files -f %{pyproject_files}
-%license COPYING
 %doc AUTHORS CHANGELOG README.rst README.migrate
 %{_bindir}/r2e
 %{_bindir}/r2e-migrate

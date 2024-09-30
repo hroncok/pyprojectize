@@ -57,7 +57,7 @@ rm -rf %{srcname_}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname_}
+%pyproject_save_files -l %{srcname_}
 
 %{__python3} %{buildroot}%{_bindir}/install_c_kernel --prefix %{buildroot}%{_prefix}
 rm %{buildroot}%{_bindir}/install_c_kernel
@@ -65,7 +65,6 @@ rm %{buildroot}%{_bindir}/install_c_kernel
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md
-%license LICENSE.txt
 %{_datadir}/jupyter/kernels/c
 
 

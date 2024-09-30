@@ -77,7 +77,7 @@ export USE_NCCONFIG=1
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
  
 %check
@@ -100,7 +100,6 @@ PYTHONPATH=$(echo ../build/lib.linux-*) %{__python3} run_all.py
 
 
 %files -n python%{python3_pkgversion}-netcdf4 -f %{pyproject_files}
-%license LICENSE
 %doc Changelog docs examples README.md
 
 

@@ -43,7 +43,7 @@ An extension for colcon-core to select a subset of packages for processing.
 
 %install
 %pyproject_install
-%pyproject_save_files colcon_package_selection
+%pyproject_save_files -l colcon_package_selection
 
 
 %check
@@ -54,7 +54,6 @@ An extension for colcon-core to select a subset of packages for processing.
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

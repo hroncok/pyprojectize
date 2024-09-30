@@ -63,14 +63,13 @@ rm -rf html/.{doctrees,buildinfo}
 # Must do the subpackages' install first because the scripts in /usr/bin are
 # overwritten with every setup.py install.
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 
 %check
 %{__python3} setup.py test
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc docs/templates/readme.txt README.rst
 
 %if 0%{?with_docs} > 0

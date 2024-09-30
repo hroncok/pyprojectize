@@ -73,7 +73,7 @@ Requires(postun): systemd
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 install -d        %{buildroot}/etc/logrotate.d
 install -d        %{buildroot}/%{_sysconfdir}/%{pkgname}
@@ -112,7 +112,6 @@ exit 0
 %doc README.rst
 %doc README.fedora
 %doc onionbalance.torrc.example
-%license COPYING
 %if 0%{?with_docs}
 %doc docs/_build/html
 %doc %attr(0644,root,root) %{_mandir}/man1/%{pkgname}*

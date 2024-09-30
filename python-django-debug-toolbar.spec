@@ -51,7 +51,7 @@ rm -vr *.egg-info/
 
 %install
 %pyproject_install
-%pyproject_save_files debug_toolbar
+%pyproject_save_files -l debug_toolbar
 
 %check
 # test needs config
@@ -59,7 +59,6 @@ rm -vr *.egg-info/
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 3.2.1-14

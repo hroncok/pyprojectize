@@ -53,12 +53,11 @@ rm -rf %{modname}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files %{modname}
+%pyproject_save_files -l %{modname}
 
 
 %files -n python3-pyramid-fas-openid -f %{pyproject_files}
 %doc README.txt
-%license LICENSE.txt
 
 
 %changelog

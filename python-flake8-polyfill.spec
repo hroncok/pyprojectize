@@ -49,7 +49,7 @@ Flake8 plugins that intend to support Flake8 2.x and 3.x simultaneously.
 
 %install
 %pyproject_install
-%pyproject_save_files flake8_polyfill
+%pyproject_save_files -l flake8_polyfill
 
 
 %check
@@ -60,7 +60,6 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} \
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc AUTHORS.rst CHANGELOG.rst README.rst
 
 

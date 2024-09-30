@@ -36,12 +36,11 @@ An MPD (Music Player Daemon) client library written in pure Python.
 
 %install
 %pyproject_install
-%pyproject_save_files '*mpd*'
+%pyproject_save_files -l '*mpd*'
 
 
 %files -n python3-mpd -f %{pyproject_files}
 %doc CHANGES.txt README.txt  TODO.txt doc/commands.txt
-%license LICENSE.txt
 
 
 %changelog

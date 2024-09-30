@@ -36,11 +36,10 @@ sed -i -e '/^#!\//, 1d' masscan/*.py
 
 %install
 %pyproject_install
-%pyproject_save_files masscan
+%pyproject_save_files -l masscan
 
 %files -n python3-masscan -f %{pyproject_files}
 %doc CHANGELOG.md README.rst
-%license LICENSE
 
 %changelog
 * Thu Jul 25 2024 Miroslav Suchý <msuchy@redhat.com> - 0.1.6-16

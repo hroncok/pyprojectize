@@ -45,14 +45,13 @@ system for feature requests.
 
 %install
 %pyproject_install
-%pyproject_save_files gammu
+%pyproject_save_files -l gammu
 
 %check
 %{__python3} setup.py test || :
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %doc AUTHORS NEWS.rst README.rst examples/*
-%license COPYING
 
 %changelog
 * Fri Jul 26 2024 Miroslav Suchý <msuchy@redhat.com> - 3.2.4-12

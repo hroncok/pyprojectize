@@ -38,10 +38,9 @@ rm -vrf *.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files corsheaders
+%pyproject_save_files -l corsheaders
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst HISTORY.rst
 
 %changelog

@@ -113,7 +113,7 @@ Summary:        Python2 binding for the YARA pattern matching tool
 %endif
 
 %pyproject_install
-%pyproject_save_files 'yara*'
+%pyproject_save_files -l 'yara*'
 
 
 #====================================================================
@@ -138,7 +138,6 @@ pytest-3 -k "$EXCLUDE" tests.py -v
 
 #====================================================================
 %files -n python%{python3_pkgversion}-yara -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %if 0%{?with_python2}  > 0

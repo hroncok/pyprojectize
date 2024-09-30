@@ -30,13 +30,12 @@ echo "You may need the irclog.css file. It is available at
 
 %install
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 mkdir -p %{buildroot}%{_datadir}/%{name}
 install -Dpm 0644 src/%{name}/irclog.css %{buildroot}%{_datadir}/%{name}
 
 %files -f %{pyproject_files}
 %doc CHANGES.rst HACKING.rst README.rst README.fedora
-%license COPYING
 %{_bindir}/%{name}
 %{_bindir}/irclogsearch
 %{_bindir}/irclogserver

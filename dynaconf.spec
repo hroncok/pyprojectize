@@ -36,10 +36,9 @@ BuildRequires:  python3-devel
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 # Trailing slash is to ensure setuptools behavior instead of distutils since
 # the project can use either and .egg-info could end up being a file or a

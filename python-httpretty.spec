@@ -85,7 +85,7 @@ sed -i 's/^rednose = 1$//' setup.cfg
 
 %install
 %pyproject_install
-%pyproject_save_files httpretty
+%pyproject_save_files -l httpretty
 
 %check
 %if %{run_tests}
@@ -94,7 +94,6 @@ sed -i 's/^rednose = 1$//' setup.cfg
 
 %files -n python3-httpretty -f %{pyproject_files}
 %doc README.rst
-%license COPYING
 
 
 %changelog

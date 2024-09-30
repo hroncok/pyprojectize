@@ -42,13 +42,12 @@ rm -r src/%{module_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files %{module_name}
+%pyproject_save_files -l %{module_name}
 
 %postun
 %systemd_postun_with_restart collectd.service
 
 %files -n python3-%{module_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst NEWS.rst
 %{_datadir}/collectd/puppet_types.db
 

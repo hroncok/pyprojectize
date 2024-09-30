@@ -207,7 +207,7 @@ export SETUPTOOLS_SCM_PRETEND_VERSION='%{version}'
 %cmake_install
 # Install pure python bits
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 
 # Move module to sitearch so that the binding can be correctly imported.
 if [ '%{python3_sitelib}' != '%{python3_sitearch}' ]
@@ -281,7 +281,6 @@ k="${k} and not test_dendritic_spine_round_trip_empty_postsynaptic_density"
 
 
 %files -n python3-%{name} -f %{pyproject_files}
-%license LICENSE.txt
 
 
 %files doc

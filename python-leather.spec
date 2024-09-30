@@ -77,7 +77,7 @@ popd
 
 %install
 %pyproject_install
-%pyproject_save_files %{dir_name}
+%pyproject_save_files -l %{dir_name}
 
 
 %check
@@ -86,7 +86,6 @@ nosetests-%{python3_version} tests -v
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
-%license COPYING
 
 
 %files -n python-%{pypi_name}-doc

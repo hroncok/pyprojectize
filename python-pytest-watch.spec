@@ -57,7 +57,7 @@ cp %{SOURCE1} .
 
 %install
 %pyproject_install
-%pyproject_save_files %{file_name}
+%pyproject_save_files -l %{file_name}
 pushd %{buildroot}%{_bindir}
 mv ptw ptw-%{python3_version}
 ln -s ptw-%{python3_version} ptw-3
@@ -68,7 +68,6 @@ popd
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md CHANGES.md AUTHORS.md
-%license LICENSE
 %{_bindir}/ptw-3*
 %{_bindir}/pytest-watch-3*
 

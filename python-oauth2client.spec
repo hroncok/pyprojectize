@@ -75,7 +75,7 @@ sed -r -i 's/\bmock.*//' tox.ini
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 %check
 #tox -v --sitepackages -e py%%{python3_version_nodots}
@@ -86,7 +86,6 @@ rm -r $(find %{_buildrootdir} -type d -name 'tests') || /bin/true
 
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE 
 %doc CHANGELOG.md CONTRIBUTING.md README.md 
 
 %changelog

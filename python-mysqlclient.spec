@@ -55,7 +55,7 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
-%pyproject_save_files MySQLdb
+%pyproject_save_files -l MySQLdb
 
 %if %{with mysqldb}
 %check
@@ -64,7 +64,6 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v tests
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md HISTORY.rst
-%license LICENSE
 
 %files -n python-%{pypi_name}-doc
 %doc html

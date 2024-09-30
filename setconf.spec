@@ -37,10 +37,9 @@ cd testcases/ && ./py3_test.sh
 
 %install
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 
 %files -f %{pyproject_files}
-%license COPYING
 %doc README.md
 %{_mandir}/man1/%{name}.1*
 %{_bindir}/%{name}

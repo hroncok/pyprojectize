@@ -94,7 +94,7 @@ version="%version" %py2_build
 %install
 %if %{with python3}
 version=%version %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 %endif
 
 %if %{with python2}
@@ -108,7 +108,6 @@ version=%version %py2_install
 
 %if %{with python3}
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %endif
 
 

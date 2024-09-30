@@ -125,7 +125,7 @@ make -C docs SPHINXBUILD=/usr/bin/sphinx-build-3 html
 
 %install
 %pyproject_install
-%pyproject_save_files 'x2go*'
+%pyproject_save_files -l 'x2go*'
 %if 0%{with python2}
 %py2_install
 %endif
@@ -139,7 +139,6 @@ make -C docs SPHINXBUILD=/usr/bin/sphinx-build-3 html
 %endif
 
 %files -n python%{python3_pkgversion}-x2go -f %{pyproject_files}
-%license COPYING
 %doc ChangeLog README* TODO
 
 %files doc

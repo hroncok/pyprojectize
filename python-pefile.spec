@@ -57,7 +57,7 @@ sed -i -e '/^#!\//, 1d' pefile.py
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 %check
 %py3_check_import pefile peutils ordlookup
@@ -69,7 +69,6 @@ sed -i -e '/^#!\//, 1d' pefile.py
 # %%{__python3} setup.py test
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 # TODO ... README missing in the 2024.8.26 release, should check with next version
 #%%doc README*
 

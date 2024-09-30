@@ -38,7 +38,7 @@ rm test/external_tools/readelf
 
 %install
 %{pyproject_install}
-%pyproject_save_files elftools
+%pyproject_save_files -l elftools
 pushd %{buildroot}%{_bindir}
 mv readelf.py pyreadelf-%{python3_version}
 ln -s pyreadelf-%{python3_version} pyreadelf-3
@@ -54,7 +54,6 @@ popd
 %{__python3} test/run_readelf_tests.py || :
 
 %files -n python3-%{name} -f %{pyproject_files}
-%license LICENSE
 %doc CHANGES
 %{_bindir}/pyreadelf
 %{_bindir}/pyreadelf-%{python3_version}

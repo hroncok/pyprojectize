@@ -43,14 +43,13 @@ git tag %{version}
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 %check
 # test_fixture9 and test_sys_modules tests are currently failing with Python 3.12
 %pytest tests/ -v "${TEST_ARGS[@]}"
 
 %files -n python3-asttokens -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

@@ -54,7 +54,7 @@ element.
 
 %install
 %pyproject_install
-%pyproject_save_files untangle
+%pyproject_save_files -l untangle
 
 
 %check
@@ -68,7 +68,6 @@ export LANG=en_US.UTF-8
 
 
 %files -n python%{python3_pkgversion}-untangle -f %{pyproject_files}
-%license LICENSE
 %doc README.md AUTHORS CHANGELOG.md
 
 %changelog

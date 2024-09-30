@@ -63,10 +63,9 @@ rm -rf build/html/.{doctrees,buildinfo}
 
 %install
 %{setup_flags} %{pyproject_install}
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %{_bindir}/%{srcname}
 
 %files -n python-%{srcname}-doc

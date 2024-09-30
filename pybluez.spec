@@ -43,11 +43,10 @@ applications.
 # This file shouldn't be executable - it's going into %doc
 chmod a-x examples/bluezchat/bluezchat.py
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 %files -n python3-bluez -f %{pyproject_files}
 %{!?_licensedir:%global license %%doc}
-%license COPYING
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.23-17

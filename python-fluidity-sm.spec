@@ -42,7 +42,7 @@ State machine implementation for Python objects.
 
 %install
 %pyproject_install
-%pyproject_save_files fluidity
+%pyproject_save_files -l fluidity
 
 %if %{with tests}
 %check
@@ -50,7 +50,6 @@ nosetests-3 -i spec --with-specplugin
 %endif
 
 %files -n python3-fluidity-sm -f %{pyproject_files}
-%license LICENSE
 %doc CHANGELOG README.rst
 
 %changelog

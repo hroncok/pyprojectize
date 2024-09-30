@@ -199,7 +199,7 @@ bzip2 -9 %{srcname}.pp
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 mkdir -p %{buildroot}/%{_sharedstatedir}/%{srcname}
 mkdir -p --mode=0700 %{buildroot}/%{_rundir}/%{srcname}
 
@@ -358,7 +358,6 @@ fi
 %{_bindir}/%{srcname}_tenant
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %{_datadir}/%{srcname}/scripts/create_mb_refstate
 %{_bindir}/keylime_attest
 %{_bindir}/keylime_convert_runtime_policy

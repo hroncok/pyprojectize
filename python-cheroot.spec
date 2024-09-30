@@ -98,13 +98,12 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 %check
 LANG=C.utf-8 %{__python3} -m pytest --ignore=build -W ignore::DeprecationWarning -p no:unraisableexception
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE.md
 %doc README.rst
 %{_bindir}/cheroot
 

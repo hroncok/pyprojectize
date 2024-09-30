@@ -43,13 +43,12 @@ Python 3 version.
 
 %install
 %pyproject_install
-%pyproject_save_files %{pkgname}
+%pyproject_save_files -l %{pkgname}
 
 %check
 %{__python3} setup.py test
 
 %files -n python3-openidc-client -f %{pyproject_files}
-%license COPYING
 %doc README.md
 
 %changelog

@@ -31,7 +31,7 @@ administration of Serial Attached SCSI (SAS) fabrics.
 
 %install
 %pyproject_install
-%pyproject_save_files sasutils
+%pyproject_save_files -l sasutils
 install -d %{buildroot}/%{_mandir}/man1
 install -p -m 0644 doc/man/man1/sas_counters.1 %{buildroot}/%{_mandir}/man1/
 install -p -m 0644 doc/man/man1/sas_devices.1 %{buildroot}/%{_mandir}/man1/
@@ -51,7 +51,6 @@ install -p -m 0644 doc/man/man1/ses_report.1 %{buildroot}/%{_mandir}/man1/
 %{_mandir}/man1/sas_discover.1*
 %{_mandir}/man1/ses_report.1*
 %doc README.rst
-%license LICENSE.txt
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 0.5.0-5

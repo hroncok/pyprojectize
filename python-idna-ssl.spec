@@ -43,7 +43,7 @@ BuildRequires:  python3dist(idna) >= 2
 
 %install
 %pyproject_install
-%pyproject_save_files idna_ssl
+%pyproject_save_files -l idna_ssl
 
 %if %{with check}
 %check
@@ -51,7 +51,6 @@ BuildRequires:  python3dist(idna) >= 2
 %endif
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc README.rst example.py
 
 %changelog

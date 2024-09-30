@@ -56,11 +56,10 @@ rm -f {test-,}requirements.txt
 
 %install
 %pyproject_install
-%pyproject_save_files distroinfo
+%pyproject_save_files -l distroinfo
 
 %files -n python3-distroinfo -f %{pyproject_files}
 %doc README.rst AUTHORS
-%license LICENSE
 
 
 %changelog

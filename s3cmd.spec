@@ -65,7 +65,7 @@ export S3CMD_PACKAGING=1
 export S3CMD_PACKAGING=1
 %if %{with python3}
 %pyproject_install
-%pyproject_save_files S3
+%pyproject_save_files -l S3
 %else
 %py2_install
 %endif
@@ -74,7 +74,6 @@ mkdir -p %{buildroot}%{_mandir}/man1
 install -D -p -m 0644 -t %{buildroot}%{_mandir}/man1 %{name}.1
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc NEWS README.md
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*

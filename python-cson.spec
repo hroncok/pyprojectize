@@ -48,7 +48,7 @@ A python parser for the Coffeescript Object Notation (CSON).
 %py2_install
 %endif
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 # Note that there is no %%files section for the unversioned python module
 %if %{py2support}
@@ -60,7 +60,6 @@ A python parser for the Coffeescript Object Notation (CSON).
 %endif
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 %changelog

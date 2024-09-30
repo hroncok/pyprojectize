@@ -54,7 +54,7 @@ games.
 
 %install
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 
 
 %check
@@ -63,7 +63,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %files -f %{pyproject_files}
-%license LICENSE THIRD-PARTY-LICENSES.md
+%license THIRD-PARTY-LICENSES.md
 %doc README.md CHANGELOG.md
 %{_bindir}/%{name}
 %{_datadir}/%{name}/

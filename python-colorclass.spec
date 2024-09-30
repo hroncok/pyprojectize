@@ -43,13 +43,12 @@ rm -rf colorclass.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files 'colorclass*'
+%pyproject_save_files -l 'colorclass*'
 
 %check
 %{__python3} setup.py test
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 %changelog

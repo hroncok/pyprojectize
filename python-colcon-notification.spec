@@ -49,7 +49,7 @@ BUILD_DEBIAN_PACKAGE=1 \
 %install
 BUILD_DEBIAN_PACKAGE=1 \
     %pyproject_install
-%pyproject_save_files colcon_notification
+%pyproject_save_files -l colcon_notification
 
 
 %check
@@ -57,7 +57,6 @@ BUILD_DEBIAN_PACKAGE=1 \
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

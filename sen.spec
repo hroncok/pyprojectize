@@ -59,7 +59,7 @@ sed -i 1d sen/cli.py
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 %check
 %if %{with tests}
@@ -73,7 +73,6 @@ py.test-%{python3_version} -vv tests || :
 %doc README.md
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 
 
 %changelog

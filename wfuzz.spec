@@ -47,10 +47,9 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 %{_bindir}/wfencode
 %{_bindir}/wfpayload

@@ -51,7 +51,7 @@ sed -e "\|#!/usr/bin/env python3|d" -i %{pypi_name}/*.py
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 %check
 # Disable tests that require network access
@@ -61,7 +61,6 @@ sed -e "\|#!/usr/bin/env python3|d" -i %{pypi_name}/*.py
   --deselect tests/test.py::TestUploader::test_send
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.md CHANGELOG.md
 %{_bindir}/codecov
 

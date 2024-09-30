@@ -74,7 +74,7 @@ rm -r html/.buildinfo html/.doctrees
 
 %install
 %pyproject_install
-%pyproject_save_files '%{srcname}*'
+%pyproject_save_files -l '%{srcname}*'
 
 
 %check
@@ -98,7 +98,6 @@ xvfb-run -s '-screen :0 1024x768x16'\
 
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.md ChangeLog todo.txt
 %doc doc/html/
 

@@ -98,12 +98,11 @@ rm doc/_build/html/.buildinfo
 
 %install
 %pyproject_install
-%pyproject_save_files pysb
+%pyproject_save_files -l pysb
 chmod +x %{buildroot}/%{python3_sitelib}/pysb/examples/run_*.py
 chmod +x %{buildroot}/%{python3_sitelib}/pysb/tools/[a-z]*.py
 
 %files -n python3-pysb -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.rst
 %{_bindir}/pysb_export
 

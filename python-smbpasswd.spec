@@ -43,7 +43,7 @@ This is a ported release for python 3.
 
 %install
 %pyproject_install
-%pyproject_save_files smbpasswd
+%pyproject_save_files -l smbpasswd
 
 %check
 # there are no tests, let's do some sanity check ourselves
@@ -56,7 +56,6 @@ assert smbpasswd.nthash("check") == nthash
 assert smbpasswd.hash("check") == (lmhash, nthash)'
 
 %files -n python3-smbpasswd -f %{pyproject_files}
-%license COPYING.txt
 %doc README.txt
 
 %changelog

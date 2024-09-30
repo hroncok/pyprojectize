@@ -58,7 +58,7 @@ cp -a %{SOURCE4} README.fedora
 
 %install
 %pyproject_install
-%pyproject_save_files '[Tt]rac*'
+%pyproject_save_files -l '[Tt]rac*'
 
 install -dm 755 $RPM_BUILD_ROOT%{_var}/www/cgi-bin
 
@@ -77,7 +77,6 @@ mv $RPM_BUILD_ROOT{%{_bindir}/tracd,%{_sbindir}/tracd}
 #PYTHONPATH=$(pwd) PYTHON=/usr/bin/python3 make test
 
 %files -f %{pyproject_files}
-%license COPYING
 %doc AUTHORS ChangeLog INSTALL* README* RELEASE* THANKS UPGRADE* contrib/
 %{_bindir}/trac-admin
 %{_sbindir}/tracd

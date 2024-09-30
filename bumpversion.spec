@@ -52,12 +52,11 @@ commits and tags:
 
 %install
 %pyproject_install
-%pyproject_save_files bumpversion
+%pyproject_save_files -l bumpversion
 
 
 %files -f %{pyproject_files}
 %doc README.md
-%license LICENSE.rst
 %attr(0755,root,root) %{_bindir}/{bumpversion,bump2version}
 
 

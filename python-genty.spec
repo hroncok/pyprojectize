@@ -45,7 +45,7 @@ sed -i 's/from mock/from unittest.mock/' test/test_genty.py
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 
 %check
@@ -53,7 +53,6 @@ sed -i 's/from mock/from unittest.mock/' test/test_genty.py
 
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

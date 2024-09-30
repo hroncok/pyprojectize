@@ -32,11 +32,10 @@ An admin tool for the Academic website builder.
 
 %install
 %pyproject_install
-%pyproject_save_files academic
+%pyproject_save_files -l academic
 
 %files -n academic-admin -f %{pyproject_files}
 %doc README.md
-%license LICENSE.md
 %{_bindir}/*
 
 %changelog

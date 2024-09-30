@@ -43,7 +43,7 @@ An extension for colcon-core to provide Z shell scripts.
 
 %install
 %pyproject_install
-%pyproject_save_files colcon_zsh
+%pyproject_save_files -l colcon_zsh
 
 
 %check
@@ -54,7 +54,6 @@ An extension for colcon-core to provide Z shell scripts.
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

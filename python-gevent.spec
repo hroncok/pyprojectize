@@ -82,7 +82,7 @@ export GEVENTSETUP_EMBED=0
 %install
 export GEVENTSETUP_EMBED=0
 %pyproject_install
-%pyproject_save_files '%{modname}*'
+%pyproject_save_files -l '%{modname}*'
 find %{buildroot} -name '.buildinfo' -delete
 # Correct the permissions.
 find %{buildroot} -name '*.so' -exec chmod 755 {} ';'
@@ -93,7 +93,6 @@ export PYTHONPATH=%{buildroot}%{python3_sitearch}
 cd src/gevent/tests && GEVENT_FILE=thread %__python3 -mgevent.tests test__*subprocess*.py
 
 %files -n python3-%{modname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

@@ -39,11 +39,10 @@ of YAML file.
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 %{_bindir}/shyaml
 

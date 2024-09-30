@@ -63,11 +63,10 @@ To do this you should provide a callback for error_handler.
 
 %install
 %pyproject_install
-%pyproject_save_files flask_wtf_decorators
+%pyproject_save_files -l flask_wtf_decorators
 
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.md
 
 

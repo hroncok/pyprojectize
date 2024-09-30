@@ -63,7 +63,6 @@ to who used them.
 
 
 %files -f %{pyproject_files}
-%license COPYING
 %doc README.md
 %doc *.example
 %{_bindir}/openssh-ldap-authkeys
@@ -135,7 +134,7 @@ popd
 
 %install
 %pyproject_install
-%pyproject_save_files ldapauthkeys
+%pyproject_save_files -l ldapauthkeys
 
 # Make ghost entries for config files
 touch %{buildroot}%{_sysconfdir}/%{name}/olak.yml

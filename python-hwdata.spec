@@ -45,14 +45,13 @@ popd
 %install
 pushd %{py3dir}
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 popd
 
 %check
 pylint-3 hwdata.py example.py || :
 
 %files -n python3-hwdata -f %{pyproject_files}
-%license LICENSE
 %doc README.md example.py
 %doc html
 

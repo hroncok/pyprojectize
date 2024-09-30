@@ -45,11 +45,10 @@ This package provides the Python 3 build of %{name}.
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
  
 %files -n python3-%{name} -f %{pyproject_files}
-%license LICENSE
 %doc README.md examples/*
 
 %changelog

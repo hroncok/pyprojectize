@@ -50,7 +50,7 @@ sed -i -e 's|/usr/include/hidapi|%{_includedir}/hidapi|' setup.py
 
 %install
 %pyproject_install
-%pyproject_save_files hid%{python3_ext_suffix} hidraw%{python3_ext_suffix}
+%pyproject_save_files -l hid%{python3_ext_suffix} hidraw%{python3_ext_suffix}
 
 
 %check
@@ -58,7 +58,6 @@ sed -i -e 's|/usr/include/hidapi|%{_includedir}/hidapi|' setup.py
 
 
 %files -n python3-hidapi -f %{pyproject_files}
-%license LICENSE*.txt
 %doc README.rst try.py
 
 %changelog

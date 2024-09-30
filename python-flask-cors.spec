@@ -37,13 +37,12 @@ Python3 flask_cors package.
 
 %install
 %{pyproject_install}
-%pyproject_save_files flask_cors
+%pyproject_save_files -l flask_cors
 
 %check
 %pytest
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc CHANGELOG.md README.rst
 
 %changelog

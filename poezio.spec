@@ -78,7 +78,7 @@ popd # doc/
 
 %install
 %pyproject_install
-%pyproject_save_files %{name} %{name}_plugins %{name}_themes
+%pyproject_save_files -l %{name} %{name}_plugins %{name}_themes
 
 # Remove sources from doc subpackage, but not from html/ subdirectory
 rm -rf %{buildroot}%{_pkgdocdir}/source/
@@ -97,7 +97,6 @@ rm -f %{buildroot}%{_pkgdocdir}/html/.buildinfo
 
 
 %files -f %{pyproject_files}
-%license COPYING
 %doc CHANGELOG README.rst
 %{_bindir}/%{name}
 %{_bindir}/%{name}_logs

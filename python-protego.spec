@@ -42,13 +42,12 @@ BuildRequires:	python3-pytest
 
 %install
 %pyproject_install
-%pyproject_save_files protego
+%pyproject_save_files -l protego
 
 %check
 %pytest
 
 %files -n python3-%{pkg_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

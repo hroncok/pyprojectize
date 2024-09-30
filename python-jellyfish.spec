@@ -56,14 +56,13 @@ tar xf %{SOURCE1} -C testdata
 
 %install
 %pyproject_install
-%pyproject_save_files %{realname}
+%pyproject_save_files -l %{realname}
 
 %check
 # testdata is here: https://github.com/jamesturk/jellyfish-testdata.git
 PYTHONPATH=. pytest-3 jellyfish/test.py
 
 %files -n python3-%{realname} -f %{pyproject_files}
-%license LICENSE
 %doc README.md docs/
 
 %changelog

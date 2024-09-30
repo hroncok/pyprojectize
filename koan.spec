@@ -49,7 +49,7 @@ koan python%{python3_pkgversion} module.
 
 %install
 %pyproject_install
-%pyproject_save_files koan
+%pyproject_save_files -l koan
 
 %files
 %license COPYING
@@ -58,7 +58,6 @@ koan python%{python3_pkgversion} module.
 %{_bindir}/cobbler-register
 
 %files -n python%{python3_pkgversion}-koan -f %{pyproject_files}
-%license COPYING
 
 %changelog
 * Fri Jul 26 2024 Miroslav Suchý <msuchy@redhat.com> - 3.0.1-13

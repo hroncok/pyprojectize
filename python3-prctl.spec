@@ -30,11 +30,10 @@ cp -p %{SOURCE1} .
 
 %install
 %pyproject_install
-%pyproject_save_files '_prctl*' prctl
+%pyproject_save_files -l '_prctl*' prctl
 
 %files -f %{pyproject_files}
 %doc README
-%license COPYING
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.6.1-20

@@ -46,14 +46,13 @@ POFile, MOFile, POEntry and MOEntry for creating new files/entries.
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 %check
 %{__python3} tests/tests.py
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.2.0-8

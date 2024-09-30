@@ -75,7 +75,7 @@ PYTHONPATH=: ./man/generate-manpages.sh
 
 %install
 %pyproject_install
-%pyproject_save_files modulemd_tools
+%pyproject_save_files -l modulemd_tools
 
 install -d %{buildroot}%{_mandir}/man1
 cp man/*.1 %{buildroot}%{_mandir}/man1/
@@ -87,7 +87,6 @@ cp man/*.1 %{buildroot}%{_mandir}/man1/
 
 %files -f %{pyproject_files}
 %doc README.md
-%license LICENSE
 
 
 %{_bindir}/repo2module

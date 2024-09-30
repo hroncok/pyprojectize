@@ -73,7 +73,7 @@ done
 
 %install
 %pyproject_install
-%pyproject_save_files %{upname}
+%pyproject_save_files -l %{upname}
 
 %if %{with test}
 %check
@@ -82,7 +82,6 @@ done
 
 
 %files -n python3-%{upname} -f %{pyproject_files}
-%license COPYING*
 %doc README.rst
 
 %files -n python3-%{upname}-doc

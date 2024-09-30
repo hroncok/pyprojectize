@@ -73,7 +73,7 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 
 %check
@@ -83,7 +83,6 @@ rm -rf html/.{doctrees,buildinfo}
 
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc ACKS AUTHORS ChangeLog README.rst RELEASE-NOTES
 
 

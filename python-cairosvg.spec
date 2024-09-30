@@ -64,7 +64,7 @@ cp -a $(ls -1 . | grep -v test_non_regression) test_non_regression/cairosvg_refe
 
 %install
 %pyproject_install
-%pyproject_save_files %{modname}
+%pyproject_save_files -l %{modname}
 
 %check
 %{__python3} -m pytest -v
@@ -73,7 +73,6 @@ rm -f %{buildroot}%{python3_sitelib}/%{modname}/test_api.py
 
 
 %files -n python3-cairosvg -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 %{_bindir}/cairosvg
 

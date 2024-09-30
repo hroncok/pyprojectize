@@ -140,7 +140,7 @@ cd ..
 
 %install
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 
 cd %{buildroot}%{_bindir}
 for FILE in *.py; do
@@ -165,7 +165,6 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.appdata
 %files common -f %{pyproject_files}
 %{_bindir}/printcore*
 %doc README*
-%license COPYING
 
 %files -n pronsole
 %{_bindir}/pronsole*

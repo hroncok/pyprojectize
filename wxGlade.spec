@@ -32,7 +32,7 @@ and <= 2.7.
 
 %install
 %pyproject_install
-%pyproject_save_files wxglade
+%pyproject_save_files -l wxglade
 
 # Let's handle licenses by ourselves.
 rm -frv %{buildroot}%{_docdir}/wxglade/LICENSE.txt
@@ -44,7 +44,6 @@ install -pm 644 %{S:2} %{buildroot}%{_datadir}/icons/hicolor/32x32/apps
 
 %files -f %{pyproject_files}
 %{_docdir}/wxglade/
-%license LICENSE.txt
 %{_bindir}/wxglade*
 %{_datadir}/icons/hicolor/*x*/apps/*
 %{_datadir}/applications/*

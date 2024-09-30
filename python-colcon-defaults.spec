@@ -46,7 +46,7 @@ line arguments from a configuration file.
 
 %install
 %pyproject_install
-%pyproject_save_files colcon_defaults
+%pyproject_save_files -l colcon_defaults
 
 
 %check
@@ -57,7 +57,6 @@ line arguments from a configuration file.
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

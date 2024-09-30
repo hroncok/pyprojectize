@@ -51,10 +51,9 @@ specify how many machines they need and commands/checks to run on them.
 
 %install
 %pyproject_install
-%pyproject_save_files %{modulename}
+%pyproject_save_files -l %{modulename}
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license COPYING
 %doc README.rst
 
 %changelog

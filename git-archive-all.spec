@@ -30,10 +30,9 @@ BuildArch:      noarch
 
 %install
 %pyproject_install
-%pyproject_save_files %{modname}
+%pyproject_save_files -l %{modname}
 
 %files -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.rst
 %{_bindir}/%{name}
 

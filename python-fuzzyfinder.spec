@@ -42,13 +42,12 @@ rm -rf %{srcname}.egg-info/
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-3 -v
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

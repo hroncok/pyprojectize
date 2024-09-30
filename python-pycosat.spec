@@ -46,13 +46,12 @@ sed -i "s/if .--inplace. in sys.argv:/if True:/" setup.py
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitearch} py.test-%{python3_version} -vv
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc AUTHORS.md CHANGELOG.md README.rst
 
 %changelog

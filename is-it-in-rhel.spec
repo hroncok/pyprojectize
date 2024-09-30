@@ -29,11 +29,10 @@ packaged in RHEL or not.
 
 %install
 %pyproject_install
-%pyproject_save_files is_it_in_rhel
+%pyproject_save_files -l is_it_in_rhel
 
 
 %files -f %{pyproject_files}
-%license COPYING
 %doc README.rst
 %{_bindir}/is-it-in-rhel
 

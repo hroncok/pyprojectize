@@ -92,7 +92,7 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name} _%{pypi_name}
+%pyproject_save_files -l %{pypi_name} _%{pypi_name}
 mkdir -p %{buildroot}%{_datadir}/drgn
 cp -PR contrib tools %{buildroot}%{_datadir}/drgn
 
@@ -102,8 +102,6 @@ cp -PR contrib tools %{buildroot}%{_datadir}/drgn
 %endif
 
 %files -n %{pypi_name} -f %{pyproject_files}
-%license COPYING
-%license LICENSES
 %doc README.rst
 %{_bindir}/drgn
 %{_datadir}/drgn

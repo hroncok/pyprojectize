@@ -61,7 +61,7 @@ rm -rf %{modname}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files %{modname}
+%pyproject_save_files -l %{modname}
 
 # Prepend a shebang to these so they are not stripped of executable bits
 sed -i '1i #!/bin/sh' %{buildroot}/%{_bindir}/%{modname}.sh
@@ -79,7 +79,6 @@ ln -s %{_bindir}/virtualenvwrapper.sh %{buildroot}/%{_bindir}/virtualenvwrapper-
 
 %files -n python3-%{modname} -f %{pyproject_files}
 %doc PKG-INFO docs
-%license LICENSE
 %{_bindir}/virtualenvwrapper.sh
 %{_bindir}/virtualenvwrapper_lazy.sh
 %{_bindir}/virtualenvwrapper-3.sh

@@ -167,7 +167,7 @@ cd pyaff
 
 %if 0%{?with_python3}
 %pyproject_install
-%pyproject_save_files 'PyAFF*' 'pyaff*'
+%pyproject_save_files -l 'PyAFF*' 'pyaff*'
 %endif
 
 
@@ -201,7 +201,6 @@ cd pyaff
 
 %if 0%{?with_python3}
 %files -n python%{python3_pkgversion}-pyaff -f %{pyproject_files}
-%license COPYING
 %doc pyaff/README
 %endif
 

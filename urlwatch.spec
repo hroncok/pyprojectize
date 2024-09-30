@@ -50,14 +50,13 @@ Basic features
 
 %install
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 # Fix exec permission for rpmlint
 chmod 0755 %{buildroot}%{python3_sitelib}/%{name}/*txt.py
 chmod a+x %{buildroot}%{python3_sitelib}/%{name}/handler.py
 
 %files -f %{pyproject_files}
 %doc CHANGELOG.md README.md
-%license COPYING
 %{_mandir}/man*/*.*
 %{_bindir}/%{name}
 %{_datadir}/%{name}/examples/

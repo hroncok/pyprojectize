@@ -45,7 +45,7 @@ BuildRequires:  python3-pytest-cov
 
 %install
 %pyproject_install
-%pyproject_save_files %{pretty_name}
+%pyproject_save_files -l %{pretty_name}
 
 %check
 #skipping three tests
@@ -57,7 +57,6 @@ k="${k-}${k+ and }not test_unit_error"
 %endif
 
 %files -n python3-%{pretty_name} -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.md
 
 %changelog

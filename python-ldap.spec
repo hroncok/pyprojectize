@@ -76,10 +76,9 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} %{__python3} -m unittest discover -v 
 
 %install
 %pyproject_install
-%pyproject_save_files _ldap ldap ldapurl ldif slapdtest
+%pyproject_save_files -l _ldap ldap ldapurl ldif slapdtest
 
 %files -n python3-ldap -f %{pyproject_files}
-%license LICENCE
 %doc CHANGES README TODO Demo
 
 %changelog

@@ -46,7 +46,7 @@ repositories.
 
 %install
 %pyproject_install
-%pyproject_save_files colcon_metadata
+%pyproject_save_files -l colcon_metadata
 
 
 %check
@@ -57,7 +57,6 @@ repositories.
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

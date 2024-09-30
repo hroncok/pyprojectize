@@ -40,13 +40,12 @@ Requires:       python3-execnet >= 1.2.0
 
 %install
 %{pyproject_install}
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 %check
 py.test-%{python3_version} -v remoto/tests
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

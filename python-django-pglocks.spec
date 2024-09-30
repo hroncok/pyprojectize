@@ -39,10 +39,9 @@ sed -i -e "s/from distutils.core import setup/from setuptools import setup/" set
 
 %install
 %pyproject_install
-%pyproject_save_files django_pglocks
+%pyproject_save_files -l django_pglocks
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE.txt
 %doc CHANGES.txt
 
 %changelog

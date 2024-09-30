@@ -43,7 +43,7 @@ Summary:        %{summary}
 
 %install
 %pyproject_install
-%pyproject_save_files crc32c
+%pyproject_save_files -l crc32c
 
 
 %check
@@ -57,9 +57,6 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} %{python3} run-tests.py
 
 %files -n python3-crc32c -f %{pyproject_files}
 %doc CHANGELOG.md
-%license LICENSE
-%license LICENSE.google-crc32c
-%license LICENSE.slice-by-8
 %doc README.rst
 
 

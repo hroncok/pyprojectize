@@ -50,7 +50,7 @@ make PYTHON=python3
 
 %install
 %pyproject_install
-%pyproject_save_files youtube_dl
+%pyproject_save_files -l youtube_dl
 
 install -Dpm644 %{S:3} -t %{buildroot}%{_sysconfdir}
 install -Dpm644 youtube-dl.bash-completion %{buildroot}%{_datadir}/bash-completion/completions/youtube-dl
@@ -67,7 +67,6 @@ install -Dpm644 youtube-dl.fish %{buildroot}%{_datadir}/fish/vendor_functions.d/
 
 %files -f %{pyproject_files}
 %doc AUTHORS ChangeLog README.md
-%license LICENSE
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*
 %config(noreplace) %{_sysconfdir}/%{name}.conf

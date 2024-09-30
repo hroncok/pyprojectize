@@ -42,11 +42,10 @@ CLI tool to interact with dingz devices.
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE
 
 %files -n %{pypi_name}
 %{_bindir}/%{pypi_name}

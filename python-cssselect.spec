@@ -44,7 +44,7 @@ Python 3 version.
 
 %install
 %pyproject_install
-%pyproject_save_files %{modname}
+%pyproject_save_files -l %{modname}
 
 %if %{with tests}
 %check
@@ -52,7 +52,6 @@ Python 3 version.
 %endif
 
 %files -n python3-%{modname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst CHANGES AUTHORS
 
 %changelog

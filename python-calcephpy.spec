@@ -60,11 +60,10 @@ export CPPFLAGS="$CXXFLAGS"
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 
 %files -n       python3-%{srcname} -f %{pyproject_files}
-%license COPYING_CECILL_V2.1.LIB COPYING_CECILL_B.LIB COPYING_CECILL_C.LIB
 
 
 %changelog

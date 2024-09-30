@@ -42,7 +42,7 @@ This small package is a Python3 wrapper around the MediaInfo library.
 
 %install
 %pyproject_install
-%pyproject_save_files '%{srcname}*'
+%pyproject_save_files -l '%{srcname}*'
 
 
 %check
@@ -51,7 +51,6 @@ PYTEST_ADDOPTS='-k "not test_parse_url"' %{__python3} setup.py test
 
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc AUTHORS README.rst
 
 

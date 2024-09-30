@@ -60,11 +60,10 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc CHANGELOG.rst README.rst
-%license LICENSE
 %{_bindir}/mrc*
 
 %files -n python-%{pypi_name}-doc

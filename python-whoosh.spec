@@ -56,13 +56,12 @@ rm -rf docs/html/.doctrees
 
 %install
 %pyproject_install
-%pyproject_save_files whoosh
+%pyproject_save_files -l whoosh
 
 %check
 %{__python3} setup.py test
 
 %files -n python%{python3_pkgversion}-whoosh -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.txt
 %if %{with docs}
 %doc docs/html/

@@ -155,7 +155,7 @@ sed -i '/koji/d' requirements.txt
 %install
 %if 0%{?with_python3}
 %pyproject_install
-%pyproject_save_files 'ursa_major*'
+%pyproject_save_files -l 'ursa_major*'
 %else
 %py2_install
 %endif
@@ -183,7 +183,6 @@ py.test
 
 %files -f %{pyproject_files}
 %doc README.rst
-%license LICENSE
 
 %if 0%{?with_python3}
 %else

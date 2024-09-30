@@ -79,7 +79,7 @@ and sets up the environment to use the packages.
 
 %install
 %pyproject_install
-%pyproject_save_files colcon colcon_core
+%pyproject_save_files -l colcon colcon_core
 
 
 %check
@@ -87,7 +87,6 @@ and sets up the environment to use the packages.
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 %{_bindir}/colcon
 

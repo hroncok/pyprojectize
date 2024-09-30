@@ -42,13 +42,12 @@ Summary:        %{summary}
 
 %install
 %pyproject_install
-%pyproject_save_files pysnooper
+%pyproject_save_files -l pysnooper
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} %python3 -m pytest -v tests/
 
 %files -n python3-pysnooper -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 %changelog

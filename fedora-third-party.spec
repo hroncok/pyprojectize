@@ -47,7 +47,7 @@ go-md2man -in doc/%{name}.1.md -out doc/%{name}.1
 
 %install
 %pyproject_install
-%pyproject_save_files 'fedora_third_party*'
+%pyproject_save_files -l 'fedora_third_party*'
 
 # This script is just for use under pkexec, move it out of bindir to avoid confusion
 mkdir -p %{buildroot}%{_prefix}/lib/%{name}
@@ -63,7 +63,6 @@ install -m0644 -D polkit/org.fedoraproject.thirdparty.rules -t %{buildroot}%{_da
 
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 %{_bindir}/%{name}
 %{_datadir}/polkit-1/actions/*.policy

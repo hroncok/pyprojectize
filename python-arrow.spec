@@ -81,14 +81,13 @@ rm -rf %{modname}.egg-info
 
 %install
 %{pyproject_install}
-%pyproject_save_files %{modname}
+%pyproject_save_files -l %{modname}
 
 %check
 pytest-%{python3_version} tests
 
 %files -n python%{python3_pkgversion}-%{modname} -f %{pyproject_files}
 %doc README.rst CHANGELOG.rst
-%license LICENSE
 
 %changelog
 %autochangelog

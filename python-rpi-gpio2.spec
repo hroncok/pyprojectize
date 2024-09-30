@@ -53,7 +53,7 @@ chmod 0644 examples/*
 
 %install
 %pyproject_install
-%pyproject_save_files RPi
+%pyproject_save_files -l RPi
 rm -rf %{buildroot}%{python3_sitelib}/tests
 rm -rf %{buildroot}%{python3_sitelib}/examples
 
@@ -64,7 +64,6 @@ rm -rf %{buildroot}%{python3_sitelib}/examples
 
 
 %files -n python3-rpi-gpio2 -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.md
 
 %files doc

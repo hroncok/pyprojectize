@@ -70,7 +70,7 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
-%pyproject_save_files copr_messaging
+%pyproject_save_files -l copr_messaging
 
 
 %check
@@ -78,7 +78,6 @@ rm -rf html/.{doctrees,buildinfo}
 
 
 %files -n python3-%name -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 %files -n python3-%name-doc

@@ -81,7 +81,7 @@ Summary:        %{sum Python 3}
 %install
 %{?with_python2:%py2_install}
 %{?with_python3:%pyproject_install}
-%pyproject_save_files %sname
+%pyproject_save_files -l %sname
 
 
 %if %{with python2}
@@ -94,7 +94,6 @@ Summary:        %{sum Python 3}
 
 %if %{with python3}
 %files -n python3-%sname -f %{pyproject_files}
-%license LICENSE
 %endif
 
 

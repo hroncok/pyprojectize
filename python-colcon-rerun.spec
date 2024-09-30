@@ -45,7 +45,7 @@ An extension for colcon-core to quickly re-run a recently executed verb.
 
 %install
 %pyproject_install
-%pyproject_save_files colcon_rerun
+%pyproject_save_files -l colcon_rerun
 
 
 %check
@@ -56,7 +56,6 @@ An extension for colcon-core to quickly re-run a recently executed verb.
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

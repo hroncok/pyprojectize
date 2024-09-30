@@ -45,7 +45,7 @@ sed -r -i '1{/^#!/d}' %{srcname}.py
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname} c%{srcname}%{python3_ext_suffix}
+%pyproject_save_files -l %{srcname} c%{srcname}%{python3_ext_suffix}
 
 
 %check
@@ -53,7 +53,6 @@ sed -r -i '1{/^#!/d}' %{srcname}.py
 
 
 %files -n  python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc changelog.txt README.rst
 
 

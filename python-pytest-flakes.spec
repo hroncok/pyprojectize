@@ -38,13 +38,12 @@ rm -rf *.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files pytest_flakes
+%pyproject_save_files -l pytest_flakes
 
 %check
 %{__python3} setup.py test
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

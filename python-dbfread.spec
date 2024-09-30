@@ -75,7 +75,7 @@ popd
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 
 %check
@@ -85,7 +85,6 @@ pytest-%{python3_version}
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE
 
 
 %files -n python-%{pypi_name}-doc

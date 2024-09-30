@@ -47,7 +47,7 @@ sed -e "s|#!/usr/bin/env python||" -i dkim/{arcsign.py,arcverify.py,dkimsign.py,
 
 %install
 %pyproject_install
-%pyproject_save_files dkim
+%pyproject_save_files -l dkim
 
 %if %{with check}
 %check
@@ -55,7 +55,6 @@ sed -e "s|#!/usr/bin/env python||" -i dkim/{arcsign.py,arcverify.py,dkimsign.py,
 %endif
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 %{_bindir}/arcsign
 %{_bindir}/arcverify

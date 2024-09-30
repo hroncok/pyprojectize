@@ -42,13 +42,13 @@ Summary:        %{summary}
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 %check
 %{python3} setup.py test
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE.txt license.python.txt
+%license license.python.txt
 %doc README.rst
 
 %changelog

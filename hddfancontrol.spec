@@ -45,7 +45,7 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 cp %{buildroot}/%{_bindir}/hddfancontrol %{buildroot}/%{_bindir}/hddfancontrol-3
 ln -sf %{_bindir}/hddfancontrol-3 %{buildroot}/%{_bindir}/hddfancontrol-%{python3_version}
 
@@ -65,7 +65,6 @@ cp -a systemd/hddfancontrol.conf %{buildroot}%{_sysconfdir}/
 %{__python3} setup.py test
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 %{_bindir}/hddfancontrol
 %{_bindir}/hddfancontrol-3

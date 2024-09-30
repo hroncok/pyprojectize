@@ -49,7 +49,7 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
-%pyproject_save_files Adafruit_PureIO
+%pyproject_save_files -l Adafruit_PureIO
 
 %ifarch %{arm} %{arm64}
 %check
@@ -57,7 +57,6 @@ rm -rf html/.{doctrees,buildinfo}
 %endif
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %files -n python-%{pypi_name}-doc

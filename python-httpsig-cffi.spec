@@ -43,14 +43,13 @@ PyPy support.
 
 %install
 %pyproject_install
-%pyproject_save_files httpsig_cffi
+%pyproject_save_files -l httpsig_cffi
 rm -rf %{buildroot}%{python3_sitelib}/httpsig_cffi/tests
 
 %check
 %{__python3} setup.py test
 
 %files -n python3-httpsig-cffi -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.rst
 
 %changelog

@@ -40,11 +40,10 @@ applications.
 
 %install
 %pyproject_install
-%pyproject_save_files %{pyname}
+%pyproject_save_files -l %{pyname}
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.4.0-10

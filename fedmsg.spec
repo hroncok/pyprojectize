@@ -113,7 +113,7 @@ rm -f %{buildroot}%{_sysconfdir}/fedmsg.d/*.py{c,o}
 
 %install
 %pyproject_install
-%pyproject_save_files %{modname}
+%pyproject_save_files -l %{modname}
 
 # fedmsg provides a huge number of scripts and we need to move them all so the Python 2
 # version is the un-versioned entry.
@@ -226,7 +226,6 @@ chmod 0644 %{buildroot}/%{_sysconfdir}/logrotate.d/%{modname}
 
 
 %files -n python3-fedmsg -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 %{_bindir}/fedmsg-announce
 %{_bindir}/fedmsg-announce-3*

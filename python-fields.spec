@@ -69,7 +69,7 @@ rm -rf docs/_build/html/.buildinfo docs/_build/html/.doctrees
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 %check
 # Perf tests require unmaintained 'characteristic' module
@@ -82,7 +82,6 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} \
 %doc docs/_build/html
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc AUTHORS.rst CHANGELOG.rst README.rst
 
 %changelog

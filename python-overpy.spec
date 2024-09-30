@@ -57,13 +57,12 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
-%pyproject_save_files %{pretty_name}
+%pyproject_save_files -l %{pretty_name}
 
 %check
 %pytest
 
 %files -n python3-%{pretty_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst CHANGELOG.rst examples/
 
 %files -n python-%{pretty_name}-doc

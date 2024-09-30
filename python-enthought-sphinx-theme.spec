@@ -39,13 +39,13 @@ Provides:       bundled(bootstrap) = 2.3.2
 
 %install
 %pyproject_install
-%pyproject_save_files %{modname}
+%pyproject_save_files -l %{modname}
 
 #check
 # No tests
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE licenses/*.txt
+%license licenses/*.txt
 %doc CHANGES.rst README.rst
 
 %changelog

@@ -37,7 +37,7 @@ BuildRequires:	python3-devel
 %install
 %{__mkdir} -p %{buildroot}%{_mandir}/man1
 %pyproject_install
-%pyproject_save_files 'speedtest*'
+%pyproject_save_files -l 'speedtest*'
 export PYTHONPATH="%{buildroot}%{python3_sitelib}"
 for f in $(%{_bindir}/find %{buildroot}%{_bindir} -type f -name '*' | /bin/sort )
 do
@@ -48,7 +48,6 @@ unset PYTHONPATH
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE
 %{_bindir}/speedtest*
 %{_mandir}/man1/speedtest*.1*
 

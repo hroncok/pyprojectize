@@ -37,7 +37,7 @@ support to profile python programs.
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname} '_%{srcname}*'
+%pyproject_save_files -l %{srcname} '_%{srcname}*'
 mv %{buildroot}%{_bindir}/%{srcname} %{buildroot}%{_bindir}/%{srcname}-%{python3_version}
 ln -s %{srcname}-%{python3_version} %{buildroot}%{_bindir}/%{srcname}-3
 ln -s %{srcname}-3 %{buildroot}%{_bindir}/%{srcname}
@@ -48,7 +48,6 @@ export PYTHONPATH=%{buildroot}/%{python3_sitearch}
 %{__python3} run_tests.py
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 %{_bindir}/%{srcname}
 %{_bindir}/%{srcname}-3*

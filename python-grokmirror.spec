@@ -41,7 +41,7 @@ Requires:       python3-GitPython, python3-anyjson, python3-setuptools, python3-
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 %{__mkdir_p} -m 0755 \
     %{buildroot}%{_mandir}/man1
@@ -50,7 +50,6 @@ Requires:       python3-GitPython, python3-anyjson, python3-setuptools, python3-
 
 
 %files -n python3-grokmirror -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.rst CHANGELOG.rst
 %{_bindir}/grok-*
 %{_mandir}/*/*

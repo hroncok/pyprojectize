@@ -56,7 +56,7 @@ extension of XMPP protocol.
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 
 %check
@@ -65,7 +65,6 @@ extension of XMPP protocol.
 
 
 %files -n python3-omemo-backend-signal -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 # For noarch packages: sitelib
 

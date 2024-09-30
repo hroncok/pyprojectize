@@ -93,7 +93,7 @@ find \( -name device.py -or -name service.py -or -name watch.py \) -type f -exec
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 # remove non-ttf fonts and link the ttf font to the packaged file with the same name
 rm -f %{buildroot}%{python3_sitelib}/%{srcname}/server/static/fonts/glyphicons-halflings-regular.*
@@ -110,7 +110,6 @@ install -pm 0644 %{SOURCE2} %{buildroot}%{fw_services}/
 %{python3} setup.py test
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.md HISTORY.rst AUTHORS.rst CONTRIBUTING.rst README.firewall examples/
 %{_bindir}/wemo
 %{fw_services}/%{srcname}.xml

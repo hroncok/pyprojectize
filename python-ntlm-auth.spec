@@ -43,7 +43,7 @@ Provides:       python3-ntlm3 = %{version}-%{release}
 
 %install
 %pyproject_install
-%pyproject_save_files ntlm_auth
+%pyproject_save_files -l ntlm_auth
 
 %check
 # see https://github.com/jborean93/ntlm-auth/issues/22
@@ -69,7 +69,6 @@ export OPENSSL_CONF=${PWD}/openssl.cnf
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc CHANGES.md README.md
-%license LICENSE
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.5.0-15

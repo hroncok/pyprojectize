@@ -70,10 +70,9 @@ rm -rf docs/_build/html/_static/font
  
 %install
 %pyproject_install
-%pyproject_save_files %{pkgname}
+%pyproject_save_files -l %{pkgname}
  
 %files -n python3-%{pkgname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
  
  

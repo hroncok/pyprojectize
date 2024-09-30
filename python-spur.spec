@@ -43,7 +43,7 @@ sed -i -e "s/’/'/g" README.rst
 
 %install
 %pyproject_install
-%pyproject_save_files '%{srcname}*'
+%pyproject_save_files -l '%{srcname}*'
 
 
 # skip tests on EL9 due to deprecated python-nose
@@ -55,7 +55,6 @@ nosetests-%{python3_version} -v -e testing -e ssh_tests
 
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc CHANGES CONTRIBUTING.rst README.rst
 
 

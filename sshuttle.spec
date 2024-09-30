@@ -50,7 +50,7 @@ popd
 
 %install
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 
 # Install docs
 pushd docs
@@ -69,7 +69,6 @@ popd
 %endif
 
 %files -f %{pyproject_files}
-%license LICENSE
 %{_mandir}/man1/%{name}.1.*
 %{_infodir}/%{name}.info.*
 %{_bindir}/sshuttle

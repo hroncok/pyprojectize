@@ -38,11 +38,10 @@ of existing PDFs in new PDFs created with reportlab.
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %{!?_licensedir:%global license %%doc}
-%license LICENSE.txt
 %doc README.rst examples
 
 %changelog

@@ -54,7 +54,7 @@ popd
 
 %install
 %pyproject_install
-%pyproject_save_files dbutils
+%pyproject_save_files -l dbutils
 
 # install docs
 install -t '%{buildroot}%{_pkgdocdir}' -D -p -m 0644 README.md
@@ -68,7 +68,6 @@ popd
 
 
 %files -n python3-dbutils -f %{pyproject_files}
-%license LICENSE
 
 %files doc
 %license LICENSE

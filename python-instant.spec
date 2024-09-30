@@ -41,11 +41,10 @@ chmod 0644 test/*
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc AUTHORS ChangeLog README TODO doc/sphinx/ test/
-%license COPYING
 %{_mandir}/man*/*.1*
 %{_bindir}/instant*
 

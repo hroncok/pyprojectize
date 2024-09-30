@@ -67,7 +67,7 @@ grep -B1000 "POSSIBILITY OF SUCH DAMAGE" README.md > LICENSE
 
 %install
 %pyproject_install
-%pyproject_save_files %{modname}
+%pyproject_save_files -l %{modname}
 
 %if %{with tests}
 %check
@@ -80,7 +80,6 @@ popd
 
 %files -n python3-%{modname} -f %{pyproject_files}
 %doc CHANGES README.md
-%license LICENSE
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 3.11-25

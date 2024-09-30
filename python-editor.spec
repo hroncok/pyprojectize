@@ -38,12 +38,11 @@ sed -i '1s=^#!/usr/bin/\(python\|env python\)[0-9.]*=#!%{__python3}=' editor.py
 
 %install
 %pyproject_install
-%pyproject_save_files editor
+%pyproject_save_files -l editor
 chmod a+x $RPM_BUILD_ROOT%{python3_sitelib}/editor.py
 
 %files -n python3-editor -f %{pyproject_files}
 %doc README.md
-%license LICENSE
 
 
 %changelog

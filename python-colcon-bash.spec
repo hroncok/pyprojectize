@@ -43,7 +43,7 @@ An extension for colcon-core to provide Bash scripts.
 
 %install
 %pyproject_install
-%pyproject_save_files colcon_bash
+%pyproject_save_files -l colcon_bash
 
 
 %check
@@ -54,7 +54,6 @@ An extension for colcon-core to provide Bash scripts.
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

@@ -35,10 +35,9 @@ sed -i -e '/scm/d' setup.py
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc README.md CHANGELOG.md
 
 %changelog

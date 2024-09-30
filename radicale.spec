@@ -208,7 +208,7 @@ cd -
 
 %install
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 
 # move scripts away from _bindir to avoid conflicts and create a wrapper scripts
 install -d -p %{buildroot}%{_libexecdir}/%{name}
@@ -408,7 +408,6 @@ fi
 
 
 %files -n python3-%{radicale_package_name} -f %{pyproject_files}
-%license COPYING.md
 
 
 %files -n %{radicale_package_name}-httpd

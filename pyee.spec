@@ -43,7 +43,7 @@ A port of node.js's EventEmitter to python.
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 %check
 # currently segfaults
@@ -53,7 +53,6 @@ A port of node.js's EventEmitter to python.
 %endif
 
 %files -n python3-ee -f %{pyproject_files}
-%license LICENSE
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 9.0.4-11

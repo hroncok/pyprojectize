@@ -76,7 +76,7 @@ sed -i '1{\@^#!/usr/bin/env python@d}' commonmark/cmark.py
 
 %install
 %pyproject_install
-%pyproject_save_files commonmark
+%pyproject_save_files -l commonmark
 
 
 %check
@@ -85,7 +85,6 @@ PYTHONPATH=$(pwd) %{__python3} setup.py test
 
 
 %files -n python%{python3_pkgversion}-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 
 %files utils
 %license LICENSE

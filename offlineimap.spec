@@ -83,7 +83,7 @@ chmod a-x docs/offlineimapui.7.gz
 
 %install
 %{pyproject_install}
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 
 #  Fix python shebang in the offlineimap program.
 %py3_shebang_fix %{buildroot}/%{_bindir}/offlineimap
@@ -98,7 +98,6 @@ install -p docs/offlineimapui.7.gz %{buildroot}/%{_mandir}/man7/
 ./offlineimap.py -V
 
 %files -f %{pyproject_files}
-%license COPYING
 %doc offlineimap.conf* docs/html/*.html
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*

@@ -78,7 +78,7 @@ rm doc/build/html/.buildinfo
 export PBR_VERSION=%{version}
 
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 install -D -m0644 -p doc/build/man/pythonjenkins.1 %{buildroot}%{_mandir}/man1/pythonjenkins.1
 
@@ -89,7 +89,6 @@ install -D -m0644 -p doc/build/man/pythonjenkins.1 %{buildroot}%{_mandir}/man1/p
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %doc README.rst doc/build/html
-%license COPYING
 %{_mandir}/man1/pythonjenkins.1.*
 
 

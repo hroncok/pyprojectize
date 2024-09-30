@@ -67,7 +67,7 @@ sphinx-build -b html -n docs docs/_build
 
 %install
 %pyproject_install
-%pyproject_save_files %{modname}
+%pyproject_save_files -l %{modname}
 
 install -D -p -m 0644 man/*.1 %{buildroot}%{_mandir}/man1
 
@@ -79,7 +79,6 @@ rm -rf docs/_build/{.buildinfo,.doctrees}
 
 
 %files -n python3-%{modname} -f %{pyproject_files}
-%license COPYING
 %doc NEWS README.rst
 
 %{_bindir}/mid3cp

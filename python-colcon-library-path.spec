@@ -45,7 +45,7 @@ libraries at runtime.
 
 %install
 %pyproject_install
-%pyproject_save_files colcon_library_path
+%pyproject_save_files -l colcon_library_path
 
 
 %check
@@ -56,7 +56,6 @@ libraries at runtime.
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

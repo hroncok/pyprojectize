@@ -38,7 +38,7 @@ sed -i -e '/^#!\//, 1d' netstat.py
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 mkdir -p %{buildroot}%{_datadir}/%{name}
 mv %{buildroot}/usr/sample-filters \
     %{buildroot}%{_datadir}/%{name}/sample-filters
@@ -48,7 +48,6 @@ PYTHONPATH=./ %{__python3} test/test-netstat
 
 %files -f %{pyproject_files}
 %doc README.md
-%license LICENSE 
 %{_bindir}/%{name}
 %{_datadir}/%{name}/sample-filters
 

@@ -66,7 +66,7 @@ rm -rf *.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files sphinx_bootstrap_theme
+%pyproject_save_files -l sphinx_bootstrap_theme
 
 # Remove the bundled fonts on RHEL
 %if 0%{?rhel}
@@ -79,7 +79,6 @@ done
 
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE.txt
 %doc *.rst
 
 

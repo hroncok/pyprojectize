@@ -54,13 +54,12 @@ chmod -x README.rst
 
 %install
 %pyproject_install
-%pyproject_save_files xprocess
+%pyproject_save_files -l xprocess
 
 %check
 %pytest
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

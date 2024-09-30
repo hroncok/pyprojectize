@@ -43,12 +43,11 @@ find -name '*.txt' | xargs chmod -x
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc /usr/share/myhdl/cosimulation/
-%license LICENSE.txt
 
 
 %changelog

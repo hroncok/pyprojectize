@@ -53,7 +53,7 @@ MathML translation, Python code coloring and much more.
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 for f in README CHANGELOG ; do
   PYTHONPATH=%{buildroot}%{python3_sitelib} \
@@ -73,7 +73,6 @@ find %{buildroot}%{python3_sitelib} -name '*.py' \
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.* CONTRIBUTORS.txt CHANGELOG.*
-%license LICENSE.txt
 %{_bindir}/pytextile
 
 

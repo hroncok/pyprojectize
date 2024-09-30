@@ -41,7 +41,7 @@ BuildRequires: python3-devel
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 
 %check
@@ -49,7 +49,6 @@ BuildRequires: python3-devel
 
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license COPYING
 %doc CHANGES README
 
 

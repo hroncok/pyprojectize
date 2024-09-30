@@ -74,7 +74,7 @@ find examples -type f -print0 | xargs -0 chmod 0644
 
 %install
 %pyproject_install
-%pyproject_save_files factory
+%pyproject_save_files -l factory
 
 %if %{with tests}
 %check
@@ -82,7 +82,6 @@ SKIP_MONGOENGINE=1 %pytest
 %endif
 
 %files -n python3-factory-boy -f %{pyproject_files}
-%license LICENSE
 
 %files doc
 %doc README.rst CODE_OF_CONDUCT.md CONTRIBUTING.rst CREDITS docs examples

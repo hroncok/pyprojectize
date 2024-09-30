@@ -68,7 +68,7 @@ if pkg-config openssl ; then
 fi
 
 %pyproject_install
-%pyproject_save_files M2Crypto
+%pyproject_save_files -l M2Crypto
 
 %check
 # FIXME: Make the tests pass on RHEL 9 again...
@@ -76,7 +76,6 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} %{__python3} -munittest discover -v t
 
 %files -n python%{python3_pkgversion}-m2crypto -f %{pyproject_files}
 %doc CHANGES README.rst
-%license LICENCE
 
 %changelog
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.41.0^git20240613.3156614-2

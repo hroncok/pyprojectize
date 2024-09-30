@@ -35,7 +35,7 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 #%%check
 # Upstream has a different idea about how Open Source works
@@ -44,7 +44,6 @@ rm -rf %{pypi_name}.egg-info
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc CHANGELOG.rst README.rst
-%license LICENSE.txt
 
 %changelog
 * Wed Sep 18 2024 Fabian Affolter <mail@fabian-affolter.ch> - 8.3.0-1

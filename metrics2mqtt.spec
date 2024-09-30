@@ -41,14 +41,13 @@ sed -i -e '/^#!\//, 1d' metrics2mqtt/base.py
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 %files
 %{_bindir}/%{pypi_name}
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
-%license LICENSE
 
 %changelog
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.18-14

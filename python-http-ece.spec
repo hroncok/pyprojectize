@@ -40,7 +40,7 @@ cd python
 %install
 cd python
 %pyproject_install
-%pyproject_save_files http_ece
+%pyproject_save_files -l http_ece
 
 %check
 cd python
@@ -48,7 +48,6 @@ cd python
 
 %files -n python%{python3_pkgversion}-%{modname} -f %{pyproject_files}
 %doc python/README.rst python/*.md
-%license LICENSE
 
 %changelog
 * Thu Aug 01 2024 Gwyn Ciesla <gwync@protonmail.com> - 1.2.1-1

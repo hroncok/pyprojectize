@@ -68,11 +68,10 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 desktop-file-install --dir=%{buildroot}%{_datadir}/applications examples/jupyter-qtconsole.desktop
 
 %files -n python3-%{pypi_name}  -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 %{_bindir}/jupyter-qtconsole
 %{_datadir}/applications/jupyter-qtconsole.desktop

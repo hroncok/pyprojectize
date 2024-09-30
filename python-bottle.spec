@@ -43,14 +43,13 @@ sed -i '/^#!/d' bottle.py
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 rm %{buildroot}%{_bindir}/bottle.py
 
 %check
 %{pytest} test
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc AUTHORS README.rst docs/*
 
 %changelog

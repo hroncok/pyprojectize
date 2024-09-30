@@ -67,7 +67,7 @@ make -f /usr/share/selinux/devel/Makefile collectd_systemd.pp
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 mkdir -p %{buildroot}%{_datadir}/selinux/packages/%{name}
 install -m 644 -p collectd_systemd.pp \
@@ -85,7 +85,6 @@ fi
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE
 
 %files selinux
 %{_datadir}/selinux/packages/%{name}/collectd_systemd.pp

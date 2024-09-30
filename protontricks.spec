@@ -52,7 +52,7 @@ repository is available at Sirmentio/protontricks.
 
 %install
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 
 # Remove `protontricks-desktop-install`, since we already install .desktop
 # files properly
@@ -68,7 +68,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc README.md CHANGELOG.md
 %{_bindir}/%{name}-launch
 %{_bindir}/%{name}

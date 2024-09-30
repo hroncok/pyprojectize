@@ -43,13 +43,12 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_srcname}
+%pyproject_save_files -l %{pypi_srcname}
 
 %check
 %{__python3} setup.py test
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 %changelog

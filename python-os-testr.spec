@@ -86,7 +86,7 @@ rm -rf doc/build/html/.{doctrees,buildinfo}
 
 %install
 %{pyproject_install}
-%pyproject_save_files os_testr
+%pyproject_save_files -l os_testr
 for file in %{buildroot}%{python3_sitelib}/os_testr/{subunit_trace,subunit2html}.py; do
     chmod a+x $file
 done
@@ -96,7 +96,6 @@ done
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE
 %{_bindir}/generate-subunit
 %{_bindir}/subunit-trace
 %{_bindir}/subunit2html

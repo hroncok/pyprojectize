@@ -36,10 +36,9 @@ Summary: %summary
 
 %install
 %pyproject_install
-%pyproject_save_files cpioarchive
+%pyproject_save_files -l cpioarchive
 
 %files -n python3-cpio -f %{pyproject_files}
-%license COPYING.lib
 %doc AUTHORS ChangeLog README TODO
 
 

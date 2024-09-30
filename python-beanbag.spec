@@ -66,14 +66,13 @@ sed -i "s/py\.test/pytest/g" tests/test_attrdict.py tests/test_bbv1.py
 
 %install
 %pyproject_install
-%pyproject_save_files 'beanbag*'
+%pyproject_save_files -l 'beanbag*'
 
 %check
 %pytest
 
 %files -n python3-beanbag -f %{pyproject_files}
 %doc README.rst
-%license LICENSE
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.9.2-34

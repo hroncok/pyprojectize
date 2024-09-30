@@ -54,7 +54,7 @@ rst2html README.rst README.html
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 
 %check
@@ -62,7 +62,6 @@ rst2html README.rst README.html
 
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE LICENSE.MIT LICENSE.APACHE2
 %doc README.rst README.html
 %doc docs/build/html
 

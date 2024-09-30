@@ -70,14 +70,14 @@ sed -i '1,1s@^#!.*$@#!%{__python3}@' examples/*.py
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 %check
 # tests fail on el9: https://github.com/ronf/asyncssh/issues/566
 %{__python3} -m unittest discover -s tests -t . -v
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE COPYRIGHT
+%license COPYRIGHT
 %doc README.rst examples
 
 

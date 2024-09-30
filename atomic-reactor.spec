@@ -84,7 +84,7 @@ you started hooking Docker into your infrastructure.
 
 %install
 %pyproject_install
-%pyproject_save_files atomic_reactor
+%pyproject_save_files -l atomic_reactor
 
 mkdir -p %{buildroot}%{_mandir}/man1
 cp -a docs/manpage/atomic-reactor.1 %{buildroot}%{_mandir}/man1/
@@ -107,7 +107,6 @@ cp -a docs/manpage/atomic-reactor.1 %{buildroot}%{_mandir}/man1/
 %files -n python3-atomic-reactor -f %{pyproject_files}
 %doc README.md
 %doc docs/*.md
-%license LICENSE
 
 
 

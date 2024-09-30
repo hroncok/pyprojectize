@@ -92,7 +92,7 @@ sed -i -e s/distutils.core/setuptools/ setup.py
 %py2_install
 %endif
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 %if %{with python2}
 %files -n python2-%{srcname}
@@ -103,7 +103,6 @@ sed -i -e s/distutils.core/setuptools/ setup.py
 %endif
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

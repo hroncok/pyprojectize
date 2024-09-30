@@ -39,13 +39,12 @@ Requires:       python3-cwcwidth
 
 %install
 %{pyproject_install}
-%pyproject_save_files curtsies
+%pyproject_save_files -l curtsies
 
 %check
 nosetests .
 
 %files -n python3-curtsies -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 %changelog

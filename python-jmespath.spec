@@ -43,7 +43,7 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 %check
 # RHEL does not have python3-hypothesis. Only one file in the upstream repo
@@ -52,7 +52,6 @@ rm -rf %{pypi_name}.egg-info
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE.txt
 %{_bindir}/jp.py
 
 %changelog

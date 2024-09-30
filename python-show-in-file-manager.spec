@@ -34,11 +34,10 @@ BuildRequires: python3-devel
 
 %install
 %{pyproject_install}
-%pyproject_save_files showinfm
+%pyproject_save_files -l showinfm
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md CHANGELOG.md
-%license LICENSE
 %{_bindir}/showinfilemanager
 
 %changelog

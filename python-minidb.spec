@@ -35,14 +35,13 @@ work with the data in an easy way with concise syntax.
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 %check
 %pytest -v test
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md
-%license LICENSE
 
 %changelog
 %autochangelog

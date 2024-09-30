@@ -47,7 +47,7 @@ tests under MPI, and testing MPI-related code.
 
 %install
 %pyproject_install
-%pyproject_save_files pytest_mpi
+%pyproject_save_files -l pytest_mpi
 
 
 %check
@@ -63,7 +63,6 @@ module unload mpi/openmpi-%{_host_cpu}
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.md
 
 

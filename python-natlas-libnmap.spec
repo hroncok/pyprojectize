@@ -37,10 +37,9 @@ sed -i -e '/^#!\//, 1d' libnmap/reportjson.py
 
 %install
 %pyproject_install
-%pyproject_save_files libnmap
+%pyproject_save_files -l libnmap
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.md
 
 %changelog

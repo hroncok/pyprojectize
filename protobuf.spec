@@ -375,7 +375,7 @@ install -p -m 0644 -D -t '%{buildroot}%{_mandir}/man1' '%{SOURCE4}'
 %if %{with python}
 pushd python
 %pyproject_install}
-%pyproject_save_files google
+%pyproject_save_files -l google
 %if %{without python_cpp}
 find %{buildroot}%{python3_sitelib} -name \*.py -exec sed -i -e '1{\@^#!@d}' {} +
 %endif
@@ -434,7 +434,6 @@ install -p -m 0644 %{SOURCE2} %{buildroot}%{_emacs_sitestartdir}
 %if %{with python_cpp}
 %{python3_sitearch}/protobuf-%{version}%{?rcver}-py3.*-nspkg.pth
 %else
-%license LICENSE
 %{python3_sitelib}/protobuf-%{version}%{?rcver}-py3.*-nspkg.pth
 %endif
 %doc python/README.md

@@ -36,13 +36,12 @@ sed -i -e '/^#!\//, 1d' kerberoast/kerberoast.py
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 %files
 %{_bindir}/kerberoast
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 %changelog

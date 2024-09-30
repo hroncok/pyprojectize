@@ -57,7 +57,7 @@ Python 3 libraries supporting tools for working with composes
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 
 %if %{with tests}
@@ -73,7 +73,7 @@ Python 3 libraries supporting tools for working with composes
 %{_mandir}/man1/*
 
 %files -n python%{python3_pkgversion}-%{name} -f %{pyproject_files}
-%license COPYING GPL
+%license GPL
 %doc AUTHORS README.rst
 
 

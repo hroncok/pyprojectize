@@ -44,14 +44,13 @@ rm -rf *.egg*
 
 %install
 %pyproject_install
-%pyproject_save_files %{modname}
+%pyproject_save_files -l %{modname}
 
 # https://bitbucket.org/lcrees/stuf/issues/9/find_packages-should-exclude-tests
 rm -rf %{buildroot}%{python3_sitelib}/tests/
 
 %files -n python3-%{modname} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE.txt
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.9.16-38

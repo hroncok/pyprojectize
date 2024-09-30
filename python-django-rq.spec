@@ -38,10 +38,9 @@ rm -vr *.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files django_rq
+%pyproject_save_files -l django_rq
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.rst
 
 %changelog

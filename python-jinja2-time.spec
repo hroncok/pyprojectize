@@ -38,7 +38,7 @@ Jinja2 Extension for Dates and Times.
 %install
 
 %{pyproject_install}
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 %check
 
@@ -46,7 +46,6 @@ Jinja2 Extension for Dates and Times.
 
 
 %files -n python3-%{pkgname} -f %{pyproject_files}
-%license LICENSE
 %doc *.rst
 
 %changelog

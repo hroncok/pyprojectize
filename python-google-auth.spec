@@ -51,12 +51,11 @@ Python client for the kubernetes API.
 
 %install
 %pyproject_install
-%pyproject_save_files google
+%pyproject_save_files -l google
 
 %check
 
 %files -n %{py3}-%{library} -f %{pyproject_files}
-%license LICENSE
 
 %changelog
 * Sat Sep 21 2024 Fedora Release Monitoring <release-monitoring@fedoraproject.org> - 1:2.35.0-1

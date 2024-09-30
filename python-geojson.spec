@@ -38,14 +38,13 @@ interface.
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 %check
 %{__python3} setup.py test
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc CHANGELOG.rst README.rst 
-%license LICENSE.rst
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 2.5.0-18

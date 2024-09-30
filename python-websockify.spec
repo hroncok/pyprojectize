@@ -40,14 +40,13 @@ Python WSGI based adapter for the Websockets protocol - documentation
 
 %install
 %pyproject_install
-%pyproject_save_files websockify
+%pyproject_save_files -l websockify
 
 rm -Rf %{buildroot}/usr/share/websockify
 mkdir -p %{buildroot}%{_mandir}/man1/
 install -m 444 docs/websockify.1 %{buildroot}%{_mandir}/man1/
 
 %files -n python3-%{pkgname} -f %{pyproject_files}
-%license COPYING
 %{_mandir}/man1/websockify.1*
 %{_bindir}/websockify
 

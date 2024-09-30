@@ -48,7 +48,7 @@ sed -i '1{\@^#!/usr/bin/env python@d}' examples/*.py
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 
 %check
@@ -57,7 +57,6 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} nosetests-%{python3_version}
 
  
 %files -n python%{python3_pkgversion}-%{module_name} -f %{pyproject_files}
-%license COPYING
 %doc README.rst docs examples
 
 

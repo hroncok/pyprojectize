@@ -33,7 +33,7 @@ This spying framework allows to easily create mocks with a very readable syntax.
 
 %install
 %{pyproject_install}
-%pyproject_save_files mockito
+%pyproject_save_files -l mockito
 
 %package -n python3-mockito
 Summary: %{summary}
@@ -45,7 +45,6 @@ Summary: %{summary}
 %doc AUTHORS
 %doc CHANGES.txt
 %doc README.rst
-%license LICENSE
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.3.0-10

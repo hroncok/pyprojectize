@@ -73,7 +73,7 @@ pyrcc5 icons.qrc -o electroncash_gui/qt/icons_rc.py
 
 %install
 %{pyproject_install}
-%pyproject_save_files electroncash electroncash_gui electroncash_plugins
+%pyproject_save_files -l electroncash electroncash_gui electroncash_plugins
 
 # Remove shebang lines from .py files that aren't executable, and
 # remove executability from .py files that don't have a shebang line:
@@ -96,7 +96,6 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/org.elect
 %doc AUTHORS
 %doc README.rst
 %doc RELEASE-NOTES
-%license LICENCE
 %{_bindir}/%{name}
 %{_datadir}/icons/hicolor/256x256/apps/%{name}.png
 %{_datadir}/icons/hicolor/scaleable/apps/%{name}.svg

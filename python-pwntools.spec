@@ -137,7 +137,7 @@ chmod -x docs/requirements.txt
 
 %install
 %pyproject_install
-%pyproject_save_files pwn pwnlib
+%pyproject_save_files -l pwn pwnlib
 
 mv %{buildroot}%{_bindir}/checksec %{buildroot}%{_bindir}/checksec-pwntools
 
@@ -156,7 +156,6 @@ export PYTHONPATH="${PYTHONPATH:-%{buildroot}%{python3_sitearch}:%{buildroot}%{p
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %doc CHANGELOG.md CONTRIBUTING.md README.md TESTING.md docs/requirements.txt
-%license LICENSE-pwntools.txt
 %{_bindir}/asm
 %{_bindir}/checksec-pwntools
 %{_bindir}/common

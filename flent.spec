@@ -70,7 +70,7 @@ rm -f doc/_build/html/index.html doc/_build/html/.buildinfo
 
 %install
 %pyproject_install
-%pyproject_save_files flent
+%pyproject_save_files -l flent
 
 %check
 %make_build test PYTHON=%{__python3}
@@ -85,7 +85,6 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 %{_metainfodir}/flent.appdata.xml
 %{_mandir}/man1/flent.1.gz
 %doc README.rst CHANGES.md BUGS batchfile.example flentrc.example flent-paper.batch misc/
-%license LICENSE
 
 %files doc
 %doc doc/_build/html

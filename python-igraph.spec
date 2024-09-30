@@ -58,10 +58,9 @@ documentation needed to develop application with %{name}.
 
 %install
 %pyproject_install
-%pyproject_save_files igraph
+%pyproject_save_files -l igraph
 
 %files -n python3-igraph -f %{pyproject_files}
-%license LICENSE
 %{_bindir}/igraph
 
 %files -n python3-igraph-devel

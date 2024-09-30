@@ -49,7 +49,7 @@ Documentation for python-smbc.
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 export PYTHONPATH=%{buildroot}%{python3_sitearch}
 %{_bindir}/pydoc3 -w smbc
 %{_bindir}/mkdir html
@@ -57,7 +57,6 @@ export PYTHONPATH=%{buildroot}%{python3_sitearch}
 
 %files -n python3-smbc -f %{pyproject_files}
 %doc README.md NEWS
-%license COPYING
 
 %files doc
 %doc html

@@ -45,7 +45,7 @@ Library to apply JSON Patches according to RFC 6902 - Python 3 build.
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 # remove jsondiff binary conflicting with python-jsondiff
 # https://bugzilla.redhat.com/show_bug.cgi?id=2029805
 rm %{buildroot}%{_bindir}/jsondiff
@@ -58,7 +58,6 @@ ln -s ./jsonpatch-%{python3_version} %{buildroot}%{_bindir}/jsonpatch
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
-%license LICENSE
 %{_bindir}/jsonpatch
 %{_bindir}/jsonpatch-3*
 

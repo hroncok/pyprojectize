@@ -42,7 +42,7 @@ rm -rf lib/*.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files '%{modname}*'
+%pyproject_save_files -l '%{modname}*'
 
 %check
 # https://github.com/carlos-jenkins/pydotplus/issues/2
@@ -51,7 +51,6 @@ pushd test
 popd
 
 %files -n python3-%{modname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

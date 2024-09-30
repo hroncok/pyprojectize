@@ -88,7 +88,7 @@ popd # docs
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 # Install html docs
 mkdir -p %{buildroot}%{_pkgdocdir}/
@@ -107,7 +107,6 @@ chmod 755 %{buildroot}%{python3_sitearch}/%{srcname}/stringprep.cpython-*.so
 
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc CONTRIBUTING.rst README.rst
 # For arch-specific packages: sitearch
 

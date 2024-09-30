@@ -44,12 +44,11 @@ rm -rf %{eggname}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files %{libname}
+%pyproject_save_files -l %{libname}
 
 # Note that there is no %%files section for the unversioned python module
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE.txt
 %exclude /usr/LICENSE.txt
 
 

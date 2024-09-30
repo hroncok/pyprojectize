@@ -44,14 +44,13 @@ Python3 interface to resultsdb.
 
 %install
 %pyproject_install
-%pyproject_save_files resultsdb_api
+%pyproject_save_files -l resultsdb_api
 
 %check
 %pytest
 
 %files -n python3-resultsdb_api -f %{pyproject_files}
 %doc README.md
-%license LICENSE
 
 %changelog
 * Fri Jul 26 2024 Miroslav Suchý <msuchy@redhat.com> - 2.1.5-14

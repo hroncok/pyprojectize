@@ -47,10 +47,9 @@ Obsoletes:      python-%{srcname} < 0.2.7-7
 
 %install
 %pyproject_install
-%pyproject_save_files pysword
+%pyproject_save_files -l pysword
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

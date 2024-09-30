@@ -38,7 +38,7 @@ rm -rf %{srcname}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files pbkdf2
+%pyproject_save_files -l pbkdf2
 
 %check
 %{python3} -m unittest test/*
@@ -46,7 +46,6 @@ rm -rf %{srcname}.egg-info
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc PKG-INFO
 %doc README.txt
-%license LICENSE
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.3-32

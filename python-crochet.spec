@@ -67,7 +67,7 @@ rm docs/_build/html/.buildinfo
 
 %install
 %pyproject_install
-%pyproject_save_files crochet
+%pyproject_save_files -l crochet
 
 
 %check
@@ -75,7 +75,6 @@ rm docs/_build/html/.buildinfo
 
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

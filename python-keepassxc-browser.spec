@@ -36,11 +36,10 @@ Summary:        %{summary}
 
 %install
 %pyproject_install
-%pyproject_save_files keepassxc_browser
+%pyproject_save_files -l keepassxc_browser
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
-%license LICENSE
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.8-10

@@ -45,7 +45,7 @@ files.
 
 %install
 %pyproject_install
-%pyproject_save_files colcon_pkg_config
+%pyproject_save_files -l colcon_pkg_config
 
 
 %check
@@ -56,7 +56,6 @@ files.
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

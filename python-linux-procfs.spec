@@ -39,13 +39,12 @@ Requires: python3-six
 %install
 rm -rf %{buildroot}
 %pyproject_install
-%pyproject_save_files procfs
+%pyproject_save_files -l procfs
 
 %files -n python3-linux-procfs -f %{pyproject_files}
 %defattr(0755,root,root,0755)
 %{_bindir}/pflags
 %defattr(0644,root,root,0755)
-%license COPYING
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.7.3-6

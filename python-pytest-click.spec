@@ -34,13 +34,12 @@ isolated_cli_runner.
 
 %install
 %pyproject_install
-%pyproject_save_files pytest_click
+%pyproject_save_files -l pytest_click
 
 %check
 %pytest
 
 %files -n python3-pytest-click -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

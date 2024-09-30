@@ -63,7 +63,7 @@ rm _build/html/.buildinfo
 
 %install
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 
 install -d -m 0755 %{buildroot}%{homedir}
 install -d -m 0755 %{buildroot}%{_var}/cache/%{name}
@@ -95,7 +95,6 @@ exit 0
 %systemd_postun %{name}.service
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 # Note: these directories needs to be writable by the mopidy service
 %attr(-,%name,%name) %dir %{_var}/cache/%{name}

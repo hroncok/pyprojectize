@@ -57,7 +57,7 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 %check
 for test in test/*; do
@@ -65,7 +65,6 @@ for test in test/*; do
 done
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 
 %files -n python-%{pypi_name}-doc
 %doc html

@@ -184,7 +184,7 @@ make -C docs %{?_smp_mflags} html %{?sphinxbuild}
 %install
 %if %{with python3}
 version=%version %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 %endif
 
 %if %{with python2}
@@ -208,7 +208,6 @@ cp -a docs/_build/html %{buildroot}%{_pkgdocdir}/
 
 %if %{with python3}
 %files -n python3-copr -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 %endif
 # with python3

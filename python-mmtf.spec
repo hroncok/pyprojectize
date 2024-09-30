@@ -56,7 +56,7 @@ Requires: python3-msgpack
 
 %install
 %pyproject_install
-%pyproject_save_files mmtf
+%pyproject_save_files -l mmtf
 
 %if %{with check}
 %check
@@ -64,7 +64,6 @@ Requires: python3-msgpack
 %endif
 
 %files -n python3-mmtf -f %{pyproject_files}
-%license LICENSE.txt
 %doc CHANGELOG.md README.md
 
 %changelog

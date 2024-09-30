@@ -63,7 +63,7 @@ Documentation of gcovr.
 
 %install
 %pyproject_install
-%pyproject_save_files 'gcovr*'
+%pyproject_save_files -l 'gcovr*'
 
 %if %{with docs}
 # the documentation can only be build **after** gcovr is installed
@@ -91,7 +91,6 @@ popd
 
 
 %files -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.rst CHANGELOG.rst
 %{_bindir}/gcovr
 %if %{with docs}

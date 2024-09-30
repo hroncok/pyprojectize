@@ -45,13 +45,12 @@ Python 3 version.
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 %check
 python3 -m unittest %{modname}.test
 
 %files -n python3-%{modname} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 %changelog

@@ -59,13 +59,12 @@ Role for Python Network Runner Library
 
 %install
 %pyproject_install
-%pyproject_save_files network_runner
+%pyproject_save_files -l network_runner
 
 %check
 LANG=C.utf-8 %{__python3} -m pytest --ignore=build
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %files -n ansible-role-%{ansible_role}

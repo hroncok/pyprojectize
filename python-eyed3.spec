@@ -46,7 +46,7 @@ Requires:       python3-six
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 
 %check
@@ -58,7 +58,6 @@ py.test-%{python3_version} --ignore=tests/{test_classic_plugin.py,test_core.py,i
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc AUTHORS.rst HISTORY.rst README.rst examples/
-%license LICENSE
 %{_bindir}/eyeD3
 
 

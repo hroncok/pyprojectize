@@ -39,7 +39,7 @@ package contains a Python 3 version of PyXDG.
 
 %install
 %pyproject_install
-%pyproject_save_files xdg
+%pyproject_save_files -l xdg
 
 %check
 # icon-test currently fails
@@ -47,7 +47,6 @@ package contains a Python 3 version of PyXDG.
 nosetests-%{python3_version} || :
 
 %files -n python%{python3_pkgversion}-pyxdg -f %{pyproject_files}
-%license COPYING
 %doc AUTHORS ChangeLog README TODO
 
 %changelog

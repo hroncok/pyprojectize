@@ -29,14 +29,13 @@ supports a basic CRUD (create, read, update, delete) for various items.
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 %check
 %{__python3} setup.py test
 
 %files -f %{pyproject_files}
 %doc README.md
-%license LICENSE
 %{_bindir}/iocdump
 %{_bindir}/openioc*
 

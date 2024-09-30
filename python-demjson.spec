@@ -45,7 +45,7 @@ Summary:        Python JSON module and lint checker
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 # fix shebang lines
 find %{buildroot}%{python3_sitelib} \
@@ -63,7 +63,6 @@ popd
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.txt README.md
 %doc docs
-%license LICENSE.txt
 %{_bindir}/jsonlint
 
 

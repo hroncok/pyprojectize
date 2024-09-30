@@ -53,14 +53,13 @@ rm -rf %{modname}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files %{modname}
+%pyproject_save_files -l %{modname}
 
 %check
 %tox
 
 %files -n python3-nine -f %{pyproject_files}
 %doc README.rst
-%license LICENSE.rst
 
 
 %changelog

@@ -75,7 +75,7 @@ popd
 
 %install
 %pyproject_install
-%pyproject_save_files %{modname}
+%pyproject_save_files -l %{modname}
 
 %check
 mkdir -p matplotlib
@@ -94,7 +94,6 @@ popd
 %doc doc/build/html
 
 %files -n python3-%{modname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

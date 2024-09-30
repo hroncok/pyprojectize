@@ -41,11 +41,10 @@ rm -rf *.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files mockssh
+%pyproject_save_files -l mockssh
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

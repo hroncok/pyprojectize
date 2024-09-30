@@ -63,14 +63,13 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
-%pyproject_save_files certbot_dns_luadns
+%pyproject_save_files -l certbot_dns_luadns
 
 
 %check
 %{__python3} -m pytest
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.rst
 
 %files -n python-%{pypi_name}-doc

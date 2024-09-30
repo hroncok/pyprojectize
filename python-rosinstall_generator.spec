@@ -53,7 +53,7 @@ about repositories with ROS packages/stacks.
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 mv %{buildroot}%{_bindir}/%{srcname} %{buildroot}%{_bindir}/%{srcname}-%{python3_version}
 ln -s %{srcname}-%{python3_version} %{buildroot}%{_bindir}/%{srcname}
 
@@ -63,7 +63,6 @@ ln -s %{srcname}-%{python3_version} %{buildroot}%{_bindir}/%{srcname}
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.rst
 %{_bindir}/%{srcname}
 %{_bindir}/%{srcname}-%{python3_version}

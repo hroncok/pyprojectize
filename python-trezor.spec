@@ -46,7 +46,7 @@ rm -rf trezor.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files trezorlib
+%pyproject_save_files -l trezorlib
 
 install -Dpm 644 bash_completion.d/trezorctl.sh %{buildroot}%{bash_completions_dir}/trezorctl
 
@@ -66,7 +66,6 @@ install -Dpm 644 bash_completion.d/trezorctl.sh %{buildroot}%{bash_completions_d
 %doc AUTHORS
 %doc CHANGELOG.md
 %doc README.md
-%license COPYING
 %{_bindir}/trezorctl
 %{bash_completions_dir}/trezorctl
 

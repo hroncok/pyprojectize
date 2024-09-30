@@ -48,7 +48,7 @@ Requires:       python3-inflect
 
 %install
 %pyproject_install
-%pyproject_save_files jinja2_pluralize
+%pyproject_save_files -l jinja2_pluralize
 
 
 %check
@@ -56,7 +56,6 @@ Requires:       python3-inflect
 
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc AUTHORS.rst CONTRIBUTING.rst HISTORY.rst README.rst
 
 

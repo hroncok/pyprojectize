@@ -83,7 +83,7 @@ find . -name '*.py' -exec sed -i '1 { /^#!/ d }' {} \+
 
 %if %{with python3}
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 %endif
 
 %check
@@ -105,7 +105,6 @@ find . -name '*.py' -exec sed -i '1 { /^#!/ d }' {} \+
 
 %if %{with python3}
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE.rst
 %doc README.rst
 %endif
 

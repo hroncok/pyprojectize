@@ -37,7 +37,7 @@ Requires:       python%{python3_pkgversion}-six
 
 %install
 %pyproject_install
-%pyproject_save_files configobj validate
+%pyproject_save_files -l configobj validate
 
 %check
 export PYTHONPATH=$(pwd)/build/lib
@@ -47,7 +47,6 @@ export PYTHONPATH=$(pwd)/build/lib
 
 %files -n python%{python3_pkgversion}-configobj -f %{pyproject_files}
 %doc README.md
-%license LICENSE
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 5.0.8-10

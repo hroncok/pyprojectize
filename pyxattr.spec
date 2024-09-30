@@ -38,7 +38,7 @@ Summary: %{summary}
 
 %install
 %pyproject_install
-%pyproject_save_files xattr
+%pyproject_save_files -l xattr
 
 %check
 # selinux in koji produces unexpected xattrs for tests
@@ -50,7 +50,6 @@ export PYTHONPATH=%{buildroot}%{python3_sitearch}:$PYTHONPATH
 python3 -m pytest tests %{?copr_projectname:-k 'not (binary_payload or create_on_existing or empty_value or large_value or many_ops or mixed_access or set_get_remove)'}
 
 %files -n python3-%{name} -f %{pyproject_files}
-%license COPYING
 %doc NEWS README.md
 
 %changelog

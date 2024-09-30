@@ -29,11 +29,10 @@ Python objects. Lookups are performed by longest-prefix matching.
 
 %install
 %pyproject_install
-%pyproject_save_files SubnetTree _SubnetTree
+%pyproject_save_files -l SubnetTree _SubnetTree
 
 %files -f %{pyproject_files}
 %doc CHANGES README
-%license COPYING
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.35-12

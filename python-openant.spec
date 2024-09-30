@@ -51,7 +51,7 @@ Summary:        %{summary}
 %{!?_udevrulesdir: %global _udevrulesdir %{_sysconfdir}/udev/rules.d}
 
 %pyproject_install
-%pyproject_save_files %{extract_name} %{pretty_name}
+%pyproject_save_files -l %{extract_name} %{pretty_name}
 mkdir -pm 755 %{buildroot}/%{_udevrulesdir}	
 install -pm 644 %{SOURCE2} %{buildroot}/%{_udevrulesdir}
 
@@ -65,7 +65,6 @@ install -pm 644 %{SOURCE2} %{buildroot}/%{_udevrulesdir}
 %udev_rules_update
 
 %files -n python3-%{pretty_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 %{_bindir}/openant
 %config(noreplace) %{_udevrulesdir}/*

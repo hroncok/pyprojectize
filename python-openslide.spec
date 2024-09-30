@@ -56,7 +56,7 @@ rm -r build/html/.buildinfo build/html/.doctrees
 
 %install
 %pyproject_install
-%pyproject_save_files openslide
+%pyproject_save_files -l openslide
 
 
 %check
@@ -71,7 +71,6 @@ sed -i -e '/^minversion/ d' pytest.ini
 
 %files -n python3-openslide -f %{pyproject_files}
 %doc CHANGELOG.md build/html
-%license COPYING.LESSER
 
 
 %changelog

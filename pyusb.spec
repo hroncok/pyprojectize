@@ -36,14 +36,13 @@ sed -i -e 's/\r//g' README.rst
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 %check
 cd tests
 %{py3_test_envvars} %{python3} ./testall.py
 
 %files -n python3-pyusb -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

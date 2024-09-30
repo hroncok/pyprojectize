@@ -33,7 +33,7 @@ An Ignition client for Zezere managed systems.
 
 %install
 %pyproject_install
-%pyproject_save_files zezere
+%pyproject_save_files -l zezere
 
 install zezere_ignition/__init__.py %{buildroot}/usr/bin/zezere-ignition
 chmod +x %{buildroot}/usr/bin/zezere-ignition
@@ -44,7 +44,6 @@ mkdir -p %{buildroot}%{_sysconfdir}/issue.d/
 ln -s /run/zezere-ignition-banner %{buildroot}%{_sysconfdir}/issue.d/zezere_ignition.issue
 
 %files -f %{pyproject_files}
-%license LICENSE
 %{_sharedstatedir}/zezere
 %{_bindir}/zezere-manage
 

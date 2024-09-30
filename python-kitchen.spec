@@ -73,7 +73,7 @@ rm -rf html/.buildinfo
 
 %install
 %{pyproject_install}
-%pyproject_save_files 'kitchen*'
+%pyproject_save_files -l 'kitchen*'
 
 # %check
 # # In current mock, the PATH isn't being reset.  This causes failures in some
@@ -84,7 +84,6 @@ rm -rf html/.buildinfo
 
 %files -n python%{python3_pkgversion}-kitchen -f %{pyproject_files}
 %doc README.rst NEWS.rst
-%license COPYING COPYING.LESSER
 
 %files -n python%{python3_pkgversion}-kitchen-doc
 %doc kitchen3/docs/*

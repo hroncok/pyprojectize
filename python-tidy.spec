@@ -54,7 +54,7 @@ Requires:       python3-six
 %install
 %{?py2:%{py2_install}}
 %{pyproject_install}
-%pyproject_save_files tidy
+%pyproject_save_files -l tidy
 
 %check
 # fail after tidy 5.6
@@ -71,7 +71,6 @@ Requires:       python3-six
 %endif
 
 %files -n python3-tidy -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

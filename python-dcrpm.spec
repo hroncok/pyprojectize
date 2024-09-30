@@ -82,7 +82,7 @@ mv legacy_setup.py setup.py
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 
 %check
@@ -98,7 +98,6 @@ mv legacy_setup.py setup.py
 
 
 %files -n %{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.md CONTRIBUTING.md CODE_OF_CONDUCT.md
 %doc HISTORY.md MANUAL_RPM_CLEANUP.md
 %{_bindir}/dcrpm

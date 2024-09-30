@@ -45,7 +45,7 @@ Requires: python3-six
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 # Remove shebang from Python3 libraries
 for lib in `find %{buildroot}%{python3_sitelib} -name "*.py"`; do
  sed '1{\@^#!/usr/bin/env python@d}' $lib > $lib.new &&
@@ -58,7 +58,6 @@ done
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md CHANGELOG.md
-%license LICENSE
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 3.3.0-6

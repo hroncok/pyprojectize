@@ -43,7 +43,7 @@ An extension for colcon-core to recursively crawl for packages.
 
 %install
 %pyproject_install
-%pyproject_save_files colcon_recursive_crawl
+%pyproject_save_files -l colcon_recursive_crawl
 
 
 %check
@@ -54,7 +54,6 @@ An extension for colcon-core to recursively crawl for packages.
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

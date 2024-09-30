@@ -35,10 +35,9 @@ sed -i -e '/^#!\//, 1d' aiosecretsdump/__init__.py
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name} bins
+%pyproject_save_files -l %{pypi_name} bins
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 %{_bindir}/aiosecretsdump
 # https://github.com/skelsec/aiosecretsdump/issues/2

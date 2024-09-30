@@ -39,7 +39,7 @@ Python %{python3_pkgversion} version.
 
 %install
 %pyproject_install
-%pyproject_save_files %{modname}
+%pyproject_save_files -l %{modname}
 mv %{buildroot}%{_bindir}/%{modname}{,-%{python3_version}}
 ln -s %{modname}-%{python3_version} %{buildroot}%{_bindir}/%{modname}-%{python3_pkgversion}
 ln -s %{modname}-3 %{buildroot}%{_bindir}/%{modname}
@@ -50,7 +50,6 @@ ln -s %{modname}-3 %{buildroot}%{_bindir}/%{modname}
 
 %files -n python%{python3_pkgversion}-%{modname} -f %{pyproject_files}
 %doc *.md
-%license LICENSE
 %{_bindir}/%{modname}
 %{_bindir}/%{modname}-%{python3_pkgversion}
 %{_bindir}/%{modname}-%{python3_version}

@@ -40,13 +40,12 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files didl_lite
+%pyproject_save_files -l didl_lite
 
 #%%check
 #%%pytest -v tests
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE.md
 %doc README.rst
 
 %changelog

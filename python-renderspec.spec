@@ -72,7 +72,7 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 cp %{buildroot}/%{_bindir}/renderspec %{buildroot}/%{_bindir}/renderspec-%{python3_version}
 ln -s %{_bindir}/renderspec-%{python3_version} %{buildroot}/%{_bindir}/renderspec-3
 
@@ -80,7 +80,6 @@ ln -s %{_bindir}/renderspec-%{python3_version} %{buildroot}/%{_bindir}/renderspe
 stestr run
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 %{_bindir}/renderspec
 %{_bindir}/renderspec-3

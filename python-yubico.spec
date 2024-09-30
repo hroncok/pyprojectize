@@ -42,7 +42,7 @@ Pure-python library for interacting with Yubikeys. For Python 3.
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 
 %check
@@ -50,7 +50,6 @@ Pure-python library for interacting with Yubikeys. For Python 3.
 
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license COPYING
 %doc NEWS README
 
 

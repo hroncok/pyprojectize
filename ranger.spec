@@ -35,14 +35,13 @@ sed -i -e '1d;2i#!/usr/bin/python3' %{name}.py
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}.desktop
 mv %{buildroot}%{_pkgdocdir} _doc
 find _doc -type f -exec chmod -R -x '{}' \;
 
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc _doc/*
 %{_bindir}/ranger
 %{_bindir}/rifle

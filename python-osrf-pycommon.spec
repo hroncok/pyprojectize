@@ -89,7 +89,7 @@ rm docs/_build/html/.buildinfo
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 install -p -m0644 -D docs/_build/man/%{srcname}.1 %{buildroot}%{_mandir}/man1/%{srcname}.1
 
@@ -103,7 +103,6 @@ install -p -m0644 -D docs/_build/man/%{srcname}.1 %{buildroot}%{_mandir}/man1/%{
 %doc docs/_build/html
 
 %files -n python%{python3_pkgversion}-%{pkgname} -f %{pyproject_files}
-%license LICENSE
 %doc CHANGELOG.rst README.md
 %{_mandir}/man1/%{srcname}.1.gz
 

@@ -36,10 +36,9 @@ File Transfer Service (FTS) -- Python3 Client and CLI
 
 %install
 %pyproject_install
-%pyproject_save_files fts3
+%pyproject_save_files -l fts3
 
 %files -f %{pyproject_files}
-%license LICENSE
 %{_bindir}/fts-rest-*
 
 %changelog

@@ -46,7 +46,7 @@ Documentation for django-health-check
 
 %install
 %pyproject_install
-%pyproject_save_files health_check
+%pyproject_save_files -l health_check
 
 # TODO: Enable once pytest-django is packaged
 # https://lists.fedoraproject.org/archives/list/python-devel@lists.fedoraproject.org/thread/QTZIBOTA5XHNOLEF22K46XC74LZ7OQP5/
@@ -56,7 +56,6 @@ Documentation for django-health-check
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE
 
 %files -n python-%{pypi_name}-doc
 # There is a docs directory but it is no longer included in the release tarball

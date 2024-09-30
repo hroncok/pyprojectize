@@ -64,13 +64,12 @@ rm -rf %{gh_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 %check
 %{pytest} -k "not test_invalid_auth_mechanism"
 
 %files -n python3-%{gh_name} -f %{pyproject_files}
-%license LICENSE
 %doc CHANGELOG.md README.md
 
 %changelog

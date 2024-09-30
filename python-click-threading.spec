@@ -37,10 +37,9 @@ Multithreaded support for python 3 click (CLI creation kit) applications.
 
 %install
 %pyproject_install
-%pyproject_save_files %{pyname}
+%pyproject_save_files -l %{pyname}
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

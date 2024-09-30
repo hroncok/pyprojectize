@@ -66,11 +66,10 @@ https://fedoraproject.org/wiki/Changes/DeprecatePythonMock
 
 %install
 %pyproject_install
-%pyproject_save_files mock
+%pyproject_save_files -l mock
 
 
 %files -n python%{python3_pkgversion}-mock -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.rst
 
 

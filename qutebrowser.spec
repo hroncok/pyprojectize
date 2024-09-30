@@ -50,7 +50,7 @@ find . -type f -iname "*.py" -exec sed -i '1s_^#!/usr/bin/env python3$_#!/usr/bi
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 # Install desktop and appdata files
 desktop-file-install \
@@ -83,7 +83,6 @@ find %{buildroot} -size 0 -delete
 appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.appdata.xml
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc README.asciidoc doc/changelog.asciidoc doc
 %{_bindir}/%{srcname}
 %{_datadir}/applications/org.%{srcname}.%{srcname}.desktop

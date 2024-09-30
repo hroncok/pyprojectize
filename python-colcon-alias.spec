@@ -61,7 +61,7 @@ invocations.
 
 %install
 %pyproject_install
-%pyproject_save_files colcon_alias
+%pyproject_save_files -l colcon_alias
 
 
 %check
@@ -69,7 +69,6 @@ invocations.
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

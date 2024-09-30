@@ -52,7 +52,7 @@ sed -i '1d' fissix/pgen2/token.py
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 cp -p fissix/*.txt %{buildroot}%{python3_sitelib}/%{srcname}/
 
 
@@ -62,7 +62,6 @@ cp -p fissix/*.txt %{buildroot}%{python3_sitelib}/%{srcname}/
 
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 

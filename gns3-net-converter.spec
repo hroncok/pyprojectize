@@ -34,7 +34,7 @@ to the newer version v1+ JSON format for use in GNS3 v1+.
 
 %install
 %pyproject_install
-%pyproject_save_files gns3converter
+%pyproject_save_files -l gns3converter
 
 
 %check
@@ -42,7 +42,6 @@ to the newer version v1+ JSON format for use in GNS3 v1+.
 
 
 %files -f %{pyproject_files}
-%license COPYING
 %doc README.rst ChangeLog
 %{_bindir}/gns3-converter
 

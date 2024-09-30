@@ -53,7 +53,7 @@ Summary:        %{summary}
 %py2_install
 %else
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 %endif
 
 %if 0%{?rhel} && 0%{?rhel} < 8
@@ -65,7 +65,6 @@ Summary:        %{summary}
 %else
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md
-%license LICENSE
 %endif
 
 %changelog

@@ -51,13 +51,12 @@ rm -rf django_contrib_comments.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files django_comments
+%pyproject_save_files -l django_comments
 
 %check
 %{__python3} setup.py test
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.rst
 
 %changelog

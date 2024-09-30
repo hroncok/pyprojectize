@@ -37,13 +37,12 @@ sed -i '1c#! %{__python3}' python3/pyinotify.py
 
 %install
 %pyproject_install
-%pyproject_save_files '%{oname}*'
+%pyproject_save_files -l '%{oname}*'
 
 %check
 %py3_check_import pyinotify
 
 %files -n python%{python3_pkgversion}-inotify -f %{pyproject_files}
-%license COPYING
 %doc ACKS README.md
 %{_bindir}/%{oname}
 

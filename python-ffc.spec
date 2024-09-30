@@ -54,7 +54,7 @@ sed -r -i '1d' ffc/__main__.py ffc/main.py
 
 %install
 %pyproject_install
-%pyproject_save_files ffc
+%pyproject_save_files -l ffc
 
 %check
 OPTIONS=(
@@ -64,7 +64,6 @@ OPTIONS=(
 %python3 -m pytest -v test/ "${OPTIONS[@]}"
 
 %files -n python3-ffc -f %{pyproject_files}
-%license COPYING COPYING.LESSER
 %doc README.rst ChangeLog.rst AUTHORS
 %doc demo
 %{_bindir}/ffc

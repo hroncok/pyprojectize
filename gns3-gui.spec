@@ -58,7 +58,7 @@ sed -i 's/"check_for_update": True,/"check_for_update": False,/' gns3/settings.p
 
 %install
 %pyproject_install
-%pyproject_save_files gns3
+%pyproject_save_files -l gns3
 
 # Remove shebang
 for lib in `find %{buildroot}/%{python3_sitelib}/ -name '*.py'`; do
@@ -83,7 +83,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/gns3*.desktop
 
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc README.md AUTHORS CHANGELOG
 %{_bindir}/gns3
 %{_datadir}/applications/gns3*.desktop

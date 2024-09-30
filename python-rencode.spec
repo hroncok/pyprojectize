@@ -60,7 +60,7 @@ rm -f ./rencode/rencode.c
 
 %install
 %pyproject_install
-%pyproject_save_files rencode
+%pyproject_save_files -l rencode
 
 
 %check
@@ -72,7 +72,6 @@ popd
 
 %files -n python%{python3_pkgversion}-rencode -f %{pyproject_files}
 %doc README.md
-%license COPYING
 
 
 %changelog

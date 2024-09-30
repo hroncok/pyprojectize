@@ -35,13 +35,12 @@ rm MANIFEST.in
 
 %install
 %pyproject_install
-%pyproject_save_files mopidy_mpd
+%pyproject_save_files -l mopidy_mpd
 
 %check
 %{__python3} setup.py test
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

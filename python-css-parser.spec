@@ -39,14 +39,13 @@ sed -r -i '1{/.usr.bin.env python/d;}' src/css_parser/*py src/css_parser/*/*py
 
 %install
 %pyproject_install
-%pyproject_save_files css_parser
+%pyproject_save_files -l css_parser
 
 %check
 %python3 run_tests.py
 
 %files -n python3-css-parser -f %{pyproject_files}
 %doc README.md
-%license COPYING COPYING.LESSER
 
 %changelog
 %autochangelog

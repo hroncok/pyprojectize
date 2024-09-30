@@ -42,7 +42,7 @@ range. By default all available stats for this week are reported.
 
 %install
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 mkdir -p %{buildroot}%{_mandir}/man1
 install -pm 644 did.1.gz %{buildroot}%{_mandir}/man1
 
@@ -54,7 +54,6 @@ export LANG=en_US.utf-8
 %{_mandir}/man1/*
 %{_bindir}/did
 %doc README.rst examples
-%license LICENSE
 
 %changelog
 * Thu Jul 25 2024 Miroslav Suchý <msuchy@redhat.com> - 0.21-6

@@ -42,7 +42,7 @@ An extension for colcon-core to provide information about the plugin system.
 
 %install
 %pyproject_install
-%pyproject_save_files colcon_devtools
+%pyproject_save_files -l colcon_devtools
 
 
 %check
@@ -53,7 +53,6 @@ An extension for colcon-core to provide information about the plugin system.
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

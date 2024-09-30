@@ -105,7 +105,7 @@ sed -i -e "/^%%__meson /s| .*$| %{_bindir}/%{name}|" data/macros.%{name}
 
 %install
 %pyproject_install
-%pyproject_save_files %{libname}
+%pyproject_save_files -l %{libname}
 install -Dpm0644 -t %{buildroot}%{rpmmacrodir} data/macros.%{name}
 install -Dpm0644 -t %{buildroot}%{_datadir}/bash-completion/completions/ data/shell-completions/bash/meson
 install -Dpm0644 -t %{buildroot}%{_datadir}/zsh/site-functions/ data/shell-completions/zsh/_meson
@@ -118,7 +118,6 @@ export MESON_PRINT_TEST_OUTPUT=1
 %endif
 
 %files -f %{pyproject_files}
-%license COPYING
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*
 %{rpmmacrodir}/macros.%{name}

@@ -41,7 +41,7 @@ Lexicon is a simple collection of dict sub-classes providing extra power.
 
 %install
 %pyproject_install
-%pyproject_save_files lexicon
+%pyproject_save_files -l lexicon
 
 %if %{with tests}
 %check
@@ -49,7 +49,6 @@ Lexicon is a simple collection of dict sub-classes providing extra power.
 %endif
 
 %files -n python3-lexicon -f %{pyproject_files}
-%license LICENSE
 %doc docs/changelog.rst README.rst
 
 %changelog

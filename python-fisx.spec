@@ -38,13 +38,12 @@ Summary: %summary
 
 %install
 %pyproject_install
-%pyproject_save_files fisx
+%pyproject_save_files -l fisx
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitearch} %python3 -m fisx.tests.testAll
 
 %files -n python3-fisx -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

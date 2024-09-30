@@ -38,13 +38,12 @@ cp -p %{SOURCE1} .
 
 %install
 %pyproject_install
-%pyproject_save_files '%{srcname}*'
+%pyproject_save_files -l '%{srcname}*'
 
 # No tests
 #check
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.rst example.py
 
 %changelog

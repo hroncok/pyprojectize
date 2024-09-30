@@ -66,7 +66,7 @@ export DBUS_PYTHON_USE_AUTOTOOLS=1
 %install
 export DBUS_PYTHON_USE_AUTOTOOLS=1
 %pyproject_install
-%pyproject_save_files '*' dbus
+%pyproject_save_files -l '*' dbus
 %make_install
 
 # unpackaged files
@@ -78,7 +78,6 @@ make check -k || (cat test-suite.log && false)
 
 %files -n python%{python3_pkgversion}-dbus -f %{pyproject_files}
 %doc NEWS
-%license COPYING
 
 %files devel
 %doc README ChangeLog doc/API_CHANGES.txt doc/tutorial.txt

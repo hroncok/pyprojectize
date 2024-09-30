@@ -52,13 +52,12 @@ Documentation files for %{name}.
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 %check
 %{?with_tests: %{__python3} setup.py test}
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %files -n python3-%{srcname}-doc

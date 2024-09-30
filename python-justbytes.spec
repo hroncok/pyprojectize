@@ -37,10 +37,9 @@ rm -rf justbytes.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files justbytes
+%pyproject_save_files -l justbytes
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

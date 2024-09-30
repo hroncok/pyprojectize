@@ -32,10 +32,9 @@ Awesome Django authorization, without the database.
 
 %install
 %pyproject_install
-%pyproject_save_files rules
+%pyproject_save_files -l rules
 
 %files -n python3-%{shortname} -f %{pyproject_files}
-%license LICENSE
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 3.3.0-10

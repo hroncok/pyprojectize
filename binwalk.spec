@@ -41,14 +41,13 @@ it is compatible with magic signatures created for the Unix file utility.
 
 %install
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} setup.py test
 
 %files -f %{pyproject_files}
 %doc API.md INSTALL.md README.md
-%license LICENSE
 %{_bindir}/%{name}
 
 %changelog

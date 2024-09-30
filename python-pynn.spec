@@ -164,7 +164,7 @@ popd
 
 %install
 %pyproject_install
-%pyproject_save_files pyNN
+%pyproject_save_files -l pyNN
 
 # Includes compiled arch specific files but installs in /lib
 # Manually move to arch specific folder
@@ -219,7 +219,6 @@ find $RPM_BUILD_ROOT/%{python3_sitearch}/pyNN/neuron/nmodl/*/ -name "*.c" -o -na
 
 
 %files -n python3-pynn -f %{pyproject_files}
-%license LICENSE
 %doc README.rst AUTHORS changelog
 %{_libdir}/*pynn*so
 

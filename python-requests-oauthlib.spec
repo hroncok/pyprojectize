@@ -54,7 +54,7 @@ rm -rf %{distname}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files %{modname}
+%pyproject_save_files -l %{modname}
 
 %check
 %if %{with tests}
@@ -65,7 +65,6 @@ rm -rf %{distname}.egg-info
 
 %files -n python3-%{distname} -f %{pyproject_files}
 %doc README.rst HISTORY.rst requirements.txt AUTHORS.rst
-%license LICENSE
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.3.1-10

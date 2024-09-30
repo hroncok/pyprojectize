@@ -39,11 +39,10 @@ and ASCII tables) with a very simple API.
 
 %install
 %pyproject_install
-%pyproject_save_files atpy
+%pyproject_save_files -l atpy
 
 %files -n python3-ATpy -f %{pyproject_files}
 %doc CHANGES README.md
-%license LICENSE
 
 %changelog
 * Wed Jul 17 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.7-40

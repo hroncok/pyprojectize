@@ -48,7 +48,7 @@ window managers, on Arch Linux, Void Linux, Debian and Fedora.
 
 %install
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 #desktop-file-edit --set-icon %{_datadir}/pixmaps/%{name}.svg dist/%{name}.desktop
 install -p -D -m 0644 -t %{buildroot}/%{_datadir}/applications dist/%{name}.desktop
 install -p -D -m 0644 -t %{buildroot}/%{_datadir}/%{name} dist/*.png dist/*.svg
@@ -68,7 +68,6 @@ done
 
 %doc README.md
 
-%license LICENSE LICENSE-COLORTHIEF
 
 %changelog
 %autochangelog

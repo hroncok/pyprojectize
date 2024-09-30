@@ -62,7 +62,7 @@ done
 
 %install
 %pyproject_install
-%pyproject_save_files readability
+%pyproject_save_files -l readability
 
 
 %check
@@ -70,7 +70,6 @@ done
 
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

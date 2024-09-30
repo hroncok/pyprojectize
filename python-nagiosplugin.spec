@@ -47,13 +47,12 @@ Summary:        %{summary}
 
 %install
 %pyproject_install
-%pyproject_save_files nagiosplugin
+%pyproject_save_files -l nagiosplugin
 
 %check
 %pytest
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.txt
 
 %changelog

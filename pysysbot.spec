@@ -35,7 +35,7 @@ get information about the remote system.
 
 %install
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 install -Dp -m 0644 data/%{name}.service %{buildroot}%{_unitdir}/%{name}.service
 install -Dp -m 0644 data/%{name}.conf %{buildroot}%{_sysconfdir}/%{name}/%{name}.conf
 install -Dp -m 0644 man/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
@@ -52,7 +52,6 @@ rm -rf %{buildroot}%{_defaultdocdir}
 
 %files -f %{pyproject_files}
 %doc AUTHORS ChangeLog README.rst
-%license COPYING
 %{_mandir}/man*/%{name}*.*
 %{_bindir}/%{name}
 %config(noreplace) %{_sysconfdir}/%{name}/

@@ -40,14 +40,13 @@ rm -rf %{pkgname}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files colors
+%pyproject_save_files -l colors
 
 %check
 PYTHONPATH=$(pwd) py.test-3 -v test
 
 %files -n python3-%{pkgname} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.1.8-27

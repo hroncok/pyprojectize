@@ -68,7 +68,7 @@ This package contains the python modules for the git-revise program.
 
 %install
 %pyproject_install
-%pyproject_save_files gitrevise
+%pyproject_save_files -l gitrevise
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} -m pytest
@@ -80,7 +80,6 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} -m pytest
 %{_mandir}/man1/git-revise.1*
 
 %files -n python3-%{shortname} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 

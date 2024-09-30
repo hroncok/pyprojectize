@@ -58,7 +58,7 @@ rm -f doc/_build/html/.buildinfo
 
 %install
 %pyproject_install
-%pyproject_save_files %{lowname} ometa terml
+%pyproject_save_files -l %{lowname} ometa terml
 mkdir -p %{buildroot}%{_mandir}/man1
 cp -a %{_builddir}/%{oname}-%{version}/doc/_build/man/%{lowname}.1* %{buildroot}%{_mandir}/man1
 
@@ -67,7 +67,6 @@ cp -a %{_builddir}/%{oname}-%{version}/doc/_build/man/%{lowname}.1* %{buildroot}
 py.test-%{python3_version} terml/test ometa/test --ignore=ometa/test/test_vm_builder.py
 
 %files -n python3-parsley -f %{pyproject_files}
-%license LICENSE
 %doc NEWS README
 %{_mandir}/man1/%{lowname}.1*
 

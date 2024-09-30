@@ -149,7 +149,7 @@ popd
 pushd geographiclib-%{pythonver}
 # Native build
 %pyproject_install
-%pyproject_save_files geographiclib
+%pyproject_save_files -l geographiclib
 # MinGW build
 %mingw32_py3_install_wheel
 %mingw64_py3_install_wheel
@@ -196,7 +196,6 @@ popd
 %doc %{_defaultdocdir}/%{name}/
 
 %files -n python3-%{name} -f %{pyproject_files}
-%license LICENSE.txt
 
 %files -n mingw32-%{name}
 %license LICENSE.txt

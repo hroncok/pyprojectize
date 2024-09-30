@@ -48,11 +48,10 @@ This package provides the Python 3 version.
 
 %install
 %pyproject_install
-%pyproject_save_files rpmmd
+%pyproject_save_files -l rpmmd
 
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license COPYING
 %doc README.md ChangeLog
 
 

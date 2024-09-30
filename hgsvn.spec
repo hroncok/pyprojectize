@@ -38,13 +38,12 @@ fast local operations like hg log and hg annotate.
 
 %install
 %{pyproject_install}
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 
 %check
 %{__python3} setup.py test || :
 
 %files -f %{pyproject_files}
-%license COPYING.txt
 %doc AUTHORS.txt README.txt TODO.txt
 %{_bindir}/hgimportsvn
 %{_bindir}/hgpullsvn

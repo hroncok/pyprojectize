@@ -32,11 +32,10 @@ A WebThing WebSocket consumer and API client.
 
 %install
 %pyproject_install
-%pyproject_save_files webthing_ws
+%pyproject_save_files -l webthing_ws
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst example.py
-%license LICENSE
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.0-18

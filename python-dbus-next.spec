@@ -72,7 +72,7 @@ chmod -x examples/*.py
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 %if %{with tests}
 %check
@@ -85,7 +85,6 @@ PYTHONPATH="${PWD}" %pytest -k 'not test_tcp_connection_with_forwarding'
 %endif
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc CHANGELOG.md README.md examples/
 
 %changelog

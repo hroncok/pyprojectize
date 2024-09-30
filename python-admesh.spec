@@ -52,7 +52,7 @@ cp %{SOURCE1} test/
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitearch} py.test-3 -v \
@@ -62,7 +62,6 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} py.test-3 -v \
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
-%license COPYING
 
 
 %changelog

@@ -71,7 +71,7 @@ Summary: %summary
 
 %install
 %pyproject_install
-%pyproject_save_files eccodes gribapi
+%pyproject_save_files -l eccodes gribapi
 
 # NOTE:
 # this package includes 2 c header files named gribapi/eccodes.h and
@@ -101,7 +101,6 @@ rm -rf %sphinx_doc_path/.doctrees
 %files -n python3-eccodes -f %{pyproject_files}
 %doc README.rst
 %doc %sphinx_doc_path
-%license LICENSE
 
 
 %changelog

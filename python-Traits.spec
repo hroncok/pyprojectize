@@ -81,7 +81,7 @@ sed -i -e '/extra_compile_args=/d' setup.py
 
 %install
 %pyproject_install
-%pyproject_save_files '%{modname}*'
+%pyproject_save_files -l '%{modname}*'
 
 %check
 pushd build/lib.%{python3_platform}-*
@@ -90,7 +90,6 @@ pushd build/lib.%{python3_platform}-*
 popd
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE.txt
 %doc CHANGES.rst examples/tutorials README.rst
 
 %changelog

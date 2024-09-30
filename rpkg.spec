@@ -214,7 +214,7 @@ Common files for python2-%{name} and python3-%{name}.
 %if 0%{?with_python3}
 %if 0%{?with_hatchling}
 %pyproject_install
-%pyproject_save_files pyrpkg
+%pyproject_save_files -l pyrpkg
 %else
 %py3_install
 %endif
@@ -264,7 +264,7 @@ example_cli_dir=$RPM_BUILD_ROOT%{_datadir}/%{name}/examples/cli
 %if 0%{?with_python3}
 %files -n python3-%{name} -f %{pyproject_files}
 %doc README.rst CHANGELOG.rst
-%license COPYING COPYING-koji LGPL
+%license LGPL
 %if 0%{?with_hatchling}
 %else
 %endif

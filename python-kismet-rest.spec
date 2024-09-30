@@ -36,11 +36,10 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 %files -n python3-%{pkg_name} -f %{pyproject_files}
 %doc CHANGELOG.rst README.rst
-%license LICENSE
 
 %changelog
 * Mon Jul 29 2024 Miroslav Suchý <msuchy@redhat.com> - 2019.5.2-15

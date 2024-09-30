@@ -57,14 +57,13 @@ LiveReload documentation and examples.
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 #%%check
 #%%{__python3} setup.py test
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst CHANGES.rst
-%license LICENSE
 %{_bindir}/%{pypi_name}
 
 %files docs

@@ -70,14 +70,14 @@ rm docs/.gitignore
 
 %install
 %pyproject_install
-%pyproject_save_files %{modname}
+%pyproject_save_files -l %{modname}
 
 %check
 %{__python3} setup.py test
 
 %files -n python3-pyramid-tm -f %{pyproject_files}
 %doc README.rst docs CONTRIBUTORS.txt CHANGES.rst
-%license LICENSE.txt COPYRIGHT.txt
+%license COPYRIGHT.txt
 
 
 %changelog

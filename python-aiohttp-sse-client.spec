@@ -52,13 +52,12 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
-%pyproject_save_files aiohttp_sse_client
+%pyproject_save_files -l aiohttp_sse_client
 
 %check
 %pytest -v tests
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc docs/readme.rst README.rst
 
 %files -n python-%{pypi_name}-doc

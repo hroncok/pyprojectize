@@ -43,7 +43,7 @@ An extension for colcon-core to provide information about the packages.
 
 %install
 %pyproject_install
-%pyproject_save_files colcon_package_information
+%pyproject_save_files -l colcon_package_information
 
 
 %check
@@ -51,7 +51,6 @@ An extension for colcon-core to provide information about the packages.
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

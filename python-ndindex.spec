@@ -51,7 +51,7 @@ rm pytest.ini
 
 %install
 %pyproject_install
-%pyproject_save_files ndindex
+%pyproject_save_files -l ndindex
 
 %check
 OPTIONS=(
@@ -64,7 +64,6 @@ OPTIONS=(
 %pytest -v "${OPTIONS[@]}"
 
 %files -n python3-ndindex -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 %changelog

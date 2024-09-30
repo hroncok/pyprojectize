@@ -41,13 +41,12 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files async_upnp_client
+%pyproject_save_files -l async_upnp_client
 
 %check
 %pytest -v tests
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE.md
 %doc README.rst
 %{_bindir}/upnp-client
 

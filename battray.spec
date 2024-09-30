@@ -35,13 +35,12 @@ low, dim the screen when you switch from AC to battery, etc.
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 %files -f %{pyproject_files}
 %{_bindir}/%{name}
 %{_datadir}/%{name}
 %doc README.markdown
-%license LICENSE
 
 %changelog
 * Wed Jul 17 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.3-29

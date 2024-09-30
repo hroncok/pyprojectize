@@ -59,7 +59,7 @@ cp %SOURCE3 . -vp
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 %check
 %if %{with tests}
@@ -67,7 +67,6 @@ PYTHONPATH=%{buildroot}/%{python3_sitelib} %{__python3} -m unittest
 %endif
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 %changelog

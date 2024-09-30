@@ -47,13 +47,12 @@ chmod -x examples/*.py
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 # Data files are goining to the wrong location
 rm -rf %{buildroot}%{_datadir}/%{name}
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc CHANGELOG.txt README.rst examples
-%license LICENSE.txt
 
 %changelog
 * Thu Jul 25 2024 Miroslav Suchý <msuchy@redhat.com> - 2.0.0-22

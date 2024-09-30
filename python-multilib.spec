@@ -75,7 +75,7 @@ Requires:       %{name}-conf = %{version}-%{release}
 %py2_install
 %endif
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 %check
 # testing requires complete composes available locally, which no buildsystem
@@ -94,7 +94,6 @@ Requires:       %{name}-conf = %{version}-%{release}
 %endif
 
 %files -n python%{python3_pkgversion}-multilib -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 

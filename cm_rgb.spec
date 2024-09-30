@@ -36,11 +36,10 @@ chmod 644 LICENSE README.md
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 chmod -x %{buildroot}%{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info/dependency_links.txt
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 # For noarch packages: sitelib
 %{_bindir}/*

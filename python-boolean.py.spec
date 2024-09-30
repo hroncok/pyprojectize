@@ -45,13 +45,12 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
-%pyproject_save_files boolean
+%pyproject_save_files -l boolean
 
 %check
 %pytest
 
 %files -n python%{python3_pkgversion}-%{pypi_name} -f %{pyproject_files}
-%license LICENSE.txt
 %doc CHANGELOG.rst README.rst html/
 
 %changelog

@@ -46,7 +46,7 @@ sed -i 's/assertEquals/assertEqual/' test/test-cdtext.py
 
 %install
 %pyproject_install
-%pyproject_save_files '_pycdio*' '_pyiso9660*' cdio iso9660 pycdio pyiso9660
+%pyproject_save_files -l '_pycdio*' '_pyiso9660*' cdio iso9660 pycdio pyiso9660
 chmod 755 %{buildroot}/%{python3_sitearch}/*.so
 
 %if 0%{?fedora}
@@ -55,7 +55,6 @@ chmod 755 %{buildroot}/%{python3_sitearch}/*.so
 %endif
 
 %files -n python3-pycdio -f %{pyproject_files}
-%license COPYING
 %doc README.rst ChangeLog AUTHORS NEWS.md THANKS
 
 %changelog

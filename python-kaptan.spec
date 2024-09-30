@@ -36,7 +36,7 @@ sed -i -e 's/PyYAML>=3.13,<6/PyYAML/' requirements/base.txt
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 %check
 %pytest -v tests
@@ -44,7 +44,6 @@ sed -i -e 's/PyYAML>=3.13,<6/PyYAML/' requirements/base.txt
 # A man page has been requested upstream here:
 # https://github.com/emre/kaptan/issues/44
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 %{_bindir}/%{srcname}
 

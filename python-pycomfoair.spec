@@ -39,7 +39,7 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files comfoair
+%pyproject_save_files -l comfoair
 
 # https://github.com/mtdcr/pycomfoair/issues/2
 %check
@@ -47,7 +47,6 @@ rm -rf %{pypi_name}.egg-info
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
-%license LICENSE
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.0.4-14

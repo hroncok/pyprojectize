@@ -53,7 +53,7 @@ A fallback to ip is included for newer Unix systems w/o ifconfig.
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 
 %check
@@ -61,7 +61,6 @@ A fallback to ip is included for newer Unix systems w/o ifconfig.
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

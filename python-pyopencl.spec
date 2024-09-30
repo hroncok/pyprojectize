@@ -88,12 +88,11 @@ rm -vf examples/download-examples-from-wiki.py
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 find %{buildroot}%{python3_sitearch}/%{srcname} -name '*.so' -exec chmod 755 {} \+
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc examples
 
 %changelog

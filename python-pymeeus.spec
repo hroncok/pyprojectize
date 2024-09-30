@@ -50,13 +50,12 @@ rm -rf html/.{doctrees,buildinfo,nojekyll}
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v tests
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE.txt COPYING.LESSER
 %doc docs/README.txt README.rst
 
 %files -n python-%{pypi_name}-doc

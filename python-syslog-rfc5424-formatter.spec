@@ -36,13 +36,12 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files syslog_rfc5424_formatter
+%pyproject_save_files -l syslog_rfc5424_formatter
 
 %check
 %py3_check_import syslog_rfc5424_formatter
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.md
 %doc CHANGES.md
 

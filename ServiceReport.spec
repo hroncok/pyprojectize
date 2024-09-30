@@ -28,7 +28,7 @@ the incorrect configuration
 
 %install
 %pyproject_install
-%pyproject_save_files servicereportpkg
+%pyproject_save_files -l servicereportpkg
 
 %post
 %systemd_post servicereport.service
@@ -41,7 +41,6 @@ the incorrect configuration
 
 %files -f %{pyproject_files}
 %doc README.md
-%license COPYING
 %{_mandir}/man8/*
 %{_bindir}/servicereport
 %{_unitdir}/servicereport.service

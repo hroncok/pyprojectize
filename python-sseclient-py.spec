@@ -38,14 +38,13 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files sseclient
+%pyproject_save_files -l sseclient
 
 %check
 %pytest -v tests/unittests.py
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 1.7-15

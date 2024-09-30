@@ -85,7 +85,7 @@ rm %{buildroot}/%{_bindir}/coverage
 %endif
 
 %pyproject_install
-%pyproject_save_files coverage
+%pyproject_save_files -l coverage
 rm %{buildroot}/%{_bindir}/coverage
 
 # make compat symlinks
@@ -108,7 +108,6 @@ popd
 %endif
 
 %files -n python%{python3_pkgversion}-coverage -f %{pyproject_files}
-%license LICENSE.txt NOTICE.txt
 %doc README.rst
 %{_bindir}/coverage
 %{_bindir}/coverage3

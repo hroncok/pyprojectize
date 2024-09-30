@@ -89,7 +89,7 @@ Summary:        %summary
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 pushd docs
 # Add folder containing subliminal script to PATH
@@ -106,7 +106,6 @@ install -D -m 0644 docs/_build/man/%{srcname}.1 %{buildroot}%{_mandir}/man1/%{sr
 #%%{__python3} setup.py test
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %{_bindir}/subliminal
 
 %files doc

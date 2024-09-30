@@ -52,7 +52,7 @@ rm -rf %{srcname}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files pytest_mpl
+%pyproject_save_files -l pytest_mpl
 
 
 %check
@@ -62,7 +62,6 @@ MPLBACKEND=Agg %{pytest} tests -k 'not test_succeeds_remote and not test_succeed
 
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

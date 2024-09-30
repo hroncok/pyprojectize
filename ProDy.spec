@@ -81,7 +81,7 @@ find prody/proteins/ccealign -name '*.cpp' -exec chmod 0644 '{}' \;
 
 %install
 %pyproject_install
-%pyproject_save_files prody
+%pyproject_save_files -l prody
 
 mkdir -p $RPM_BUILD_ROOT%{_bindir}
 rm -f $RPM_BUILD_ROOT%{_bindir}/*
@@ -122,7 +122,6 @@ popd
 %endif
 
 %files -n python3-%{name} -f %{pyproject_files}
-%license LICENSE.rst
 %doc README.rst
 %{_bindir}/prody
 %{_bindir}/prody-%{python3_version}

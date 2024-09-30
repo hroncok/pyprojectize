@@ -104,7 +104,7 @@ rm -rf html/.doctrees html/.buildinfo
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 # backwards compatibility helpers
 ln -s ./pelican %{buildroot}/%{_bindir}/pelican-3
@@ -120,7 +120,6 @@ ln -s ./pelican-themes %{buildroot}/%{_bindir}/pelican-themes-3
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc html README.rst
-%license LICENSE
 
 %{_bindir}/pelican
 %{_bindir}/pelican-import

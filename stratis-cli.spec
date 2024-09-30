@@ -46,7 +46,7 @@ a2x -f manpage docs/stratis.txt
 
 %install
 %pyproject_install
-%pyproject_save_files stratis_cli
+%pyproject_save_files -l stratis_cli
 # Do not install tab-completion files for RHEL
 %if !0%{?rhel}
 %{__install} -Dpm0644 -t %{buildroot}%{_datadir}/bash-completion/completions \
@@ -59,7 +59,6 @@ a2x -f manpage docs/stratis.txt
 %{__install} -Dpm0644 -t %{buildroot}%{_mandir}/man8 docs/stratis.8
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 %{_bindir}/stratis
 %{_mandir}/man8/stratis.8*

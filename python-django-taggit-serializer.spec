@@ -37,10 +37,9 @@ rm -vr *.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files taggit_serializer
+%pyproject_save_files -l taggit_serializer
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.md HISTORY.rst
 
 %changelog

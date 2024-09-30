@@ -41,7 +41,7 @@ install -m 644 %{SOURCE1} .
 
 %install
 %pyproject_install
-%pyproject_save_files allpairspy
+%pyproject_save_files -l allpairspy
 
 %check
 %{pytest}
@@ -49,7 +49,6 @@ install -m 644 %{SOURCE1} .
 
 %files -n python3-allpairspy -f %{pyproject_files}
 %doc README.rst
-%license LICENSE.txt
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.5.0-14

@@ -58,7 +58,7 @@ sed 's|coverage == 4.4.0|coverage|' -i setup.py
 
 %install
 %pyproject_install
-%pyproject_save_files %{sysname}
+%pyproject_save_files -l %{sysname}
 
 
 %if %{with check}
@@ -70,7 +70,6 @@ export PYTHONPATH=%{buildroot}%{python3_sitelib}
 
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc README.rst NEWS MAINTAINERS
 
 

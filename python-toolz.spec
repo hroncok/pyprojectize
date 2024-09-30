@@ -75,7 +75,7 @@ BuildRequires:  python%{python3_pkgversion}-pytest
 
 %install
 %pyproject_install
-%pyproject_save_files '%{srcname}*' tlz
+%pyproject_save_files -l '%{srcname}*' tlz
 
 
 %check
@@ -84,7 +84,6 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v -k 'not t
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE.txt
 
 
 %changelog

@@ -38,7 +38,7 @@ chmod 0644 examples/*.py
 
 %install
 %{pyproject_install}
-%pyproject_save_files cptrace ptrace
+%pyproject_save_files -l cptrace ptrace
 %{__python3} setup_cptrace.py install -O1 --skip-build --root %{buildroot}
 
 rm -f %{buildroot}%{_bindir}/{gdb,strace}.{pyo,pyc}
@@ -47,7 +47,6 @@ rm -f %{buildroot}%{_bindir}/{gdb,strace}.{pyo,pyc}
 %{__python3} runtests.py || :
 
 %files -n python3-ptrace -f %{pyproject_files}
-%license COPYING
 %doc README.rst
 %doc doc/* examples
 %{_bindir}/gdb.py

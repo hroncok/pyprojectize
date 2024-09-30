@@ -53,7 +53,7 @@ extensions provided by colcon_core.
 
 %install
 %pyproject_install
-%pyproject_save_files colcon_installed_package_information
+%pyproject_save_files -l colcon_installed_package_information
 
 
 %check
@@ -61,7 +61,6 @@ extensions provided by colcon_core.
 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

@@ -54,14 +54,13 @@ Requires:       python3-cheroot
 
 %install
 %pyproject_install
-%pyproject_save_files web
+%pyproject_save_files -l web
 
 %check
 pytest -k 'not test_routing' tests
 
 %files -n python3-%{pkgname} -f %{pyproject_files}
 %doc README.md
-%license LICENSE.txt
 
 
 %changelog

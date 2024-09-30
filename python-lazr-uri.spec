@@ -33,13 +33,12 @@ BuildRequires:  python3-devel
 
 %install
 %pyproject_install
-%pyproject_save_files lazr
+%pyproject_save_files -l lazr
 
 %check
 %{__python3} setup.py test
 
 %files -n python3-lazr-uri -f %{pyproject_files}
-%license COPYING.txt
 %doc README.rst
 %{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}-*.pth
 

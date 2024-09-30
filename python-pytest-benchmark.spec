@@ -51,7 +51,7 @@ Requires: python3-cpuinfo
 
 %install
 %pyproject_install
-%pyproject_save_files pytest_benchmark
+%pyproject_save_files -l pytest_benchmark
 
 %check
 # Tests disabled (missing dependency: aspectlib)
@@ -59,7 +59,6 @@ Requires: python3-cpuinfo
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst CHANGELOG.rst CONTRIBUTING.rst AUTHORS.rst
-%license LICENSE
 %{_bindir}/py.test-benchmark
 %{_bindir}/pytest-benchmark
 

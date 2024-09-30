@@ -57,14 +57,13 @@ rm -rf %{modname}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files %{modname}
+%pyproject_save_files -l %{modname}
 
 %check
 FEDMSG_META_NO_NETWORK=True %{__python3} setup.py test
 
 %files -n python3-fedmsg-meta-fedora-infrastructure -f %{pyproject_files}
 %doc README.rst
-%license LICENSE
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.31.0-14

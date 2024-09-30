@@ -78,7 +78,7 @@ sphinx-build -b html -d __tmp_docs/ docs/ __tmp_docs/html/
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 
 %check
@@ -86,7 +86,6 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} tests/runtests.py || :
 
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst NEWS
 
 %files doc

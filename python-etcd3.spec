@@ -41,11 +41,10 @@ sed -e 's|grpcio==.*|grpcio==1.26.0|' \
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc AUTHORS.rst CONTRIBUTING.rst HISTORY.rst README.rst
 
 

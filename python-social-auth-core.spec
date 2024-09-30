@@ -84,7 +84,7 @@ rm -rf %{egginfo_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files %{module_name}
+%pyproject_save_files -l %{module_name}
 
 rm -r %{buildroot}%{python3_sitelib}/%{module_name}/tests/
 
@@ -92,7 +92,6 @@ rm -r %{buildroot}%{python3_sitelib}/%{module_name}/tests/
 %{pytest} %{module_name}/tests/
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.md CHANGELOG.md
 
 %changelog

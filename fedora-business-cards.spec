@@ -34,11 +34,10 @@ for Fedora Project contributors.
 
 %install
 %pyproject_install
-%pyproject_save_files fedora_business_cards
+%pyproject_save_files -l fedora_business_cards
 
 %files -f %{pyproject_files}
 %doc README
-%license COPYING
 %{_bindir}/%{name}
 
 

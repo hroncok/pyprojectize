@@ -35,10 +35,9 @@ Requires:       python3-six
 
 %install
 %{pyproject_install}
-%pyproject_save_files construct
+%pyproject_save_files -l construct
 
 %files -n python3-construct -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

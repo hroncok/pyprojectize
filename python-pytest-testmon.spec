@@ -41,13 +41,12 @@ This a Python 3 version of the package.
 
 %install
 %pyproject_install
-%pyproject_save_files testmon
+%pyproject_save_files -l testmon
 
 %check
 # This project doesn't appear to have tests
 
 %files -n python3-%{pypi_name}  -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 %changelog

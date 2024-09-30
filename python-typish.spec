@@ -39,7 +39,7 @@ checks considering generics and typesafe duck-typing.
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 %check
 # https://github.com/ramonhagenaars/typish/issues/18
@@ -47,7 +47,6 @@ checks considering generics and typesafe duck-typing.
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
-%license LICENSE
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.9.3-13

@@ -41,13 +41,12 @@ Python. It makes use of numpy for fast numerical computation.
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 %check
 nosetests-%{python3_version} supersmoother
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc CHANGES.md README.md
 
 %changelog

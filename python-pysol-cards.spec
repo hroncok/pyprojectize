@@ -42,11 +42,10 @@ sed -i '/^#! \/usr\/bin\/env python$/d' pysol_cards/*.py
 # Must do the default python version install last because
 # the scripts in /usr/bin are overwritten with every setup.py install.
 %pyproject_install
-%pyproject_save_files pysol_cards
+%pyproject_save_files -l pysol_cards
 rm -rf %{buildroot}/%{_bindir}
 
 %files -n python%{python3_pkgversion}-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

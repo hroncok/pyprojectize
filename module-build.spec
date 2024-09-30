@@ -38,7 +38,7 @@ A library and a cli tool for building module streams.
 
 %install
 %pyproject_install
-%pyproject_save_files module_build
+%pyproject_save_files -l module_build
 
 
 %check
@@ -47,7 +47,6 @@ A library and a cli tool for building module streams.
 
 %files -f %{pyproject_files}
 %doc README.md
-%license LICENSE
 %{_bindir}/module-build
 
 

@@ -138,7 +138,7 @@ sed -i -e /check-manifest/d setup.py
 
 %if 0%{?with_python3}
 %pyproject_install
-%pyproject_save_files %{library}
+%pyproject_save_files -l %{library}
 %endif
 
 %if 0%{?fedora}
@@ -171,7 +171,6 @@ PYTHONPATH=%{buildroot}/%{python3_sitelib} sphinx-build docs/ html
 
 %if 0%{?with_python3}
 %files -n python3-%{library} -f %{pyproject_files}
-%license LICENSE
 %endif
 
 %if 0%{?fedora}

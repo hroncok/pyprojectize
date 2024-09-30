@@ -39,13 +39,12 @@ rm -vr *.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files inflection
+%pyproject_save_files -l inflection
 
 %check
 %python3 -m pytest -v
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

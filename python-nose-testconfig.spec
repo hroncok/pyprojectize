@@ -68,10 +68,9 @@ cp %{SOURCE1} .
 
 %install
 %pyproject_install
-%pyproject_save_files testconfig
+%pyproject_save_files -l testconfig
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE-2.0
 %doc ACKS TODO docs/index.txt
 
 %changelog

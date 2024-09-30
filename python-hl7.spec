@@ -62,14 +62,13 @@ popd
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 # Delete buildinfo file
 find docs/_build/ -name ".buildinfo" -execdir rm -fv '{}' \;
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %{_bindir}/mllp_send
-%license LICENSE
 
 %files doc
 %doc docs/_build/html docs/_build/htmlhelp docs/_build/singlehtml README.rst AUTHORS

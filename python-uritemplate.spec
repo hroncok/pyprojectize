@@ -41,13 +41,12 @@ Python 3 version.
 
 %install
 %pyproject_install
-%pyproject_save_files %{modname}
+%pyproject_save_files -l %{modname}
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} -v
 
 %files -n python3-%{modname} -f %{pyproject_files}
-%license LICENSE LICENSE.APACHE LICENSE.BSD
 %doc HISTORY.rst README.rst
 
 %changelog

@@ -44,7 +44,7 @@ is highly recommended.
 
 %install
 %pyproject_install
-%pyproject_save_files '%{name}*'
+%pyproject_save_files -l '%{name}*'
 install -d -m 755 %{buildroot}%{_sysconfdir}/%{name}
 
 
@@ -56,7 +56,6 @@ install -d -m 755 %{buildroot}%{_sysconfdir}/%{name}
 
 
 %files -f %{pyproject_files}
-%license COPYING
 %doc config/ README.rst THANKS
 %dir %{_sysconfdir}/%{name}/
 %{_bindir}/%{name}

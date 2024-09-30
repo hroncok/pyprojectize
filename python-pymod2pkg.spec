@@ -55,14 +55,13 @@ rm -rf .testrepository
 
 %install
 %pyproject_install
-%pyproject_save_files %{sname}
+%pyproject_save_files -l %{sname}
 mv %{buildroot}%{_bindir}/%{sname} %{buildroot}%{_bindir}/%{sname}-%{python3_version}
 ln -s ./%{sname}-%{python3_version} %{buildroot}%{_bindir}/%{sname}-3
 ln -s ./%{sname}-%{python3_version} %{buildroot}%{_bindir}/%{sname}
 
 %files -n python3-%{sname} -f %{pyproject_files}
 %doc README.rst AUTHORS
-%license LICENSE
 %{_bindir}/%{sname}
 %{_bindir}/%{sname}-3*
 

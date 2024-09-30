@@ -36,7 +36,7 @@ precision for digital forensics.
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 rm -rf %{buildroot}%{_defaultdocdir}/%{pypi_name}/*
 
 %check
@@ -44,7 +44,6 @@ rm -rf %{buildroot}%{_defaultdocdir}/%{pypi_name}/*
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc ACKNOWLEDGEMENTS AUTHORS README
-%license LICENSE
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 0.0.20200824-15

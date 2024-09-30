@@ -46,7 +46,7 @@ rm -rf %{name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files fprettify
+%pyproject_save_files -l fprettify
 
 %check
 %{__python3} setup.py test
@@ -55,7 +55,6 @@ rm -rf %{name}.egg-info
 %{_bindir}/fprettify
 
 %files -n python3-fprettify -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 %changelog

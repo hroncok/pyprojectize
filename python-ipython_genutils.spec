@@ -55,7 +55,7 @@ IPython/Jupyter should depend on it.
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 
 %check
@@ -65,7 +65,6 @@ nosetests-%{python3_version} -v
  
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %doc README.md
-%license COPYING.md
 
 
 %changelog

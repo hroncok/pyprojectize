@@ -46,14 +46,13 @@ rm -f %{libname}/static/files/.npmignore
 
 %install
 %pyproject_install
-%pyproject_save_files %{libname}
+%pyproject_save_files -l %{libname}
 
 # Upstream requires pinned dependencies versions
 #%%check
 #%%tox
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

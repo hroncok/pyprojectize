@@ -71,7 +71,7 @@ cp %{S:1} %{S:2} .
 %py2_install
 %endif
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 %check
 %if !%{disable_python2}
@@ -87,7 +87,6 @@ PYTHONPATH=%{buildroot}/%{python3_sitelib}/rmtest %{__python3} setup.py test
 %endif
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 %changelog

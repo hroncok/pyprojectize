@@ -66,11 +66,10 @@ sed -i 's/1.5.10/1.5.9/' setup.py
 
 %install
 %pyproject_install
-%pyproject_save_files %{module_name}
+%pyproject_save_files -l %{module_name}
 
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

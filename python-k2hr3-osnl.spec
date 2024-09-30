@@ -62,7 +62,7 @@ system developed by Yahoo Japan Corporation.
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 mkdir -p -m755 %{buildroot}%{_sysconfdir}/k2hr3
 mkdir -p -m755 %{buildroot}%{_unitdir}
 mkdir -p -m755 %{buildroot}%{_mandir}/man1
@@ -78,7 +78,6 @@ rm -rf %{buildroot}/usr/etc/k2hr3/k2hr3-osnl.conf
 %dir %{_sysconfdir}/k2hr3/
 %config(noreplace) %{_sysconfdir}/k2hr3/k2hr3-osnl.conf
 %doc README.rst
-%license LICENSE
 %{_bindir}/k2hr3-osnl
 %{_unitdir}/k2hr3-osnl.service
 %{_mandir}/man1/k2hr3-osnl.1*

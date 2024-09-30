@@ -38,11 +38,10 @@ Summary:        %{summary}
 
 %install
 %pyproject_install
-%pyproject_save_files sphinxcontrib
+%pyproject_save_files -l sphinxcontrib
 
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE.rst
 %doc README.rst
 %doc CHANGES.rst
 %{python3_sitelib}/sphinxcontrib_log_cabinet-%{version}-py%{python3_version}-nspkg.pth

@@ -44,7 +44,7 @@ rm -rf adapt-parser.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 
 %check
 %if %{with_tests}
@@ -52,7 +52,6 @@ rm -rf adapt-parser.egg-info
 %endif
 
 %files -n python3-adapt -f %{pyproject_files}
-%license LICENSE.md
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 1.0.0-11

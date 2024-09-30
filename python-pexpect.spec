@@ -76,7 +76,7 @@ pty module.
 
 %install
 %pyproject_install
-%pyproject_save_files %{modname}
+%pyproject_save_files -l %{modname}
 rm -rf %{buildroot}%{python3_sitelib}/pexpect/tests
 
 %if %{with check}
@@ -96,7 +96,6 @@ CI=true py.test-3 --verbose
 %endif
 
 %files -n python3-%{modname} -f %{pyproject_files}
-%license LICENSE
 %doc doc examples
 
 %changelog

@@ -44,14 +44,13 @@ Python 3 version.
 
 %install
 %pyproject_install
-%pyproject_save_files %{modname}
+%pyproject_save_files -l %{modname}
 
 %check
 # https://github.com/lukesneeringer/fauxquests/issues/3
 %{__python3} tests/runtests.py -v || :
 
 %files -n python3-%{modname} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 %changelog

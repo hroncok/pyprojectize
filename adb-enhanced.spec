@@ -33,7 +33,7 @@ battery saver mode, data saver mode, doze mode, permission grant/revocation.
 
 %install
 %pyproject_install
-%pyproject_save_files adbe
+%pyproject_save_files -l adbe
 
 %if %{with tests}
 %check
@@ -42,7 +42,6 @@ battery saver mode, data saver mode, doze mode, permission grant/revocation.
 
 %files -f %{pyproject_files}
 %doc README.md
-%license LICENSE
 %{_bindir}/adbe
 
 %changelog

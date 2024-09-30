@@ -36,12 +36,11 @@ kernel and its /sys/class/power_supply folder.
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 rm -rf %{buildroot}%{_defaultdocdir}/%{srcname}/
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc AUTHORS README.md
-%license LICENSE
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.4.2-31

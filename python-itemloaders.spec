@@ -50,11 +50,10 @@ BuildRequires:	python3-w3lib
 
 %install
 %pyproject_install
-%pyproject_save_files itemloaders
+%pyproject_save_files -l itemloaders
 
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

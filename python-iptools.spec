@@ -43,7 +43,7 @@ find -name .gitignore -delete
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 
 %check
@@ -51,7 +51,6 @@ find -name .gitignore -delete
 
  
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc AUTHORS CHANGES docs README.md
 
 

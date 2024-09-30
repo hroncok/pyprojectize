@@ -92,7 +92,7 @@ rm -rf %{pypi_name}.egg-info
 
 %if %{with python3}
 %pyproject_install
-%pyproject_save_files sphinxcontrib 'sphinxcontrib_spelling*'
+%pyproject_save_files -l sphinxcontrib 'sphinxcontrib_spelling*'
 %endif
 
 
@@ -109,7 +109,6 @@ rm -rf %{pypi_name}.egg-info
 %if %{with python3}
 %files -n python%{python3_pkgversion}-%{pypi_name} -f %{pyproject_files}
 %doc README
-%license LICENSE
 %endif
 
 %if 0%{?with_python3_other}

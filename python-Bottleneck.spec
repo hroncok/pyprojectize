@@ -70,7 +70,7 @@ sed -i /contributors/d doc/source/conf.py
 
 %install
 %pyproject_install
-%pyproject_save_files bottleneck
+%pyproject_save_files -l bottleneck
 
 # clean unneeded stuff
 rm -rf %{buildroot}%{python3_sitearch}/bottleneck/LICENSE
@@ -98,7 +98,6 @@ rm -rf %{buildroot}%{python3_sitearch}/.pytest_cache
 
 
 %files -n python3-%{upname} -f %{pyproject_files}
-%license LICENSE
 %doc README* RELEASE*
 
 

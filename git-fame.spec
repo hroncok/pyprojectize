@@ -33,7 +33,7 @@ Pretty-print git repository collaborators sorted by contributions.
 
 %install
 %pyproject_install
-%pyproject_save_files gitfame
+%pyproject_save_files -l gitfame
 mkdir -p %{buildroot}%{_libexecdir}/git-core
 ln -s %{_bindir}/%{name} %{buildroot}%{_libexecdir}/git-core/%{name}
 install -Dpm0644 -t %{buildroot}%{_mandir}/man1 gitfame/git-fame.1
@@ -42,7 +42,6 @@ install -Dpm0644 -t %{buildroot}%{_mandir}/man1 gitfame/git-fame.1
 # Tests depend on real git repo
 
 %files -f %{pyproject_files}
-%license LICENCE
 %doc README.rst
 %{_bindir}/%{name}
 %{_libexecdir}/git-core/%{name}

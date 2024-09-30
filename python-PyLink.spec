@@ -48,13 +48,12 @@ rm -rf *.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files pylink
+%pyproject_save_files -l pylink
 
 %check
 # No network things available
 
 %files -n python3-%{modname} -f %{pyproject_files}
-%license LICENSE
 %doc AUTHORS CHANGES.rst README.rst
 
 %changelog

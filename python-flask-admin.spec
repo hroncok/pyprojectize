@@ -62,7 +62,7 @@ rm flask_admin/translations/README.md
 
 %install
 %pyproject_install
-%pyproject_save_files flask_admin
+%pyproject_save_files -l flask_admin
 
 %check
 # Tests are not included as they require mongod running
@@ -70,7 +70,6 @@ rm flask_admin/translations/README.md
 
 %files -n python%{python3_pkgversion}-%{pkgname} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.6.1-6

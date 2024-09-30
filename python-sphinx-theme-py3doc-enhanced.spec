@@ -44,11 +44,10 @@ Provides:       python%{python3_pkgversion}-%{pypi_name} = %{version}-%{release}
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 
 %files -n python%{python3_pkgversion}-%{pkgname} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 

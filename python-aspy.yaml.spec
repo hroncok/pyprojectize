@@ -44,7 +44,7 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files aspy
+%pyproject_save_files -l aspy
 
 %if %{with check}
 %check
@@ -52,7 +52,6 @@ rm -rf %{pypi_name}.egg-info
 %endif
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.md
 
 %changelog

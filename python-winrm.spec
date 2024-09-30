@@ -43,13 +43,12 @@ Python 3 version.
 
 %install
 %pyproject_install
-%pyproject_save_files winrm
+%pyproject_save_files -l winrm
 
 %check
 %python3 -m pytest -vv winrm/tests
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 %doc README.md CHANGELOG.md
 
 %changelog

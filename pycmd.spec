@@ -39,7 +39,7 @@ development.
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 # remove shebangs from all scripts
 find %{buildroot}%{python3_sitelib} -name '*.py' \
@@ -49,7 +49,6 @@ find %{buildroot}%{python3_sitelib} -name '*.py' \
 %files -n python%{python3_pkgversion}-pycmd -f %{pyproject_files}
 %doc README.txt
 %doc CHANGELOG
-%license LICENSE
 %{_bindir}/py.cleanup
 %{_bindir}/py.convert_unittest
 %{_bindir}/py.countloc

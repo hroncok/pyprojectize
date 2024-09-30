@@ -78,7 +78,7 @@ chmod a-x Scripts/* Sample_Code/* LICENSE README.md CHANGELOG
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 
 
 %check
@@ -87,7 +87,6 @@ chmod a-x Scripts/* Sample_Code/* LICENSE README.md CHANGELOG
 
 
 %files -n python3-%{srcname} -f %{pyproject_files}
-%license LICENSE
 
 %files -n python-%{srcname}-doc
 %doc README.md CHANGELOG Scripts/ Sample_Code/

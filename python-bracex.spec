@@ -39,13 +39,13 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 %check
 %{python3} setup.py test
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE.md docs/src/markdown/about/license.md
+%license docs/src/markdown/about/license.md
 %doc README.md
 
 %changelog

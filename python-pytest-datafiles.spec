@@ -41,7 +41,7 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files pytest_datafiles
+%pyproject_save_files -l pytest_datafiles
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v tests
@@ -49,7 +49,6 @@ rm -rf %{buildroot}%{python3_sitelib}/__pycache__/pytest_datafiles.cpython-*-PYT
 
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE
 %doc README.rst
 
 %changelog

@@ -85,7 +85,7 @@ popd
 
 %install
 %{pyproject_install}
-%pyproject_save_files bpdb 'bpython*'
+%pyproject_save_files -l bpdb 'bpython*'
 # backwards compatibility links python3
 ln -s bpython %{buildroot}/%{_bindir}/bpython3
 ln -s bpython-curses %{buildroot}/%{_bindir}/bpython3-curses
@@ -97,7 +97,6 @@ install -m0644 -p -D doc/sphinx/build/man/bpython-config.5 \
     %{buildroot}%{_mandir}/man5/bpython-config.5
 
 %files -n python3-bpython -f %{pyproject_files}
-%license LICENSE
 %doc AUTHORS.rst CHANGELOG.rst README.rst
 %doc theme/light.theme theme/sample.theme theme/windows.theme
 %{_bindir}/bpdb

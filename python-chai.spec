@@ -55,14 +55,13 @@ $(find tests -type f)
 
 %install
 %{pyproject_install}
-%pyproject_save_files %{modname}
+%pyproject_save_files -l %{modname}
 
 %check
 %{__python3} setup.py test
 
 %files -n python%{python3_pkgversion}-%{modname} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE.txt
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.1.2-32

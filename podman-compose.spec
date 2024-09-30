@@ -29,7 +29,7 @@ unmodified and rootless.
  
 %install
 %pyproject_install
-%pyproject_save_files 'podman_compose*'
+%pyproject_save_files -l 'podman_compose*'
 
 #Drop spurious shebang
 sed -i /python3/d %{buildroot}%{python3_sitelib}/podman_compose.py
@@ -37,7 +37,6 @@ sed -i /python3/d %{buildroot}%{python3_sitelib}/podman_compose.py
 
 %files -f %{pyproject_files}
 %doc README.md CONTRIBUTING.md docs/ examples
-%license LICENSE
 %{_bindir}/podman-compose
 
 %changelog

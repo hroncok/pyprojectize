@@ -65,7 +65,7 @@ sed -i -e '/^#!\//, 1d' cpuinfo/cpuinfo.py
 
 %install
 %pyproject_install
-%pyproject_save_files %{srcname}
+%pyproject_save_files -l %{srcname}
 
 
 %check
@@ -73,7 +73,6 @@ sed -i -e '/^#!\//, 1d' cpuinfo/cpuinfo.py
 
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst ChangeLog
-%license LICENSE
 %{_bindir}/cpuinfo
 
 

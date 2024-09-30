@@ -67,7 +67,7 @@ export CXXFLAGS="${CXXFLAGS:-${RPM_OPT_FLAGS}}"
 
 %install
 %pyproject_install
-%pyproject_save_files ssh
+%pyproject_save_files -l ssh
 # remove 0 length files
 rm -f %{buildroot}/%{python3_sitearch}/ssh/__init__.pxd
 chmod 0755 %{buildroot}/%{python3_sitearch}/ssh/*.so
@@ -82,7 +82,6 @@ rm -f tests/test_sftp.py
 %pytest -v tests
 
 %files -n python3-%{modname} -f %{pyproject_files}
-%license COPYING LICENSE
 %doc README.rst Changelog.rst
 
 %package -n python3-%{modname}-doc

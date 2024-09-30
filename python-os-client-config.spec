@@ -85,7 +85,7 @@ rm -rf doc/build/html/.{doctrees,buildinfo} doc/build/html/objects.inv
 
 %install
 %{pyproject_install}
-%pyproject_save_files os_client_config
+%pyproject_save_files -l os_client_config
 
 %check
 # NOTE(jpena): we are disabling Python2 unit tests when building the Python 3 package.
@@ -101,7 +101,6 @@ export PYTHONPATH=$PWD
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc ChangeLog CONTRIBUTING.rst PKG-INFO README.rst
-%license LICENSE
 
 %if 0%{?with_doc}
 %files -n python-%{pypi_name}-doc

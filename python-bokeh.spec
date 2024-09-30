@@ -209,7 +209,7 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files -l %{pypi_name}
 
 # Remove zero length file
 rm -f %{buildroot}/%{python3_sitelib}/bokeh/server/static/.keep
@@ -222,7 +222,6 @@ rm -f %{buildroot}/%{python3_sitelib}/bokeh/server/static/.keep
 %endif
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.md
 %{_bindir}/%{pypi_name}
 

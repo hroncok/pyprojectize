@@ -44,10 +44,9 @@ so it plays nice with any other form application.
 
 %install
 %pyproject_install
-%pyproject_save_files crispy_forms
+%pyproject_save_files -l crispy_forms
  
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE.txt
 %doc README.rst
 
 %changelog

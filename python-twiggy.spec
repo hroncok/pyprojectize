@@ -57,7 +57,7 @@ rm -rf %{distname}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files %{modname}
+%pyproject_save_files -l %{modname}
 
 # There are errors in the test suite.
 #%%check
@@ -65,7 +65,6 @@ rm -rf %{distname}.egg-info
 
 %files -n python3-%{modname} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.5.1-14

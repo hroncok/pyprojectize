@@ -44,14 +44,13 @@ Logbook can do that.
 
 %install
 %pyproject_install
-%pyproject_save_files logbook
+%pyproject_save_files -l logbook
 
 %check
 %pytest -k "not test_redis_handler"
 
 %files -n python3-logbook -f %{pyproject_files}
 %doc CHANGES README.md
-%license LICENSE
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.7.0-6

@@ -60,7 +60,7 @@ sed -i "s|version=''|version='%{version}'|g" setup.py
 
 %install
 %pyproject_install
-%pyproject_save_files %{name}
+%pyproject_save_files -l %{name}
 
 
 %check
@@ -78,7 +78,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc README.md AUTHORS
 %{_bindir}/%{name}
 %{_bindir}/%{name}-toggle

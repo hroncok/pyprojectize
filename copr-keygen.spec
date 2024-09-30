@@ -98,7 +98,7 @@ make -C docs %{?_smp_mflags} html
 
 %install
 %pyproject_install
-%pyproject_save_files '*'
+%pyproject_save_files -l '*'
 find %{buildroot} -name '*.exe' -delete
 
 install -d %{buildroot}%{_sysconfdir}/copr-keygen
@@ -151,7 +151,6 @@ systemctl condrestart httpd &>/dev/null || :
 systemctl condrestart httpd &>/dev/null || :
 
 %files -f %{pyproject_files}
-%license LICENSE
 %doc docs/INSTALL.rst docs/README.rst
 %doc configs/local_settings.py.example
 

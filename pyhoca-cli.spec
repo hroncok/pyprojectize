@@ -46,7 +46,7 @@ on desktops and thin clients.
 
 %install
 %pyproject_install
-%pyproject_save_files pyhoca
+%pyproject_save_files -l pyhoca
 mkdir -p %{buildroot}/%{_bindir}/
 cp -p %{name} %{buildroot}/%{_bindir}/
 mkdir -p %{buildroot}/%{_mandir}/
@@ -54,7 +54,6 @@ cp -rp man/* %{buildroot}/%{_mandir}/
 
 
 %files -f %{pyproject_files}
-%license COPYING
 %doc README TODO
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*

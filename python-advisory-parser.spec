@@ -42,13 +42,13 @@ rm -rf %{pypi_name}.egg-info
 
 %install
 %pyproject_install
-%pyproject_save_files advisory_parser
+%pyproject_save_files -l advisory_parser
 
 %check
 PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v tests
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%license LICENSE COPYRIGHT
+%license COPYRIGHT
 %doc README.rst
 
 %changelog

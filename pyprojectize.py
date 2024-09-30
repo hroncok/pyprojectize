@@ -14,7 +14,8 @@ from specfile.sections import Section, Sections
 class Result(enum.Enum):
     UPDATED = 1
     NOT_NEEDED = 2
-    ERROR = 3
+    NOT_IMPLEMENTED = 3
+    ERROR = 4
 
 
 ResultMsg = tuple[Result, str]
@@ -338,6 +339,114 @@ def remove_python_provide(spec: Specfile, sections: Sections) -> ResultMsg:
                 del section[idx]
 
     return ret
+
+
+@register
+def add_pyproject_files(spec: Specfile, sections: Sections) -> ResultMsg:
+    """
+    Remove %python_provide or replace it with %py_provides if the name isn't the same.
+
+    This does not detect packages without files, that would be hard.
+    """
+    if "install" not in sections:
+        return Result.ERROR, "no %install section"
+
+    sections_options = set()
+    pysite_re = r"^[^#]*%{?python3_site(arch|lib)}?/(?P<topname>[^/\.]*)"
+    pysite_lines = []
+    for section in sections:
+        if section.name == "files":
+            if section.options.f:
+                if "pyproject_files" in str(section.options.f):
+                    return (
+                        Result.NOT_NEEDED,
+                        "%files -f %{pyproject_files} already used",
+                    )
+            for line in section:
+                if re.search(pysite_re, line):
+                    sections_options.add(str(section.options))
+                    pysite_lines.append(line)
+
+    if not sections_options:
+        return (
+            Result.NOT_NEEDED,
+            "No %{python3_sitelib}/%{python3_sitearch} files in %files",
+        )
+
+    if len(sections_options) > 1:
+        return (
+            Result.NOT_IMPLEMENTED,
+            "Multiple %files sections with %{python3_sitelib}/%{python3_sitearch}",
+        )
+
+    section_options = sections_options.pop()
+    for line in pysite_lines:
+        if "%exclude" in line:
+            return (
+                Result.NOT_IMPLEMENTED,
+                "%exclude %{python3_sitelib}/%{python3_sitearch} used in %files",
+            )
+
+    topnames = set()
+    for line in pysite_lines.copy():
+        if "egg-info" in line or "dist-info" in line or "__pycache__" in line:
+            continue
+        if line.endswith(".pth"):
+            pysite_lines.remove(line)
+            continue
+        # we know the match matches, but mypyp is not happy without the check
+        # we could store the match from previous search, but meh
+        if (match := re.search(pysite_re, line)) and (topname := match["topname"]):
+            # sometimes there is a weirdly listed distinfo, like: %{modname}-%{version}*
+            # we should only add valid module names here, but mostly it's the -
+            if "-" not in topname:
+                topnames.add(topname)
+
+    if not topnames:
+        return (
+            Result.NOT_NEEDED,
+            "No modules to pass to %pyproject_save_files",
+        )
+
+    if not pysite_lines:
+        return (
+            Result.NOT_NEEDED,
+            "No %{python3_sitelib}/%{python3_sitearch} lines left to remove from %files",
+        )
+
+    pyproject_install_index = None
+    for idx, line in enumerate(sections.install):
+        if re.search(r"%({\??)?pyproject_install\b", line):
+            pyproject_install_index = idx
+        elif re.search(r"%({\??)?pyproject_save_files\b", line):
+            return (
+                Result.NOT_NEEDED,
+                "%install already uses %pyproject_save_files",
+            )
+    if pyproject_install_index is None:
+        return (
+            Result.NOT_IMPLEMENTED,
+            "%install does not have %pyproject_install",
+        )
+
+    for section in sections:
+        if section.name == "files" and str(section.options) == section_options:
+            if section.options.f:
+                return (
+                    Result.NOT_IMPLEMENTED,
+                    "%files with %{python3_sitelib}/%{python3_sitearch} already has -f",
+                )
+            section.options.f = "%{pyproject_files}"
+            for line in pysite_lines:
+                section.remove(line)
+    pyproject_save_files = "%pyproject_save_files " + " ".join(
+        shlex.quote(t) for t in sorted(topnames)
+    )
+    sections.install.insert(pyproject_install_index + 1, pyproject_save_files)
+    return (
+        Result.UPDATED,
+        "%{python3_sitelib}/%{python3_sitearch} lines replaced with %{pyproject_files}",
+    )
 
 
 def specfile_path() -> str:

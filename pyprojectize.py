@@ -9,6 +9,7 @@ import sys
 
 from specfile import Specfile
 from specfile.sections import Section, Sections
+from specfile.exceptions import RPMException
 
 
 class Result(enum.Enum):
@@ -71,6 +72,26 @@ def add_pyproject_buildrequires(spec: Specfile, sections: Sections) -> ResultMsg
     )
 
 
+def shlex_quote_with_macros(s: str, *, spec: Specfile) -> str:
+    """
+    Often want to sh-quote the actual content of maconized strings.
+    He try quoting the expanded macros and if there are no quotes, we don't quote the macronized input.
+
+    Note that if some of the 's are hidden in the macros, we have no proper way of escaping.
+    """
+    if "%" not in s:  # short circuit, no macros present
+        return shlex.quote(s)
+    try:
+        expanded = spec.expand(s)
+        if shlex.quote(expanded) == expanded:
+            # no escaping needed on expanded values, no escaping done on the macros
+            return s
+    except RPMException:
+        pass
+    # finally force quote it, this bit is copied from shlex.quote code
+    return "'" + s.replace("'", "'\"'\"'") + "'"
+
+
 @register
 def py3_build_to_pyproject_wheel(spec: Specfile, sections: Sections) -> ResultMsg:
     """
@@ -109,7 +130,7 @@ def py3_build_to_pyproject_wheel(spec: Specfile, sections: Sections) -> ResultMs
         LB = m["LB"] or ""
         RB = m["RB"] or ""
         if m["arguments"]:
-            arguments = shlex.quote(m["arguments"])
+            arguments = shlex_quote_with_macros(m["arguments"], spec=spec)
             return f"%{LB}pyproject_wheel -C--global-option={arguments}{RB}"
         return f"%{LB}pyproject_wheel{RB}"
 
@@ -323,8 +344,12 @@ def remove_python_provide(spec: Specfile, sections: Sections) -> ResultMsg:
                     name = line.partition(":")[-1].strip()
                 if match := re.search(provide_re, line):
                     provided_name = match["name"]
-                    if spec.expand(provided_name) == spec.expand(name):
-                        del_lines.append(idx)
+                    try:
+                        if spec.expand(provided_name) == spec.expand(name):
+                            del_lines.append(idx)
+                    except RPMException:
+                        if provided_name == name:
+                            del_lines.append(idx)
                     else:
                         section[idx] = align(
                             "%py_provides", provided_name, *last_alignment
@@ -440,7 +465,7 @@ def add_pyproject_files(spec: Specfile, sections: Sections) -> ResultMsg:
             for line in pysite_lines:
                 section.remove(line)
     pyproject_save_files = "%pyproject_save_files " + " ".join(
-        shlex.quote(t) for t in sorted(topnames)
+        shlex_quote_with_macros(t, spec=spec) for t in sorted(topnames)
     )
     sections.install.insert(pyproject_install_index + 1, pyproject_save_files)
     return (

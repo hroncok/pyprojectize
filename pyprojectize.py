@@ -213,6 +213,16 @@ def canonicalize_name_with_macros(name: str, *, spec: Specfile) -> str:
         canonical = canonicalize_name(expanded).replace("-", "_")
         if expanded == canonical:
             return name
+        # let's see if there is some nice macro we can use here
+        with spec.macro_definitions() as macros:
+            for macro in macros:
+                if macro.body == canonical:
+                    return f"%{{{macro.name}}}"
+            if match := re.match(r"%{(?P<macro>[^}]+)}(?P<rest>.+)$", name):
+                for macro in macros:
+                    if f"{macro.body}{match['rest']}" == canonical:
+                        return f"%{{{macro.name}}}{match['rest']}"
+        # no macro? return the expanded canonical name
         return canonical
     return canonicalize_name(name).replace("-", "_")
 

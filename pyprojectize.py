@@ -17,7 +17,7 @@ class Result(enum.Enum):
 
 
 ResultMsg = tuple[Result, str]
-ModFunc = collections.abc.Callable[[specfile.sections.Sections], ResultMsg]
+ModFunc = collections.abc.Callable[[specfile.Specfile, specfile.sections.Sections], ResultMsg]
 
 _modifiers: list[ModFunc] = []
 
@@ -28,7 +28,7 @@ def register(func: ModFunc) -> ModFunc:
 
 
 @register
-def add_pyproject_buildrequires(sections: specfile.sections.Sections) -> ResultMsg:
+def add_pyproject_buildrequires(spec: specfile.Specfile, sections: specfile.sections.Sections) -> ResultMsg:
     """
     If there is no %generate_buildrequires section, add it after %prep.
 
@@ -70,7 +70,7 @@ def add_pyproject_buildrequires(sections: specfile.sections.Sections) -> ResultM
 
 
 @register
-def py3_build_to_pyproject_wheel(sections: specfile.sections.Sections) -> ResultMsg:
+def py3_build_to_pyproject_wheel(spec: specfile.Specfile, sections: specfile.sections.Sections) -> ResultMsg:
     """
     In the %build section, replace %py3_build with %pyproject_wheel.
     Arguments (if any) are passed to -C--global-option.
@@ -131,7 +131,7 @@ def py3_build_to_pyproject_wheel(sections: specfile.sections.Sections) -> Result
 
 
 @register
-def py3_install_to_pyproject_install(sections: specfile.sections.Sections) -> ResultMsg:
+def py3_install_to_pyproject_install(spec: specfile.Specfile, sections: specfile.sections.Sections) -> ResultMsg:
     """
     In the %install section, replace %py3_install with %pyproject_install.
     Arguments are discarded (should we error instead?).
@@ -184,7 +184,7 @@ def py3_install_to_pyproject_install(sections: specfile.sections.Sections) -> Re
 
 
 @register
-def egginfo_to_distinfo(sections: specfile.sections.Sections) -> ResultMsg:
+def egginfo_to_distinfo(spec: specfile.Specfile, sections: specfile.sections.Sections) -> ResultMsg:
     """
     In all the %files sections, replace .egg-info with .dist-info.
     """
@@ -211,7 +211,7 @@ def egginfo_to_distinfo(sections: specfile.sections.Sections) -> ResultMsg:
 
 
 @register
-def remove_setuptools_br(sections: specfile.sections.Sections) -> ResultMsg:
+def remove_setuptools_br(spec: specfile.Specfile, sections: specfile.sections.Sections) -> ResultMsg:
     """
     Remove BuildRequires for setuptools, they should be generated
     """
@@ -244,7 +244,7 @@ def remove_setuptools_br(sections: specfile.sections.Sections) -> ResultMsg:
 
 
 @register
-def update_extras_subpkg(sections: specfile.sections.Sections) -> ResultMsg:
+def update_extras_subpkg(spec: specfile.Specfile, sections: specfile.sections.Sections) -> ResultMsg:
     """
     %{?python_extras_subpkg:%python_extras_subpkg -n python3-ipython -i %{python3_sitelib}/*.egg-info notebook}
     ->
@@ -274,6 +274,44 @@ def update_extras_subpkg(sections: specfile.sections.Sections) -> ResultMsg:
     return ret
 
 
+@register
+def remove_python_provide(spec: specfile.Specfile, sections: specfile.sections.Sections) -> ResultMsg:
+    """
+    Remove %python_provide or replace it with %py_provides if the name isn't the same.
+
+    This does not detect packages without files, that would be hard.
+    """
+    ret = (
+        Result.NOT_NEEDED,
+        "%python_provide not found",
+    )
+    provide_re = r"^\s*%{\?python_provide:%python_provide\s+(?P<name>\S+)}\s*$"
+
+    for section in sections:
+        if section.name == "package":
+            name = ""
+            del_lines = []
+            if section.options:
+                name = getattr(section.options, "n", "")
+            for idx, line in enumerate(section):
+                if not name and (match := re.search(r"\s*name:", line.lower())):
+                    name = line.partition(":")[-1].strip()
+                if match := re.search(provide_re, line):
+                    provided_name = match["name"]
+                    if spec.expand(provided_name) == spec.expand(name):
+                        del_lines.append(idx)
+                    else:
+                        section[idx] = f"%py_provides {provided_name}"
+                    ret = (
+                        Result.UPDATED,
+                        "%python_provide removed or replaced with %py_provides",
+                    )
+            for idx in reversed(del_lines):
+                del section[idx]
+
+    return ret
+
+
 def specfile_path() -> str:
     if len(sys.argv) == 2:
         return sys.argv[1]
@@ -289,7 +327,7 @@ def main() -> int:
     with spec.sections() as sections:
         # TODO CLI to enable, disable, nicer result reporting (with rich?)
         for modifier in _modifiers:
-            print(modifier.__name__, resmes := modifier(sections))
+            print(modifier.__name__, resmes := modifier(spec, sections))
             results.add(resmes[0])
 
     if Result.UPDATED in results:

@@ -275,6 +275,28 @@ def update_extras_subpkg(spec: Specfile, sections: Sections) -> ResultMsg:
     return ret
 
 
+def alignment_of(line: str) -> tuple[str, int, str] | None:
+    tag_re = r"^(?P<prespace>\s*)(?P<align>\S+\s*:(?P<spaces>\s*))\S"
+    if match := re.search(tag_re, line):
+        prespace = match["prespace"]
+        col = len(match["align"])
+        space_counts = {c: match["spaces"].count(c) for c in set(match["spaces"])}
+        most_common_space = max(space_counts, default=" ", key=space_counts.__getitem__)
+        for space in match["spaces"]:
+            if space == "\t":
+                col += 7  # approximation
+        return prespace, col, most_common_space
+    return None
+
+
+def align(tag: str, value: str, prespace: str, col: int, most_common_space: str) -> str:
+    spaces = col - len(tag)
+    if most_common_space == "\t":
+        spaces //= 8  # approximation
+    spaces = max(1, spaces)
+    return f"{prespace}{tag}{spaces*most_common_space}{value}"
+
+
 @register
 def remove_python_provide(spec: Specfile, sections: Sections) -> ResultMsg:
     """
@@ -291,6 +313,7 @@ def remove_python_provide(spec: Specfile, sections: Sections) -> ResultMsg:
     for section in sections:
         if section.name == "package":
             name = ""
+            last_alignment = "", 16, " "
             del_lines = []
             if section.options:
                 name = getattr(section.options, "n", "")
@@ -302,11 +325,15 @@ def remove_python_provide(spec: Specfile, sections: Sections) -> ResultMsg:
                     if spec.expand(provided_name) == spec.expand(name):
                         del_lines.append(idx)
                     else:
-                        section[idx] = f"%py_provides {provided_name}"
+                        section[idx] = align(
+                            "%py_provides", provided_name, *last_alignment
+                        )
                     ret = (
                         Result.UPDATED,
                         "%python_provide removed or replaced with %py_provides",
                     )
+                elif alignment := alignment_of(line):
+                    last_alignment = alignment
             for idx in reversed(del_lines):
                 del section[idx]
 

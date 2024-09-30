@@ -20,7 +20,6 @@ BuildArch:      noarch
 
 %package -n     python3-%{pypi_name}
 Summary:        Python unittest Utilities
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 Requires:       python3-six
 Requires:       python3-setuptools >= 0.7

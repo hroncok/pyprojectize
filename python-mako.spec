@@ -36,7 +36,6 @@ Recommends: python3-beaker
 Obsoletes: python2-mako < 1.1.0-3
 Obsoletes: python-mako-doc < 1.1.4-6
 
-%{?python_provide:%python_provide python3-mako}
 
 %description -n python3-mako %_description
 

@@ -61,7 +61,6 @@ Summary: %summary
 Requires:  proj >= %{minimal_needed_proj_version}
 
 # ensure python provides are provided when python3 becomes the default runtime
-%{?python_provide:%python_provide python3-%{name}}
 
 %description -n python3-%{name} %_description
 

@@ -64,7 +64,6 @@ Requires: python3dist(configobj)
 BuildRequires: python3-devel
 BuildRequires: python3dist(traits)
 
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 %description -n python%{python3_pkgversion}-%{srcname} %{common_description}
 
 %prep

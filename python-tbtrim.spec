@@ -23,7 +23,6 @@ a program when it exits because of an exception.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 tbtrim is a utility to trim Python traceback information. By assigning user-

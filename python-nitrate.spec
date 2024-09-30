@@ -57,7 +57,6 @@ for fast debugging and experimenting).}
 %if %{with python2}
 %package -n python2-nitrate
 Summary: %{summary}
-%{?python_provide:%python_provide python2-nitrate}
 %if %{with oldreqs}
 %if 0%{?rhel} > 7
 Requires: python2-gssapi
@@ -75,7 +74,6 @@ Requires: python2-six
 # Python 3
 %package -n python%{python3_pkgversion}-nitrate
 Summary: %{summary}
-%{?python_provide:%python_provide python3-nitrate}
 %if %{with oldreqs}
 Requires: python%{python3_pkgversion}-gssapi
 Requires: python%{python3_pkgversion}-psycopg2

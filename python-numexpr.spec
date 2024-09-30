@@ -31,7 +31,6 @@ compiler at runtime.}
 %package -n python%{python3_pkgversion}-numexpr
 Summary:        %{summary}
 Requires:       python%{python3_pkgversion}-numpy >= 1.6
-%{?python_provide:%python_provide python%{python3_pkgversion}-numexpr}
 
 %description -n python%{python3_pkgversion}-numexpr %_description
 

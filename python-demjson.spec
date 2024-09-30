@@ -26,7 +26,6 @@ to make it easier to read.
 
 %package -n python3-%{srcname}
 Summary:        Python JSON module and lint checker
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 %{base_description}

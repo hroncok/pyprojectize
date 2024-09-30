@@ -19,7 +19,6 @@ Summary:        %{summary}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-PyYAML
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 A set of third-party serializers for Betamax.

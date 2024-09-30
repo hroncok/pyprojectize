@@ -29,7 +29,6 @@ so that applications can drop-in replace it.
 
 %package -n python3-%{srcname}
 Summary:        %{sum}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 pylibmc is a client in Python 3 for memcached. It is a wrapper

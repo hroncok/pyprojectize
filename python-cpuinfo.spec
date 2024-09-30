@@ -36,7 +36,6 @@ These approaches are used for getting info:
 
 %package -n python3-%{srcname}
 Summary:        %{sum}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 Py-cpuinfo gets CPU info with pure Python. Py-cpuinfo should work without

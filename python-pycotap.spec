@@ -22,7 +22,6 @@ printers and processors.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 pycotap is a simple Python test runner for unit tests that outputs Test Anything

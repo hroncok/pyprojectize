@@ -33,7 +33,6 @@ need to parse C source code.
 
 %package -n python3-pycparser
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-pycparser}
 
 %description -n python3-pycparser
 pycparser is a complete parser for the C language, written in pure Python.

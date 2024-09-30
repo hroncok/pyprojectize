@@ -27,7 +27,6 @@ BuildArch:	noarch
 
 %package -n python%{python3_pkgversion}-%{pname}
 Summary:	%{summary} for Python3
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pname}}
 Conflicts:	python2-%{pname} < 0.6.3-7
 
 BuildRequires:	python%{python3_pkgversion}-devel

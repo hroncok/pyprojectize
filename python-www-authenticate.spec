@@ -22,7 +22,6 @@ the hard work for you.
 
 %package -n python%{python3_pkgversion}-%{upstream_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{upstream_name}}
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-nose
 
@@ -33,7 +32,6 @@ Python %{python3_pkgversion} version.
 %if 0%{?with_python3_other}
 %package -n python%{python3_other_pkgversion}-%{upstream_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python%{python3_other_pkgversion}-%{upstream_name}}
 BuildRequires:  python%{python3_other_pkgversion}-devel
 BuildRequires:  python%{python3_other_pkgversion}-setuptools
 BuildRequires:  python%{python3_other_pkgversion}-nose

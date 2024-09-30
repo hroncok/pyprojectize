@@ -19,7 +19,6 @@ API.
 
 %package -n python3-ovirt-engine-sdk4
 Summary: %summary
-%{?python_provide:%python_provide python3-ovirt-engine-sdk4}
 
 %description -n python3-ovirt-engine-sdk4 %_description
 

@@ -28,7 +28,6 @@ A port of node.js's EventEmitter to python.
 
 %package -n python3-ee
 Summary:       A port of node.js's EventEmitter to python
-%{?python_provide:%python_provide python3-ee}
 
 %description -n python3-ee
 A port of node.js's EventEmitter to python.

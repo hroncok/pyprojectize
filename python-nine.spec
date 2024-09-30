@@ -39,7 +39,6 @@ new projects.
 
 %package -n python3-nine
 Summary:            %{summary}
-%{?python_provide:%python_provide python3-nine}
 
 %description -n python3-nine  %_description
 

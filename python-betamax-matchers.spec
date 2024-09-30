@@ -21,7 +21,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-pytest
 BuildRequires:  python3-betamax
 BuildRequires:  python3-requests-toolbelt
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 A set of third-party matchers for Betamax.

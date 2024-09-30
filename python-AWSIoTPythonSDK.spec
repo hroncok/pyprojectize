@@ -25,7 +25,6 @@ Lambda, Amazon Kinesis, Amazon S3, and more.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 The AWS IoT Device SDK for Python allows developers to write Python script to

@@ -22,7 +22,6 @@ annotations in the header files to generate correct Cython code.
 
 %package -n python%{python3_pkgversion}-autowrap
 Summary: Generates Python3 Extension modules from [Cython] PXD files
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{name}}
 BuildRequires: python%{python3_pkgversion}-devel
 BuildRequires: python%{python3_pkgversion}-pytest
 BuildRequires: python%{python3_pkgversion}-Cython

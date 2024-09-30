@@ -25,7 +25,6 @@ add support for other frameworks.
 
 %package -n python3-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
 Requires:       python3-mimeparse
 # Note: mimerender has subclasses of MimeRenderBase for web.py, Flask,
 # Bottle, and webapp2. When you import 'mimerender', the subclass for

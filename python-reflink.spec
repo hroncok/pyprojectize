@@ -22,7 +22,6 @@ Python wrapper around the reflink system calls.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 Requires:       python3dist(cffi)
 %description -n python3-%{pypi_name}

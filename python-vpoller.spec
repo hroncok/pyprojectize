@@ -43,7 +43,6 @@ environment.
 
 %package     -n python%{python3_pkgversion}-%{modname}
 Summary:        %{sum}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{modname}}
 BuildRequires: make
 BuildRequires:  python%{python3_pkgversion}-devel
 #BuildRequires: %%{py3_dist docopt zmq vconnector pyvmomi sphinx}

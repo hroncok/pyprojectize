@@ -23,7 +23,6 @@ BuildRequires:  python%{python3_pkgversion}-devel
 # These are needed for the nose tests.
 BuildRequires:  python%{python3_pkgversion}-nose
 %endif
-%{?python_provide:%python_provide python%{python3_pkgversion}-pyxdg}
 
 %description -n python%{python3_pkgversion}-pyxdg
 PyXDG is a python library to access freedesktop.org standards. This

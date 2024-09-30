@@ -34,7 +34,6 @@ BuildRequires: python3-setuptools_scm
 Requires: python3-setuptools
 Requires: python-formencode-langpacks
 
-%{?python_provide:%python_provide python3-formencode}
 
 %description -n python3-formencode
 FormEncode validates and converts nested structures. It allows for a.

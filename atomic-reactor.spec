@@ -62,7 +62,6 @@ Requires:       python3-jsonschema
 Requires:       python3-PyYAML
 Provides:       python3-dock = %{version}-%{release}
 Obsoletes:      python3-dock < %{dock_obsolete_vr}
-%{?python_provide:%python_provide python3-atomic-reactor}
 
 %description -n python3-atomic-reactor
 Simple Python 3 library for building Docker images. It contains

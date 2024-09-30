@@ -22,7 +22,6 @@ BuildRequires:  python3dist(numpy)
 BuildRequires:  python3dist(typeguard)
 #BuildRequires:  python3dist(pyright)
 #BuildRequires:  python3dist(beartype)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Type hints for Numpy.

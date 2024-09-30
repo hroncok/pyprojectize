@@ -34,7 +34,6 @@ contains shared libraries and the command-line interface.
 
 %package -n python%{python3_pkgversion}-%{name}
 Summary: Build system tools python library
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{name}}
 BuildRequires: python%{python3_pkgversion}-devel
 BuildRequires: make
 BuildRequires: python3-pip
@@ -193,7 +192,6 @@ koji-web is a web UI to the Koji system.
 Summary: Koji Web UI
 # Automatically converted from old format: LGPLv2 - review is highly recommended.
 License: LicenseRef-Callaway-LGPLv2
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{name}-web}
 Requires: httpd
 Requires: python%{python3_pkgversion}-mod_wsgi
 Requires: mod_auth_gssapi

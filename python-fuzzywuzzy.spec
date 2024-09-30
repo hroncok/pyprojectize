@@ -18,7 +18,6 @@ differences between sequences in a simple-to-use package.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Fuzzy string matching module that uses Levenshtein Distance to calculate the

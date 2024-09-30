@@ -35,7 +35,6 @@ You should use Twiggy because it is awesome. For more information, read the
 
 %package -n python3-%{modname}
 Summary:            A Pythonic logger
-%{?python_provide:%python_provide python3-%{modname}}
 
 %description -n python3-%{modname}
 Twiggy is a Pythonic logger.

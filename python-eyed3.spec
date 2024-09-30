@@ -28,7 +28,6 @@ provided. The formats supported are ID3 v1.0/v1.1 and v2.3/v2.4.
 %package -n python3-%{srcname}
 Summary: %summary
 Requires:       python3-six
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname} %_description
 

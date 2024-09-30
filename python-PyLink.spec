@@ -22,8 +22,7 @@ remote or local serial communication.
 
 %package -n python3-%{modname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{modname}}
-%{?python_provide:%python_provide python3-pylink}
+%py_provides    python3-pylink
 BuildRequires:  python3-devel
 Requires:       python3-pyserial
 

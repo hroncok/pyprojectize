@@ -19,7 +19,6 @@ BuildRequires:  python3-devel
 
 Requires:       python3-setuptools
 
-%{?python_provide:%python_provide python3-%{pkgname}}
 
 %description -n python3-%{pkgname}
 Python WSGI based adapter for the Websockets protocol - Python 3 version

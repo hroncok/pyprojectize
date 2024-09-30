@@ -21,7 +21,6 @@ BuildRequires:	python3-devel
 BuildRequires:	python3-pylint
 Requires:	hwdata
 
-%{?python_provide:%python_provide python3-hwdata}
 
 %description -n python3-hwdata
 Provide python interface to database stored in hwdata package.

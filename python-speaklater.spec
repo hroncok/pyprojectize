@@ -24,7 +24,6 @@ is evaluated based on a callable you provide.
 
 %package -n python3-speaklater
 Summary: Implements a lazy string for python3 useful for gettext
-%{?python_provide:%python_provide python3-speaklater}
 
 %description -n python3-speaklater
 A module that provides lazy strings for translations. Basically you get an

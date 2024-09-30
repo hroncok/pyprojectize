@@ -26,7 +26,6 @@ returns whether it is available, taken or invalid on online platforms.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 socialscan offers accurate and fast checks for email address and user name

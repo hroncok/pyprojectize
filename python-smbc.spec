@@ -26,7 +26,6 @@ system-config-printer, but can be put to other uses as well.
 
 %package -n python3-smbc
 Summary:       Python3 bindings for libsmbclient API from Samba
-%{?python_provide:%python_provide python3-smbc}
 
 %description -n python3-smbc
 This package provides Python 3 bindings for the libsmbclient API

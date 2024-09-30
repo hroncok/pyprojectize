@@ -22,7 +22,6 @@ command-line interfaces.
 %package -n python3-configshell
 Summary:        A framework to implement simple but nice CLIs
 Requires:       python3-pyparsing python3-urwid
-%{?python_provide:%python_provide python3-configshell}
 
 %description -n python3-configshell %_description
 

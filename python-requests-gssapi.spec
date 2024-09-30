@@ -30,7 +30,6 @@ for requests-kerberos.
 Summary:        %summary
 Requires:       python3-gssapi
 Requires:       python3-requests
-%{?python_provide:%python_provide python3-%{sname}}
 %description -n python3-%{sname} %_description
 
 %prep

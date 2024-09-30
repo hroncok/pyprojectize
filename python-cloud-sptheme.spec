@@ -29,7 +29,6 @@ at http://packages.python.org/cloud_sptheme.
 %package -n python3-%{srcname}
 Summary:    %{sum}
 Requires:   python3-sphinx
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 This is a small Python 3 package containing a Sphinx theme named "Cloud",

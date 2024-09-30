@@ -36,7 +36,6 @@ or Elixir-based models.\
 
 %package -n python3-repoze-who-plugins-sa
 Summary: repoze.who SQLAlchemy plugin
-%{?python_provide:%python_provide python3-repoze-who-plugins-sa}
 
 %description -n python3-repoze-who-plugins-sa
 This plugin provides one repoze.who authenticator which works with SQLAlchemy

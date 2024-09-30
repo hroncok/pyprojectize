@@ -57,7 +57,6 @@ BuildRequires:  gnupg2
 Summary:        %{summary}
 Requires:       python%{python3_pkgversion}-six
 Requires:       doxygen >= 1.8.4
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %description -n python%{python3_pkgversion}-%{srcname} %_description
 

@@ -21,7 +21,6 @@ and will continue to evolve over time.
 
 %package -n python3-%{pypi_name}
 Summary:        A pep8 equivalent for bash scripts
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(fixtures)

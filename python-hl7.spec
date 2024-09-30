@@ -28,7 +28,6 @@ Health Level 7 (HL7) v2.x into Python objects.
 
 %package -n python3-%{srcname}
 Summary: %{sum}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 python-%{srcname} is a simple library for parsing messages of

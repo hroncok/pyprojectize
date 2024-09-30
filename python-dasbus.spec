@@ -33,7 +33,6 @@ Requires:       python3-gobject
 %else
 Requires:       python3-gobject-base
 %endif
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname} %{_description}
 

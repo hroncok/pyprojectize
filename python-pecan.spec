@@ -19,7 +19,6 @@ fast with few dependencies
 
 %package -n python3-%{pypi_name}
 Summary:        A lean WSGI object-dispatching web framework
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 BuildRequires:  python3-devel
 

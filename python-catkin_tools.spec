@@ -38,7 +38,6 @@ BuildRequires:  python%{python3_pkgversion}-PyYAML
 Requires:       cmake
 Requires:       make
 Conflicts:      python2-%{srcname} < 0.4.4-7
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %if %{undefined __pythondist_requires}
 Requires:       python%{python3_pkgversion}-catkin_pkg >= 0.3.0

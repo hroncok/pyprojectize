@@ -39,7 +39,6 @@ BuildRequires:  git-core
 
 %package -n python3-%{pkg_name}
 Summary:        OpenStack Oslo Context library
-%{?python_provide:%python_provide python3-%{pkg_name}}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-pbr

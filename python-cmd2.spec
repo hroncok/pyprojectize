@@ -43,7 +43,6 @@ BuildRequires:    python3-setuptools_scm
 BuildRequires:    dos2unix
 
 Requires:         /usr/bin/which
-%{?python_provide:%python_provide python3-cmd2}
 
 %description -n python3-%{pypi_name} %_description
 

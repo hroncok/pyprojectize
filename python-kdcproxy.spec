@@ -29,7 +29,6 @@ Summary:        MS-KKDCP (kerberos proxy) WSGI module
 Requires:       python3-dns
 Requires:       python3-pyasn1
 
-%{?python_provide:%python_provide python3-%{realname}}
 
 %description -n python3-%{realname}
 This package contains a Python 3.x WSGI module for proxying KDC requests over

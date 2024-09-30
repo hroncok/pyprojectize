@@ -22,7 +22,6 @@ inspection of types defined in the standard "typing" module.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 Requires:       python3dist(mypy-extensions) >= 0.3.0
 Requires:       python3dist(typing-extensions) >= 3.7.4

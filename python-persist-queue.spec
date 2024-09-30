@@ -22,7 +22,6 @@ A single process, persistent multi-producer, multi-consumer queue
 %if 0%{?with_python2}
 %package -n python2-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python2-%{pypi_name}}
 
 BuildRequires:  python2-devel
 BuildRequires:  python2-mock
@@ -40,7 +39,6 @@ A single process, persistent multi-producer, multi-consumer queue
 %if 0%{?with_python3}
 %package -n python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-mock

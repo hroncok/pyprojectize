@@ -20,7 +20,7 @@ BuildRequires:  python3-devel
 
 %package -n python3-%{module_name}
 Summary:        %{sum}
-%{?python_provide:%python_provide python3-%{name}}
+%py_provides    python3-%{name}
 
 %description -n python3-%{module_name}
 %{name} is a library to write SQL queries in a pythonic way.

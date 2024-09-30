@@ -26,7 +26,6 @@ License:        GPL-3.0-or-later
 Requires:       %{name} = %{version}-%{release}
 Obsoletes:      %{name}-data < %{version}-%{release}
 Provides:       %{name}-data = %{version}-%{release}
-%{?python_provide:%python_provide python3-%{name}}
 
 %description -n python3-langtable
 This package contains a Python module to query the data

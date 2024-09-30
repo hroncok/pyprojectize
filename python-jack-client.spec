@@ -15,7 +15,6 @@ Source0:       https://github.com/spatialaudio/jackclient-python/archive/%{versi
 
 BuildRequires: python3-devel
 BuildRequires: python3-cffi
-%{?python_provide:%python_provide %{name}}
 Requires:      python3-cffi
 Requires:      jack-audio-connection-kit
 Suggests:      python3-numpy

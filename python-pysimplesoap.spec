@@ -22,7 +22,7 @@ as possible, supporting most common functionality.
 
 %package -n     python3-%{rpmname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
+%py_provides    python3-%{pypi_name}
 
 %description -n python3-%{rpmname}
 Python simple and lightweight SOAP library for client and 

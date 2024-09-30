@@ -33,7 +33,6 @@ BuildRequires:      python3-devel
 BuildRequires:      python3-chardet >= 2.0.0
 BuildRequires:      python3-hypothesis
 
-%{?python_provide:%python_provide python3-%{modname}}
 
 %description -n python3-binaryornot
 Ultra-lightweight pure Python package to guess whether a file is binary or

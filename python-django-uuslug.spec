@@ -25,7 +25,6 @@ A Django slugify application that guarantees Uniqueness and handles Unicode
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
  
 Requires:       python3dist(python-slugify) >= 1.2.0
 Requires:       python3dist(six)

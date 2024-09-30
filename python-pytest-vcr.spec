@@ -24,7 +24,6 @@ BuildRequires:  python3-pytest >= 2.7
 BuildRequires:  python3-setuptools_scm
 Requires:       python3-pytest >= 2.7
 Requires:       python3-vcrpy
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 %{desc}

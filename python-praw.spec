@@ -27,7 +27,6 @@ BuildRequires:  python3-betamax-matchers
 BuildRequires:  python3-betamax-serializers
 BuildRequires:  python3-pytest
 BuildRequires:  python3-websocket-client
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 PRAW, an acronym for "Python Reddit API Wrapper", is a python package that

@@ -44,7 +44,6 @@ Requires:       python3-pyyaml
 Requires:       python3-requests
 Requires:       python3-voluptuous
 Requires:       python3-werkzeug
-%{?python_provide:%python_provide python3-%{name}}
 
 %description -n python3-%{name}
 Prewikka is the backend of the web browser interface of Prelude SIEM. Providing

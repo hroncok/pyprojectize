@@ -31,7 +31,6 @@ Requires: python3-paste-deploy >= 1.5.0
 Requires: python3-plaster >= 0.5
 Requires: python3-setuptools
 
-%{?python_provide:%python_provide python3-%{srcname}}
 
 
 %description -n python3-%{srcname}

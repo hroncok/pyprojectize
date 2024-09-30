@@ -39,7 +39,6 @@ BuildRequires:  python3-vine >= 5.1.0
 %if %{with sphinx_docs}
 BuildRequires:  python3-sphinx >= 0.8
 %endif
-%{?python_provide:%python_provide python3-%{srcname}}
 Requires:    python3-vine >= 5.1.0
 
 %description -n python3-%{srcname}

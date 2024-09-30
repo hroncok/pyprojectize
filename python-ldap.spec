@@ -45,7 +45,6 @@ Requires:  openldap >= %{openldap_version}
 Requires:  python3-pyasn1 >= 0.3.7
 Requires:  python3-pyasn1-modules >= 0.1.5
 Requires:  python3-setuptools
-%{?python_provide:%python_provide python3-ldap}
 Obsoletes: python3-pyldap < 3
 Provides:  python3-pyldap = %{version}-%{release}
 Provides:  python3-pyldap%{?_isa} = %{version}-%{release}

@@ -31,7 +31,6 @@ BuildArch:      noarch
 Requires:       python3-jinja2
 Requires:       python3-PyYAML
 Requires:       python3-toml
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 %desc

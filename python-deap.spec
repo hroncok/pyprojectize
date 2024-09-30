@@ -46,7 +46,6 @@ behind a common interface.}
 Requires:       python3-numpy
 BuildRequires:  python3-nose
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-deap}
 
 %description -n python3-deap %_description
 

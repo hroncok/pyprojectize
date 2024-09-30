@@ -21,7 +21,6 @@ dumps, loads and similar functions).
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 phpserialize a port of the serialize and unserialize functions of php to

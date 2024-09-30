@@ -18,7 +18,6 @@ Asynchronous Python API client for interacting with dingz devices.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Asynchronous Python API client for interacting with dingz devices.
@@ -27,7 +26,7 @@ Asynchronous Python API client for interacting with dingz devices.
 Summary:        CLI tool to interact with dingz devices
 
 Requires:       python3-%{pypi_name} = %{?epoch:%{epoch}:}%{version}-%{release}
-%{?python_provide:%python_provide python3-%{pypi_name}}
+%py_provides    python3-%{pypi_name}
 
 %description -n %{pypi_name}
 CLI tool to interact with dingz devices.

@@ -25,7 +25,6 @@ NT password hashes suitable to us with Samba.
 
 %package -n python3-smbpasswd
 Summary:        %{summary} for Python 3
-%{?python_provide:%python_provide python3-smbpasswd}
 
 %description -n python3-smbpasswd
 This package contains a python module, which is able to generate LANMAN and

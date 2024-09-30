@@ -20,7 +20,6 @@ configure the email backend in a Django application.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pkg_name}}
 
 %description -n python3-%{pkg_name}
 This utility allows to utilize the 12factor inspired environments variable to

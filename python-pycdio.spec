@@ -26,7 +26,6 @@ device-dependent properties of a CD-ROM can use this library.
 Summary:	A Python interface to the CD Input and Control library
 Obsoletes:	pycdio < 2.0.0-6
 Provides:	pycdio = %{version}-%{release}
-%{?python_provide:%python_provide python3-pycdio}
 
 %description -n python3-pycdio
 The pycdio (and libcdio) libraries encapsulate CD-ROM reading and

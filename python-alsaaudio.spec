@@ -16,7 +16,6 @@ The package contains python2 and python3 bindings for the ALSA sound API.
 
 %package -n python3-alsaaudio
 Summary:  Library for Python 3 to communicate with the ALSA API
-%{?python_provide:%python_provide python3-alsaaudio}
 
 %description -n python3-alsaaudio
 The python3-AlsaAudio package contains python3 bindings for the ALSA sound API.

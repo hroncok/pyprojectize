@@ -23,7 +23,6 @@ and converted back to the binary equivalent at any time.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Mr. Crowbar is a Django-esque model framework that makes it super easy

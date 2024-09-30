@@ -22,7 +22,6 @@ BuildRequires:  python3dist(fedora-messaging)
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 # Ensure we don't use this with incompatible Pagure versions
 Conflicts:      pagure < 5.13
 

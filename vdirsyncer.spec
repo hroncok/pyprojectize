@@ -62,7 +62,6 @@ It aims to be for CalDAV and CardDAV what OfflineIMAP is for IMAP.
 
 %package -n python3-%{srcname}
 Summary:        %{sum}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 Requires:       python3-atomicwrites >= 0.1.7
 Requires:       python3-click >= 5.0

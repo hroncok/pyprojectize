@@ -27,7 +27,6 @@ editor.
 %if %{with python2}
 %package -n python2-%{module_name}
 Summary:        Python style guide checker
-%{?python_provide:%python_provide python2-%{module_name}}
 
 BuildRequires:  python2-devel
 BuildRequires:  python2-setuptools
@@ -44,7 +43,6 @@ editor.
 
 %package -n python%{python3_pkgversion}-pycodestyle
 Summary:    Python style guide checker
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{module_name}}
 Conflicts:      python-pycodestyle < %{version}-%{release}
 
 BuildRequires:  python%{python3_pkgversion}-devel

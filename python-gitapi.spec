@@ -20,7 +20,6 @@ Pure-Python API to git, which uses the command-line interface.
 
 %package -n     python3-gitapi
 Summary:        Pure-Python API to git, which uses the command-line interface
-%{?python_provide:%python_provide python3-gitapi}
 BuildRequires:  python3-devel
 Requires:       git
 

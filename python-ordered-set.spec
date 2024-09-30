@@ -24,7 +24,7 @@ entry has an index that can be looked up.
 
 %package     -n python3-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python2-%{srcname}}
+%py_provides    python2-%{srcname}
 
 %description -n python3-%{srcname} %{_description}
 

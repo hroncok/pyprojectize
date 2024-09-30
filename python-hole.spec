@@ -21,7 +21,6 @@ This module is consuming the details provided by the endpoint /api.php only.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 A Python client for interacting with a *hole instance. You know the thing

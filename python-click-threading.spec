@@ -20,7 +20,6 @@ Multithreaded support for python click (CLI creation kit) applications.
 
 %package -n     python3-%{srcname}
 Summary:        %{sum}
-%{?python_provide:%python_provide python3-%{srcname}}
 Requires:       python3-click >= 0.5
 
 %description -n python3-%{srcname}

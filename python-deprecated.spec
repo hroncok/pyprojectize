@@ -17,7 +17,6 @@ functions or methods.
 %package -n python3-%{pkgname}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pkgname}}
 
 %description -n python3-%{pkgname}
 Python @deprecated decorator to deprecate old python classes,

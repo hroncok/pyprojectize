@@ -28,7 +28,6 @@ Requires:           python3-setuptools
 BuildRequires:      python3-devel
 BuildRequires:      python3-dateutil
 
-%{?python_provide:%python_provide python3-%{modname}}
 
 %description -n python3-vobject
 VObject is intended to be a full featured python library for parsing and

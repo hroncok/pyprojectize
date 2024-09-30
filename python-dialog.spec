@@ -21,7 +21,6 @@ features from Python code.}
 %package -n python3-dialog
 Requires:       dialog
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-dialog}
 
 %description -n python3-dialog %_description
 

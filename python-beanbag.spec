@@ -39,7 +39,6 @@ See http://beanbag.readthedocs.org/ for more information.
 
 %package -n python3-beanbag
 Summary:        A helper module for accessing REST APIs
-%{?python_provide:%python_provide python3-beanbag}
 Requires:  python3-requests
 
 %description -n python3-beanbag

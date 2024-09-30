@@ -25,7 +25,6 @@ Google Auth Python Library
 
 %package -n %{py3}-%{library}
 Summary:    Google Auth Python Library
-%{?python_provide:%python_provide %{py3}-%{library}}
 
 BuildRequires:  %{py3}-devel
 BuildRequires:  %{py3}-setuptools

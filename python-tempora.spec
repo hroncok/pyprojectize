@@ -34,7 +34,6 @@ BuildConflicts: python3dist(pytest) = 3.7.3
 BuildRequires:  python3dist(pytest) >= 3.4
 BuildRequires:  python3-more-itertools
 
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Objects and routines pertaining to date and time (tempora).

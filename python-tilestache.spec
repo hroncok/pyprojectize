@@ -61,7 +61,6 @@ BuildRequires:  python%{python3_pkgversion}-shapely
 BuildRequires:  python%{python3_pkgversion}-werkzeug
 Requires:       font(dejavusansmono)
 Conflicts:      python2-%{pkgname} < %{version}-%{release}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pkgname}}
 
 %if %{undefined __pythondist_requires}
 Requires:       python%{python3_pkgversion}-imaging

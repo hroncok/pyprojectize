@@ -39,7 +39,6 @@ of recent versions of Linux (and other OSes).
 Summary: The libvirt virtualization API python3 binding
 Url: http://libvirt.org
 License: LGPLv2+
-%{?python_provide:%python_provide python3-libvirt}
 Provides: libvirt-python3 = %{version}-%{release}
 Obsoletes: libvirt-python3 <= 3.6.0-1%{?dist}
 

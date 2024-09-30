@@ -21,7 +21,6 @@ Summary:            %{summary}
 
 BuildRequires:      python3-devel
 BuildRequires:      %{py3_dist pytest}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 xmltodict is a Python module that makes working with XML feel like you are

@@ -24,7 +24,6 @@ validation of Google Translate
 
 %package -n python3-gtts-token
 Summary:  Python 3 lib to Calculates a token to run the Google Translate text to speech
-%{?python_provide:%python_provide python3-gtts-token}
 
 %description -n python3-gtts-token
 gTTS-token (Google Text to Speech token): A python implementation of the token 

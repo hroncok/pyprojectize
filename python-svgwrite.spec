@@ -22,7 +22,6 @@ BuildRequires:  python3-pyparsing
 BuildRequires:  python3-pytest
 Requires:       python3-setuptools
 Requires:       python3-pyparsing
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Python 3 library to create SVG drawings.

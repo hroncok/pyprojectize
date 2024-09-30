@@ -32,7 +32,6 @@ This package contains documentation for %{name}.
 
 %package -n python3-%{pypi_name}
 Summary:        %{sum}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 Requires:       python3-dateutil
 Requires:       python3-django

@@ -20,7 +20,6 @@ Tempita is a small templating language for text substitution.
 
 %package -n python3-tempita
 Summary:        A very small text templating language
-%{?python_provide:%python_provide python3-tempita}
 # Without one of these there's no aes implementation which means there's no way to
 # have encrypted cookies.  This is a reduction in features over the python2 version.
 # Currently there's no working python3 port for either:

@@ -16,7 +16,6 @@ A django OpenID Connect library.
 
 %package -n python3-%{shortname}
 Summary:       A django OpenID Connect library
-%{?python_provide:%python_provide python3-%{shortname}}
 Requires:      python3-django
 
 %description -n python3-%{shortname}

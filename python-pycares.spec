@@ -31,7 +31,6 @@ resolutions asynchronously.
 
 %package     -n python3-%{srcname}
 Summary:        Python interface for c-ares
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 pycares is a Python module which provides an interface to

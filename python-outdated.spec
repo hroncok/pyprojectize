@@ -35,7 +35,6 @@ BuildRequires:  %{py3_dist requests}
 BuildRequires:  %{py3_dist littleutils}
 %endif
 
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name} %_description
 

@@ -20,7 +20,7 @@ SEARCH_URL environment variable to configure your application.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
+%py_provides    python3-%{pypi_name}
 
 %description -n python3-%{pkg_name}
 This simple Django utility allows you to utilize the 12factor inspired

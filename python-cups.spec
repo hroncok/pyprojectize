@@ -35,7 +35,6 @@ system-config-printer, but can be put to other uses as well.
 
 %package -n python3-cups
 Summary:       Python3 bindings for CUPS API, known as pycups.
-%{?python_provide:%python_provide python3-cups}
 
 %description -n python3-cups
 This package provides Python 3 bindings for CUPS API,

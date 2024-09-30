@@ -14,7 +14,7 @@ Requires:       python3-setuptools
 Requires:       sg3_utils
 Requires:       smp_utils
 
-%{?python_provide:%python_provide python-sasutils}
+%py_provides    python-sasutils
 
 %description
 sasutils is a set of command-line tools and a Python library to ease the

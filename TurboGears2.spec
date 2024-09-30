@@ -44,7 +44,6 @@ database development and everything in between:\
 
 %package -n python3-%{name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{name}}
 
 Requires:       python3-backlash
 Requires:       python3-chameleon

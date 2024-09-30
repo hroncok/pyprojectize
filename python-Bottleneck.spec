@@ -41,7 +41,6 @@ BuildRequires:	python3-sphinx
 Requires:	python3-numpy%{?_isa}
 Requires:	python3-scipy%{?_isa}
 
-%{?python_provide:%python_provide python3-%{upname}}
 
 %description -n python3-%{upname}
 python3-%{upname} is a collection of fast NumPy array functions

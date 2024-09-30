@@ -20,7 +20,6 @@ expressions for weak forms in a notation close to mathematical notation.
 Summary:        %{summery}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 The Unified Form Language (UFL) is a domain specific language for declaration

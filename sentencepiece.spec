@@ -51,7 +51,6 @@ This package contains header files to develop a software using SentencePiece.
 %package        -n python3-%{name}
 Summary:	Python module for SentencePiece
 Requires:	%{name}-libs%{?_isa} = %{version}-%{release}
-%{?python_provide:%python_provide python3-%{name}}
 
 %description -n python3-%{name}
 This package contains Python3 module file for SentencePiece.

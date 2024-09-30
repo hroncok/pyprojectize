@@ -32,7 +32,6 @@ BuildRequires:  python3-wxpython4
 BuildRequires:  python3-xnat
 BuildRequires:  python3-fsleyes-widgets
 
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 %{desc}

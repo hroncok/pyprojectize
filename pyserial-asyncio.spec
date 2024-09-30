@@ -20,7 +20,6 @@ Summary:        %{summary}
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(pyserial)
 BuildRequires:  python3dist(pytest)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Async I/O extension package for the Python Serial Port Extension.

@@ -47,7 +47,6 @@ Recommends:     %{py3_dist cfflib}
 # Cyclic deps. Depends on this package, so using weak deps
 Recommends:     %{py3_dist tvb-library}
 
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 %{desc}

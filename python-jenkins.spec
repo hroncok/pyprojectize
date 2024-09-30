@@ -34,7 +34,6 @@ BuildRequires:  python%{python3_pkgversion}-requests-mock
 BuildRequires:  python%{python3_pkgversion}-six >= 1.3.0
 BuildRequires:  python%{python3_pkgversion}-testscenarios
 BuildRequires:  python%{python3_pkgversion}-testtools
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %if %{undefined __pythondist_requires}
 Requires:       python%{python3_pkgversion}-multi_key_dict

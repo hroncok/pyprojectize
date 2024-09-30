@@ -19,7 +19,6 @@ starting polynomial, etc.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 CrcElk provides a pure Python implementation of the CRC algorithm and allows

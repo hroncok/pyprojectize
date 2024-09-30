@@ -17,7 +17,6 @@ Module to parse command based CLI application.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Module to parse command based CLI application.

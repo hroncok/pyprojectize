@@ -33,7 +33,6 @@ Currently, the following panels have been written and are working:\
 
 %package -n python3-%{srcname}
 Summary:       %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires: python3-devel
 Obsoletes:     python-django-debug-toolbar < 1.9.1-3
 Obsoletes:     python2-django-debug-toolbar < 1.9.1-3

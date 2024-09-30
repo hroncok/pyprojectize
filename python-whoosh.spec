@@ -30,7 +30,6 @@ works can be extended or replaced to meet your needs exactly.
 
 %package -n python%{python3_pkgversion}-whoosh
 Summary:    Fast, Python3 full text indexing, search, and spell checking library
-%{?python_provide:%python_provide python%{python3_pkgversion}-whoosh}
 
 %description -n python%{python3_pkgversion}-whoosh
 Whoosh is a fast, featureful full-text indexing and searching library

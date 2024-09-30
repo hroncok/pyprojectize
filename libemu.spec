@@ -252,7 +252,6 @@ Summary:        Python2 binding to the libemu x86 emulator
 Group:          Development/Libraries
 %endif
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-%{?python_provide:%python_provide python2-%{name}}
 
 %description    -n python2-libemu
 Python2 binding to the libemu x86 emulator.
@@ -268,7 +267,6 @@ Summary:        Python3 binding to the libemu x86 emulator
 Group:          Development/Libraries
 %endif
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{name}}
 
 %description    -n python%{python3_pkgversion}-libemu
 Python3 binding to the libemu x86 emulator.

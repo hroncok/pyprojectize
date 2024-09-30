@@ -63,7 +63,6 @@ Requires: %{py3_dist pysignals}
 Requires(post): firewalld-filesystem
 
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname} %_description
 

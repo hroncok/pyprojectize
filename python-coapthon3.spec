@@ -19,7 +19,6 @@ Summary:        %{summary}
 BuildRequires:  python3-devel
 
 Requires:       python3-cachetools
-%{?python_provide:%python_provide python3-coapthon3}
 
 %description -n python3-coapthon3
 A Python library for the CoAP protocol.

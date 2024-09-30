@@ -23,7 +23,6 @@ used by other projects as well.
 
 %package -n python%{python3_pkgversion}-llfuse
 Summary:            Python Bindings for the low-level FUSE API Python %{python3_version} packages
-%{?python_provide:%python_provide python%{python3_pkgversion}-llfuse}
 
 %description -n python%{python3_pkgversion}-llfuse
 LLFUSE is a set of Python %{python3_version} bindings for the low level FUSE API.

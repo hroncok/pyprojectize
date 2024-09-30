@@ -35,7 +35,6 @@ collectd-systemd A collectd plugin which checks if given systemd services
 are in "running" state and sends metrics with 1.0 or 0.0.
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 Requires:       python3-dbus
 Requires:       collectd-python
 Requires:       %{name}-selinux = %{version}-%{release}

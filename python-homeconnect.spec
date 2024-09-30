@@ -18,7 +18,6 @@ authentication, REST calls, and SSE event stream parsing.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 A Python client for the BSH Home Connect REST API implementing OAuth 2

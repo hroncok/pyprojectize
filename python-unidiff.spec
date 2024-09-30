@@ -18,7 +18,6 @@ python-unidiff is a Python library to parse and interact with unified diffs
 (patches).
 
 %package -n python%{python3_pkgversion}-%{modname}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{modname}}
 Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
 

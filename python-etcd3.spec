@@ -20,7 +20,6 @@ BuildRequires:  python3-devel
 
 %package -n python3-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python%{python3_pkgversion}-%{srcname}
 %{_description}

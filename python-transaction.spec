@@ -24,7 +24,6 @@ mainly used by the ZODB, though.
 Summary:        Transaction management for Python 3
 
 Requires:       python3-zope-interface
-%{?python_provide:%python_provide python3-transaction}
 
 %description -n python3-transaction %_description
 

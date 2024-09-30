@@ -37,7 +37,6 @@ Recommends: python3-%{modname}-doc
 
 %package -n python3-%{modname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{modname}}
 
 %description -n python3-%{modname}
 %{summary}.

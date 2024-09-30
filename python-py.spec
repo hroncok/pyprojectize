@@ -27,7 +27,6 @@ Summary:        Library with cross-python path, ini-parsing, io, code, log facil
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools_scm
 Requires:       python3-setuptools
-%{?python_provide:%python_provide python3-%{srcname}}
 Provides:       bundled(python3-apipkg) = 2.0
 Provides:       bundled(python3-iniconfig) = 1.1.1
 Obsoletes:      platform-python-%{srcname} < %{version}-%{release}

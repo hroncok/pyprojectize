@@ -46,7 +46,6 @@ use with the awesome Requests Python library.
 %if %{with python2}
 %package -n python2-%{srcname}
 Summary:        FTP transport adapter for python-requests
-%{?python_provide:%python_provide python2-%{srcname}}
 
 BuildRequires:  python2-devel
 BuildRequires:  python2-setuptools
@@ -63,7 +62,6 @@ This is the Python 2 version of the transport adapter module.
 %if %{with python3}
 %package -n python3-%{srcname}
 Summary:        FTP transport adapter for python3-requests
-%{?python_provide:%python_provide python3-%{srcname}}
 
 BuildRequires:  python3-devel
 

@@ -43,7 +43,6 @@ It supports Python 2.7, 3.4+, Jython and PyPy and uses standard libraries only.
 %package -n python3-%{pypi_name}
 Summary:		Python 3 modules for writing files in the Excel 2007+ XLSX file format
 BuildRequires:	python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 %{common_desc}

@@ -58,7 +58,6 @@ This package contains the documentation and examples for %{name}.
 %package -n python%{python3_pkgversion}-mpi4py
 Requires:       %{name}-common = %{version}-%{release}
 Summary:        Python %{python3_version} bindings of the Message Passing Interface (MPI)
-%{?python_provide:%python_provide python%{python3_pkgversion}-mpi4py}
 %description -n python%{python3_pkgversion}-mpi4py %_description
 
 %package -n python%{python3_pkgversion}-mpi4py-openmpi
@@ -67,7 +66,6 @@ Requires:       %{name}-common = %{version}-%{release}
 Requires:       python%{python3_pkgversion}-openmpi%{?_isa}
 Summary:        Python %{python3_version} bindings of MPI, Open MPI version
 Provides:       python%{python3_pkgversion}-mpi4py-runtime = %{version}-%{release}
-%{?python_provide:%python_provide python%{python3_pkgversion}-mpi4py-openmpi}
 %description -n python%{python3_pkgversion}-mpi4py-openmpi %_description
 
 This package contains %{name} compiled against Open MPI.
@@ -82,7 +80,6 @@ Summary:        Python %{python3_version} bindings of MPI, MPICH version
 Provides:       python%{python3_pkgversion}-mpi4py-runtime = %{version}-%{release}
 Provides:       python%{python3_pkgversion}-%{name}-mpich2 = %{version}-%{release}
 Obsoletes:      python%{python3_pkgversion}-%{name}-mpich2 < 1.3-8
-%{?python_provide:%python_provide python%{python3_pkgversion}-mpi4py-mpich}
 %description -n python%{python3_pkgversion}-mpi4py-mpich %_description
 
 This package contains %{name} compiled against MPICH.

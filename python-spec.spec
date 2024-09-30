@@ -30,7 +30,6 @@ A Python testing tool that provides:
 Summary:        Specification-style output for python3-nose
 BuildRequires:  python3-nose >= 1.3
 BuildRequires:  python3-six
-%{?python_provide:%python_provide python3-spec}
 
 %description -n python3-spec
 A Python testing tool that provides:

@@ -27,7 +27,6 @@ BuildRequires:  python3-devel
 Requires:       python3-XStatic
 Requires:       xstatic-termjs-common
 
-%{?python_provide:%python_provide python3-%{pkgname}}
 
 %description -n python3-%{pkgname}
 JavaScript library packaged for setuptools (easy_install) / pip.

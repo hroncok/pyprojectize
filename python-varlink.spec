@@ -18,7 +18,6 @@ An python module for Varlink with client and server support.
 
 %package -n python3-varlink
 Summary:       %summary
-%{?python_provide:%python_provide python3-varlink}
 # The varlink copr had this package under the "python-varlink"
 # name. Add Obsoletes to make it easy to upgrade.
 Obsoletes:     python-varlink <= 3-1.git.61.1bc637d.fc27

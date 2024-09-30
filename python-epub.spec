@@ -32,7 +32,6 @@ format.
 
 %package -n python3-%{srcname}
 Summary:        Python library for reading EPUB files
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 Epub is a Python library for reading e-book files in the EPUB (version 2)

@@ -29,7 +29,6 @@ Serializers serpy is at least an order of magnitude faster.
 
 %package -n python3-%{modname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{modname}}
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(six)
 

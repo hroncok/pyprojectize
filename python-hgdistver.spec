@@ -22,7 +22,6 @@ and using the distance to it as .post marker.
 
 %package -n python3-%{srcname}
 Summary:        %{sum}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 hgdistver is a simple drop-in to support setup.py in mercurial based projects.

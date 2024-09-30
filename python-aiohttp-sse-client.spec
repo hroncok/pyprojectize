@@ -25,7 +25,6 @@ BuildRequires:  python3dist(multidict)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(pytest-runner)
 BuildRequires:  python3dist(yarl)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 A Server-Sent Event Python client that provides a simple interface to

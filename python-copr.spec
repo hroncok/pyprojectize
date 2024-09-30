@@ -93,7 +93,6 @@ Requires: python2-requests-gssapi
 Requires: python2-six >= 1.9.0
 %endif
 
-%{?python_provide:%python_provide python2-copr}
 
 %description -n python2-copr %_description
 %endif
@@ -125,7 +124,6 @@ Requires: python3-setuptools
 Requires: python3-six
 Requires: python3-requests-gssapi
 
-%{?python_provide:%python_provide python3-copr}
 
 %else
 # These are not in requirements.txt

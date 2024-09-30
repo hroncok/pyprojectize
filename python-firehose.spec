@@ -37,7 +37,6 @@ XML format.  There is also a JSON equivalent.\
 %package -n python3-firehose
 Summary:        Library for working with output from static code analyzers
 Requires:  python3-six
-%{?python_provide:%python_provide python3-firehose}
 
 %description -n python3-firehose %_description
 

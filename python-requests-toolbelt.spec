@@ -20,8 +20,7 @@ belong in requests proper.
 
 %package -n python3-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
-%{?python_provide:%python_provide python3-%{altname}}
+%py_provides    python3-%{altname}
 BuildRequires:  python3-devel
 BuildRequires:  python3-betamax
 BuildRequires:  python3-pyOpenSSL

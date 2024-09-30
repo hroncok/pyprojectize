@@ -26,7 +26,6 @@ The SIPVicious OSS toolset consists of the following tools:
 
 %package -n     python3-%{pypi_name}
 Summary:        Python module of %{pypi_name}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Python module of %{pypi_name}.

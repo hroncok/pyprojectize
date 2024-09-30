@@ -18,7 +18,6 @@ well as on the command-line.
 
 %package -n     python3-%{pypi_name}
 Summary:        Pure-Python RSA implementation
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 BuildRequires:  python3-devel
 #BuildRequires:  python3-mypy

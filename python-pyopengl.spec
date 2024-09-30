@@ -40,7 +40,6 @@ Summary:        Python 3 bindings for OpenGL
 Requires:       freeglut
 Requires:       libglvnd-opengl
 Requires:       python3-numpy
-%{?python_provide:%python_provide python3-%{shortname}}
 
 %description -n python3-%{shortname}
 PyOpenGL is the cross platform Python binding to OpenGL and related APIs. It
@@ -57,7 +56,6 @@ Summary:        %{srcname} Python 3.x Tk widget
 BuildArch:      noarch
 Requires:       python3-%{shortname} = %{version}-%{release}
 Requires:       python3-tkinter
-%{?python_provide:%python_provide python3-%{shortname}-tk}
 
 %description -n python3-%{shortname}-tk
 %{srcname} Togl (Tk OpenGL widget) 1.6 support for Python 3.x.

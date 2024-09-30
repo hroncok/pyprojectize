@@ -19,7 +19,6 @@ Read the documentation at http://pythonhosted.org/asciitree
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Sometimes you just want to draw ascii trees in your terminal.

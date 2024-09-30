@@ -34,7 +34,6 @@ less code.
 
 %package -n         python%{python3_pkgversion}-%{modname}
 Summary:            Better dates and times for Python
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{modname}}
 
 BuildRequires:      python%{python3_pkgversion}-devel
 BuildRequires:      python%{python3_pkgversion}-chai

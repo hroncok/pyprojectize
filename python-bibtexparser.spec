@@ -21,7 +21,6 @@ on pyparsing and is tested with unit tests.
 
 %package -n python3-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 BibtexParser is a python library to parse BibTeX files. The code relies

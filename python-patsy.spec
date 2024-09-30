@@ -54,7 +54,6 @@ BuildRequires: python3-scipy
 # For splines
 Recommends: %{py3_dist scipy}
 
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname} %_description
 

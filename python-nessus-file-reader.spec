@@ -21,7 +21,6 @@ like file, scan, host and plugin to get specific information.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 nessus file reader is a python module created to quickly parse nessus files

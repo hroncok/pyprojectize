@@ -26,7 +26,6 @@ functions and classes. These operate directly on in-memory numpy arrays
 
 %package -n python3-%{srcname}
 Summary: Astronomical source extraction and photometry in Python
-%{?python_provide:%python_provide python3-%{srcname}}
 
 BuildRequires: %{py3_dist Cython}
 BuildRequires: %{py3_dist numpy}

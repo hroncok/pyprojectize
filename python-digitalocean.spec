@@ -51,7 +51,6 @@ Requires:       python2-jsonpickle
 Requires:       python2-requests
 
 Summary:        %{summary}
-%{?python_provide:%python_provide python2-%{pkgname}}
 
 %description -n python2-%{pkgname}
 Easy access to Digital Ocean APIs to deploy droplets, images and
@@ -66,7 +65,6 @@ Requires:       %{py3_prefix}-jsonpickle
 Requires:       %{py3_prefix}-requests
 
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pkgname}}
 
 %description -n %{py3_prefix}-%{pkgname}
 Easy access to Digital Ocean APIs to deploy droplets, images and

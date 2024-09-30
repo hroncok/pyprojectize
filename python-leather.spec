@@ -41,7 +41,6 @@ BuildRequires:  python3-sphinx_rtd_theme >= 0.1.6
 BuildRequires:  python3-lxml >= 3.6.0
 BuildRequires:  python3-six >= 1.6.1
 BuildRequires:  python3-cssselect
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 %{desc}

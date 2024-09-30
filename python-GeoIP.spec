@@ -22,7 +22,6 @@ location lookups to country, city and organization level within Python code.
 
 %package -n python3-%{srcname}
 Summary:        %{sum}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 This package contains the Python bindings for the GeoIP API, allowing IP to

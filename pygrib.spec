@@ -72,7 +72,6 @@ Requires:  eccodes
 Requires:  python3-pyproj
 
 # ensure python provides are provided
-%{?python_provide:%python_provide python3-%{name}}
 
 %description -n python3-%{name} %_description
 

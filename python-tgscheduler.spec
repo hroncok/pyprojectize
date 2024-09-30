@@ -26,7 +26,6 @@ have one-time or recurring tasks run as needed.
 Summary:  %{sum}
 Requires:         python3-dateutil
 Requires:         python3-six
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 This scheduler package is based on the TurboGears 1 built-in scheduler

@@ -25,7 +25,6 @@ system for feature requests.
 
 %package -n python%{python3_pkgversion}-%{srcname}
 Summary:    %{summary}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 Requires:   gammu-libs%{?_isa} >= %{gammu_ver}
 
 %description -n python%{python3_pkgversion}-%{srcname}

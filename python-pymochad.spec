@@ -26,7 +26,6 @@ BuildRequires:  python3dist(pbr)
 BuildRequires:  python3dist(pbr)
 BuildRequires:  python3dist(six)
 BuildRequires:  python3dist(stestr)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 A Python library for sending commands to the mochad TCP gateway daemon

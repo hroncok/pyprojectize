@@ -51,7 +51,6 @@ Provides: python%{python3_version}dist(%{pypi_name}) = %{pypi_dist}
 Obsoletes: python%{python3_pkgversion}-%{pypi_name}-api <= 0.0.0-1
 Provides: python%{python3_pkgversion}-%{pypi_name}-api = %{epoch}:%{version}-%{release}
 Summary: %{summary}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pypi_name}}
 
 %description -n python%{python3_pkgversion}-%{pypi_name}
 %desc

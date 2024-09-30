@@ -23,7 +23,6 @@ in python.
 
 %package -n python3-pyhunspell
 Summary: %summary
-%{?python_provide:%python_provide python3-pyhunspell}
 
 %description -n python3-pyhunspell
 This package contains a Python3 module to use the hunspell library

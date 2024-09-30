@@ -25,7 +25,6 @@ BuildRequires:  python3-devel
 
 %package -n     python3-events
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-events}
 
 %description -n python3-events %_description
 

@@ -24,7 +24,6 @@ to use Mako Templates instead of the default Jinja2 templating engine.
 
 %package -n python3-flask-mako
 Summary:            Mako templating support for Flask applications
-%{?python_provide:%python_provide python3-flask-mako}
 
 Requires:           python3-flask
 Requires:           python3-mako

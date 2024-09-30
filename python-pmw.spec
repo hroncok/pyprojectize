@@ -26,7 +26,6 @@ widgets, paned widgets, scrolled widgets and dialog windows
 %package -n python3-%{srcname}
 Summary: Python powerwidgets
 Requires: python3-tkinter
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 Pmw is a toolkit for building high-level compound widgets in Python

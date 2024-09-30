@@ -21,7 +21,6 @@ of existing PDFs in new PDFs created with reportlab.
 
 %package -n python3-%{srcname}
 Summary: Python library to read and write PDF files
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 pdfrw is a Python library and utility that reads and writes PDF files. pdfrw

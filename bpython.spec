@@ -30,7 +30,6 @@ Provides:      bpython3 = %{version}-%{release}
 Provides:      bpython = %{version}-%{release}
 Obsoletes:     bpython < 0.17.1-6
 Obsoletes:     bpython-gtk < 0.14
-%{?python_provide:%python_provide python3-bpython}
 Requires:      python3-curtsies >= 0.3.5
 Requires:      python3-greenlet
 Requires:      python3-pygments
@@ -55,7 +54,6 @@ This is the Python 3 build of bpython.
 
 %package -n    python3-bpython-urwid
 Summary:       Urwid interface to the Python 3 interactive interpreter
-%{?python_provide:%python_provide python3-bpython-urwid}
 Requires:      python3-bpython = %{version}-%{release}
 Requires:      python3dist(urwid)
 Requires:      python3dist(twisted)

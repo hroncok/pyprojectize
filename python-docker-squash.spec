@@ -28,7 +28,6 @@ Requires:       python3-docker
 
 Provides:       python3-docker-scripts = %{version}-%{release}
 Obsoletes:      python3-docker-scripts <= 1.0.0-0.2.rc2
-%{?python_provide:%python_provide python3-%{modname}}
 
 %description -n python3-%{modname} %_description
 

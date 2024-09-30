@@ -21,7 +21,6 @@ Sphinx domain for CMake.
 Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
 Requires:       python%{python3_pkgversion}-sphinx
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %if !0%{?rhel} || 0%{?rhel} >= 8
 Recommends:     python%{python3_pkgversion}-docutils

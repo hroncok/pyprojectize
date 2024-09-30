@@ -21,7 +21,6 @@ BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(pytest-asyncio)
 BuildRequires:  python3dist(pytest-cov)
 BuildRequires:  python3dist(aioresponses)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Asynchronous library to communicate with the Unifi Controller API.

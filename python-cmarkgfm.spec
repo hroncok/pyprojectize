@@ -20,7 +20,6 @@ Summary:        %{summary}
 BuildRequires:  python3-devel
 BuildRequires:  python3-cffi
 BuildRequires:  python3-pytest
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Bindings to GitHub's cmark Minimalist bindings to GitHub's fork of cmark.

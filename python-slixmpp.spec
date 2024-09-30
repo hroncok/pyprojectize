@@ -42,7 +42,6 @@ Requires:       python3-aiodns
 Requires:       python3-aiohttp
 Requires:       python3-emoji
 Requires:       python3-defusedxml
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 Slixmpp is an MIT licensed XMPP library for Python 3.5+. It is a fork

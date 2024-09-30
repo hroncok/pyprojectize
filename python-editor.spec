@@ -18,7 +18,6 @@ Programmatically open an editor, capture the result.
 
 %package -n python3-editor
 Summary:        Programmatically open an editor, capture the result.
-%{?python_provide:%python_provide python3-editor}
 
 BuildRequires:  python3-devel
 

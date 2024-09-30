@@ -22,7 +22,6 @@ Patch0: add-bright-colors.patch
 BuildRequires:  python3-devel
 BuildRequires:  python3-pytest
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pkgname}}
 
 %description -n python3-%{pkgname}
 %{desc}

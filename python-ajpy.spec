@@ -18,7 +18,6 @@ AJPy aims to craft AJP requests in order to communicate with AJP connectors.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 AJPy aims to craft AJP requests in order to communicate with AJP connectors.

@@ -37,7 +37,6 @@ This package installs the documentation files.
 
 %package     -n python%{python3_pkgversion}-%{srcname}
 Summary:        Python vSphere Client with a dialog interface
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 BuildRequires: make
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-humanize

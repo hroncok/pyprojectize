@@ -46,7 +46,6 @@ Python classes for constructing and dissecting network packets.
 %package -n python3-%{gitname}
 Summary:        %{sum}
 
-%{?python_provide:%python_provide python3-%{gitname}}
 
 %description -n python3-%{gitname}
 Python3 package of %{gitname}.

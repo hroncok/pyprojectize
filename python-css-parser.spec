@@ -23,7 +23,6 @@ general bug fixes and extensions specific to editing and working with ebooks.}
 
 %package -n python3-css-parser
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-css-parser}
 
 %description -n python3-css-parser %_description
 

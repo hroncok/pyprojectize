@@ -29,7 +29,6 @@ BuildRequires:  python2-pytest
 BuildRequires:  python2-execnet
 Requires:       python2-pytest
 Requires:       python2-execnet
-%{?python_provide:%python_provide python2-%{srcname}}
 
 %description -n python2-%{srcname}
 Pytest plugin with mechanisms for caching across test runs for Python 3.
@@ -42,7 +41,6 @@ BuildRequires:  python%{python3_pkgversion}-execnet
 BuildRequires:  python%{python3_pkgversion}-pytest
 Requires:       python%{python3_pkgversion}-execnet
 Requires:       python%{python3_pkgversion}-pytest
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %description -n python%{python3_pkgversion}-%{srcname}
 Pytest plugin with mechanisms for caching across test runs for Python 3.

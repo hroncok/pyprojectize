@@ -26,7 +26,6 @@ BuildRequires:  python%{python3_pkgversion}-asttokens
 Requires:       python%{python3_pkgversion}-flake8
 Requires:       python%{python3_pkgversion}-pycodestyle
 Requires:       python%{python3_pkgversion}-asttokens
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %description -n python%{python3_pkgversion}-%{srcname}
 %{summary}.

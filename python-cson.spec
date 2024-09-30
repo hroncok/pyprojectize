@@ -19,7 +19,6 @@ A python parser for the Coffeescript Object Notation (CSON).
 Summary:        %{summary}
 BuildRequires:  python2-devel
 BuildRequires:  python2-setuptools
-%{?python_provide:%python_provide python2-%{srcname}}
 
 %description -n python2-%{srcname}
 A python parser for the Coffeescript Object Notation (CSON).
@@ -28,7 +27,6 @@ A python parser for the Coffeescript Object Notation (CSON).
 %package -n python3-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 A python parser for the Coffeescript Object Notation (CSON).

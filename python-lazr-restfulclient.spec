@@ -18,7 +18,6 @@ lazr.restful web services to provide added functionality on top of wadllib.}
 
 %package -n     python3-lazr-restfulclient
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-lazr-restfulclient}
 
 BuildRequires:  python3-devel
 

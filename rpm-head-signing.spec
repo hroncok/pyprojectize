@@ -39,7 +39,7 @@ Requires:  python%{python3_pkgversion}-rpm
 Requires:  python%{python3_pkgversion}-cryptography
 Requires:  python%{python3_pkgversion}-pyxattr
 
-%{?python_provide:%python_provide python3-%{pkgname}}
+%py_provides python3-%{pkgname}
 
 %description
 A small Python module (with C helper) to extract a RPM header and file

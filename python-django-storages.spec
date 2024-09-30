@@ -18,14 +18,12 @@ BuildArch:      noarch
 
 %package     -n python3-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
 
 %description -n python3-%{srcname} %{_description}
 
 %package     -n python3-%{srcname}+azure
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}+azure}
 Provides:       python3dist(%{srcname}/azure) = %{version}
 Provides:       python%{python3_version}dist(%{srcname}/azure) = %{version}
 Requires:       python%{python3_version}dist(%{srcname}) = %{version}
@@ -37,7 +35,6 @@ Requires:       (python%{python3_version}dist(azure-storage-blob) >= 1.3.1 with 
 
 %package     -n python3-%{srcname}+boto3
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}+boto3}
 Provides:       python3dist(%{srcname}/boto3) = %{version}
 Provides:       python%{python3_version}dist(%{srcname}/boto3) = %{version}
 Requires:       python%{python3_version}dist(%{srcname}) = %{version}
@@ -49,7 +46,6 @@ Requires:       python%{python3_version}dist(boto3) >= 1.4.4
 
 %package     -n python3-%{srcname}+dropbox
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}+dropbox}
 Provides:       python3dist(%{srcname}/dropbox) = %{version}
 Provides:       python%{python3_version}dist(%{srcname}/dropbox) = %{version}
 Requires:       python%{python3_version}dist(%{srcname}) = %{version}
@@ -61,7 +57,6 @@ Requires:       python%{python3_version}dist(dropbox) >= 7.2.1
 
 %package     -n python3-%{srcname}+google
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}+google}
 Provides:       python3dist(%{srcname}/google) = %{version}
 Provides:       python%{python3_version}dist(%{srcname}/google) = %{version}
 Requires:       python%{python3_version}dist(%{srcname}) = %{version}
@@ -73,7 +68,6 @@ Requires:       python%{python3_version}dist(google-cloud-storage) >= 1.15.0
 
 %package     -n python3-%{srcname}+libcloud
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}+libcloud}
 Provides:       python3dist(%{srcname}/libcloud) = %{version}
 Provides:       python%{python3_version}dist(%{srcname}/libcloud) = %{version}
 Requires:       python%{python3_version}dist(%{srcname}) = %{version}
@@ -85,7 +79,6 @@ Requires:       python%{python3_version}dist(apache-libcloud)
 
 %package     -n python3-%{srcname}+sftp
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}+sftp}
 Provides:       python3dist(%{srcname}/sftp) = %{version}
 Provides:       python%{python3_version}dist(%{srcname}/sftp) = %{version}
 Requires:       python%{python3_version}dist(%{srcname}) = %{version}

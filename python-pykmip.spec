@@ -31,7 +31,6 @@ Structured InformationStandards`_ (OASIS).
 %if %{with python2}
 %package -n python2-%{sname}
 Summary:        Python implementation of the Key Management Interoperability Protocol
-%{?python_provide:%python_provide python2-%{sname}}
 
 BuildRequires:       python2-devel
 BuildRequires:       python2-six
@@ -65,7 +64,6 @@ Structured InformationStandards`_ (OASIS).
 %if %{with python3}
 %package -n python3-%{sname}
 Summary:        Python implementation of the Key Management Interoperability Protocol
-%{?python_provide:%python_provide python3-%{sname}}
 
 
 BuildRequires:       python3-devel

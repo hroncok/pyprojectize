@@ -45,7 +45,6 @@ Summary(sv):    %sum_sv
 
 Obsoletes:      python2-%srcname < 0.4.0-4
 
-%{?python_provide:%python_provide python3-%srcname}
 
 %description -n python3-%srcname
 Macros accepting positional and keyword arguments, and repeated block

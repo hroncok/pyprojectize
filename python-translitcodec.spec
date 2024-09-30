@@ -21,7 +21,6 @@ Best-effort representations using smaller coded character sets
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Best-effort representations using smaller coded character sets

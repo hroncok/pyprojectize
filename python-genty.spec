@@ -20,7 +20,6 @@ Genty makes this a breeze.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 Requires:       python3dist(six)
 
 %description -n python3-%{pypi_name}

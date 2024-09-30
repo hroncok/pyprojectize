@@ -22,7 +22,6 @@ filters can be used in any environment.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 Requires:       python3dist(smartypants) >= 1.8.3
 %description -n python3-%{pypi_name}

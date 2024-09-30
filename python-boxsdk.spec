@@ -18,7 +18,6 @@ BuildArch:          noarch
 
 %package -n python%{python3_pkgversion}-%{modname}
 Summary:            %{summary}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{modname}}
 BuildRequires:      python%{python3_pkgversion}-devel
 BuildRequires:      python%{python3_pkgversion}-requests
 BuildRequires:      python%{python3_pkgversion}-six

@@ -17,7 +17,6 @@ Python module to help parse and construct Tasmota MQTT messages.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Python module to help parse and construct Tasmota MQTT messages.

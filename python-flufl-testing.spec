@@ -33,7 +33,6 @@ BuildRequires:  python%{python3_other_pkgversion}-setuptools
 
 %package -n python%{python3_pkgversion}-%{pkgname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pkgname}}
 
 %description -n python%{python3_pkgversion}-%{pkgname} %{_description}
 
@@ -41,7 +40,6 @@ Summary:        %{summary}
 %if 0%{?with_python3_other}
 %package -n python%{python3_other_pkgversion}-%{pkgname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python%{python3_other_pkgversion}-%{pkgname}}
 
 %description -n python%{python3_other_pkgversion}-%{pkgname} %{_description}
 %endif

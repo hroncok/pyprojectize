@@ -20,7 +20,6 @@ executes only tests affected by recent changes.
 
 %package -n     python3-%{pypi_name}
 Summary:        A py.test plug-in which executes only tests affected by recent changes
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 Requires:       python3-pytest
 Requires:       python3-coverage

@@ -25,7 +25,6 @@ BuildRequires:      python3-pygments
 
 %package -n python3-%{modname}
 Summary:            %{sum}
-%{?python_provide:%python_provide python3-%{modname}}
 
 Requires:           python3-pygments
 

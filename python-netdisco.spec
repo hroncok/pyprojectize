@@ -32,7 +32,7 @@ Current methods of scanning:
 Summary:        %{summary}
 Requires:       python3-zeroconf
 Requires:       python3-requests
-%{?python_provide:%python_provide python3-%{name}}
+%py_provides    python3-%{name}
 
 %description -n python3-%{srcname}
 NetDisco is a Python 3 library to discover local devices and services. It

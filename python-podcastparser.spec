@@ -22,7 +22,6 @@ Python.
 
 %package -n python3-%{modname}
 Summary:            %{sum}
-%{?python_provide:%python_provide python3-%{modname}}
 
 
 %description -n python3-%{modname}

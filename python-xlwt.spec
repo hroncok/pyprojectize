@@ -31,7 +31,6 @@ is Python 2.6 or later.
 Summary:      %{sum}
               # https://github.com/python-excel/xlwt/issues/73
 Provides:     bundled(antlr) = 2.7.7
-%{?python_provide:%python_provide python3-xlwt}
 
 %description -n python3-xlwt
 A library for generating spreadsheet files that are compatible with

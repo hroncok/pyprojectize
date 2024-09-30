@@ -32,7 +32,6 @@ BuildRequires:  python3-pytest-asyncio
 BuildRequires:  python3-pytest-benchmark
 BuildRequires:  python3-pytest-cov
 BuildRequires:  python3-six
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 This is a implementation of Promises in Python. It is a super set of

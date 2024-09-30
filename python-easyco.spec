@@ -21,7 +21,7 @@ provided data.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
+%py_provides    python3-%{pypi_name}
 
 %description -n python3-%{pkg_name}
 The goal of EasyCo is to provide an easy way of configuration using

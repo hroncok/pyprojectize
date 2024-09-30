@@ -80,7 +80,6 @@ developing applications that use %{name}.
 
 %if %{with python2}
 %package -n python2-%{name}
-%{?python_provide:%python_provide python2-%{name}}
 Summary: Python %{python2_version} bindings to %{name}
 Requires: %{name} = %{version}-%{release}
 BuildRequires: python2-devel
@@ -94,7 +93,6 @@ libiscsi interface for interacting with %{name}
 
 %if %{with python3}
 %package -n python3-%{name}
-%{?python_provide:%python_provide python3-%{name}}
 Summary: Python %{python3_version} bindings to %{name}
 Requires: %{name} = %{version}-%{release}
 BuildRequires: python3-devel

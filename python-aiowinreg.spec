@@ -18,7 +18,6 @@ Windows registry file reader.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Windows registry file reader.

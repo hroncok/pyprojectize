@@ -19,7 +19,6 @@ common hardware interfaces and protocols used in the automotive systems.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 pyvit is a toolkit for interfacing with cars from Python. It aims to implement

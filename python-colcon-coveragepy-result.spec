@@ -20,7 +20,6 @@ A colcon extension for collecting coverage.py results.
 Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-pytest
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %if %{undefined __pythondist_requires}
 Requires:       python%{python3_pkgversion}-colcon-core

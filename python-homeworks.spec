@@ -19,7 +19,6 @@ systems over Ethernet.
 
 %package -n     python3-%{pkg_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pkg_name}}
 
 %description -n python3-%{pkg_name}
 Python package to connect to Lutron Homeworks Series-4 and Series-8

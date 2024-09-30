@@ -28,7 +28,6 @@ around.
 Summary:    %{summary}
 Requires:   libxml2
 Requires:   igraph >= %{igraph_version}
-%{?python_provide:%python_provide python3-igraph}
 
 %description -n python3-igraph
 This module extends Python with a Graph class which is capable of

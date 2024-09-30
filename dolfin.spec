@@ -77,7 +77,6 @@ Requires:       eigen3-devel
 Summary:        Python wrapper for the FEniCS dolfin environment
 # The jit compiles and links to the dolfin library
 Requires:       %{name}-devel = %{version}-%{release}%{?isa}
-%{?python_provide:%python_provide python3-dolfin}
 
 %description -n python3-dolfin %_description
 

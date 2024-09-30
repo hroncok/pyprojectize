@@ -36,7 +36,6 @@ BuildRequires:  %py3_dist cbor2
 %endif
 BuildRequires:  %py3_dist cryptography
 BuildRequires:  %py3_dist hyperlink
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Autobahn a networking library that is part of the Autobahn project and provides

@@ -30,7 +30,6 @@ files through a Pythonic interface.
 %if 0%{?py2}
 %package     -n python2-tidy
 Summary:        %summary
-%{?python_provide:%python_provide python2-tidy}
 Requires:       libtidy
 Requires:       python2-six
 %description -n python2-tidy %_description
@@ -38,7 +37,6 @@ Requires:       python2-six
 
 %package     -n python3-tidy
 Summary:        %summary
-%{?python_provide:%python_provide python3-tidy}
 Requires:       libtidy
 Requires:       python3-six
 %description -n python3-tidy %_description

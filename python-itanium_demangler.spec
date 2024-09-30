@@ -22,7 +22,6 @@ information, as opposed to having to interpret the C++ source code.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 The Python Itanium Demangler is a pure Python parser for the Itanium C++ ABI 

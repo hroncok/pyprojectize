@@ -28,7 +28,6 @@ highlighting.}
 %package     -n python3-asttokens
 Summary:        %{summary}
 Requires:       %{py3_dist six}
-%{?python_provide:%python_provide python3-asttokens}
 
 %description -n python3-asttokens %_description
 

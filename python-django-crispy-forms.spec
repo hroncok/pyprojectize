@@ -26,7 +26,6 @@ so it plays nice with any other form application.
 
 %package -n python3-%{pypi_name}
 Summary: %{summary} - Python 3 version
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 The best way to have Django DRY forms. Build programmatic reusable layouts out

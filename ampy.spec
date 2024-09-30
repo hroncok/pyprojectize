@@ -17,7 +17,7 @@ BuildRequires:  python3-devel
 
 Provides:       adafruit-%{name} = %{version}-%{release}
 Provides:       python3-adafruit-%{name} = %{version}-%{release}
-%{?python_provide:%python_provide python3-adafruit-%{name}}
+%py_provides    python3-adafruit-%{name}
 
 
 %description

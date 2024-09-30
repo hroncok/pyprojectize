@@ -28,7 +28,6 @@ Summary:        %{sum}
 #Requires:       python3-paste
 Requires:       python3-setuptools
 
-%{?python_provide:%python_provide python3-paste-deploy}
 
 
 %description -n python3-paste-deploy

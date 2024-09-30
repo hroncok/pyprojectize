@@ -25,7 +25,7 @@ BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(pytest-runner)
 BuildRequires:  python3dist(semantic-version)
 BuildRequires:  python3dist(aresponses)
-%{?python_provide:%python_provide python3-%{pypi_name}}
+%py_provides    python3-%{pypi_name}
 
 %description -n python3-%{pkg_name}
 A Python module to get the version number of Home Assistant.

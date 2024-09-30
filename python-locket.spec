@@ -36,7 +36,6 @@ BuildRequires:  python%{python3_pkgversion}-devel
 # For tests
 BuildRequires:  python%{python3_pkgversion}-pytest
 BuildRequires:  python%{python3_pkgversion}-spur
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %description -n python%{python3_pkgversion}-%{srcname}
 Locket implements a lock that can be used by multiple processes provided they

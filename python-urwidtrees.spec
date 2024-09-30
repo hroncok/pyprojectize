@@ -35,7 +35,6 @@ Requires:       python3-urwid
 BuildRequires:  python3-urwid
 
 Summary:        %{sum}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 It uses an MVC approach and allows to build trees of widgets. Its design

@@ -26,7 +26,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-attrs
 BuildRequires:  python3-pytz
 BuildRequires:  pytest
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Serpent is a simple serialization library based on ast.literal_eval. Because

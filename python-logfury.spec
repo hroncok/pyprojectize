@@ -21,7 +21,6 @@ Summary:        %{summary}
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools_scm
 
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 %{summary}.

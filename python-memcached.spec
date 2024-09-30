@@ -26,7 +26,6 @@ for more information.
 
 %package -n python3-memcached
 Summary: %summary
-%{?python_provide:%python_provide python3-memcached}
 
 %description -n python3-memcached %_description
 

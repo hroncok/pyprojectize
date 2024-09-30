@@ -120,7 +120,6 @@ BuildRequires:  python-pymilter
 %if 0%{?with_python2}
 %package -n python2-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python2-%{srcname}}
 %{_provides}
 
 Requires:       python2-olefile
@@ -153,7 +152,6 @@ Python2 version.
 %if 0%{?with_python3}
 %package -n python%{python3_pkgversion}-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 %{_provides}
 
 Requires:       python%{python3_pkgversion}-pymilter
@@ -177,10 +175,10 @@ Python3 version.
 %package -n python-%{srcname}-doc
 Summary:        Documentation files for %{name}
 %if 0%{?with_python2}
-%{?python_provide:%python_provide python2-%{srcname}-doc}
+%py_provides    python2-%{srcname}-doc
 %endif
 %if 0%{?with_python3}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}-doc}
+%py_provides    python%{python3_pkgversion}-%{srcname}-doc
 %endif
 
 %description -n python-%{srcname}-doc %{_description}

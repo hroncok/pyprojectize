@@ -51,7 +51,6 @@ Requires: python-pydns
 Requires: %{python2}-pydns
 %endif
 Requires: %{name}-common = %{version}-%{release}
-%{?python_provide:%python_provide %{python2}-pymilter}
 BuildRequires: %{python2}-devel
 
 %description -n python2-pymilter %_description
@@ -63,7 +62,6 @@ Summary: %{sum}
 Requires: python%{python3_pkgversion}-py3dns
 %endif
 Requires: %{name}-common = %{version}-%{release}
-%{?python_provide:%python_provide python%{python3_pkgversion}-pymilter}
 
 %description -n python%{python3_pkgversion}-pymilter %_description
 

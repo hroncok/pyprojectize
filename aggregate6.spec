@@ -23,7 +23,6 @@ compressing firewall rules or BGP prefix-list filters.
 Summary:        Python module to compress an unsorted list of IPv4 and IPv6 prefixes
 %if 0%{?rhel} && 0%{?rhel} < 9
 BuildRequires:  python%{python3_pkgversion}-py-radix >= 0.10.0
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{name}}
 %endif
 
 %description -n python%{python3_pkgversion}-%{name}

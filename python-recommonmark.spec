@@ -27,7 +27,6 @@ BuildRequires:  python%{python3_pkgversion}-docutils
 BuildRequires:  python%{python3_pkgversion}-CommonMark
 BuildRequires:  python%{python3_pkgversion}-pytest
 BuildRequires:  python%{python3_pkgversion}-sphinx
-%{?python_provide:%python_provide python%{python3_pkgversion}-recommonmark}
 
 %description -n python%{python3_pkgversion}-recommonmark
 %{desc}

@@ -16,8 +16,7 @@ a JSON document.
 
 %package -n     python3-%{pypi_name}
 Summary:        JSON Matching Expressions
-%{?python_provide:%python_provide python3-%{pypi_name}}
-%{?python_provide:%python_provide python-%{pypi_name}}
+%py_provides    python-%{pypi_name}
 
 BuildRequires:  python3-devel
 

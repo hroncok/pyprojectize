@@ -19,7 +19,6 @@ Summary:        %{summary}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-pytest
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 minidb 2 makes it easy to store Python objects in a SQLite 3 database and

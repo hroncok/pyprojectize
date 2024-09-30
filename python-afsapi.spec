@@ -18,7 +18,6 @@ Asynchronous python implementation of the Frontier Silicon API.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Asynchronous python implementation of the Frontier Silicon API.

@@ -27,7 +27,7 @@ Requires: %{name}%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %package python3
 Summary: Python 3 bindings for %{name}
-%{?python_provide:%python_provide python3-%{appname}}
+%py_provides python3-%{appname}
 Requires: %{name}%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description devel

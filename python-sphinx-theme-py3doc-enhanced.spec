@@ -24,7 +24,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 BuildArch:      noarch
 BuildRequires:  python%{python3_pkgversion}-devel
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pkgname}}
 Provides:       python%{python3_pkgversion}-%{pypi_name} = %{version}-%{release}
 
 %description -n python%{python3_pkgversion}-%{pkgname}

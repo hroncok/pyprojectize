@@ -19,7 +19,6 @@ Python Interface to Graphviz's Dot language.
 
 %package -n python3-%{modname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{modname}}
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(pyparsing) >= 2.0.1
 Requires:       graphviz

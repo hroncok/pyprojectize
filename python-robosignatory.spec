@@ -45,7 +45,6 @@ Summary: %summary
 Requires:           python3-fedora-messaging
 Requires:           koji
 Requires:           rpmdevtools
-%{?python_provide:%python_provide python3-robosignatory}
 # This is the default package
 Provides:           robosignatory = %{version}-%{release}
 

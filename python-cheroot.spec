@@ -47,7 +47,6 @@ BuildRequires:  python3dist(requests)
 BuildRequires:  python3dist(requests-unixsocket)
 BuildRequires:  python3dist(setuptools-scm)
 BuildRequires:  python3dist(trustme)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Cheroot is the high-performance, pure-Python HTTP server used by CherryPy.

@@ -27,7 +27,6 @@ BuildRequires:  python%{python3_pkgversion}-devel
 
 %package -n python%{python3_pkgversion}-%{pkgname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pkgname}}
 
 %description -n python%{python3_pkgversion}-%{pkgname} %{common_description}
 

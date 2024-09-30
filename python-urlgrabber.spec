@@ -33,7 +33,6 @@ authentication, proxies and more.
 
 %package -n     python%{python3_pkgversion}-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pypi_name}}
 BuildRequires:  python%{python3_pkgversion}-devel
 %if %{with check}
 BuildRequires:  python3dist(pycurl)

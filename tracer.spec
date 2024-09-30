@@ -85,7 +85,6 @@ Suggests:       python-argcomplete
 %else
 Requires:       python-argcomplete
 %endif
-%{?python_provide:%python_provide python2-%{name}}
 
 %description -n python2-%{name} %{_description}
 
@@ -114,7 +113,6 @@ Suggests:       python3-argcomplete
 %else
 Requires:       python3-argcomplete
 %endif
-%{?python_provide:%python_provide python3-%{name}}
 Provides:       %{name} = %{version}-%{release}
 Obsoletes:      %{name} <= 0.6.11
 

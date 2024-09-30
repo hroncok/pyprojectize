@@ -17,7 +17,6 @@ Python library to play with MS LDAP.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Python library to play with MS LDAP.

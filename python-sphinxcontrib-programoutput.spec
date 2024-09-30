@@ -34,7 +34,6 @@ up to date.
 Summary:       %{summary}
 
 Requires:       js-jquery
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 A Sphinx extension to literally insert the output of arbitrary

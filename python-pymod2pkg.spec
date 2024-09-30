@@ -29,7 +29,6 @@ BuildRequires:    python3-testresources
 BuildRequires:    python3-testtools
 %endif
 
-%{?python_provide:%python_provide python3-%{sname}}
 
 %description -n python3-%{sname}
 pymod2pkg provides simple python function to translate python module names to

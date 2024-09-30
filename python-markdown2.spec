@@ -27,7 +27,6 @@ http://daringfireball.net/projects/markdown/
 
 %package -n python3-%{srcname}
 Summary:        A fast and complete Python implementation of Markdown
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 Markdown is a text-to-HTML filter; it translates an easy-to-read /

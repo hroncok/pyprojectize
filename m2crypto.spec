@@ -36,7 +36,6 @@ This package allows you to call OpenSSL functions from Python scripts.
 
 %package -n python%{python3_pkgversion}-m2crypto
 Summary:        Support for using OpenSSL in Python 3 scripts
-%{?python_provide:%python_provide python%{python3_pkgversion}-m2crypto}
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-pytest
 

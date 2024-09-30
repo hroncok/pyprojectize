@@ -25,7 +25,6 @@ BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(pytest-asyncio)
 BuildRequires:  python3dist(python-didl-lite)
 BuildRequires:  python3dist(voluptuous)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Async UPnP Client Asyncio UPnP Client library for Python.

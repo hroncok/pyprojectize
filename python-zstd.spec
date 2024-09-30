@@ -23,7 +23,6 @@ Simple Python bindings for the Zstd compression library.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 # The library does not do symbol versioning to fully match automatically on
 Requires:       libzstd%{?_isa} >= %{zstd_version}
 

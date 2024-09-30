@@ -20,7 +20,6 @@ the RainMachine cloud.
 Summary:        %{summary}
 
 BuildRequires:  python%{python3_pkgversion}-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 regenmaschine (German for "rain machine") is a simple Python library for

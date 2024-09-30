@@ -43,7 +43,6 @@ Requires: python3-fasteners
 Requires: python3-git-url-parse
 
 %{?python_disable_dependency_generator}
-%{?python_provide:%python_provide python3-%{srcname}}
 %description -n python3-%{srcname}
 Gilt is a git layering tool
 

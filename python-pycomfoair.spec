@@ -22,7 +22,6 @@ BuildRequires:  python3dist(async-timeout)
 BuildRequires:  python3dist(bitstring)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(pyserial-asyncio)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 pycomfoair Python library to monitor and control Zehnder

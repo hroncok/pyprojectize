@@ -66,7 +66,6 @@ BuildRequires:  python2-setuptools
 #====================================================================
 %package -n python%{python3_pkgversion}-yara
 Summary:        Python3 binding for the YARA pattern matching tool
-%{?python_provide:%python_provide python%{python3_pkgversion}-yara}
 
 
 
@@ -76,7 +75,6 @@ Summary:        Python3 binding for the YARA pattern matching tool
 %if 0%{?with_python2}  > 0
 %package -n python2-yara
 Summary:        Python2 binding for the YARA pattern matching tool
-%{?python_provide:%python_provide python2-yara}
 
 
 %description -n python2-yara

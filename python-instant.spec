@@ -21,7 +21,6 @@ Summary:        %{summary}
 
 BuildRequires:  python3-devel
 
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 Instant is a Python module that allows for instant inlining of C and

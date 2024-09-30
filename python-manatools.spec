@@ -23,7 +23,6 @@ Every output module supports the Qt, GTK, and ncurses interfaces.
 Summary:        %{summary}
 BuildRequires:  python3-devel
 BuildRequires:  python3-yui
-%{?python_provide:%python_provide python3-%{module}}
 Requires:       python3-yui
 Recommends:     (libyui-mga-qt if qt5-qtbase-gui)
 Recommends:     (libyui-mga-gtk if gtk3)

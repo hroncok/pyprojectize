@@ -47,7 +47,6 @@ BuildRequires:  python%{python3_pkgversion}-pytest
 BuildRequires:  python%{python3_pkgversion}-toolz >= 0.9.0
 BuildRequires:  python%{python3_pkgversion}-Cython
 Requires:       python%{python3_pkgversion}-toolz >= 0.9.0
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %description -n python%{python3_pkgversion}-%{srcname}
 Cython implementation of the toolz package, which provides high performance

@@ -19,7 +19,6 @@ RFCs 1350, 2347, 2348 and the tsize option from RFC 2349.\
 
 %package -n python3-%{srcname}
 Summary: %summary
-%{?python_provide:%python_provide python3-%{srcname}}
 
 BuildRequires:	python3-devel
 Conflicts:	python2-%{srcname} <= 0.8.0-1

@@ -19,7 +19,6 @@ objects. Ideal for exposing these actions over a REST API.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 Requires:       python3dist(six) >= 1.10
 Requires:       python3dist(sqlalchemy) >= 1.0.16

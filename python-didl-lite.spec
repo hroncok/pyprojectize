@@ -23,7 +23,6 @@ BuildRequires:  python3-devel
 # Tests are only in the GitHub source tarball present which was not released as of today
 #BuildRequires:  python3dist(defusedxml)
 #BuildRequires:  python3dist(pytest)
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 DIDL-Lite (Digital Item Declaration Language) tools for Python DIDL-Lite tools

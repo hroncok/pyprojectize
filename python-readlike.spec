@@ -19,7 +19,6 @@ Summary:        %{summary}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(pytest)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 A Python module that provides GNU Readline-like line editing functions (the

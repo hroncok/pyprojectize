@@ -35,7 +35,6 @@ Summary: %summary
 
 Requires:   python3-setuptools
 Requires:   python3-lxml
-%{?python_provide:%python_provide python3-chameleon}
 
 %description -n python3-chameleon %_description
 

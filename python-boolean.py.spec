@@ -27,7 +27,6 @@ AND or and NOT. Expressions are constructed from parsed strings or in Python.
 
 %package -n     python%{python3_pkgversion}-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pypi_name}}
 
 %description -n python%{python3_pkgversion}-%{pypi_name} %{_description}
 

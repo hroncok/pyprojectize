@@ -33,7 +33,6 @@ Features:\
 
 %package -n python3-%{modname}
 Summary:        Automatic model code generator for SQLAlchemy
-%{?python_provide:%python_provide python3-%{modname}}
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools_scm >= 1.7.0
 

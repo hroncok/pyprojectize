@@ -28,7 +28,6 @@ BuildRequires:  python3-mock
 BuildRequires:  python3-pytest
 BuildRequires:  python3-build
 BuildRequires:  python3-wheel
-%{?python_provide:%python_provide python3-%{pypi_name}}
  
 %description -n python3-%{pypi_name}
 Check MANIFEST.in in a Python source package for completeness to avoid the

@@ -17,7 +17,6 @@ InfluxDB Python is a client for interacting with InfluxDB.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
  
 Requires:       python3-requests
 Requires:       python3-dateutil

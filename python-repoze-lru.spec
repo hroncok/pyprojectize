@@ -23,7 +23,6 @@ and values that are used frequently.\
 
 %package -n python3-repoze-lru
 Summary:        A tiny LRU cache implementation and decorator
-%{?python_provide:%python_provide python3-repoze-lru}
 
 %description -n python3-repoze-lru
 repoze.lru is a LRU (least recently used) cache implementation. Keys and values

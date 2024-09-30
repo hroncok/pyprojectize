@@ -35,7 +35,6 @@ BuildRequires:  python3-cheroot
 
 Requires:       python3-cheroot
 
-%{?python_provide:%python_provide python3-%{pkgname}}
 
 %description -n python3-%{pkgname}
 %_description

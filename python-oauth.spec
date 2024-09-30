@@ -18,7 +18,6 @@ Library for OAuth version 1.0a.\
 
 %package -n python3-oauth
 Summary: %summary
-%{?python_provide:%python_provide python3-oauth}
 
 %description -n python3-oauth %_description
 

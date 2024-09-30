@@ -39,7 +39,6 @@ BuildRequires:  python%{python3_pkgversion}-tkinter
 BuildRequires:  python%{python3_pkgversion}-pytest
 Requires:       python%{python3_pkgversion}-six >= 1.10.0
 Suggests:       python%{python3_pkgversion}-tkinter
-%{?python_provide:%python_provide python%{python3_pkgversion}-xlib}
 
 %description -n python%{python3_pkgversion}-xlib
 The Python X Library is a complete X11R6 client-side implementation,

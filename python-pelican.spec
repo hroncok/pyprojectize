@@ -24,7 +24,6 @@ Pelican is a static site generator, written in Python_.
 
 %package -n python3-%{pypi_name}
 Summary:        A tool to generate a static blog from reStructuredText or Markdown input files
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pypi_name}}
 
 Obsoletes:      python-%{pypi_name} < 3.7.1-4
 Obsoletes:      python2-%{pypi_name} < 3.7.1-4

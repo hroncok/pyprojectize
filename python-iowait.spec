@@ -26,7 +26,6 @@ is that, on Windows, it only works for sockets.
 %package -n python3-%{modname}
 
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{modname}}
 
 BuildRequires:  python3-devel
 

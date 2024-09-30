@@ -25,7 +25,6 @@ A sphinx extension for embedding block diagram using blockdiag_.
 %if %{with python2}
 %package -n python2-%{pypi_name}
 Summary:        Sphinx "blockdiag" extension
-%{?python_provide:%python_provide python2-%{pypi_name}}
 
 BuildRequires:  python2-setuptools
 BuildRequires:  python2-devel
@@ -38,7 +37,6 @@ A sphinx extension for embedding block diagram using blockdiag_.
 %if %{with python3}
 %package -n python3-%{pypi_name}
 Summary:        Sphinx "blockdiag" extension
-%{?python_provide:%python_provide python3-%{pypi_name}}
 BuildRequires:  python3-devel
 Requires:       python3-blockdiag >= 2.0.0
 Requires:       python3-sphinx >= 2.0.0

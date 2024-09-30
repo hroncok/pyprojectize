@@ -40,7 +40,6 @@ BuildRequires:  git-core
 
 %package -n python3-%{pypi_name}
 Summary: %summary
-%{?python_provide:%python_provide python3-%{pypi_name}}
 Obsoletes: python2-%{pypi_name} < %{version}-%{release}
 
 Requires:       python3-pbr

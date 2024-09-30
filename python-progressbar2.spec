@@ -47,7 +47,6 @@ BuildRequires:  %{py3_dist freezegun} >= 0.3.10
 Obsoletes:      python3-progressbar < 2.3-14
 Provides:       python3-progressbar == %{version}
 
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 %{desc}

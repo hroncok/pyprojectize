@@ -23,7 +23,6 @@ BuildArch:      noarch
 %package -n     python%{python3_pkgversion}-%{pypi_name}
 Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pypi_name}}
 %if %{undefined __pythondist_requires}
 Requires:       python%{python3_pkgversion}-coverage >= 3.6
 %endif
@@ -35,7 +34,6 @@ Requires:       python%{python3_pkgversion}-coverage >= 3.6
 Summary: %{summary}
 BuildRequires:  python%{python3_other_pkgversion}-devel
 BuildRequires:  python%{python3_other_pkgversion}-setuptools
-%{?python_provide:%python_provide python%{python3_other_pkgversion}-%{pypi_name}}
 %if %{undefined __pythondist_requires}
 Requires: python%{python3_other_pkgversion}-coverage >= 3.6
 %endif

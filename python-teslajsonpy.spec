@@ -22,7 +22,6 @@ BuildRequires:  python3dist(aiohttp)
 BuildRequires:  python3dist(backoff)
 BuildRequires:  python3dist(wrapt)
 BuildRequires:  python3dist(pytest)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Async Python module to work with the Tesla API.

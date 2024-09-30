@@ -25,7 +25,6 @@ BuildRequires:  picosat-devel
 Summary:        %{sum}
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-pytest
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %description -n python%{python3_pkgversion}-%{srcname}
 %{pkgdesc}

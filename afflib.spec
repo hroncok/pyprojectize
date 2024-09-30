@@ -87,7 +87,6 @@ developing applications that use %{name}.
 %package -n python2-pyaff
 Summary:        Python2 binding for the AFFLIB
 Group:          Development/Libraries
-%{?python_provide:%python_provide python2-pyaff}
 
 %description -n python2-pyaff
 Python2 bindings for AFFLIB.
@@ -102,7 +101,6 @@ basic metadata accessor functions. The binding is not currently complete.
 %package -n python%{python3_pkgversion}-pyaff
 Summary:        Python3 binding for the AFFLIB
 Group:          Development/Libraries
-%{?python_provide:%python_provide python%{python3_pkgversion}-pyaff}
 
 
 

@@ -28,7 +28,6 @@ Summary:        %{summary}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-d2to1
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Converts and manipulates common color representation (RGB, HSL, web, etc.)

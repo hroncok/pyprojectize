@@ -64,7 +64,6 @@ BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-numpy
 BuildRequires:  python%{python3_pkgversion}-pytest
 BuildRequires:  python%{python3_pkgversion}-pyparsing
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pname}}
 
 %description -n python%{python3_pkgversion}-%{pname}
 %{_description}.

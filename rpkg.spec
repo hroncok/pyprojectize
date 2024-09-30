@@ -56,7 +56,6 @@ Python library for interacting with rpm+git
 %if 0%{?with_python2}
 %package -n python2-%{name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python2-%{name}}
 
 BuildRequires:  python2-devel
 
@@ -111,7 +110,6 @@ A python library for managing RPM package sources in a git repository.
 %if 0%{?with_python3}
 %package -n python3-%{name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{name}}
 # Obsolete python2-rpkg (remove after Fedora29)
 %if 0%{?with_python2} == 0
 Obsoletes:      python2-rpkg < %{version}-%{release}

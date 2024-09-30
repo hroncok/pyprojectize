@@ -20,7 +20,6 @@ deprecate the previously mentioned Python objects.
 
 %package -n python3-zope-deprecation
 Summary:        Zope 3 Deprecation Infrastructure
-%{?python_provide:%python_provide python3-zope-deprecation}
 
 
 %description -n python3-zope-deprecation

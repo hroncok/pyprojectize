@@ -21,7 +21,6 @@ Summary:        WSGI Proxy that supports several HTTP backends
 BuildRequires:  python3-devel
 Requires:       python3-webob
 Requires:       python3-six
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name} %_description
 

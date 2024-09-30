@@ -19,7 +19,6 @@ provides access to most API functionality.
 
 %package -n python3-%{github_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{github_name}}
 Obsoletes:      python2-%{github_name} < %{version}-%{release}
 
 BuildRequires:  python3-devel

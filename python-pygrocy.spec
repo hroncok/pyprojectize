@@ -22,7 +22,6 @@ BuildRequires:  python3dist(iso8601)
 BuildRequires:  python3dist(pytz)
 BuildRequires:  python3dist(requests)
 BuildRequires:  python3dist(tzlocal)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 A Python API client for grocy.

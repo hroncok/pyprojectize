@@ -36,7 +36,6 @@ BuildRequires: python3-devel
 # Needed for tests
 BuildRequires: python3-pytest
 
-%{?python_provide:%python_provide python3-%{name}}
 
 %description -n python3-%{name}
 py-radix is an implementation of a radix tree for Python, which

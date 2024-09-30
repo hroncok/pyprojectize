@@ -37,7 +37,6 @@ BuildRequires:  python3-lxml
 %endif
 Requires:       python3-defusedxml
 Requires:       python3-lxml
-%{?python_provide:%python_provide python3-%{pkgname}}
 
 
 %description -n python3-%{pkgname} %{_description}

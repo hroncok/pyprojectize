@@ -28,7 +28,6 @@ BuildRequires:  python3-devel
 %if %{with mysqldb}
 BuildRequires:  python3-pytest
 %endif
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 MySQLdb is an interface to the popular MySQL database server that provides

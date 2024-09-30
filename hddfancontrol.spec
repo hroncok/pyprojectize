@@ -25,7 +25,7 @@ Requires:       python3-setuptools
 
 Requires:       hddtemp, hdparm
 
-%{?python_provide:%python_provide python3-%{pypi_name}}
+%py_provides    python3-%{pypi_name}
 
 %description
 HDD Fan control is a command line tool to dynamically control fan speed

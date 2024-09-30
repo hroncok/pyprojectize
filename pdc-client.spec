@@ -63,7 +63,6 @@ and automates obtaining authorization token.
 %package -n python%{python3_pkgversion}-pdc-client
 Summary:    Python 3 client library for Product Definition Center
 
-%{?python_provide:%python_provide python%{python3_pkgversion}-pdc-client}
 Requires:  python3-beanbag
 Requires:  python3-requests-kerberos
 Requires:  pdc-client

@@ -33,7 +33,6 @@ Summary:        %summary
 BuildRequires:  python2-devel
 BuildRequires:  python2-coverage-test-runner
 BuildRequires:  python2-pep8
-%{?python_provide:%python_provide python2-%{pkgname}}
 
 %description -n python2-%{pkgname} %_description
 
@@ -43,7 +42,6 @@ Summary:        %summary
 BuildRequires:  python3-devel
 BuildRequires:  python3-coverage-test-runner
 BuildRequires:  python3-pep8
-%{?python_provide:%python_provide python3-%{pkgname}}
 
 %description -n python3-%{pkgname} %_description
 

@@ -21,7 +21,6 @@ and IPv6 Addresses and Networks.
 
 %package -n python3-%{oname}
 Summary: Python 3 module for handling IPv4 and IPv6 Addresses and Networks
-%{?python_provide:%python_provide python3-%{oname}}
 
 %description -n python3-%{oname}
 IPy is a Python 3 module for handling IPv4 and IPv6 Addresses and Networks 

@@ -57,7 +57,6 @@ Requires:       python3-matplotlib
 Requires:       python3-sympy
 Requires:       python3-pygraphviz
 Requires:       python3-networkx
-%{?python_provide:%python_provide python3-pysb}
 
 %description -n python3-pysb %_description
 

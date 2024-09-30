@@ -31,7 +31,6 @@ BuildRequires:  python%{python3_other_pkgversion}-setuptools
 %if %{with python3}
 %package -n     python%{python3_pkgversion}-%{pypi_name}
 Summary:        %{sum}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pypi_name}}
 Requires:       python%{python3_pkgversion}-setuptools
 
 %description -n python%{python3_pkgversion}-%{pypi_name}
@@ -42,7 +41,6 @@ Requires:       python%{python3_pkgversion}-setuptools
 %if 0%{?with_python3_other}
 %package -n     python%{python3_other_pkgversion}-%{pypi_name}
 Summary:        %{sum}
-%{?python_provide:%python_provide python%{python3_other_pkgversion}-%{pypi_name}}
 Requires:       python%{python3_other_pkgversion}-setuptools
 
 %description -n python%{python3_other_pkgversion}-%{pypi_name}

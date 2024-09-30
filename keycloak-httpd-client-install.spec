@@ -44,7 +44,6 @@ Keycloak IdP.
 %package -n python2-%{srcname}
 Summary:        %{summary}
 
-%{?python_provide:%python_provide python2-%{srcname}}
 
 Requires:       %{name} = %{version}-%{release}
 Requires:       python2-requests
@@ -63,7 +62,6 @@ of a Keycloak server.
 %package -n python3-%{srcname}
 Summary:        %{summary}
 
-%{?python_provide:%python_provide python3-%{srcname}}
 
 Requires:       %{name} = %{version}-%{release}
 Requires:       python3-requests

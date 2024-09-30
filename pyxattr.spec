@@ -23,7 +23,6 @@ add and remove extended attributes from files and directories.}
 
 %package -n python3-%{name}
 Summary: %{summary}
-%{?python_provide:%python_provide python3-%{name}}
 
 %description -n python3-%{name} %_description
 

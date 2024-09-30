@@ -27,7 +27,6 @@ Summary:        %{summary}
 BuildRequires:  python3-devel
 BuildRequires:  python3-six
 #BuildRequires:  python3-nose
-%{?python_provide:%python_provide python3-%{pypi_name}}
  
 %description -n python3-%{pypi_name}
 A library for SMT formulae manipulation and solving pySMT makes working

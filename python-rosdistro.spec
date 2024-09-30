@@ -44,7 +44,6 @@ BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-pytest
 BuildRequires:  python%{python3_pkgversion}-PyYAML
 BuildRequires:  python%{python3_pkgversion}-rospkg
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 Obsoletes:      python2-%{srcname} < 0.7.4-4
 
 %if %{undefined __pythondist_requires}

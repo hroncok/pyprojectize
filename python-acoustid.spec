@@ -21,7 +21,6 @@ which provides fingerprint look ups.
 Summary:       Python bindings for Chromaprint acoustic fingerprinting and the Acoustid API
 Requires:      libchromaprint
 Requires:      python3-audioread
-%{?python_provide:%python_provide python3-acoustid}
 %description -n python3-acoustid
 Chromaprint and its associated Acoustid Web service make up a
 high-quality, open-source acoustic fingerprinting system. This package

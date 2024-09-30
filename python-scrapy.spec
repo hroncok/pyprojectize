@@ -58,7 +58,6 @@ Requires:	python-tldextract
 Requires:	python3-service-identity
 Requires:	python3-cryptography 
 
-%{?python_provide:%python_provide python3-%{pkg_name}}
 
 
 %description -n python3-%{pkg_name}

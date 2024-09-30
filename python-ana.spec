@@ -20,7 +20,6 @@ to a central location and then "pickle" the object into just its UUID.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 ANA is a project to provide easy distributed data storage. It provides every

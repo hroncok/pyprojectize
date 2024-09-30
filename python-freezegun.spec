@@ -32,7 +32,6 @@ BuildRequires:      python3-six
 BuildRequires:      python3-dateutil >= 2.7
 BuildRequires:      python3-pytest
 
-%{?python_provide:%python_provide python3-freezegun}
 
 Requires:           python3-six
 Requires:           python3-dateutil >= 2.7

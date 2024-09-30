@@ -28,7 +28,6 @@ BuildRequires:  python3-six
 BuildRequires:  python3-test
 BuildRequires:  python3-enchant >= 1.6.6
 Requires:       python3-six
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Helper library for writing code that runs unmodified on both Twisted and

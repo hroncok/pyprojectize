@@ -27,7 +27,6 @@ BuildRequires:  python3dist(pytest-runner)
 BuildRequires:  python3dist(requests)
 BuildRequires:  python3dist(websocket-client)
 BuildRequires:  python3dist(zeroconf)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 This module implements parts of the devolo Home Control API

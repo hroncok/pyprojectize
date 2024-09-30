@@ -53,7 +53,6 @@ Requires:  python3-PyYAML >= 4.2b1
 Requires:  python3-cryptography >= 2.5
 Requires:  python3-pycryptodomex
 Requires:  python3-setproctitle >= 1.1.9
-%{?python_provide:%python_provide python3-%{pkgname}}
 Requires: tor
 Requires: logrotate
 Requires(pre): shadow-utils

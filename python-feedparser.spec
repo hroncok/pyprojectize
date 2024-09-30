@@ -37,7 +37,6 @@ BuildRequires:  python3-sgmllib3k
 ## TODO: python3-chardet BR and Req
 # fixes included in > 5.1.3
 
-%{?python_provide:%python_provide python3-feedparser}
 
 %description -n python3-%{pypi_name}
 Universal Feed Parser is a Python module for downloading and parsing

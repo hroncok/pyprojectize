@@ -43,7 +43,6 @@ PKCS#12, PKCS#5, X.509 and TSP.
 %if 0%{?with_python2}
 %package -n     python2-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python2-%{pypi_name}}
 
 %description -n python2-%{pypi_name}
 Fast ASN.1 parser and serializer with definitions for private keys,
@@ -54,7 +53,6 @@ PKCS#12, PKCS#5, X.509 and TSP.
 %if 0%{?with_python3}
 %package -n     python%{python3_pkgversion}-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pypi_name}}
 
 %description -n python%{python3_pkgversion}-%{pypi_name}
 Fast ASN.1 parser and serializer with definitions for private keys,

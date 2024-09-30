@@ -25,7 +25,6 @@ The sip extension module provides support for the PyQt6 package.
 
 %package -n     python3-%{pkg_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pkg_name}}
 Provides: python3-pyqt6-sip-api(%{_sip_api_major}) = %{_sip_api}
 Provides: python3-pyqt6-sip-api(%{_sip_api_major})%{?_isa} = %{_sip_api}
 

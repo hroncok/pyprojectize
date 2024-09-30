@@ -20,7 +20,6 @@ Summary:        %{sum}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-text-unidecode
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 A Python slugify application that handles Unicode.

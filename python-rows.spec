@@ -42,7 +42,6 @@ BuildRequires:  python3-xlwt
 Recommends:     python3-xlrd
 Recommends:     python3-xlwt
 Recommends:     python3-magic
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 No matter in which format your tabular data is: rows will import it,

@@ -121,7 +121,7 @@ Upgrade hints from major version 2 -> 3 can be found here:
 Summary:          Python module for Radicale
 Recommends:       python3-bcrypt
 Recommends:       python3-passlib
-%{?python_provide:%python_provide python3-%{name}}
+%py_provides      python3-%{name}
 Obsoletes:        python-%{radicale_package_name} < %{version}-%{release}
 
 Conflicts:        python3-radicale < 3.0.0

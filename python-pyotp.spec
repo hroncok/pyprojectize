@@ -21,7 +21,6 @@ methods in web applications and in other systems that require users to log in.
 
 %package -n python3-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 PyOTP is a Python library for generating and verifying one-time passwords. It

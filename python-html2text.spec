@@ -29,7 +29,6 @@ BuildRequires:  python3-pytest
 Summary:        %{common_sum}
 Provides:       %{upname} = %{version}-%{release}
 Obsoletes:      python2-%{upname} <= %{version}-%{release}
-%{?python_provide:%python_provide python3-%{upname}}
 
 %description -n python3-%{upname}
 %{common_desc}

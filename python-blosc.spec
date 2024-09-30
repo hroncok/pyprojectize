@@ -21,7 +21,6 @@ BuildRequires:  python%{python3_pkgversion}-cpuinfo
 Summary:        Python wrapper for the blosc high performance compressor
 Requires:       blosc%{_isa} >= 1.16.0
 
-%{?python_provide:%python_provide python%{python3_pkgversion}-blosc}
 %{?fedora:Recommends: python%{python3_pkgversion}-numpy}
 
 %description -n python%{python3_pkgversion}-blosc

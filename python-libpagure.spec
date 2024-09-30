@@ -18,7 +18,6 @@ A Python library for Pagure APIs
 
 %package -n python3-libpagure
 Summary:        A Python library for Pagure APIs
-%{?python_provide:%python_provide python3-libpagure}
 
 BuildRequires:  python3-devel
 

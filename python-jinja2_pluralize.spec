@@ -28,7 +28,6 @@ Summary:        %{summary}
 
 Requires:       python3-inflect
 
-%{?python_provide:%python_provide python3-%{srcname}}
 
 
 %description -n python3-%{srcname}

@@ -24,7 +24,6 @@ When files are changed the process is restarted.
 
 %package -n python3-%{srcname}
 Summary:        %{sum}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 hupper is an integrated process monitor that will track changes

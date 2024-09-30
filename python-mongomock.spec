@@ -23,7 +23,6 @@ BuildRequires:  python3dist(pbr)
 BuildRequires:  python3dist(sentinels)
 BuildRequires:  python3dist(six)
 BuildRequires:  python3dist(pytest)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Mongomock is a small library to help testing Python code that interacts

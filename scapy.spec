@@ -77,7 +77,6 @@ Recommends:     wireshark-cli
 %package -n python2-%{name}
 Summary:        Interactive packet manipulation tool and network scanner
 
-%{?python_provide:%python_provide python2-%{name}}
 
 %if (0%{?fedora}) || ( 0%{?rhel} && 0%{?rhel} >= 8 ) 
 Recommends:     python2-pyx
@@ -95,7 +94,6 @@ Recommends:     ipython2
 %package -n python%{python3_pkgversion}-%{name}
 Summary:        Interactive packet manipulation tool and network scanner
 
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{name}}
 Provides:       %{name} = %{version}-%{release}
 
 %if (0%{?fedora}) || ( 0%{?rhel} && 0%{?rhel} >= 8 ) 

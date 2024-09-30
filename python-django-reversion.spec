@@ -34,7 +34,6 @@ of code changes.
 Summary:        Version control extension for the Django web framework
 BuildRequires:  python3-devel
 Requires:       python3-django
-%{?python_provide:%python_provide python3-%{pkgname}}
 
 Obsoletes:   python-%{pkgname} < 2.0.13-1
 Obsoletes:   python2-%{pkgname} < 2.0.13-1

@@ -22,7 +22,6 @@ supports viewing waveform by tracing signal changes in a VCD file.
 
 %package -n python3-%{srcname}
 Summary:        %{sum}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 %{name} is a Python3 hardware description and verification language that 

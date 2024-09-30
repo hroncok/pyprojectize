@@ -30,7 +30,6 @@ is extended to support multiple keys referring to the same element.
 Summary:        %{summary}
 BuildRequires:  python2-devel
 BuildRequires:  python2-setuptools
-%{?python_provide:%python_provide python2-%{srcname}}
 
 %description -n python2-%{srcname}
 Implementation of a multi-key dictionary, i.e.:
@@ -46,7 +45,6 @@ is extended to support multiple keys referring to the same element.
 %package -n python%{python3_pkgversion}-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %description -n python%{python3_pkgversion}-%{srcname}
 Implementation of a multi-key dictionary, i.e.:

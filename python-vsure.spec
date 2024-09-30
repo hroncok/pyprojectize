@@ -18,7 +18,6 @@ through mypages.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 A Python module for reading and changing status of verisure devices

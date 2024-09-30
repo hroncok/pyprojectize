@@ -23,7 +23,6 @@ BuildRequires:  python3dist(numpy)
 BuildRequires:  python3dist(nptyping)
 BuildRequires:  python3dist(mypy)
 BuildRequires:  python3dist(coverage)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Suport for functions to allow thorough checks on types. Including instance

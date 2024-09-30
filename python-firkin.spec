@@ -19,7 +19,6 @@ Summary:        %{summary}
 
 BuildRequires:  python3-devel
 #BuildRequires:  python3-nose
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 firkin is a Python module to convert between different measurement units.

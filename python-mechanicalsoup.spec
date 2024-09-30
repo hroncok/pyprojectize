@@ -27,7 +27,6 @@ BuildRequires:  python3dist(pytest-mock)
 BuildRequires:  python3dist(requests)
 BuildRequires:  python3dist(requests-mock)
 BuildRequires:  python3dist(six)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 MechanicalSoup automatically stores and sends cookies, follows redirects,

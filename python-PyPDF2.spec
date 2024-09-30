@@ -35,7 +35,6 @@ It is therefore a useful tool for websites that manage or manipulate PDFs.
 %package -n python3-%{srcname}
 Summary:        %{sum}
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{srcname}}
 
 
 %description -n python3-%{srcname}

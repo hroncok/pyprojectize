@@ -19,7 +19,6 @@ BuildArch:          noarch
 This project provides first-class OAuth library support for python-request.
 
 %package -n python3-%{distname}
-%{?python_provide:%python_provide python3-%{distname}}
 Summary:            OAuthlib authentication support for Requests.
 
 BuildRequires:      python3-devel

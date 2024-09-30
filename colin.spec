@@ -27,7 +27,6 @@ for containers/images/dockerfiles
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 BuildRequires:  python3-devel
 Recommends:     moby-engine
 

@@ -35,7 +35,6 @@ which is the recommended way to use GLib from Python.
 Summary:        %{summary}
 BuildRequires:  python3-devel
 Requires:       python3-gobject-base
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname} %{_description}
 

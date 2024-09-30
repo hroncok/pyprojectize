@@ -53,7 +53,6 @@ BuildRequires:  python3-hypothesis
 BuildRequires:  python3-pytest
 %endif
 Requires:       tzdata
-%{?python_provide:%python_provide python3-%{modname}}
 
 %description -n python3-%{modname}  %_description
 

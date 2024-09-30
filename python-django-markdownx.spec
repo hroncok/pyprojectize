@@ -24,7 +24,6 @@ and ease-of-use at its core.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
  
 Requires:       python3dist(django)
 Requires:       python3dist(markdown)

@@ -31,7 +31,6 @@ BuildRequires:  python3-devel
 # BuildRequires:  python-authres
 
 Requires:       python3-py3dns
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 SPF does email sender validation.  For more information about SPF,

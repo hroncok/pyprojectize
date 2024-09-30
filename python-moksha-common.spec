@@ -37,7 +37,6 @@ Requires:       python3-pytz
 Requires:       python3-six
 # /usr/bin/moksha was moved from there:
 Conflicts:      python2-moksha-common < 1.2.5-9
-%{?python_provide:%python_provide python3-moksha-common}
 
 %description -n python3-moksha-common
 Common components for Moksha.

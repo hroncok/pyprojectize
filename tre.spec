@@ -60,7 +60,6 @@ building applications which use the TRE library.
 
 %package -n python3-%{name}
 Summary: Python bindings for the tre library
-%{?python_provide:%python_provide python3-tre}
 
 %description -n python3-%{name}
 This package contains the python bindings for the TRE library.

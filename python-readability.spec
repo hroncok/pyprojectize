@@ -20,7 +20,6 @@ number of words, syllables, and sentences.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 An implementation of traditional readability measures based on simple surface

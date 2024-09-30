@@ -29,7 +29,6 @@ Summary:        %{summary}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-ply
-%{?python_provide:%python_provide python3-smi}
 
 %description -n python3-smi
 PySMI is a pure-Python implementation of SNMP SMI MIB parser. This tool is

@@ -24,7 +24,6 @@ BuildRequires:  python3-pillow
 BuildRequires:  python3-scipy
 BuildRequires:  python3-six
 BuildRequires:  python3-wheel, python3-pip, python3-pytest
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 A image hashing library written in Python. ImageHash supports average hashing,

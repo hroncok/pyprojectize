@@ -48,7 +48,6 @@ of exported symbols and update the symbol version linker script accordingly.
 
 %package -n python%{python3_pkgversion}-%{module_name}
 Summary:        A helper for library maintainers to use symbol versioning
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{module_name}}
 
 %description -n python%{python3_pkgversion}-%{module_name}
 This script allows to generate and update symbol version linker scripts which

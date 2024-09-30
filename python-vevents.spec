@@ -26,7 +26,6 @@ BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-pyvmomi
 BuildRequires:  python%{python3_pkgversion}-docopt
 BuildRequires:  python%{python3_pkgversion}-vconnector 
-%{?python_provide:%python_provide python%{python3_pkgversion}-vevents}
 # no magic dependencies in epel
 %if %{undefined __pythondist_requires}
 Requires:       python%{python3_pkgversion}-pyvmomi

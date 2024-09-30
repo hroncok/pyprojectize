@@ -27,7 +27,6 @@ you're careful. Backcall helps with that.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Specifications for callback functions passed in to an API.

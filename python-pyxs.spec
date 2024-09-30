@@ -46,7 +46,6 @@ BuildRequires:  python2-setuptools
 # https://github.com/pytest-dev/pytest/blob/2.4.0/CHANGELOG#L26-L33
 BuildRequires:  python2-pytest >= 2.4
 %endif
-%{?python_provide:%python_provide python2-%{pkgname}}
 
 
 %description -n python2-%{pkgname} %{common_description}
@@ -62,7 +61,6 @@ BuildRequires:  python%{python3_pkgversion}-devel
 # https://github.com/pytest-dev/pytest/blob/2.4.0/CHANGELOG#L26-L33
 BuildRequires:  python%{python3_pkgversion}-pytest >= 2.4
 %endif
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pkgname}}
 
 
 %description -n python%{python3_pkgversion}-%{pkgname} %{common_description}

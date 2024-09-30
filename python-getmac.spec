@@ -20,7 +20,6 @@ network (by IPv4/IPv6 address or host-name).
 
 %package -n python3-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-getmac}
 
 %description -n python3-%{srcname}
 Pure-python module to get the MAC address of remote hosts or network interfaces.

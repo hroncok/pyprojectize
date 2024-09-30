@@ -88,7 +88,7 @@ services or users using the REST API provided by Flask frontend.
 
 %package -n python3-odcs-common
 Summary:        ODCS subpackage providing code shared between server and client.
-%{?python_provide:%python_provide python3-odcs-client}
+%py_provides    python3-odcs-client
 
 Requires:       python3-six
 
@@ -97,7 +97,6 @@ ODCS subpackage providing code shared between server and client.
 
 %package -n python3-odcs-client
 Summary:        ODCS client module
-%{?python_provide:%python_provide python3-odcs-client}
 
 Requires:       python3-filelock
 Requires:       python3-jwt

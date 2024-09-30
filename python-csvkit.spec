@@ -32,7 +32,6 @@ BuildRequires:  %{py3_dist agate-dbf} >= 0.2
 BuildRequires:  %{py3_dist agate-sql} >= 0.5.3
 BuildRequires:  %{py3_dist six} >= 1.6.1
 BuildRequires:  %{py3_dist furo}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 %{desc}

@@ -18,7 +18,6 @@ be better off copy and pasting the source straight into your project...
 
 %package -n     python3-%{pypi_name}
 Summary:        A tiny pythonic visitor implementation
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 A tiny library to facilitate visitor. In fact, it is so small, you may just

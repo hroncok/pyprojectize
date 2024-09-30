@@ -38,7 +38,6 @@ BuildRequires: python3-asn1crypto
 BuildRequires: python3-pytest
 BuildRequires: python3-pytest-xdist
 %endif
-%{?python_provide:%python_provide python3-%{pname}}
 BuildArch: noarch
 
 %description -n python3-%{pname} %{desc}

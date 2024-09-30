@@ -18,7 +18,6 @@ accounts also provide account statements in OFX files.
 
 %package -n python3-%{upstream_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{upstream_name}}
 BuildRequires:  python3-devel
 BuildRequires:  python3-nose
 BuildRequires:  python3-beautifulsoup4

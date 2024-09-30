@@ -24,7 +24,6 @@ Requires:       python3-django
 Obsoletes: python-%{pypi_name} < 1.6.8-5
 Obsoletes: python2-%{pypi_name} < 1.6.8-5
 
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Pipeline is an asset packaging library for Django, providing both CSS

@@ -44,7 +44,6 @@ needed for developing applications using unicorn.
 Summary:        %{summary}
 Requires:       %{name} = %{version}-%{release}
 Requires:       python3-setuptools
-%{?python_provide:%python_provide python3-%{name}}
 
 %description -n python3-unicorn
 The unicorn-python3 package contains python3 bindings for unicorn.

@@ -23,7 +23,6 @@ Zope to make use of two-phase commit transactions in a WSGI context.
 Summary: Zope-like transaction manager via WSGI middleware
 BuildRequires: python3-devel
 BuildRequires: python3-transaction
-%{?python_provide:%python_provide python3-repoze-tm2}
 
 %description -n python3-repoze-tm2
 The ZODB transaction manager is a completely generic transaction manager.  It

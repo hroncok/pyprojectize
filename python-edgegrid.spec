@@ -23,7 +23,6 @@ BuildRequires:	python3-devel
 # Dependencies for tests
 BuildRequires:	python3dist(requests)
 
-%{?python_provide:%python_provide python3-edgegrid}
 
 %description -n python3-edgegrid
 This library implements an Authentication handler for requests

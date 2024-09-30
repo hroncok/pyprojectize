@@ -23,7 +23,6 @@ Python. It makes use of numpy for fast numerical computation.
 
 %package -n python3-%{srcname}
 Summary:        %{sum}
-%{?python_provide:%python_provide python3-%{srcname}}
 Requires:       python3-numpy
 Requires:       python3-scipy
 

@@ -23,7 +23,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-nose
 %endif
 BuildRequires:  python3dist(paramiko) >= 1.13.1
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 %{desc}

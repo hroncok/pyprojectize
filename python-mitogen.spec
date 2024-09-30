@@ -61,7 +61,6 @@ BuildArch:      noarch
 Summary:        %{summary}
 BuildRequires:  python2-devel
 BuildRequires:  python2-setuptools
-%{?python_provide:%python_provide python2-%{pkgname}}
 
 
 %description -n python2-%{pkgname} %{common_description}
@@ -72,7 +71,6 @@ BuildRequires:  python2-setuptools
 %package -n python%{python3_pkgversion}-%{pkgname}
 Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pkgname}}
 
 
 %description -n python%{python3_pkgversion}-%{pkgname} %{common_description}

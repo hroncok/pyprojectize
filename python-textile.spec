@@ -32,7 +32,6 @@ BuildRequires:  python3-html5lib >= 0.999999999
 Requires:       python3-regex
 Requires:       python3-six
 Requires:       python3-pillow
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 Textile is a XHTML generator using a simple markup developed by Dean

@@ -26,7 +26,6 @@ Python wrapper module.
 Summary:        A framework for building smart card aware applications in Python
 BuildRequires:  python%{python3_pkgversion}-devel
 Requires:       pcsc-lite
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{name}}
 
 %description -n python%{python3_pkgversion}-%{name}
 The pyscard smartcard library is a framework for building smart card aware

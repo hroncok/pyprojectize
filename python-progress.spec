@@ -49,7 +49,6 @@ Collection of easy to use progress bars and spinners.\
 %if 0%{with python2}
 %package -n python2-%{pypi_name}
 Summary: %summary
-%{?python_provide:%python_provide python2-%{pypi_name}}
 
 %description -n python2-%{pypi_name} %_description
 %endif

@@ -24,7 +24,6 @@ images and provides more, very helpful functions.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 BuildRequires:  python3-devel
 BuildRequires:  python3-kubernetes
 BuildRequires:  python3-docker
@@ -50,7 +49,6 @@ images and provides more, very helpful functions.
 
 %package -n     python3-%{pypi_name}-pytest
 Summary:        fixtures which can be utilized via pytest
-%{?python_provide:%python_provide python3-%{pypi_name}-pytest}
 Requires:       python3-pytest
 Requires:       python3-%{pypi_name}
 

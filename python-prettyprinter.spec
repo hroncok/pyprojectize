@@ -58,7 +58,6 @@ BuildRequires:  python3-pygments >= 2.2.0
 %endif
 Requires:       python3-colorful >= 0.4.0
 Requires:       python3-pygments >= 2.2.0
-%{?python_provide:%python_provide python3-%{pkgname}}
 
 
 %description -n python3-%{pkgname} %{common_description}

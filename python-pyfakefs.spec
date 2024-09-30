@@ -19,7 +19,6 @@ work with pyfakefs.
 
 %package -n python3-%{package_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{package_name}}
 
 BuildRequires:  git-core
 BuildRequires:  python3-devel

@@ -24,7 +24,6 @@ BuildRequires:  python3-pbr
 Requires:       python3-pbr
 Requires:       python3-sphinx
 Requires:       python3-PyYAML
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 A Sphinx extension for documenting Zuul jobs.

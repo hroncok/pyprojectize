@@ -34,7 +34,6 @@ no longer needed.
 Summary:        %{sum}
 Requires:       python3-psutil
 Requires:       python3-pytest
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 The pytest-openfiles plugin allows for the detection of open I/O resources at

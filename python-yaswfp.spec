@@ -18,7 +18,6 @@ Yet Another SWF Parser that can help you to identify SWF objects.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Yet Another SWF Parser that can help you to identify SWF objects.

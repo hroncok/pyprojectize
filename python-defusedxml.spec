@@ -31,7 +31,6 @@ module.
 
 %package -n python%{python3_pkgversion}-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pypi_name}}
 
 %description -n python%{python3_pkgversion}-%{pypi_name}
 The defusedxml package contains several Python-only workarounds and fixes for

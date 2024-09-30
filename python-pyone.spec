@@ -28,7 +28,6 @@ Nebula XML-RPC bindings in Python.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 Requires:       python3-aenum
 Requires:       python3-coverage

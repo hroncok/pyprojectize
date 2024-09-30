@@ -19,7 +19,6 @@ for the newer msgctxt keyword.
 %package -n	python3-%{module}
 Summary:	Python 3 Gettext po to mo file compiler
 BuildRequires:	python3-devel
-%{?python_provide:%python_provide python3-%{module}}
 
 %description -n	python3-%{module}
 This implementation of Gettext for Python 3 includes a Msgfmt class which can be

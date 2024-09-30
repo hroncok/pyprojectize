@@ -17,7 +17,6 @@ Mido is a library for working with MIDI messages and ports.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Mido is a library for working with MIDI messages and ports.

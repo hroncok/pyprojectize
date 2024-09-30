@@ -18,7 +18,6 @@ A library to convert Korean lunar-calendar to Gregorian calendar.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 A library to convert Korean lunar-calendar to Gregorian calendar.

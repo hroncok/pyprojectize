@@ -32,7 +32,6 @@ BuildRequires:  python%{python3_pkgversion}-importlib-metadata
 %endif
 BuildRequires:  python%{python3_pkgversion}-packaging
 BuildRequires:  python%{python3_pkgversion}-pytest
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %if %{undefined __pythondist_requires}
 Requires:       python%{python3_pkgversion}-distlib >= 0.2.5

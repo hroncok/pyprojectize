@@ -31,7 +31,6 @@ Obsoletes: boom-grub2 <= 1.3
 
 %package -n python3-boom
 Summary: %{summary}
-%{?python_provide:%python_provide python3-boom}
 Requires: %{__python3}
 Recommends: (lvm2 or brtfs-progs)
 Recommends: %{name}-conf = %{version}-%{release}

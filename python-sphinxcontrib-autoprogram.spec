@@ -28,7 +28,6 @@ program and option directives.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pypi_name}}
 
 Requires:       python3-sphinx >= 1.2
 Requires:       python3-six

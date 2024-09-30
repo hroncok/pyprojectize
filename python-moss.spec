@@ -33,7 +33,6 @@ in as general and lightweight a fashion as possible.
 
 %package -n python3-%{modname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{modname}}
 Provides:       bundled(PyMVPA)
 BuildRequires:  python3-devel
 %if %{with check}

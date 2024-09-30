@@ -20,7 +20,6 @@ BuildArch:  noarch
 %if 0%{?with_python2}
 %package -n python2-%{library}
 Summary:    Dictdiffer is a module that helps you to diff and patch dictionaries
-%{?python_provide:%python_provide python2-%{library}}
 
 BuildRequires: python2-devel
 BuildRequires: python-pytest-runner
@@ -46,9 +45,7 @@ Dictdiffer is a module that helps you to diff and patch dictionaries
 %package -n python3-%{library}
 Summary: Dictdiffer is a module that helps you to diff and patch dictionaries
 %if 0%{?rhel} < 8
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{library}}
 %else
-%{?python_provide:%python_provide python3-%{library}}
 %endif
 
 %if 0%{?rhel} < 8

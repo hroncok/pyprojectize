@@ -21,7 +21,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(mock)
 BuildRequires:  python3dist(responses)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 A Python library that allows control of connected NuHeat Signature

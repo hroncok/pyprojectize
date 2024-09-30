@@ -25,7 +25,6 @@ BuildRequires:  python3-pkginfo
 BuildRequires:  python3-pytest
 BuildRequires:  python3-requests
 BuildRequires:  python3-six
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 This is a Python client library for iterating over http Server Sent Event

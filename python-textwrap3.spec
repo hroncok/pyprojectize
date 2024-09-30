@@ -24,7 +24,6 @@ BuildRequires:  python3-coverage
 BuildRequires:  python3-pytest
 BuildRequires:  python3-pytest-cov
 BuildRequires:  python3-tox
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 textwrap3 is a compatibility back-port of Python 3.6’s textwrap module. This

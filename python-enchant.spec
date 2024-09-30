@@ -24,7 +24,6 @@ BuildRequires:  python3-devel
 
 Requires:       enchant2
 
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 PyEnchant is a spellchecking library for Python 3, based on the Enchant

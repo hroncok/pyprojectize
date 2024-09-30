@@ -19,7 +19,6 @@ Summary:        %{summary}
 
 BuildRequires:  python3-devel
 #BuildRequires:  python3-pyftdi
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 I2C flash devices, also known as DataFlash are commonly found in embedded

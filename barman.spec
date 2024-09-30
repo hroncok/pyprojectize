@@ -37,7 +37,6 @@ Client utilities for the integration of Barman in PostgreSQL clusters.
 
 %package -n python3-barman
 Summary:    Shared libraries for Barman
-%{?python_provide:%python_provide python3-%{name}}
 
 %description -n python3-barman
 Python libraries used by Barman.

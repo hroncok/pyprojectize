@@ -42,7 +42,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-pytest
 BuildRequires:  python3-pytest-asyncio
 BuildRequires:  python3-pytest-runner
-%{?python_provide:%python_provide python3-%{pkgname}}
 
 
 %description -n python3-%{pkgname} %{_description}

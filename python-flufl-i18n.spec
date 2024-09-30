@@ -33,7 +33,6 @@ BuildRequires:  python%{python3_other_pkgversion}-atpublic
 
 %package -n python%{python3_pkgversion}-%{pkgname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pkgname}}
 Requires:       python%{python3_pkgversion}-setuptools
 Requires:       python%{python3_pkgversion}-atpublic
 
@@ -43,7 +42,6 @@ Requires:       python%{python3_pkgversion}-atpublic
 %if 0%{?with_python3_other}
 %package -n python%{python3_other_pkgversion}-%{pkgname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python%{python3_other_pkgversion}-%{pkgname}}
 Requires:       python%{python3_other_pkgversion}-setuptools
 Requires:       python%{python3_other_pkgversion}-atpublic
 

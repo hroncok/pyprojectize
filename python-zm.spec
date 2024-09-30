@@ -21,7 +21,6 @@ Summary:        %{summary}
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(requests)
 BuildRequires:  python3dist(pytest)
-%{?python_provide:%python_provide python3-%{pkg_name}}
 
 %description -n python3-%{pkg_name}
 A Python wrapper around the ZoneMinder RESTful API.

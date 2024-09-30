@@ -41,7 +41,6 @@ Requires:   %{py3_dist simplejson}
 Requires:   %{py3_dist six}
 Requires:   %{py3_dist venusian}
 
-%{?python_provide:%python_provide python3-%{module}}
 
 
 %description -n python3-cornice

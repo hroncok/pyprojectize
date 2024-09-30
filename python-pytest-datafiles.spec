@@ -22,7 +22,6 @@ Summary:        %{summary}
 BuildRequires:  python3-devel
 BuildRequires:  python3-py
 BuildRequires:  python3-pytest
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 This plugin allows you to specify one or several files/directories that are

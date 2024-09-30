@@ -26,7 +26,6 @@ applications really easy.
 Summary:            %{sum}
 Requires:           python3-flask
 
-%{?python_provide:%python_provide python3-%{modname}}
 
 %description -n python3-flask-multistatic
 Simple flask plugin allowing to override static files, making theming flask

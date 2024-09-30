@@ -21,7 +21,6 @@ A .pth file to site-packages to enable coverage.py.
 
 %package -n     python3-%{pypi_name}
 Summary:        Coverage PTH file to enable coverage at the virtualenv level
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 Requires:       python3-coverage
 

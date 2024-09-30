@@ -14,7 +14,6 @@ Python binding for librtlsdr (a driver for Realtek RTL2832U based SDR's).
 
 %package -n python3-%{srcname}
 Summary:          Python 3 binding for librtlsdr
-%{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:    python3-devel
 BuildRequires:    python3-pypandoc, python3-m2r
 # needed for librtlsdr

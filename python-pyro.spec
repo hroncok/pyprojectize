@@ -21,7 +21,6 @@ Object Technology and has much more to offer than Pyro or RMI.
 Summary:        Python Remote Objects
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Pyro provides an object-oriented form of RPC. You can use Pyro within a

@@ -55,7 +55,6 @@ BuildRequires:  python2-pypandoc
 BuildRequires:  python2-oletools >= 0.54
 Requires:       python2-oletools >= 0.54
 %endif
-%{?python_provide:%python_provide python2-pcodedmp}
 
 %description -n python2-pcodedmp %_description
 %endif
@@ -71,7 +70,6 @@ BuildRequires:  python%{python3_pkgversion}-lxml
 BuildRequires:  python%{python3_pkgversion}-oletools >= 0.54
 Requires:       python%{python3_pkgversion}-oletools >= 0.54
 %endif
-%{?python_provide:%python_provide python%{python3_pkgversion}-pcodedmp}
 
 %description -n python%{python3_pkgversion}-pcodedmp %_description
 
@@ -88,7 +86,6 @@ BuildRequires:  python%{python3_other_pkgversion}-lxml
 BuildRequires:  python%{python3_other_pkgversion}-oletools >= 0.54
 Requires:       python%{python3_other_pkgversion}-oletools >= 0.54
 %endif
-%{?python_provide:%python_provide python%{python3_other_pkgversion}-pcodedmp}
 
 %description -n python%{python3_other_pkgversion}-pcodedmp %_description
 %endif

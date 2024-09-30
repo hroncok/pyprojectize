@@ -48,7 +48,6 @@ BuildRequires: python3-flask-sqlalchemy
 
 %package -n python3-factory-boy
 Summary: A versatile test fixtures replacement based on thoughtbot's factory_girl
-%{?python_provide:%python_provide python3-factory-boy}
 Suggests: %{name}-doc = %{version}-%{release}
 
 %description -n python3-factory-boy

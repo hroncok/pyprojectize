@@ -25,7 +25,6 @@ BuildRequires:  python%{python3_pkgversion}-Cython
 # For tests
 BuildRequires:  python%{python3_pkgversion}-pytest
 BuildRequires:  python%{python3_pkgversion}-numpy
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %description -n python%{python3_pkgversion}-%{srcname}
 Time-handling functionality from netcdf4-python.

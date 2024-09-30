@@ -28,7 +28,6 @@ the text field.
 %package -n python3-django-ajax-selects
 Summary:        Intelligent schema migrations for Django apps
 
-%{?python_provide:%python_provide python3-django-ajax-selects}
 
 Requires:       python3-django
 

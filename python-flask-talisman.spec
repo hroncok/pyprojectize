@@ -20,7 +20,6 @@ that can help protect against a few common web application security issues.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Talisman is a small Flask extension that handles setting HTTP headers

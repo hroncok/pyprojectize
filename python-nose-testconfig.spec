@@ -34,7 +34,6 @@ Currently configuration files in the following formats are supported:
 
 %package -n python3-%{srcname}
 Summary:        Test configuration plugin for nosetests for Python3
-%{?python_provide:%python_provide python3-%{srcname}}
 
 BuildRequires:  python3-devel
 

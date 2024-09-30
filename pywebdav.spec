@@ -24,7 +24,6 @@ store properties for objects, etc.
 
 Summary:        WebDAV library for Python 3
 
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 WebDAV library for Python. WebDAV is an extension to the normal HTTP/1.1

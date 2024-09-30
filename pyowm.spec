@@ -24,7 +24,6 @@ applications via a simple object model and in a human-friendly fashion.
 
 %package     -n python3-%{pypi_name}
 Summary: A Python wrapper around the OpenWeatherMap web API
-%{?python_provide:%python_provide python3-%{pypi_name}}
 Requires: python3-requests
 Requires: python3-coverage
 

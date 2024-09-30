@@ -21,7 +21,6 @@ Python bindings for the ALSA library.
 
 %package -n python3-alsa
 Summary: %summary
-%{?python_provide:%python_provide python3-alsa}
 
 %description -n python3-alsa %_description
 

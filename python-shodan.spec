@@ -32,7 +32,6 @@ BuildRequires:  python3-click-plugins
 BuildRequires:  python3-colorama
 BuildRequires:  python3-requests
 BuildRequires:  python3-xlsxwriter
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 The official Python library and CLI for Shodan Shodan is a search engine for 

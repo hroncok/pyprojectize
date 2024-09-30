@@ -19,7 +19,6 @@ functions and friends.
 
 %package -n python3-schedutils
 Summary: %summary
-%{?python_provide:%python_provide python3-schedutils}
 
 %description -n python3-schedutils %_description
 

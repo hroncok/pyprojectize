@@ -23,7 +23,6 @@ up rules for...
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 A small library for extracting rich content from urls. what does it do?

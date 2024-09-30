@@ -32,7 +32,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-pytest
 BuildRequires:  python3-defusedxml
 
-%{?python_provide:%python_provide python3-%{name}}
 
 Provides:       odfpy = %{version}-%{release}
 Obsoletes:      odfpy < %{version}-%{release}

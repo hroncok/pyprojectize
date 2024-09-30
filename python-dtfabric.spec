@@ -24,7 +24,6 @@ BuildRequires:  python3-pyyaml
 BuildRequires:  python3-six
 BuildRequires:  python3-pip
 BuildRequires:  python3-pbr
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 dtfabric is a project to manage data types and structures, as used in the

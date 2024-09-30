@@ -54,7 +54,6 @@ Summary:        %{summary}
 Requires:       python%{python3_pkgversion}-numpy
 Requires:       python%{python3_pkgversion}-six
 Requires:       python%{python3_pkgversion}-numexpr >= 2.4
-%{?python_provide:%python_provide python%{python3_pkgversion}-tables}
 
 %description -n python%{python3_pkgversion}-tables %_description
 

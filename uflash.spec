@@ -21,7 +21,7 @@ BuildArch:      noarch
 
 # Other tools are using this as a module, so provide also the python3- name
 Provides:       python3-%{name} == %{version}-%{release}
-%{?python_provide:%python_provide python3-%{name}}
+%py_provides    python3-%{name}
 
 %description
 A utility for flashing the BBC micro:bit with Python scripts and the

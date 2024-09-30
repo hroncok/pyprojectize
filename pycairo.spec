@@ -21,7 +21,6 @@ Python bindings for the cairo library.
 
 %package -n python3-cairo
 Summary: Python 3 bindings for the cairo library
-%{?python_provide:%python_provide python3-cairo}
 
 %description -n python3-cairo
 Python 3 bindings for the cairo library.

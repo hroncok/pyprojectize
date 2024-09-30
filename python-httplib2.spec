@@ -22,7 +22,6 @@ other HTTP libraries.
 
 %package -n python3-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
 BuildRequires:  python3-pytest
 # This is listed as a test requirement, but doesn't seem to actually be used.

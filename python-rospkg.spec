@@ -37,7 +37,6 @@ BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-distro
 BuildRequires:  python%{python3_pkgversion}-pytest
 BuildRequires:  python%{python3_pkgversion}-PyYAML
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 Obsoletes:      python2-%{srcname} < 1.1.10-3
 
 %if %{undefined __pythondist_requires}

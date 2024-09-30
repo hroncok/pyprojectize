@@ -16,7 +16,6 @@ The lazr.uri package includes code for parsing and dealing with URIs.}
 
 %package -n     python3-lazr-uri
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-lazr-uri}
 
 BuildRequires:  python3-devel
 

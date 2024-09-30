@@ -20,7 +20,6 @@ pure-Python, and fast as C-extensions.
 
 %package -n python%{python3_pkgversion}-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 BuildRequires: make
 BuildRequires:  python%{python3_pkgversion}-devel

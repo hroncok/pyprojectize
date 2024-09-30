@@ -26,7 +26,6 @@ A fast, standards compliant, C based, HTML 5 parser for python
 
 %package -n python3-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 # This package bundles sigil-gumbo a fork of gumbo
 # Base project: https://github.com/google/gumbo-parser

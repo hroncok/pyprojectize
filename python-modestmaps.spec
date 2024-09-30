@@ -28,7 +28,6 @@ Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
 Requires:       python%{python3_pkgversion}-imaging
 
-%{?python_provide:%python_provide python%{python3_pkgversion}-modestmaps}
 
 %description -n python%{python3_pkgversion}-%{pkgname}
 Modest Maps is a small, extensible, and free library for designers and

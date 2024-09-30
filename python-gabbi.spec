@@ -19,7 +19,6 @@ are represented in a declarative YAML-based form.
 
 %package -n python3-%{pypi_name}
 Summary:        Declarative HTTP testing library
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 BuildRequires:       python3-devel
 BuildRequires:       python3-six

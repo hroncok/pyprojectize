@@ -40,7 +40,6 @@ Summary:	%{sum}
 Requires:	systemd-python3
 Requires:	python3-PyYAML
 Recommends:	%{srcname} = %{version}-%{release}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 Python module for examining, bookmarking, and filtering systemd

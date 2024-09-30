@@ -23,7 +23,6 @@ straightforward programmers interface and a simple syntax for config files.
 
 %package     -n python%{python3_pkgversion}-configobj
 Summary:        %{summary}
-%{?python_provide:%python_provide python%{python3_pkgversion}-configobj}
 Requires:       python%{python3_pkgversion}-six
 %description -n python%{python3_pkgversion}-configobj %_description
 

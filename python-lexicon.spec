@@ -23,7 +23,6 @@ Lexicon is a simple collection of dict sub-classes providing extra power.
 
 %package -n python3-lexicon
 Summary:	Powerful dict subclass(es) with aliasing and attribute access
-%{?python_provide:%python_provide python3-lexicon}
 
 %description -n python3-lexicon
 Lexicon is a simple collection of dict sub-classes providing extra power.

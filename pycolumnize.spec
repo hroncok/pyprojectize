@@ -20,7 +20,6 @@ Summary:        %{summary}
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(mock)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 A Python module to format a simple (i.e. not nested) list into aligned columns.

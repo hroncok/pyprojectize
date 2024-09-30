@@ -64,7 +64,6 @@ HTML documentation for the '%{srcname}' Python module.
 %package -n python%{python3_pkgversion}-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %if %{with tests}
 BuildRequires:  python%{python3_pkgversion}-capturer >= 2.1

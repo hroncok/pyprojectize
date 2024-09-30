@@ -25,7 +25,6 @@ BuildRequires:  python3-logbook
 BuildRequires:  python3-lxml
 BuildRequires:  python3-pytest
 BuildRequires:  wireshark-cli
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Python wrapper for tshark that allowing python packet parsing using wireshark

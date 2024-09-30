@@ -29,7 +29,6 @@ BuildRequires:  python3-devel
 Provides:       python3-flask-restplus = %{version}-%{release}
 # Using < or <= would obsolete ourselves
 Obsoletes:      python3-flask-restplus = 0.13.0
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname} %_description
 

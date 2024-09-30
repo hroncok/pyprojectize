@@ -19,7 +19,6 @@ Plug switches.
 
 %package -n     python3-%{pkg_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pkg_name}}
 
 %description -n python3-%{pkg_name}
 Pyedimax is a python library for interfacing with the Edimax Smart

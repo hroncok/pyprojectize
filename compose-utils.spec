@@ -38,7 +38,6 @@ Requires:   python%{python3_pkgversion}-productmd >= 1.33
 Requires:   python%{python3_pkgversion}-kobo
 Requires:   python%{python3_pkgversion}-kobo-rpmlib >= 0.10.0
 Requires:   rsync
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{name}}
 
 %description -n python%{python3_pkgversion}-%{name}
 Python 3 libraries supporting tools for working with composes

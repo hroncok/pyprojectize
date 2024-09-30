@@ -28,7 +28,6 @@ Conflicts:      python3-%{upname}
 Obsoletes:      python3-%{upname} < 1
 # This is a compatibility package for software that isn't yet updated to work with mistune 2.x
 Provides:       deprecated()
-%{?python_provide:%python_provide python3-%{upname}08}
 
 %description -n python3-%{upname}08 %{common_description}
 

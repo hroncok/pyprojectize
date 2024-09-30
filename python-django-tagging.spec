@@ -20,7 +20,6 @@ simple.\
 
 %package -n python3-django-tagging
 Summary:        A generic tagging application for Django projects
-%{?python_provide:%python_provide python3-django-tagging}
 Requires:       python3-django
 BuildRequires:  python3-devel
 

@@ -17,7 +17,6 @@ An MPD (Music Player Daemon) client library written in pure Python.
 
 %package -n python3-mpd
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-mpd}
 
 %description -n python3-mpd
 An MPD (Music Player Daemon) client library written in pure Python.

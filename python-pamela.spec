@@ -18,7 +18,6 @@ Yet another Python wrapper for PAM.
 Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-pytest
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %description -n python%{python3_pkgversion}-%{srcname}
 Yet another Python wrapper for PAM.

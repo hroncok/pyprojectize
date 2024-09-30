@@ -39,7 +39,6 @@ A small Python module to parse various kinds of time expressions.
 %if %{with python2}
 %package -n     python2-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python2-%{pypi_name}}
 
 %description -n python2-%{pypi_name}
 A small Python module to parse various kinds of time expressions.
@@ -50,7 +49,6 @@ This is the Python 2 version of the package.
 %if %{with python3}
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 A small Python module to parse various kinds of time expressions.

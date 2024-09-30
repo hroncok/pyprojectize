@@ -23,7 +23,6 @@ BuildRequires:  python3dist(sseclient-py)
 BuildRequires:  python3dist(mock)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(requests-mock)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Python Arlo is a library written in Python that exposes the Netgear

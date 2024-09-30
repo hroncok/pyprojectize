@@ -31,7 +31,6 @@ BuildRequires:  openssl-devel
 Summary:        Bindings for the scrypt key derivation function library
 BuildRequires:  python3-devel
 Provides:       bundled(scrypt) = 1.2.0
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 %{common_desc}

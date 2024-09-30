@@ -23,7 +23,6 @@ to enroll secure boot certificates.
 
 %package -n     python3-virt-firmware
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-virt-firmware}
 Provides:       virt-firmware
 Conflicts:      python3-virt-firmware-peutils < 23.9
 Obsoletes:      python3-virt-firmware-peutils < 23.9

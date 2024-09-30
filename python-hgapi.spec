@@ -25,7 +25,6 @@ Summary:        Python 3 API to Mercurial using the command-line interface
 BuildRequires:  python3-devel
 BuildRequires:  mercurial
 Requires:       mercurial
-%{?python_provide:%python_provide python3-hgapi}
 
 %description -n python3-hgapi
 hgapi is a pure-Python API to Mercurial, that uses the command-line interface

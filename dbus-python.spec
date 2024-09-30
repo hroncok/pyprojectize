@@ -30,7 +30,6 @@ D-Bus python bindings for use with python programs.
 
 %package -n python%{python3_pkgversion}-dbus
 Summary: D-Bus bindings for python3
-%{?python_provide:%python_provide python%{python3_pkgversion}-dbus}
 BuildRequires: python%{python3_pkgversion}-devel
 # for py3_build
 BuildRequires: python3dist(setuptools-scm)

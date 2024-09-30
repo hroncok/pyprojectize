@@ -41,7 +41,6 @@ Obsoletes: python3-webob1.2 < 1.2.3-7
 Requires:       python3-cgi
 %endif
 
-%{?python_provide:%python_provide python3-webob}
 
 
 %description -n python3-webob

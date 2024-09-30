@@ -23,7 +23,6 @@ BuildRequires:  python3-devel
 
 BuildRequires:  python3-pytest
 BuildRequires:  python3-marshmallow
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 A Python enum serializer/deserializer for use with Marshmallow.

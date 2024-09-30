@@ -32,7 +32,6 @@ BuildRequires:  python%{python3_pkgversion}-nose2
 BuildRequires:  python%{python3_pkgversion}-rosdistro
 BuildRequires:  python%{python3_pkgversion}-rospkg
 BuildRequires:  python%{python3_pkgversion}-setuptools_scm
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %if %{undefined __pythondist_requires}
 Requires:       python%{python3_pkgversion}-catkin_pkg

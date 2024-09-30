@@ -20,7 +20,6 @@ of symbols and a larger alphabet than UUID (A-Za-z0-9_-).
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Nano ID is a tiny, secure, URL-friendly, unique string ID generator for

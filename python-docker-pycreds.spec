@@ -42,7 +42,6 @@ BuildRequires:  python2-six
 BuildRequires:  python2-pytest
 %endif # tests
 
-%{?python_provide:%python_provide python2-%{pypi_name}}
 
 Requires:  python2-six
 
@@ -60,7 +59,6 @@ BuildRequires:  python3-six
 BuildRequires:  python3-pytest
 %endif # tests
 
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 Requires:  python3-six
 

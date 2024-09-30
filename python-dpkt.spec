@@ -24,7 +24,6 @@ with definitions for the basic TCP/IP protocols.
 
 %package -n python3-dpkt
 Summary:        %{sum}
-%{?python_provide:%python_provide python3-dpkt}
 
 %description -n python3-dpkt
 Fast, simple packet creation and parsing library

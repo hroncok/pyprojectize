@@ -18,7 +18,6 @@ Parse and format link headers according to RFC 5988 "Web Linking".
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Parse and format link headers according to RFC 5988 "Web Linking".

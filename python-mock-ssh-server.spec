@@ -22,7 +22,6 @@ on top of paramiko, so it does not need OpenSSH binaries to be installed.
 
 %package -n     python%{python3_pkgversion}-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
  
 Requires:       python%{python3_pkgversion}-paramiko
 

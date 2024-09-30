@@ -30,7 +30,6 @@ Requires:       python3-django
 Obsoletes:      python2-%{pypi_name} < 0.9.0-5
 Obsoletes:      python-%{pypi_name} < 0.9.0-5
 
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Django-annoying is a django application that tries to

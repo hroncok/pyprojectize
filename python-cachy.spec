@@ -21,7 +21,6 @@ BuildRequires:  python3-devel
 #Recommends:     python3dist(memcached) >= 1.59
 Recommends:     python3-msgpack >= 0.5.0
 Recommends:     python3-redis >= 2.10.0
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Cachy provides a simple yet effective caching library.

@@ -38,7 +38,6 @@ of Python extension modules in C++.
 %if %{with python2}
 %package -n python2-%{modname}-devel
 Summary:        PyCXX header and source files
-%{?python_provide:%python_provide python2-%{modname}-devel}
 BuildRequires:  python2-devel
 Requires:       python2
 # Obsoletes/Provides needed only for EL6
@@ -54,7 +53,6 @@ for Python 2.  There is no non-devel package needed.
 %if %{with python3}
 %package -n python%{python3_pkgversion}-%{modname}-devel
 Summary:        PyCXX header and source files
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{modname}-devel}
 BuildRequires:  python%{python3_pkgversion}-devel
 Requires:       python%{python3_pkgversion}
 

@@ -18,7 +18,6 @@ Library to communicate with the met.no API.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pkg_name}}
 
 %description -n python3-%{pkg_name}
 Library to communicate with the met.no API.

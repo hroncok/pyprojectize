@@ -28,7 +28,6 @@ reload the page, restview will reload the document from disk and render it.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 A library for ReStructuredText documents that renders them.

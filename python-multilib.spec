@@ -31,7 +31,6 @@ This package provides the configuration files for %{name}.
 %if 0%{?with_python2}
 %package -n python2-multilib
 Summary:        %{summary}
-%{?python_provide:%python_provide python2-multilib}
 BuildRequires:  python2-devel
 %if 0%{?fedora} || 0%{?rhel} >= 8
 BuildRequires:  python2-setuptools
@@ -50,7 +49,6 @@ Requires:       %{name}-conf = %{version}-%{release}
 
 %package -n python%{python3_pkgversion}-multilib
 Summary:        %{summary}
-%{?python_provide:%python_provide python%{python3_pkgversion}-multilib}
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-six
 Requires:       python%{python3_pkgversion}-six

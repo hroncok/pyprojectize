@@ -26,7 +26,6 @@ eventually think about finding another module to use.
 
 %package -n python%{python3_pkgversion}-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python%{python3_pkgversion}-%{pypi_name}
 sgmllib was dropped in Python 3. For those depending on it,

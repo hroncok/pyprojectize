@@ -24,7 +24,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-pytest
 BuildRequires:  python3-pytest-cov
 BuildRequires:  python3-setuptools_scm
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 ASTEVAL is a safe(ish) evaluator of Python expressions and statements,

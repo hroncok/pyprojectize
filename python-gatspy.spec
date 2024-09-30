@@ -23,7 +23,6 @@ periodogram, the Supersmoother method, and others.
 
 %package -n python3-%{srcname}
 Summary:        %{sum}
-%{?python_provide:%python_provide python3-%{srcname}}
 Requires:       python3-astroML
 Requires:       python3-supersmoother
 Recommends:     python3-astroML-addons

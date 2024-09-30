@@ -22,7 +22,6 @@ BuildRequires:  python3-graphql-core
 BuildRequires:  python3-pytest
 BuildRequires:  python3-pytest-asyncio
 
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 Requires:       python3dist(graphql-core)
 %description -n python3-%{pypi_name}

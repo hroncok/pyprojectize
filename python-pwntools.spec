@@ -90,7 +90,6 @@ intended to make exploit writing as simple as possible.
 
 %package -n python%{python3_pkgversion}-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 Requires:       binutils
 
 # As we have ignored the requirement of unicorn, lets at least recommend it

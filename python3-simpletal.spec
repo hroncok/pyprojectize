@@ -11,7 +11,6 @@ URL:		http://www.owlfish.com/software/simpleTAL/
 Source0:	http://www.owlfish.com/software/simpleTAL/downloads/%{srcname}-%{version}.tar.gz
 BuildArch:	noarch
 BuildRequires:	python3-devel
-%{?python_provide:%python_provide python3-%{pkgname}}
 
 %description
 SimpleTAL is a stand alone Python implementation of the TAL, TALES and

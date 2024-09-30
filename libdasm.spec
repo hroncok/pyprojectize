@@ -152,8 +152,7 @@ developing applications that use %{name}.
 %package        -n python2-pydasm
 Summary:        Python2 module for disassembling x86 machine code
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-%{?python_provide:%python_provide python2-%{name}}
-%{?python_provide:%python_provide python2-pydasm}
+%py_provides    python2-%{name}
 
 
 %description    -n python2-pydasm
@@ -169,7 +168,6 @@ It is a python wrapper for libdasm.
 %package        -n python%{python3_pkgversion}-pydasm
 Summary:        Python module for disassembling x86 machine code
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-%{?python_provide:%python_provide python%{python3_pkgversion}-pydasm}
 
 
 %description    -n python%{python3_pkgversion}-pydasm

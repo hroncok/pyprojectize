@@ -20,7 +20,6 @@ Angus Johnson.
 
 %package -n python3-%{pkgname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pkgname}}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools_scm

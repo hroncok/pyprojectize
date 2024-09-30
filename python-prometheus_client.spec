@@ -20,7 +20,6 @@ Summary:        %{summary}
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(decorator)
 BuildRequires:  python3dist(pytest)
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 %{summary}.
@@ -30,7 +29,6 @@ Summary:        %{summary}
 Requires:       python3-%{srcname} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       python%{python3_version}dist(twisted)
 BuildRequires:  python3dist(twisted)
-%{?python_provide:%python_provide python3-%{srcname}+twisted}
 
 %description -n python3-%{srcname}+twisted
 %{summary}.

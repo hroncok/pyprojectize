@@ -15,7 +15,6 @@ space via the spidev linux kernel driver.
 
 %package -n python3-spidev
 Summary:  A python library for manipulating SPI
-%{?python_provide:%python_provide python3-spidev}
 
 %description -n python3-spidev
 A python module for interfacing with SPI devices from user 

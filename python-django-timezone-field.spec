@@ -19,7 +19,6 @@ BuildArch:      noarch
 
 %package     -n python3-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
 
 %description -n python3-%{srcname} %{_description}
@@ -28,7 +27,6 @@ Python 3 version.
 
 %package     -n python3-%{srcname}+rest_framework
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}+rest_framework}
 Provides:       python3dist(%{srcname}[rest_framework]) = %{version}
 Provides:       python%{python3_version}dist(%{srcname}[rest_framework]) = %{version}
 Requires:       python%{python3_version}dist(%{srcname}) = %{version}

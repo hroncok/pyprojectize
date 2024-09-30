@@ -30,7 +30,6 @@ BuildRequires: python3-pytest-cov
 BuildRequires: python3-pytest-runner
 BuildRequires: python3-tox
 %endif
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Extract the top level domain (TLD) from the URL given. List of TLD names is

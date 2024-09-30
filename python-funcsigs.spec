@@ -24,7 +24,6 @@ as well as 3.2 and up.
 
 %package -n     python3-%{pypi_name}
 Summary:        Python function signatures from PEP362 for Python 2.6, 2.7 and 3.2+
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 BuildRequires:  python3-devel
 %if %{with doc}

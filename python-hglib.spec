@@ -26,7 +26,6 @@ hg.
 %if 0%{?with_python2}
 %package     -n python2-hglib
 Summary:        Mercurial Python library
-%{?python_provide:%python_provide python2-hglib}
 %description -n python2-hglib
 python-hglib is a library with a fast, convenient interface to
 Mercurial. It uses Mercurials command server for communication with
@@ -35,7 +34,6 @@ hg.
 
 %package     -n python3-hglib
 Summary:        Mercurial Python library
-%{?python_provide:%python_provide python3-hglib}
 %description -n python3-hglib
 python-hglib is a library with a fast, convenient interface to
 Mercurial. It uses Mercurials command server for communication with

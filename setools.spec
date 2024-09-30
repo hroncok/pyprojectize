@@ -67,7 +67,6 @@ This package includes the following console tools:
 Summary:     Policy analysis tools for SELinux
 License:     LGPL-2.1-only
 Obsoletes:   setools-libs < 4.0.0
-%{?python_provide:%python_provide python3-setools}
 Requires:    python3-setuptools
 
 %description -n python3-setools

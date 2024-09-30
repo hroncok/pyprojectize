@@ -35,7 +35,6 @@ Requires:       python3-setuptools
 Requires:       python3-watchdog
 Requires:       python3-setproctitle
 Requires:       python3-cryptography
-%{?python_provide:%python_provide python3-bucky}
 
 %description -n python3-bucky %_description
 

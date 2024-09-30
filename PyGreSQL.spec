@@ -37,7 +37,6 @@ Python code for accessing a PostgreSQL database.
 
 %package -n python3-pygresql
 Summary:	%summary
-%{?python_provide:%python_provide python3-pygresql}
 # Remove before F30
 Provides: python3-PyGreSQL = %{uversion}-%{release}
 Provides: python3-PyGreSQL%{?_isa} = %{uversion}-%{release}

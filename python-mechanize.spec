@@ -37,7 +37,6 @@ Andy Lester (WWW::Mechanize).  urllib2 was written by Jeremy Hylton.
 
 %package -n python3-%{srcname}
 Summary:        %{sum}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 Stateful programmatic web browsing, after Andy Lester's Perl module

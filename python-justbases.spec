@@ -17,7 +17,6 @@ Python numbers.
 
 %package -n python3-%{srcname}
 Summary:    A small library for precise conversion between arbitrary bases
-%{?python_provide:%python_provide python3-%{srcname}}
 
 BuildRequires:  python3-devel
 

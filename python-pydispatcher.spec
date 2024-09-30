@@ -28,7 +28,6 @@ objects and to reference instance methods using weak-references.
 
 %package -n     python3-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 %{_description}

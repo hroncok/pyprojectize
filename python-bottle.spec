@@ -23,7 +23,6 @@ Python Standard Library.
 
 %package -n python%{python3_pkgversion}-%{srcname}
 Summary:        Fast and simple WSGI-framework for small web-applications
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %description -n python%{python3_pkgversion}-%{srcname}
 Bottle is a fast and simple micro-framework for small web-applications.

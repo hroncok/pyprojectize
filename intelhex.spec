@@ -27,7 +27,6 @@ library itself. Check the docs to know more.
 
 %package -n python3-intelhex
 Summary:  A python3 library for manipulating Intel HEX file format
-%{?python_provide:%python_provide python3-intelhex}
 
 %description -n python3-intelhex
 The Intel HEX file format is widely used in microprocessors and microcontrollers

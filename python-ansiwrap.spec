@@ -37,7 +37,6 @@ BuildRequires:  python3-pytest
 BuildRequires:  python3-pytest-cov
 BuildRequires:  python3-textwrap3
 BuildRequires:  python3-tox
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 ansiwrap wraps text, like the standard textwrap module. But it also correctly

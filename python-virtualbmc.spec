@@ -34,7 +34,6 @@ A virtual BMC for controlling virtual machines using IPMI commands.
 Summary: A virtual BMC for controlling virtual machines using IPMI commands
 Suggests: python3-%{srcname}-doc
 Requires(pre): shadow-utils
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 A virtual BMC for controlling virtual machines using IPMI commands.

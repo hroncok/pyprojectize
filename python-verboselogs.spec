@@ -41,7 +41,6 @@ HTML documentation for the '%{srcname}' Python module.
 Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-pytest
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %if 0%{?fedora} || 0%{?rhel} >= 8
 Suggests:       %{name}-doc = %{version}-%{release}

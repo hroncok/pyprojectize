@@ -21,7 +21,6 @@ directories.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Powerful web directory fuzzer to locate existing and/or hidden files or

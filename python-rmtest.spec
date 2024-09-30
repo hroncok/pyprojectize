@@ -39,7 +39,6 @@ unit test and a disposable ephemeral Redis sub-process.
 %package -n python2-%{srcname}
 Summary:        %{summary}
 Requires:       python2-redis
-%{?python_provide:%python_provide python2-%{srcname}}
 
 %description -n python2-%{srcname}
 Simple framework for testing Redis modules using python
@@ -49,7 +48,6 @@ unit test, and a disposable ephemeral Redis sub-process.
 %package -n python3-%{srcname}
 Summary:        %{summary}
 Requires:       python3-redis
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 Simple framework for testing Redis modules using python

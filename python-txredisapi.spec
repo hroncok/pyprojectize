@@ -30,7 +30,6 @@ This driver is distributed as part of the cyclone web framework.}
 
 %package -n     python3-txredisapi
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-txredisapi}
 Requires:       python3-six
 Requires:       python3-twisted
 %description -n python3-txredisapi %{_description}

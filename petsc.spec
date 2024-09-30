@@ -450,7 +450,6 @@ Portable Extensible Toolkit for Scientific Computation (developer files).
 %if %{with python}
 %package -n     python3-%{name}-openmpi
 Summary:        Python3 bindings for OpenMPI PETSc
-%{?python_provide:%python_provide python3-%{name}-openmpi}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-wheel
@@ -538,7 +537,6 @@ Portable Extensible Toolkit for Scientific Computation (developer files).
 %if %{with python}
 %package -n     python3-%{name}-mpich
 Summary:        Python3 bindings for MPICH PETSc
-%{?python_provide:%python_provide python3-%{name}-mpich}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-wheel

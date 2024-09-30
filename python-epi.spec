@@ -20,7 +20,6 @@ installed on a system.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{sname}}
 
 %description -n python3-%{sname}
 Entry Point Inspector is a tool for looking at the entry point plugins

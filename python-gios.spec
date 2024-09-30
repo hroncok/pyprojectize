@@ -23,7 +23,6 @@ BuildRequires:  python3dist(aiohttp)
 BuildRequires:  python3dist(pytest-asyncio)
 BuildRequires:  python3dist(pytest-cov)
 BuildRequires:  python3dist(pytest-runner)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Python wrapper for getting air quality data from GIOŚ

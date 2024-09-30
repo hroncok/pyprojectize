@@ -69,7 +69,6 @@ Requires:       hdf5%{_isa} = %{_hdf5_version}
 Requires:       python%{python3_pkgversion}-cached_property
 Requires:       python%{python3_pkgversion}-numpy >= 1.7
 Requires:       python%{python3_pkgversion}-six
-%{?python_provide:%python_provide python%{python3_pkgversion}-h5py}
 %description -n python%{python3_pkgversion}-h5py %_description
 
 %if %{with openmpi}

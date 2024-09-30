@@ -28,7 +28,6 @@ BuildRequires:  python3-nose
 BuildRequires:  python3dist(agate) >= 1.5
 BuildRequires:  python3dist(sqlalchemy) >= 1.0.8
 BuildRequires:  python3dist(furo)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 %{desc}

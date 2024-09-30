@@ -47,7 +47,6 @@ number of notable differences exist between this code and its forefathers:
 %if 0%{?with_py2}
 %package -n python2-oauth2
 Summary:        Python support for improved oauth
-%{?python_provide:%python_provide python2-oauth2}
 
 %description -n python2-oauth2
 Oauth2 was originally forked from Leah Culver and Andy Smith's oauth.py 
@@ -70,7 +69,6 @@ number of notable differences exist between this code and its forefathers:
 
 %package -n python3-oauth2
 Summary:        Python support for improved oauth
-%{?python_provide:%python_provide python3-oauth2}
 
 %description -n python3-oauth2
 Oauth2 was originally forked from Leah Culver and Andy Smith's oauth.py 

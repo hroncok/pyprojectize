@@ -29,7 +29,6 @@ BuildRequires:  python3dist(toml)
 Requires:       python3dist(msgpack)
 Requires:       python3dist(ruamel-yaml)
 Requires:       python3dist(toml)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Box will automatically make otherwise inaccessible keys safe to

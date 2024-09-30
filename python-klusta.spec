@@ -33,7 +33,6 @@ Summary:        %{sum}
 BuildRequires:  python3-devel
 BuildRequires:  %{py3_dist numpy six pytest h5py scipy tqdm responses click}
 Requires:       %{py3_dist numpy scipy six h5py tqdm click}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 klusta is an open source package for automatic spike sorting of multielectrode

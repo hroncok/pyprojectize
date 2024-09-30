@@ -62,7 +62,6 @@ manage these event sources and provide your program with events.
 %if 0%{?with_python3}
 %package -n python%{python3_pkgversion}-%{gitname}
 Summary:        Python3 binding for the libev library
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{gitname}}
 
 
 

@@ -49,7 +49,6 @@ Summary: Perform colorspace conversions accurately and easily
 BuildRequires: python3-devel
 BuildRequires: python3-numpy
 Requires: python3-numpy
-%{?python_provide:%python_provide python3-%{pname}}
 
 %description -n python3-%{pname}
 %{desc}

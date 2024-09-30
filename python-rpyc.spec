@@ -25,7 +25,6 @@ Summary:        %{summary}
 
 BuildRequires:  python3-devel
 Obsoletes:      python2-%{modname} < 4.0.1-4
-%{?python_provide:%python_provide python3-%{modname}}
 
 %description -n python3-%{modname} %_description
 

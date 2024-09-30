@@ -20,7 +20,6 @@ Python API wrapper for Kismet RESTful API interface.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pkg_name}}
 
 %description -n python3-%{pkg_name}
 Python API wrapper for Kismet RESTful API interface.

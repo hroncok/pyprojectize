@@ -20,7 +20,6 @@ precision for digital forensics.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 A Python module that provides date and time objects to preserve accuracy and

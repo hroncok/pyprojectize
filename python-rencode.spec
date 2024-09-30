@@ -33,7 +33,6 @@ b-encodings.
 
 %package -n python3-rencode
 Summary:    Web safe object pickling/unpickling
-%{?python_provide:%python_provide python%{python3_pkgversion}-rencode}
 
 
 %description -n python3-rencode

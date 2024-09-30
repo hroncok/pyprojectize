@@ -23,7 +23,6 @@ x86, x64, ARM, ARM64, PowerPC, SPARC and MIPS architectures.
 
 %package -n python3-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
 Requires:       %{py3_dist capstone}
 
 %description -n python3-%{srcname}

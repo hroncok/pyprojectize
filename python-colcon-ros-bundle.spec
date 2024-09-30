@@ -31,7 +31,6 @@ BuildRequires:  python%{python3_pkgversion}-colcon-bundle >= 0.0.18
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-pytest
 BuildRequires:  python%{python3_pkgversion}-rosdep >= 0.14.0
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %if !0%{?rhel} || 0%{?rhel} >= 8
 BuildRequires:  python%{python3_pkgversion}-pytest-asyncio

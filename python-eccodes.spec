@@ -57,7 +57,6 @@ files and BUFR 3 and 4 files.
 %package -n python3-eccodes
 Summary: %summary
 
-%{?python_provide:%python_provide python3-eccodes}
 
 %description -n python3-eccodes %_description
 

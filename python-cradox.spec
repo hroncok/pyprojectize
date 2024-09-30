@@ -25,7 +25,6 @@ Python libraries for the Ceph librados library with use cython instead of ctypes
 %if %{with python2}
 %package -n     python2-%{pypi_name}
 Summary:        Python libraries for the Ceph librados library with use cython instead of ctypes
-%{?python_provide:%python_provide python2-%{pypi_name}}
 
 BuildRequires:  python2-devel
 BuildRequires:  python2-setuptools
@@ -45,7 +44,6 @@ Python libraries for the Ceph librados library with use cython instead of ctypes
 %if %{with python3}
 %package -n     python3-%{pypi_name}
 Summary:        Python libraries for the Ceph librados library with use cython instead of ctypes
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-pbr

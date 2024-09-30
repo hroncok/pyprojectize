@@ -29,7 +29,6 @@ format and partially repair them if necessary.
 
 %package -n     python3-%{pypi_name}
 Summary:        Python 3 bindings for ADMesh, STL manipulation library
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 Obsoletes:      python2-%{pypi_name} < 0.98.8-2
 Obsoletes:      python-%{pypi_name} < 0.98.8-2

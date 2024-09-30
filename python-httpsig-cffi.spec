@@ -21,7 +21,6 @@ PyPy support.
 
 %package -n     python3-httpsig-cffi
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-httpsig-cffi} 
 Requires:       python3dist(cryptography)
 Requires:       python3dist(requests)
 Requires:       python3dist(six)

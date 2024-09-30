@@ -18,7 +18,6 @@ pager support.
 
 %package -n     python3-%{name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{name}}
 %description -n python3-%{name}
 Python library that implements API used by ydiff tool.
 

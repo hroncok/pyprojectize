@@ -28,7 +28,6 @@ BuildRequires:	python3dist(pyhamcrest)
 BuildRequires:	python3dist(six)
 BuildRequires:	python3dist(mypy)
 
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %pyproject_extras_subpkg -n python3-%{srcname} prometheus
 

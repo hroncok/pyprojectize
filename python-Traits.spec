@@ -38,8 +38,7 @@ attributes, traits also have several additional characteristics:
 
 %package -n python%{python3_pkgversion}-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{modname}}
+%py_provides    python%{python3_pkgversion}-%{modname}
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-Cython
 BuildRequires:  python%{python3_pkgversion}-numpy

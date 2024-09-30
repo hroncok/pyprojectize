@@ -36,7 +36,6 @@ Summary:        %{summary}
 BuildRequires:  python2-devel
 BuildRequires:  python2-setuptools
 Requires:       python2-six
-%{?python_provide:%python_provide python2-%{pkgname}}
 
 %description -n python2-%{pkgname} %{_description}
 %endif
@@ -46,7 +45,6 @@ Requires:       python2-six
 Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
 Requires:       python%{python3_pkgversion}-six
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pkgname}}
 
 %description -n python%{python3_pkgversion}-%{pkgname} %{_description}
 %endif

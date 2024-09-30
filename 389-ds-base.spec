@@ -591,7 +591,6 @@ Requires: python%{python3_pkgversion}-libselinux
 Requires: python%{python3_pkgversion}-setuptools
 Requires: python%{python3_pkgversion}-cryptography
 Recommends: bash-completion
-%{?python_provide:%python_provide python%{python3_pkgversion}-lib389}
 
 %description -n python%{python3_pkgversion}-lib389
 This module contains tools and libraries for accessing, testing,

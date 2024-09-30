@@ -77,7 +77,6 @@ btrfs filesystem-specific programs.
 Summary:        Python 3 bindings for libbtrfsutil
 License:        LGPL-2.1-or-later
 Requires:       libbtrfsutil%{?_isa} = %{version}-%{release}
-%{?python_provide:%python_provide python3-btrfsutil}
 
 %description -n python3-btrfsutil
 python3-btrfsutil contains Python 3 bindings to the libbtrfsutil library,

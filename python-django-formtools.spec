@@ -21,7 +21,6 @@ Currently for form previews and multi-step forms.
 
 %package -n python3-%{pypi_name}
 Summary:        A set of high-level abstractions for Django forms
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-sphinx
@@ -41,7 +40,6 @@ Currently for form previews and multi-step forms.
 
 %package -n python3-%{pypi_name}-doc
 Summary:        A set of high-level abstractions for Django forms - documentation
-%{?python_provide:%python_provide python3-%{pypi_name}-doc}
 
 Requires:       python3-%{pypi_name} = %{version}-%{release}
 

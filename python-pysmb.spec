@@ -24,7 +24,6 @@ Summary:        %{summary}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(pyasn1)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 pysmb is an experimental SMB/CIFS library written in Python. It implements the

@@ -22,7 +22,6 @@ Casttube is a python library to interact with the Youtube Chromecast api.
 
 %package -n python3-casttube
 Summary:        A python library to interact with the Youtube Chromecast api
-%{?python_provide:%python_provide python3-casttube}
 
 Requires: python3-requests
 

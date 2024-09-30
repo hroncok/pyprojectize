@@ -21,7 +21,6 @@ A PEG-based parser interpreter with memoization.
 Summary:        %{summary}
 BuildRequires:  python2-devel
 BuildRequires:  python2-setuptools
-%{?python_provide:%python_provide python2-%{srcname}}
 
 %description -n python2-%{srcname}
 A PEG-based parser interpreter with memoization.
@@ -30,7 +29,6 @@ A PEG-based parser interpreter with memoization.
 %package -n python3-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 A PEG-based parser interpreter with memoization.

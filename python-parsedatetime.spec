@@ -26,7 +26,6 @@ strings.
 
 %package -n python3-%{realname}
 Summary:        Parse human-readable date/time strings in Python
-%{?python_provide:%python_provide python3-%{realname}}
 
 %description -n python3-%{realname}
 parsedatetime is a python module that can parse human-readable date/time

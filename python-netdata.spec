@@ -18,7 +18,6 @@ allmetrics and the alarms endpoint supported.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 A Python API for interacting with Netdata. Currently are the data, the

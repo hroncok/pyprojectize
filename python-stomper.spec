@@ -30,7 +30,6 @@ create and parse STOMP messages in a programatic fashion.
 %if %{with python2}
 %package -n python2-stomper
 Summary:        A python client implementation of the STOMP protocol
-%{?python_provide:%python_provide python2-stomper}
 
 BuildRequires:  python2-devel
 BuildRequires:  python2-setuptools
@@ -49,7 +48,6 @@ create and parse STOMP messages in a programatic fashion.
 %if %{with python3}
 %package -n python3-stomper
 Summary:        A python client implementation of the STOMP protocol
-%{?python_provide:%python_provide python3-stomper}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-nose

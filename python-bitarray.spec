@@ -28,7 +28,6 @@ you may find this module useful.
 
 %package -n python%{python3_pkgversion}-%{srcname}
 Summary:  %{sum}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %description -n python%{python3_pkgversion}-%{srcname}
 Bitarrays are sequence types and behave very much like usual lists.

@@ -25,7 +25,6 @@ provides following features:
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 MakeELF is a Python library to parse, modify and create ELF binaries. It

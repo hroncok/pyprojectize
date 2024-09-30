@@ -28,7 +28,6 @@ BuildRequires:  python3dist(wheel)
 %package -n python3-%{pypi_name}
 Summary:        Query metadata from sdists / bdists / installed packages
 Requires:       python3-setuptools
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name} %{common_description}
 

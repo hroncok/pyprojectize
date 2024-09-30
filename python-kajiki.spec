@@ -27,7 +27,6 @@ speed! Don't delay! Pick up your copy of Kajiki today!
 
 %package -n python3-kajiki
 Summary:            Really fast well-formed xml templates
-%{?python_provide:%python_provide python3-kajiki}
 
 Requires:           python3-babel
 Requires:           python3-pytz

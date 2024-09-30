@@ -67,7 +67,6 @@ Documentation for the fedmsg library and CLI.
 
 %package -n python3-fedmsg
 Summary: Python 3 API and CLI for fedmsg
-%{?python_provide:%python_provide python3-fedmsg}
 Requires:       python3-arrow
 Requires:       python3-click
 Requires:       python3-cryptography >= 1.6

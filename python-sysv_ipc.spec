@@ -26,7 +26,6 @@ This module comes with four demonstration apps.
 
 %package -n python3-%{srcname}
 Summary:        %{sum}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 %{desc}

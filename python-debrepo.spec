@@ -27,7 +27,6 @@ Summary:        %{summary}
 Requires:       python3-debian
 # https://bugs.debian.org/858906
 Requires:       python3-chardet
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 debrepo is a library for inspecting composes of Debian repositories and

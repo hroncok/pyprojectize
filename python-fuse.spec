@@ -19,8 +19,7 @@ It's just one file and is implemented using ctypes.
 
 %package -n python3-fusepy
 Summary: %{summary}
-%{?python_provide:%python_provide python3-fuse}
-%{?python_provide:%python_provide python3-fusepy}
+%py_provides python3-fuse
 Provides: python3-fuse = %{version}-%{release}
 Obsoletes: python3-fuse < 2.0.4-10
 Requires: fuse-libs

@@ -167,7 +167,6 @@ Requires:   emacs(bin) >= %{_emacs_version}
 %package -n python2-notmuch
 Summary:    Python2 bindings for notmuch
 Requires:   %{name} = %{version}-%{release}
-%{?python_provide:%python_provide python2-notmuch}
 
 Requires:       python2
 
@@ -179,7 +178,6 @@ Requires:       python2
 %package -n python3-notmuch
 Summary:    Python3 bindings for notmuch (legacy)
 Requires:   %{name} = %{version}-%{release}
-%{?python_provide:%python_provide python3-notmuch}
 
 Requires:       python3
 
@@ -191,7 +189,6 @@ Requires:       python3
 %package -n python3-notmuch2
 Summary:    Python3 bindings for notmuch (cffi)
 Requires:   %{name} = %{version}-%{release}
-%{?python_provide:%python_provide python3-notmuch2}
 
 Requires:       python3
 

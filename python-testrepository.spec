@@ -31,7 +31,6 @@ Requires:       python3-fixtures
 Requires:       python3-subunit
 Requires:       python3-testtools
 Requires:       python3-extras
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 # Provide a clean upgrade path
 Obsoletes:      python-%{pypi_name} < 0.0.20-20

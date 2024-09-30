@@ -51,7 +51,6 @@ BuildRequires:  python2-nose >= 1.0
 BuildRequires:  python2-mock
 %endif
 
-%{?python_provide:%python_provide python2-%{srcname}}
 
 %description -n python2-%{srcname} %{common_description}
 %endif
@@ -65,7 +64,6 @@ BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-pytest
 %endif
 
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %description -n python%{python3_pkgversion}-%{srcname} %{common_description}
 %endif

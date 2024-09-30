@@ -24,7 +24,6 @@ BuildRequires:  python3-devel
 %if %{with tests}
 BuildRequires:  python3-pytest
 %endif
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 This API is mainly for Terminal Emulator implementors, or those writing programs

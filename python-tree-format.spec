@@ -22,7 +22,6 @@ Python library to generate nicely formatted trees, like the UNIX `tree` command
 
 %package     -n python3-%{pkgname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pkgname}}
 %description -n python3-%{pkgname}
 Python library to generate nicely formatted trees, like the UNIX `tree` command
 

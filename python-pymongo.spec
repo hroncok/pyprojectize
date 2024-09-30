@@ -32,7 +32,6 @@ Documentation for python-pymongo.
 
 %package -n python3-bson
 Summary:        Python bson library
-%{?python_provide:%python_provide python3-bson}
 
 %description -n python3-bson
 BSON is a binary-encoded serialization of JSON-like documents. BSON is designed
@@ -44,7 +43,6 @@ contains the python3 version of this module.
 %package -n python3-pymongo
 Summary:        Python driver for MongoDB
 Requires:       python3-bson%{?_isa} = %{version}-%{release}
-%{?python_provide:%python_provide python3-pymongo}
 
 %description -n python3-pymongo
 The Python driver for MongoDB.  This package contains the python3 version of
@@ -54,7 +52,6 @@ this module.
 %package -n python3-pymongo-gridfs
 Summary:        Python GridFS driver for MongoDB
 Requires:       python3-pymongo%{?_isa} = %{version}-%{release}
-%{?python_provide:%python_provide python3-pymongo-gridfs}
 
 %description -n python3-pymongo-gridfs
 GridFS is a storage specification for large objects in MongoDB.  This package

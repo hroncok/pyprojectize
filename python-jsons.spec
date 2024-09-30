@@ -21,7 +21,6 @@ Summary:        %{summary}
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(pytest)
 BuildRequires:	python3dist(typish)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Jsons is a library that allows you to serialize your plain old Python

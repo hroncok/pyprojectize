@@ -25,7 +25,6 @@ that produces data in the same format
 
 %package -n python3-%{srcname}
 Summary:  %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 walkdir is a simple set of iterator tools intended to

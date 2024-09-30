@@ -38,7 +38,6 @@ environment through a common interface.
 
 %package     -n python%{python3_pkgversion}-%{srcname}
 Summary:        %{sum}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 # no magic dependencies in epel
 %if %{undefined __pythondist_requires}
 Requires:       python%{python3_pkgversion}-pyvmomi

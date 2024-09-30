@@ -24,7 +24,6 @@ and responses.
 %package -n python3-%{pypi_name}
 Summary:		Provides interfaces for secure cookies and sessions in WSGI applications
 BuildRequires:	python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 %{common_desc}

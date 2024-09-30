@@ -38,7 +38,6 @@ Documentation for %{name}.
 
 %package -n python3-%{modname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{modname}}
 BuildRequires:  python3-devel
 BuildRequires:  python3-Cython
 BuildRequires:  python3dist(numpy) >= 1.9.1

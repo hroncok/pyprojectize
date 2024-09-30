@@ -19,7 +19,6 @@ use Click for option handling.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 # pkg_resources is used for entrypoint handling
 Requires:       python3dist(setuptools)
  

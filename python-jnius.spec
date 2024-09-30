@@ -41,7 +41,6 @@ ExclusiveArch:  %{java_arches}
 Summary:        %{sum}
 Requires:       java-headless
 Requires:       python3-six
-%{?python_provide:%python_provide python3-%{srcname}}
 Provides:       python3-%{modname}
 
 

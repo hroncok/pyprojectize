@@ -39,7 +39,6 @@ It is similar in speed with deflate but offers more dense compression.
 
 %package -n python%{python3_pkgversion}-%{name}
 Summary:        Lossless compression algorithm (python 3)
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{name}}
 
 %description -n python%{python3_pkgversion}-%{name}
 Brotli is a generic-purpose lossless compression algorithm that compresses

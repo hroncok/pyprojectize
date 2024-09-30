@@ -17,7 +17,6 @@ A Django application to retrieve client's IP address.
 
 %package -n python3-%{shortname}
 Summary:       A Django application to retrieve client's IP address
-%{?python_provide:%python_provide python3-%{shortname}}
 Requires:      python3-django
 
 %description -n python3-%{shortname}

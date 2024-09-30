@@ -19,7 +19,6 @@ key and 64-bit output.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 A Python implementation of SipHash-2-4, a fast short-input PRF with a 128-bit

@@ -24,7 +24,6 @@ Provides:       ttx = %{version}-%{release}
 
 %package -n python3-fonttools
 Summary:        Python 3 fonttools library
-%{?python_provide:%python_provide python3-%{name}}
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools_scm
 

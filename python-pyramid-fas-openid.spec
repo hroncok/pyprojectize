@@ -31,7 +31,6 @@ Requires:           python3-pyramid
 Requires:           python3-openid
 Requires:           python3-openid-teams
 Requires:           python3-openid-cla
-%{?python_provide:%python_provide python3-pyramid-fas-openid}
 
 
 %description -n python3-pyramid-fas-openid %_description

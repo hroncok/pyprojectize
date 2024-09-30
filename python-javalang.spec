@@ -18,7 +18,6 @@ provides a lexer and parser targeting Java 8.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 javalang is a pure Python library for working with Java source code. javalang

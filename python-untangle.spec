@@ -30,7 +30,6 @@ element['attribute'].
 %package -n     python%{python3_pkgversion}-untangle
 Summary:        %{summary}
 %if 0%{?rhel}
-%{?python_provide:%python_provide python%{python3_pkgversion}-untangle}
 %else
 %py_provides    python3-untangle
 %endif

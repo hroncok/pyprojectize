@@ -38,7 +38,6 @@ BuildRequires:  python3-docker
 %endif  # tests
 
 Summary:        %{sum}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 sen enables you to manage your containers and images interactively directly

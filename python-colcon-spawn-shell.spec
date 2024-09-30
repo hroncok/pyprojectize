@@ -23,7 +23,6 @@ shell is bash.
 %package -n python%{python3_pkgversion}-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %if %{undefined __pythondist_requires}
 Requires:       python%{python3_pkgversion}-colcon-core >= 0.12.0

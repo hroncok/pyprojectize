@@ -27,7 +27,6 @@ qtpy instead of PyQt5.
 
 %package -n     python3-%{pypi_name}
 Summary:        Provides an abstraction layer on top of the various Qt bindings
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 

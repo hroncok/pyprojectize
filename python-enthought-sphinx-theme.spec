@@ -24,7 +24,6 @@ Sphinx theme for Enthought projects, derived from the Scipy theme.}
 %package -n python3-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{srcname}}
 Provides:       bundled(bootstrap) = 2.3.2
 
 %description -n python3-%{srcname} %_description

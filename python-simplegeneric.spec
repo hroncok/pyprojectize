@@ -26,7 +26,6 @@ Summary:        Simple generic functions (similar to Python's own len(), pickle.
 # Automatically converted from old format: Python or ZPLv2.1 - review is highly recommended.
 License:        LicenseRef-Callaway-Python OR ZPL-2.1
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 The simplegeneric module lets you define simple single-dispatch generic

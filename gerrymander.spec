@@ -15,7 +15,6 @@ Requires:      python3-gerrymander
 %package -n python3-gerrymander
 Summary: The gerrit python3 client
 License: GPLv2+
-%{?python_provide:%python_provide python3-gerrymander}
 
 
 %description

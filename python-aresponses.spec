@@ -21,7 +21,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3dist(aiohttp)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(pytest-asyncio)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 An asyncio testing server for mocking external services.

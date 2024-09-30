@@ -18,7 +18,6 @@ from network interfaces.
 %package -n python%{python3_pkgversion}-%{pypi_name}
 Summary:        Python %{python3_pkgversion} library to retrieve information about network interfaces
 BuildRequires:  python%{python3_pkgversion}-devel
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pypi_name}}
 
 %description -n python%{python3_pkgversion}-%{pypi_name}
 This package provides a cross platform API for getting address information

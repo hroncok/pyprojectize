@@ -25,7 +25,6 @@ Summary:        Django app for permissions - Python 3 version
 BuildRequires:  python3-devel
 Requires:       python3-django
 
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 Obsoletes:      python-%{pypi_name} < 0.11-5
 Obsoletes:      python2-%{pypi_name} < 0.11-5

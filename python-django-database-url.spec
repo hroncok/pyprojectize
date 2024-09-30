@@ -22,7 +22,6 @@ Summary:        %summary
 Requires:       python3-django
 Obsoletes:      python-django-database-url < 0.4.2-4
 Obsoletes:      python2-django-database-url < 0.4.2-4
-%{?python_provide:%python_provide python3-django-database-url}
 
 %description -n python3-django-database-url %_description
 This simple Django utility allows you to utilize the 12factor inspired

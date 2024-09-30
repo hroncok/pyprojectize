@@ -25,7 +25,6 @@ Please see the examples below to get an idea of what Poyo understands.
 
 %package     -n python3-%{pkgname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pkgname}}
 %description -n python3-%{pkgname}
 A lightweight YAML Parser for Python
 

@@ -44,7 +44,7 @@ Requires:  python3-pyOpenSSL
 Requires:  python3-pyasn1
 Requires:  python3-ntlm-auth
 Summary:  Python 3 credssp library
-%{?python_provide:%python_provide python3-%{srcname}}
+%py_provides python3-%{srcname}
 
 %description -n python3-%{gh_name}
 This package allows for HTTPS CredSSP authentication using the requests

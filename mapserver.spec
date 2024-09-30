@@ -125,7 +125,6 @@ within the Perl programming language.
 
 %if 0%{python_mapscript}
 %package -n python3-mapserver
-%{?python_provide:%python_provide python3-mapserver}
 # Remove before F30
 Provides: %{name}-python = %{version}-%{release}
 Provides: %{name}-python%{?_isa} = %{version}-%{release}

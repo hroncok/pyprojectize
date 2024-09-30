@@ -18,7 +18,6 @@ for generating documentation from Flask routing tables.
 
 %package -n python3-%{upstream_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{upstream_name}}
 BuildRequires:  python3-devel
 Requires:       python3-sphinx
 Requires:       python3-six

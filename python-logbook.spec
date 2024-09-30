@@ -25,7 +25,6 @@ BuildRequires:	python3-redis
 BuildRequires:	python3-zmq
 BuildRequires:	python3-brotli
 BuildRequires:  python3-Cython
-%{?python_provide:%python_provide python3-logbook}
 
 %description -n python3-logbook
 Logbook is a logging system for Python that replaces the standard library's

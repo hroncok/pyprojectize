@@ -29,7 +29,6 @@ The module supports compression and random access through indexing.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 Provides:  bundled(samtools) = 1.18
 Provides:  bundled(htslib) = 1.18
 Provides:  bundled(bcftools) = 1.18

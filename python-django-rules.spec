@@ -16,7 +16,6 @@ Awesome Django authorization, without the database.
 
 %package -n python3-%{shortname}
 Summary:       Awesome Django authorization, without the database
-%{?python_provide:%python_provide python3-%{shortname}}
 Requires:      python3-django
 
 %description -n python3-%{shortname}

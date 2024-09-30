@@ -21,7 +21,6 @@ etc.  The core of this module is a decorator factory called decorator.
 
 %package -n python3-decorator
 Summary:        Module to simplify usage of decorators in python3
-%{?python_provide:%python_provide python3-decorator}
 
 %description -n python3-decorator
 The aim of the decorator module is to simplify the usage of decorators for

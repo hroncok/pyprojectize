@@ -16,7 +16,6 @@ methods to support most USB operations.
 
 %package -n python3-pyusb
 Summary:       %summary
-%{?python_provide:%python_provide python3-pyusb}
 BuildRequires: python3-devel
 BuildRequires:  python3-setuptools_scm
 Requires:       libusb1

@@ -32,7 +32,6 @@ BuildRequires: python3-devel
 BuildRequires: python3-ply
 BuildRequires: python3-pytest
 BuildRequires: python3-six
-%{?python_provide:%python_provide python3-lesscpy}
 
 %description -n python3-lesscpy
 A compiler written in python 3 for the lesscss language.  For those of us not

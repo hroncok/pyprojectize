@@ -21,7 +21,6 @@ BuildRequires:  %{_bindir}/llvm-dwarfdump
 BuildRequires:  %{_bindir}/readelf
 BuildRequires:  python3-devel
 BuildArch:      noarch
-%{?python_provide:%python_provide python3-%{name}}
 %description -n python3-%{name} %_description
 
 %prep

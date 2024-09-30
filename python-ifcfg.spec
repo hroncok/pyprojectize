@@ -26,7 +26,6 @@ BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-mock
 BuildRequires:  python%{python3_pkgversion}-nose
 BuildRequires:  iproute
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %if !0%{?rhel} || 0%{?rhel} >= 8
 Recommends:     (iproute or net-tools)

@@ -25,7 +25,6 @@ BuildRequires:  python3-six
 BuildRequires:  python3-tornado
 BuildRequires:  python3-certifi
 BuildRequires:  python3-django
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 LiveReload provides a command line utility, livereload, for starting a server

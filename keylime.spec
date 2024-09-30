@@ -90,7 +90,6 @@ License: MIT
 Conflicts: keylime < 6.3.0-3
 
 Requires: %{srcname}-base = %{version}-%{release}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 Requires: python3-tornado
 Requires: python3-sqlalchemy

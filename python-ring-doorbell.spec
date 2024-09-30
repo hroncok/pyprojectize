@@ -25,7 +25,6 @@ BuildRequires:  python3dist(requests)
 BuildRequires:  python3dist(requests-oauthlib)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(requests-mock)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Python library written that exposes the Ring.com devices as Python

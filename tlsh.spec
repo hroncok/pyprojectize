@@ -34,7 +34,6 @@ BuildArch: noarch
 
 %package -n python3-tlsh
 Summary:        Python 3 interface for TLSH
-%{?python_provide:%python_provide python3-tlsh}
 Obsoletes: tlsh < 3.17.0
 Obsoletes: tlsh-devel < 3.17.0
 

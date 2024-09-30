@@ -22,7 +22,6 @@ Error notification emails provide a useful means of keeping an eye on.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 The RateLimitingFilter is a filter for the Python logging system that allows

@@ -25,7 +25,6 @@ Retry decorator with a bunch of configuration parameters.
 %package -n python2-%{pypi_name}
 Summary:        %{summary}
 
-%{?python_provide:%python_provide python2-%{pypi_name}}
 
 Requires:       python2
 
@@ -45,7 +44,6 @@ Retry decorator with a bunch of configuration parameters.
 %package -n python3-%{pypi_name}
 Summary:        %{summary}
 
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 Requires:       python3
 

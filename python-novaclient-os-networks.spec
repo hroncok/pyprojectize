@@ -21,7 +21,6 @@ BuildRequires:	python3-devel
 Summary:	%{summary}
 BuildRequires:	python3-novaclient
 Requires:	python3-novaclient
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 %{summary}

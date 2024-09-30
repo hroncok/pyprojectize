@@ -21,7 +21,6 @@ BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(plumbum)
 BuildRequires:  python3dist(hypothesis)
 BuildRequires:  python3dist(responses)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Python wrapper for the RESTful Habitica API.

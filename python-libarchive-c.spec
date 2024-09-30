@@ -27,7 +27,6 @@ to dynamically load and access the C library.}
 
 %package -n python%{python3_pkgversion}-libarchive-c
 Summary:       %{summary}
-%{?python_provide:%python_provide python%{python3_pkgversion}-libarchive-c}
 BuildRequires: python%{python3_pkgversion}-devel
 BuildRequires: python%{python3_pkgversion}-pytest
 Requires:      libarchive

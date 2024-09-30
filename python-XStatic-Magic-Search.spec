@@ -25,7 +25,6 @@ Requires:       python3-XStatic
 Requires:       XStatic-Magic-Search-common = %{version}-%{release}
 
 Summary:        Magic-Search (XStatic packaging standard)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 MagicSearch is an AngularJS directive that provides a UI for both faceted

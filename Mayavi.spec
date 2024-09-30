@@ -51,7 +51,6 @@ Requires:       python%{python3_pkgversion}-apptools
 Requires:       python%{python3_pkgversion}-traitsui
 Requires:       python%{python3_pkgversion}-envisage
 Requires:       python%{python3_pkgversion}-pyface-qt
-%{?python_provide:%python_provide python%{python3_pkgversion}-mayavi}
 
 %description -n python%{python3_pkgversion}-mayavi
 Python 3 mayavi module

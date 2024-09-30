@@ -18,7 +18,6 @@ communication and hence it easily integrates with the GLib mainloop.
 
 %package -n python3-%{name}
 Summary:  GLib based websockets server
-%{?python_provide:%python_provide python3-gwebsockets}
 Requires: glib2
 
 %description -n python3-%{name}

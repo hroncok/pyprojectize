@@ -19,7 +19,6 @@ documents.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 BuildRequires:  python3-devel
 Requires:       libmodulemd
 Requires:       python%{python3_version}dist(pygobject)

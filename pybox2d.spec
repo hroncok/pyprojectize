@@ -25,7 +25,6 @@ Summary:        %{summary}
 
 BuildRequires:  python3-devel
 
-%{?python_provide:%python_provide python3-%{name}}
 
 %description -n python3-%{name}
 Programmer's can use Box2D in their games to make objects move in

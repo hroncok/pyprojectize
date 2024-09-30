@@ -85,7 +85,6 @@ BuildRequires:  python%{python3_other_pkgversion}-pytest
 %if %{with python2}
 %package -n     python2-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python2-%{pypi_name}}
 
 Requires:       python2-six
 Requires:       python2-wcwidth
@@ -99,7 +98,6 @@ Requires:       python2-backports-functools_lru_cache
 %if %{with python3}
 %package -n     python%{python3_pkgversion}-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pypi_name}}
 
 Requires:       python%{python3_pkgversion}-six
 Requires:       python%{python3_pkgversion}-wcwidth
@@ -111,7 +109,6 @@ Requires:       python%{python3_pkgversion}-wcwidth
 %if 0%{?with_python3_other}
 %package -n     python%{python3_other_pkgversion}-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python%{python3_other_pkgversion}-%{pypi_name}}
 
 Requires:       python%{python3_other_pkgversion}-six
 Requires:       python%{python3_other_pkgversion}-wcwidth

@@ -19,7 +19,6 @@ Summary:        %{summary}
 BuildRequires:  python3-devel
 BuildRequires:  python3-pytest
 BuildRequires:  python3-responses
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Python3 wrapper around the CoinGecko API (V3).

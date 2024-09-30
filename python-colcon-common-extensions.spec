@@ -19,7 +19,6 @@ A meta package aggregating colcon-core as well as a set of common extensions.
 %package -n python%{python3_pkgversion}-%{srcname}
 Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-devel
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %if %{undefined __pythondist_requires}
 Requires:       python%{python3_pkgversion}-colcon-argcomplete

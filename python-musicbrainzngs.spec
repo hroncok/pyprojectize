@@ -22,7 +22,6 @@ For more information on the MusicBrainz webservice see:
 
 %package     -n python%{python3_pkgversion}-%{module_name}
 Summary:        Python %{python3_pkgversion} bindings for MusicBrainz NGS webservice
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{module_name}}
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-nose
 

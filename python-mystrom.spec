@@ -18,7 +18,6 @@ and plugs. The buttons can be programmed easily with the command-line tool.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Asynchronous Python API client for interacting with myStrom devices like bulbs
@@ -28,7 +27,7 @@ and plugs. The buttons can be programmed easily with the command-line tool.
 Summary:        CLI tool to interact with myStrom devices
 
 Requires:       python3-%{pypi_name} = %{?epoch:%{epoch}:}%{version}-%{release}
-%{?python_provide:%python_provide python3-%{pypi_name}}
+%py_provides    python3-%{pypi_name}
 
 %description -n %{pypi_name}
 CLI tool to interact with myStrom devices (bulbs, buttons and plugs).

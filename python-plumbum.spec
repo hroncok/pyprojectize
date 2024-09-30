@@ -34,7 +34,6 @@ pythonic and cross-platform.
 %package -n python2-%{pypi_name}
 Summary: %summary
 Requires:       python2-six
-%{?python_provide:%python_provide python2-%{pypi_name}}
 
 %description -n python2-%{pypi_name} %_description
 %endif # with_python2

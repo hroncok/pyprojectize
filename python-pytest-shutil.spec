@@ -29,7 +29,6 @@ environment management tools for automated tests.
 %package -n python3-%{srcname}
 Summary:        %{sum}
 Recommends:     %{py3_dist termcolor}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 This library is a goodie-bag of Unix shell and 

@@ -18,7 +18,6 @@ modules on a Raspberry Pi using Python.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 This package implement 2.4 Ghz communication using NRF24L01

@@ -25,7 +25,6 @@ dependency on python-six.
 
 %package -n python3-modernize
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-modernize}
 Provides: python-modernize = %{version}-%{release}
 Obsoletes: python-modernize < 0.4-3
 

@@ -23,7 +23,6 @@ add and remove ACLs from files and directories.}
 
 %package -n python3-%{name}
 Summary: %{summary}
-%{?python_provide:%python_provide python3-%{name}}
 
 Provides:  py3libacl = %{version}-%{release}
 Obsoletes: py3libacl < 0.5.4

@@ -46,7 +46,6 @@ Requires:       web-assets-filesystem
 Provides:       bundled(jquery) = %{jquery_version}
 Requires:       python3-sphinx
 
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 %{common_desc}

@@ -30,7 +30,6 @@ BuildRequires:	systemd-rpm-macros
 BuildRequires:	systemd
 %endif 
 %{?systemd_requires}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 # python3-oslo-messaging found. python3x-oslo-messaging not found.
 # Tested with OpenStack rocky on fc29

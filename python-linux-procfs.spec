@@ -22,7 +22,6 @@ Abstractions to extract information from the Linux kernel /proc files.
 
 %package -n python3-linux-procfs
 Summary: %summary
-%{?python_provide:%python_provide python3-linux-procfs}
 
 Requires: python3-six
 

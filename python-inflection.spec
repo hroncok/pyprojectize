@@ -20,7 +20,6 @@ Inflection is a port of Ruby on Rails’ inflector to Python.}
 
 %package     -n python3-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(pytest)
 

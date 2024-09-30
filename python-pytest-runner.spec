@@ -20,7 +20,6 @@ Setup scripts can use pytest-runner to add setup.py test support for pytest runn
 
 %package -n python3-%{modulename}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{modulename}}
 Requires:       python3-pytest
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools_scm

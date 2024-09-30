@@ -38,7 +38,6 @@ pygame.
 Summary:        Python3 modules for writing games
 Requires:       gnu-free-sans-fonts
 Recommends:     python%{python3_pkgversion}-numpy
-%{?python_provide:%python_provide python%{python3_pkgversion}-pygame}
 
 %description -n python%{python3_pkgversion}-pygame
 Pygame is a set of Python modules designed for writing games. It is

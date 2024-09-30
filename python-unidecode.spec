@@ -24,7 +24,6 @@ characters.
 Summary:	US-ASCII transliterations of Unicode text
 BuildRequires: python3-devel
 
-%{?python_provide:%python_provide python3-unidecode}
 
 %description -n python3-unidecode
 This is a python port of Text::Unidecode Perl module. It provides a function,

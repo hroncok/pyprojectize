@@ -20,7 +20,6 @@ Summary:        %{summary}
 
 BuildRequires:  python3-Cython
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{name}}
 
 %description -n python3-%{name}
 Pystatgrab contains Python bindings for libstatgrab.

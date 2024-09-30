@@ -18,7 +18,6 @@ templates and creates an in-memory graph of TOSCA nodes and their relationship.
 
 %package -n python3-%{pypi_name}
 Summary:        Parser for TOSCA Simple Profile in YAML
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-pbr >= 1.3

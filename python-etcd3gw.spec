@@ -43,7 +43,6 @@ Requires:  python2-pbr
 Requires:  python2-requests
 Requires:  python2-six
 
-%{?python_provide:%python_provide python2-%{srcname}}
 
 %description -n python2-%{srcname}
 A python client for etcd3 grpc-gateway v3alpha API
@@ -66,7 +65,6 @@ Requires: python3-six
 
 %{?python_enable_dependency_generator}
 
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 A python client for etcd3 grpc-gateway v3alpha API

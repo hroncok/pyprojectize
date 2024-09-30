@@ -46,7 +46,6 @@ BuildRequires:  python%{python3_pkgversion}-rosdistro >= 0.7.5
 BuildRequires:  python%{python3_pkgversion}-rospkg >= 1.4.0
 BuildRequires:  rubygems
 Requires:       python-srpm-macros
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %if %{undefined __pythondist_requires}
 Requires:       python%{python3_pkgversion}-catkin_pkg >= 0.4.0

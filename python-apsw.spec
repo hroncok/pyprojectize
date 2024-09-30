@@ -43,7 +43,6 @@ complete SQLite API into Python.
 
 %package -n python%{python3_pkgversion}-apsw
 Summary:            Another Python SQLite Wrapper
-%{?python_provide:%python_provide python%{python3_pkgversion}-apsw}
 
 %description -n python%{python3_pkgversion}-apsw
 APSW is a Python %{python3_version} wrapper for the SQLite embedded relational database

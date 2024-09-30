@@ -25,7 +25,6 @@ a rather un-Pythonic manner.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 python-gphoto2 is a comprehensive Python interface (or binding) to libgphoto2.

@@ -21,7 +21,6 @@ Summary:        %{summary}
 BuildRequires:  python3-devel
 BuildRequires:  python3-nose
 BuildRequires:  python3-pytest
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 Queuelib is a collection of persistent (disk-based) queues for

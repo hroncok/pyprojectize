@@ -32,7 +32,6 @@ Requires:       python3-watchdog >= 0.6.0
 # See: https://bugzilla.redhat.com/show_bug.cgi?id=1360383
 Requires:       python3-PyYAML
 Requires:       python3-pathtools
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 %{desc}

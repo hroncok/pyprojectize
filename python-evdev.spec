@@ -33,7 +33,6 @@ touchscreen.
 
 %package -n python3-evdev
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-evdev}
 %description -n python3-evdev %{_description}
 
 

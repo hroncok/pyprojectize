@@ -51,7 +51,6 @@ Requires:       python3-ruamel-yaml
 Requires:       python3-configobj
 Requires:       python3-toml
 %endif
-%{?python_provide:%python_provide python3-%{pkgname}}
 
 %description -n python3-%{pkgname} %{desc}
 

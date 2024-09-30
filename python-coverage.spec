@@ -30,7 +30,6 @@ BuildRequires:  python2-setuptools
 # As the "coverage" executable requires the setuptools at runtime (#556290),
 # so the "python3-coverage" executable requires python3-setuptools:
 Requires:       python2-setuptools
-%{?python_provide:%python_provide python2-coverage}
 Provides:       bundled(js-jquery) = 1.11.1
 Provides:       bundled(js-jquery-debounce) = 1.1
 Provides:       bundled(js-jquery-hotkeys) = 0.8
@@ -51,7 +50,6 @@ BuildRequires:  python%{python3_pkgversion}-devel
 # As the "coverage" executable requires the setuptools at runtime (#556290),
 # so the "python3-coverage" executable requires python3-setuptools:
 Requires:       python%{python3_pkgversion}-setuptools
-%{?python_provide:%python_provide python%{python3_pkgversion}-coverage}
 Provides:       bundled(js-jquery) = 1.11.1
 Provides:       bundled(js-jquery-debounce) = 1.1
 Provides:       bundled(js-jquery-hotkeys) = 0.8

@@ -28,7 +28,6 @@ BuildRequires:  python3-nose >= 1.1.2
 BuildRequires:  python3dist(agate) >= 1.5
 BuildRequires:  python3dist(dbfread) >= 2.0.5
 BuildRequires:  python3dist(furo)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 %{desc}

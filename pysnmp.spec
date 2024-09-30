@@ -23,7 +23,6 @@ networking.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{name}}
 
 %description -n python3-%{name}
 This is a Python implementation of SNMP v.1/v.2c engine. It's

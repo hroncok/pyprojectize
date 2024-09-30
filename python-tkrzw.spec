@@ -36,7 +36,6 @@ TKRZW is a library of routines for managing a key-value database.
 %package -n	python3-%{module}
 Summary:	%{summary}
 %if 0%{?epel} && 0%{?epel} < 9
-%{?python_provide:%python_provide python3-%{module}}
 %endif
 
 %description -n	python3-%{module}

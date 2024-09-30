@@ -25,7 +25,6 @@ the options and commands help during the completion.
 
 %package     -n python3-%{pkgname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pkgname}}
 %description -n python3-%{pkgname}
 Enhanced completion for Click
 

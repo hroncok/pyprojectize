@@ -80,7 +80,6 @@ Requires:       git-core
 
 Provides:       python3-osbs = %{version}-%{release}
 Obsoletes:      python3-osbs < %{osbs_obsolete_vr}
-%{?python_provide:%python_provide python3-osbs-client}
 
 %description -n python3-osbs-client
 It is able to query OpenShift v3 for various stuff related to building images.

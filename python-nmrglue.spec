@@ -24,7 +24,6 @@ environment for processing, analyzing, and inspecting NMR data.
 
 %package -n python3-%{pkgname}
 Summary:	%{pkgsum}
-%{?python_provide:%python_provide python3-%{pkgname}}
 Requires:	python3-numpy
 Requires:	python3-scipy
 

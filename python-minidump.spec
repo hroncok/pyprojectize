@@ -18,7 +18,6 @@ minidumps on Windows machines using the windows API (implemented with ctypes).
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 A Python library to parse and read Microsoft minidump file format. Can create

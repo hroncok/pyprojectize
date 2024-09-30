@@ -16,7 +16,6 @@ minimock is a simple library for doing Mock objects with doctest.
 
 %package -n python3-minimock
 Summary:        The simplest possible mock library
-%{?python_provide:%python_provide python3-minimock}
 %description -n python3-minimock
 minimock is a simple library for doing Mock objects with doctest.
 

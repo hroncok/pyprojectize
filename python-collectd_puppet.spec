@@ -24,7 +24,6 @@ Collectd plugin for puppet run status.
 
 %package -n     python3-%{module_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{module_name}}
 
 Requires:       python3dist(pyyaml)
 %description -n python3-%{module_name}

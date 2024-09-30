@@ -39,7 +39,6 @@ Epoch:      1
 %if 0%{?with_python2}
 %package -n python2-%{library}
 Summary:    Python client for the OpenShift API
-%{?python_provide:%python_provide python2-%{library}}
 
 BuildRequires: python2-devel
 %if 0%{?rhel} != 7

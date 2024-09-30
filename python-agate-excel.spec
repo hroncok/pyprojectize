@@ -32,7 +32,6 @@ BuildRequires:  python3dist(openpyxl) >= 2.3
 BuildRequires:  python3dist(olefile)
 BuildRequires:  python3dist(furo)
 
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 %{desc}

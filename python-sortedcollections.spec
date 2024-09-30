@@ -22,7 +22,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(pytest-cov)
 BuildRequires:  python3dist(sortedcontainers)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Python Sorted Collections Sorted Collections is an Apache2 licensed Python

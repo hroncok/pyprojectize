@@ -46,7 +46,6 @@ Requires:       python3-pyyaml
 Recommends:     python3-gssapi
 Requires:       sshpass
 
-%{?python_provide:%python_provide python3-%{name}lib}
 
 %package -n     python3-%{name}-aws
 Summary:        AWS provider plugin for mrack
@@ -54,7 +53,6 @@ Requires:       python3-%{name}lib = %{version}-%{release}
 Requires:       python3-boto3
 Requires:       python3-botocore
 
-%{?python_provide:%python_provide python3-%{name}-aws}
 
 
 %package -n     python3-%{name}-beaker
@@ -67,7 +65,6 @@ Recommends:     beaker-client
 Requires:       beaker-client
 %endif
 
-%{?python_provide:%python_provide python3-%{name}-beaker}
 
 
 %package -n     python3-%{name}-openstack
@@ -78,7 +75,6 @@ Recommends:       python3-os-client-config
 Recommends:     python3-AsyncOpenStackClient
 Recommends:     python3-async-timeout
 
-%{?python_provide:%python_provide python3-%{name}-openstack}
 
 
 %package -n     python3-%{name}-podman
@@ -86,14 +82,12 @@ Summary:        Podman provider plugin for mrack
 Requires:       python3-%{name}lib = %{version}-%{release}
 Requires:       podman
 
-%{?python_provide:%python_provide python3-%{name}-podman}
 
 %package -n     python3-%{name}-virt
 Summary:        Virtualization provider plugin for mrack using testcloud
 Requires:       python3-%{name}lib = %{version}-%{release}
 Requires:       testcloud
 
-%{?python_provide:%python_provide python3-%{name}-virt}
 
 %description        cli
 %{name}-cli contains mrack command which functionality

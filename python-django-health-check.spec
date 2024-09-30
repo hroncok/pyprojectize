@@ -27,7 +27,6 @@ basic operations are successful.
 %package -n python3-%{pypi_name}
 Summary:        %summary
 Requires:       python3-django
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name} %_description
 

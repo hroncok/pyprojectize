@@ -19,7 +19,6 @@ kernel and its /sys/class/power_supply folder.
 
 %package -n python3-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 A simple Python module to retrieve battery information on Linux-based

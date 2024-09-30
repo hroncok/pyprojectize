@@ -26,7 +26,6 @@ BuildArch:      noarch
 %if %{with python2}
 %package -n python2-%{pypi_name}
 Summary:        Pifpaf is a suite of fixtures to manage daemons
-%{?python_provide:%python_provide python2-pifpaf}
 
 BuildRequires:    python2-setuptools
 BuildRequires:    python2-devel
@@ -58,7 +57,6 @@ stop daemons for a quick throw-away usage.
 %package -n python3-%{pypi_name}
 
 Summary:          Pifpaf is a suite of fixtures to manage daemons
-%{?python_provide:%python_provide python3-pifpaf}
 
 BuildRequires:    python3-devel
 BuildRequires:    python3-pbr

@@ -16,7 +16,6 @@ A server implementing the HTTP Web Thing implementation.
 
 %package -n python3-webthing
 Summary: HTTP Web Thing implementation in Python
-%{?python_provide:%python_provide python3-webthing}
 
 %description -n python3-webthing
 A server implementing the HTTP Web Thing implementation.

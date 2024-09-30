@@ -23,7 +23,6 @@ A python library adding a json log formatter
 
 %package -n     python3-json-logger
 Summary:        A python library adding a json log formatter
-%{?python_provide:%python_provide python3-json-logger}
 BuildRequires:  python3-devel
 
 %description -n python3-json-logger

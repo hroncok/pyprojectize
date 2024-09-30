@@ -22,7 +22,6 @@ translation of the Angus Johnson's Clipper library.
 
 %package -n python3-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-pytest

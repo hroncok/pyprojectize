@@ -18,7 +18,6 @@ BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-py >= 1.4.0
 Requires:       python%{python3_pkgversion}-setuptools
 Requires:       python%{python3_pkgversion}-py >= 1.4.0
-%{?python_provide:%python_provide python%{python3_pkgversion}-pycmd}
 
 
 %description -n python%{python3_pkgversion}-pycmd

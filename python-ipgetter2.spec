@@ -30,7 +30,6 @@ BuildRequires:  python3-click
 BuildRequires:  python3-pytest
 BuildRequires:  python3-requests
 %endif
-%{?python_provide:%python_provide python3-%{pypi_name}}
  
 %description -n python3-%{pypi_name}
 Python library to fetch your external IP address. This module is designed to

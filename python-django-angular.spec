@@ -49,7 +49,6 @@ Requires:		python3-django
 Obsoletes:		python2-%{pypi_name} < 1.1.2-2
 Obsoletes:		python-%{pypi_name} < 1.1.2-2
 
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 
 %description -n python3-%{pypi_name}
@@ -66,7 +65,6 @@ BuildRequires:		python3-sphinx
 Obsoletes:		python2-%{pypi_name}-doc < 1.1.2-2
 Obsoletes:		python-%{pypi_name}-doc < 1.1.2-2
 
-%{?python_provide:%python_provide python3-%{pypi_name}-doc}
 
 %description -n python3-%{pypi_name}-doc
 This package contains the documentation-files for python3-%{pypi_name}.

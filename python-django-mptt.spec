@@ -17,7 +17,6 @@ with your Django Model classes and working with trees of Model instances.\
 
 %package -n python3-%{srcname}
 Summary:    %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
 Obsoletes: python2-django-mptt < 0.9.0-2
 Obsoletes: python-django-mptt < 0.9.0-2

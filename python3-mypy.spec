@@ -2,7 +2,6 @@ Name:           python3-mypy
 Version:        1.11.2
 Release:        1%{?dist}
 Summary:        A static type checker for Python
-%{?python_provide:%python_provide python3-mypy}
 
 # The files under lib-python and lib-typing/3.2 are Python-licensed, but this
 # package does not include those files

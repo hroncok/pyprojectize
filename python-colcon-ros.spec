@@ -22,7 +22,6 @@ BuildRequires:  python%{python3_pkgversion}-colcon-core >= 0.7.0
 BuildRequires:  python%{python3_pkgversion}-colcon-python-setup-py >= 0.2.4
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-pytest
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %if %{undefined __pythondist_requires}
 Requires:       python%{python3_pkgversion}-catkin_pkg >= 0.4.14

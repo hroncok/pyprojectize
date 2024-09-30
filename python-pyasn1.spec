@@ -17,7 +17,6 @@ language.
 
 %package -n python3-pyasn1
 Summary:    ASN.1 tools for Python 3
-%{?python_provide:%python_provide python3-pyasn1}
 BuildRequires:  python3-devel
 
 %description -n python3-pyasn1
@@ -27,7 +26,7 @@ language.
 %package -n python3-pyasn1-modules
 Summary:    Modules for pyasn1
 Requires:   python3-pyasn1 >= 0.4.7, python3-pyasn1 < 0.7.0
-%{?python_provide:%python_provide python3-modules}
+%py_provides python3-modules
 
 %description -n python3-pyasn1-modules
 ASN.1 types modules for python3-pyasn1.

@@ -22,7 +22,6 @@ the output (stdout, stderr) and any file modifications.
 
 %package -n     python%{python3_pkgversion}-scripttest
 Summary:        Helper to test command-line scripts
-%{?python_provide:%python_provide python%{python3_pkgversion}-scripttest}
 
 %description -n python%{python3_pkgversion}-scripttest
 ScriptTest is a library to help you test your interactive 

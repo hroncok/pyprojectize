@@ -18,7 +18,6 @@ servers.
 
 %package -n     python3-%{name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{name}}
 
 %description -n python3-%{name}
 Slowloris is basically an HTTP Denial of Service attack that affects threaded

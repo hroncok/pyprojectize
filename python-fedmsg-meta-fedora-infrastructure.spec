@@ -29,7 +29,6 @@ Fedora Infrastructure <http://fedoraproject.org/wiki/Infrastructure>.
 
 %package -n python3-fedmsg-meta-fedora-infrastructure
 Summary:        Common object storage frontend
-%{?python_provide:%python_provide python3-fedmsg-meta-fedora-infrastructure}
 
 Requires:           python3-fedmsg
 Requires:           python3-fedora

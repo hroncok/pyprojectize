@@ -22,7 +22,6 @@ transparently using python dictionaries.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 aiorestapi allows you to quickly create a rest resource in a few steps. It

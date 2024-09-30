@@ -27,7 +27,6 @@ built with the Pecan WSGI object-dispatching web framework and WSME
 %if %{with python2}
 %package -n python2-%{pypi_name}
 Summary:        Extension to Sphinx for documenting APIs built with Pecan and WSME
-%{?python_provide:%python_provide python2-%{pypi_name}}
 
 BuildRequires:  python2-devel
 BuildRequires:  python2-pbr
@@ -45,7 +44,6 @@ built with the Pecan WSGI object-dispatching web framework and WSME
 %if %{with python3}
 %package -n python3-%{pypi_name}
 Summary:        Extension to Sphinx for documenting APIs built with Pecan and WSME
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-pbr

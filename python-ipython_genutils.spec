@@ -30,7 +30,6 @@ Summary:        IPython vestigial utilities
 BuildRequires:  python%{python3_pkgversion}-devel
 # For tests
 BuildRequires:  python%{python3_pkgversion}-nose
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %description -n python%{python3_pkgversion}-%{srcname}
 This package is a stop-gap that contains some common utilities shared by

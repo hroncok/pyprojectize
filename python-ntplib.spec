@@ -32,7 +32,6 @@ Summary:        Python 3 module that offers a simple interface to query NTP serv
 
 BuildRequires:	python3-devel
 
-%{?python_provide:%python_provide python3-ntplib}
 
 %description -n python3-ntplib
 The ntplib is a python module that offers a simple interface to query NTP

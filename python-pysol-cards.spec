@@ -21,7 +21,6 @@ initial deals of some PySol FC games.
 
 %package -n     python%{python3_pkgversion}-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python%{python3_pkgversion}-%{pypi_name}
 The pysol-cards python module allows the python developer to generate the

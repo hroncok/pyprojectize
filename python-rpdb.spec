@@ -25,7 +25,6 @@ debugging tools are available.
 %package -n python3-%{srcname}
 Summary: %{summary}
 
-%{?python_provide:%python_provide python3-%{srcname}}
 
 
 %description -n python3-%{srcname}

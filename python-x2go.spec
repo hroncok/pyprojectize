@@ -62,7 +62,6 @@ Requires:       python2-paramiko
 Requires:       python2-requests
 Requires:       python2-simplejson
 Requires:       python2-xlib
-%{?python_provide:%python_provide python2-x2go}
 
 %description -n python2-x2go
 X2Go is a server based computing environment with:
@@ -94,7 +93,6 @@ Requires:       python%{python3_pkgversion}-paramiko
 Requires:       python%{python3_pkgversion}-requests
 Requires:       python%{python3_pkgversion}-simplejson
 Requires:       python%{python3_pkgversion}-xlib
-%{?python_provide:%python_provide python%{python3_pkgversion}-x2go}
 
 %description -n python%{python3_pkgversion}-x2go
 X2Go is a server based computing environment with:

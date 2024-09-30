@@ -19,7 +19,6 @@ TransportAdapter, which provides a custom SSLContext.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 This library adds PKCS12 support to the Python requests library. It is

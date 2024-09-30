@@ -41,7 +41,6 @@ http://www.vpri.org/pdf/tr2008003_experimenting.pdf
 
 %package -n python3-parsley
 Summary: %summary
-%{?python_provide:%python_provide python3-parsley}
 
 %description -n python3-parsley %_description
 

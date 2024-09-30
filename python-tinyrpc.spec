@@ -24,7 +24,6 @@ Documentation for tinyrpc library
 
 %package -n python3-%{library}
 Summary:    A modular RPC library
-%{?python_provide:%python_provide python3-%{library}}
 
 BuildRequires:  git
 BuildRequires:  python3-devel

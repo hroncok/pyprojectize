@@ -27,7 +27,6 @@ Requires:       python%{python3_pkgversion}-cryptography >= 2.3
 %if %{undefined rhel}
 Requires:       python%{python3_pkgversion}-deprecated
 %endif
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %description -n python%{python3_pkgversion}-%{srcname}
 Implements JWK, JWS, JWE specifications using python-cryptography

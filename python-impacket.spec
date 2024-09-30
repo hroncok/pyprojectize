@@ -74,7 +74,6 @@ BuildRequires:  python%{python3_pkgversion}-devel
 #===== the python3 package definition
 %package -n python%{python3_pkgversion}-%{gitname}
 Summary:        %{sum}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{gitname}}
 Provides:       impacket = %{version}-%{release}
 
 # Used by many

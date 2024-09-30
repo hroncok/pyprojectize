@@ -32,7 +32,6 @@ and pattern functionality.\
 
 %package -n python3-%{upname}
 Summary: %summary
-%{?python_provide:%python_provide python3-%{upname}}
 
 %description -n python3-%{upname} %_description
 

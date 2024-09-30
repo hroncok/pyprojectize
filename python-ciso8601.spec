@@ -22,7 +22,6 @@ Summary:        %{summary}
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(pytz)
 BuildRequires:  python3dist(pytest)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 ciso8601 converts ISO 8601 or RFC 3339 date time strings into Python

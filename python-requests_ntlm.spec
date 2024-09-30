@@ -21,7 +21,6 @@ order to support md4 in Python.}
 
 %package -n     python3-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(requests) >= 2
 BuildRequires:  python3dist(ntlm-auth) >= 1.0.2

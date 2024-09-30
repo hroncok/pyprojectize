@@ -17,7 +17,6 @@ A WebThing WebSocket consumer and API client.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 A WebThing WebSocket consumer and API client.

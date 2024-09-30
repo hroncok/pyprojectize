@@ -23,7 +23,6 @@ stimulus/response testing experiments.
 
 %package -n python3-%{modname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{modname}}
 BuildRequires:  python3-devel
 Requires:       python3-pyserial
 

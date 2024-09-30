@@ -17,7 +17,6 @@ ChirpStack gRPC API message and service wrappers for Python.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 ChirpStack gRPC API message and service wrappers for Python.

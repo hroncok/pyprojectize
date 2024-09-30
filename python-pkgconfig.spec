@@ -32,7 +32,6 @@ If pkg-config is not on the path, raises EnvironmentError.
 %if %{with python2}
 %package -n python2-%{srcname}
 Summary:        Python2 interface to the pkg-config ocmmand line tool
-%{?python_provide:%python_provide python2-%{srcname}}
 BuildRequires:  python2-devel
 BuildRequires:  python2-setuptools
 Requires:       %{_bindir}/pkg-config
@@ -55,7 +54,6 @@ Python 2 version.
 
 %package -n python3-%{srcname}
 Summary:        Python3 interface to the pkg-config command line tool
-%{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
 Requires:       %{_bindir}/pkg-config
 

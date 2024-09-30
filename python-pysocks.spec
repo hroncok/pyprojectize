@@ -40,7 +40,6 @@ BuildRequires:      python%{python3_pkgversion}-pytest
 BuildRequires:      python%{python3_pkgversion}-psutil
 #BuildRequires:      python%%{python3_pkgversion}-test_server
 %endif
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{modname}}
 
 # This package doesn't actually exist...
 # but if it did, we would conflict with it.
@@ -61,7 +60,6 @@ BuildRequires:      python%{python3_other_pkgversion}-pytest
 BuildRequires:      python%{python3_other_pkgversion}-psutil
 #BuildRequires:      python%%{python3_other_pkgversion}-test_server
 %endif
-%{?python_provide:%python_provide python%{python3_other_pkgversion}-%{modname}}
 
 %description -n python%{python3_other_pkgversion}-%{modname}
 %_description

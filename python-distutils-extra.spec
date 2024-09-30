@@ -21,7 +21,6 @@ scrollkeeper based documentation into Python's distutils.
 %package -n python3-%{srcname}
 Summary:        %{sum}
 Requires:       intltool
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 Enables you to easily integrate gettext support, themed icons and

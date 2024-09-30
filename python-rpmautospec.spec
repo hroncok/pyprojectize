@@ -88,7 +88,7 @@ BuildRequires: python3dist(click-plugins)
 BuildRequires: python3dist(pygit2)
 BuildRequires: python3dist(rpm)
 BuildRequires: python3dist(rpmautospec-core)
-%{?python_provide:%python_provide python3-%{srcname}}
+%py_provides   python3-%{srcname}
 %endif
 
 %global _description %{expand:
@@ -98,7 +98,6 @@ A package and CLI tool to generate RPM release fields and changelogs.}
 
 %package -n python3-%{srcname}
 Summary: %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname} %_description
 

@@ -17,7 +17,6 @@ Py.test plugin for efficiently checking python source with pyflakes.
 
 %package -n python3-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(pytest) >= 2.8
 BuildRequires:  python3dist(pyflakes)

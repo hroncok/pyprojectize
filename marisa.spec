@@ -73,7 +73,6 @@ Requires:      %{name} = %{version}-%{release}
 Provides:      %{name}-python = %{version}-%{release}
 Provides:      %{name}-python%{?_isa} = %{version}-%{release}
 Obsoletes:     %{name}-python < %{version}-%{release}
-%{?python_provide:%python_provide python2-%{name}}
 
 %description -n python2-%{name}
 Python 2 language binding for marisa
@@ -83,7 +82,6 @@ Python 2 language binding for marisa
 %package -n python3-%{name}
 Summary:       Python 3 language binding for marisa
 Requires:      %{name} = %{version}-%{release}
-%{?python_provide:%python_provide python3-%{name}}
 
 %description -n python3-%{name}
 Python 3 language binding for marisa

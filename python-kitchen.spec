@@ -30,7 +30,6 @@ python-2.7 modules but needs to run on python-2.3.
 
 %package -n python%{python3_pkgversion}-kitchen
 Summary:    Small, useful pieces of code to make python 3 coding easier
-%{?python_provide:%python_provide python%{python3_pkgversion}-kitchen}
 
 Requires:   python%{python3_pkgversion}
 Requires:   python%{python3_pkgversion}-chardet

@@ -51,7 +51,6 @@ Requires: python3-%{shortname} = %{version}-%{release}
 Summary:    Python modules for git-revise
 Requires:   git
 Recommends: %{shortname} = %{version}-%{release}
-%{?python_provide:%python_provide python3-%{shortname}}
 
 %description -n python3-%{shortname}
 This package contains the python modules for the git-revise program.

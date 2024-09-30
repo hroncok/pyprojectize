@@ -25,7 +25,6 @@ BuildRequires:  python3-ruamel-yaml
 BuildRequires:  python3-sqlalchemy
 BuildRequires:  python3-pytest-timeout
 BuildRequires:  python3-pytest
-%{?python_provide:%python_provide python3-%{pkg_name}}
 
 %description -n python3-%{pkg_name}
 This package provides a set of convenience functions and classes to analyze the

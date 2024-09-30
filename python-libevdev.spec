@@ -21,7 +21,6 @@ Summary:	Python bindings to the libevdev evdev device wrapper library
 BuildRequires:	python3-devel
 Requires:	libevdev
 
-%{?python_provide:%python_provide python3-libevdev}
 
 %description -n	python3-libevdev
 %{name} provides the Python bindings to the libevdev evdev device

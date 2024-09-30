@@ -17,7 +17,6 @@ defining, registering and looking up components.
 
 %package -n python3-zope-component
 Summary: Zope Component Architecture
-%{?python_provide:%python_provide python3-zope-component}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-sphinx

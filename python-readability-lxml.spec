@@ -28,7 +28,6 @@ This is a python port of a ruby port of arc90's readability project.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 Requires:  python3dist(lxml-html-clean)
 
 %?python_enable_dependency_generator

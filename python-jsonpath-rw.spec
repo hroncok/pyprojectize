@@ -25,7 +25,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-ply
 BuildRequires:  python3-decorator
 BuildRequires:  python3-six
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 This library provides a robust and significantly extended implementation of

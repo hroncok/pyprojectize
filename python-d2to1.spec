@@ -26,7 +26,6 @@ and a very minimal setup.py which will slurp its arguments from the setup.cfg.
 
 %package -n python3-d2to1
 Summary: Allows using distutils2-like setup.cfg files with setup.py
-%{?python_provide:%python_provide python3-d2to1}
 BuildRequires:  python3-devel
 Requires:  python3-setuptools
 

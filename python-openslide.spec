@@ -29,7 +29,6 @@ programs to use OpenSlide.
 Summary:        Python 3 bindings for the OpenSlide library
 Requires:       openslide
 Requires:       python3-pillow
-%{?python_provide:%python_provide python3-openslide}
 
 
 %description -n python3-openslide

@@ -19,7 +19,6 @@ BuildArch:      noarch
 
 %package     -n python3-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(pyparsing)
 BuildRequires:  python3-pytest
@@ -28,7 +27,6 @@ BuildRequires:  python3-pytest
 
 %package     -n python3-%{srcname}-tests
 Summary:        Tests for python3-%{srcname}
-%{?python_provide:%python_provide python3-%{srcname}-tests}
 Requires:       python3-%{srcname} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       python3-pytest
 

@@ -32,7 +32,6 @@ development version:                                                    \
 %package -n python3-flask-xml-rpc
 Summary:            %{summary}
 Requires:           python3-flask
-%{?python_provide:%python_provide python3-flask-xml-rpc}
 
 %description -n python3-flask-xml-rpc %_description
 

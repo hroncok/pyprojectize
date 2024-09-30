@@ -21,7 +21,6 @@ write pandoc filters in Python.}
 
 %package -n python3-pandocfilters
 Summary:	Python module for writing pandoc filters
-%{?python_provide:%python_provide python3-pandocfilters}
 
 %description -n python3-pandocfilters %_description
 

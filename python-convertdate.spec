@@ -23,7 +23,6 @@ BuildRequires:  python3-pytest
 BuildRequires:  python3-pytz
 BuildRequires:  python3-ephem
 BuildRequires:  python3-pymeeus
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Converts between Gregorian dates and other calendar systems. Calendars 

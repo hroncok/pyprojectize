@@ -30,7 +30,6 @@ BuildRequires:  python%{python3_pkgversion}-devel
 Summary:        %{summary}
 
 %if 0%{?epel} && 0%{?epel} <= 8
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pypi_name}}
 %endif
 
 %if 0%{?fedora} == 32

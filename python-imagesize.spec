@@ -30,7 +30,6 @@ This is a pure Python library.
 
 %package -n     python%{python3_pkgversion}-%{pypi_name}
 Summary:        %{sum}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pypi_name}}
 
 %description -n python%{python3_pkgversion}-%{pypi_name}
 The imagesize package parses image file headers and returns the image sizes.

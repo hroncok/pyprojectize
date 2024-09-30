@@ -28,7 +28,6 @@ querysets dynamically.
 %package -n python3-%{pypi_name}
 Summary:        %summary
 Requires:       python3-django-rest-framework
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 Obsoletes:      python-%{pypi_name} < 1.0.2-3
 Obsoletes:      python2-%{pypi_name} < 1.0.2-3

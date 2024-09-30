@@ -29,7 +29,6 @@ Gtk or Qt applications.
 
 %package -n     python%{python3_pkgversion}-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pypi_name}}
 # Requires aren't properly stated for dbus-python, so they aren't generated properly
 Requires:       python%{python3_pkgversion}-dbus
 

@@ -31,7 +31,6 @@ BuildRequires:  python3dist(netifaces)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(pytest-aiohttp)
 BuildRequires:  python3dist(urllib3)
-%{?python_provide:%python_provide python3-%{pkg_name}}
 
 %description -n python3-%{pkg_name}
 PyDaikin is a standalone program and a library that interface air conditioners

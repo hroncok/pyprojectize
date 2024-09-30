@@ -40,7 +40,6 @@ BuildRequires: python3-sphinx
 %package -n python3-%name
 Summary: %summary
 Provides: %name = %version
-%{?python_provide:%python_provide python3-%{name}}
 
 Requires: python3-copr-common
 Requires: python3-fedora-messaging

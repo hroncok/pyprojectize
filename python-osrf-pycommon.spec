@@ -46,7 +46,6 @@ BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-importlib-metadata
 %endif
 BuildRequires:  python%{python3_pkgversion}-pytest
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pkgname}}
 
 %if !0%{?rhel} || 0%{?rhel} >= 8
 Suggests:       %{name}-doc = %{version}-%{release}

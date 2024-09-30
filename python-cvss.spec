@@ -30,7 +30,6 @@ interactive calculator.
 %if %{with python2}
 %package -n python2-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python2-%{srcname}}
 BuildRequires:  python2-devel
 %if 0%{?rhel} && 0%{?rhel} <= 7
 BuildRequires:  python-setuptools
@@ -51,7 +50,6 @@ Python 2 version.
 %if %{with python3}
 %package -n python3-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
 
 %description -n python3-%{srcname} %{_description}

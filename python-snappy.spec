@@ -27,7 +27,6 @@ BuildRequires:  snappy-devel
 Requires:       python3-cffi
 Requires:       snappy
 # Don't use %%pypi_name here to avoid a python-python-snappy provide
-%{?python_provide:%python_provide python3-snappy}
 
 %description -n python3-snappy
 Python bindings for the snappy compression library from Google.

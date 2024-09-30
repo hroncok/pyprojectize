@@ -24,7 +24,6 @@ Summary:        %{summary}
 BuildRequires:  python3-devel
 BuildRequires:  python3-pytest
 Requires:       python3-setuptools
-%{?python_provide:%python_provide python3-%{pkg_name}}
 
 %description -n python3-%{pkg_name}
 %{desc}

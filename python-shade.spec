@@ -44,7 +44,6 @@ BuildRequires:  python3-requests-mock
 
 %package -n python3-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
 Requires:       python3-jmespath                 >= 0.9.0
 Requires:       python3-keystoneauth1            >= 3.3.0
 Requires:       python3-munch                    >= 2.1.0

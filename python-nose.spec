@@ -59,7 +59,6 @@ Summary:        %{summary}
 BuildRequires:  python3-devel
 BuildRequires:  python3-coverage >= 3.4-1
 Requires:       python3-setuptools
-%{?python_provide:%python_provide python3-%{modname}}
 Conflicts:      python-%{modname} < %{version}-%{release}
 Obsoletes:      python-%{modname}-docs < 1.3.7-30
 

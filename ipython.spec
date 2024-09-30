@@ -88,8 +88,7 @@ Main features:\
 
 %package -n python3-ipython
 Summary:        An enhanced interactive Python shell
-%{?python_provide:%python_provide python3-ipython}
-%{?python_provide:%python_provide python3-ipython-console}
+%py_provides    python3-ipython-console
 Provides:       ipython3 = %{version}-%{release}
 Provides:       ipython = %{version}-%{release}
 Provides:       python3-ipython-console = %{version}-%{release}
@@ -117,7 +116,6 @@ This package provides IPython for in a terminal.
 
 %package -n python3-ipython-sphinx
 Summary:        Sphinx directive to support embedded IPython code
-%{?python_provide:%python_provide python3-ipython-sphinx}
 Requires:       python3-ipython = %{version}-%{release}
 BuildRequires:  python3-sphinx
 Requires:       python3-sphinx
@@ -132,8 +130,7 @@ This package contains the ipython sphinx extension.
 Summary:        Tests for %{name}
 Provides:       python3-ipython-tests = %{version}-%{release}
 Obsoletes:      python3-ipython-tests < 8.7.0-2
-%{?python_provide:%python_provide python3-ipython-tests}
-%{?python_provide:%python_provide python3-ipython+test}
+%py_provides    python3-ipython-tests
 Requires:       python3-ipykernel
 Requires:       python3-ipython = %{version}-%{release}
 Requires:       python3-jupyter-client
@@ -154,7 +151,6 @@ You can check this way, if ipython works on your platform.
 %if %{with doc}
 %package -n python3-ipython-doc
 Summary:        Documentation for %{name}
-%{?python_provide:%python_provide python3-ipython-doc}
 %description -n python3-ipython-doc
 This package contains the documentation of %{name}.
 %endif

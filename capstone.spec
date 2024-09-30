@@ -115,7 +115,6 @@ of %{name} library into static binaries.
 %if %{with python2}
 %package        -n python2-capstone
 BuildArch:      noarch
-%{?python_provide:%python_provide python2-capstone}
 # Remove before F30
 # loading the libcapstone dynamically using ctypes, not tied to certain architecture
 Provides:       %{name}-python = %{version}-%{release}
@@ -134,7 +133,6 @@ The python2-capstone package contains python bindings for %{name}.
 %if %{with python3}
 %package	-n python%{python3_pkgversion}-capstone
 BuildArch:      noarch
-%{?python_provide:%python_provide python%{python3_pkgversion}-capstone}
 Provides:       %{name}-python%{python3_pkgversion} = %{version}-%{release}
 Obsoletes:      %{name}-python%{python3_pkgversion} < %{version}-%{release}
 Requires:       %{name} = %{version}-%{release}

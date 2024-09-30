@@ -16,7 +16,6 @@ A simple (really simple) library for working with ISO639-2 language codes.
 
 %package -n python3-%{modname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{modname}}
 BuildRequires:  python3-devel
 
 %description -n python3-%{modname}

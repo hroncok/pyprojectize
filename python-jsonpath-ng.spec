@@ -27,7 +27,6 @@ BuildRequires:  python3dist(ply)
 BuildRequires:  python3dist(six)
 BuildRequires:  python3dist(oslotest)
 BuildRequires:  python3dist(testscenarios)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Implementation of JSONPath for Python that aims to be standard compliant,

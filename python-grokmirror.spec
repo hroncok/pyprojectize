@@ -24,7 +24,6 @@ mirrors.
 %package -n python3-grokmirror
 Summary:        %summary
 Requires:       python3-GitPython, python3-anyjson, python3-setuptools, python3-enlighten
-%{?python_provide:%python_provide python3-grokmirror}
 
 %description -n python3-grokmirror %_description
 

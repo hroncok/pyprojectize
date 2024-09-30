@@ -26,7 +26,7 @@ BuildRequires:  python3-betamax-serializers
 BuildRequires:  python3-pytest
 BuildRequires:  python3-pytest-runner
 BuildRequires:  python3-testfixtures
-%{?python_provide:%python_provide python3-nng}
+%py_provides    python3-nng
 
 %description -n python3-%{pypi_name}
 Low-level communication layer for PRAW 4+ library.

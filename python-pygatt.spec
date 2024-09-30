@@ -30,7 +30,6 @@ Summary:        %{summary}
 Requires:       python3-pexpect
 Requires:       python3-pyserial
 Requires:       bluez
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 This Module allows reading and writing to GATT descriptors on devices such as

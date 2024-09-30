@@ -97,7 +97,6 @@ The Perl RRDtool bindings
 
 
 %package -n python3-rrdtool
-%{?python_provide:%python_provide python3-rrdtool}
 Summary: Python RRDtool bindings
 BuildRequires: python3-devel
 %{?__python3:Requires: %{__python3}}

@@ -39,7 +39,6 @@ BuildRequires:    python3-devel
 %if %{with tests}
 BuildRequires:    %{py3_dist Twisted six}
 %endif
-%{?python_provide:%python_provide python3-%{pkgname}}
 
 %description -n python3-%{pkgname} %{common_description}
 

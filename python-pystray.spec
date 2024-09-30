@@ -35,7 +35,6 @@ Requires:	python3-pillow
 Requires:	python3-six
 Requires:	python3-xlib		>= 0.17
 
-%{?python_provide:%python_provide python3-%{upname}}
 
 %description -n python3-%{upname}
 %{common_desc}

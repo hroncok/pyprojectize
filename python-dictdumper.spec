@@ -18,7 +18,6 @@ formatted output dumper for dict.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 The dictdumper project is an open source Python program works as a stream

@@ -33,7 +33,6 @@ Python library to dump binary data to hex format and restore from there
 
 %package -n python%{python3_pkgversion}-%{srcname}
 Summary:        Dump binary data to hex format and restore from there
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %description -n python%{python3_pkgversion}-%{srcname}
 Python library to dump binary data to hex format and restore from there

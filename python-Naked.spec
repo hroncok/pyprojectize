@@ -23,7 +23,6 @@ BuildArch:      noarch
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 Conflicts:      python2-%{pypi_name} < 0.1.31-8
 
 Requires:       python3-Naked

@@ -18,7 +18,6 @@ Robust and effective logging for Python 2 and 3.
 
 %package -n python3-%{srcname}
 Summary:        %{sum}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 Robust and effective logging for Python 3.

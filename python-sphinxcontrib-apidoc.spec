@@ -32,7 +32,6 @@ simply generates it.
 
 %package -n python3-%{pypi_name}
 Summary:    %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 Requires:   python3-pbr
 Requires:   python3-sphinx
 

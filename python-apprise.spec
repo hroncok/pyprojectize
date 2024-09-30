@@ -79,7 +79,6 @@ services.
 
 %package -n python%{python3_pkgversion}-%{pypi_name}
 Summary: A simple wrapper to many popular notification services used today
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pypi_name}}
 
 BuildRequires: gettext
 BuildRequires: python%{python3_pkgversion}-devel

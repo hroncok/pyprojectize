@@ -20,7 +20,6 @@ flexible test runner, and supports both doctest and unittest.
 
 %package -n python%{python3_pkgversion}-zope-testing
 Summary:        Zope Testing Framework
-%{?python_provide:%python_provide python%{python3_pkgversion}-zope-testing}
 
 BuildRequires:  python%{python3_pkgversion}-devel
 

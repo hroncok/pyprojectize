@@ -22,7 +22,6 @@ the matrix, such that no row and no column are used more than once.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 The Munkres module provides an implementation of the Munkres algorithm (also

@@ -18,7 +18,6 @@ text; it takes an EmPy source file, processes it, and produces output.
 
 %package -n python3-%{srcname}
 Summary:        %{sum}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 EmPy is a system for embedding Python expressions and statements in template

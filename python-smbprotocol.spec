@@ -23,7 +23,6 @@ BuildRequires:  python3dist(cryptography)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(pytest-cov)
 BuildRequires:  python3dist(pyspnego)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 SMB is a network file sharing protocol and has numerous iterations

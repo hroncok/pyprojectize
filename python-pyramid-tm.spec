@@ -36,7 +36,6 @@ BuildRequires:  python3-webtest
 %package -n python3-pyramid-tm
 Summary:        %{sum}
 
-%{?python_provide:%python_provide python3-pyramid-tm}
 
 Requires:       python3-pyramid >= 1.5
 Requires:       python3-transaction >= 2.0

@@ -22,7 +22,6 @@ whether it has any right to or not. Some code has an error? Fuck it.\
 
 %package -n python3-%{srcname}
 Summary:        The Python Error Steamroller
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 FuckIt.py uses state-of-the-art technology to make sure your Python code runs

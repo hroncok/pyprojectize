@@ -18,7 +18,6 @@ text-unidecode is the most basic port of the Text::Unidecode Perl library.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 text-unidecode is the most basic port of the Text::Unidecode Perl library.

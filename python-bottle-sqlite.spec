@@ -27,7 +27,6 @@ BuildRequires:  python3-devel
 
 Requires:       python3-bottle
 
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 Bottle-sqlite is a plugin that integrates SQLite3 with your Bottle application.

@@ -18,7 +18,6 @@ PyFtdi aims at providing a user-space driver for modern FTDI devices.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 PyFtdi aims at providing a user-space driver for modern FTDI devices.

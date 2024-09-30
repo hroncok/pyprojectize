@@ -26,7 +26,6 @@ Summary:        %{summary}
 BuildRequires:  python3-devel
 BuildRequires:  python3-pytest
 BuildRequires:  python3-pyyaml
-%{?python_provide:%python_provide python3-configargparse}
 
 %description -n python3-configargparse
 Applications with more than a handful of user-settable options are best

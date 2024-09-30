@@ -41,7 +41,6 @@ always at 100%.
 # Sub-package setup
 %package -n python3-bitmath
 Summary: Aids representing and manipulating file sizes in various prefix notations
-%{?python_provide:%python_provide python3-bitmath}
 
 %description -n python3-bitmath
 bitmath simplifies many facets of interacting with file sizes in

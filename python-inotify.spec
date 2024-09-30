@@ -23,7 +23,6 @@ kernel space to user space.
 
 %package    -n python%{python3_pkgversion}-inotify
 Summary:       %{summary}
-%{?python_provide:%python_provide python%{python3_pkgversion}-inotify}
 %description -n python%{python3_pkgversion}-inotify %_description
 
 %prep

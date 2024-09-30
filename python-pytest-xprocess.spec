@@ -26,7 +26,6 @@ line...
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 Requires:       python3dist(psutil)
 Requires:       python3dist(pytest)

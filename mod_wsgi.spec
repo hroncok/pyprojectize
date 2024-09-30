@@ -45,7 +45,6 @@ existing WSGI adapters for mod_python or CGI.\
 Summary: %summary
 Requires:       httpd-mmn = %{_httpd_mmn}
 BuildRequires:  python2-devel, python2-setuptools
-%{?python_provide:%python_provide python2-%{name}}
 %if 0%{?rhel} && 0%{?rhel} <= 7
 Provides: mod_wsgi = %{version}-%{release}
 Provides: mod_wsgi%{?_isa} = %{version}-%{release}

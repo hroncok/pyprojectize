@@ -34,7 +34,6 @@ BuildRequires:  python3-docutils >= 0.11
 BuildRequires:  python3-docutils < 1.0
 Requires:       python3-docutils >= 0.11
 Requires:       python3-docutils < 1.0
-%{?python_provide:%python_provide python3-%{pkg_name}}
 
 %description -n python3-%{pkg_name}
 %{desc}

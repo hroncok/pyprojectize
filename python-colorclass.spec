@@ -24,7 +24,6 @@ dark/light terminals. Works on Linux, OS X, and Windows.
 %package -n python3-%{srcname}
 Summary:        Yet another ANSI color text library for Python
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 Colorful worry-free console applications for Linux, Mac OS X, and Windows.

@@ -30,7 +30,6 @@ BuildRequires:  python3-responses
 BuildRequires:  python3-tox
 %endif
 Requires:       python3-requests
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 Slacker is a full-featured Python interface for the Slack API.

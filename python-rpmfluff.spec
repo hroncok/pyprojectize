@@ -24,7 +24,6 @@ such as RPM, YUM, and DNF.
 
 %package -n python3-%{modname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{modname}}
 BuildRequires:  gcc
 BuildRequires:  python3-devel
 BuildRequires:  python3-rpm

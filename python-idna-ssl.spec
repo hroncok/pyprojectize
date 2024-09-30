@@ -28,7 +28,6 @@ BuildRequires:  python3dist(pytest-cov)
 BuildRequires:  python3dist(aiohttp) > 2.3
 BuildRequires:  python3dist(idna) >= 2
 %endif
-%{?python_provide:%python_provide python3-%{modname}}
 
 %description -n python3-%{modname}
 %{summary}.

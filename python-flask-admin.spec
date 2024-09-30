@@ -34,7 +34,6 @@ and feel.\
 Summary:	%{sum}
 Requires:	python%{python3_pkgversion}-flask
 Requires:	python%{python3_pkgversion}-wtforms
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pkgname}}
 
 %description -n python%{python3_pkgversion}-%{pkgname} %_description
 

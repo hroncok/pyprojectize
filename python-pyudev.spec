@@ -20,7 +20,6 @@ The binding supports CPython 3 and PyPy.
 
 %package -n python3-%{srcname}
 Summary:          A libudev binding
-%{?python_provide:%python_provide python3-%{srcname}}
 
 BuildRequires:    python3-devel
 

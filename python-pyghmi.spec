@@ -31,7 +31,6 @@ Patch1001:  setup.patch
 
 %package -n python3-%{sname}
 Summary: %{common_summary}
-%{?python_provide:%python_provide python3-%{sname}}
 
 BuildRequires: python3-devel
 %if %{with pbr}

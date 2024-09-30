@@ -67,7 +67,6 @@ Development files and headers for high-quality QR Code generator library
 %package -n python3-qrcodegen
 Summary: High-quality QR Code generator library (Python version)
 BuildArch: noarch
-%{?python_provide:%python_provide python3-qrcodegen}
 
 %description -n python3-qrcodegen
 This project aims to be the best, clearest QR Code generator library in

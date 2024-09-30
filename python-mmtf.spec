@@ -40,7 +40,6 @@ BuildRequires: python3-msgpack
 BuildRequires: python3-pytest
 BuildRequires: python3-numpy
 %endif
-%{?python_provide:%python_provide python3-mmtf}
 Requires: python3-msgpack
 
 %description -n python3-mmtf

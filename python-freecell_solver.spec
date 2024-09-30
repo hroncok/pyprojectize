@@ -25,7 +25,6 @@ Python bindings for Freecell Solver using cffi.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 Requires:       python3dist(pbr) >= 2.0
 %description -n python3-%{pypi_name}

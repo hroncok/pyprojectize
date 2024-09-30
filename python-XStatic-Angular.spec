@@ -35,7 +35,6 @@ BuildRequires:  web-assets-devel
 Requires: python3-XStatic
 Requires: XStatic-Angular-common = %{epoch}:%{version}-%{release}
 
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Angular JavaScript library packaged for

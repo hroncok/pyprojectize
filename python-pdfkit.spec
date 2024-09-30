@@ -32,7 +32,6 @@ This is an adapted version of Ruby PDFKit.
 
 %package -n python3-%{pypi_name}
 Summary:        Wkhtmltopdf python wrapper
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Python 3 wrapper for wkhtmltopdf utility to convert HTML to PDF using Webkit.

@@ -23,7 +23,6 @@ Summary:        %{summary}
 BuildRequires:  python3-devel
 
 Requires:       file-devel
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 This module uses ctypes to access the libmagic file type identification

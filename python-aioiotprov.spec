@@ -19,7 +19,6 @@ firmware, Shelly devices and E-Trix power monitors.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 A library/utility to provision IoT devices. It can provision TP-Link

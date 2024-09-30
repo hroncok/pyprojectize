@@ -23,7 +23,6 @@ for filtering those results.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 A Python library for accessing and searching dictionaries via /slashed/paths ala

@@ -19,7 +19,6 @@ and status updates.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pkg_name}}
 
 %description -n python3-%{pkg_name}
 pyShellyLibrary for Shelly smart home devices. Using CoAP for auto discovery

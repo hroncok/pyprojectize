@@ -47,7 +47,6 @@ developing applications that use %{name}.
 %if 0%{?rhel} || 0%{?centos}
 Provides:       python3-%{name}
 %else
-%{?python_provide:%python_provide %{py3_prefix}-%{name}}
 %endif
 Summary:        Python bindings for %{name}
 Requires:       %{name} = %{version}-%{release}

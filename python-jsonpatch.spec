@@ -26,7 +26,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-jsonpointer
 Requires:       python3-jsonpointer
 
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 Library to apply JSON Patches according to RFC 6902 - Python 3 build.

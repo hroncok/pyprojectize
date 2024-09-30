@@ -22,7 +22,6 @@ Summary:        %{summary}
 BuildRequires:  python%{python3_pkgversion}-Cython
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-pytest
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 # For backwards compatibility
 Provides:       python3dist(%{srcname}-python) = %{version}

@@ -28,7 +28,6 @@ Some reasons you might want to use REST framework:
 %package -n python3-django-rest-framework
 Summary:        Web APIs for Django, made easy
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-django-rest-framework}
 
 Obsoletes: python2-django-rest-framework < 3.7.7-2
 Obsoletes: python-django-rest-framework < 3.7.7-2

@@ -28,7 +28,6 @@ behaves in the same ways.
 %package -n python3-%{sname}
 Summary:        %summary
 Requires:       python3-gssapi
-%{?python_provide:%python_provide python3-%{sname}}
 %description -n python3-%{sname} %_description
 
 %prep

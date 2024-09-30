@@ -45,7 +45,6 @@ BuildRequires:  python3-devel
 Requires:       python3-XStatic
 Requires:       xstatic-filesaver-common
 
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 FilseSaver JavaScript library packaged for setup-tools (easy_install) / pip.

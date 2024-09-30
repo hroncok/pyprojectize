@@ -28,7 +28,6 @@ BuildRequires:  python3-pytest-cov
 BuildRequires:  python3-pytest-sugar
 BuildRequires:  python3-pytest-timeout
 %endif
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 aiopg is a library for accessing a PostgreSQL database from the asyncio

@@ -25,7 +25,6 @@ Coveralls Pro.
 
 %package -n python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 # Dependencies are automatically provided by the dependency generator
 

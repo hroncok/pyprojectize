@@ -26,7 +26,6 @@ BuildRequires:  python3-devel
 Requires:       python3-XStatic
 Requires:       xstatic-rickshaw-common
 
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 JavaScript library packaged for setuptools (easy_install) / pip.

@@ -23,7 +23,6 @@ Debian's Bug Tracking System.
 
 %package -n     python3-%{rpmname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{rpmname}}
 
 Requires:       python3dist(mock)
 Requires:       python3dist(pysimplesoap)

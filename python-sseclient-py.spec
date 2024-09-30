@@ -20,7 +20,6 @@ Summary:        %{summary}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(pytest)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 Requires:       python3dist(setuptools)
 %description -n python3-%{pypi_name}

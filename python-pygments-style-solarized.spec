@@ -19,7 +19,6 @@ BuildRequires:  python3-devel
 %package -n     python3-%{srcname}
 Summary:        %{sum}
 Requires:       python3-pygments >= 1.5
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 %{sum}

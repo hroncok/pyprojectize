@@ -45,7 +45,6 @@ results in smaller source code developed in less time.
 
 %package -n python3-cherrypy
 Summary: %summary
-%{?python_provide:%python_provide python3-cherrypy}
 
 %package -n python3-cherrypy-devel
 Summary: Test and Tutorial files excluded from main package

@@ -23,7 +23,7 @@ versions.
 
 %package -n python3-backlash
 Summary:            Standalone WebOb port of the Werkzeug Debugger with Python3 support meant to replace WebError in TurboGears2
-%{?python_provide:%python_provide python3-backslash}
+%py_provides        python3-backslash
 BuildRequires:      python3-devel
 Requires:           open-sans-fonts
 

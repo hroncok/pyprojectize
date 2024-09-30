@@ -19,7 +19,7 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-pygame
 BuildRequires:  python3-numpy
 
-%{?python_provide:%python_provide python3-%{name}}
+%py_provides    python3-%{name}
  
 Requires:       python3-pygame
 Requires:       python3-setuptools

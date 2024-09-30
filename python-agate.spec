@@ -42,7 +42,6 @@ BuildRequires:  python3dist(leather) >= 0.3.
 BuildRequires:  python3dist(furo)
 # This is required for tests to start.
 BuildRequires:  glibc-langpack-en
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 %{desc}

@@ -27,7 +27,6 @@ BuildRequires:	python3dist(mock)
 BuildRequires:	python3dist(requests-mock)
 
 # for Requires we rely on the automatic Python dep generator
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 This library provides a simple asynchronous Python wrapper for the Fast

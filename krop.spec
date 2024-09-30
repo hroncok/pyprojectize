@@ -42,14 +42,12 @@ your eReader does not support convenient scrolling.
 %package -n python2-%{name}
 Summary:    Python2 module for %{name}
 Requires:   python-PyPDF2 PyQt5 python-poppler-qt5
-%{?python_provide:%python_provide python2-%{name}}
 
 %description -n python2-%{name}
 %else
 %package -n python3-%{name}
 Summary:    Python3 module for %{name}
 Requires:   python3-PyPDF2 python3-PyQt5 python3-poppler-qt5
-%{?python_provide:%python_provide python3-%{name}}
 
 %description -n python3-%{name}
 %endif

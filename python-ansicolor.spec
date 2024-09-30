@@ -52,7 +52,6 @@ BuildRequires:  python3-sphinx
 %if %{with python2}
 %package -n python2-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python2-%{srcname}}
 
 %description -n python2-%{srcname}
 %{desc}
@@ -62,7 +61,6 @@ Summary:        %{summary}
 %if %{with python3}
 %package -n python3-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 %{desc}

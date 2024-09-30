@@ -23,7 +23,6 @@ command-line interfaces.
 
 %package -n     python3-cli-helpers
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-cli-helpers}
 Requires:       python3-configobj >= 5.0.5
 Requires:       python3-pygments >= 1.6
 Requires:       python3-tabulate >= 0.8.2

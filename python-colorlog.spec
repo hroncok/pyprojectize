@@ -24,14 +24,12 @@ BuildRequires:  python3-devel
 %if 0%{?rhel} && 0%{?rhel} < 8
 %package -n python2-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python2-%{srcname}}
 
 %description -n python2-%{srcname}
 %{desc}
 %else
 %package -n python3-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 %{desc}

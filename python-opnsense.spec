@@ -27,7 +27,6 @@ BuildRequires:  python3dist(pbr)
 BuildRequires:  python3dist(requests)
 BuildRequires:  python3dist(six)
 BuildRequires:  python3dist(stestr)
-%{?python_provide:%python_provide python3-%{pkg_name}}
 
 %description -n python3-%{pkg_name}
 A Python API client for the OPNsense API. This module provides a Python

@@ -43,7 +43,6 @@ BuildRequires:  python%{python3_pkgversion}-devel
 %if %{with python2}
 %package -n     python2-%{pypi_name}
 Summary:        %{sum} for Python 2
-%{?python_provide:%python_provide python2-%{pypi_name}}
 %if (0%{?rhel} && 0%{?rhel} < 8) || (0%{?fedora} && 0%{?fedora} < 28)
 Requires:       python-trollius
 %else
@@ -58,7 +57,6 @@ This package provides the Python 2 module.
 
 %package -n     python%{python3_pkgversion}-%{pypi_name}
 Summary:        %{sum} for Python 3
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pypi_name}}
 
 %description -n python%{python3_pkgversion}-%{pypi_name} %{desc}
 

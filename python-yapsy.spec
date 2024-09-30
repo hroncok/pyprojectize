@@ -31,8 +31,7 @@ Python. Yapsy only depends on Python’s standard library.
 
 %package -n python3-%{modname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{modname}}
-%{?python_provide:%python_provide python3-%{srcname}}
+%py_provides    python3-%{srcname}
 BuildRequires:  python3-devel
 
 %description -n python3-%{modname} %{_description}

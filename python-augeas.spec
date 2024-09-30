@@ -21,7 +21,6 @@ python-augeas is a set of Python bindings around augeas.
 Summary:	Python 3 bindings to augeas
 Requires:	augeas-libs
 Requires:	python3-cffi
-%{?python_provide:%python_provide python3-augeas}
 
 %description -n python3-augeas
 python3-augeas is a set of Python bindings around augeas.

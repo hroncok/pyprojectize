@@ -35,7 +35,6 @@ Graphene is a Python library for building GraphQL schemas/types fast and easily.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 Requires:       python3dist(aniso8601) >= 8
 # NOTE(jpena): upstream states >= 3.1.2, we will change this when the version is built in Rawhide

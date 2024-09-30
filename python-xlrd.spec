@@ -26,7 +26,6 @@ dates.  Unicode-aware.
 Summary:        %{sum}
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-pytest
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %description -n python%{python3_pkgversion}-%{srcname}
 Extract data from Excel spreadsheets (.xls and .xlsx, versions 2.0 onwards)
@@ -38,7 +37,6 @@ dates.  Unicode-aware.
 Summary:        %{sum}
 BuildRequires:  python%{python3_other_pkgversion}-devel
 BuildRequires:  python%{python3_other_pkgversion}-setuptools
-%{?python_provide:%python_provide python%{python3_other_pkgversion}-%{srcname}}
 
 %description -n python%{python3_other_pkgversion}-%{srcname}
 Extract data from Excel spreadsheets (.xls and .xlsx, versions 2.0 onwards)

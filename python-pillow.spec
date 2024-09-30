@@ -101,7 +101,6 @@ devel (development) and doc (documentation).
 
 %package -n python%{python3_pkgversion}-%{srcname}
 Summary:        Python 3 image processing library
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 Provides:       python%{python3_pkgversion}-imaging = %{version}-%{release}
 # For MicImagePlugin.py, FpxImagePlugin.py
 Requires:       python%{python3_pkgversion}-olefile
@@ -120,7 +119,6 @@ devel (development) and doc (documentation).
 Summary:        Development files for %{srcname}
 Requires:       python%{python3_pkgversion}-devel, libjpeg-devel, zlib-devel
 Requires:       python%{python3_pkgversion}-%{srcname}%{?_isa} = %{version}-%{release}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}-devel}
 Provides:       python%{python3_pkgversion}-imaging-devel = %{version}-%{release}
 
 %description -n python%{python3_pkgversion}-%{srcname}-devel
@@ -131,7 +129,6 @@ Development files for %{srcname}.
 Summary:        Documentation for %{srcname}
 BuildArch:      noarch
 Requires:       python%{python3_pkgversion}-%{srcname} = %{version}-%{release}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}-doc}
 Provides:       python%{python3_pkgversion}-imaging-doc = %{version}-%{release}
 
 %description -n python%{python3_pkgversion}-%{srcname}-doc
@@ -142,7 +139,6 @@ Documentation for %{srcname}.
 Summary:        Tk interface for %{srcname}
 Requires:       python%{python3_pkgversion}-tkinter
 Requires:       python%{python3_pkgversion}-%{srcname}%{?_isa} = %{version}-%{release}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}-tk}
 Provides:       python%{python3_pkgversion}-imaging-tk = %{version}-%{release}
 
 %description -n python%{python3_pkgversion}-%{srcname}-tk
@@ -153,7 +149,6 @@ Tk interface for %{srcname}.
 Summary:        Qt %{srcname} image wrapper
 Requires:       python%{python3_pkgversion}-qt5
 Requires:       python%{python3_pkgversion}-%{srcname}%{?_isa} = %{version}-%{release}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}-qt}
 Provides:       python%{python3_pkgversion}-imaging-qt = %{version}-%{release}
 
 %description -n python%{python3_pkgversion}-%{srcname}-qt

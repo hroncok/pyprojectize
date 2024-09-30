@@ -34,7 +34,6 @@ BuildRequires: python3-devel
 %if %{with check}
 BuildRequires: python3-numpy
 %endif
-%{?python_provide:%python_provide python3-%{pname}}
 BuildArch: noarch
 
 %description -n python3-%{pname}

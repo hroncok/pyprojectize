@@ -45,7 +45,6 @@ Recommends: python3dist(pycrypto)
 Recommends: python3dist(pycryptodome)
 Recommends: python3dist(pycryptopp)
 
-%{?python_provide:%python_provide python3-beaker}
 
 %description -n python3-beaker %_description
 

@@ -45,7 +45,6 @@ roboto-fontface fonts
 #python3 packaging
 %package -n     python3-%{pypi_name}
 Summary:        roboto-fontface (XStatic packaging standard)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 BuildRequires:  python3-devel
 

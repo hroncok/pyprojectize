@@ -25,7 +25,6 @@ specify how many machines they need and commands/checks to run on them.
 
 %package -n python3-%{srcname}
 Summary: Utility for writing multi-host tests for pytest
-%{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires: python3-devel
 BuildRequires: python3-pytest
 # These are not *strictly* required, but are part of the default workflow.

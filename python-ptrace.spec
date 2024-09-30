@@ -23,7 +23,6 @@ Features: \
 %description %_description
 %package    -n python3-ptrace
 Summary:       Debugger using ptrace written in Python 3
-%{?python_provide:%python_provide python3-ptrace}
 %description -n python3-ptrace %_description
 
 %prep

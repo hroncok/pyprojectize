@@ -29,7 +29,6 @@ Lightweight Angular directive to upload files.
 %if %{with python2}
 %package -n python2-%{pypi_name}
 Summary: Angular-FileUpload JavaScript library (XStatic packaging standard)
-%{?python_provide:%python_provide python2-%{pypi_name}}
 
 BuildRequires:  python2-devel
 BuildRequires:  python2-setuptools
@@ -59,7 +58,6 @@ This package contains the javascript files.
 %if %{with python3}
 %package -n python3-%{pypi_name}
 Summary: Angular-FileUpload JavaScript library (XStatic packaging standard)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 BuildRequires:  python3-devel
 

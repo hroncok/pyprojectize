@@ -34,7 +34,6 @@ Requires:       python3-jinja2
 Requires:       python3-lxml
 Requires:       python3-requests
 Requires:       python3-six
-%{?python_provide:%python_provide python3-%{mod_name}}
 
 %description -n python3-%{mod_name}
 This script allows to generate RPM "spec" or DEB "dsc" files from Python modules.

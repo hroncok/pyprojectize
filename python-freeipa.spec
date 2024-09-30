@@ -23,7 +23,6 @@ python-freeipa is lightweight FreeIPA client.
 
 %package -n     python%{python3_pkgversion}-%{srcname}
 Summary:        %{summary} for Python %{python3_version}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %description -n python%{python3_pkgversion}-%{srcname}
 python-freeipa is lightweight FreeIPA client.

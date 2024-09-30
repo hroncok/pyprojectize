@@ -21,7 +21,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(aiohttp)
 BuildRequires:  python3dist(async-timeout)
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 # This can be removed after the package is updated to 0.6.2 or later; upstream
 # added the dependency to the metadata in

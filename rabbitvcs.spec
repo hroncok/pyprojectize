@@ -30,7 +30,6 @@ Contains files shared between the RabbitVCS extensions.
 
 %package -n python3-rabbitvcs
 Summary:        %{sum}
-%{?python_provide:%python_provide python3-rabbitvcs}
 Requires:       %{name}-core = %{version}-%{release}
 Requires:       python3-configobj
 Requires:       python3-dulwich

@@ -28,7 +28,6 @@ BuildRequires:  python3-pytest
 Requires:       python3-cherrypy
 Requires:       python3-tornado
 Requires:       python3-gevent
-%{?python_provide:%python_provide python3-%{srcname}}
 Provides:       bundled(utf8validator)
 
 %description -n python3-%{srcname} %_description

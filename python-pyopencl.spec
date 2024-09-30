@@ -60,7 +60,6 @@ API in a manner similar to the sister project `PyCUDA`.
 
 %package -n python3-%{srcname}
 Summary:        Python 3 wrapper for OpenCL
-%{?python_provide:%python_provide python3-%{srcname}}
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(pybind11)
 BuildRequires:  python3dist(numpy)

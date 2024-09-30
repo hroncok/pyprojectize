@@ -23,7 +23,6 @@ Python/Python3.  See README for extension RFCs implemented.
 Summary: %summary
 BuildRequires: python3-devel
 
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname} %_description
 

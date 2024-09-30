@@ -51,7 +51,6 @@ BuildRequires:  python%{python3_pkgversion}-hypothesis
 Suggests:       python-CommonMark-doc
 Suggests:       %{name}-utils == %{version}-%{release}
 Summary:        %{summary}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pypi_name}}
 
 %description -n python%{python3_pkgversion}-%{pypi_name}
 %{desc}

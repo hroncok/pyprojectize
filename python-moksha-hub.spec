@@ -109,7 +109,6 @@ Recommends:     python2-service-identity
 
 Conflicts:      moksha < 1.0.0
 Conflicts:      python3-moksha-hub < 1.5.17-4
-%{?python_provide:%python_provide python2-moksha-hub}
 
 %description -n python2-moksha-hub %_description
 %endif

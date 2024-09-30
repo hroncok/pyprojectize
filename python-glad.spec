@@ -30,7 +30,6 @@ Loader made for your needs.
 
 %package -n     python3-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
 
 Requires:       python3dist(setuptools)
 

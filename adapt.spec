@@ -28,7 +28,6 @@ structured intent that can then be invoked programatically.
 
 %package -n python3-adapt
 Summary:        A python3 library for Adapt Intent Parser
-%{?python_provide:%python_provide python3-adapt}
 
 %description -n python3-adapt
 A python3 library for Adapt Intent Parser.

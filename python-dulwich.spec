@@ -22,7 +22,6 @@ Mrs. Git live in the Monty Python sketch.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
 Dulwich is a pure-Python implementation of the Git file formats and

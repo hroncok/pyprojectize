@@ -23,7 +23,6 @@ exported settings format.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 listparser is a Python library that parses subscription lists (also called

@@ -20,7 +20,6 @@ that can perform port scans on your behalf.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 scanless is a Python 3 command-line utility and library for using websites

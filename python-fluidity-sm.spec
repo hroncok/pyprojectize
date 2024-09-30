@@ -27,7 +27,6 @@ State machine implementation for Python objects.
 
 %package -n python3-fluidity-sm
 Summary:	State machine implementation for Python objects
-%{?python_provide:%python_provide python3-fluidity-sm}
 
 %description -n python3-fluidity-sm
 State machine implementation for Python objects.

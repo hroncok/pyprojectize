@@ -58,7 +58,6 @@ BuildRequires:  python%{python3_other_pkgversion}-prefixed
 %if %{with python2}
 %package -n     python2-%{pypi_name}
 Summary:        %{sum}
-%{?python_provide:%python_provide python2-%{pypi_name}}
 
 Requires:  python2-blessed
 Requires:  python2-prefixed
@@ -72,7 +71,6 @@ Requires:  python2-prefixed
 %if %{with python3}
 %package -n     python%{python3_pkgversion}-%{pypi_name}
 Summary:        %{sum}
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pypi_name}}
 Requires:       python%{python3_pkgversion}-blessed
 Requires:       python%{python3_pkgversion}-prefixed
 
@@ -85,7 +83,6 @@ Requires:       python%{python3_pkgversion}-prefixed
 %if 0%{?with_python3_other}
 %package -n     python%{python3_other_pkgversion}-%{pypi_name}
 Summary:        %{sum}
-%{?python_provide:%python_provide python%{python3_other_pkgversion}-%{pypi_name}}
 Requires:       python%{python3_other_pkgversion}-blessed
 Requires:       python%{python3_other_pkgversion}-prefixed
 

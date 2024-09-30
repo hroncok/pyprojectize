@@ -40,7 +40,7 @@ rm -rf %{buildroot}%{python3_sitelib}/qa
 %files
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{name}.dist-info/
+%{python3_sitelib}/%{name}-*.dist-info/
 %{python3_sitelib}/%{name}/
 %{_bindir}/gitlint
 

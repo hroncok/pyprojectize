@@ -163,7 +163,7 @@ popd
 %if %{with python2}
 %files -n python2-nototools
 %{python2_sitelib}/%{name}
-%{python2_sitelib}/%{srcname}-%{version}-py2.7.dist-info
+%{python2_sitelib}/%{srcname}-%{version}.dist-info
 %{python2_sitelib}/third_party
 %endif
 

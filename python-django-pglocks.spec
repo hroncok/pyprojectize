@@ -44,7 +44,7 @@ sed -i -e "s/from distutils.core import setup/from setuptools import setup/" set
 %files -n python3-%{srcname}
 %license LICENSE.txt
 %doc CHANGES.txt
-%{python3_sitelib}/django_pglocks.dist-info/
+%{python3_sitelib}/django_pglocks-*.dist-info/
 %{python3_sitelib}/django_pglocks/
 
 %changelog

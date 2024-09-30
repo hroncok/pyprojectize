@@ -57,10 +57,10 @@ sed -i -e '1{/^#!/d}' prometheus_client/__init__.py
 %license LICENSE
 %doc README.md MAINTAINERS.md
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 
 %files -n python3-%{srcname}+twisted
-%{?python_extras_subpkg:%ghost %{python3_sitelib}/%{srcname}.dist-info/}
+%{?python_extras_subpkg:%ghost %{python3_sitelib}/%{srcname}-*.dist-info/}
 
 %changelog
 %autochangelog

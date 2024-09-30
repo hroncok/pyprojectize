@@ -207,7 +207,7 @@ ln -s %{_bindir}/scapy3   %{buildroot}%{_bindir}/scapy
 %endif
 %{_bindir}/scapy2
 %{python2_sitelib}/scapy/
-%{python2_sitelib}/scapy.dist-info
+%{python2_sitelib}/scapy-*.dist-info
 %exclude %{python2_sitelib}/test/
 %endif
 
@@ -220,7 +220,7 @@ ln -s %{_bindir}/scapy3   %{buildroot}%{_bindir}/scapy
 %{_bindir}/scapy
 %{_bindir}/scapy3
 %{python3_sitelib}/scapy/
-%{python3_sitelib}/scapy.dist-info
+%{python3_sitelib}/scapy-*.dist-info
 %exclude %{python3_sitelib}/test/
 %endif
 

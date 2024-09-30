@@ -52,7 +52,7 @@ Logbook can do that.
 %files -n python3-logbook
 %doc CHANGES README.md
 %license LICENSE
-%{python3_sitearch}/Logbook.dist-info/
+%{python3_sitearch}/Logbook-*.dist-info/
 %{python3_sitearch}/logbook/
 
 %changelog

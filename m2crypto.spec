@@ -78,7 +78,7 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} %{__python3} -munittest discover -v t
 %doc CHANGES README.rst
 %license LICENCE
 %{python3_sitearch}/M2Crypto
-%{python3_sitearch}/M2Crypto.dist-info/
+%{python3_sitearch}/M2Crypto-*.dist-info/
 
 %changelog
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.41.0^git20240613.3156614-2

@@ -52,7 +52,7 @@ Python 3 version.
 %license LICENSE
 %doc CONTRIBUTORS.rst README.rst
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 
 %changelog
 * Thu Jul 21 2022 Maxwell G <gotmax@e.email> - 1.1.0-2

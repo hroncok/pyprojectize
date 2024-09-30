@@ -286,13 +286,13 @@ popd
 %files -n mingw32-python3-%{srcname}
 %license docs/COPYING
 %{mingw32_python3_sitearch}/PIL/
-%{mingw32_python3_sitearch}/pillow-%{version}-py%{mingw32_python3_version}.dist-info/
+%{mingw32_python3_sitearch}/pillow-%{version}.dist-info/
 %{mingw32_py3_incdir}/Imaging/
 
 %files -n mingw64-python3-%{srcname}
 %license docs/COPYING
 %{mingw64_python3_sitearch}/PIL/
-%{mingw64_python3_sitearch}/pillow-%{version}-py%{mingw64_python3_version}.dist-info/
+%{mingw64_python3_sitearch}/pillow-%{version}.dist-info/
 %{mingw64_py3_incdir}/Imaging/
 %endif
 

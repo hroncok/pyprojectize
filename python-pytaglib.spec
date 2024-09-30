@@ -63,7 +63,7 @@ mv -f %{buildroot}%{_bindir}/pyprinttags{3,}
 %license COPYING
 %doc README.md CHANGELOG.md
 %{_bindir}/pyprinttags
-%{python3_sitearch}/%{srcname}.dist-info/
+%{python3_sitearch}/%{srcname}-*.dist-info/
 %{python3_sitearch}/taglib.*.so
 %{python3_sitearch}/pyprinttags.py
 %{python3_sitearch}/__pycache__/pyprinttags.*

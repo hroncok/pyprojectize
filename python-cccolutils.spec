@@ -48,7 +48,7 @@ Python utilities for Kerberos Credential Cache Collections
 %files -n python3-cccolutils
 %license COPYING
 %{python3_sitearch}/cccolutils*.so
-%{python3_sitearch}/CCColUtils.dist-info
+%{python3_sitearch}/CCColUtils-*.dist-info
 
 
 %changelog

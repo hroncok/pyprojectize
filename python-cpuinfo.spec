@@ -76,7 +76,7 @@ sed -i -e '/^#!\//, 1d' cpuinfo/cpuinfo.py
 %license LICENSE
 %{_bindir}/cpuinfo
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/py_%{srcname}-%{version}-py3.*.dist-info
+%{python3_sitelib}/py_%{srcname}-%{version}.dist-info
 
 
 %changelog

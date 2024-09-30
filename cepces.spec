@@ -186,7 +186,7 @@ fi
 %files -n python%{python3_pkgversion}-%{name}
 %license LICENSE
 %{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}-%{version}-py?.*.dist-info
+%{python3_sitelib}/%{name}-%{version}.dist-info
 
 %files certmonger
 %{_libexecdir}/certmonger/%{name}-submit

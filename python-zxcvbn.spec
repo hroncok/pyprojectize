@@ -48,7 +48,7 @@ Summary: Realistic password strength estimator python3 module
 %license LICENSE.txt
 %doc README.rst
 %{_bindir}/zxcvbn
-%{python3_sitelib}/zxcvbn.dist-info/
+%{python3_sitelib}/zxcvbn-*.dist-info/
 %{python3_sitelib}/zxcvbn
 
 %changelog

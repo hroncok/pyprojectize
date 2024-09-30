@@ -182,7 +182,7 @@ export TERM=xterm-256color
 %license LICENSE
 %doc README.rst docs/*.rst
 %{python2_sitelib}/%{pypi_name}
-%{python2_sitelib}/%{pypi_name}.dist-info
+%{python2_sitelib}/%{pypi_name}-*.dist-info
 %endif
 
 %if %{with python3}
@@ -190,7 +190,7 @@ export TERM=xterm-256color
 %license LICENSE
 %doc README.rst docs/*.rst
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}.dist-info
+%{python3_sitelib}/%{pypi_name}-*.dist-info
 %endif
 
 %if 0%{?with_python3_other}
@@ -198,7 +198,7 @@ export TERM=xterm-256color
 %license LICENSE
 %doc README.rst docs/*.rst
 %{python3_other_sitelib}/%{pypi_name}
-%{python3_other_sitelib}/%{pypi_name}.dist-info
+%{python3_other_sitelib}/%{pypi_name}-*.dist-info
 %endif
 
 

@@ -158,7 +158,7 @@ appstream-util validate-relax --nonet $RPM_BUILD_ROOT%{_metainfodir}/%{name}.app
 %{_bindir}/%{name}-cli.py
 %{_bindir}/%{name}-server.py
 %{python3_sitelib}/%{name}/
-%{python3_sitelib}/Grammalecte_fr.dist-info/
+%{python3_sitelib}/Grammalecte_fr-*.dist-info/
 
 
 %changelog

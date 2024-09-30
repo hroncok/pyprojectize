@@ -61,7 +61,7 @@ touch %{buildroot}%{_sysconfdir}/obsctl/obsauth.json
 %dir %{_sysconfdir}/obsctl
 %ghost %{_sysconfdir}/obsctl/obsauth.json
 %{_bindir}/obsctl
-%{python3_sitelib}/obsctl.dist-info/
+%{python3_sitelib}/obsctl-*.dist-info/
 %{python3_sitelib}/obsctl/
 
 

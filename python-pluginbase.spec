@@ -47,7 +47,7 @@ popd
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 %{python3_sitelib}/%{srcname}.py
 %{python3_sitelib}/__pycache__/%{srcname}.*
 

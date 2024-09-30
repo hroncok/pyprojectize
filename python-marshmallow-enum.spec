@@ -48,7 +48,7 @@ PYTHONPATH=%{buildroot}/%{python3_sitelib} py.test-%{python3_version} -v
 %doc README.md CHANGELOG
 %license LICENSE
 %{python3_sitelib}/%{modname}/
-%{python3_sitelib}/%{modname}.dist-info/
+%{python3_sitelib}/%{modname}-*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.5.1-17

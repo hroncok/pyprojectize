@@ -99,7 +99,7 @@ CI=true py.test-3 --verbose
 %license LICENSE
 %doc doc examples
 %{python3_sitelib}/%{modname}/
-%{python3_sitelib}/%{modname}.dist-info
+%{python3_sitelib}/%{modname}-*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 4.9.0-6

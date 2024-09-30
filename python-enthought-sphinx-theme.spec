@@ -47,7 +47,7 @@ Provides:       bundled(bootstrap) = 2.3.2
 %files -n python3-%{srcname}
 %license LICENSE licenses/*.txt
 %doc CHANGES.rst README.rst
-%{python3_sitelib}/%{modname}.dist-info/
+%{python3_sitelib}/%{modname}-*.dist-info/
 %{python3_sitelib}/%{modname}/
 
 %changelog

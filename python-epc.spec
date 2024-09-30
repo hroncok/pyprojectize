@@ -62,7 +62,7 @@ pytest
 %doc README.rst
 %license COPYING
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}.dist-info
+%{python3_sitelib}/%{srcname}-*.dist-info
 
 
 %changelog

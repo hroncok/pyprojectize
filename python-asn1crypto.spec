@@ -98,7 +98,7 @@ rm -rf %{pypi_name}.egg-info
 %files -n python2-%{pypi_name}
 %doc
 %{python2_sitelib}/%{pypi_name}
-%{python2_sitelib}/%{pypi_name}-%{version}-py?.?.dist-info
+%{python2_sitelib}/%{pypi_name}-%{version}.dist-info
 %endif
 
 %if 0%{?with_python3}

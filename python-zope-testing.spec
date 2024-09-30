@@ -52,7 +52,7 @@ rm -f %{buildroot}%{python3_sitelib}/zope/__init__.py*
 %license COPYRIGHT.txt LICENSE.txt
 %{python3_sitelib}/zope/testing/
 %exclude %{python3_sitelib}/zope/testing/*.txt
-%{python3_sitelib}/%{modname}.dist-info
+%{python3_sitelib}/%{modname}-*.dist-info
 %{python3_sitelib}/%{modname}-*-nspkg.pth
 
 %changelog

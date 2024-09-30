@@ -59,7 +59,7 @@ Python %{python3_version} version.
 %doc README.rst *.md
 %license LICENSE
 %{python3_sitelib}/mastodon/
-%{python3_sitelib}/%{modname}.py.dist-info/
+%{python3_sitelib}/%{modname}.py-*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.8.1-7

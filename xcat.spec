@@ -42,7 +42,7 @@ sed -i -e "/cchardet/d" setup.py
 #%%license LICENSE
 %{_bindir}/%{name}
 %{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}.dist-info/
+%{python3_sitelib}/%{name}-*.dist-info/
 
 %changelog
 * Sat Jul 20 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.4-16

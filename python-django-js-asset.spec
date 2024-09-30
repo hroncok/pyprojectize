@@ -44,7 +44,7 @@ rm -vr *.egg-info
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/django_js_asset.dist-info/
+%{python3_sitelib}/django_js_asset-*.dist-info/
 %{python3_sitelib}/js_asset/
 
 %changelog

@@ -89,7 +89,7 @@ cp man/*.1 %{buildroot}%{_mandir}/man1/
 %license LICENSE
 
 %{python3_sitelib}/modulemd_tools
-%{python3_sitelib}/modulemd_tools.dist-info/
+%{python3_sitelib}/modulemd_tools-*.dist-info/
 
 %{_bindir}/repo2module
 %{_bindir}/dir2module

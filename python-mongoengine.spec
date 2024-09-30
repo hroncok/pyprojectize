@@ -75,7 +75,7 @@ rm -rf docs/_build/html/_static/font
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{pkgname}
-%{python3_sitelib}/%{pkgname}.dist-info
+%{python3_sitelib}/%{pkgname}-*.dist-info
  
  
 %files doc

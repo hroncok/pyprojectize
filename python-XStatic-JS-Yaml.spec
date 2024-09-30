@@ -88,7 +88,7 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/js_yaml/data/
 %files -n python3-%{pypi_name}
 %doc README.txt
 %{python3_sitelib}/xstatic/pkg/js_yaml
-%{python3_sitelib}/XStatic_JS_Yaml-%{version}-py3.*.dist-info
+%{python3_sitelib}/XStatic_JS_Yaml-%{version}.dist-info
 %{python3_sitelib}/XStatic_JS_Yaml-%{version}-py3.*-nspkg.pth
 
 

@@ -79,7 +79,7 @@ desktop-file-install --add-category="Utility" \
 %{_datadir}/applications/rtlsdr-scanner.desktop
 %{_datadir}/%{name}
 %{python3_sitelib}/rtlsdr_scanner
-%{python3_sitelib}/rtlsdr_scanner.dist-info
+%{python3_sitelib}/rtlsdr_scanner-*.dist-info
 
 %files doc
 %doc doc/Manual.pdf

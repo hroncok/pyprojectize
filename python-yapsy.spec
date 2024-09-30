@@ -56,7 +56,7 @@ rm -vrf *.egg-info
 %files -n python3-%{modname}
 %license LICENSE.txt
 %doc CHANGELOG.txt README.txt
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 %{python3_sitelib}/%{modname}/
 
 %changelog

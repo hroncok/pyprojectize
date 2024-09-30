@@ -54,7 +54,7 @@ install -p -m 0644 -D git-review.1 %{buildroot}%{_mandir}/man1/git-review.1
 %{_mandir}/man1/git-review.1.gz
 # Our package name is git-review, but setup.py installs with underscore.
 %{python3_sitelib}/git_review/
-%{python3_sitelib}/git_review-%{version}-py%{python3_version}*.dist-info/
+%{python3_sitelib}/git_review-%{version}.dist-info/
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 2.3.1-9

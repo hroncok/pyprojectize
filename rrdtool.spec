@@ -379,7 +379,7 @@ LD_LIBRARY_PATH=%{buildroot}%{_libdir} php -n \
 %files -n python3-rrdtool
 %doc bindings/python/COPYING bindings/python/README.md
 %{python3_sitearch}/rrdtool*.so
-%{python3_sitearch}/rrdtool.dist-info
+%{python3_sitearch}/rrdtool-*.dist-info
 
 %if %{with_php}
 %files php

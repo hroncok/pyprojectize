@@ -89,7 +89,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} tests/runtests.py || :
 %license LICENSE
 %doc README.rst NEWS
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}.dist-info/
+%{python3_sitelib}/%{pypi_name}-*.dist-info/
 
 %files doc
 %doc LICENSE __tmp_docs/html/

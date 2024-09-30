@@ -88,7 +88,7 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/angular_vis/data/
 %files -n python3-%{pypi_name}
 %doc README.txt
 %{python3_sitelib}/xstatic/pkg/angular_vis
-%{python3_sitelib}/XStatic_Angular_Vis-%{version}-py3.*.dist-info
+%{python3_sitelib}/XStatic_Angular_Vis-%{version}.dist-info
 %{python3_sitelib}/XStatic_Angular_Vis-%{version}-py3.*-nspkg.pth
 
 %changelog

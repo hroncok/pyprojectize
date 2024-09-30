@@ -78,7 +78,7 @@ pytest-3
 %{_bindir}/mako-render-3
 %{_bindir}/mako-render-%{python3_version}
 %{python3_sitelib}/mako/
-%{python3_sitelib}/Mako.dist-info/
+%{python3_sitelib}/Mako-*.dist-info/
 
 
 %changelog

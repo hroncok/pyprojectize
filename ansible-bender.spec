@@ -77,7 +77,7 @@ tl;dr Ansible is the frontend, buildah is the backend.
 
 
 %files
-%{python3_sitelib}/ansible_bender.dist-info/
+%{python3_sitelib}/ansible_bender-*.dist-info/
 %{python3_sitelib}/ansible_bender/
 %{_bindir}/ansible-bender
 %license LICENSE

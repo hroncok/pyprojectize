@@ -50,7 +50,7 @@ cd python
 %doc python/README.rst python/*.md
 %license LICENSE
 %{python3_sitelib}/http_ece/
-%{python3_sitelib}/http_ece.dist-info/
+%{python3_sitelib}/http_ece-*.dist-info/
 
 %changelog
 * Thu Aug 01 2024 Gwyn Ciesla <gwync@protonmail.com> - 1.2.1-1

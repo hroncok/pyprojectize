@@ -46,7 +46,7 @@ rm -rf %{srcname}.egg-info
 %doc CHANGELOG.md
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 %{python3_sitelib}/%{srcname}/
 
 %changelog

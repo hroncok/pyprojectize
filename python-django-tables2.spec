@@ -45,7 +45,7 @@ rm -vr *.egg-info/
 %license LICENSE
 %doc README.md CHANGELOG.md
 %{python3_sitelib}/django_tables2/
-%{python3_sitelib}/django_tables2.dist-info/
+%{python3_sitelib}/django_tables2-*.dist-info/
 
 %changelog
 %autochangelog

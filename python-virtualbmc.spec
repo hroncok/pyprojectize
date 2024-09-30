@@ -92,7 +92,7 @@ PYTHON=%{__python3} stestr run
 %{_bindir}/vbmcd
 %{_bindir}/vbmc
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}.dist-info
+%{python3_sitelib}/%{srcname}-*.dist-info
 %exclude %{python3_sitelib}/%{srcname}/tests
 %{_datadir}/polkit-1/rules.d/60-vbmcd.rules
 %{_unitdir}/vbmcd.service

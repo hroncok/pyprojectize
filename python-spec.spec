@@ -65,7 +65,7 @@ rm -rf spec.egg-info
 %license LICENSE
 %{_bindir}/spec
 %{python3_sitelib}/spec/
-%{python3_sitelib}/spec.dist-info/
+%{python3_sitelib}/spec-*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.4.1-18

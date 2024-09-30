@@ -54,7 +54,7 @@ Python 3 version.
 %files -n python3-%{modname}
 %license LICENSE
 %doc README.rst CHANGES AUTHORS
-%{python3_sitelib}/%{modname}.dist-info/
+%{python3_sitelib}/%{modname}-*.dist-info/
 %{python3_sitelib}/%{modname}/
 
 %changelog

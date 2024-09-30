@@ -41,7 +41,7 @@ Use `arf-to-json` to generate a rule result in json. Using the
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/%{module}/
-%{python3_sitelib}/%{module}.dist-info/
+%{python3_sitelib}/%{module}-*.dist-info/
 %{_bindir}/arf-to-graph
 %{_bindir}/arf-to-json
 %{_bindir}/json-to-graph

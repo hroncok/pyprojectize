@@ -43,7 +43,7 @@ and ASCII tables) with a very simple API.
 %files -n python3-ATpy
 %doc CHANGES README.md
 %license LICENSE
-%{python3_sitelib}/ATpy.dist-info
+%{python3_sitelib}/ATpy-*.dist-info
 %{python3_sitelib}/atpy
 
 %changelog

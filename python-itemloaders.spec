@@ -56,7 +56,7 @@ BuildRequires:	python3-w3lib
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/itemloaders
-%{python3_sitelib}/itemloaders.dist-info
+%{python3_sitelib}/itemloaders-*.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.0.4-14

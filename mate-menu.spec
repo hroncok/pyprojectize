@@ -82,7 +82,7 @@ rm -rf %{buildroot}%{_datadir}/locale/zh-Hans/
 %{_bindir}/%{name}
 %{_usr}/lib/%{name}/
 %{python3_sitelib}/%{_name}/
-%{python3_sitelib}/%{_name}-*-py3.*.dist-info/
+%{python3_sitelib}/%{_name}-*.dist-info/
 %{_datadir}/%{name}/
 %{_datadir}/glib-2.0/schemas/org.mate.mate-menu*.gschema.xml
 %{_datadir}/mate-panel/applets/org.mate.panel.MateMenuApplet.mate-panel-applet

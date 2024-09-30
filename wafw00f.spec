@@ -32,7 +32,7 @@ sed -i -e '/^#!\//, 1d' {wafw00f/*.py,wafw00f/*/*.py}
 %doc CREDITS.txt README.md
 %license LICENSE
 %{_bindir}/%{name}
-%{python3_sitelib}/%{name}.dist-info/
+%{python3_sitelib}/%{name}-*.dist-info/
 %{python3_sitelib}/%{name}/
 
 %changelog

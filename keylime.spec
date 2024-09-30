@@ -359,7 +359,7 @@ fi
 
 %files -n python3-%{srcname}
 %license LICENSE
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 %{python3_sitelib}/%{srcname}
 %{_datadir}/%{srcname}/scripts/create_mb_refstate
 %{_bindir}/keylime_attest

@@ -216,7 +216,7 @@ rm -f $RPM_BUILD_ROOT%{perl_vendorarch}/sample.pl
 %files -n python2-%{name}
 %{python2_sitearch}/_marisa.so
 %{python2_sitearch}/marisa.py*
-%{python2_sitearch}/marisa-0.0.0-py2.?.dist-info
+%{python2_sitearch}/marisa-0.0.0.dist-info
 %endif
 
 %files -n python3-%{name}

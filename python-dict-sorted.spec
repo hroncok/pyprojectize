@@ -54,7 +54,7 @@ rm -f docs/_build/html/.buildinfo
 
 %files -n python3-%{srcname}
 %license LICENSE
-%{python3_sitelib}/%{eggname}.dist-info/
+%{python3_sitelib}/%{eggname}-*.dist-info/
 %{python3_sitelib}/%{modname}/
 
 %files doc

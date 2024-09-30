@@ -58,7 +58,7 @@ Summary:	%{summary}
 %license LICENSE
 %doc README.rst
 %{_bindir}/%{srcname}
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 %{python3_sitelib}/%{srcname}/
 
 %changelog

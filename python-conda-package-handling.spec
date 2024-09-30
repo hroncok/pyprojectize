@@ -49,7 +49,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} -v tests
 %license LICENSE
 %doc AUTHORS.md CHANGELOG.md README.md
 %{_bindir}/cph
-%{python3_sitelib}/%{pkgname}.dist-info/
+%{python3_sitelib}/%{pkgname}-*.dist-info/
 %{python3_sitelib}/%{pkgname}/
 
 %changelog

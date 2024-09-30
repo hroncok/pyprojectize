@@ -90,7 +90,7 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/json2yaml/data/
 %files -n python3-%{pypi_name}
 %doc README.txt
 %{python3_sitelib}/xstatic/pkg/json2yaml
-%{python3_sitelib}/XStatic_Json2yaml-%{version}-py3.*.dist-info
+%{python3_sitelib}/XStatic_Json2yaml-%{version}.dist-info
 %{python3_sitelib}/XStatic_Json2yaml-%{version}-py3.*-nspkg.pth
 
 

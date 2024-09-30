@@ -59,7 +59,7 @@ sed -i "s/jinja2>=2.11,<3.0/jinja2>=2.11/" requirements.txt
 %license PKG-INFO
 %doc changelog README
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 %{_bindir}/xml2rfc
 
 %changelog

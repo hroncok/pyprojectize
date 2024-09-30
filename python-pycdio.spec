@@ -64,7 +64,7 @@ chmod 755 %{buildroot}/%{python3_sitearch}/*.so
 %{python3_sitearch}/iso9660.py
 %{python3_sitearch}/pycdio.py
 %{python3_sitearch}/pyiso9660.py
-%{python3_sitearch}/pycdio-%{version}-py3*.dist-info/
+%{python3_sitearch}/pycdio-%{version}.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.1.0-16

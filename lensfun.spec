@@ -193,7 +193,7 @@ export CTEST_OUTPUT_ON_FAILURE=1
 
 %if 0%{?rhel} && 0%{?rhel} < 9
 %files -n %{python3}-lensfun
-%{python3_sitelib}/lensfun.dist-info/
+%{python3_sitelib}/lensfun-*.dist-info/
 %{python3_sitelib}/lensfun/
 %else
 %files -n %{python3}-lensfun -f %{pyproject_files}

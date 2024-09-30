@@ -59,7 +59,7 @@ This library provides a bridge from Glyphs source files (.glyphs) to UFOs
 %license LICENSE
 %doc README.rst CONTRIBUTING.md
 %dir %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}.dist-info
+%{python3_sitelib}/%{srcname}-*.dist-info
 %{python3_sitelib}/%{srcname}/*
 %{_bindir}/glyphs2ufo
 %{_bindir}/ufo2glyphs

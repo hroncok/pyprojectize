@@ -38,7 +38,7 @@ This module provides a simple and elegant wrapper for colorama.
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{pypi_name}.dist-info/
+%{python3_sitelib}/%{pypi_name}-*.dist-info/
 %{python3_sitelib}/%{pypi_name}.py
 %{python3_sitelib}/__pycache__/%{pypi_name}.*.py*
 

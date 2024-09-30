@@ -219,12 +219,12 @@ mv build mpich
 %doc CHANGES.rst DESCRIPTION.rst README.rst
 
 %files -n python%{python3_pkgversion}-mpi4py-openmpi
-%{python3_sitearch}/openmpi/%{name}.dist-info
+%{python3_sitearch}/openmpi/%{name}-*.dist-info
 %{python3_sitearch}/openmpi/%{name}
 
 %if %{with_mpich}
 %files -n python%{python3_pkgversion}-mpi4py-mpich
-%{python3_sitearch}/mpich/%{name}.dist-info
+%{python3_sitearch}/mpich/%{name}-*.dist-info
 %{python3_sitearch}/mpich/%{name}
 %endif
 

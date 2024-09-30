@@ -84,7 +84,7 @@ rm -f tests/test_sftp.py
 %files -n python3-%{modname}
 %license COPYING LICENSE
 %doc README.rst Changelog.rst
-%{python3_sitearch}/ssh_python.dist-info/
+%{python3_sitearch}/ssh_python-*.dist-info/
 %{python3_sitearch}/ssh/
 
 %package -n python3-%{modname}-doc

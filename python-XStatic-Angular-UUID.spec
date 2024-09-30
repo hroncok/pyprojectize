@@ -91,7 +91,7 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/angular_uuid/data/
 %files -n python3-%{pypi_name}
 %doc README.txt
 %{python3_sitelib}/xstatic/pkg/angular_uuid
-%{python3_sitelib}/XStatic_Angular_UUID-%{version}-py3.*.dist-info
+%{python3_sitelib}/XStatic_Angular_UUID-%{version}.dist-info
 %{python3_sitelib}/XStatic_Angular_UUID-%{version}-py3.*-nspkg.pth
 
 

@@ -90,7 +90,7 @@ EXCLUDE_ARG="$EXCLUDE_ARG -e test_table_add_time"
 %files -n python3-%{pypi_name}
 %doc AUTHORS.md README.md
 %license LICENSE
-%{python3_sitelib}/%{pypi_name}.dist-info/
+%{python3_sitelib}/%{pypi_name}-*.dist-info/
 %{python3_sitelib}/%{pypi_name}/
 
 %files -n %{pypi_name}

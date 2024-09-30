@@ -48,7 +48,7 @@ A library and a cli tool for building module streams.
 %doc README.md
 %license LICENSE
 %{python3_sitelib}/module_build
-%{python3_sitelib}/module_build.dist-info/
+%{python3_sitelib}/module_build-*.dist-info/
 %{_bindir}/module-build
 
 

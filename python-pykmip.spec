@@ -117,7 +117,7 @@ Structured InformationStandards`_ (OASIS).
 %{_bindir}/pykmip-server
 %endif
 %{python2_sitelib}/kmip
-%{python2_sitelib}/%{pypi_name}-%{version}-py?.?.dist-info
+%{python2_sitelib}/%{pypi_name}-%{version}.dist-info
 %endif
 
 %if %{with python3}

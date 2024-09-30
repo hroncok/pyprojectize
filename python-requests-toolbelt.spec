@@ -62,7 +62,7 @@ py.test-%{python3_version} -v --ignore=tests/test_x509_adapter.py -k "not test_s
 %license LICENSE
 %doc README.rst HISTORY.rst
 %{python3_sitelib}/%{altname}/
-%{python3_sitelib}/%{altname}.dist-info/
+%{python3_sitelib}/%{altname}-*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.0-7

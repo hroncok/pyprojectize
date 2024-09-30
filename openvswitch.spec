@@ -481,7 +481,7 @@ fi
 
 %files -n python3-openvswitch
 %{python3_sitearch}/ovs
-%{python3_sitearch}/ovs.dist-info
+%{python3_sitearch}/ovs-*.dist-info
 %{_datadir}/openvswitch/bugtool-plugins/
 %{_datadir}/openvswitch/scripts/ovs-bugtool-*
 %{_datadir}/openvswitch/scripts/ovs-check-dead-ifs

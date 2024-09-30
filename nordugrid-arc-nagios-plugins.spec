@@ -84,7 +84,7 @@ install -m755 -d %{buildroot}%{pkg_spooldir}
 %{nagios_bindir}/check_arcservice
 %{nagios_bindir}/check_gridstorage
 %{python3_sitelib}/arcnagios
-%{python3_sitelib}/nordugrid_arc_nagios_plugins.dist-info
+%{python3_sitelib}/nordugrid_arc_nagios_plugins-*.dist-info
 %dir %{arc_spooldir}
 %attr(-,nagios,nagios) %{pkg_spooldir}
 %license LICENSE NOTICE

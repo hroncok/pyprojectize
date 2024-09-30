@@ -100,7 +100,7 @@ This package contains the documentation for %{name}
 %license LICENSE
 %doc AUTHORS PKG-INFO
 %{python3_sitelib}/scrapy
-%{python3_sitelib}/Scrapy.dist-info
+%{python3_sitelib}/Scrapy-*.dist-info
 %{_bindir}/scrapy
 
 #%files doc

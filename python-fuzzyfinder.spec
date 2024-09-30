@@ -50,7 +50,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-3 -v
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 %{python3_sitelib}/%{srcname}/
 
 %changelog

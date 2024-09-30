@@ -52,7 +52,7 @@ rm -rf $RPM_BUILD_ROOT/usr/share/doc/*
 %{_bindir}/rdiff-backup-delete
 %{_mandir}/man1/rdiff-backup*
 %{python3_sitearch}/rdiff_backup/
-%{python3_sitearch}/rdiff_backup.dist-info
+%{python3_sitearch}/rdiff_backup-*.dist-info
 %{python3_sitearch}/rdiffbackup/
 %{_datadir}/bash-completion/completions/rdiff-backup
 %doc CHANGELOG.adoc README.adoc

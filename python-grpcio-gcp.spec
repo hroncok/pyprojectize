@@ -53,7 +53,7 @@ popd
 %doc src/{CHANGELOG.rst,README.md}
 %license src/LICENSE
 %{python3_sitelib}/grpc_gcp/
-%{python3_sitelib}/grpcio_gcp.dist-info/
+%{python3_sitelib}/grpcio_gcp-*.dist-info/
 
 
 %changelog

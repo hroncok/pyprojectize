@@ -265,7 +265,7 @@ fi
 %files bzr
 %{python2_sitelib}/bzrlib/plugins/%{name}
 # exclude egg-info dir, doesn't contain meaningful information
-%exclude %{python2_sitelib}/bzr_%{name}.dist-info
+%exclude %{python2_sitelib}/bzr_%{name}-*.dist-info
 %endif # with_bzr
 
 
@@ -277,7 +277,7 @@ fi
 %dir %{python3_sitelib}/breezy/plugins/
 %{python3_sitelib}/breezy/plugins/%{name}/
 # exclude egg-info dir, doesn't contain meaningful information
-%exclude %{python3_sitelib}/brz_%{name}.dist-info
+%exclude %{python3_sitelib}/brz_%{name}-*.dist-info
 %endif # with_brz
 
 
@@ -288,12 +288,12 @@ fi
 %{python3_sitelib}/dnf-plugins/__pycache__/%{name}.*
 %exclude %{python3_sitelib}/dnf-plugins/__pycache__/__init__.*
 # exclude egg-info dir, doesn't contain meaningful information
-%exclude %{python3_sitelib}/dnf_%{name}.dist-info
+%exclude %{python3_sitelib}/dnf_%{name}-*.dist-info
 %else
 %{python2_sitelib}/dnf-plugins/%{name}.py*
 %exclude %{python2_sitelib}/dnf-plugins/__init__.py*
 # exclude egg-info dir, doesn't contain meaningful information
-%exclude %{python2_sitelib}/dnf_%{name}.dist-info
+%exclude %{python2_sitelib}/dnf_%{name}-*.dist-info
 %endif # dnf_uses_python3
 
 

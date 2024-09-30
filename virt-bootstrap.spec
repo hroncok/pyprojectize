@@ -63,7 +63,7 @@ done
 %doc README.md ChangeLog AUTHORS
 %{_bindir}/virt-bootstrap
 %{python3_sitelib}/virtBootstrap
-%{python3_sitelib}/virt_bootstrap.dist-info
+%{python3_sitelib}/virt_bootstrap-*.dist-info
 %{_mandir}/man1/virt-bootstrap*
 
 %changelog

@@ -82,7 +82,7 @@ install -D -m 0644 docs/_build/man/%{srcname}.1 %{buildroot}%{_mandir}/man1/%{sr
 %license LICENSE
 %{_bindir}/tor-prompt
 %{python3_sitelib}/%{srcname}
-%{python3_sitelib}/%{srcname}.dist-info
+%{python3_sitelib}/%{srcname}-*.dist-info
 
 %files doc
 %doc README.md docs/_build/html docs/_build/text

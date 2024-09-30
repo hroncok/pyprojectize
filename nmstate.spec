@@ -237,7 +237,7 @@ popd
 %files -n python3-%{libname}
 %license LICENSE
 %{python3_sitelib}/%{libname}
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 
 %files static
 %{_libdir}/libnmstate.a

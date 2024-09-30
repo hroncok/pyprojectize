@@ -69,7 +69,7 @@ export OPENSSL_CONF=${PWD}/openssl.cnf
 %files -n python3-%{srcname}
 %doc CHANGES.md README.md
 %license LICENSE
-%{python3_sitelib}/ntlm_auth.dist-info/
+%{python3_sitelib}/ntlm_auth-*.dist-info/
 %{python3_sitelib}/ntlm_auth/
 
 %changelog

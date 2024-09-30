@@ -56,7 +56,7 @@ specify how many machines they need and commands/checks to run on them.
 %files -n python3-%{srcname}
 %license COPYING
 %doc README.rst
-%{python3_sitelib}/%{modulename}.dist-info/
+%{python3_sitelib}/%{modulename}-*.dist-info/
 %{python3_sitelib}/%{modulename}/
 
 %changelog

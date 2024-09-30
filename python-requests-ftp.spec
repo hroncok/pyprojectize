@@ -106,7 +106,7 @@ rm -rf requests_ftp.egg-info
 %doc README.rst
 %license LICENSE
 %{python2_sitelib}/requests_ftp/
-%{python2_sitelib}/requests_ftp*.dist-info*
+%{python2_sitelib}/requests_ftp*.egg-info*
 %endif
 
 %if %{with python3}
@@ -114,7 +114,7 @@ rm -rf requests_ftp.egg-info
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/requests_ftp/
-%{python3_sitelib}/requests_ftp*.dist-info*
+%{python3_sitelib}/requests_ftp*.egg-info*
 %endif
 
 %changelog

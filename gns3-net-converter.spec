@@ -44,7 +44,7 @@ to the newer version v1+ JSON format for use in GNS3 v1+.
 %license COPYING
 %doc README.rst ChangeLog
 %{python3_sitelib}/gns3converter
-%{python3_sitelib}/gns3_net_converter.dist-info
+%{python3_sitelib}/gns3_net_converter-*.dist-info
 %{_bindir}/gns3-converter
 
 

@@ -79,7 +79,7 @@ Summary:        %{summary}
 %files -n python%{python3_other_pkgversion}-%{pkgname}
 %doc README.rst NEWS.rst
 %{python3_other_sitelib}/flufl/
-%{python3_other_sitelib}/%{srcname}-%{version}*-py%{python3_other_version}.dist-info/
+%{python3_other_sitelib}/%{srcname}-%{version}*.dist-info/
 %{python3_other_sitelib}/%{srcname}-%{version}*-py%{python3_version}-nspkg.pth
 %endif
 

@@ -143,7 +143,7 @@ find %{buildroot}%{python3_sitearch} -name '*.so' -exec chmod -c g-w {} \;
 %license COPYRIGHT LEGAL/
 %doc README TODO ACKS ChangeLog Doc/
 %{python3_sitearch}/Crypto/
-%{python3_sitearch}/pycrypto-%{version}-py3.*.dist-info
+%{python3_sitearch}/pycrypto-%{version}.dist-info
 
 %changelog
 * Wed Aug 14 2024 Paul Howarth <paul@city-fan.org> - 2.6.1-53

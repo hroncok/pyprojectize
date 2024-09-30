@@ -65,7 +65,7 @@ unset FEDSCM_ADMIN_CONFIG
 %files
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/%{distname}.dist-info/
+%{python3_sitelib}/%{distname}-*.dist-info/
 %{python3_sitelib}/%{distname}/
 %{_bindir}/fedscm-admin
 %dir %{_sysconfdir}/fedscm-admin

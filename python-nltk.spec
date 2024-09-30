@@ -68,7 +68,7 @@ done
 %license LICENSE.txt
 %doc AUTHORS.md CONTRIBUTING.md ChangeLog README.md
 %{python3_sitelib}/%{mod_name}/
-%{python3_sitelib}/%{mod_name}.dist-info/
+%{python3_sitelib}/%{mod_name}-*.dist-info/
 
 
 %changelog

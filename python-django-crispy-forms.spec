@@ -50,7 +50,7 @@ so it plays nice with any other form application.
 %license LICENSE.txt
 %doc README.rst
 %{python3_sitelib}/crispy_forms/
-%{python3_sitelib}/django_crispy_forms.dist-info
+%{python3_sitelib}/django_crispy_forms-*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.14.0-9

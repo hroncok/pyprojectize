@@ -58,7 +58,7 @@ BuildRequires:	python3-Cython
 %license LICENSE.txt
 %doc README.rst CHANGES.rst INSTALL.rst
 %{python3_sitearch}/%{srcname}/
-%{python3_sitearch}/%{srcname}.dist-info
+%{python3_sitearch}/%{srcname}-*.dist-info
 
 
 %changelog

@@ -72,7 +72,7 @@ cp -p %{SOURCE1} .
 %doc README.rst
 %{python3_sitelib}/%{modname}.py*
 %{python3_sitelib}/__pycache__/%{modname}.*
-%{python3_sitelib}/%{modname}.dist-info
+%{python3_sitelib}/%{modname}-*.dist-info
 
 %if 0%{?with_python3_other}
 %files -n python%{python3_other_pkgversion}-%{upstream_name}
@@ -80,7 +80,7 @@ cp -p %{SOURCE1} .
 %doc README.rst
 %{python3_other_sitelib}/%{modname}.py*
 %{python3_other_sitelib}/__pycache__/%{modname}.*
-%{python3_other_sitelib}/%{modname}.dist-info
+%{python3_other_sitelib}/%{modname}-*.dist-info
 %endif
 
 %changelog

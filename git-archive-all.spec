@@ -35,7 +35,7 @@ BuildArch:      noarch
 %license LICENSE.txt
 %doc README.rst
 %{_bindir}/%{name}
-%{python3_sitelib}/%{modname}.dist-info/
+%{python3_sitelib}/%{modname}-*.dist-info/
 %{python3_sitelib}/%{modname}.py
 %{python3_sitelib}/__pycache__/%{modname}.*
 

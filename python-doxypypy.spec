@@ -45,7 +45,7 @@ find . -name \*.py -exec sed -i '/#!\/usr\/bin\/python/d' '{}' \;
 %license LICENSE.txt
 %doc README.rst
 %attr(644, -, -) %{python3_sitelib}/%{srcname}/*.py
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 %{python3_sitelib}/%{srcname}/
 %{_bindir}/%{srcname}
 

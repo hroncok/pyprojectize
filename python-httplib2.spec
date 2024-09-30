@@ -75,7 +75,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} pytest -k "not test_unknown_server \
 
 %files -n python3-%{srcname}
 %doc README.md
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 %{python3_sitelib}/%{srcname}/
 
 %changelog

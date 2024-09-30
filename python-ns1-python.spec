@@ -50,7 +50,7 @@ sed -i -e '/setup_requires/,+3d' setup.py
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/ns1_python.dist-info/
+%{python3_sitelib}/ns1_python-*.dist-info/
 %{python3_sitelib}/ns1/
 
 %changelog

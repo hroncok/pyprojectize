@@ -102,7 +102,7 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} pytest -v "${OPTIONS[@]}"
 %license LICENSE.txt
 %doc README.md
 %{python3_sitearch}/deap
-%{python3_sitearch}/deap.dist-info
+%{python3_sitearch}/deap-*.dist-info
 
 %if %{with docs}
 %files -n python-deap-doc

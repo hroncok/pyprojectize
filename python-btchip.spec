@@ -70,7 +70,7 @@ install -m644 %{SOURCE1} %{buildroot}%{_udevrulesdir}/20-ledger.rules
 %files -n python3-%{libname}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/btchip_python.dist-info/
+%{python3_sitelib}/btchip_python-*.dist-info/
 %{python3_sitelib}/btchip/
 
 %files -n python-%{libname}-common

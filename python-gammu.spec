@@ -54,7 +54,7 @@ system for feature requests.
 %doc AUTHORS NEWS.rst README.rst examples/*
 %license COPYING
 %{python3_sitearch}/gammu
-%{python3_sitearch}/python_gammu.dist-info
+%{python3_sitearch}/python_gammu-*.dist-info
 
 %changelog
 * Fri Jul 26 2024 Miroslav Suchý <msuchy@redhat.com> - 3.2.4-12

@@ -70,7 +70,7 @@ popd
 %license LICENSE
 %doc examples
 %{python3_sitelib}/pycparser/
-%{python3_sitelib}/pycparser.dist-info/
+%{python3_sitelib}/pycparser-*.dist-info/
 
 %changelog
 %autochangelog

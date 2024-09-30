@@ -121,7 +121,7 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} \
 %{_datadir}/pixmaps/veusz.png
 %{_datadir}/icons/hicolor/*/apps/veusz.*
 %{_datadir}/veusz
-%{python3_sitearch}/veusz.dist-info
+%{python3_sitearch}/veusz-*.dist-info
 %{python3_sitearch}/veusz
 
 %changelog

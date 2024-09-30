@@ -149,7 +149,7 @@ popd
 %files -n python3-btrfsutil
 %license libbtrfsutil/COPYING
 %{python3_sitearch}/btrfsutil.*.so
-%{python3_sitearch}/btrfsutil.dist-info/
+%{python3_sitearch}/btrfsutil-*.dist-info/
 
 %changelog
 * Tue Sep 17 2024 Neal Gompa <ngompa@fedoraproject.org> - 6.11-1

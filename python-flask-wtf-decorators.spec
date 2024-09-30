@@ -69,7 +69,7 @@ To do this you should provide a callback for error_handler.
 %license LICENSE.txt
 %doc README.md
 %{python3_sitelib}/flask_wtf_decorators
-%{python3_sitelib}/Flask_WTF_Decorators.dist-info/
+%{python3_sitelib}/Flask_WTF_Decorators-*.dist-info/
 
 
 %changelog

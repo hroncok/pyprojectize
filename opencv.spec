@@ -569,7 +569,7 @@ ln -s -r %{buildroot}%{_jnidir}/opencv-%{javaver}.jar %{buildroot}%{_jnidir}/ope
 
 %files -n python3-opencv
 %{python3_sitearch}/cv2
-%{python3_sitearch}/opencv.dist-info
+%{python3_sitearch}/opencv-*.dist-info
 
 %if %{with java}
 %files java

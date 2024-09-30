@@ -43,7 +43,7 @@ text; it takes an EmPy source file, processes it, and produces output.
 %{python3_sitelib}/emdoc.py
 %{python3_sitelib}/emhelp.py
 %{python3_sitelib}/emlib.py
-%{python3_sitelib}/empy.dist-info
+%{python3_sitelib}/empy-*.dist-info
 
 
 %changelog

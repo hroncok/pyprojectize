@@ -50,7 +50,7 @@ Summary:        %{summary}
 %files -n python3-%{srcname}
 %license LICENSE.txt license.python.txt
 %doc README.rst
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 %{python3_sitelib}/%{srcname}/
 
 %changelog

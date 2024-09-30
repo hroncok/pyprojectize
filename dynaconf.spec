@@ -42,10 +42,10 @@ BuildRequires:  python3-devel
 %license LICENSE
 %doc README.md
 # Trailing slash is to ensure setuptools behavior instead of distutils since
-# the project can use either and .dist-info could end up being a file or a
+# the project can use either and .egg-info could end up being a file or a
 # directory.
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 %{_bindir}/%{srcname}
 
 %changelog

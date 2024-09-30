@@ -39,7 +39,7 @@ for Fedora Project contributors.
 %doc README
 %license COPYING
 %{python3_sitelib}/fedora_business_cards/
-%{python3_sitelib}/fedora_business_cards.dist-info/
+%{python3_sitelib}/fedora_business_cards-*.dist-info/
 %{_bindir}/%{name}
 
 

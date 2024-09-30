@@ -80,7 +80,7 @@ rm -rf docs/_build/{.buildinfo,.doctrees}
 %files -n python3-%{modname}
 %license COPYING
 %doc NEWS README.rst
-%{python3_sitelib}/%{modname}.dist-info
+%{python3_sitelib}/%{modname}-*.dist-info
 %{python3_sitelib}/%{modname}/
 
 %{_bindir}/mid3cp

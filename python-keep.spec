@@ -63,7 +63,7 @@ BuildRequires:  python3dist(terminaltables)
 %files -n python3-%{srcname}
 %license LICENSE.md
 %doc README.md tutorial.md
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 %{python3_sitelib}/%{srcname}/
 %{_bindir}/%{srcname}
 

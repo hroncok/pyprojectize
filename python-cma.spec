@@ -45,7 +45,7 @@ sed -i '1d' cma/{bbobbenchmarks.py,purecma.py,test.py}
 %doc README.txt
 %license LICENSE
 %{python3_sitelib}/cma/
-%{python3_sitelib}/cma.dist-info/
+%{python3_sitelib}/cma-*.dist-info/
 
 %changelog
 %autochangelog

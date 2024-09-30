@@ -78,7 +78,7 @@ rm docs/_build/html/.buildinfo
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/crochet/
-%{python3_sitelib}/crochet.dist-info/
+%{python3_sitelib}/crochet-*.dist-info/
 
 
 %files doc

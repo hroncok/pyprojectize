@@ -56,14 +56,14 @@ A python parser for the Coffeescript Object Notation (CSON).
 %files -n python2-%{srcname}
 %license LICENSE
 %doc README.md
-%{python2_sitelib}/%{srcname}.dist-info/
+%{python2_sitelib}/%{srcname}-*.dist-info/
 %{python2_sitelib}/%{srcname}/
 %endif
 
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 %{python3_sitelib}/%{srcname}/
 
 %changelog

@@ -101,7 +101,7 @@ This package contains converter using CairoSVG.
 %license LICENSE.txt
 %doc README.rst
 %{python3_sitelib}/sphinxcontrib_svg2pdfconverter*nspkg.pth
-%{python3_sitelib}/sphinxcontrib_svg2pdfconverter.dist-info
+%{python3_sitelib}/sphinxcontrib_svg2pdfconverter-*.dist-info
 
 
 %files -n python3-sphinxcontrib-inkscapeconverter

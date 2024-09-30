@@ -106,7 +106,7 @@ rm -fr %{buildroot}%{_docdir}/%{name}
 
 %files -n python3-%{name}
 %{python3_sitearch}/%{name}.so
-%{python3_sitearch}/VapourSynth.dist-info
+%{python3_sitearch}/VapourSynth-*.dist-info
 
 %files devel
 %{_includedir}/%{name}/

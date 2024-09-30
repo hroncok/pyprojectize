@@ -47,7 +47,7 @@ pytest-3
 %doc AUTHORS README.txt
 %{python3_sitelib}/augeas.py
 %{python3_sitelib}/augeas/
-%{python3_sitelib}/python_augeas.dist-info
+%{python3_sitelib}/python_augeas-*.dist-info
 %{python3_sitelib}/__pycache__/*
 
 

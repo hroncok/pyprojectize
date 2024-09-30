@@ -68,14 +68,14 @@ Requires:       python3-six
 %license LICENSE
 %doc README.rst
 %{python2_sitelib}/tidy
-%{python2_sitelib}/uTidylib-*-py2*.dist-info
+%{python2_sitelib}/uTidylib-*.dist-info
 %endif
 
 %files -n python3-tidy
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/tidy
-%{python3_sitelib}/uTidylib-*-py3*.dist-info
+%{python3_sitelib}/uTidylib-*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.6-18

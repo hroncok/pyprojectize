@@ -121,7 +121,7 @@ PYTHONPATH="${PWD}" py.test-%{python3_version} -vv tests/
 %doc README.md
 %license LICENSE
 %{python2_sitelib}/dockerpycreds
-%{python2_sitelib}/docker_pycreds-%{version}-py?.?.dist-info
+%{python2_sitelib}/docker_pycreds-%{version}.dist-info
 %endif # with python2
 
 %if %{with python3}

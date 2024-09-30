@@ -58,7 +58,7 @@ Documentation for django-health-check
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/health_check/
-%{python3_sitelib}/django_health_check.dist-info/
+%{python3_sitelib}/django_health_check-*.dist-info/
 
 %files -n python-%{pypi_name}-doc
 # There is a docs directory but it is no longer included in the release tarball

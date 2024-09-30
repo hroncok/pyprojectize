@@ -49,7 +49,7 @@ pytest-%{python3_version} -v
 %files -n python3-%{modname}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{modname}.dist-info/
+%{python3_sitelib}/%{modname}-*.dist-info/
 %{python3_sitelib}/%{modname}/
 
 %changelog

@@ -41,7 +41,7 @@ BuildRequires: python3-devel
 %license LICENSE
 %{_bindir}/showinfilemanager
 %{python3_sitelib}/showinfm/
-%{python3_sitelib}/show_in_file_manager.dist-info/
+%{python3_sitelib}/show_in_file_manager-*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.1.4-11

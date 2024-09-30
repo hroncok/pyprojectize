@@ -43,7 +43,7 @@ returns a string of converted HTML.
 %files -n python3-%{srcname}
 %doc README.rst
 %license LICENSE.txt
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 %{python3_sitelib}/%{srcname}/
 
 %changelog

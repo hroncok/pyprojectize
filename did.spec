@@ -53,7 +53,7 @@ export LANG=en_US.utf-8
 %{_mandir}/man1/*
 %{_bindir}/did
 %{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}.dist-info/
+%{python3_sitelib}/%{name}-*.dist-info/
 %doc README.rst examples
 %license LICENSE
 

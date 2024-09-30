@@ -48,7 +48,7 @@ Python 3 version.
 %files -n python3-%{srcname}
 %license MIT-LICENSE
 %doc README.md
-%{python3_sitelib}/%{dir_name}.dist-info/
+%{python3_sitelib}/%{dir_name}-*.dist-info/
 %dir %{python3_sitelib}/%{dir_name}
 %{python3_sitelib}/%{dir_name}/*.py
 %{python3_sitelib}/%{dir_name}/__pycache__

@@ -77,7 +77,7 @@ rm -rf %{buildroot}%{python3_sitelib}/py/_vendored_packages/*.{dist,egg}-info
 %doc CHANGELOG.rst
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/py.dist-info/
+%{python3_sitelib}/py-*.dist-info/
 %{python3_sitelib}/py/
 
 

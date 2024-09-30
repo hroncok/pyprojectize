@@ -74,7 +74,7 @@ a2x -f manpage docs/stratis.txt
 %{_datadir}/fish/vendor_completions.d/stratis.fish
 %endif
 %{python3_sitelib}/stratis_cli/
-%{python3_sitelib}/stratis_cli.dist-info/
+%{python3_sitelib}/stratis_cli-*.dist-info/
 
 %changelog
 * Sat Jul 20 2024 Fedora Release Engineering <releng@fedoraproject.org> - 3.6.2-4

@@ -54,7 +54,7 @@ Python 3 version.
 
 %files -n python3-%{modname}
 %doc README.md
-%{python3_sitelib}/%{modname}.dist-info/
+%{python3_sitelib}/%{modname}-*.dist-info/
 %{python3_sitelib}/%{modname}.py
 %{python3_sitelib}/__pycache__/%{modname}.*
 

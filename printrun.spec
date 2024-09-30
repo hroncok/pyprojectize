@@ -163,7 +163,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.appdata
 
 %files common
 %{python3_sitearch}/%{name}/
-%{python3_sitearch}/Printrun.dist-info/
+%{python3_sitearch}/Printrun-*.dist-info/
 %{_bindir}/printcore*
 %doc README*
 %license COPYING

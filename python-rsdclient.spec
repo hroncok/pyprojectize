@@ -85,7 +85,7 @@ install -d -m 755 %{buildroot}%{_localstatedir}/log/%{pyname}
 %license LICENSE
 %doc README.rst doc/source/readme.rst
 %{python3_sitelib}/%{sname}
-%{python3_sitelib}/%{pyname}.dist-info
+%{python3_sitelib}/%{pyname}-*.dist-info
 %exclude %{python3_sitelib}/%{sname}/tests
 
 %files -n python3-%{sname}-tests

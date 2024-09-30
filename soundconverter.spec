@@ -83,7 +83,7 @@ rm -f %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 %{_docdir}/%{name}/
 %{_metainfodir}/%{name}.appdata.xml
 %{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}.dist-info
+%{python3_sitelib}/%{name}-*.dist-info
 
 
 %changelog

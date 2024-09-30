@@ -85,7 +85,7 @@ cp %{SOURCE1} ./
 %files -n python3-%{srcname} -f %{pyproject_files}
 %else
 %files -n python3-%{srcname}
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 %{python3_sitelib}/%{srcname}/
 %endif
 %license LICENSE

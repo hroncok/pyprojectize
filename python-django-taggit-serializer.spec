@@ -42,7 +42,7 @@ rm -vr *.egg-info
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.md HISTORY.rst
-%{python3_sitelib}/django_taggit_serializer.dist-info/
+%{python3_sitelib}/django_taggit_serializer-*.dist-info/
 %{python3_sitelib}/taggit_serializer/
 
 %changelog

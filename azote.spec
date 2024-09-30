@@ -61,7 +61,7 @@ done
 
 %files
 %{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}.dist-info/
+%{python3_sitelib}/%{name}-*.dist-info/
 %{_bindir}/%{name}
 %{_datadir}/%{name}/
 %{_datadir}/pixmaps/*

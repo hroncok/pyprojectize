@@ -207,7 +207,7 @@ API description and manually written code to simplify recurring tasks.
 %files -n python3-bluechi
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/bluechi.dist-info/
+%{python3_sitelib}/bluechi-*.dist-info/
 %{python3_sitelib}/bluechi/
 
 %endif

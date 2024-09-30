@@ -81,7 +81,7 @@ PYTHONPATH=. %pytest tests
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.rst CHANGES.rst CONTRIBUTING.rst
-%{python3_sitelib}/%{srcname}-%{version}-py3.*.dist-info/
+%{python3_sitelib}/%{srcname}-%{version}.dist-info/
 %{python3_sitelib}/progressbar
 
 %changelog

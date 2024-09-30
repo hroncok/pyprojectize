@@ -46,7 +46,7 @@ rm -rf %{srcname}.egg-info
 %doc PKG-INFO
 %doc README.txt
 %license LICENSE
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 %pycached %{python3_sitelib}/pbkdf2.py
 
 %changelog

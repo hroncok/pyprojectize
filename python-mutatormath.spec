@@ -55,7 +55,7 @@ interpolating data related to fonts, but if can handle any arithmetic object.
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{libname}
-%{python3_sitelib}/%{srcname}.dist-info
+%{python3_sitelib}/%{srcname}-*.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 3.0.1-15

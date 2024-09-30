@@ -141,7 +141,7 @@ ln -s %{_bindir}/mod_wsgi-express-2 $RPM_BUILD_ROOT%{_bindir}/mod_wsgi-express
 %doc CREDITS.rst README.rst
 %config(noreplace) %{_httpd_modconfdir}/*wsgi.conf
 %{_httpd_moddir}/mod_wsgi.so
-%{python2_sitearch}/mod_wsgi.dist-info
+%{python2_sitearch}/mod_wsgi-*.dist-info
 %{python2_sitearch}/mod_wsgi
 %{_bindir}/mod_wsgi-express-2
 %{_bindir}/mod_wsgi-express
@@ -153,7 +153,7 @@ ln -s %{_bindir}/mod_wsgi-express-2 $RPM_BUILD_ROOT%{_bindir}/mod_wsgi-express
 %doc CREDITS.rst README.rst
 %config(noreplace) %{_httpd_modconfdir}/*wsgi-python3.conf
 %{_httpd_moddir}/mod_wsgi_python3.so
-%{python3_sitearch}/mod_wsgi.dist-info
+%{python3_sitearch}/mod_wsgi-*.dist-info
 %{python3_sitearch}/mod_wsgi
 %{_bindir}/mod_wsgi-express-3
 %endif

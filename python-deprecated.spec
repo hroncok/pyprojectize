@@ -40,7 +40,7 @@ rm -rf %{pkgname}.egg-info
 %license LICENSE.rst
 %doc README.md
 %{python3_sitelib}/%{pkgname}/
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 
 
 %changelog

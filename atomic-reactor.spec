@@ -118,7 +118,7 @@ cp -a docs/manpage/atomic-reactor.1 %{buildroot}%{_mandir}/man1/
 %{python3_sitelib}/atomic_reactor/utils
 %{python3_sitelib}/atomic_reactor/__pycache__/*.py*
 
-%{python3_sitelib}/atomic_reactor-%{version}-py3.*.dist-info
+%{python3_sitelib}/atomic_reactor-%{version}.dist-info
 
 
 %changelog

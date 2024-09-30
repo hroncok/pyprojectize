@@ -42,7 +42,7 @@ rm MANIFEST.in
 %files
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/Mopidy_MPD.dist-info/
+%{python3_sitelib}/Mopidy_MPD-*.dist-info/
 %{python3_sitelib}/mopidy_mpd/
 
 

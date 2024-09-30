@@ -120,7 +120,7 @@ export MESON_PRINT_TEST_OUTPUT=1
 %license COPYING
 %{_bindir}/%{name}
 %{python3_sitelib}/%{libname}/
-%{python3_sitelib}/%{name}.dist-info/
+%{python3_sitelib}/%{name}-*.dist-info/
 %{_mandir}/man1/%{name}.1*
 %{rpmmacrodir}/macros.%{name}
 %dir %{_datadir}/polkit-1

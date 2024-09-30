@@ -56,7 +56,7 @@ rm -rf %{buildroot}%{_defaultdocdir}
 %{_bindir}/%{name}
 %config(noreplace) %{_sysconfdir}/%{name}/
 %{_unitdir}/%{name}.service
-%{python3_sitelib}/%{name}.dist-info/
+%{python3_sitelib}/%{name}-*.dist-info/
 %{python3_sitelib}/%{name}/
 
 %changelog

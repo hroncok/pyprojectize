@@ -52,7 +52,7 @@ rm -rf %{pypi_name}.egg-info
 %license LICENSE
 %{_bindir}/ModulemdTranslationHelpers
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}.dist-info/
+%{python3_sitelib}/%{pypi_name}-*.dist-info/
 
 
 %changelog

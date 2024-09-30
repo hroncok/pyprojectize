@@ -64,7 +64,7 @@ rm -rf libusb1.egg-info
 %doc README.rst PKG-INFO
 %pycached %{python3_sitelib}/libusb1.py
 %{python3_sitelib}/usb1/
-%{python3_sitelib}/libusb1.dist-info
+%{python3_sitelib}/libusb1-*.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 3.1.0-5

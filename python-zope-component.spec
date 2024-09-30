@@ -69,7 +69,7 @@ rm -fr html/{.buildinfo,.doctrees}
 %license LICENSE.txt
 %{python3_sitelib}/zope/component/
 %exclude %{python3_sitelib}/zope/component/*.txt
-%{python3_sitelib}/%{modname}.dist-info
+%{python3_sitelib}/%{modname}-*.dist-info
 %{python3_sitelib}/%{modname}-*-nspkg.pth
 
 %changelog

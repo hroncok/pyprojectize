@@ -52,7 +52,7 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} py.test-%{python3_version} -v
 %files -n python%{python3_pkgversion}-%{srcname}
 %license LICENSE
 %doc README.md
-%{python3_sitearch}/%{srcname}.dist-info/
+%{python3_sitearch}/%{srcname}-*.dist-info/
 %{python3_sitearch}/%{srcname}/
 
 %changelog

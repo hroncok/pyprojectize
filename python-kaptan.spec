@@ -46,7 +46,7 @@ sed -i -e 's/PyYAML>=3.13,<6/PyYAML/' requirements/base.txt
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 %{python3_sitelib}/%{srcname}/
 %{_bindir}/%{srcname}
 

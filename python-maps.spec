@@ -43,7 +43,7 @@ py.test-%{python3_version} -v
 %files -n python3-%{modname}
 %license LICENSE.txt
 %doc README.md
-%{python3_sitelib}/%{modname}.dist-info/
+%{python3_sitelib}/%{modname}-*.dist-info/
 %{python3_sitelib}/%{modname}/
 
 %changelog

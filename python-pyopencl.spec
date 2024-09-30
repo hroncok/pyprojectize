@@ -96,7 +96,7 @@ find %{buildroot}%{python3_sitearch}/%{srcname} -name '*.so' -exec chmod 755 {} 
 %license LICENSE
 %doc examples
 %{python3_sitearch}/%{srcname}/
-%{python3_sitearch}/%{srcname}.dist-info/
+%{python3_sitearch}/%{srcname}-*.dist-info/
 
 %changelog
 %autochangelog

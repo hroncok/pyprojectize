@@ -79,7 +79,7 @@ install -m 644 docs/build/man/pythonssdeep.1 %{buildroot}%{_mandir}/man5/python3
 %license LICENSE
 %doc CHANGELOG.rst CONTRIBUTING.rst
 %{python3_sitearch}/%{pypi_name}/
-%{python3_sitearch}/%{pypi_name}.dist-info/
+%{python3_sitearch}/%{pypi_name}-*.dist-info/
 
 %files -n python3-%{pypi_name}-doc
 %doc docs/build/html/*

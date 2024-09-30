@@ -131,7 +131,7 @@ popd
 %{_bindir}/evol-%{python3_version}
 %{_bindir}/python%{python3_version}-evol
 %{python3_sitearch}/prody/
-%{python3_sitearch}/%{name}.dist-info
+%{python3_sitearch}/%{name}-*.dist-info
 
 %changelog
 %autochangelog

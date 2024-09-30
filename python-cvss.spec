@@ -89,7 +89,7 @@ Python 3 version.
 %files -n python2-%{srcname}
 %doc README.rst
 %license LICENSE
-%{python2_sitelib}/%{srcname}.dist-info/
+%{python2_sitelib}/%{srcname}-*.dist-info/
 %{python2_sitelib}/%{srcname}/
 %endif
 
@@ -97,7 +97,7 @@ Python 3 version.
 %files -n python3-%{srcname}
 %doc README.rst
 %license LICENSE
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 %{python3_sitelib}/%{srcname}/
 %endif
 

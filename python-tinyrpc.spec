@@ -97,7 +97,7 @@ py.test-3 -rs
 %files -n python3-%{library}
 %license LICENSE
 %{python3_sitelib}/%{module}
-%{python3_sitelib}/%{module}.dist-info
+%{python3_sitelib}/%{module}-*.dist-info
 %exclude %{python3_sitelib}/%{module}/tests
 
 %files -n python3-%{library}-tests

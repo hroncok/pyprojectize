@@ -104,7 +104,7 @@ cp support/completion/zsh/_cekit %{buildroot}/%{_datadir}/zsh/site-functions/_ce
 %license LICENSE
 
 %{python3_sitelib}/cekit/
-%{python3_sitelib}/cekit.dist-info/
+%{python3_sitelib}/cekit-*.dist-info/
 
 %{_bindir}/cekit
 %{_bindir}/cekit-cache

@@ -40,7 +40,7 @@ sed -i -e '/scm/d' setup.py
 %license LICENSE
 %doc README.md CHANGELOG.md
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 
 %changelog
 %autochangelog

@@ -51,7 +51,7 @@ Python 3 version.
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.md CHANGELOG.md
-%{python3_sitelib}/pywinrm.dist-info/
+%{python3_sitelib}/pywinrm-*.dist-info/
 %{python3_sitelib}/winrm/
 
 %changelog

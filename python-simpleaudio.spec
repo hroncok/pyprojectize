@@ -47,7 +47,7 @@ Summary: %{summary}
 %files -n python3-%{pypi_name}
 %license LICENSE.txt
 %{python3_sitearch}/%{pypi_name}/
-%{python3_sitearch}/%{pypi_name}.dist-info/
+%{python3_sitearch}/%{pypi_name}-*.dist-info/
 
 
 %changelog

@@ -267,7 +267,7 @@ exit 0
 %files -n       python3-%{pypi_name}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{pypi_name}.dist-info/
+%{python3_sitelib}/%{pypi_name}-*.dist-info/
 %{python3_sitelib}/%{pypi_name}/
 
 %files lvm2

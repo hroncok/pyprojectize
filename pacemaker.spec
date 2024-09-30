@@ -790,7 +790,7 @@ exit 0
 
 %files -n %{python_name}-%{name}
 %{python3_sitelib}/pacemaker/
-%{python3_sitelib}/pacemaker.dist-info
+%{python3_sitelib}/pacemaker-*.dist-info
 %exclude %{python3_sitelib}/pacemaker/_cts/
 %license licenses/LGPLv2.1
 %doc COPYING

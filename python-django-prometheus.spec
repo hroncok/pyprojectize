@@ -56,7 +56,7 @@ rm -vr *.egg-info
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/django_prometheus.dist-info/
+%{python3_sitelib}/django_prometheus-*.dist-info/
 %{python3_sitelib}/django_prometheus/
 
 %changelog

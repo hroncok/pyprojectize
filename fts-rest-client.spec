@@ -40,7 +40,7 @@ File Transfer Service (FTS) -- Python3 Client and CLI
 %files
 %license LICENSE
 %{python3_sitelib}/fts3/
-%{python3_sitelib}/fts*.dist-info/
+%{python3_sitelib}/fts*-*.dist-info/
 %{_bindir}/fts-rest-*
 
 %changelog

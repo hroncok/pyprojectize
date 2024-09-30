@@ -76,7 +76,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} tests/test_olefile.py
 %files -n python3-%{srcname}
 %doc README.md
 %license doc/License.rst
-%{python3_sitelib}/olefile.dist-info
+%{python3_sitelib}/olefile-*.dist-info
 %{python3_sitelib}/olefile/
 
 

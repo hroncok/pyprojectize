@@ -138,7 +138,7 @@ sh build.sh tests
 %files -n python3-%{srcname}
 %license LICENSE
 %doc AUTHORS.rst README.rst CONTRIBUTING.rst
-%{python3_sitelib}/%{srcname}.dist-info
+%{python3_sitelib}/%{srcname}-*.dist-info
 %{python3_sitelib}/%{srcname}
 
 

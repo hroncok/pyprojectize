@@ -50,7 +50,7 @@ BuildRequires:	python3-pytest
 %license LICENSE
 %doc README.rst
 %pycached %{python3_sitelib}/protego.py
-%{python3_sitelib}/Protego.dist-info
+%{python3_sitelib}/Protego-*.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.3.0-6

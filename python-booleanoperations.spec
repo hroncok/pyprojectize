@@ -72,7 +72,7 @@ export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 %files -n python3-%{pkgname}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{srcname}.dist-info
+%{python3_sitelib}/%{srcname}-*.dist-info
 %{python3_sitelib}/%{srcname}
 
 %changelog

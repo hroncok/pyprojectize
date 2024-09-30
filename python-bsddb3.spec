@@ -120,7 +120,7 @@ rm -f %{buildroot}%{_includedir}/python3.*/%{srcname}/bsddb.h
 %doc ChangeLog PKG-INFO README.txt
 %license LICENSE.txt
 %{python3_other_sitearch}/bsddb3/
-%{python3_other_sitearch}/bsddb3-%{version}-py%{python3_other_version}.dist-info
+%{python3_other_sitearch}/bsddb3-%{version}.dist-info
 %endif
 
 %changelog

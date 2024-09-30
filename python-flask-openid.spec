@@ -56,7 +56,7 @@ rm -f docs/._.DS_Store
 
 %files -n python3-flask-openid
 %doc docs README.rst LICENSE PKG-INFO
-%{python3_sitelib}/Flask_OpenID.dist-info/
+%{python3_sitelib}/Flask_OpenID-*.dist-info/
 %{python3_sitelib}/flask_openid.py
 %{python3_sitelib}/__pycache__/*
 

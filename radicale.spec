@@ -409,7 +409,7 @@ fi
 %files -n python3-%{radicale_package_name}
 %license COPYING.md
 %{python3_sitelib}/%{name}
-%{python3_sitelib}/Radicale.dist-info
+%{python3_sitelib}/Radicale-*.dist-info
 
 
 %files -n %{radicale_package_name}-httpd

@@ -99,14 +99,14 @@ sed -i -e s/distutils.core/setuptools/ setup.py
 %files -n python2-%{srcname}
 %license LICENSE
 %doc README.rst
-%{python2_sitelib}/%{srcname}.dist-info/
+%{python2_sitelib}/%{srcname}-*.dist-info/
 %{python2_sitelib}/%{srcname}/
 %endif
 
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 %{python3_sitelib}/%{srcname}/
 
 %changelog

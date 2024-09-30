@@ -54,7 +54,7 @@ find %{buildroot} -size 0 -delete
 %files -n %{name}
 %doc README
 %license COPYING
-%{python3_sitelib}/ddiskit.dist-info
+%{python3_sitelib}/ddiskit-*.dist-info
 %{_bindir}/ddiskit
 %{_mandir}/man1/ddiskit.1*
 %{_datadir}/bash-completion/completions/ddiskit

@@ -71,7 +71,7 @@ end
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/mypy
-%{python3_sitelib}/mypy.dist-info
+%{python3_sitelib}/mypy-*.dist-info
 %{python3_sitelib}/mypyc
 %{_bindir}/mypy
 %{_bindir}/mypyc

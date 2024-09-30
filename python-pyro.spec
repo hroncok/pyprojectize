@@ -58,7 +58,7 @@ chmod -x examples/maxsize/Readme.txt
 %files -n python3-%{pypi_name}
 %doc docs/* examples LICENSE
 %{python3_sitelib}/Pyro4
-%{python3_sitelib}/Pyro4.dist-info
+%{python3_sitelib}/Pyro4-*.dist-info
 %{_bindir}/pyro4*
 
 %changelog

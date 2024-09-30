@@ -46,7 +46,7 @@ when entering (resp. leaving) runtime context related to it.
 %doc README.md LICENSE
 %{python3_sitelib}/flock.py
 %{python3_sitelib}/__pycache__/flock.*
-%{python3_sitelib}/flock-%{version}-py3.*.dist-info
+%{python3_sitelib}/flock-%{version}.dist-info
 
 
 %changelog

@@ -50,7 +50,7 @@ nosetests-%{python3_version} || :
 %license COPYING
 %doc AUTHORS ChangeLog README TODO
 %{python3_sitelib}/xdg
-%{python3_sitelib}/pyxdg.dist-info
+%{python3_sitelib}/pyxdg-*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.27-13

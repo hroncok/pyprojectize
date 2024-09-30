@@ -60,7 +60,7 @@ popd
 %{_bindir}/pyreadelf-%{python3_version}
 %{_bindir}/pyreadelf-3
 %{python3_sitelib}/elftools
-%{python3_sitelib}/pyelftools.dist-info
+%{python3_sitelib}/pyelftools-*.dist-info
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.31-3

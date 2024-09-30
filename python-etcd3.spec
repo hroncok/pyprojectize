@@ -48,7 +48,7 @@ sed -e 's|grpcio==.*|grpcio==1.26.0|' \
 %license LICENSE
 %doc AUTHORS.rst CONTRIBUTING.rst HISTORY.rst README.rst
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 
 
 %changelog

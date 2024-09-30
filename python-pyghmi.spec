@@ -109,7 +109,7 @@ stestr run
 %{_bindir}/virshbmc
 %{_bindir}/fakebmc
 %{python3_sitelib}/%{sname}
-%{python3_sitelib}/%{sname}.dist-info
+%{python3_sitelib}/%{sname}-*.dist-info
 %exclude %{python3_sitelib}/%{sname}/tests
 
 %files -n python3-%{sname}-tests

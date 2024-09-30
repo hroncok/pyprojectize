@@ -56,7 +56,7 @@ ln -s %{modname}-3 %{buildroot}%{_bindir}/%{modname}
 %{_bindir}/%{modname}-%{python3_version}
 %{_bindir}/%{modname}-identify-imports
 %{python3_sitelib}/%{modname}/
-%{python3_sitelib}/%{modname}.dist-info/
+%{python3_sitelib}/%{modname}-*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 5.13.2-5

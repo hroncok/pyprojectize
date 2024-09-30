@@ -65,7 +65,7 @@ pytest-3
 %doc *.md
 %license LICENSE
 %{python3_sitelib}/boxsdk/
-%{python3_sitelib}/%{modname}.dist-info/
+%{python3_sitelib}/%{modname}-*.dist-info/
 
 %changelog
 * Thu Aug 22 2024 Gwyn Ciesla <gwync@protonmail.com> - 3.13.0-1

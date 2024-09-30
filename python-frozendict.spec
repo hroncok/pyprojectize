@@ -44,7 +44,7 @@ export FROZENDICT_PURE_PY=1
 %files -n python3-%{srcname}
 %license LICENSE.txt
 %doc README.md
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 %{python3_sitelib}/%{srcname}/
 
 %changelog

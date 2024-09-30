@@ -64,7 +64,7 @@ ln -s %{_datadir}/fonts/gnu-free/FreeSansBold.ttf $RPM_BUILD_ROOT%{python3_sitel
 
 %files
 %{_bindir}/slingshot
-%{python3_sitelib}/%{name}.dist-info
+%{python3_sitelib}/%{name}-*.dist-info
 %{python3_sitelib}/%{name}/
 %doc README
 %license LICENSE

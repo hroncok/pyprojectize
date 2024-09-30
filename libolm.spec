@@ -79,7 +79,7 @@ popd
 %files python3
 %{python3_sitearch}/%{appname}
 %{python3_sitearch}/_%{name}.abi3.so
-%{python3_sitearch}/python_%{appname}.dist-info
+%{python3_sitearch}/python_%{appname}-*.dist-info
 
 %changelog
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 3.2.16-4

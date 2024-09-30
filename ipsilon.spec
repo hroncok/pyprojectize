@@ -332,7 +332,7 @@ exit 0
 %dir %{_datadir}/ipsilon/templates/install
 %dir %{python3_sitelib}/ipsilon
 %{python3_sitelib}/ipsilon/__init__.py*
-%{python3_sitelib}/ipsilon.dist-info
+%{python3_sitelib}/ipsilon-*.dist-info
 %dir %{python3_sitelib}/ipsilon/__pycache__/
 %{python3_sitelib}/ipsilon/__pycache__/__init__.*
 %dir %{python3_sitelib}/ipsilon/tools

@@ -59,7 +59,7 @@ Summary:        %{summary}
 %license LICENSE
 %doc PKG-INFO README.md
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 
 
 %changelog

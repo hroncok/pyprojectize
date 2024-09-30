@@ -74,7 +74,7 @@ export OPENSSL_CONF=${PWD}/openssl.cnf
 %license LICENSE
 %doc CONTRIBUTORS.rst README.rst
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.2.0-5

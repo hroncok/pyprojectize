@@ -45,7 +45,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} -v
 %files -n python3-%{modname}
 %license LICENSE
 %doc README.rst HISTORY.rst
-%{python3_sitelib}/%{modname}.dist-info/
+%{python3_sitelib}/%{modname}-*.dist-info/
 %{python3_sitelib}/%{modname}.py
 %{python3_sitelib}/__pycache__/%{modname}.*
 

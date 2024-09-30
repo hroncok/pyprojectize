@@ -44,7 +44,7 @@ Python 3 version.
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/into_dbus_python/
-%{python3_sitelib}/into_dbus_python.dist-info/
+%{python3_sitelib}/into_dbus_python-*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.8.2-7

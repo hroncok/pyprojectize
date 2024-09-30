@@ -52,7 +52,7 @@ Python 3 version.
 %license LICENSE.txt
 %doc README.rst changes.rst
 %{python3_sitelib}/%{modname}/
-%{python3_sitelib}/%{modname}.dist-info/
+%{python3_sitelib}/%{modname}-*.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.3-30

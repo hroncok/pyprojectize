@@ -212,7 +212,7 @@ done
 %doc README.md 
 %{python3_sitearch}/%{pypi_name}
 %{python3_sitearch}/torio
-%{python3_sitearch}/%{pypi_name}.dist-info/
+%{python3_sitearch}/%{pypi_name}-*.dist-info/
 
 %if %{with rocm}
 %files -n python3-%{pypi_name}-rocm-gfx9

@@ -104,7 +104,7 @@ ln -sf nosetests-3.1 %{buildroot}%{_mandir}/man1/nosetests.1
 %{_mandir}/man1/nosetests.1*
 %{_mandir}/man1/nosetests-3.1*
 %{_mandir}/man1/nosetests-%{python3_version}.1*
-%{python3_sitelib}/nose.dist-info/
+%{python3_sitelib}/nose-*.dist-info/
 %{python3_sitelib}/nose/
 
 %changelog

@@ -52,7 +52,7 @@ py.test-%{python3_version} -v
 
 %files -n python3-%{srcname}
 %license LICENSE
-%{python3_sitelib}/rustcfg.dist-info/
+%{python3_sitelib}/rustcfg-*.dist-info/
 %{python3_sitelib}/rustcfg/
 %exclude %{python3_sitelib}/rustcfg/test
 

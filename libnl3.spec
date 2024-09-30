@@ -151,7 +151,7 @@ popd
 %if %{with python3}
 %files -n python3-libnl3
 %{python3_sitearch}/netlink
-%{python3_sitearch}/netlink.dist-info
+%{python3_sitearch}/netlink-*.dist-info
 %endif
 
 %changelog

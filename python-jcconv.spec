@@ -59,7 +59,7 @@ Requires:	python3-six
 
 %files -n python3-%{pypi_name}
 %license LICENSE.txt
-%doc %{pypi_name}.dist-info/PKG-INFO README.rst
+%doc %{pypi_name}.egg-info/PKG-INFO README.rst
 %{python3_sitelib}/%{pypi_name}
 %{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 

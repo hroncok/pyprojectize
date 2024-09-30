@@ -121,7 +121,7 @@ rm doc/conf.py
 %license COPYING
 %doc README.md
 %{python3_sitelib}/boom/*
-%{python3_sitelib}/boom_boot.dist-info/
+%{python3_sitelib}/boom_boot-*.dist-info/
 %doc doc
 %doc examples
 %doc tests

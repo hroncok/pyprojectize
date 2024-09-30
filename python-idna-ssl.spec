@@ -53,7 +53,7 @@ BuildRequires:  python3dist(idna) >= 2
 %files
 %license LICENSE
 %doc README.rst example.py
-%{python3_sitelib}/idna_ssl.dist-info/
+%{python3_sitelib}/idna_ssl-*.dist-info/
 %{python3_sitelib}/idna_ssl.py
 %{python3_sitelib}/__pycache__/idna_ssl.*
 

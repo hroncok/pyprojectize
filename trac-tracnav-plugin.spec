@@ -42,7 +42,7 @@ that was originally supplied with Trac.
 %files
 %doc README.md
 %license COPYING
-%{python3_sitelib}/TracNav.dist-info/
+%{python3_sitelib}/TracNav-*.dist-info/
 %{python3_sitelib}/tracnav/
 
 

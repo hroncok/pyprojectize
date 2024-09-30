@@ -116,7 +116,7 @@ py.test-3
 %files -n python2-%{srcname}
 %license LICENSE
 %doc README.md CONTRIBUTING.rst HACKING.rst
-%{python2_sitelib}/%{srcname}.dist-info/
+%{python2_sitelib}/%{srcname}-*.dist-info/
 %{python2_sitelib}/%{srcname}/
 %endif
 
@@ -124,7 +124,7 @@ py.test-3
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.md CONTRIBUTING.rst HACKING.rst
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 %{python3_sitelib}/%{srcname}/
 %endif
 

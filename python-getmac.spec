@@ -45,7 +45,7 @@ sed -i '1{/^#!\//d}' getmac/__main__.py
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 /usr/bin/getmac
 
 %changelog

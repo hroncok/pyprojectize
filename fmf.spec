@@ -76,7 +76,7 @@ install -pm 644 fmf.1* %{buildroot}%{_mandir}/man1
 
 %files -n python%{python3_pkgversion}-%{name}
 %{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}.dist-info
+%{python3_sitelib}/%{name}-*.dist-info
 %license LICENSE
 
 

@@ -41,7 +41,7 @@ source to the .pbf or .osm output.
 %files
 %{_bindir}/%{name}
 %{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}.dist-info
+%{python3_sitelib}/%{name}-*.dist-info
 %doc README.md
 %license LICENSE
 

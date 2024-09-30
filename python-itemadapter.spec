@@ -48,7 +48,7 @@ Requires:	python3-attrs
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/itemadapter
-%{python3_sitelib}/itemadapter.dist-info
+%{python3_sitelib}/itemadapter-*.dist-info
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.9.0-11

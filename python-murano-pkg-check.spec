@@ -183,7 +183,7 @@ PYTHON=python3 %{__python3} setup.py test
 %{_mandir}/man1/murano-pkg-check.1.gz
 %{python2_sitelib}/%{library}
 %exclude %{python2_sitelib}/%{library}/tests
-%{python2_sitelib}/murano_pkg_check.dist-info
+%{python2_sitelib}/murano_pkg_check-*.dist-info
 %endif
 
 %if 0%{?with_docs}
@@ -203,7 +203,7 @@ PYTHON=python3 %{__python3} setup.py test
 %endif
 %{python3_sitelib}/%{library}
 %exclude %{python3_sitelib}/%{library}/tests
-%{python3_sitelib}/murano_pkg_check.dist-info
+%{python3_sitelib}/murano_pkg_check-*.dist-info
 %endif
 
 %changelog

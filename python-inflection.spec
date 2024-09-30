@@ -47,7 +47,7 @@ rm -vr *.egg-info
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/inflection.dist-info/
+%{python3_sitelib}/inflection-*.dist-info/
 %{python3_sitelib}/inflection/
 
 %changelog

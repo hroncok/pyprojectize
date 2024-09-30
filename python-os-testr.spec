@@ -101,7 +101,7 @@ done
 %{_bindir}/subunit-trace
 %{_bindir}/subunit2html
 %{python3_sitelib}/os_testr
-%{python3_sitelib}/os_testr.dist-info
+%{python3_sitelib}/os_testr-*.dist-info
 
 %if 0%{?with_doc}
 %files -n python-%{pypi_name}-doc

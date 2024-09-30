@@ -56,7 +56,7 @@ rm -f %{libname}/static/files/.npmignore
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{libname}
-%{python3_sitelib}/%{libname}.dist-info/
+%{python3_sitelib}/%{libname}-*.dist-info/
 
 
 %changelog

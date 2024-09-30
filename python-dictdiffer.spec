@@ -168,14 +168,14 @@ PYTHONPATH=%{buildroot}/%{python3_sitelib} sphinx-build docs/ html
 %files -n python2-%{library}
 %license LICENSE
 %{python2_sitelib}/%{library}/*
-%{python2_sitelib}/%{library}.dist-info
+%{python2_sitelib}/%{library}-*.dist-info
 %endif
 
 %if 0%{?with_python3}
 %files -n python3-%{library}
 %license LICENSE
 %{python3_sitelib}/%{library}/*
-%{python3_sitelib}/%{library}.dist-info
+%{python3_sitelib}/%{library}-*.dist-info
 %endif
 
 %if 0%{?fedora}

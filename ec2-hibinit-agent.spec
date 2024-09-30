@@ -92,7 +92,7 @@ install -m 0644 %{_builddir}/%{project}-%{version}/packaging/rhel/ec2hibernatepo
 %{_bindir}/hibinit-agent
 %config(noreplace) %{_sysconfdir}/acpi/events/sleepconf
 %config(noreplace) %{_sysconfdir}/acpi/actions/sleep.sh
-%{python3_sitelib}/ec2_hibinit_agent.dist-info/
+%{python3_sitelib}/ec2_hibinit_agent-*.dist-info/
 %dir %{_sharedstatedir}/hibinit-agent
 %ghost %attr(0600,root,root) %{_sharedstatedir}/hibinit-agent/hibernation-enabled
 

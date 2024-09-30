@@ -47,7 +47,7 @@ find examples -name '*.py' -print -exec sed -r -i 's|(.!)\s+/usr/bin/env python.
 %doc README.rst examples/
 %{python3_sitelib}/dialog.py*
 %{python3_sitelib}/__pycache__/
-%{python3_sitelib}/pythondialog.dist-info
+%{python3_sitelib}/pythondialog-*.dist-info
 
 %changelog
 %autochangelog

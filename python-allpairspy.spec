@@ -49,7 +49,7 @@ install -m 644 %{SOURCE1} .
 %files -n python3-allpairspy
 %doc README.rst
 %license LICENSE.txt
-%{python3_sitelib}/allpairspy.dist-info/
+%{python3_sitelib}/allpairspy-*.dist-info/
 %{python3_sitelib}/allpairspy/
 
 %changelog

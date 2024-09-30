@@ -89,7 +89,7 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/filesaver/data/
 %files -n python3-%{pypi_name}
 %doc README.txt
 %{python3_sitelib}/xstatic/pkg/filesaver
-%{python3_sitelib}/XStatic_FileSaver-%{version}-py3.*.dist-info
+%{python3_sitelib}/XStatic_FileSaver-%{version}.dist-info
 %{python3_sitelib}/XStatic_FileSaver-%{version}-py3.*-nspkg.pth
 
 

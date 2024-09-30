@@ -59,7 +59,7 @@ cd python
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}.dist-info
+%{python3_sitelib}/%{pypi_name}-*.dist-info
 
 
 %changelog

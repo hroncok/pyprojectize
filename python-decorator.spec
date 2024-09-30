@@ -51,7 +51,7 @@ find %{buildroot} -name SOURCES.txt~ -exec rm -f {} \;
 %doc README.rst CHANGES.md
 %license LICENSE.txt
 %{python3_sitelib}/decorator.py
-%{python3_sitelib}/decorator.dist-info/
+%{python3_sitelib}/decorator-*.dist-info/
 %{python3_sitelib}/__pycache__/*
 
 %changelog

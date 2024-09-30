@@ -55,7 +55,7 @@ rm -rf %{modname}.egg-info
 %files -n python3-transaction
 %doc README.rst LICENSE.txt COPYRIGHT.txt
 %{python3_sitelib}/transaction/
-%{python3_sitelib}/transaction.dist-info
+%{python3_sitelib}/transaction-*.dist-info
 
 
 %changelog

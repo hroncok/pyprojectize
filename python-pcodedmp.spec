@@ -130,21 +130,21 @@ Requires:       python%{python3_other_pkgversion}-oletools >= 0.54
 %license LICENSE
 %doc README.md
 %{python2_sitelib}/pcodedmp/
-%{python2_sitelib}/pcodedmp.dist-info
+%{python2_sitelib}/pcodedmp-*.dist-info
 %endif
 
 %files -n python%{python3_pkgversion}-pcodedmp
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/pcodedmp/
-%{python3_sitelib}/pcodedmp.dist-info/
+%{python3_sitelib}/pcodedmp-*.dist-info/
 
 %if 0%{?with_python3_other}
 %files -n python%{python3_other_pkgversion}-pcodedmp
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/pcodedmp/
-%{python3_sitelib}/pcodedmp.dist-info/
+%{python3_sitelib}/pcodedmp-*.dist-info/
 %endif
 
 %changelog

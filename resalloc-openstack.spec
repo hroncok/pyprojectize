@@ -79,7 +79,7 @@ general might be used separately.
 %{_bindir}/%{name}-*
 %_mandir/man1/%{name}-*.1*
 %{default_sitelib}/%{pkgname}
-%{default_sitelib}/%{pkgname}.dist-info
+%{default_sitelib}/%{pkgname}-*.dist-info
 
 
 %changelog

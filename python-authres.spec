@@ -52,7 +52,7 @@ BuildRequires: python3-devel
 %license COPYING
 %doc CHANGES README
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 
 
 %changelog

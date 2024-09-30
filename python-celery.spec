@@ -135,7 +135,7 @@ export TEST_BACKEND=rpc
 %doc README.rst TODO CONTRIBUTORS.txt examples
 %{_bindir}/celery
 %{_bindir}/celery-3*
-%{python3_sitelib}/celery.dist-info
+%{python3_sitelib}/celery-*.dist-info
 %{python3_sitelib}/celery
 
 %changelog

@@ -92,7 +92,7 @@ rm tox.ini
 %license LICENSE
 %doc README.rst CHANGES.rst
 %{python3_sitelib}/aiohttp_cors
-%{python3_sitelib}/aiohttp_cors.dist-info/
+%{python3_sitelib}/aiohttp_cors-*.dist-info/
 
 %changelog
 * Wed Jul 24 2024 Miroslav Suchý <msuchy@redhat.com> - 0.7.0-25

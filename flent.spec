@@ -78,7 +78,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 
 %files
 %{python3_sitelib}/flent
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 %{_bindir}/flent
 %{_bindir}/flent-gui
 %{_datadir}/applications/flent.desktop

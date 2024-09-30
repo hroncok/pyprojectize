@@ -55,7 +55,7 @@ rm -f %{buildroot}%{python3_sitelib}/zc/lockfile/*.txt
 
 %files -n python3-zc-lockfile
 %doc src/zc/lockfile/*.txt
-%{python3_sitelib}/zc.lockfile.dist-info
+%{python3_sitelib}/zc.lockfile-*.dist-info
 %{python3_sitelib}/zc.lockfile-*-nspkg.pth
 %{python3_sitelib}/zc/lockfile/
 %dir %{python3_sitelib}/zc/

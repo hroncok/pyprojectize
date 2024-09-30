@@ -61,7 +61,7 @@ rm -vr *.egg-info/
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/debug_toolbar/
-%{python3_sitelib}/django_debug_toolbar.dist-info/
+%{python3_sitelib}/django_debug_toolbar-*.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 3.2.1-14

@@ -65,7 +65,7 @@ install -p -m 644 dist/solarwolf.png \
 %{_bindir}/solarwolf
 #%{_datadir}/solarwolf/
 %{python3_sitelib}/solarwolf/
-%{python3_sitelib}/solarwolf.dist-info/
+%{python3_sitelib}/solarwolf-*.dist-info/
 %license lgpl.txt
 %doc README.rst
 %{_datadir}/applications/solarwolf.desktop

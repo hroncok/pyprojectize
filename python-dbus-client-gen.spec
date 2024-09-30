@@ -45,7 +45,7 @@ Python 3 version.
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/dbus_client_gen/
-%{python3_sitelib}/dbus_client_gen.dist-info/
+%{python3_sitelib}/dbus_client_gen-*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.5.1-8

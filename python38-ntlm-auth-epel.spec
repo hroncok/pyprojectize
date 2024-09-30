@@ -48,7 +48,7 @@ Summary:        %{summary}
 %files -n python%{python3_pkgversion}-%{srcname}
 %doc CHANGES.md README.md
 %license LICENSE
-%{python3_sitelib}/ntlm_auth.dist-info/
+%{python3_sitelib}/ntlm_auth-*.dist-info/
 %{python3_sitelib}/ntlm_auth/
 
 %changelog

@@ -43,7 +43,7 @@ rm -vrf *.egg-info
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.rst HISTORY.rst
-%{python3_sitelib}/django_cors_headers.dist-info/
+%{python3_sitelib}/django_cors_headers-*.dist-info/
 %{python3_sitelib}/corsheaders/
 
 %changelog

@@ -46,7 +46,7 @@ rm -vrf *.egg-info
 %doc README.rst
 %license LICENCE
 %{python3_sitelib}/%{srcname}/
-%{python3_sitelib}/%{pypi_name}.dist-info/
+%{python3_sitelib}/%{pypi_name}-*.dist-info/
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 0.23.1-3

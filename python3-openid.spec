@@ -83,7 +83,7 @@ find %{buildroot} -name "*.po" | xargs rm -f
 %{python3_sitelib}/openid/yadis/*.py
 %dir %{python3_sitelib}/openid/yadis/__pycache__
 %{python3_sitelib}/openid/yadis/__pycache__/*.pyc
-%{python3_sitelib}/python3_openid-%{version}-py3.*.dist-info/
+%{python3_sitelib}/python3_openid-%{version}.dist-info/
 
 
 %changelog

@@ -45,7 +45,7 @@ rm taggit/locale/*/LC_MESSAGES/django.po
 %files -n python3-%{srcname} -f django.lang
 %license LICENSE
 %doc README.rst CHANGELOG.rst
-%{python3_sitelib}/django_taggit.dist-info/
+%{python3_sitelib}/django_taggit-*.dist-info/
 %{python3_sitelib}/taggit/
 
 %changelog

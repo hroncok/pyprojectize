@@ -49,7 +49,7 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} -v
 %files -n python3-%{modname}
 %license LICENSE LICENSE.APACHE LICENSE.BSD
 %doc HISTORY.rst README.rst
-%{python3_sitelib}/%{modname}.dist-info/
+%{python3_sitelib}/%{modname}-*.dist-info/
 %{python3_sitelib}/%{modname}/
 
 %changelog

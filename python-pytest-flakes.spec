@@ -46,7 +46,7 @@ rm -rf *.egg-info
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/pytest_flakes.dist-info/
+%{python3_sitelib}/pytest_flakes-*.dist-info/
 %{python3_sitelib}/pytest_flakes.py
 %{python3_sitelib}/__pycache__/pytest_flakes.*
 

@@ -50,7 +50,7 @@ rm -rf %{buildroot}%{python3_sitelib}/test
 %doc CHANGELOG.md
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/b2sdk.dist-info/
+%{python3_sitelib}/b2sdk-*.dist-info/
 %{python3_sitelib}/b2sdk/
 
 

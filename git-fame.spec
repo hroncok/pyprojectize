@@ -46,7 +46,7 @@ install -Dpm0644 -t %{buildroot}%{_mandir}/man1 gitfame/git-fame.1
 %{_bindir}/%{name}
 %{_libexecdir}/git-core/%{name}
 %{_mandir}/man1/%{name}.1*
-%{python3_sitelib}/git_fame.dist-info/
+%{python3_sitelib}/git_fame-*.dist-info/
 %{python3_sitelib}/gitfame/
 
 %changelog

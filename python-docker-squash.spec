@@ -54,7 +54,7 @@ py.test-%{python3_version} -v tests/test_unit*.py
 %license LICENSE
 %{_bindir}/docker-squash
 %{python3_sitelib}/docker_squash/
-%{python3_sitelib}/docker_squash.dist-info/
+%{python3_sitelib}/docker_squash-*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.1.0-7

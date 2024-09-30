@@ -84,7 +84,7 @@ dos2unix -- README.rst
 %doc README.rst
 %license LICENSE
 %python3_sitelib/macros
-%python3_sitelib/django_macros-%version-py%python3_version.dist-info
+%python3_sitelib/django_macros-%version.dist-info
 
 
 %changelog

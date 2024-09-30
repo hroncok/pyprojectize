@@ -117,27 +117,27 @@ rm -vr *.egg-info
 %license LICENSE
 %doc README.rst CHANGELOG.rst
 %{python3_sitelib}/storages/
-%{python3_sitelib}/django_storages.dist-info/
+%{python3_sitelib}/django_storages-*.dist-info/
 
 # Missing requirement azure-storage-blob
 #%%files -n python3-%%{srcname}+azure
-#%%{?python_extras_subpkg:%%ghost %%{python3_sitelib}/django_storages.dist-info}
+#%%{?python_extras_subpkg:%%ghost %%{python3_sitelib}/django_storages-*.dist-info}
 
 %files -n python3-%{srcname}+boto3
-%{?python_extras_subpkg:%ghost %{python3_sitelib}/django_storages.dist-info}
+%{?python_extras_subpkg:%ghost %{python3_sitelib}/django_storages-*.dist-info}
 
 %files -n python3-%{srcname}+dropbox
-%{?python_extras_subpkg:%ghost %{python3_sitelib}/django_storages.dist-info}
+%{?python_extras_subpkg:%ghost %{python3_sitelib}/django_storages-*.dist-info}
 
 # Missing requirement google-cloud-storage
 #%%files -n python3-%%{srcname}+google
-#%%{?python_extras_subpkg:%%ghost %%{python3_sitelib}/django_storages.dist-info}
+#%%{?python_extras_subpkg:%%ghost %%{python3_sitelib}/django_storages-*.dist-info}
 
 %files -n python3-%{srcname}+libcloud
-%{?python_extras_subpkg:%ghost %{python3_sitelib}/django_storages.dist-info}
+%{?python_extras_subpkg:%ghost %{python3_sitelib}/django_storages-*.dist-info}
 
 %files -n python3-%{srcname}+sftp
-%{?python_extras_subpkg:%ghost %{python3_sitelib}/django_storages.dist-info}
+%{?python_extras_subpkg:%ghost %{python3_sitelib}/django_storages-*.dist-info}
 
 %changelog
 * Wed Sep 04 2024 Miroslav Suchý <msuchy@redhat.com> - 1.11.1-15

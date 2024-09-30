@@ -137,7 +137,7 @@ ln -s qrcodegen.hpp %{buildroot}%{_includedir}/qrcodegencpp/QrCode.hpp
 %license Readme.markdown
 %{python3_sitelib}/qrcodegen.py
 %{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/qrcodegen.dist-info/
+%{python3_sitelib}/qrcodegen-*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.8.0-11

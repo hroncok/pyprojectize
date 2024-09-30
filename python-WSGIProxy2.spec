@@ -44,7 +44,7 @@ rm -rf %{pypi_name}.egg-info
 %files -n python3-%{pypi_name}
 %doc README_fixt.py README.rst
 %{python3_sitelib}/%{package_name}/
-%{python3_sitelib}/%{pypi_name}.dist-info/
+%{python3_sitelib}/%{pypi_name}-*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.4.6-18

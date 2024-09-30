@@ -46,7 +46,7 @@ Best-effort representations using smaller coded character sets
 %files -n python3-%{pypi_name}
 %license LICENSE
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}.dist-info/
+%{python3_sitelib}/%{pypi_name}-*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.7.0-11

@@ -67,7 +67,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_datadir}/%{name}/
 %{_datadir}/applications/%{srcname}.desktop
 %{_datadir}/glib-2.0/schemas/%{uuid}.gschema.xml
-%{python3_sitelib}/%{name}.dist-info/
+%{python3_sitelib}/%{name}-*.dist-info/
 %{python3_sitelib}/%{name}/
 
 

@@ -112,7 +112,7 @@ rm -f %{buildroot}/%{_initddir}/imagefactoryd
 %{python3_sitelib}/imgfac/*.py*
 %{python3_sitelib}/imgfac/__pycache__/*.py*
 %{python3_sitelib}/imgfac/rest
-%{python3_sitelib}/imagefactory.dist-info
+%{python3_sitelib}/imagefactory-*.dist-info
 %{_bindir}/imagefactory
 %{_bindir}/imagefactoryd
 

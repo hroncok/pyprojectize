@@ -52,7 +52,7 @@ version=%version %pyproject_install
 
 %files -n python3-%{srcname}
 %license LICENSE
-%{python3_sitelib}/templated_dictionary.dist-info/
+%{python3_sitelib}/templated_dictionary-*.dist-info/
 %{python3_sitelib}/templated_dictionary/
 
 

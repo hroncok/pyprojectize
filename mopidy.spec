@@ -104,7 +104,7 @@ exit 0
                      %dir %{_datadir}/%{name}/conf.d
 # Note: users are expected to put streaming service credentials here
 %attr(0640,%name,%name) %ghost %config(noreplace) %{_sysconfdir}/%{name}/%{name}.conf
-%{python3_sitelib}/%{srcname}.dist-info/
+%{python3_sitelib}/%{srcname}-*.dist-info/
 %{python3_sitelib}/%{name}/
 %{_bindir}/%{name}
 %{_sbindir}/mopidyctl

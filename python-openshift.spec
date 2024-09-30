@@ -163,7 +163,7 @@ py.test test/unit -c /dev/null -v -r s
 %files -n python2-%{library}
 %license LICENSE
 %{python2_sitelib}/%{library}
-%{python2_sitelib}/%{library}.dist-info
+%{python2_sitelib}/%{library}-*.dist-info
 %exclude %{python2_sitelib}/scripts
 %endif
 
@@ -171,7 +171,7 @@ py.test test/unit -c /dev/null -v -r s
 %files -n %{py3}-%{library}
 %license LICENSE
 %{python3_sitelib}/%{library}
-%{python3_sitelib}/%{library}.dist-info
+%{python3_sitelib}/%{library}-*.dist-info
 %exclude %{python3_sitelib}/scripts
 %endif
 

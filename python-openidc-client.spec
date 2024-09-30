@@ -51,7 +51,7 @@ Python 3 version.
 %files -n python3-openidc-client
 %license COPYING
 %doc README.md
-%{python3_sitelib}/%{pkgname}.dist-info/
+%{python3_sitelib}/%{pkgname}-*.dist-info/
 %{python3_sitelib}/%{pkgname}/
 
 %changelog

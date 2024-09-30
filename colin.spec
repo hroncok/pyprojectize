@@ -71,7 +71,7 @@ rm -rf html/.{doctrees,buildinfo}
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}.dist-info/
+%{python3_sitelib}/%{pypi_name}-*.dist-info/
 %{_datadir}/%{pypi_name}/
 %exclude %{python3_sitelib}/tests
 

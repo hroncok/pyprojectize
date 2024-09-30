@@ -66,7 +66,7 @@ install -Dpm 644 bash_completion.d/trezorctl.sh %{buildroot}%{bash_completions_d
 %doc CHANGELOG.md
 %doc README.md
 %license COPYING
-%{python3_sitelib}/trezor.dist-info/
+%{python3_sitelib}/trezor-*.dist-info/
 %{python3_sitelib}/trezorlib/
 %{_bindir}/trezorctl
 %{bash_completions_dir}/trezorctl

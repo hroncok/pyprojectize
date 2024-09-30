@@ -73,8 +73,8 @@ xmllint --noout --relaxng \
 %files -n python3-langtable
 %dir %{python3_sitelib}/langtable
 %{python3_sitelib}/langtable/*
-%dir %{python3_sitelib}/langtable.dist-info
-%{python3_sitelib}/langtable.dist-info/*
+%dir %{python3_sitelib}/langtable-*.dist-info
+%{python3_sitelib}/langtable-*.dist-info/*
 
 %changelog
 %autochangelog

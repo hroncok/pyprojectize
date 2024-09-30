@@ -56,7 +56,7 @@ rm mptt/locale/*/LC_MESSAGES/django.po
 %files -n python3-django-mptt -f django.lang
 %license LICENSE
 %doc README.rst NOTES
-%{python3_sitelib}/django_mptt.dist-info/
+%{python3_sitelib}/django_mptt-*.dist-info/
 %{python3_sitelib}/mptt/
 
 %changelog

@@ -89,7 +89,7 @@ rm -f docs/Makefile docs/conf.py docs/changelog.rst
 %files -n python3-webtest
 %doc docs/* CHANGELOG.rst
 %{python3_sitelib}/webtest
-%{python3_sitelib}/WebTest.dist-info
+%{python3_sitelib}/WebTest-*.dist-info
 
 %changelog
 * Tue Sep 03 2024 Ján ONDREJ (SAL) <ondrejj(at)salstar.sk> - 3.0.1-1

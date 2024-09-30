@@ -53,7 +53,7 @@ Python 3 version.
 %license COPYING.LESSER
 %doc README
 
-%{python3_sitelib}/%{modname}.dist-info
+%{python3_sitelib}/%{modname}-*.dist-info
 %{python3_sitelib}/%{modname}.py
 %{python3_sitelib}/__pycache__/%{modname}.*
 

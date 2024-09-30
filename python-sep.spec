@@ -54,7 +54,7 @@ functions and classes. These operate directly on in-memory numpy arrays
 %files -n python3-%{srcname}
 %doc AUTHORS.md README.md CHANGES.md
 %license licenses/MIT_LICENSE.txt licenses/LGPL_LICENSE.txt licenses/BSD_LICENSE.txt
-%{python3_sitearch}/sep.dist-info
+%{python3_sitearch}/sep-*.dist-info
 %{python3_sitearch}/sep*.so
 
 %changelog

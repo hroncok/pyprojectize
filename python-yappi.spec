@@ -52,7 +52,7 @@ export PYTHONPATH=%{buildroot}/%{python3_sitearch}
 %{python3_sitearch}/%{srcname}.py*
 %{python3_sitearch}/_%{srcname}*.so
 %{python3_sitearch}/__pycache__/%{srcname}*
-%{python3_sitearch}/%{srcname}.dist-info
+%{python3_sitearch}/%{srcname}-*.dist-info
 %{_bindir}/%{srcname}
 %{_bindir}/%{srcname}-3*
 

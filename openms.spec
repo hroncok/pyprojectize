@@ -593,7 +593,7 @@ ctest -j 1 -VV --force-new-ctest-process --output-on-failure --test-dir build -E
 %license License.txt
 %doc src/pyOpenMS/README_WRAPPING_NEW_CLASSES
 %{python3_sitearch}/pyopenms/
-%{python3_sitearch}/pyopenms.dist-info/
+%{python3_sitearch}/pyopenms-*.dist-info/
 %endif
 
 %changelog

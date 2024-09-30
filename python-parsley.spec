@@ -70,7 +70,7 @@ py.test-%{python3_version} terml/test ometa/test --ignore=ometa/test/test_vm_bui
 %license LICENSE
 %doc NEWS README
 %{_mandir}/man1/%{lowname}.1*
-%{python3_sitelib}/%{oname}-%{version}-py3.*.dist-info
+%{python3_sitelib}/%{oname}-%{version}.dist-info
 %{python3_sitelib}/ometa/
 %{python3_sitelib}/__pycache__/%{lowname}.*
 %{python3_sitelib}/%{lowname}.*

@@ -75,7 +75,7 @@ Requires:       python%{python3_pkgversion}-six
 %license LICENSE.txt
 %doc README.md MANIFEST.in
 %{python2_sitelib}/%{libname}
-%{python2_sitelib}/%{eggname}-%{version}-py%{python2_version}.dist-info
+%{python2_sitelib}/%{eggname}-%{version}.dist-info
 %endif
 
 %if %{with python3}

@@ -96,7 +96,7 @@ make CFLAGS="%{optflags} -DMINIUPNPC_SET_SOCKET_TIMEOUT" check
 %{_mandir}/man3/%{name}.3*
 
 %files -n python3-%{name}
-%{python3_sitearch}/miniupnpc-%{version}-py3.*.dist-info/
+%{python3_sitearch}/miniupnpc-%{version}.dist-info/
 %{python3_sitearch}/miniupnpc*.so
 
 %changelog

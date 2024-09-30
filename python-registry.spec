@@ -57,7 +57,7 @@ sed -i -e '/^#!\//, 1d' Registry/*.py
 %doc CHANGELOG.TXT README.MD
 %license LICENSE.TXT
 %{python3_sitelib}/Registry/
-%{python3_sitelib}/python_registry.dist-info/
+%{python3_sitelib}/python_registry-*.dist-info/
 
 %changelog
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.4-15

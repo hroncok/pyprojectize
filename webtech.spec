@@ -36,7 +36,7 @@ sed -i -e '/^#!\//, 1d' webtech/*.py
 %doc README.md
 %license LICENSE
 %{_bindir}/%{name}
-%{python3_sitelib}/%{name}.dist-info/
+%{python3_sitelib}/%{name}-*.dist-info/
 %{python3_sitelib}/%{name}/
 
 %changelog

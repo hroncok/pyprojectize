@@ -93,7 +93,7 @@ cp %{SOURCE1} LICENSE
 %doc README.rst
 %license LICENSE
 %{python2_sitelib}/%{pypi_name}.py*
-%{python2_sitelib}/%{mod_name}-%{version}-py?.?.dist-info
+%{python2_sitelib}/%{mod_name}-%{version}.dist-info
 %endif
 
 %files -n python%{python3_pkgversion}-%{pypi_name}

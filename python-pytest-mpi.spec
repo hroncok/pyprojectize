@@ -65,7 +65,7 @@ module unload mpi/openmpi-%{_host_cpu}
 %license LICENSE.txt
 %doc README.md
 %{python3_sitelib}/pytest_mpi/
-%{python3_sitelib}/pytest_mpi.dist-info/
+%{python3_sitelib}/pytest_mpi-*.dist-info/
 
 
 %changelog

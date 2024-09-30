@@ -421,13 +421,13 @@ find %{buildroot} -name '*.a' -exec rm -f {} ';'
 %if 0%{?with_python2}
 %files -n python2-libemu
 %{python2_sitearch}/%{name}.so
-%{python2_sitearch}/%{name}.dist-info
+%{python2_sitearch}/%{name}-*.dist-info
 %endif
 
 %if 0%{?with_python3}
 %files -n python%{python3_pkgversion}-libemu
 %{python3_sitearch}/%{name}.*.so
-%{python3_sitearch}/%{name}.dist-info
+%{python3_sitearch}/%{name}-*.dist-info
 # with_python3
 %endif
 

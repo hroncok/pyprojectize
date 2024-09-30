@@ -79,7 +79,7 @@ install -m 644 build/sphinx/man/%{name}.1 %{buildroot}%{_mandir}/man1/
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*
 %{python3_sitelib}/%{name}/
-%{python3_sitelib}/%{name}.dist-info/
+%{python3_sitelib}/%{name}-*.dist-info/
 
 
 %files doc

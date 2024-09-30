@@ -43,7 +43,7 @@ This Trac plugin provides support for the Monotone SCM.
 %files
 %doc README
 %license COPYING
-%{python3_sitelib}/TracMonotone.dist-info/
+%{python3_sitelib}/TracMonotone-*.dist-info/
 %{python3_sitelib}/tracmtn/
 
 

@@ -54,11 +54,11 @@ rm -vr *.egg-info
 %files -n python3-%{srcname}
 %license LICENSE.txt
 %doc README.md
-%{python3_sitelib}/django_timezone_field.dist-info/
+%{python3_sitelib}/django_timezone_field-*.dist-info/
 %{python3_sitelib}/timezone_field/
 
 %files -n python3-%{srcname}+rest_framework
-%{?python_extras_subpkg:%ghost %{python3_sitelib}/django_timezone_field.dist-info/}
+%{?python_extras_subpkg:%ghost %{python3_sitelib}/django_timezone_field-*.dist-info/}
 
 %changelog
 %autochangelog

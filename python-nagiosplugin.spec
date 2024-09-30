@@ -55,7 +55,7 @@ Summary:        %{summary}
 %files -n python3-%{srcname}
 %license LICENSE.txt
 %doc README.txt
-%{python3_sitelib}/nagiosplugin.dist-info/
+%{python3_sitelib}/nagiosplugin-*.dist-info/
 %{python3_sitelib}/nagiosplugin/
 
 %changelog

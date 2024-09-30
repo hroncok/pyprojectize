@@ -53,7 +53,7 @@ export PBR_VERSION=%{version}
 %files -n python3-%{srcname}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/zuul_sphinx-%{version}-py3*.dist-info/
+%{python3_sitelib}/zuul_sphinx-%{version}.dist-info/
 %{python3_sitelib}/zuul_sphinx/
 
 

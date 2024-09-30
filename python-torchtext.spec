@@ -94,7 +94,7 @@ rm -rf third_party/*
 %license LICENSE
 %doc README.rst
 %{python3_sitearch}/%{pypi_name}
-%{python3_sitearch}/%{pypi_name}.dist-info/
+%{python3_sitearch}/%{pypi_name}-*.dist-info/
 
 %changelog
 %autochangelog

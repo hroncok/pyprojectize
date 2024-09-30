@@ -433,13 +433,13 @@ install -p -m 0644 %{SOURCE2} %{buildroot}%{_emacs_sitestartdir}
 %if %{with python_cpp}
 %dir %{python3_sitearch}/google
 %{python3_sitearch}/google/protobuf/
-%{python3_sitearch}/protobuf-%{version}%{?rcver}-py3.*.dist-info/
+%{python3_sitearch}/protobuf-%{version}%{?rcver}.dist-info/
 %{python3_sitearch}/protobuf-%{version}%{?rcver}-py3.*-nspkg.pth
 %else
 %license LICENSE
 %dir %{python3_sitelib}/google
 %{python3_sitelib}/google/protobuf/
-%{python3_sitelib}/protobuf-%{version}%{?rcver}-py3.*.dist-info/
+%{python3_sitelib}/protobuf-%{version}%{?rcver}.dist-info/
 %{python3_sitelib}/protobuf-%{version}%{?rcver}-py3.*-nspkg.pth
 %endif
 %doc python/README.md

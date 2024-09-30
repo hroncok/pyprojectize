@@ -139,7 +139,7 @@ cp -pr kubernetes/e2e_test %{buildroot}%{python3_sitelib}/%{library}/
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/%{library}
-%{python3_sitelib}/%{library}.dist-info
+%{python3_sitelib}/%{library}-*.dist-info
 %exclude %{python3_sitelib}/%{library}/test
 %exclude %{python3_sitelib}/%{library}/e2e_test
 

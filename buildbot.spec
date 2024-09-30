@@ -299,7 +299,7 @@ Provides web frontend for buildbot.
 %files www
 %license COPYING
 %{python3_sitelib}/buildbot_www/
-%{python3_sitelib}/buildbot_www.dist-info/
+%{python3_sitelib}/buildbot_www-*.dist-info/
 %{python3_sitelib}/buildbot_waterfall_view/
 %{python3_sitelib}/buildbot_waterfall_view-*egg-info/
 %{python3_sitelib}/buildbot_grid_view/

@@ -50,7 +50,7 @@ done
 %{_bindir}/sgtk-bar
 %{_bindir}/sgtk-dmenu
 %{_bindir}/sgtk-grid
-%{python3_sitelib}/%{sysname}.dist-info/
+%{python3_sitelib}/%{sysname}-*.dist-info/
 %{python3_sitelib}/%{sysname}/
 
 

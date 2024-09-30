@@ -44,7 +44,7 @@ rm -rf *.egg-info/
 %license LICENSE
 %doc README.rst
 %doc CHANGELOG.rst
-%{python3_sitelib}/shamir_mnemonic.dist-info/
+%{python3_sitelib}/shamir_mnemonic-*.dist-info/
 %{python3_sitelib}/shamir_mnemonic/
 %{_bindir}/shamir
 

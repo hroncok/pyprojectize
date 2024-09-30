@@ -45,7 +45,7 @@ Summary: %{summary}
 %doc CHANGES.txt
 %doc README.rst
 %{python3_sitelib}/mockito/
-%{python3_sitelib}/mockito.dist-info
+%{python3_sitelib}/mockito-*.dist-info
 %license LICENSE
 
 %changelog

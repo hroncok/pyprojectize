@@ -47,7 +47,7 @@ This package installs the library for Python.
 %doc README.rst
 %doc NEWS.rst
 %doc CONTRIBUTING.rst
-%{python3_sitelib}/%{srcname2}.dist-info/
+%{python3_sitelib}/%{srcname2}-*.dist-info/
 %{python3_sitelib}/__pycache__/*
 %{python3_sitelib}/_jack.py
 %{python3_sitelib}/jack.py

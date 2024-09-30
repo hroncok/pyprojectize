@@ -80,7 +80,7 @@ rm -rf html/.{doctrees,buildinfo}
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-%{version}-py?.*.dist-info/
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %if %{with doc}
 %files -n python-%{pypi_name}-doc

@@ -35,7 +35,7 @@ install -p -m644 man/en/rig.1 ${RPM_BUILD_ROOT}%{_mandir}/man1/
 %{_bindir}/rig
 %{_mandir}/man1/*
 
-%{python3_sitelib}/rig.dist-info/
+%{python3_sitelib}/rig-*.dist-info/
 %{python3_sitelib}/rigging/
 
 %license LICENSE

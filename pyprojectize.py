@@ -7,6 +7,7 @@ import re
 import shlex
 import sys
 
+from packaging.utils import canonicalize_name, canonicalize_version
 from specfile import Specfile
 from specfile.sections import Section, Sections
 from specfile.exceptions import RPMException
@@ -206,6 +207,28 @@ def py3_install_to_pyproject_install(spec: Specfile, sections: Sections) -> Resu
     )
 
 
+def canonicalize_name_with_macros(name: str, *, spec: Specfile) -> str:
+    if "%" in name:
+        expanded = spec.expand(name)
+        canonical = canonicalize_name(expanded).replace("-", "_")
+        if expanded == canonical:
+            return name
+        return canonical
+    return canonicalize_name(name).replace("-", "_")
+
+
+def canonicalize_version_with_macros(version: str, *, spec: Specfile) -> str:
+    if "%" in version:
+        expanded = spec.expand(version)
+        canonical = canonicalize_version(expanded).replace("-", "_")
+        if expanded == canonical:
+            return version
+        # we could return the canonical version, but that would make a weird specfile
+        # there is no RPM macro to turn 0.4.0 to 0.4, so we just glob it
+        return "*"
+    return canonicalize_version(version).replace("-", "_")
+
+
 @register
 def egginfo_to_distinfo(spec: Specfile, sections: Sections) -> ResultMsg:
     """
@@ -213,14 +236,27 @@ def egginfo_to_distinfo(spec: Specfile, sections: Sections) -> ResultMsg:
     """
     ret = Result.NOT_NEEDED, "no .egg-info in %files"
 
+    def repl(m):
+        if m["name"]:
+            name = canonicalize_name_with_macros(m["name"], spec=spec)
+            version = canonicalize_version_with_macros(m["version"], spec=spec)
+            filename = f"{name}-{version}"
+        else:
+            filename = m["all"]
+            # anecdotal evidence: everything before * is a name
+            sep = "-" if "-" in filename else "*"
+            name, sep, rest = filename.partition(sep)
+            name = canonicalize_name_with_macros(name, spec=spec)
+            filename = f"{name}{sep}{rest}"
+        return f"/{filename}.dist-info{m['end']}"
+
     for section in sections:
         if section.name == "files":
             for idx, line in enumerate(section):
                 if ".egg-info" in line:
-                    # TODO check if the name part does not need to be canonized
                     newline = re.sub(
-                        r"/((?P<nv>[^/-]+-[^/-]+)-[^/-]+|(?P<all>[^/]+))\.egg-info(?P<end>(/|}|$))",
-                        r"/\g<nv>\g<all>.dist-info\g<end>",
+                        r"/((?P<name>[^/-]+)-(?P<version>[^/-]+)-[^/-]+|(?P<all>[^/]+))\.egg-info(?P<end>(/|}|$))",
+                        repl,
                         line,
                     )
                     if line != newline:

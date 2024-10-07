@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: MIT-0
 """
-This helps you convert a Fedora RPM spec file from %py3_build etc. to %pyproject macros.
+This helps you convert a Fedora RPM spec file from `%py3_build` etc. to `%pyproject` macros.
 This program only operates on the spec file itself, and hence has limited knowledge.
 The resulting spec file is not guaranteed to be buildable and manual verification
 and completion of the transition is strongly advised.
@@ -43,9 +43,9 @@ def register(func: ModFunc) -> ModFunc:
 @register
 def add_pyproject_buildrequires(spec: Specfile, sections: Sections) -> ResultMsg:
     """
-    If there is no %generate_buildrequires section, add it after %prep.
+    If there is no `%generate_buildrequires` section, add it after `%prep`.
 
-    Insert %pyproject_buildrequires to the end of %generate_buildrequires.
+    Insert `%pyproject_buildrequires` to the end of `%generate_buildrequires`.
     """
     if "prep" in sections:
         endlines = 0
@@ -85,7 +85,7 @@ def add_pyproject_buildrequires(spec: Specfile, sections: Sections) -> ResultMsg
 @register
 def remove_setuptools_br(spec: Specfile, sections: Sections) -> ResultMsg:
     """
-    Remove BuildRequires for setuptools, they should be generated
+    Remove BuildRequires for setuptools, they should be generated.
     """
     ret = Result.NOT_NEEDED, "no BuildRequires for setuptools found"
 
@@ -138,8 +138,8 @@ def shlex_quote_with_macros(s: str, *, spec: Specfile) -> str:
 @register
 def py3_build_to_pyproject_wheel(spec: Specfile, sections: Sections) -> ResultMsg:
     """
-    In the %build section, replace %py3_build with %pyproject_wheel.
-    Arguments (if any) are passed to -C--global-option.
+    In the `%build` section, replace `%py3_build` with `%pyproject_wheel`.
+    Arguments (if any) are passed to `-C--global-option`.
     """
     if "build" not in sections:
         return Result.ERROR, "no %build section"
@@ -199,8 +199,8 @@ def py3_build_to_pyproject_wheel(spec: Specfile, sections: Sections) -> ResultMs
 @register
 def py3_install_to_pyproject_install(spec: Specfile, sections: Sections) -> ResultMsg:
     """
-    In the %install section, replace %py3_install with %pyproject_install.
-    Arguments are discarded (should we error instead?).
+    In the `%install` section, replace `%py3_install` with `%pyproject_install`.
+    Any arguments are discarded. Installing a wheel does not need arguments.
     """
     if "install" not in sections:
         return Result.ERROR, "no %install section"
@@ -284,7 +284,9 @@ def canonicalize_version_with_macros(version: str, *, spec: Specfile) -> str:
 @register
 def egginfo_to_distinfo(spec: Specfile, sections: Sections) -> ResultMsg:
     """
-    In all the %files sections, replace .egg-info with .dist-info.
+    In all the `%files` sections, replace `.egg-info` with `.dist-info`.
+    The `.dist-info` filename is updated if possible (e.g. to use canonical name and version).
+    Works reasonably well even with macronized filenames.
     """
     ret = Result.NOT_NEEDED, "no .egg-info in %files"
 
@@ -326,9 +328,11 @@ def egginfo_to_distinfo(spec: Specfile, sections: Sections) -> ResultMsg:
 @register
 def add_pyproject_files(spec: Specfile, sections: Sections) -> ResultMsg:
     """
-    Remove %python_provide or replace it with %py_provides if the name isn't the same.
+    If there is only one `%files` section with `%{python3_sitelib}` or `%{python3_sitearch}`,
+    replace the manually listed files with `%pyproject_save_files` and `-f %{pyproject_files}`.
 
-    This does not detect packages without files, that would be hard.
+    In case the `%license` files match patterns recognized by setuptools' defaults,
+    uses `%pyproject_save_files` with `-l` and removes them.
     """
     if "install" not in sections:
         return Result.ERROR, "no %install section"
@@ -454,9 +458,8 @@ def add_pyproject_files(spec: Specfile, sections: Sections) -> ResultMsg:
 @register
 def update_extras_subpkg(spec: Specfile, sections: Sections) -> ResultMsg:
     """
-    %{?python_extras_subpkg:%python_extras_subpkg -n python3-ipython -i %{python3_sitelib}/*.egg-info notebook}
-    ->
-    %pyproject_extras_subpkg -n python3-ipython notebook
+    Replace `%python_extras_subpkg -i ...` with `%pyproject_extras_subpkg`,
+    preserve other arguments.
     """
     ret = (
         Result.NOT_NEEDED,
@@ -507,9 +510,10 @@ def align(tag: str, value: str, prespace: str, col: int, most_common_space: str)
 @register
 def remove_python_provide(spec: Specfile, sections: Sections) -> ResultMsg:
     """
-    Remove %python_provide or replace it with %py_provides if the name isn't the same.
+    Remove `%python_provide` or replace it with `%py_provides` if the package name isn't the same.
 
-    This does not detect packages without files, that would be hard.
+    This does not detect packages without files yet.
+    Packages without files need  `%py_provides` even when the package name is the same.
     """
     ret = (
         Result.NOT_NEEDED,
@@ -556,7 +560,7 @@ def remove_python_enable_dependency_generator(
     spec: Specfile, sections: Sections
 ) -> ResultMsg:
     """
-    Remove %python_enable_dependency_generator.
+    Remove `%python_enable_dependency_generator`, as the generator is enabled by default.
     """
     ret = Result.NOT_NEEDED, "no %python_enable_dependency_generator"
     enable_re = r"\s*%{?\??python_enable_dependency_generator}?\s*$"
@@ -590,7 +594,7 @@ def specfile_path() -> pathlib.Path | None:
 
 def argparser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="pyprojectize",
+        prog="pyprojectize.py",
         description=__doc__,
         epilog="If you wish to process multiple specfiles at a time, run this tool via parallel, etc.",
     )

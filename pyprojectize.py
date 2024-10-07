@@ -1,12 +1,20 @@
 # SPDX-License-Identifier: MIT-0
+"""
+This helps you convert a Fedora RPM spec file from %py3_build etc. to %pyproject macros.
+This program only operates on the spec file itself, and hence has limited knowledge.
+The resulting spec file is not guaranteed to be buildable and manual verification
+and completion of the transition is strongly advised.
+"""
 
+import argparse
 import collections.abc
 import enum
 import fnmatch
-import glob
+import pathlib
 import re
 import shlex
 import sys
+import textwrap
 
 from packaging.utils import canonicalize_name, canonicalize_version
 from specfile import Specfile
@@ -14,21 +22,21 @@ from specfile.sections import Section, Sections
 from specfile.exceptions import RPMException
 
 
-class Result(enum.Enum):
-    UPDATED = 1
-    NOT_NEEDED = 2
-    NOT_IMPLEMENTED = 3
-    ERROR = 4
+class Result(enum.StrEnum):
+    UPDATED = "✅"
+    NOT_NEEDED = "👌"
+    NOT_IMPLEMENTED = "🚧"
+    ERROR = "🚨"
 
 
 ResultMsg = tuple[Result, str]
 ModFunc = collections.abc.Callable[[Specfile, Sections], ResultMsg]
 
-_modifiers: list[ModFunc] = []
+_modifiers: dict[str, ModFunc] = {}
 
 
 def register(func: ModFunc) -> ModFunc:
-    _modifiers.append(func)
+    _modifiers[func.__name__] = func
     return func
 
 
@@ -570,28 +578,98 @@ def remove_python_enable_dependency_generator(
     return ret
 
 
-def specfile_path() -> str:
-    if len(sys.argv) == 2:
-        return sys.argv[1]
-    if len(specs := glob.glob("*.spec")) == 1:
-        return specs[0]
-    raise NotImplementedError
+def specfile_path() -> pathlib.Path | None:
+    ret = None
+    for path in pathlib.Path(".").glob("*.spec"):
+        if ret is not None:
+            # two or more spec files? return none of them
+            return None
+        ret = path
+    return ret
+
+
+def argparser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        prog="pyprojectize",
+        description=__doc__,
+        epilog="If you wish to process multiple specfiles at a time, run this tool via parallel, etc.",
+    )
+
+    spec = specfile_path()
+    group = parser.add_mutually_exclusive_group(required=not spec)
+    group.add_argument(
+        "SPECFILE",
+        help=f"path to the spec file to convert"
+        + (f" (default: {spec})" if spec else ""),
+        type=pathlib.Path,
+        nargs="?",
+        default=spec,
+    )
+    group.add_argument(
+        "-l",
+        "--list-modifiers",
+        help="list all available modifiers and exit",
+        action="store_true",
+    )
+    group.add_argument(
+        "-i",
+        "--info",
+        metavar="MODIFIER",
+        help="display documentation for given modifier",
+        choices=_modifiers.keys(),
+    )
+
+    parser.add_argument(
+        "-x",
+        "--exclude",
+        nargs="+",
+        metavar="MODIFIER",
+        action="extend",
+        help="exclude given modifier",
+        choices=_modifiers.keys(),
+        default=[],
+    )
+    parser.add_argument(
+        "-s",
+        "--sourcedir",
+        help="path to the source directory, relevant for %%include etc. (default: spec's parent)",
+        type=pathlib.Path,
+    )
+
+    return parser
+
+
+def docstring(modifier: ModFunc) -> str:
+    return textwrap.dedent(modifier.__doc__ or "N/A").strip()
 
 
 def main() -> int:
-    spec = Specfile(specfile_path(), sourcedir=".")
+    args = argparser().parse_args()
+    if args.info:
+        print(docstring(_modifiers[args.info]))
+        return 0
+
+    for modifier in set(args.exclude):
+        del _modifiers[modifier]
+
+    if args.list_modifiers:
+        for modifier in _modifiers:
+            print(modifier)
+        return 0
+
+    spec = Specfile(args.SPECFILE, sourcedir=args.sourcedir or args.SPECFILE.parent)
     results = set()
 
     with spec.sections() as sections:
-        # TODO CLI to enable, disable, nicer result reporting (with rich?)
-        for modifier in _modifiers:
-            print(modifier.__name__, resmes := modifier(spec, sections))
-            results.add(resmes[0])
+        for name, modifier in _modifiers.items():
+            result, message = modifier(spec, sections)
+            results.add(result)
+            print(f"{result} {name}: {message}")
 
     if Result.UPDATED in results:
         spec.save()
 
-    return 1 if Result.ERROR in resmes else 0
+    return 1 if Result.ERROR in results else 0
 
 
 if __name__ == "__main__":

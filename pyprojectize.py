@@ -543,6 +543,33 @@ def add_pyproject_files(spec: Specfile, sections: Sections) -> ResultMsg:
     )
 
 
+@register
+def remove_python_enable_dependency_generator(
+    spec: Specfile, sections: Sections
+) -> ResultMsg:
+    """
+    Remove %python_enable_dependency_generator.
+    """
+    ret = Result.NOT_NEEDED, "no %python_enable_dependency_generator"
+    enable_re = r"\s*%{?\??python_enable_dependency_generator}?\s*$"
+
+    for section in sections:
+        del_lines = []
+        maxidx = len(section) - 1
+        for idx, line in enumerate(section):
+            if match := re.match(enable_re, line):
+                ret = Result.UPDATED, "%python_enable_dependency_generator removed"
+                del_lines.append(idx)
+                if (idx == 0 or not section[idx - 1].strip()) and (
+                    idx != maxidx and not section[idx + 1].strip()
+                ):
+                    del_lines.append(idx + 1)
+        for idx in reversed(del_lines):
+            del section[idx]
+
+    return ret
+
+
 def specfile_path() -> str:
     if len(sys.argv) == 2:
         return sys.argv[1]

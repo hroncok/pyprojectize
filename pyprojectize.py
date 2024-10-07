@@ -647,8 +647,8 @@ def docstring(modifier: ModFunc) -> str:
     return textwrap.dedent(modifier.__doc__ or "N/A").strip()
 
 
-def main() -> int:
-    args = argparser().parse_args()
+def main(argv: list[str]) -> int:
+    args = argparser().parse_args(argv)
     if args.info:
         print(docstring(_modifiers[args.info]))
         return 0
@@ -677,4 +677,4 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(main(sys.argv[1:]))

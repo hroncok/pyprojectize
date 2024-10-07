@@ -2,11 +2,20 @@ pyprojectize
 ============
 
 <!-- [[[cog
-import pyprojectize
+import pyprojectize, os, pathlib, urllib3
 print(pyprojectize.__doc__)
 print("```")
+print("$ python pyprojectize.py --help")
 pyprojectize.__doc__ = ""
 pyprojectize.argparser().print_help()
+print()
+commit = "16a7deeb"
+spec = pathlib.Path("ampy.spec")
+response = urllib3.PoolManager().request("GET", f"https://src.fedoraproject.org/rpms/ampy/raw/{commit}/f/ampy.spec")
+spec.write_bytes(response.data)
+print(f"$ python pyprojectize.py ampy.spec  # {commit}")
+pyprojectize.main([str(spec)])
+spec.unlink()
 print("```")
 ]]] -->
 
@@ -16,6 +25,7 @@ The resulting spec file is not guaranteed to be buildable and manual verificatio
 and completion of the transition is strongly advised.
 
 ```
+$ python pyprojectize.py --help
 usage: pyprojectize.py [-h] [-l] [-i MODIFIER] [-x MODIFIER [MODIFIER ...]] [-s SOURCEDIR] [SPECFILE]
 
 positional arguments:
@@ -32,6 +42,17 @@ options:
                         path to the source directory, relevant for %include etc. (default: spec's parent)
 
 If you wish to process multiple specfiles at a time, run this tool via parallel, etc.
+
+$ python pyprojectize.py ampy.spec  # 16a7deeb
+✅ add_pyproject_buildrequires: %generate_buildrequires with %pyproject_buildrequires added
+✅ remove_setuptools_br: removed BuildRequires for setuptools
+✅ py3_build_to_pyproject_wheel: replaced %py3_build with %pyproject_wheel in %build
+✅ py3_install_to_pyproject_install: replaced %py3_install with %pyproject_install in %install
+✅ egginfo_to_distinfo: replaced .egg-info with .dist-info in %files
+✅ add_pyproject_files: %{python3_sitelib}/%{python3_sitearch} lines replaced with %{pyproject_files}
+👌 update_extras_subpkg: %{?python_extras_subpkg:%python_extras_subpkg ...} not found
+✅ remove_python_provide: %python_provide removed or replaced with %py_provides
+✅ remove_python_enable_dependency_generator: %python_enable_dependency_generator removed
 ```
 <!-- [[[end]]] -->
 

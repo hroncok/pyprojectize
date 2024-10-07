@@ -82,6 +82,39 @@ def add_pyproject_buildrequires(spec: Specfile, sections: Sections) -> ResultMsg
     )
 
 
+@register
+def remove_setuptools_br(spec: Specfile, sections: Sections) -> ResultMsg:
+    """
+    Remove BuildRequires for setuptools, they should be generated
+    """
+    ret = Result.NOT_NEEDED, "no BuildRequires for setuptools found"
+
+    setuptools = r"(python(3|%{python3_pkgversion})-setuptools|python3dist\(setuptools\)|%{py3_dist setuptools})"
+    rich = rf"\({setuptools}\s+.+\)"
+    last_rich = rf",?\s*{rich}\s*$"
+    nolast_rich = rf"{rich}\s*,?(\s+|$)"
+    regular = rf"{setuptools}(\s+[<>=]{{1,3}}\s+\S+)?"
+    last_regular = rf",?\s*{regular}\s*$"
+    nolast_regular = rf"{regular}\s*,?(\s+|$)"
+    drop_me = rf"({last_rich}|{nolast_rich}|{last_regular}|{nolast_regular})"
+
+    for section in sections:
+        if section.name == "package":  # the spec preamble is also here
+            del_lines = []
+            for idx, line in enumerate(section):
+                if line.lstrip().lower().startswith("buildrequires:"):
+                    newline = re.sub(drop_me, "", line)
+                    if line != newline:
+                        section[idx] = newline
+                        ret = Result.UPDATED, "removed BuildRequires for setuptools"
+                        if newline.strip().lower() == "buildrequires:":
+                            del_lines.append(idx)
+            for idx in reversed(del_lines):
+                del section[idx]
+
+    return ret
+
+
 def shlex_quote_with_macros(s: str, *, spec: Specfile) -> str:
     """
     Often want to sh-quote the actual content of maconized strings.
@@ -291,139 +324,6 @@ def egginfo_to_distinfo(spec: Specfile, sections: Sections) -> ResultMsg:
 
 
 @register
-def remove_setuptools_br(spec: Specfile, sections: Sections) -> ResultMsg:
-    """
-    Remove BuildRequires for setuptools, they should be generated
-    """
-    ret = Result.NOT_NEEDED, "no BuildRequires for setuptools found"
-
-    setuptools = r"(python(3|%{python3_pkgversion})-setuptools|python3dist\(setuptools\)|%{py3_dist setuptools})"
-    rich = rf"\({setuptools}\s+.+\)"
-    last_rich = rf",?\s*{rich}\s*$"
-    nolast_rich = rf"{rich}\s*,?(\s+|$)"
-    regular = rf"{setuptools}(\s+[<>=]{{1,3}}\s+\S+)?"
-    last_regular = rf",?\s*{regular}\s*$"
-    nolast_regular = rf"{regular}\s*,?(\s+|$)"
-    drop_me = rf"({last_rich}|{nolast_rich}|{last_regular}|{nolast_regular})"
-
-    for section in sections:
-        if section.name == "package":  # the spec preamble is also here
-            del_lines = []
-            for idx, line in enumerate(section):
-                if line.lstrip().lower().startswith("buildrequires:"):
-                    newline = re.sub(drop_me, "", line)
-                    if line != newline:
-                        section[idx] = newline
-                        ret = Result.UPDATED, "removed BuildRequires for setuptools"
-                        if newline.strip().lower() == "buildrequires:":
-                            del_lines.append(idx)
-            for idx in reversed(del_lines):
-                del section[idx]
-
-    return ret
-
-
-@register
-def update_extras_subpkg(spec: Specfile, sections: Sections) -> ResultMsg:
-    """
-    %{?python_extras_subpkg:%python_extras_subpkg -n python3-ipython -i %{python3_sitelib}/*.egg-info notebook}
-    ->
-    %pyproject_extras_subpkg -n python3-ipython notebook
-    """
-    ret = (
-        Result.NOT_NEEDED,
-        "%{?python_extras_subpkg:%python_extras_subpkg ...} not found",
-    )
-
-    for section in sections:
-        if section.name in ("package", "description", "files"):
-            for idx, line in enumerate(section):
-                if "%python_extras_subpkg" in line:
-                    newline = re.sub(
-                        r"%{\?python_extras_subpkg:%python_extras_subpkg(?P<before>.*)\s+-i\s*\S+(?P<after>\s+.*)}",
-                        r"%pyproject_extras_subpkg\g<before>\g<after>",
-                        line,
-                    )
-                    if line != newline:
-                        section[idx] = newline
-                        ret = (
-                            Result.UPDATED,
-                            "replaced %python_extras_subpkg with %pyproject_extras_subpkg",
-                        )
-
-    return ret
-
-
-def alignment_of(line: str) -> tuple[str, int, str] | None:
-    tag_re = r"^(?P<prespace>\s*)(?P<align>\S+\s*:(?P<spaces>\s*))\S"
-    if match := re.search(tag_re, line):
-        prespace = match["prespace"]
-        col = len(match["align"])
-        space_counts = {c: match["spaces"].count(c) for c in set(match["spaces"])}
-        most_common_space = max(space_counts, default=" ", key=space_counts.__getitem__)
-        for space in match["spaces"]:
-            if space == "\t":
-                col += 7  # approximation
-        return prespace, col, most_common_space
-    return None
-
-
-def align(tag: str, value: str, prespace: str, col: int, most_common_space: str) -> str:
-    spaces = col - len(tag)
-    if most_common_space == "\t":
-        spaces //= 8  # approximation
-    spaces = max(1, spaces)
-    return f"{prespace}{tag}{spaces*most_common_space}{value}"
-
-
-@register
-def remove_python_provide(spec: Specfile, sections: Sections) -> ResultMsg:
-    """
-    Remove %python_provide or replace it with %py_provides if the name isn't the same.
-
-    This does not detect packages without files, that would be hard.
-    """
-    ret = (
-        Result.NOT_NEEDED,
-        "%python_provide not found",
-    )
-    provide_re = r"^\s*%{\?python_provide:%python_provide\s+(?P<name>\S+)}\s*$"
-
-    for section in sections:
-        if section.name == "package":
-            name = ""
-            last_alignment = "", 16, " "
-            del_lines = []
-            if section.options:
-                name = getattr(section.options, "n", "")
-            for idx, line in enumerate(section):
-                if not name and (match := re.search(r"\s*name:", line.lower())):
-                    name = line.partition(":")[-1].strip()
-                if match := re.search(provide_re, line):
-                    provided_name = match["name"]
-                    try:
-                        if spec.expand(provided_name) == spec.expand(name):
-                            del_lines.append(idx)
-                    except RPMException:
-                        if provided_name == name:
-                            del_lines.append(idx)
-                    else:
-                        section[idx] = align(
-                            "%py_provides", provided_name, *last_alignment
-                        )
-                    ret = (
-                        Result.UPDATED,
-                        "%python_provide removed or replaced with %py_provides",
-                    )
-                elif alignment := alignment_of(line):
-                    last_alignment = alignment
-            for idx in reversed(del_lines):
-                del section[idx]
-
-    return ret
-
-
-@register
 def add_pyproject_files(spec: Specfile, sections: Sections) -> ResultMsg:
     """
     Remove %python_provide or replace it with %py_provides if the name isn't the same.
@@ -549,6 +449,106 @@ def add_pyproject_files(spec: Specfile, sections: Sections) -> ResultMsg:
         Result.UPDATED,
         "%{python3_sitelib}/%{python3_sitearch} lines replaced with %{pyproject_files}",
     )
+
+
+@register
+def update_extras_subpkg(spec: Specfile, sections: Sections) -> ResultMsg:
+    """
+    %{?python_extras_subpkg:%python_extras_subpkg -n python3-ipython -i %{python3_sitelib}/*.egg-info notebook}
+    ->
+    %pyproject_extras_subpkg -n python3-ipython notebook
+    """
+    ret = (
+        Result.NOT_NEEDED,
+        "%{?python_extras_subpkg:%python_extras_subpkg ...} not found",
+    )
+
+    for section in sections:
+        if section.name in ("package", "description", "files"):
+            for idx, line in enumerate(section):
+                if "%python_extras_subpkg" in line:
+                    newline = re.sub(
+                        r"%{\?python_extras_subpkg:%python_extras_subpkg(?P<before>.*)\s+-i\s*\S+(?P<after>\s+.*)}",
+                        r"%pyproject_extras_subpkg\g<before>\g<after>",
+                        line,
+                    )
+                    if line != newline:
+                        section[idx] = newline
+                        ret = (
+                            Result.UPDATED,
+                            "replaced %python_extras_subpkg with %pyproject_extras_subpkg",
+                        )
+
+    return ret
+
+
+def alignment_of(line: str) -> tuple[str, int, str] | None:
+    tag_re = r"^(?P<prespace>\s*)(?P<align>\S+\s*:(?P<spaces>\s*))\S"
+    if match := re.search(tag_re, line):
+        prespace = match["prespace"]
+        col = len(match["align"])
+        space_counts = {c: match["spaces"].count(c) for c in set(match["spaces"])}
+        most_common_space = max(space_counts, default=" ", key=space_counts.__getitem__)
+        for space in match["spaces"]:
+            if space == "\t":
+                col += 7  # approximation
+        return prespace, col, most_common_space
+    return None
+
+
+def align(tag: str, value: str, prespace: str, col: int, most_common_space: str) -> str:
+    spaces = col - len(tag)
+    if most_common_space == "\t":
+        spaces //= 8  # approximation
+    spaces = max(1, spaces)
+    return f"{prespace}{tag}{spaces*most_common_space}{value}"
+
+
+@register
+def remove_python_provide(spec: Specfile, sections: Sections) -> ResultMsg:
+    """
+    Remove %python_provide or replace it with %py_provides if the name isn't the same.
+
+    This does not detect packages without files, that would be hard.
+    """
+    ret = (
+        Result.NOT_NEEDED,
+        "%python_provide not found",
+    )
+    provide_re = r"^\s*%{\?python_provide:%python_provide\s+(?P<name>\S+)}\s*$"
+
+    for section in sections:
+        if section.name == "package":
+            name = ""
+            last_alignment = "", 16, " "
+            del_lines = []
+            if section.options:
+                name = getattr(section.options, "n", "")
+            for idx, line in enumerate(section):
+                if not name and (match := re.search(r"\s*name:", line.lower())):
+                    name = line.partition(":")[-1].strip()
+                if match := re.search(provide_re, line):
+                    provided_name = match["name"]
+                    try:
+                        if spec.expand(provided_name) == spec.expand(name):
+                            del_lines.append(idx)
+                    except RPMException:
+                        if provided_name == name:
+                            del_lines.append(idx)
+                    else:
+                        section[idx] = align(
+                            "%py_provides", provided_name, *last_alignment
+                        )
+                    ret = (
+                        Result.UPDATED,
+                        "%python_provide removed or replaced with %py_provides",
+                    )
+                elif alignment := alignment_of(line):
+                    last_alignment = alignment
+            for idx in reversed(del_lines):
+                del section[idx]
+
+    return ret
 
 
 @register

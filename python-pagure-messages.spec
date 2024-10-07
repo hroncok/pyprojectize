@@ -1,5 +1,4 @@
 # Enable Python dependency generation
-%{?python_enable_dependency_generator}
 
 %global pypi_name pagure-messages
 

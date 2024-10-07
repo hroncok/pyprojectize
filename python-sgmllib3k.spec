@@ -15,8 +15,6 @@ BuildArch:      noarch
 
 BuildRequires:  python%{python3_pkgversion}-devel
 
-%{?python_enable_dependency_generator}
-
 %description
 sgmllib was dropped in Python 3. For those depending on it,
 that’s somewhat unfortunate. This is a quick and dirty

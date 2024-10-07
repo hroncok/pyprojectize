@@ -41,8 +41,6 @@ BuildRequires: python2-setuptools
 BuildRequires: python2-six
 %endif
 
-%{?python_enable_dependency_generator}
-
 %global _description %{expand:
 A Python interface to the Nitrate test case management system.
 The package consists of a high-level Python module (provides

@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global srcname citeproc-py
 
 Name:           python-%{srcname}

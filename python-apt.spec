@@ -1,5 +1,4 @@
 # Enable generated Python dependencies on EL8
-%{?python_enable_dependency_generator}
 
 Name:           python-apt
 Version:        2.3.0

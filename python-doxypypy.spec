@@ -1,5 +1,4 @@
 %global srcname doxypypy
-%{?python_enable_dependency_generator}
 
 Name:           python-%{srcname}
 Version:        0.8.8.6

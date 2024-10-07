@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global modname binaryornot
 %global sum A pure Python package to check if a file is binary or text
 

@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global srcname yubico
 
 Name:           python-%{srcname}

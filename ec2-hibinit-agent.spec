@@ -1,5 +1,3 @@
-%{?python_enable_dependency_generator}
-
 %global modulenames     ec2hibernatepolicy
 %global selinuxtype     targeted
 %global moduletype      services

@@ -1,5 +1,3 @@
-%{?python_enable_dependency_generator}
-
 %global modname repoze.who
 
 Name:           python-repoze-who

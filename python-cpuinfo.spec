@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global srcname cpuinfo
 %global sum Getting CPU info
 

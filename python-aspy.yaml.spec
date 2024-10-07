@@ -18,8 +18,6 @@ BuildRequires:  python3dist(pyyaml)
 BuildRequires:  python3-pytest
 %endif
 
-%?python_enable_dependency_generator
-
 %description
 A few extensions to PyYAML.
 

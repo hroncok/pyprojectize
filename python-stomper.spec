@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 # Disable Python 2
 %bcond_with python2
 # Enable Python 3

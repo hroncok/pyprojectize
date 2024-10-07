@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global srcname MutatorMath
 # upstream is not consistent on uppercase usage
 %global libname mutatorMath

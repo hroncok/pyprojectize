@@ -9,8 +9,6 @@ Source0:        %{pypi_source}
 BuildArch:      noarch
 Summary:        Python library for generating filesystem paths
 
-%{?python_enable_dependency_generator}
-
 %description
 Hypothesis extension for generating filesystem paths.
 Anything the built-in Python function open() accepts can be generated.

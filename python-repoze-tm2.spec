@@ -1,5 +1,3 @@
-%{?python_enable_dependency_generator}
-
 Name:           python-repoze-tm2
 Version:        2.2.0
 Release:        10%{?dist}

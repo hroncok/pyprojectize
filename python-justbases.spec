@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global srcname justbases
 Name:       python-%{srcname}
 Version:    0.15.2

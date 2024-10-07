@@ -1,5 +1,3 @@
-%{?python_enable_dependency_generator}
-
 Name:           pungi
 Version:        4.7.0
 Release:        3%{?dist}

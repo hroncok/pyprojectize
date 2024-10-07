@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global srcname sphinxcontrib-programoutput
 %global _docdir_fmt %{name}
 

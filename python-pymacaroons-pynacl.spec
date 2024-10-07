@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global pkgname pymacaroons-pynacl
 
 %global desc This is a Python re-implementation of the libmacaroons C library.\

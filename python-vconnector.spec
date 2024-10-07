@@ -1,5 +1,3 @@
-%{?python_enable_dependency_generator}
-
 %global srcname vconnector
 %global sum     vSphere Connector Module for Python
 

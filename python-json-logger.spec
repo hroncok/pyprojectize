@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global pypi_name python-json-logger
 
 Name:           python-json-logger

@@ -11,8 +11,6 @@ BuildArch: noarch
 URL: https://github.com/rohanpm/%{srcname}
 Source0: %{url}/archive/v%{version}/%{srcname}-%{version}.tar.gz
 
-%{?python_enable_dependency_generator}
-
 %description
 This library is intended for use with the concurrent.futures module.
 It includes a collection of Executor implementations in order to extend

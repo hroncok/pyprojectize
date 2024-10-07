@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %define modname pywt
 %define pkgname PyWavelets
 

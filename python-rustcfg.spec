@@ -1,5 +1,4 @@
 %global srcname rustcfg
-%{?python_enable_dependency_generator}
 
 Name:           python-rustcfg
 Version:        0.0.2

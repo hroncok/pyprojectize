@@ -24,8 +24,6 @@ Requires: python3-nitrate
 Requires: python3-requests-gssapi
 Requires: python3-feedparser
 
-%?python_enable_dependency_generator
-
 %description
 Comfortably gather status report data (e.g. list of committed
 changes) for given week, month, quarter, year or selected date

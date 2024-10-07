@@ -1,5 +1,3 @@
-%{?python_enable_dependency_generator}
-
 %global srcname pytest-multihost
 %global modulename pytest_multihost
 %global srcversion 3.0

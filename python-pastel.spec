@@ -1,7 +1,5 @@
 %global pypi_name pastel
 
-%{?python_enable_dependency_generator}
-
 %global common_description %{expand:
 Pastel is a simple library to help you colorize strings in your
 terminal.

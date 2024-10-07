@@ -1,7 +1,6 @@
 # Created by pyp2rpm-3.3.2
 
 # Enable auto-generation of runtime dependencies
-%{?python_enable_dependency_generator}
 
 %global pypi_name notify2
 

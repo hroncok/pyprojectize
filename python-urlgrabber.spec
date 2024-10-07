@@ -1,5 +1,3 @@
-%{?python_enable_dependency_generator}
-
 %global pypi_name urlgrabber
 %global majorver 4
 %global minorver 1

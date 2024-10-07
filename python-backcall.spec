@@ -15,8 +15,6 @@ BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(pytest)
 
-%?python_enable_dependency_generator
-
 %description
 Specifications for callback functions passed in to an API.
 

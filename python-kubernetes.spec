@@ -1,5 +1,3 @@
-%{?python_enable_dependency_generator}
-
 %if 0%{?rhel} == 8
 %global py3 python3
 %global py3dev python36

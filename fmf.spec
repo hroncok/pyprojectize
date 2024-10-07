@@ -21,8 +21,6 @@ with support for inheritance and elasticity it provides an
 efficient way to organize data into well-sized text documents.
 This package contains the command line tool.
 
-%?python_enable_dependency_generator
-
 
 %package -n     python%{python3_pkgversion}-%{name}
 Summary:        %{summary}

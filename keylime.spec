@@ -50,7 +50,6 @@ Suggests: %{srcname}-agent-rust
 # Conflicts with the monolithic versions of the package, before the split.
 Conflicts: keylime < 6.3.0-3
 
-%{?python_enable_dependency_generator}
 %description
 Keylime is a TPM based highly scalable remote boot attestation
 and runtime integrity measurement solution.

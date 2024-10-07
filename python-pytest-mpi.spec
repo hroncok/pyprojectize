@@ -1,4 +1,3 @@
-%?python_enable_dependency_generator
 %global srcname pytest-mpi
 
 Name:           python-%{srcname}

@@ -30,7 +30,6 @@ pymemcache supports the following features:\
 %package -n python3-%{pypi_name}
 Summary:        A comprehensive, fast, pure Python memcached client
 BuildRequires:  git-core
-%{?python_enable_dependency_generator}
 
 %generate_buildrequires
 %pyproject_buildrequires -t

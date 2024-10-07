@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global pypi_name agate-sql
 %global file_name agatesql
 %global project_owner wireservice

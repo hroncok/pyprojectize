@@ -34,8 +34,6 @@ BuildRequires: python3-pytest
 BuildRequires: python3-pytest-cov
 BuildRequires: python3-ddt
 
-%{?python_enable_dependency_generator}
-
 %description
 %{desc}
 

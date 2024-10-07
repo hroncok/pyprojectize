@@ -1,5 +1,4 @@
 # Enable Python dependency generation
-%{?python_enable_dependency_generator}
 
 # Missing dependencies for tests
 %bcond_with check

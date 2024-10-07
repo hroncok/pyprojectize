@@ -3,7 +3,6 @@
 %global commit 5955c6b2288353c5b093677221cc91a83a2c800c
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
-%{?python_enable_dependency_generator}
 %forgemeta
 
 Name:		ksc

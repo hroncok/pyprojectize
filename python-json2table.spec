@@ -1,7 +1,5 @@
 %global srcname json2table
 
-%{?python_enable_dependency_generator}
-
 Name:           python-%{srcname}
 Version:        1.1.5
 Release:        22%{?dist}

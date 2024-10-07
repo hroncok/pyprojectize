@@ -1,5 +1,4 @@
 # Enable Python dependency generation
-%{?python_enable_dependency_generator}
 
 # Created by pyp2rpm-3.3.2
 %global pypi_name pystemd

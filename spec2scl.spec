@@ -15,7 +15,6 @@ BuildRequires:  python3-devel
 BuildRequires:  %{py3_dist flexmock} >= 0.9.3
 BuildRequires:  %{py3_dist jinja2}
 BuildRequires:  %{py3_dist pytest pytest-runner}
-%{?python_enable_dependency_generator}
 
 %description
 spec2scl is a tool to convert RPM specfiles to SCL-style specfiles.

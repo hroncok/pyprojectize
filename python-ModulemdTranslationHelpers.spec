@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global pypi_name ModulemdTranslationHelpers
 
 Name:           python-%{pypi_name}

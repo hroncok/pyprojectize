@@ -26,8 +26,6 @@ Requires:  dbus-common
 Requires:  %{name}-cache
 Suggests:  %{name}-unbound
 
-%?python_enable_dependency_generator
-
 %description
 Dnsconfd configures local DNS cache services.
 

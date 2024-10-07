@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global pypi_name gTTS-token
 # Needs access to Google Services so doesn't run in koji
 %global with_tests 0

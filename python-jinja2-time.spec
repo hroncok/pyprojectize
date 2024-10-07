@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global pkgname jinja2-time
 
 Name:           python-jinja2-time

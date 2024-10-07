@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global pkg_name flask-mail
 %global mod_name Flask-Mail
 

@@ -19,8 +19,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-pyserial
 BuildRequires:  python3-pytest
 
-%?python_enable_dependency_generator
-
 %description
 A simple command line tool and module for interacting with the limited file
 system provided by MicroPython on the BBC micro:bit.

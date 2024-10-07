@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global pypi_name openpyxl
 %global sum Python library to read/write Excel 2010 xlsx/xlsm files
 %global desc openpyxl is a Python library to read/write Excel 2010 xlsx/xlsm/xltx/xltm files.\

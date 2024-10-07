@@ -1,7 +1,5 @@
 %global pypi_name pylev
 
-%{?python_enable_dependency_generator}
-
 %global common_description %{expand:
 A pure Python Levenshtein implementation that’s not freaking GPL’d.
 

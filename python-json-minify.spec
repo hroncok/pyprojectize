@@ -26,8 +26,6 @@ Summary:        %{summary}
 
 BuildRequires:  python3-devel
 
-%{?python_enable_dependency_generator}
-
 %description -n python3-%{srcname}
 JSON-minify minifies blocks of JSON-like content into valid JSON by removing
 all whitespace *and* JS-style comments. With JSON-minify, you can maintain

@@ -63,8 +63,6 @@ Requires: python3-pbr
 Requires: python3-requests
 Requires: python3-six
 
-%{?python_enable_dependency_generator}
-
 
 %description -n python3-%{srcname}
 A python client for etcd3 grpc-gateway v3alpha API

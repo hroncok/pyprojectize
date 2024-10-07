@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global modname pydotplus
 
 Name:           python-%{modname}

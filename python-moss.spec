@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global modname moss
 
 # Don't fail here because upstream says

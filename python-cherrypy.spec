@@ -1,5 +1,3 @@
-%{?python_enable_dependency_generator}
-
 %if 0%{?el8}
   # jaraco.collections not yet available in epel8
   %bcond_with tests

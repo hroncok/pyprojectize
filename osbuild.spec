@@ -64,8 +64,6 @@ Requires:       python3-tomli
 # /usr/bin/python3 is present so stages and assemblers can be run.
 %global __brp_mangle_shebangs_exclude_from ^%{pkgdir}/(assemblers|runners|stages)/.*$
 
-%{?python_enable_dependency_generator}
-
 %description
 A build system for OS images
 

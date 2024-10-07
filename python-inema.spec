@@ -25,8 +25,6 @@ BuildRequires:  python3-devel
 BuildRequires: python3-pytz
 BuildRequires: python3-zeep
 
-%{?python_enable_dependency_generator}
-
 %description
 %{desc}
 

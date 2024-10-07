@@ -1,5 +1,3 @@
-%{?python_enable_dependency_generator}
-
 %global modname fauxquests
 
 # TODO: commit is actually release, but has not been pushed as git tag

@@ -13,8 +13,6 @@ URL:            https://github.com/berdario/resumable-urlretrieve
 Source0:        %{url}/archive/%{version}/%{pypi_name}-%{version}.tar.gz
 BuildArch:      noarch
 
-%?python_enable_dependency_generator
-
 BuildRequires: python3-devel
 BuildRequires: python3dist(pytest)
 BuildRequires: python3dist(requests)

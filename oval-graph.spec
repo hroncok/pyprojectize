@@ -23,8 +23,6 @@ In the form of a tree according to the OVAL standard. Using the
 Use `arf-to-json` to generate a rule result in json. Using the
 `json-to-graph` command, you can view the results of rules from json file.
 
-%{?python_enable_dependency_generator}
-
 %prep
 %autosetup -n %{module}-%{version}
 

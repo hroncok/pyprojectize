@@ -1,5 +1,3 @@
-%{?python_enable_dependency_generator}
-
 %global modname prov
 
 Name:           python-%{modname}

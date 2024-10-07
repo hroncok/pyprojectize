@@ -1,5 +1,3 @@
-%{?python_enable_dependency_generator}
-
 %global library google-auth
 
 %if 0%{?rhel} == 7

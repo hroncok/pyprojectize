@@ -38,8 +38,6 @@ License:        MIT
 URL:            http://www.borgelt.net/%{pypi_name}.html
 Source0:        http://www.borgelt.net/src/%{pypi_name}.tar.gz
 
-%{?python_enable_dependency_generator}
-
 %description
 %{desc}
 

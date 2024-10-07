@@ -41,8 +41,6 @@ något för dig.
 Summary:        %sum
 Summary(sv):    %sum_sv
 
-%?python_enable_dependency_generator
-
 Obsoletes:      python2-%srcname < 0.4.0-4
 
 

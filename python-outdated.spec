@@ -23,8 +23,6 @@ Source3:        https://raw.githubusercontent.com/alexmojaki/%{pypi_name}/master
 
 BuildArch:      noarch
 
-%{?python_enable_dependency_generator}
-
 %description %_description
 
 %package -n python3-%{pypi_name}

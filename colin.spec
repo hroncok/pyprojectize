@@ -1,7 +1,5 @@
 %global pypi_name colin
 
-%{?python_enable_dependency_generator}
-
 %if 0%{?rhel} && 0%{?rhel} <= 7
 %bcond_with python3
 %else

@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 # python 2 not supported
 
 Name:		urh

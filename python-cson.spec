@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global py2support 0
 %global srcname cson
 

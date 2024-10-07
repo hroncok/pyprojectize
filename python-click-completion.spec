@@ -11,8 +11,6 @@ BuildArch:      noarch
 
 BuildRequires:  python3-devel
 
-%{?python_enable_dependency_generator}
-
 %description
 Enhanced completion for Click
 

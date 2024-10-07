@@ -1,4 +1,3 @@
-%?python_enable_dependency_generator
 %global srcname conda-package-handling
 %global pkgname conda_package_handling
 

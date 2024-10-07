@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global date 20240509
 %global vdate %(x=%{date}; echo "${x:0:4}-${x:4:2}-${x:6:2}")
 %global py_setup st-setup.py

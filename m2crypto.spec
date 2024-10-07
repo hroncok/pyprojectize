@@ -1,5 +1,4 @@
 # Enable Python dependency generation
-%{?python_enable_dependency_generator}
 
 %global snapdate 20240613
 %global commit 3156614a94a4767ee563530983cba87cf2aad193

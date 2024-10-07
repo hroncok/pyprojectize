@@ -1,5 +1,3 @@
-%{?python_enable_dependency_generator}
-
 %global modname sqlacodegen
 
 Name:           python-%{modname}

@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global with_tests 0
 
 Name:           adapt

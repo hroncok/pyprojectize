@@ -10,8 +10,6 @@ License: Apache-2.0
 BuildArch: noarch
 URL: https://github.com/akamai-open/AkamaiOPEN-edgegrid-python
 
-%{?python_enable_dependency_generator}
-
 %description
 This library implements an Authentication handler for requests
 that provides the Akamai {OPEN} Edgegrid Authentication scheme.

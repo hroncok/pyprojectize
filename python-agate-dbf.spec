@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global pypi_name agate-dbf
 %global file_name agatedbf
 %global project_owner wireservice

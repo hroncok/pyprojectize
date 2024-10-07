@@ -24,7 +24,6 @@ system. For use with a boot-server configured with Cobbler.
 %package -n python%{python3_pkgversion}-koan
 Summary:        koan python%{python3_pkgversion} module
 BuildRequires:  python%{python3_pkgversion}-devel
-%{?python_enable_dependency_generator}
 %if 0%{?el7}
 Requires:       python%{python3_pkgversion}-distro
 Requires:       python%{python3_pkgversion}-libvirt

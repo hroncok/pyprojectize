@@ -21,8 +21,6 @@ Source0:        https://github.com/the-virtual-brain/%{pypi_name}/archive/%{vers
 
 BuildArch:      noarch
 
-%{?python_enable_dependency_generator}
-
 %description
 %{desc}
 

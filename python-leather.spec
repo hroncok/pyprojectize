@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global pypi_name leather
 %global dir_name leather
 %global project_owner wireservice

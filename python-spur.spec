@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global srcname spur
 %global sum Run commands locally or over SSH using the same interface
 %global desc Run commands and manipulate files locally or over SSH using the same interface.

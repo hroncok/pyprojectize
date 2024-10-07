@@ -30,8 +30,6 @@ This is a python port of a ruby port of arc90's readability project.
 Summary:        %{summary}
 Requires:  python3dist(lxml-html-clean)
 
-%?python_enable_dependency_generator
-
 %description -n python3-%{pypi_name}
 Given a html document, it pulls out the main body text and cleans it up.
 

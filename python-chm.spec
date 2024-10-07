@@ -15,8 +15,6 @@ License:        GPL-2.0-or-later
 URL:            https://github.com/dottedmag/%{pypi_name}/
 Source0:	%{url}/archive/v%{version}/%{pypi_name}-%{version}.tar.gz
 
-%{?python_enable_dependency_generator}
-
 BuildRequires:  python3-devel
 BuildRequires:	chmlib
 BuildRequires:  chmlib-devel

@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global pypi_name agate-excel
 %global file_name agateexcel
 %global project_owner wireservice

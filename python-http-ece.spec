@@ -20,7 +20,6 @@ BuildRequires:      python%{python3_pkgversion}-pytest
 BuildRequires:      python%{python3_pkgversion}-pytest-cov
 BuildRequires:      python%{python3_pkgversion}-coverage
 BuildRequires:      python%{python3_pkgversion}-cryptography
-%{?python_enable_dependency_generator}
 
 %description -n python%{python3_pkgversion}-%{modname}
 %{summary}.

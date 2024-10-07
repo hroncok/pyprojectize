@@ -1,5 +1,4 @@
 %global srcname show-in-file-manager
-%{?python_enable_dependency_generator}
 
 Name:          python-%{srcname}
 Version:       1.1.4

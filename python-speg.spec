@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global py2support 0
 %global srcname speg
 %global commit 877acddfd5ac5ae8b4a4592d045e74e108477643

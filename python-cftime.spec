@@ -13,7 +13,6 @@ URL:            https://pypi.python.org/pypi/cftime
 Source0:        %{pypi_source}
 
 BuildRequires:  gcc
-%{?python_enable_dependency_generator}
 
 %description
 Time-handling functionality from netcdf4-python.

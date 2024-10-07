@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global srcname argopt
 %global _description \
 Define your command line interface (CLI) from a docstring\

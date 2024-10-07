@@ -17,8 +17,6 @@ BuildRequires:  python3dist(ukkonen)
 BuildRequires:  python3-pytest
 %endif
 
-%?python_enable_dependency_generator
-
 %description
 Given a file (or some information about a file), return a set of standardized
 tags identifying what the file is.

@@ -19,7 +19,6 @@ BuildRequires:  python3dist(hypothesis)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(pytest-mock)
 BuildRequires:  python3dist(semver)
-%{?python_enable_dependency_generator}
 
 %global _description \
 Python module which provides "natural sorting".\

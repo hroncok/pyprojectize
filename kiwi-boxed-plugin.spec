@@ -1,5 +1,4 @@
 # Enable Python dependency generation
-%{?python_enable_dependency_generator}
 
 %global desc \
 The KIWI boxed plugin provides support for self contained building \

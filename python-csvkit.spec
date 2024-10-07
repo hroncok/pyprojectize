@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global pypi_name csvkit
 %global project_owner wireservice
 %global github_name csvkit

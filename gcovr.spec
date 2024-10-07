@@ -1,5 +1,3 @@
-%{?python_enable_dependency_generator}
-
 %bcond_without  docs
 
 Name:           gcovr

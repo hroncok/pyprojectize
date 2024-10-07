@@ -116,8 +116,6 @@ BuildRequires:  openmpi-devel
 
 Obsoletes:      python3-pynn-devel < 0:0.12.3-1
 
-%{?python_enable_dependency_generator}
-
 %description %_description
 
 %package -n python3-pynn

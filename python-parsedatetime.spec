@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global realname parsedatetime
 
 %bcond_without tests

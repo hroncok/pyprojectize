@@ -1,5 +1,4 @@
 %global srcname mailmerge
-%{?python_enable_dependency_generator}
 
 Name:          python-%{srcname}
 Version:       2.2.1

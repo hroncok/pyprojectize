@@ -1,4 +1,3 @@
-%{?python_enable_dependency_generator}
 %global pypi_name zake
 
 Name:           python-%{pypi_name}

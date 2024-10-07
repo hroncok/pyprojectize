@@ -11,8 +11,6 @@ URL:            https://github.com/kontron/python-ipmi
 Source0:        %{url}/archive/%{version}/%{pypi_name}-%{version}.tar.gz
 BuildArch:      noarch
 
-%?python_enable_dependency_generator
-
 BuildRequires: python3-devel
 BuildRequires: python3dist(markdown)
 

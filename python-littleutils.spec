@@ -15,8 +15,6 @@ Source1:        https://raw.githubusercontent.com/alexmojaki/littleutils/master/
 
 BuildArch:      noarch
 
-%{?python_enable_dependency_generator}
-
 %description %_description
 
 %package -n python3-%{pypi_name}

@@ -1,5 +1,3 @@
-%{?python_enable_dependency_generator}
-
 %global modname vpoller
 %global sum     Distributed vSphere API Proxy
 

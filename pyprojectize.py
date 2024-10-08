@@ -660,21 +660,21 @@ def docstring(modifier: ModFunc) -> str:
 
 
 def main(argv: list[str]) -> int:
-    global _modifiers
+    modifiers = _modifiers.copy()
 
     args = argparser().parse_args(argv)
     if args.info:
-        print(docstring(_modifiers[args.info]))
+        print(docstring(modifiers[args.info]))
         return 0
 
     for modifier in set(args.exclude):
-        del _modifiers[modifier]
+        del modifiers[modifier]
 
     if args.only:
-        _modifiers = {args.only: _modifiers[args.only]}
+        modifiers = {args.only: modifiers[args.only]}
 
     if args.list_modifiers:
-        for modifier in _modifiers:
+        for modifier in modifiers:
             print(modifier)
         return 0
 
@@ -682,7 +682,7 @@ def main(argv: list[str]) -> int:
     results = set()
 
     with spec.sections() as sections:
-        for name, modifier in _modifiers.items():
+        for name, modifier in modifiers.items():
             result, message = modifier(spec, sections)
             results.add(result)
             print(f"{result} {name}: {message}")

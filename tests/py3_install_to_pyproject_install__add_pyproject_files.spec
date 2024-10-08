@@ -1,0 +1,60 @@
+# Created by pyp2rpm-3.2.2
+%global srcname XwhyZ
+%global modname xyz
+Name:           python-%{srcname}
+Version:        3.2.1.0
+Release:        %autorelease
+Summary:        Blah blah blah
+License:        MIT
+URL:            https://github.com/hroncok/pyprojectize
+Source0:        %{pypi_source}
+BuildArch:      noarch
+
+BuildRequires:  python3-devel
+BuildRequires:  python3-setuptools
+BuildRequires:  python3-setuptools_scm
+
+%?python_enable_dependency_generator
+
+%description
+This is an artificial spec file created for testing purposes.
+
+
+%package -n python3-%{srcname}
+Summary:        %{summary}
+Provides:       python3-%{modname} = %{version}-%{release}
+%{?python_provide:%python_provide python3-%{srcname}}
+%{?python_provide:%python_provide python3-%{modname}}
+
+%description -n python3-%{srcname}
+...
+
+%{?python_extras_subpkg:%python_extras_subpkg -n python3-%{srcname} -i %{python3_sitelib}/*.egg-info cool}
+
+
+%prep
+%autosetup -n %{srcname}-%{version}
+# Remove bundled egg-info
+rm -rf %{srcname}.egg-info
+
+
+%build
+%py3_build -- --use-the-force-luke
+
+
+%install
+%pyproject_install
+%pyproject_save_files -l %{modname} _%{modname}
+
+
+%check
+%{__python3} setup.py test
+
+
+%files -n python3-%{srcname} -f %{pyproject_files}
+%doc README.md
+%{_bindir}/%{srcname}
+
+
+%changelog
+%autochangelog

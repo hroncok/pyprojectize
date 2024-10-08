@@ -1,4 +1,3 @@
-import filecmp
 import pathlib
 import shutil
 
@@ -27,4 +26,4 @@ def test_spec(expectedspec, tmp_path, monkeypatch):
     else:
         for modifier in expectedspec.stem.split("__"):
             pyprojectize.main([str(testspec), "-o", modifier])
-    assert filecmp.cmp(expectedspec, testspec, shallow=False)
+    assert expectedspec.read_text() == testspec.read_text()

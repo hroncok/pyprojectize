@@ -596,7 +596,9 @@ def argparser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="pyprojectize.py",
         description=__doc__,
-        epilog="If you wish to process multiple specfiles at a time, run this tool via parallel, etc.",
+        epilog="If you wish to process multiple specfiles at a time, run this tool via parallel, etc. "
+        "If you wish to inspect/commit result of each modififer separatelly, "
+        "you can loop over %(prog)s -l calling %(prog)s -o $modifer each time.",
     )
 
     spec = specfile_path()
@@ -623,7 +625,8 @@ def argparser() -> argparse.ArgumentParser:
         choices=_modifiers.keys(),
     )
 
-    parser.add_argument(
+    group = parser.add_mutually_exclusive_group(required=False)
+    group.add_argument(
         "-x",
         "--exclude",
         nargs="+",
@@ -633,6 +636,15 @@ def argparser() -> argparse.ArgumentParser:
         choices=_modifiers.keys(),
         default=[],
     )
+    group.add_argument(
+        "-o",
+        "--only",
+        metavar="MODIFIER",
+        help="run only one given modifier",
+        choices=_modifiers.keys(),
+        default=[],
+    )
+
     parser.add_argument(
         "-s",
         "--sourcedir",
@@ -648,6 +660,8 @@ def docstring(modifier: ModFunc) -> str:
 
 
 def main(argv: list[str]) -> int:
+    global _modifiers
+
     args = argparser().parse_args(argv)
     if args.info:
         print(docstring(_modifiers[args.info]))
@@ -655,6 +669,9 @@ def main(argv: list[str]) -> int:
 
     for modifier in set(args.exclude):
         del _modifiers[modifier]
+
+    if args.only:
+        _modifiers = {args.only: _modifiers[args.only]}
 
     if args.list_modifiers:
         for modifier in _modifiers:

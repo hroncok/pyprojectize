@@ -33,3 +33,22 @@ pyprojectize = "pyprojectize:main"
 
 [tool.hatch.version]
 source = "vcs"
+
+[tool.tox]
+requires = ["tox>=4.21"]
+env_list = ["3.13", "3.12", "type", "doc"]
+
+[tool.tox.env_run_base]
+description = "run test under {base_python}"
+extras = ["test"]
+commands = [["pytest", { replace = "posargs", default = ["-v"], extend = true }]]
+
+[tool.tox.env.type]
+description = "run type check on code base"
+deps = ["mypy==1.11.2"]
+commands = [["mypy", "pyprojectize.py"]]
+
+[tool.tox.env.doc]
+description = "regenerate README"
+deps = ["cogapp", "urllib3"]
+commands = [["cog", "-Pr", "README.md"]]

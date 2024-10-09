@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pyprojectize"
+dynamic = [
+  "version",
+]
+description = "Converts a Fedora RPM spec file from %py3_build etc. to %pyproject macros"
+license = "MIT-0"
+authors = [
+  { name="Miro Hrončok", email="miro@hroncok.cz" },
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "specfile",
+  "packaging",
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest",
+]
+
+[project.urls]
+Homepage = "https://github.com/hroncok/pyprojectize/"
+Issues = "https://github.com/hroncok/pyprojectize/issues"
+
+[project.scripts]
+pyprojectize = "pyprojectize:main"
+
+[tool.hatch.version]
+source = "vcs"

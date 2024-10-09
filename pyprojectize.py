@@ -594,7 +594,7 @@ def specfile_path() -> pathlib.Path | None:
 
 def argparser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="pyprojectize.py",
+        prog="pyprojectize",
         description=__doc__,
         epilog="If you wish to process multiple specfiles at a time, run this tool via parallel, etc. "
         "If you wish to inspect/commit result of each modififer separatelly, "
@@ -659,7 +659,7 @@ def docstring(modifier: ModFunc) -> str:
     return textwrap.dedent(modifier.__doc__ or "N/A").strip()
 
 
-def main(argv: list[str]) -> int:
+def main(argv: list[str] = sys.argv[1:]) -> int:
     modifiers = _modifiers.copy()
 
     args = argparser().parse_args(argv)
@@ -694,4 +694,4 @@ def main(argv: list[str]) -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main(sys.argv[1:]))
+    sys.exit(main())

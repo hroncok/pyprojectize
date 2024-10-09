@@ -26,8 +26,8 @@ and completion of the transition is strongly advised.
 
 ```
 $ python pyprojectize.py --help
-usage: pyprojectize.py [-h] [-l] [-i MODIFIER] [-x MODIFIER [MODIFIER ...] | -o MODIFIER] [-s SOURCEDIR]
-                       [SPECFILE]
+usage: pyprojectize [-h] [-l] [-i MODIFIER] [-x MODIFIER [MODIFIER ...] | -o MODIFIER] [-s SOURCEDIR]
+                    [SPECFILE]
 
 positional arguments:
   SPECFILE              path to the spec file to convert
@@ -45,8 +45,8 @@ options:
                         path to the source directory, relevant for %include etc. (default: spec's parent)
 
 If you wish to process multiple specfiles at a time, run this tool via parallel, etc. If you wish to
-inspect/commit result of each modififer separatelly, you can loop over pyprojectize.py -l calling
-pyprojectize.py -o $modifer each time.
+inspect/commit result of each modififer separatelly, you can loop over pyprojectize -l calling pyprojectize -o
+$modifer each time.
 
 $ python pyprojectize.py ampy.spec  # 16a7deeb
 ✅ add_pyproject_buildrequires: %generate_buildrequires with %pyproject_buildrequires added
@@ -67,10 +67,11 @@ https://github.com/hroncok/pyprojectize/compare/originals..specfiles
 
 ## Installation
 
-Not yet installable. Install [specfile] and [packaging] and run the script directly with Python.
+This is a pip-installable package.
 
-[specfile]: https://pypi.org/project/specfile/
-[packaging]: https://pypi.org/project/packaging/
+    pip install pyprojectize
+
+Or use `uv`, `pipx` etc.
 
 ## Available modifiers
 
@@ -145,17 +146,4 @@ Remove `%python_enable_dependency_generator`, as the generator is enabled by def
 
 ## License
 
-MIT No Attribution
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this
-software and associated documentation files (the "Software"), to deal in the Software
-without restriction, including without limitation the rights to use, copy, modify,
-merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
-PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+[MIT-0](https://spdx.org/licenses/MIT-0.html), see LICENSE.

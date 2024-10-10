@@ -22,7 +22,6 @@ This is an artificial spec file created for testing purposes.
 
 %package -n python3-%{srcname}
 Summary:        %{summary}
-Provides:       python3-%{modname} = %{version}-%{release}
 %py_provides    python3-%{modname}
 
 %description -n python3-%{srcname}

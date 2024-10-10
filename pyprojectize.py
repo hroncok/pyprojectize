@@ -115,6 +115,16 @@ def remove_setuptools_br(spec: Specfile, sections: Sections) -> ResultMsg:
     return ret
 
 
+def try_expand(s: str, *, spec: Specfile) -> str:
+    """
+    Call spec.expand() but return the input if it raises RPMException.
+    """
+    try:
+        return spec.expand(s)
+    except RPMException:
+        return s
+
+
 def shlex_quote_with_macros(s: str, *, spec: Specfile) -> str:
     """
     Often want to sh-quote the actual content of maconized strings.
@@ -257,7 +267,7 @@ def py3_install_to_pyproject_install(spec: Specfile, sections: Sections) -> Resu
 
 def canonicalize_name_with_macros(name: str, *, spec: Specfile) -> str:
     if "%" in name:
-        expanded = spec.expand(name)
+        expanded = try_expand(name, spec=spec)
         canonical = canonicalize_name(expanded).replace("-", "_")
         if expanded == canonical:
             return name
@@ -277,7 +287,7 @@ def canonicalize_name_with_macros(name: str, *, spec: Specfile) -> str:
 
 def canonicalize_version_with_macros(version: str, *, spec: Specfile) -> str:
     if "%" in version:
-        expanded = spec.expand(version)
+        expanded = try_expand(version, spec=spec)
         canonical = canonicalize_version(expanded).replace("-", "_")
         if expanded == canonical:
             return version
@@ -518,6 +528,8 @@ def remove_python_provide(spec: Specfile, sections: Sections) -> ResultMsg:
     """
     Remove `%python_provide` or replace it with `%py_provides` if the package name isn't the same.
 
+    If `%py_provides` is added, also remove the `Provides:` for the same name.
+
     This does not detect packages without files yet.
     Packages without files need  `%py_provides` even when the package name is the same.
     """
@@ -531,7 +543,7 @@ def remove_python_provide(spec: Specfile, sections: Sections) -> ResultMsg:
         if section.name == "package":
             name = ""
             last_alignment = "", 16, " "
-            del_lines = []
+            del_lines = set()
             if section.options:
                 name = getattr(section.options, "n", "")
             for idx, line in enumerate(section):
@@ -539,23 +551,30 @@ def remove_python_provide(spec: Specfile, sections: Sections) -> ResultMsg:
                     name = line.partition(":")[-1].strip()
                 if match := re.search(provide_re, line):
                     provided_name = match["name"]
-                    try:
-                        if spec.expand(provided_name) == spec.expand(name):
-                            del_lines.append(idx)
-                    except RPMException:
-                        if provided_name == name:
-                            del_lines.append(idx)
+                    expanded_provided_name = try_expand(provided_name, spec=spec)
+                    expanded_name = try_expand(name, spec=spec)
+                    if expanded_provided_name == expanded_name:
+                        del_lines.add(idx)
                     else:
                         section[idx] = align(
                             "%py_provides", provided_name, *last_alignment
                         )
+                        for idx, line in enumerate(section):
+                            if line.lstrip().lower().startswith("provides:"):
+                                line = try_expand(line, spec=spec)
+                                if re.match(
+                                    rf"\s*provides:\s*{expanded_provided_name}\s*([<>=]+\s*\S+)?\s*$",
+                                    line,
+                                    flags=re.I,
+                                ):
+                                    del_lines.add(idx)
                     ret = (
                         Result.UPDATED,
                         "%python_provide removed or replaced with %py_provides",
                     )
                 elif alignment := alignment_of(line):
                     last_alignment = alignment
-            for idx in reversed(del_lines):
+            for idx in sorted(del_lines, reverse=True):
                 del section[idx]
 
     return ret

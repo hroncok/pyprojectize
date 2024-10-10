@@ -137,6 +137,8 @@ preserve other arguments.
 
 Remove `%python_provide` or replace it with `%py_provides` if the package name isn't the same.
 
+If `%py_provides` is added, also remove the `Provides:` for the same name.
+
 This does not detect packages without files yet.
 Packages without files need  `%py_provides` even when the package name is the same.
 

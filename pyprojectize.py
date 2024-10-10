@@ -555,10 +555,10 @@ def remove_python_provide(spec: Specfile, sections: Sections) -> ResultMsg:
     return ret
 
 
-def remove_line(
+def remove_lines(
     spec: Specfile,
     sections: Sections,
-    regex: str,
+    regexes: list[str],
     msg_not_remvoed: str,
     msg_removed: str,
 ) -> ResultMsg:
@@ -566,14 +566,23 @@ def remove_line(
     for section in sections:
         del_lines = []
         maxidx = len(section) - 1
-        for idx, line in enumerate(section):
-            if match := re.match(regex, line):
-                ret = Result.UPDATED, msg_removed
-                del_lines.append(idx)
-                if (idx == 0 or not section[idx - 1].strip()) and (
-                    idx != maxidx and not section[idx + 1].strip()
-                ):
-                    del_lines.append(idx + 1)
+        for idx, _ in enumerate(section):
+            re_idx = 0
+            maybe_del_lines = []
+            while (
+                (re_idx < len(regexes))
+                and (idx + re_idx <= maxidx)
+                and (match := re.match(regexes[re_idx], section[idx + re_idx]))
+            ):
+                maybe_del_lines.append(idx + re_idx)
+                if re_idx == len(regexes) - 1:
+                    ret = Result.UPDATED, msg_removed
+                    del_lines.extend(maybe_del_lines)
+                    if (idx == 0 or not section[idx - 1].strip()) and (
+                        idx + re_idx != maxidx and not section[idx + re_idx + 1].strip()
+                    ):
+                        del_lines.append(idx + re_idx + 1)
+                re_idx += 1
         for idx in reversed(del_lines):
             del section[idx]
 
@@ -587,10 +596,10 @@ def remove_python_enable_dependency_generator(
     """
     Remove `%python_enable_dependency_generator`, as the generator is enabled by default.
     """
-    return remove_line(
+    return remove_lines(
         spec,
         sections,
-        r"\s*%{?\??python_enable_dependency_generator}?\s*$",
+        [r"\s*%{?\??python_enable_dependency_generator}?\s*$"],
         "no %python_enable_dependency_generator",
         "%python_enable_dependency_generator removed",
     )
@@ -602,12 +611,27 @@ def remove_pyp2rpm_comment(spec: Specfile, sections: Sections) -> ResultMsg:
     Remove the `# Created by pyp2rpm-X.Y.Z` comment.
     The spec file is changed enough for this to no longer matter.
     """
-    return remove_line(
+    return remove_lines(
         spec,
         sections,
-        r"# Created by pyp2rpm",
+        [r"# Created by pyp2rpm"],
         "no # Created by pyp2rpm-X.Y.Z comment",
         "# Created by pyp2rpm-X.Y.Z comment removed",
+    )
+
+
+@register
+def remove_remove_bundled_egginfo(spec: Specfile, sections: Sections) -> ResultMsg:
+    """
+    Remove the `# Remove bundled egg-info` comment and the followup `rm ...egg-info`.
+    There is no such thing as "bundled egg-info".
+    """
+    return remove_lines(
+        spec,
+        sections,
+        [r"# Remove bundled egg-info", r"rm(\s+-[rf]+)?\s+\S+\.egg-info"],
+        "no removal of bundled .egg-info",
+        "removal of bundled .egg-info removed",
     )
 
 

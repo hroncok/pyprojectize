@@ -59,6 +59,7 @@ $ python pyprojectize.py ampy.spec  # 16a7deeb
 ✅ remove_python_provide: %python_provide removed or replaced with %py_provides
 ✅ remove_python_enable_dependency_generator: %python_enable_dependency_generator removed
 ✅ remove_pyp2rpm_comment: # Created by pyp2rpm-X.Y.Z comment removed
+👌 remove_remove_bundled_egginfo: no removal of bundled .egg-info
 ```
 <!-- [[[end]]] -->
 
@@ -148,6 +149,12 @@ Remove `%python_enable_dependency_generator`, as the generator is enabled by def
 
 Remove the `# Created by pyp2rpm-X.Y.Z` comment.
 The spec file is changed enough for this to no longer matter.
+
+
+### remove_remove_bundled_egginfo
+
+Remove the `# Remove bundled egg-info` comment and the followup `rm ...egg-info`.
+There is no such thing as "bundled egg-info".
 
 <!-- [[[end]]] -->
 

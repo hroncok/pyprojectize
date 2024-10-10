@@ -561,9 +561,13 @@ def remove_lines(
     regexes: list[str],
     msg_not_remvoed: str,
     msg_removed: str,
+    *,
+    limit_sections: collections.abc.Container[str] | None = None,
 ) -> ResultMsg:
     ret = Result.NOT_NEEDED, msg_not_remvoed
     for section in sections:
+        if limit_sections is not None and section.name not in limit_sections:
+            continue
         del_lines = []
         maxidx = len(section) - 1
         for idx, _ in enumerate(section):
@@ -617,6 +621,7 @@ def remove_pyp2rpm_comment(spec: Specfile, sections: Sections) -> ResultMsg:
         [r"# Created by pyp2rpm"],
         "no # Created by pyp2rpm-X.Y.Z comment",
         "# Created by pyp2rpm-X.Y.Z comment removed",
+        limit_sections={"package"},
     )
 
 
@@ -632,6 +637,7 @@ def remove_remove_bundled_egginfo(spec: Specfile, sections: Sections) -> ResultM
         [r"# Remove bundled egg-info", r"rm(\s+-[rf]+)?\s+\S+\.egg-info"],
         "no removal of bundled .egg-info",
         "removal of bundled .egg-info removed",
+        limit_sections={"prep"},
     )
 
 

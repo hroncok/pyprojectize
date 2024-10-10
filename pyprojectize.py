@@ -601,7 +601,7 @@ def remove_lines(
             while (
                 (re_idx < len(regexes))
                 and (idx + re_idx <= maxidx)
-                and (match := re.match(regexes[re_idx], section[idx + re_idx]))
+                and re.match(regexes[re_idx], section[idx + re_idx])
             ):
                 maybe_del_lines.append(idx + re_idx)
                 if re_idx == len(regexes) - 1:
@@ -689,7 +689,7 @@ def argparser() -> argparse.ArgumentParser:
     group = parser.add_mutually_exclusive_group(required=not spec)
     group.add_argument(
         "SPECFILE",
-        help=f"path to the spec file to convert"
+        help="path to the spec file to convert"
         + (f" (default: {spec})" if spec else ""),
         type=pathlib.Path,
         nargs="?",

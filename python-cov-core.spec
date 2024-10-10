@@ -1,4 +1,3 @@
-# Created by pyp2rpm-1.0.1
 %global pypi_name cov-core
 %global summary Plugin core for use by pytest-cov, nose-cov and nose2-cov
 %global _description \

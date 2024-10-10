@@ -1,4 +1,3 @@
-# Created by pyp2rpm-3.3.4
 %global pypi_name click-repl
 
 Name:           python-%{pypi_name}

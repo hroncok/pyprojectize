@@ -1,4 +1,3 @@
-# Created by pyp2rpm-3.2.2
 %global pypi_name network-runner
 %global ansible_role network-runner
 

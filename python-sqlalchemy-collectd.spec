@@ -1,4 +1,3 @@
-# Created by pyp2rpm-3.2.3
 %global pypi_name sqlalchemy-collectd
 
 %global with_checks 1

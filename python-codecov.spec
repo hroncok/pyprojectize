@@ -1,4 +1,3 @@
-# Created by pyp2rpm-3.3.5
 %global pypi_name codecov
 
 %global common_description %{expand:

@@ -1,4 +1,3 @@
-# Created by pyp2rpm-3.3.7
 %global pypi_name unicodedata2
 %global pypi_version 15.1.0
 

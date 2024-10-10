@@ -1,4 +1,3 @@
-# Created by pyp2rpm-3.2.3
 %global pypi_name scitokens
 
 Name:           python-%{pypi_name}

@@ -1,4 +1,3 @@
-# Created by pyp2rpm-1.0.1
 %global pypi_name pymemcache
 
 Name:           python-%{pypi_name}

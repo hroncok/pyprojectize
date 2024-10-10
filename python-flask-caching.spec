@@ -1,5 +1,3 @@
-# Created by pyp2rpm-3.3.2
-
 %global srcname flask-caching
 
 Name:           python-%{srcname}

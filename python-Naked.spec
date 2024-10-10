@@ -1,4 +1,3 @@
-# Created by pyp2rpm-3.2.3
 %global pypi_name Naked
 %global _description Naked is a new Python command line application framework \
                      that makes creating command line options and sub-commands \

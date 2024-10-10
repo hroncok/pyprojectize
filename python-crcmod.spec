@@ -1,6 +1,5 @@
 %global debug_package %{nil}
 
-# Created by pyp2rpm-3.3.7
 %global pypi_name crcmod
 %global pypi_version 1.7
 

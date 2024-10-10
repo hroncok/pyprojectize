@@ -1,4 +1,3 @@
-# Created by pyp2rpm-3.3.5
 %global pypi_name stdiomask
 
 Name:           python-%{pypi_name}

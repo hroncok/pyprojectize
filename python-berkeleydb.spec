@@ -1,4 +1,3 @@
-# Created by pyp2rpm-3.3.7
 %global pypi_name berkeleydb
 %global pypi_version 18.1.4
 

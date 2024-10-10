@@ -1,4 +1,3 @@
-# Created by pyp2rpm-3.3.4
 %global pypi_name textwrap3
 
 Name:           python-%{pypi_name}

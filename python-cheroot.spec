@@ -1,4 +1,3 @@
-# Created by pyp2rpm-3.2.2
 %global pypi_name cheroot
 # sphinx-tabs not available in fedora for docs build
 %bcond_with docs

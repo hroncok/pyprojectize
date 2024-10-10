@@ -1,4 +1,3 @@
-# Created by pyp2rpm-3.3.0
 %global pypi_name collectd_systemd
 
 %global commit 212cb7918fa6925213082d11a0fe0fb44fe84852

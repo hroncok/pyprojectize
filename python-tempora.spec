@@ -1,4 +1,3 @@
-# Created by pyp2rpm-3.3.2
 %global pypi_name tempora
 %bcond_with docs
 

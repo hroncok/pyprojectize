@@ -1,4 +1,3 @@
-# Created by pyp2rpm-3.3.2
 %global pypi_name injector
 
 Name:           python-%{pypi_name}

@@ -1,4 +1,3 @@
-# Created by pyp2rpm-3.3.6
 %global pypi_name mackup
 
 %bcond_without tests

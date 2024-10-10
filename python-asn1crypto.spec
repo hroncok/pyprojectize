@@ -1,4 +1,3 @@
-# Created by pyp2rpm-3.2.2
 %global pypi_name asn1crypto
 
 %if 0%{?fedora} || 0%{?rhel} > 7

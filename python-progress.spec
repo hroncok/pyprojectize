@@ -15,7 +15,6 @@
   %endif
 %endif
 
-# Created by pyp2rpm-0.5.2
 %global pypi_name progress
 
 Name:           python-%{pypi_name}

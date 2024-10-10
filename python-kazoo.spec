@@ -1,4 +1,3 @@
-# Created by pyp2rpm-1.0.1
 %global pypi_name kazoo
 
 Name:           python-%{pypi_name}

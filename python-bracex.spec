@@ -1,4 +1,3 @@
-# Created by pyp2rpm-3.3.5
 %global pypi_name bracex
 
 Name:           python-%{pypi_name}

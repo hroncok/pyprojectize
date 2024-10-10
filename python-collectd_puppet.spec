@@ -1,4 +1,3 @@
-# Created by pyp2rpm-3.3.2
 %global pypi_name collectd-puppet
 %global module_name collectd_puppet
 

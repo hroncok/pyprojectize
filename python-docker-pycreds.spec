@@ -1,4 +1,3 @@
-# Created by pyp2rpm-1.1.2 and rewrote manually afterwards
 %global pypi_name docker-pycreds
 
 %if 0%{?fedora} || 0%{?rhel} > 7

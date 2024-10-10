@@ -1,4 +1,3 @@
-# Created by pyp2rpm-0.5.1
 %global pypi_name spec2scl
 
 Name:           %{pypi_name}

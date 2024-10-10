@@ -1,4 +1,3 @@
-# Created by pyp2rpm-3.2.2
 Name:           ampy
 Version:        1.0.5
 Release:        %autorelease

@@ -1,4 +1,3 @@
-# Created by pyp2rpm-3.3.5
 %if 0%{?rhel}
 %bcond_with docs
 %else

@@ -1,4 +1,3 @@
-# Created by pyp2rpm-3.3.8
 %global pypi_name icoextract
 %global pypi_version 0.1.4
 

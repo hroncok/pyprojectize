@@ -1,7 +1,6 @@
 # The tests fail in mock
 %bcond_with tests
 
-# Created by pyp2rpm-3.2.2
 %global pypi_name ethtool
 
 Name:           python-%{pypi_name}

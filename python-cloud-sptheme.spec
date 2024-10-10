@@ -40,9 +40,6 @@ at http://packages.python.org/cloud_sptheme.
 %prep
 %setup -q -n %{modname}-%{version}.post20200504175005
 
-# Remove bundled egg-info in case it exists
-rm -rf %{modname}.egg-info
-
 
 %generate_buildrequires
 %pyproject_buildrequires

@@ -36,9 +36,6 @@ A Django slugify application that guarantees Uniqueness and handles Unicode
 %prep
 %autosetup -p1 -n %{pypi_name}-%{version}
 
-# Remove bundled egg-info
-rm -rf django_uuslug.egg-info
-
 %generate_buildrequires
 %pyproject_buildrequires
 

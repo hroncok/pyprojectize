@@ -31,8 +31,6 @@ Summary:        %{summary}
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 # Remove unnecessary shebang
 sed -e '\|#!/usr/bin/env python|d' -i */*.py
 

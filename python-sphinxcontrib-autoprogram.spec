@@ -40,8 +40,6 @@ program and option directives.
 
 %prep
 %autosetup -p 1 -n %{pypi_name}-%{version}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 cp %SOURCE1 .
 
 %generate_buildrequires

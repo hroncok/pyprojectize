@@ -59,8 +59,6 @@ Summary:        %{summary}
 
 %prep
 %autosetup
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 # Fix permissions for examples
 chmod -x examples/*.py
 

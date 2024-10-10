@@ -62,8 +62,6 @@ This package contains additional documentation for %{pypi_name}.
 
 %prep
 %autosetup -n %{pypi_name}-%{version} -p1
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 %if %{with docs}
 # Use local intersphinx inventory
 sed -r \

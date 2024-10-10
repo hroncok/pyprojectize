@@ -45,9 +45,6 @@ Summary:            %{summary}
 %prep
 %setup -q -n %{modname}-%{version}
 
-# Remove bundled egg-info in case it exists
-rm -rf %{modname}.egg-info
-
 %build
 %pyproject_wheel
 

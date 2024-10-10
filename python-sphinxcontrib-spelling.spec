@@ -67,9 +67,6 @@ Requires:       python%{python3_other_pkgversion}-sphinx
 %prep
 %autosetup -p0 -n %{pypi_name}-%{version}
 
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
-
 
 %generate_buildrequires
 %pyproject_buildrequires

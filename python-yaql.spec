@@ -52,8 +52,6 @@ Documentation for YAQL library
 
 %prep
 %autosetup -n %{pypi_name}-%{version} -p1
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 # Let RPM handle the dependencies
 rm -f test-requirements.txt requirements.txt
 

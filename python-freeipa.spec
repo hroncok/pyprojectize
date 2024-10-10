@@ -30,8 +30,6 @@ This package provides the Python %{python3_version} variant.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 
 # Fix version
 sed -e "s/version='1.0.6',/version='%{version}',/" -i setup.py

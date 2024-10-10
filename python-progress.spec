@@ -65,9 +65,6 @@ Collection of easy to use progress bars and spinners.
 %prep
 %autosetup -p1 -n %{pypi_name}-%{version}
 
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
-
 
 %generate_buildrequires
 %pyproject_buildrequires

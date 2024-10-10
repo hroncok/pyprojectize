@@ -41,9 +41,6 @@ Loader made for your needs.
 %prep
 %autosetup -n %{srcname}-%{version}
 
-# Remove bundled egg-info
-rm -rf %{srcname}.egg-info
-
 # Fix shebang
 sed -i -e '/^#!\//, 1d' %{srcname}/__main__.py
 

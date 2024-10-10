@@ -42,9 +42,6 @@ Summary:        %{summary}
 %prep
 %autosetup -n protobuf-%{version}
 
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
-
 # Fix shebangs
 pushd pure_protobuf
 sed -i 's|/usr/bin/env python3|%{_bindir}/python3|' \

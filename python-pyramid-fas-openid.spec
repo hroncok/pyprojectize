@@ -39,9 +39,6 @@ Requires:           python3-openid-cla
 %prep
 %setup -q -n %{modname}-%{version}
 
-# Remove bundled egg-info in case it exists
-rm -rf %{modname}.egg-info
-
 
 %generate_buildrequires
 %pyproject_buildrequires

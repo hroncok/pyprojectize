@@ -40,8 +40,6 @@ Documentation for python-smartypants
 
 %prep
 %autosetup -n %{pypi_name}.py-%{version}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 for lib in $(find -type f -name '*.py'); do
  sed -i.python -e '1{\@^#!@d}' $lib
 done

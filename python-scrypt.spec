@@ -38,8 +38,6 @@ Provides:       bundled(scrypt) = 1.2.0
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 # remove useless shebang
 sed -i '1d' scrypt/scrypt.py
 

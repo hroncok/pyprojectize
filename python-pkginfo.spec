@@ -45,9 +45,6 @@ This package contains the documentation.
 # don't ship internal test subpackage
 sed -i "s/, 'pkginfo.tests'//g" setup.py
 
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
-
 
 %generate_buildrequires
 %pyproject_buildrequires

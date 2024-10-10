@@ -42,8 +42,6 @@ Requires: python%{python3_other_pkgversion}-coverage >= 3.6
 
 %prep
 %setup -q -n %{pypi_name}-%{version}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 
 
 %generate_buildrequires

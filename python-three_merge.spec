@@ -31,9 +31,6 @@ Summary:        %{summary}
 %prep
 %autosetup -n three-merge-%{version}
 
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
-
 %generate_buildrequires
 %pyproject_buildrequires
 

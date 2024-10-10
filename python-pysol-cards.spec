@@ -27,8 +27,6 @@ initial deals of some PySol FC games.
 
 %prep
 %autosetup -n pysol_cards-%{version}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 sed -i '/^#! \/usr\/bin\/env python$/d' pysol_cards/*.py
 
 %generate_buildrequires

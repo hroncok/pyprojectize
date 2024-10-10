@@ -44,8 +44,6 @@ Documentation for funcsigs
 
 %prep
 %autosetup -p1 -n %{pypi_name}-%{version}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 
 %if 0%{?rhel} && 0%{?rhel} == 7
 sed -i '/extras_require/,+3d' setup.py

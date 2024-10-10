@@ -23,8 +23,6 @@ nicer to use. And it works with non-bash shells.
 
 %prep
 %autosetup -n %{name}-%{version}
-# Remove bundled egg-info
-rm -rf %{name}.egg-info
 # Remove useless files (merge info)
 rm -rf %{name}/shell_configs/zsh.orig
 rm -rf %{name}/shell_configs/fish.orig

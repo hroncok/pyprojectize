@@ -39,8 +39,6 @@ Documentation: https://django-contrib-comments.readthedocs.io/en/latest/
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-# Remove bundled egg-info
-rm -rf django_contrib_comments.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

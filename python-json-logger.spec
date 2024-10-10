@@ -30,8 +30,6 @@ A python library adding a json log formatter
 
 %prep
 %autosetup -n %{pypi_name}-%{version} -p1
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 
 
 %generate_buildrequires

@@ -49,8 +49,6 @@ PostScript and PNG files.
 
 %prep
 %autosetup -n %{srcname}-%{version} -p1
-# Remove bundled egg-info in case it exists
-rm -rf %{srcname}.egg-info
 # emulate the git submodule used by upstream - this is required to pass the
 # test suite
 mkdir test_non_regression/cairosvg_reference/

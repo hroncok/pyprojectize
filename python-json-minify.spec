@@ -36,9 +36,6 @@ transmitting them over-the-wire.
 %prep
 %autosetup -n JSON_minify-%{version}
 
-# Remove bundled egg-info
-rm -rf %{srcname}.egg-info
-
 
 %generate_buildrequires
 %pyproject_buildrequires

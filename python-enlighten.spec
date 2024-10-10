@@ -94,9 +94,6 @@ Requires:       python%{python3_other_pkgversion}-prefixed
 %prep
 %autosetup -p1 -n %{pypi_name}-%{version}
 
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
-
 # Remove benchmark scripts
 rm -rf benchmarks
 

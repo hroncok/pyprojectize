@@ -53,8 +53,6 @@ systemd plugin to access service status via dbus.
 
 %prep
 %autosetup -n collectd-systemd-%{commit}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 cp -p %{SOURCE1} .
 
 %generate_buildrequires

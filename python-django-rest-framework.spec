@@ -51,9 +51,6 @@ Some reasons you might want to use REST framework:
 
 echo "recursive-include rest_framework/locale *.mo" >> MANIFEST.in
 
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
-
 # remove .po files
 find . -name *.po -exec rm -f '{}' \;
 

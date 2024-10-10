@@ -41,8 +41,6 @@ Sphinx documentation, originally derived from Mitsuhiko's Flask theme.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

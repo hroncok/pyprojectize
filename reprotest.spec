@@ -36,8 +36,6 @@ reprotest is developed as part of the "reproducible builds" Debian project.
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -n %{name}
-# Remove bundled egg-info
-rm -rf %{name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

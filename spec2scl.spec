@@ -21,8 +21,6 @@ spec2scl is a tool to convert RPM specfiles to SCL-style specfiles.
 
 %prep
 %setup -q -n %{pypi_name}-%{version}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

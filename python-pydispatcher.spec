@@ -37,8 +37,6 @@ This package contains the Python 3 version of %{pypi_name}.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 
 
 %generate_buildrequires

@@ -62,8 +62,6 @@ Documentation for python-%{module_name}
 
 %prep
 %autosetup -n %{module_name}-%{version} -p1
-# Remove bundled egg-info
-rm -rf %{module_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

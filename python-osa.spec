@@ -32,8 +32,6 @@ document.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-# Remove bundled egg-info
-rm -rf *.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

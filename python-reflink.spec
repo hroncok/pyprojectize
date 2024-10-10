@@ -34,8 +34,6 @@ Documentation for reflink
 
 %prep
 %autosetup -n %{pypi_name}-%{pypi_version}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

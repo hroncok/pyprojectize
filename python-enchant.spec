@@ -31,8 +31,6 @@ library by Dom Lachowicz.
 
 %prep
 %setup -q -n py%{srcname}-%{version}
-# Remove bundled egg-info
-rm -rf py%{srcname}.egg-info
 
 find . -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python3}|'
 

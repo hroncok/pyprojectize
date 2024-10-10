@@ -30,8 +30,6 @@ BuildRequires:	python3-devel
 
 %prep
 %setup -q -n %{src_name}-%{version}
-# Remove bundled egg-info
-rm -rf %{src_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

@@ -35,8 +35,6 @@ system provided by MicroPython on the BBC micro:bit.
 
 %prep
 %autosetup -n %{pypi_name}-%{commit}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

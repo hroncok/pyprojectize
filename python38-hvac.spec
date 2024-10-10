@@ -20,8 +20,6 @@ This package provides a Python API client for HashiCorp Vault.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 
 %if 0%{?el8}
 # Lower dependency to requests 2.20+ for EL8

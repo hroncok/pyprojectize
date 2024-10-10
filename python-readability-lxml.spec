@@ -39,9 +39,6 @@ This is a python port of a ruby port of arc90's readability project.
 %prep
 %autosetup -n python-readability-%{version}
 
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
-
 # Remove shebang from Python libraries
 for lib in readability/*.py; do
  sed '1{\@^#!/usr/bin/env python@d}' $lib > $lib.new &&

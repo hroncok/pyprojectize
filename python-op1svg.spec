@@ -37,8 +37,6 @@ Summary:        %{summary}
 
 %prep
 %forgesetup
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 # Remove unneeded shebang
 sed -e "\|#!/usr/bin/env python3|d" -i %{pypi_name}/*.py
 

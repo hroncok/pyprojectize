@@ -35,9 +35,6 @@ BuildRequires:  python3-hypothesis
 %prep
 %autosetup -n %{srcname}-%{version} -p1
 
-# Remove bundled egg-info
-rm -rf %{srcname}.egg-info PKG-INFO
-
 
 %generate_buildrequires
 %pyproject_buildrequires

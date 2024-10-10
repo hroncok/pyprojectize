@@ -112,8 +112,6 @@ Requires:       python3-setuptools
 
 %prep
 %autosetup -n %{pypi_name}-%{version} -S git
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 # Let's handle requirements from the RPM side
 rm -rf {test-,}requirements.txt tools/{pip,test}-requires
 

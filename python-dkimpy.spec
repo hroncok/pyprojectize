@@ -32,8 +32,6 @@ email signing and verification.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 
 # Drop shebang for these files, as we don't need them
 sed -e "s|#!/usr/bin/env python||" -i dkim/{arcsign.py,arcverify.py,dkimsign.py,dkimverify.py,dknewkey.py}

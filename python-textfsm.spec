@@ -43,8 +43,6 @@ devices.
 # https://github.com/google/textfsm/commit/ca3755dcb8b1b043857d63f1d1352d62030f0d2d
  # (post-1.1.3 release)
 sed -i 's/1.1.2/1.1.3/' textfsm/__init__.py
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

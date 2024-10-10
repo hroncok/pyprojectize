@@ -30,8 +30,6 @@ Requires:       python%{python3_pkgversion}-paramiko
 
 %prep
 %autosetup -n %{srcname}-%{version}
-# Remove bundled egg-info
-rm -rf *.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

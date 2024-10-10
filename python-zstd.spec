@@ -32,8 +32,6 @@ Simple Python bindings for the Zstd compression library.
 
 %prep
 %autosetup -p1 -n %{pypi_name}-%{version}
-# Remove bundled egg-info
-rm -rf src/%{pypi_name}.egg-info
 # Remove precompiled files
 find . -name '*.pyc' -delete
 # Remove bundled zstd library

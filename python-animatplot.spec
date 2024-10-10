@@ -49,9 +49,6 @@ Documentation for python3-%{srcname}.
 %prep
 %autosetup -n %{srcname}-ng-%{version} -p1 -S git
 
-# Remove bundled egg-info
-rm -rf %{srcname}.egg-info
-
 
 %generate_buildrequires
 %pyproject_buildrequires

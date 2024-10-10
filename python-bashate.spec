@@ -56,8 +56,6 @@ Documentation for the bashate module
 %prep
 %autosetup -S git -n %{pypi_name}-%{version}
 
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 rm -rf {test-,}requirements.txt
 
 %generate_buildrequires

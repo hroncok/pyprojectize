@@ -49,8 +49,6 @@ Documentation for vine
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 
 # Compatibility with pytest 8
 # https://github.com/celery/vine/commit/cf9b3979173ff22a4a410c4da6cfdad878eced8c

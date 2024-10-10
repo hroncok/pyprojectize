@@ -30,9 +30,6 @@ for Ruby.
 %prep
 %setup -q -n %{modname}-%{version}
 
-# Remove bundled egg-info in case it exists
-rm -rf %{modname}.egg-info
-
 # Remove py2-only files.  They make our tests fail on py3.
 rm chai/python2.py
 

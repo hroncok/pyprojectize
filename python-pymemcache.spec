@@ -45,8 +45,6 @@ pymemcache supports the following features:
 
 %prep
 %autosetup -n %{pypi_name}-%{version} -S git
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 
 
 %build

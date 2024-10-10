@@ -52,8 +52,6 @@ Provides:           robosignatory = %{version}-%{release}
 
 %prep
 %autosetup -p1 -n %{modname}-%{version}%{?prerelease}
-# Remove bundled egg-info in case it exists
-rm -rf %{modname}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

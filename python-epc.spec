@@ -37,9 +37,6 @@ Requires:       %{py3_dist sexpdata}
 %prep
 %autosetup
 
-# Remove bundled egg-info
-rm -rf *.egg-info
-
 
 %generate_buildrequires
 %pyproject_buildrequires

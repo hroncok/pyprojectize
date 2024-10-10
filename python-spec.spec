@@ -48,9 +48,6 @@ A Python testing tool that provides:
 # LICENSE file
 cp -p %{SOURCE3} .
 
-# Remove bundled egg-info
-rm -rf spec.egg-info
-
 %generate_buildrequires
 %pyproject_buildrequires
 

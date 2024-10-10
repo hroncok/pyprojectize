@@ -36,8 +36,6 @@ Documentation of the Python client for the statsd daemon.
 
 %prep
 %autosetup -n %{srcname}-%{version} -p1
-# Remove bundled egg-info
-rm -rf %{srcname}.egg-info
 # Let RPM handle the dependencies
 rm -f requirements.txt
 

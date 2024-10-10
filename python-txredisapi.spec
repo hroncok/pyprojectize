@@ -37,8 +37,6 @@ Requires:       python3-twisted
 
 %prep
 %autosetup -n txredisapi-%{version}
-# Remove bundled egg-info
-rm -rf txredisapi.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

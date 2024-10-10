@@ -29,8 +29,6 @@ This theme is based on VuePress.
 
 %prep
 %autosetup -n sphinx_press_theme-%{version}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

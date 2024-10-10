@@ -29,9 +29,6 @@ This package provides the python3 version of this module
 %prep
 %setup -q -n %{modname}-%{version}
 
-# Remove bundled egg-info in case it exists
-rm -rf %{modname}.egg-info
-
 
 %generate_buildrequires
 %pyproject_buildrequires

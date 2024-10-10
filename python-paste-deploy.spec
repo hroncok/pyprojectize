@@ -38,9 +38,6 @@ Requires:       python3-setuptools
 %prep
 %setup -q -n %{srcname}-%{version}
 
-# Remove bundled egg-info if it exists
-rm -rf *.egg-info
-
 
 %generate_buildrequires
 %pyproject_buildrequires

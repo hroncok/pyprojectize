@@ -58,9 +58,6 @@ sed -i 's/yaml.load(cfg)/yaml.load(cfg, Loader=yaml.FullLoader)/' \
 # https://github.com/chestm007/linux_thermaltake_riing/pull/37
 sed -i 's/GObject/PyGObject/g' setup.py
 
-# Remove bundled egg-info
-rm -rf %{name}.egg-info
-
 
 %generate_buildrequires
 %pyproject_buildrequires

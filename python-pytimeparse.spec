@@ -58,8 +58,6 @@ This is the Python 3 version of the package.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 
 # Remove shebangs from Python scripts
 find . -name '*.py' -exec sed -i '1 { /^#!/ d }' {} \+

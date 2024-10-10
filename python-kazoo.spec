@@ -41,8 +41,6 @@ This package contains documentation in HTML format.
 
 %prep
 %setup -q -n %{pypi_name}-%{version}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 
 find . -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python3}|'
 

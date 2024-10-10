@@ -46,9 +46,6 @@ You should use Twiggy because it is awesome. For more information, read the
 %prep
 %autosetup -n %{distname}-%{version}
 
-# Remove bundled egg-info in case it exists
-rm -rf %{distname}.egg-info
-
 %generate_buildrequires
 %pyproject_buildrequires
 

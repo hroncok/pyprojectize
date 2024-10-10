@@ -22,8 +22,6 @@ A server implementing the HTTP Web Thing implementation.
 
 %prep
 %autosetup -p1 -n %{realname}-%{version}
-# Remove bundled egg-info
-rm -rf %{realname}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

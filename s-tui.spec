@@ -29,9 +29,6 @@ What it does
 %prep
 %autosetup
 
-# Remove bundled egg-info
-rm -rf %{name}.egg-info
-
 
 %generate_buildrequires
 %pyproject_buildrequires

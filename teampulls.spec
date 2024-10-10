@@ -18,8 +18,6 @@ printed in red.
 
 %prep
 %autosetup
-# Remove bundled egg-info
-rm -rf %{name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

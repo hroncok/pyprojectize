@@ -35,8 +35,6 @@ This package contains the Python library.
 %prep
 %setup -q -n fprettify-%{version}
 %patch -P0 -p1 -b .pyenv
-# Remove bundled egg-info
-rm -rf %{name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

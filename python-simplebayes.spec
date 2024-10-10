@@ -40,9 +40,6 @@ BuildRequires:  python3-mock
 %prep
 %autosetup -n %{srcname}-1.5.7
 
-# Remove bundled egg-info
-rm -rf %{srcname}.egg-info
-
 
 %generate_buildrequires
 %pyproject_buildrequires

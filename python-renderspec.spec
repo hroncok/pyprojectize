@@ -53,8 +53,6 @@ Documentation for renderspec
 %autosetup -n %{pypi_name}-%{version}
 # Let's handle dependencies ourselves
 rm -f *requirements.txt
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 # remove shebangs
 find -type f -a \( -name '*.py' -o -name 'py.*' \) \
    -exec sed -i '1{/^#!/d}' {} \; \

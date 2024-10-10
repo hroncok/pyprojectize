@@ -63,8 +63,6 @@ Recommends:     libdb-utils
 %autosetup -n %{pypi_name}-%{version} -p1
 # Remove unnecessary shebang
 sed -e '\|#!/usr/bin/env python|d' -i dcrpm/*.py
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 %if 0%{?el8}
 # needed with setuptools < 40.9.0
 mv legacy_setup.py setup.py

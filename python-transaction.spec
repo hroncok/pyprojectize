@@ -31,9 +31,6 @@ Requires:       python3-zope-interface
 %prep
 %autosetup -n transaction-%{version} -p1
 
-# Remove bundled egg-info in case it exists
-rm -rf %{modname}.egg-info
-
 
 %generate_buildrequires
 %pyproject_buildrequires

@@ -33,9 +33,6 @@ filter to check some windows by default, command line interface.
 %prep
 %autosetup
 
-# Remove bundled egg-info
-rm -rf *.egg-info
-
 
 %generate_buildrequires
 %pyproject_buildrequires

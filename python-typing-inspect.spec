@@ -32,8 +32,6 @@ inspection of types defined in the standard "typing" module.
 
 %prep
 %autosetup -n %{pypi_srcname}-%{version}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

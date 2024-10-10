@@ -37,8 +37,6 @@ and ease-of-use at its core.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 
 rm -rf markdownx/static/.DS_Store
 rm -rf markdownx/static/markdownx/.DS_Store

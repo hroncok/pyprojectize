@@ -63,8 +63,6 @@ This package provides the Python 3 module.
 
 %prep
 %autosetup -n %{mod_name}-%{version}
-# Remove bundled egg-info
-rm -rf *.egg-info
 
 # Install license into source tree
 cp %{SOURCE1} LICENSE

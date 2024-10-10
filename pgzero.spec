@@ -32,8 +32,6 @@ Pygame Zero script with a full game loop and a range of useful builtins.
 
 %prep
 %autosetup -n %{name}-%{version}
-# Remove bundled egg-info
-rm -rf %{name}.egg-info
 # Remove version limit for pygame dependency
 sed -i "s/\(pygame.*\), <2.0.*/\1'/" setup.py
 

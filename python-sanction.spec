@@ -83,9 +83,6 @@ sanction has been tested with the following OAuth2 providers:
 %prep
 %setup -q -n %{modname}-%{version}
 
-# Remove bundled egg-info in case it exists
-rm -rf %{modname}.egg-info
-
 # Use the standard library instead of a backport
   sed -i -e 's/^import mock/from unittest import mock/' \
          -e 's/^from mock import /from unittest.mock import /' \

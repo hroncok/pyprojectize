@@ -31,8 +31,6 @@ IRC bots. pyaib uses gevent for its Asynchronous bits.
 
 %prep
 %autosetup -n %{pypi_name}-%{commit}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 # Remove unneeded shebangs
 sed -e "\|#!/usr/bin/env python|d" -i %{pypi_name}/*.py %{pypi_name}/*/*.py
 

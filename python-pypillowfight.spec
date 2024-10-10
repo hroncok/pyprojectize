@@ -41,9 +41,6 @@ Requires:       python3-pillow%{?_isa}
 %autosetup -n libpillowfight-%{version} -p1
 %setup -D -T -n libpillowfight-%{version} -q -a 1
 
-# Remove bundled egg-info
-rm -rf %{srcname}.egg-info
-
 echo "#define INTERNAL_PILLOWFIGHT_VERSION \"%{version}\"" > src/pillowfight/_version.h
 
 

@@ -53,8 +53,6 @@ to be delegated to a server giving you double hop authentication.
 
 %prep
 %autosetup -n %{gh_name}-%{version}
-# Remove bundled egg-info, it's not there yet but just in case it gets added upstream
-rm -rf %{gh_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

@@ -43,8 +43,6 @@ by PickleShare.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 
 # fix interpreter
 sed -i 's/\/usr\/bin\/env python/\/usr\/bin\/python/' pickleshare.py

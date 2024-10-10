@@ -40,8 +40,6 @@ A screencast tool to display your keys, featuring:
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup
-# Remove bundled egg-info
-rm -rf %{src_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

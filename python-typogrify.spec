@@ -33,8 +33,6 @@ filters can be used in any environment.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 # remove shebang line from the python scripts
 for lib in $(find -type f -name '*.py'); do
  sed -i.python -e '1{\@^#!@d}' $lib

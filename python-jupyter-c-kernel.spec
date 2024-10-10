@@ -43,9 +43,6 @@ Requires:       python3-ipykernel
 %autosetup -n %{srcname_}-%{version} -p1
 cp -p %SOURCE1 %SOURCE2 .
 
-# Remove bundled egg-info
-rm -rf %{srcname_}.egg-info
-
 
 %generate_buildrequires
 %pyproject_buildrequires

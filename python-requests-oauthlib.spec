@@ -41,9 +41,6 @@ This project provides first-class OAuth library support for python-request.
 %prep
 %autosetup -n %{distname}-%{version} -p1
 
-# Remove bundled egg-info in case it exists
-rm -rf %{distname}.egg-info
-
 
 %generate_buildrequires
 %pyproject_buildrequires

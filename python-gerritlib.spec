@@ -44,9 +44,6 @@ Requires:       python3-paramiko
 %autosetup -n %{pypi_name}
 sed -i 's/\r//' LICENSE
 
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
-
 # We handle requirements ourselves, remove requirements.txt
 rm -rf requirements.txt test-requirements.txt
 

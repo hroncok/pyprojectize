@@ -36,8 +36,6 @@ Documentation for listparser.
 
 %prep
 %autosetup -n %{pypi_name}-%{version} -p0
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 chmod 644 COPYING
 chmod 644 COPYING.LESSER
 chmod 644 README.rst

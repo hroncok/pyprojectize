@@ -46,8 +46,6 @@ Graphene is a Python library for building GraphQL schemas/types fast and easily.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

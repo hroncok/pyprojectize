@@ -28,9 +28,6 @@ for the newer msgctxt keyword.
 %prep
 %autosetup -p1
 
-# Remove bundled egg-info
-rm -rf python_gettext.egg-info
-
 %generate_buildrequires
 %pyproject_buildrequires
 

@@ -58,6 +58,7 @@ $ python pyprojectize.py ampy.spec  # 16a7deeb
 👌 update_extras_subpkg: %{?python_extras_subpkg:%python_extras_subpkg ...} not found
 ✅ remove_python_provide: %python_provide removed or replaced with %py_provides
 ✅ remove_python_enable_dependency_generator: %python_enable_dependency_generator removed
+✅ remove_pyp2rpm_comment: # Created by pyp2rpm-X.Y.Z comment removed
 ```
 <!-- [[[end]]] -->
 
@@ -141,6 +142,12 @@ Packages without files need  `%py_provides` even when the package name is the sa
 ### remove_python_enable_dependency_generator
 
 Remove `%python_enable_dependency_generator`, as the generator is enabled by default.
+
+
+### remove_pyp2rpm_comment
+
+Remove the `# Created by pyp2rpm-X.Y.Z` comment.
+The spec file is changed enough for this to no longer matter.
 
 <!-- [[[end]]] -->
 

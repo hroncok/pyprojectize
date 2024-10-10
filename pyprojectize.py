@@ -582,6 +582,32 @@ def remove_python_enable_dependency_generator(
     return ret
 
 
+@register
+def remove_pyp2rpm_comment(spec: Specfile, sections: Sections) -> ResultMsg:
+    """
+    Remove the `# Created by pyp2rpm-X.Y.Z` comment.
+    The spec file is changed enough for this to no longer matter.
+    """
+    ret = Result.NOT_NEEDED, "no # Created by pyp2rpm-X.Y.Z comment"
+    comment_re = r"# Created by pyp2rpm"
+
+    for section in sections:
+        del_lines = []
+        maxidx = len(section) - 1
+        for idx, line in enumerate(section):
+            if match := re.match(comment_re, line):
+                ret = Result.UPDATED, "# Created by pyp2rpm-X.Y.Z comment removed"
+                del_lines.append(idx)
+                if (idx == 0 or not section[idx - 1].strip()) and (
+                    idx != maxidx and not section[idx + 1].strip()
+                ):
+                    del_lines.append(idx + 1)
+        for idx in reversed(del_lines):
+            del section[idx]
+
+    return ret
+
+
 def specfile_path() -> pathlib.Path | None:
     ret = None
     for path in pathlib.Path(".").glob("*.spec"):

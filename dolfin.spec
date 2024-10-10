@@ -136,14 +136,15 @@ sed -r -i "s|Cflags:.*|\\0 -I${ffc_path} ${eigen_options}|" \
 %make_install
 
 cd ../python
-VERBOSE=1 CMAKE_PREFIX_PATH=%{buildroot}/usr/share/dolfin/cmake CMAKE_SKIP_INSTALL_RPATH=yes CMAKE_SKIP_RPATH=yes %pyproject_wheel
+export VERBOSE=1 CMAKE_PREFIX_PATH=%{buildroot}/usr/share/dolfin/cmake CMAKE_SKIP_INSTALL_RPATH=yes CMAKE_SKIP_RPATH=yes
+%pyproject_wheel
 
 %install
 cd build
 %make_install
 
 cd ../python
-VERBOSE=1 CMAKE_PREFIX_PATH=%{buildroot}/usr/share/dolfin/cmake CMAKE_SKIP_INSTALL_RPATH=yes CMAKE_SKIP_RPATH=yes %pyproject_install
+%pyproject_install
 %pyproject_save_files dolfin dolfin_utils fenics
 
 sed -r -i '1 {s|#!/usr/bin/env python.*|#!%{__python3}|}' \

@@ -69,7 +69,8 @@ This package contains Python3 module file for SentencePiece.
 %cmake_build
 
 pushd python
-CFLAGS="-I../src" LDFLAGS="-L../%{_vpath_builddir}/src -lsentencepiece" PKG_CONFIG_PATH="../%{_vpath_builddir}" %pyproject_wheel
+export CFLAGS="-I../src" LDFLAGS="-L../%{_vpath_builddir}/src -lsentencepiece" PKG_CONFIG_PATH="../%{_vpath_builddir}"
+%pyproject_wheel
 popd
 
 %install

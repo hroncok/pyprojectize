@@ -78,7 +78,8 @@ fi
 
 %build
 # verbose build
-V=1 %pyproject_wheel
+export V=1
+%pyproject_wheel
 
 %if %{with docs}
 # generate html docs

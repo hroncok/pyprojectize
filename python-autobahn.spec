@@ -76,12 +76,13 @@ sed -i '\@autobahn/xbr/test/profile@d' MANIFEST.in
 
 %build
 # Disable in case local builder support NVX
-AUTOBAHN_USE_NVX=false %pyproject_wheel
+export AUTOBAHN_USE_NVX=false
+%pyproject_wheel
 #PYTHONPATH=${PWD} sphinx-build-3 docs html
 #rm -rf html/.{doctrees,buildinfo}
 
 %install
-AUTOBAHN_USE_NVX=false %pyproject_install
+%pyproject_install
 %pyproject_save_files -l %{pypi_name} twisted
 
 %check

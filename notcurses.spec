@@ -86,7 +86,8 @@ Python wrappers and a demonstration script for the notcurses library.
  -DCMAKE_POSITION_INDEPENDENT_CODE=ON
 %cmake_build
 cd cffi
-CFLAGS="-I../include -L../" %pyproject_wheel
+export CFLAGS="-I../include -L../"
+%pyproject_wheel
 
 %check
 #ctest -V %{?_smp_mflags}

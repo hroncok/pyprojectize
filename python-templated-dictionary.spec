@@ -44,10 +44,11 @@ Summary: %{summary}
 
 
 %build
-version="%version" %pyproject_wheel
+export version="%version"
+%pyproject_wheel
 
 %install
-version=%version %pyproject_install
+%pyproject_install
 %pyproject_save_files -l templated_dictionary
 
 

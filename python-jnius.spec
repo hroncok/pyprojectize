@@ -64,7 +64,8 @@ BuildArch:      noarch
 
 
 %build
-CC=%{_bindir}/clang %pyproject_wheel
+export CC=%{_bindir}/clang
+%pyproject_wheel
 
 make %{_smp_mflags} -C docs SPHINXBUILD='sphinx-build-3 %{_smp_mflags}' html
 

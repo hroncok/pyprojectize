@@ -50,11 +50,12 @@ to recreate the repository metadata.
 tests/run.sh
 
 %build
-name="%{name}" version="%{version}" summary="%{summary}" %pyproject_wheel
+export name="%{name}" version="%{version}" summary="%{summary}"
+%pyproject_wheel
 a2x -d manpage -f manpage man/prunerepo.1.asciidoc
 
 %install
-name="%{name}" version="%{version}" summary="%{summary}" %pyproject_install
+%pyproject_install
 %pyproject_save_files -l '*'
 
 install -d %{buildroot}%{_mandir}/man1

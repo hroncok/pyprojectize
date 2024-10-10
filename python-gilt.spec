@@ -53,7 +53,8 @@ Gilt is a git layering tool
 %pyproject_buildrequires
 
 %build
-%{setup_flags} %{pyproject_wheel}
+export %{setup_flags}
+%{pyproject_wheel}
 
 # generate html docs
 cd doc
@@ -62,7 +63,7 @@ PYTHONPATH=.. make html
 rm -rf build/html/.{doctrees,buildinfo}
 
 %install
-%{setup_flags} %{pyproject_install}
+%{pyproject_install}
 %pyproject_save_files -l %{srcname}
 
 %files -n python3-%{srcname} -f %{pyproject_files}

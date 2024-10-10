@@ -36,11 +36,12 @@ Provides:       python3-%{modname} = %{version}-%{release}
 
 
 %build
+export CYTHON_COMPILE=1
 %pyproject_wheel -C--global-option=--use-the-force-luke
 
 
 %install
-%pyproject_install
+%{?with_python3:%pyproject_install}
 %pyproject_save_files -l %{modname} _%{modname}
 
 

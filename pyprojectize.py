@@ -140,6 +140,7 @@ def py3_build_to_pyproject_wheel(spec: Specfile, sections: Sections) -> ResultMs
     """
     In the `%build` section, replace `%py3_build` with `%pyproject_wheel`.
     Arguments (if any) are passed to `-C--global-option`.
+    Environment variables (if any) are exported on the previous line.
     """
     if "build" not in sections:
         return Result.ERROR, "no %build section"
@@ -172,13 +173,18 @@ def py3_build_to_pyproject_wheel(spec: Specfile, sections: Sections) -> ResultMs
     def repl(m):
         LB = m["LB"] or ""
         RB = m["RB"] or ""
+        rpmcond = m["rpmcond"] or ""
+        prefix = m["prefix"] or ""
+        if prefix.strip():
+            environment = prefix.rstrip()
+            prefix = f"export {environment}\n"
         if m["arguments"]:
             arguments = shlex_quote_with_macros(m["arguments"], spec=spec)
-            return f"%{LB}pyproject_wheel -C--global-option={arguments}{RB}"
-        return f"%{LB}pyproject_wheel{RB}"
+            return f"{rpmcond}{prefix}%{LB}pyproject_wheel -C--global-option={arguments}{RB}"
+        return f"{rpmcond}{prefix}%{LB}pyproject_wheel{RB}"
 
     newline = re.sub(
-        r"%(?P<LB>{)?\??py3_build(\s+(--\s+)?(?P<arguments>[^}]+))?(?P<RB>})?",
+        r"(?P<rpmcond>%{?[?!]+\S+:)?(?P<prefix>[^;]*\s)?%(?P<LB>{)?\??py3_build(\s+(--\s+)?(?P<arguments>[^}]+))?(?P<RB>})?",
         repl,
         sections.build[index],
     )
@@ -200,7 +206,7 @@ def py3_build_to_pyproject_wheel(spec: Specfile, sections: Sections) -> ResultMs
 def py3_install_to_pyproject_install(spec: Specfile, sections: Sections) -> ResultMsg:
     """
     In the `%install` section, replace `%py3_install` with `%pyproject_install`.
-    Any arguments are discarded. Installing a wheel does not need arguments.
+    Any arguments or environment variables are discarded. Installing a wheel does not need those.
     """
     if "install" not in sections:
         return Result.ERROR, "no %install section"
@@ -231,8 +237,8 @@ def py3_install_to_pyproject_install(spec: Specfile, sections: Sections) -> Resu
         )
 
     newline = re.sub(
-        r"%(?P<LB>{)?\??py3_install(\s[^}]*)?(?P<RB>})?(\s[^}]*)?$",
-        r"%\g<LB>pyproject_install\g<RB>",
+        r"(?P<rpmcond>%{?[?!]+\S+:)?(?P<spaces>\s*)([^;]*\s)?%(?P<LB>{)?\??py3_install(\s[^}]*)?(?P<RB>})?(\s[^}]*)?$",
+        r"\g<rpmcond>\g<spaces>%\g<LB>pyproject_install\g<RB>",
         sections.install[index],
     )
 

@@ -102,12 +102,13 @@ Remove BuildRequires for setuptools, they should be generated.
 
 In the `%build` section, replace `%py3_build` with `%pyproject_wheel`.
 Arguments (if any) are passed to `-C--global-option`.
+Environment variables (if any) are exported on the previous line.
 
 
 ### py3_install_to_pyproject_install
 
 In the `%install` section, replace `%py3_install` with `%pyproject_install`.
-Any arguments are discarded. Installing a wheel does not need arguments.
+Any arguments or environment variables are discarded. Installing a wheel does not need those.
 
 
 ### egginfo_to_distinfo

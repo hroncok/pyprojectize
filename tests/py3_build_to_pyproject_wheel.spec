@@ -39,11 +39,12 @@ rm -rf %{srcname}.egg-info
 
 
 %build
+export CYTHON_COMPILE=1
 %pyproject_wheel -C--global-option=--use-the-force-luke
 
 
 %install
-%py3_install
+%{?with_python3:%py3_install}
 
 
 %check

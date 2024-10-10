@@ -20,7 +20,6 @@ Recommends:     python3-nudatus
 BuildArch:      noarch
 
 # Other tools are using this as a module, so provide also the python3- name
-Provides:       python3-%{name} == %{version}-%{release}
 %py_provides    python3-%{name}
 
 %description

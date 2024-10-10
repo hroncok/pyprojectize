@@ -20,7 +20,6 @@ It's just one file and is implemented using ctypes.
 %package -n python3-fusepy
 Summary: %{summary}
 %py_provides python3-fuse
-Provides: python3-fuse = %{version}-%{release}
 Obsoletes: python3-fuse < 2.0.4-10
 Requires: fuse-libs
 

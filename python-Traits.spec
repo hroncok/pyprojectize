@@ -49,7 +49,6 @@ BuildRequires:  python%{python3_pkgversion}-traitsui
 %endif
 Requires:       python%{python3_pkgversion}-numpy
 Requires:       python%{python3_pkgversion}-six
-Provides:       python%{python3_pkgversion}-%{modname} = %{version}-%{release}
 
 %description -n python%{python3_pkgversion}-%{srcname}
 The traits package developed by Enthought provides a special type

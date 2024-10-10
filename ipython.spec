@@ -91,7 +91,6 @@ Summary:        An enhanced interactive Python shell
 %py_provides    python3-ipython-console
 Provides:       ipython3 = %{version}-%{release}
 Provides:       ipython = %{version}-%{release}
-Provides:       python3-ipython-console = %{version}-%{release}
 Obsoletes:      python3-ipython-console < 5.3.0-1
 Conflicts:      python2-ipython < 7
 
@@ -128,7 +127,6 @@ This package contains the ipython sphinx extension.
 %if %{with check}
 %package -n python3-ipython+test
 Summary:        Tests for %{name}
-Provides:       python3-ipython-tests = %{version}-%{release}
 Obsoletes:      python3-ipython-tests < 8.7.0-2
 %py_provides    python3-ipython-tests
 Requires:       python3-ipykernel

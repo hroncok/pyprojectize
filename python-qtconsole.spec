@@ -26,7 +26,6 @@ Qt-based console for Jupyter with support for rich media output
 %package -n     python3-%{pypi_name}
 Summary:	Jupyter Qt console
 
-Provides:	python3-ipython-gui = %{version}-%{release}
 %py_provides	python3-ipython-gui
 Obsoletes:	python3-ipython-gui < 4
  

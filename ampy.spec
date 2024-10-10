@@ -13,7 +13,6 @@ BuildArch:      noarch
 BuildRequires:  python3-devel
 
 Provides:       adafruit-%{name} = %{version}-%{release}
-Provides:       python3-adafruit-%{name} = %{version}-%{release}
 %py_provides    python3-adafruit-%{name}
 
 

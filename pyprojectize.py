@@ -555,22 +555,20 @@ def remove_python_provide(spec: Specfile, sections: Sections) -> ResultMsg:
     return ret
 
 
-@register
-def remove_python_enable_dependency_generator(
-    spec: Specfile, sections: Sections
+def remove_line(
+    spec: Specfile,
+    sections: Sections,
+    regex: str,
+    msg_not_remvoed: str,
+    msg_removed: str,
 ) -> ResultMsg:
-    """
-    Remove `%python_enable_dependency_generator`, as the generator is enabled by default.
-    """
-    ret = Result.NOT_NEEDED, "no %python_enable_dependency_generator"
-    enable_re = r"\s*%{?\??python_enable_dependency_generator}?\s*$"
-
+    ret = Result.NOT_NEEDED, msg_not_remvoed
     for section in sections:
         del_lines = []
         maxidx = len(section) - 1
         for idx, line in enumerate(section):
-            if match := re.match(enable_re, line):
-                ret = Result.UPDATED, "%python_enable_dependency_generator removed"
+            if match := re.match(regex, line):
+                ret = Result.UPDATED, msg_removed
                 del_lines.append(idx)
                 if (idx == 0 or not section[idx - 1].strip()) and (
                     idx != maxidx and not section[idx + 1].strip()
@@ -580,6 +578,22 @@ def remove_python_enable_dependency_generator(
             del section[idx]
 
     return ret
+
+
+@register
+def remove_python_enable_dependency_generator(
+    spec: Specfile, sections: Sections
+) -> ResultMsg:
+    """
+    Remove `%python_enable_dependency_generator`, as the generator is enabled by default.
+    """
+    return remove_line(
+        spec,
+        sections,
+        r"\s*%{?\??python_enable_dependency_generator}?\s*$",
+        "no %python_enable_dependency_generator",
+        "%python_enable_dependency_generator removed",
+    )
 
 
 @register
@@ -588,24 +602,13 @@ def remove_pyp2rpm_comment(spec: Specfile, sections: Sections) -> ResultMsg:
     Remove the `# Created by pyp2rpm-X.Y.Z` comment.
     The spec file is changed enough for this to no longer matter.
     """
-    ret = Result.NOT_NEEDED, "no # Created by pyp2rpm-X.Y.Z comment"
-    comment_re = r"# Created by pyp2rpm"
-
-    for section in sections:
-        del_lines = []
-        maxidx = len(section) - 1
-        for idx, line in enumerate(section):
-            if match := re.match(comment_re, line):
-                ret = Result.UPDATED, "# Created by pyp2rpm-X.Y.Z comment removed"
-                del_lines.append(idx)
-                if (idx == 0 or not section[idx - 1].strip()) and (
-                    idx != maxidx and not section[idx + 1].strip()
-                ):
-                    del_lines.append(idx + 1)
-        for idx in reversed(del_lines):
-            del section[idx]
-
-    return ret
+    return remove_line(
+        spec,
+        sections,
+        r"# Created by pyp2rpm",
+        "no # Created by pyp2rpm-X.Y.Z comment",
+        "# Created by pyp2rpm-X.Y.Z comment removed",
+    )
 
 
 def specfile_path() -> pathlib.Path | None:

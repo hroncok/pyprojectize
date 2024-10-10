@@ -36,7 +36,7 @@ source = "vcs"
 
 [tool.tox]
 requires = ["tox>=4.21"]
-env_list = ["3.13", "3.12", "type", "doc"]
+env_list = ["3.13", "3.12", "type", "black", "doc"]
 
 [tool.tox.env_run_base]
 description = "run test under {base_python}"
@@ -47,6 +47,11 @@ commands = [["pytest", { replace = "posargs", default = ["-v"], extend = true }]
 description = "run type check on code base"
 deps = ["mypy==1.11.2"]
 commands = [["mypy", "pyprojectize.py"]]
+
+[tool.tox.env.black]
+description = "run black"
+deps = ["black~=24.10"]
+commands = [["black", "."]]
 
 [tool.tox.env.doc]
 description = "regenerate README"

@@ -87,7 +87,7 @@ grep -rl "/usr/bin/env" . | \
 	xargs sed -i -e "\@/usr/bin/env[ ][ ]*python@d"
 
 
-#%%pyproject_wheel
+#%%py3_build
 # separation of build / install --skip-build not supported
 # (separation causes some error for creating additional files
 #  such as desktop file, also installation directory gets wrong)
@@ -102,7 +102,7 @@ popd
 %install
 cp -a %{name}-%{mainver}*/[A-Z]* .
 
-#%%pyproject_install
+#%%py3_install
 cp -a _TMPINSTDIR/python3/* %{buildroot}
 
 # Explicitly set GDK_BACKEND

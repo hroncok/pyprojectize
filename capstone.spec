@@ -203,7 +203,7 @@ pushd bindings/python
 
 %if %{with python3}
 # %%pyproject_wheel
-%py3_build
+%pyproject_wheel
 %endif
 popd
 
@@ -257,7 +257,8 @@ rm -rf %{buildroot}%{python2_sitelib}/capstone/include/capstone
 %endif
 
 %if %{with python3}
-%py3_install
+%pyproject_install
+%pyproject_save_files 'capstone*'
 # %%pyproject_install
 # %%pyproject_save_files capstone
 
@@ -330,8 +331,7 @@ popd
 
 %if %{with python3}
 #%%files -n python%%{python3_pkgversion}-capstone -f %%{pyproject_files}
-%files -n python%{python3_pkgversion}-capstone
-%{python3_sitelib}/capstone*
+%files -n python%{python3_pkgversion}-capstone -f %{pyproject_files}
 %endif
 
 

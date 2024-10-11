@@ -44,7 +44,7 @@ mv com.ubuntu.pkexec.lightdm-gtk-greeter-settings.policy.in com.fedora.pkexec.li
 
 
 %install
-# %%pyproject_install
+# %%py3_install des not work properly here.
 %{__python3} setup.py install --root=$RPM_BUILD_ROOT --optimize=1
 
 # Remove shebang from files

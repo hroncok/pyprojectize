@@ -69,7 +69,7 @@ def add_pyproject_buildrequires(spec: Specfile, sections: Sections) -> ResultMsg
         )
 
     for line in sections.generate_buildrequires:
-        if re.search(r"%({\??)?pyproject_buildrequires\b", line):
+        if re.search(r"(?<!%)%({\??)?pyproject_buildrequires\b", line):
             return (
                 Result.NOT_NEEDED,
                 "%generate_buildrequires already has %pyproject_buildrequires",
@@ -157,7 +157,7 @@ def py3_build_to_pyproject_wheel(spec: Specfile, sections: Sections) -> ResultMs
 
     index = None
     for idx, line in enumerate(sections.build):
-        if re.search(r"%({\??)?pyproject_wheel\b", line):
+        if re.search(r"(?<!%)%({\??)?pyproject_wheel\b", line):
             return (
                 Result.NOT_NEEDED,
                 "%build already has %pyproject_wheel",
@@ -194,7 +194,7 @@ def py3_build_to_pyproject_wheel(spec: Specfile, sections: Sections) -> ResultMs
         return f"{rpmcond}{prefix}%{LB}pyproject_wheel{RB}"
 
     newline = re.sub(
-        r"(?P<rpmcond>%{?[?!]+\S+:)?(?P<prefix>[^;]*\s)?%(?P<LB>{)?\??py3_build(\s+(--\s+)?(?P<arguments>[^}]+))?(?P<RB>})?",
+        r"(?P<rpmcond>%{?[?!]+\S+:)?(?P<prefix>[^;]*\s)?(?<!%)%(?P<LB>{)?\??py3_build(\s+(--\s+)?(?P<arguments>[^}]+))?(?P<RB>})?",
         repl,
         sections.build[index],
     )
@@ -223,12 +223,12 @@ def py3_install_to_pyproject_install(spec: Specfile, sections: Sections) -> Resu
 
     index = None
     for idx, line in enumerate(sections.install):
-        if re.search(r"%({\??)?pyproject_install\b", line):
+        if re.search(r"(?<!%)%({\??)?pyproject_install\b", line):
             return (
                 Result.NOT_NEEDED,
                 "%install already has %pyproject_install",
             )
-        found = re.findall(r"%{?\??py3_install\b", line)
+        found = re.findall(r"(?<!%)%{?\??py3_install\b", line)
         if found:
             if index is not None or len(found) > 1:
                 return Result.ERROR, "multiple %py3_install macros in %install section"
@@ -247,7 +247,7 @@ def py3_install_to_pyproject_install(spec: Specfile, sections: Sections) -> Resu
         )
 
     newline = re.sub(
-        r"(?P<rpmcond>%{?[?!]+\S+:)?(?P<spaces>\s*)([^;]*\s)?%(?P<LB>{)?\??py3_install(\s[^}]*)?(?P<RB>})?(\s[^}]*)?$",
+        r"(?P<rpmcond>%{?[?!]+\S+:)?(?P<spaces>\s*)([^;]*\s)?(?<!%)%(?P<LB>{)?\??py3_install(\s[^}]*)?(?P<RB>})?(\s[^}]*)?$",
         r"\g<rpmcond>\g<spaces>%\g<LB>pyproject_install\g<RB>",
         sections.install[index],
     )
@@ -354,7 +354,7 @@ def add_pyproject_files(spec: Specfile, sections: Sections) -> ResultMsg:
         return Result.ERROR, "no %install section"
 
     sections_options = set()
-    pysite_re = r"^[^#]*%{?python3_site(arch|lib)}?/(?P<topname>[^/\.]*)"
+    pysite_re = r"^[^#]*(?<!%)%{?python3_site(arch|lib)}?/(?P<topname>[^/\.]*)"
     pysite_lines = []
     for section in sections:
         if section.name == "files":
@@ -418,9 +418,9 @@ def add_pyproject_files(spec: Specfile, sections: Sections) -> ResultMsg:
 
     pyproject_install_index = None
     for idx, line in enumerate(sections.install):
-        if re.search(r"%({\??)?pyproject_install\b", line):
+        if re.search(r"(?<!%)%({\??)?pyproject_install\b", line):
             pyproject_install_index = idx
-        elif re.search(r"%({\??)?pyproject_save_files\b", line):
+        elif re.search(r"(?<!%)%({\??)?pyproject_save_files\b", line):
             return (
                 Result.NOT_NEEDED,
                 "%install already uses %pyproject_save_files",
@@ -487,7 +487,7 @@ def update_extras_subpkg(spec: Specfile, sections: Sections) -> ResultMsg:
             for idx, line in enumerate(section):
                 if "%python_extras_subpkg" in line:
                     newline = re.sub(
-                        r"%{\?python_extras_subpkg:%python_extras_subpkg(?P<before>.*)\s+-i\s*\S+(?P<after>\s+.*)}",
+                        r"(?<!%)%{\?python_extras_subpkg:%python_extras_subpkg(?P<before>.*)\s+-i\s*\S+(?P<after>\s+.*)}",
                         r"%pyproject_extras_subpkg\g<before>\g<after>",
                         line,
                     )

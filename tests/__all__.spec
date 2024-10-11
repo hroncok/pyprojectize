@@ -40,6 +40,8 @@ export CYTHON_COMPILE=1
 
 
 %install
+#%%py3_install
+
 %{?with_python3:%pyproject_install}
 %pyproject_save_files -l %{modname} _%{modname}
 

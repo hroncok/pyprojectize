@@ -43,6 +43,8 @@ CYTHON_COMPILE=1 %py3_build -- --use-the-force-luke
 
 
 %install
+#%%py3_install
+
 %{?with_python3:%pyproject_install}
 
 

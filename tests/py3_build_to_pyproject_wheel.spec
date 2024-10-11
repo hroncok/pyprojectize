@@ -44,6 +44,8 @@ export CYTHON_COMPILE=1
 
 
 %install
+#%%py3_install
+
 %{?with_python3:%py3_install}
 
 

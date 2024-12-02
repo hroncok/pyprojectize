@@ -472,6 +472,53 @@ def add_pyproject_files(spec: Specfile, sections: Sections) -> ResultMsg:
 
 
 @register
+def add_pyproject_check_import(spec: Specfile, sections: Sections) -> ResultMsg:
+    """
+    If `%pyproject_save_files` is used in `%install` and `%pyproject_check_import`
+    is not used in `%check`, add `%pyproject_check_import` to the beginning of `%check`
+    (create the section if needed).
+    """
+    if "install" not in sections:
+        return Result.ERROR, "no %install section"
+    for idx, line in enumerate(sections.install):
+        if re.search(r"(?<!%)%({\??)?pyproject_save_files\b", line):
+            break
+    else:
+        return (
+            Result.NOT_IMPLEMENTED,
+            "%install does not use %pyproject_save_files",
+        )
+
+    if "check" not in sections:
+        endlines = 0
+        for line in reversed(sections.install):
+            if line.strip():
+                break
+            endlines += 1
+        pci = ["%pyproject_check_import"] + [""] * endlines
+        check = Section("check", data=pci)
+        index = sections.index(sections.install) + 1
+        sections.insert(index, check)
+        return (
+            Result.UPDATED,
+            "%check with %pyproject_check_import added",
+        )
+
+    for line in sections.check:
+        if re.search(r"(?<!%)%({\??)?pyproject_check_import\b", line):
+            return (
+                Result.NOT_NEEDED,
+                "%check already has %pyproject_check_import",
+            )
+
+    sections.check[:0] = ["%pyproject_check_import", ""]
+    return (
+        Result.UPDATED,
+        "existing %check prepended with %pyproject_check_import",
+    )
+
+
+@register
 def update_extras_subpkg(spec: Specfile, sections: Sections) -> ResultMsg:
     """
     Replace `%python_extras_subpkg -i ...` with `%pyproject_extras_subpkg`,

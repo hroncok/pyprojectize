@@ -35,13 +35,11 @@ positional arguments:
 options:
   -h, --help            show this help message and exit
   -l, --list-modifiers  list all available modifiers and exit
-  -i MODIFIER, --info MODIFIER
-                        display documentation for given modifier
-  -x MODIFIER [MODIFIER ...], --exclude MODIFIER [MODIFIER ...]
+  -i, --info MODIFIER   display documentation for given modifier
+  -x, --exclude MODIFIER [MODIFIER ...]
                         exclude given modifier
-  -o MODIFIER, --only MODIFIER
-                        run only one given modifier
-  -s SOURCEDIR, --sourcedir SOURCEDIR
+  -o, --only MODIFIER   run only one given modifier
+  -s, --sourcedir SOURCEDIR
                         path to the source directory, relevant for %include etc. (default: spec's parent)
 
 If you wish to process multiple specfiles at a time, run this tool via parallel, etc. If you wish to
@@ -55,6 +53,7 @@ $ python pyprojectize.py ampy.spec  # 16a7deeb
 ✅ py3_install_to_pyproject_install: replaced %py3_install with %pyproject_install in %install
 ✅ egginfo_to_distinfo: replaced .egg-info with .dist-info in %files
 ✅ add_pyproject_files: %{python3_sitelib}/%{python3_sitearch} lines replaced with %{pyproject_files}
+✅ add_pyproject_check_import: existing %check prepended with %pyproject_check_import
 👌 update_extras_subpkg: %{?python_extras_subpkg:%python_extras_subpkg ...} not found
 ✅ remove_python_provide: %python_provide removed or replaced with %py_provides
 ✅ remove_python_enable_dependency_generator: %python_enable_dependency_generator removed
@@ -125,6 +124,13 @@ replace the manually listed files with `%pyproject_save_files` and `-f %{pyproje
 
 In case the `%license` files match patterns recognized by setuptools' defaults,
 uses `%pyproject_save_files` with `-l` and removes them.
+
+
+### add_pyproject_check_import
+
+If `%pyproject_save_files` is used in `%install` and `%pyproject_check_import`
+is not used in `%check`, add `%pyproject_check_import` to the beginning of `%check`
+(create the section if needed).
 
 
 ### update_extras_subpkg

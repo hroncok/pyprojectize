@@ -81,6 +81,9 @@ mkdir -p %{buildroot}/%{_jsdir}/json2yaml
 mv %{buildroot}/%{python3_sitelib}/xstatic/pkg/json2yaml/data/json2yaml.js %{buildroot}/%{_jsdir}/json2yaml
 rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/json2yaml/data/
 
+%check
+%pyproject_check_import
+
 %files -n xstatic-json2yaml-common
 %doc README.txt
 %{_jsdir}/json2yaml

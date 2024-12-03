@@ -94,6 +94,9 @@ sed -i -e 's/GROUP="@UBERTOOTH_GROUP@"/ENV{ID_SOFTWARE_RADIO}="1"/g' host/misc/u
   install -Dp -m755 ubertooth-specan-ui %{buildroot}%{_bindir}
 )
 
+%check
+%pyproject_check_import
+
 %post
 %{?ldconfig}
 %udev_rules_update

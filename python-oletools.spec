@@ -331,6 +331,8 @@ mv -f %{srcname}/thirdparty/msoffcrypto/LICENSE.txt msoffcrypto-LICENSE.txt
 
 
 %check
+%pyproject_check_import
+
 %if 0%{?with_python2}
 
 # On Fedora the oleobj test fails with python2 and version 0.54.2b.

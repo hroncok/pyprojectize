@@ -105,6 +105,8 @@ rm doc/_build/html/.buildinfo
 
 
 %check
+%pyproject_check_import
+
 PYTHONPATH=$(pwd) py.test-3 fedmsg
 
 # Remove compiled .py files from config caused by the tests reading the config

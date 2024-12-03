@@ -40,6 +40,9 @@ rm -rf %{name}.egg.info
 mkdir -p %{buildroot}/%{_mandir}/man1
 install -p -m 0644 %{SOURCE1} %{buildroot}/%{_mandir}/man1/
  
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc README.md
 %{!?_licensedir:%global license %%doc}

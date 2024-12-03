@@ -35,6 +35,10 @@ unmodified and rootless.
 sed -i /python3/d %{buildroot}%{python3_sitelib}/podman_compose.py
 
 
+%check
+%pyproject_check_import
+
+
 %files -f %{pyproject_files}
 %doc README.md CONTRIBUTING.md docs/ examples
 %{_bindir}/podman-compose

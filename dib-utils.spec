@@ -35,6 +35,10 @@ diskimage-builder and its dependencies.
 %pyproject_save_files 'dib_utils*'
 
 
+%check
+%pyproject_check_import
+
+
 %files -f %{pyproject_files}
 %doc README.md
 %{_bindir}/dib-run-parts

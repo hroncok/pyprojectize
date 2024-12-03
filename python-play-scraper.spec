@@ -39,6 +39,9 @@ Scrapes and parses application data from Google Play Store.
 #%check
 #%{__python3} setup.py test
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc CHANGELOG.md README.md
 

@@ -47,6 +47,10 @@ eventually think about finding another module to use.
 %pyproject_save_files sgmllib
 
 
+%check
+%pyproject_check_import
+
+
 %files -n  python%{python3_pkgversion}-%{pypi_name} -f %{pyproject_files}
 %doc README
 

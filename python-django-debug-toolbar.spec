@@ -54,6 +54,8 @@ rm -vr *.egg-info/
 %pyproject_save_files -l debug_toolbar
 
 %check
+%pyproject_check_import
+
 # test needs config
 # %{__python3} setup.py test
 

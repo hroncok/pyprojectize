@@ -270,6 +270,8 @@ done
 
 
 %check
+%pyproject_check_import
+
 PYTHONPATH=%{buildroot}%{python3_sitelib}
 export PYTHONPATH
 

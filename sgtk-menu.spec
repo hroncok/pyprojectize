@@ -44,6 +44,10 @@ done
 %pyproject_save_files -l %{sysname}
 
 
+%check
+%pyproject_check_import
+
+
 %files -f %{pyproject_files}
 %doc README.md examples/
 %{_bindir}/%{name}

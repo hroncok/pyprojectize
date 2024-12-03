@@ -39,6 +39,9 @@ rm -rf %{pypi_name}.egg-info
 %pyproject_install
 %pyproject_save_files -l %{pypi_name}
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{sname} -f %{pyproject_files}
 %doc README.rst announce.rst
 %{_bindir}/epi

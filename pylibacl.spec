@@ -44,6 +44,8 @@ Obsoletes: py3libacl < 0.5.4
 %pyproject_save_files -l posix1e
 
 %check
+%pyproject_check_import
+
 # the module is just a C extension => need to add the installed destination to
 # PYTHONPATH, otherwise it won't be found
 export PYTHONPATH=%{buildroot}%{python3_sitearch}:$PYTHONPATH

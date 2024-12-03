@@ -55,6 +55,8 @@ Summary: %{summary}
 #chmod 644 sample.py
 
 %check
+%pyproject_check_import
+
 
 # these variants dont work, even if the first one
 # works just fine when doing a manual install. Dont know why.

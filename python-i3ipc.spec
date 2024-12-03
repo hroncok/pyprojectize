@@ -62,6 +62,8 @@ sed -i '/^#!/d' i3ipc/connection.py
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 %python3 run-tests.py --timeout 20
 %endif
 

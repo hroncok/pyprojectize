@@ -73,6 +73,8 @@ cp %{SOURCE1} ./
 %endif
 
 %check
+%pyproject_check_import
+
 %if %{with enable_tests}
 %if %{with pyproject}
 %tox

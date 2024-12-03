@@ -87,6 +87,8 @@ rm -r tests/test_django
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} --verbose tests
 %endif
 

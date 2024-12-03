@@ -51,6 +51,10 @@ This is the python3 package.
 chmod 755 %{buildroot}%{python3_sitearch}/smartcard/scard/*.so
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python%{python3_pkgversion}-%{name} -f %{pyproject_files}
 %doc ACKS README.md
 %doc smartcard/doc/*

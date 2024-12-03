@@ -53,6 +53,8 @@ rm -rf html/.{doctrees,buildinfo}
 
 %ifarch %{arm} %{arm64}
 %check
+%pyproject_check_import
+
 %pytest -v tests
 %endif
 

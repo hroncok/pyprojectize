@@ -48,6 +48,8 @@ Python 3 version.
 %pyproject_save_files -l '*'
 
 %check
+%pyproject_check_import
+
 python3 -m unittest %{modname}.test
 
 %files -n python3-%{modname} -f %{pyproject_files}

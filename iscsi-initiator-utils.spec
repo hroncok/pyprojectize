@@ -185,6 +185,10 @@ pushd libiscsi
 popd
 
 
+%check
+%pyproject_check_import
+
+
 %post
 %systemd_post iscsi.service iscsi-starter.service iscsid.service iscsid.socket iscsi-onboot.service iscsi-init.service iscsi-shutdown.service
 

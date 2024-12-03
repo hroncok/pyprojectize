@@ -51,6 +51,9 @@ composes.
 sed -i -e 's|#!/usr/bin/env python|#!%{__python3}|' \
    %{buildroot}%{_bindir}/debrepodiff
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
 %{_bindir}/debrepodiff

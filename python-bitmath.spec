@@ -65,6 +65,8 @@ always at 100%.
 
 ######################################################################
 %check
+%pyproject_check_import
+
 # We can't run the progressbar and argparse tests in python3 until
 # progressbar has a python3 package available :(
 #

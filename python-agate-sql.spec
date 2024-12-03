@@ -69,6 +69,8 @@ popd
 
 
 %check
+%pyproject_check_import
+
 # Some tests fails here but they pass on travis. We should check how this environment differs to explain this.
 nosetests-%{python3_version} tests -v -e test_to_sql_create_statement_unique_constraint -e test_to_sql_create_statement
 

@@ -46,6 +46,8 @@ with definitions for the basic TCP/IP protocols.
 %pyproject_save_files -l dpkt
 
 %check
+%pyproject_check_import
+
 # One test, "test_deprecated_decorator" fails, but doesn't appear
 # to test actual functionality.
 %ifarch s390x

@@ -42,6 +42,10 @@ find . -name '*.py' -exec chmod -x '{}' \;
 rm -rf %{buildroot}%{python3_sitelib}/tests
 
 
+%check
+%pyproject_check_import
+
+
 %files -f %{pyproject_files}
 %doc README.md
 %{_bindir}/cinch

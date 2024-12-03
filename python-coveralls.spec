@@ -58,6 +58,9 @@ PYTHONPATH=./ sphinx-build-3 -a -b html ./docs/ ./docs/html/
 %pyproject_save_files -l '*'
 cp %{buildroot}%{_bindir}/coveralls %{buildroot}%{_bindir}/coveralls-py3
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc CHANGELOG.md README.rst
 %{_bindir}/coveralls

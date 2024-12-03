@@ -44,6 +44,9 @@ sed -i 's|curses||' setup.py
 %pyproject_install
 %pyproject_save_files -l smbcmp
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc README.md
 %{_bindir}/%{name}

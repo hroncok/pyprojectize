@@ -60,6 +60,8 @@ rm -r build/html/.buildinfo build/html/.doctrees
 
 
 %check
+%pyproject_check_import
+
 %if 0%{?rhel} == 9
 # pytest 6; no support for pythonpath setting
 sed -i -e '/^minversion/ d' pytest.ini

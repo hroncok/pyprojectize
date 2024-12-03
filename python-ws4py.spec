@@ -49,6 +49,8 @@ Provides:       bundled(utf8validator)
 %doc README.md
 
 %check
+%pyproject_check_import
+
 sed -i 's/^from mock import /from unittest.mock import /' test/test_*.py
 %{python3} -m pytest
 

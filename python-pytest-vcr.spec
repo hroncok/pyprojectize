@@ -47,6 +47,10 @@ rm -rf *.egg-info
 %pyproject_save_files -l %{file_name}
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 

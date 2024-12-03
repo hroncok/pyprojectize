@@ -58,6 +58,10 @@ rm -rf xdot.egg-info
 %pyproject_save_files -l xdot
 
 
+%check
+%pyproject_check_import
+
+
 %files -f %{pyproject_files}
 %doc README.md
 %{_bindir}/xdot

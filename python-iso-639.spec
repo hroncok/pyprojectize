@@ -49,6 +49,8 @@ Summary:        %{summary}
 
 
 %check
+%pyproject_check_import
+
 # Tests mostly check compatibility with the pycountry <= 1.11 library, not
 # available in Fedora
 # PYTHONPATH=$RPM_BUILD_ROOT%%{python3_sitelib}/:$PWD/ %%{__python3} tests/tests.py

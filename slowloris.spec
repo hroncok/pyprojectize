@@ -40,6 +40,9 @@ sed -i -e '/^#!\//, 1d' %{name}.py
 %pyproject_install
 %pyproject_save_files -l %{name}
 
+%check
+%pyproject_check_import
+
 %files
 %{_bindir}/%{name}
 

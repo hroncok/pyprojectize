@@ -173,6 +173,8 @@ for cmd in show-config check-config remove-module add-module add-tag; do
 done
 
 %check
+%pyproject_check_import
+
 # disable unittest due to missing libmodulemd v1 in buildroot
 %if 0%{?with_python3}
 py.test-3

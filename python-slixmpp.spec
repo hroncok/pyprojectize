@@ -102,6 +102,8 @@ chmod 755 %{buildroot}%{python3_sitearch}/%{srcname}/stringprep.cpython-*.so
 
 
 %check
+%pyproject_check_import
+
 # Most of the tests availables are failing: temporary disabled
 
 

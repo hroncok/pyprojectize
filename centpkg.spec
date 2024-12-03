@@ -61,6 +61,8 @@ install -D -p -m 0644 centpkg.1            %{buildroot}%{_mandir}/man1/centpkg.1
 
 
 %check
+%pyproject_check_import
+
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{python3} -m unittest discover --verbose
 
 

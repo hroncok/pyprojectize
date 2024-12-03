@@ -46,6 +46,8 @@ ln -s pyreadelf-3 pyreadelf
 popd
 
 %check
+%pyproject_check_import
+
 %{__python3} test/run_all_unittests.py
 %{__python3} test/run_examples_test.py
 # tests may fail because of differences in output-formatting

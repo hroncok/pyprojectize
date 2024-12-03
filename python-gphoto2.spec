@@ -51,6 +51,9 @@ chmod -x examples/*.py
 # Data files are goining to the wrong location
 rm -rf %{buildroot}%{_datadir}/%{name}
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc CHANGELOG.txt README.rst examples
 

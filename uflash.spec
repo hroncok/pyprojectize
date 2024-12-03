@@ -46,6 +46,8 @@ uflash that will flash Python scripts onto a BBC micro:bit.
 %pyproject_save_files -l 'uflash*'
 
 %check
+%pyproject_check_import
+
 tar -xf %{SOURCE1}
 mv %{name}-%{hash}/tests .
 rm -rf %{name}-%{hash}

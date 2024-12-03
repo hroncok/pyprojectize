@@ -48,6 +48,8 @@ sed -e "s|#!/usr/bin/env python||" -i dkim/{arcsign.py,arcverify.py,dkimsign.py,
 
 %if %{with check}
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 %endif
 

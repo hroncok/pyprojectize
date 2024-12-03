@@ -239,6 +239,8 @@ example_cli_dir=$RPM_BUILD_ROOT%{_datadir}/%{name}/examples/cli
 
 
 %check
+%pyproject_check_import
+
 %if 0%{?with_python2}
 %{__python2} -m nose tests
 %endif

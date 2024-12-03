@@ -59,6 +59,8 @@ IPython/Jupyter should depend on it.
 
 
 %check
+%pyproject_check_import
+
 export LANG=C.UTF-8
 nosetests-%{python3_version} -v
 

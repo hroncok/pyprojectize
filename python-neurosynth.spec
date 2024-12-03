@@ -69,6 +69,8 @@ chmod 0644 neurosynth/tests/data/sgacc_mask.nii.gz
 %pyproject_save_files -l %{pypi_name}
 
 %check
+%pyproject_check_import
+
 %if %{with tests}
 %{__python3} setup.py test
 %endif

@@ -67,6 +67,9 @@ chrpath --delete $RPM_BUILD_ROOT%{python3_sitearch}/berkeleydb/_berkeleydb.cpyth
 
 sed -i /env\ python/d $RPM_BUILD_ROOT%{python3_sitearch}/berkeleydb/dbshelve.py
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %license licenses.txt
 %doc README.txt

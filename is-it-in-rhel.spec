@@ -32,6 +32,10 @@ packaged in RHEL or not.
 %pyproject_save_files -l is_it_in_rhel
 
 
+%check
+%pyproject_check_import
+
+
 %files -f %{pyproject_files}
 %doc README.rst
 %{_bindir}/is-it-in-rhel

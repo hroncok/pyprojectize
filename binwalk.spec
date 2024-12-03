@@ -44,6 +44,8 @@ it is compatible with magic signatures created for the Unix file utility.
 %pyproject_save_files -l %{name}
 
 %check
+%pyproject_check_import
+
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} setup.py test
 
 %files -f %{pyproject_files}

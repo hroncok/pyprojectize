@@ -41,6 +41,8 @@ methods in web applications and in other systems that require users to log in.
 
 
 %check
+%pyproject_check_import
+
 %{__python3} test.py
 
 

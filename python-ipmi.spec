@@ -40,6 +40,8 @@ find . -type f -name "*.py" -exec sed -i '/^#![  ]*\/usr\/bin\/env.*$/ d' {} ';'
 %pyproject_save_files pyipmi
 
 %check
+%pyproject_check_import
+
 export PYTHONPATH=$RPM_BUILD_ROOT/%{python3_sitelib}
 
 %files -n python3-%{srcname} -f %{pyproject_files}

@@ -58,6 +58,9 @@ cp -p %{SOURCE3} .
 %pyproject_install
 %pyproject_save_files -l spec
 
+%check
+%pyproject_check_import
+
 %files -n python3-spec -f %{pyproject_files}
 %{_bindir}/spec
 

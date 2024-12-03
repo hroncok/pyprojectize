@@ -50,6 +50,8 @@ SciToken reference implementation library
 %pyproject_save_files -l %{pypi_name}
 
 %check
+%pyproject_check_import
+
 %if 0%{?rhel} == 7
 export PYTHONPATH="%{buildroot}%{python3_sitelib}"
 (cd tests/ && %{__python3} -m pytest --verbose -ra . --no-network)

@@ -55,6 +55,8 @@ BuildRequires:  python3-testresources
 %pyproject_save_files %{srcname}
 
 %check
+%pyproject_check_import
+
 PYTHON=python3 stestr-3 run
 
 # FIXME: add license files as soon as upstream adds them

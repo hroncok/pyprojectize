@@ -87,6 +87,8 @@ popd
 
 
 %check
+%pyproject_check_import
+
 # test_cast_format_locale fails because some locale are missing is koji env.
 # test_order_by_nulls is weird and should be investigated
 nosetests-%{python3_version} tests -v --exclude=test_cast_format_locale --exclude=test_order_by_nulls

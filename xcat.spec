@@ -37,6 +37,9 @@ sed -i -e "/cchardet/d" setup.py
 %pyproject_install
 %pyproject_save_files %{name}
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc README.md
 # License file was removed: https://github.com/orf/xcat/pull/35

@@ -61,6 +61,11 @@ cp -a xeddsa/* %{buildroot}%{python3_sitearch}/xeddsa/
 
 
 
+%check
+%pyproject_check_import
+
+
+
 %files -n python3-xeddsa -f %{pyproject_files}
 %doc README.md
 # For arch-specific packages: sitearch

@@ -48,6 +48,9 @@ Friedmann-Lemaître-Robertson-Walker metric.
 %pyproject_install
 %pyproject_save_files -l milia
 
+%check
+%pyproject_check_import
+
 %files -n python3-pymilia -f %{pyproject_files}
 %doc README.txt NEWS.txt
 

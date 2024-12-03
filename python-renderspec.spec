@@ -75,6 +75,8 @@ cp %{buildroot}/%{_bindir}/renderspec %{buildroot}/%{_bindir}/renderspec-%{pytho
 ln -s %{_bindir}/renderspec-%{python3_version} %{buildroot}/%{_bindir}/renderspec-3
 
 %check
+%pyproject_check_import
+
 stestr run
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

@@ -403,6 +403,10 @@ find %{buildroot} -name '*.a' -exec rm -f {} ';'
 %endif
 
 
+%check
+%pyproject_check_import
+
+
 %files
 # ======================= files ======================================
 %doc AUTHORS CHANGES README

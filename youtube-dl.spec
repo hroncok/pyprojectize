@@ -58,6 +58,8 @@ install -Dpm644 youtube-dl.zsh %{buildroot}%{_datadir}/zsh/site-functions/_youtu
 install -Dpm644 youtube-dl.fish %{buildroot}%{_datadir}/fish/vendor_functions.d/youtube-dl.fish
 
 %check
+%pyproject_check_import
+
 # This basically cannot work without massive .flake8rc
 # starts with flake8 and of course no contributors bothered to make
 # their code truly PEP8 compliant.

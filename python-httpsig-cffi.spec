@@ -47,6 +47,8 @@ PyPy support.
 rm -rf %{buildroot}%{python3_sitelib}/httpsig_cffi/tests
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 %files -n python3-httpsig-cffi -f %{pyproject_files}

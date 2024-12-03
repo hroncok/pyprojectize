@@ -78,6 +78,8 @@ install -m 644 %{SOURCE3} %{buildroot}/%{_datadir}/appdata/
 
 
 %check
+%pyproject_check_import
+
 appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/%{name}.appdata.xml
 desktop-file-validate %{buildroot}%{_datadir}/applications/gns3*.desktop
 

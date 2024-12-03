@@ -109,6 +109,8 @@ cp -a examples %{buildroot}%{_datadir}/%{srcname}/
 
 
 %check
+%pyproject_check_import
+
 NO_DATABASE=1 OFFLINE_TESTS=1 %{__python3} -m nose \
   -I vectiles_tests.py \
   tests

@@ -98,6 +98,8 @@ pushd python
 popd
 
 %check
+%pyproject_check_import
+
 %ctest
 
 %install

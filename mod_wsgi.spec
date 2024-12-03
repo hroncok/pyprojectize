@@ -136,6 +136,8 @@ ln -s %{_bindir}/mod_wsgi-express-2 $RPM_BUILD_ROOT%{_bindir}/mod_wsgi-express
 %endif
 
 %if %{with python2}
+%check
+%pyproject_check_import
 %files -n python2-%{name}
 %license LICENSE
 %doc CREDITS.rst README.rst

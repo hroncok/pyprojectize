@@ -155,6 +155,8 @@ rm -fv %{buildroot}%{_bindir}/g-lensfun-update-data \
 
 
 %check
+%pyproject_check_import
+
 %if 0%{?tests}
 export CTEST_OUTPUT_ON_FAILURE=1
 %ctest

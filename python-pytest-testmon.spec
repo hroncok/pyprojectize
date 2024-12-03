@@ -44,6 +44,8 @@ This a Python 3 version of the package.
 %pyproject_save_files -l testmon
 
 %check
+%pyproject_check_import
+
 # This project doesn't appear to have tests
 
 %files -n python3-%{pypi_name}  -f %{pyproject_files}

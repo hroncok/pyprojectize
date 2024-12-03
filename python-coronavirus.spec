@@ -35,6 +35,9 @@ rm -rf %{pypi_name}.egg-info
 %pyproject_install
 %pyproject_save_files %{pypi_name}
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 # https://github.com/NabuCasa/coronavirus/pull/10

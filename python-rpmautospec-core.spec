@@ -85,6 +85,8 @@ echo '%{python3_sitelib}/%{srcname}*' > %{pyproject_files}
 %endif
 
 %check
+%pyproject_check_import
+
 %pytest
 
 %files -n python3-%{canonicalname} -f %{pyproject_files}

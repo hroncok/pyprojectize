@@ -52,6 +52,8 @@ Python client for the kubernetes API.
 %pyproject_save_files -l google
 
 %check
+%pyproject_check_import
+
 
 %files -n %{py3}-%{library} -f %{pyproject_files}
 

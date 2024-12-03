@@ -84,6 +84,8 @@ DESTDIR="%{buildroot}" appstream-util install %{name}.appdata.xml
 
 
 %check
+%pyproject_check_import
+
 %if %without python3
 %{__python2} setup.py check
 %else

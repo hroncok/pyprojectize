@@ -51,6 +51,9 @@ need a database connection.
 %pyproject_install
 %pyproject_save_files bottle_sqlite
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc PKG-INFO README.rst
 

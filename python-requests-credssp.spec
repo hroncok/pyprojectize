@@ -65,6 +65,8 @@ to be delegated to a server giving you double hop authentication.
 %pyproject_save_files -l %{srcname}
 
 %check
+%pyproject_check_import
+
 %{pytest} -k "not test_invalid_auth_mechanism"
 
 %files -n python3-%{gh_name} -f %{pyproject_files}

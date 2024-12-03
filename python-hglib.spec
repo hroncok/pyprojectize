@@ -59,6 +59,8 @@ hg.
 %pyproject_save_files -l hglib
 
 %check
+%pyproject_check_import
+
 %if 0%{?with_python2}
 %{__python2} test.py --with-doctest
 %endif

@@ -56,6 +56,10 @@ mkdir -p %{buildroot}%{_sysconfdir}/obsctl
 touch %{buildroot}%{_sysconfdir}/obsctl/obsauth.json
 
 
+%check
+%pyproject_check_import
+
+
 %files -f %{pyproject_files}
 %doc README.md TODO contrib obsauth.json.dist
 %dir %{_sysconfdir}/obsctl

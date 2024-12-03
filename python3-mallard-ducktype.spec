@@ -35,6 +35,8 @@ Parse Ducktype files and convert them to Mallard.
 
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 

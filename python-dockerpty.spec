@@ -70,6 +70,8 @@ Requires:       python%{python3_pkgversion}-six
 # LANG=en_US.utf8 py.test-%%{python2_version} -vv tests
 
 %if %{with python2}
+%check
+%pyproject_check_import
 %files -n python2-%{pkgname}
 %license LICENSE.txt
 %doc README.md MANIFEST.in

@@ -115,6 +115,9 @@ rm -rf %{buildroot}%{_docdir}/libaubio-doc
 # Remove shebang from python files
 sed -i -e '/^#![[:blank:]]*\//, 1d' %{buildroot}%{python3_sitearch}/%{name}/*.py
 
+%check
+%pyproject_check_import
+
 %files
 %license COPYING
 %doc AUTHORS ChangeLog README.md

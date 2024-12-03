@@ -51,6 +51,8 @@ BuildRequires:	python3-Cython
 
 
 %check
+%pyproject_check_import
+
 %python3 setup.py test
 
 

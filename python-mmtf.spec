@@ -60,6 +60,8 @@ Requires: python3-msgpack
 
 %if %{with check}
 %check
+%pyproject_check_import
+
 %pytest mmtf/tests/codec_tests.py
 %endif
 

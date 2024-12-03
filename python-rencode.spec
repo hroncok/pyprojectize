@@ -64,6 +64,8 @@ rm -f ./rencode/rencode.c
 
 
 %check
+%pyproject_check_import
+
 pushd tests
 PYTHONPATH=$RPM_BUILD_ROOT%{python3_sitearch} %{__python3} test_rencode.py
 PYTHONPATH=$RPM_BUILD_ROOT%{python3_sitearch} %{__python3} timetest.py

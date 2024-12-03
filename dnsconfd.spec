@@ -113,6 +113,9 @@ install -m 0644 -p distribution/dnsconfd.conf.5 %{buildroot}/%{_mandir}/man5/dns
 
 install -p -D -m 0644 distribution/dnsconfd.sysusers %{buildroot}%{_sysusersdir}/dnsconfd.conf
 
+%check
+%pyproject_check_import
+
 %pre selinux
 %selinux_relabel_pre -s %{selinuxtype}
 

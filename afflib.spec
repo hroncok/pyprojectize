@@ -174,6 +174,10 @@ cd pyaff
 %ldconfig_scriptlets
 
 
+%check
+%pyproject_check_import
+
+
 %files
 %doc AUTHORS BUGLIST.txt ChangeLog NEWS README
 %doc doc/announce_2.2.txt

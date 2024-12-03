@@ -62,6 +62,10 @@ install -p -m 644 dist/solarwolf.png \
   $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/64x64/apps
 
 
+%check
+%pyproject_check_import
+
+
 %files -f %{pyproject_files}
 %{_bindir}/solarwolf
 #%{_datadir}/solarwolf/

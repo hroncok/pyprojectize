@@ -182,6 +182,8 @@ rm -rf $RPM_BUILD_ROOT%{python3_sitearch}/pyNN/nest/extensions/redhat-linux-buil
 rm -rf $RPM_BUILD_ROOT%{python3_sitearch}/pyNN/nest/_build
 
 %check
+%pyproject_check_import
+
 # skip pyNN.nest because it looks for nest extensions outside the buildroot
 %py3_check_import pyNN pyNN.neuron pyNN.brian2
 

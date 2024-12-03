@@ -90,6 +90,8 @@ desktop-file-install                                    \
 
 
 %check
+%pyproject_check_import
+
 appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/org.electroncash.ElectronCash.appdata.xml
 
 %files -f %{pyproject_files}

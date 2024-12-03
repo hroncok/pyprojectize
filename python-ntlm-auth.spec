@@ -46,6 +46,8 @@ Provides:       python3-ntlm3 = %{version}-%{release}
 %pyproject_save_files -l ntlm_auth
 
 %check
+%pyproject_check_import
+
 # see https://github.com/jborean93/ntlm-auth/issues/22
 cat > openssl.cnf << EOF
 openssl_conf = openssl_init

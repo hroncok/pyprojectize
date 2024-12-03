@@ -191,6 +191,8 @@ find %{buildroot}%{python3_sitearch}/PyMca5 -type f -name '*.py' \
      -exec touch -r setup.py {} +
 
 %check
+%pyproject_check_import
+
 PYTHONPATH=%{buildroot}%{python3_sitearch} \
 PYMCA_DATA_DIR=%{buildroot}/usr/share/PyMca \
 PYMCA_DOC_DIR=%{buildroot}/usr/share/doc/PyMca \

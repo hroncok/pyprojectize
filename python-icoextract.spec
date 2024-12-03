@@ -86,6 +86,8 @@ popd
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 pushd tests
 make
 %{python3} test_extract.py

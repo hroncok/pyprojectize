@@ -36,6 +36,9 @@ A set of third-party serializers for Betamax.
 %pyproject_install
 %pyproject_save_files -l betamax_serializers
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc AUTHORS.rst HISTORY.rst README.rst
 

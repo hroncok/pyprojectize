@@ -48,6 +48,10 @@ This package provides the Python 3 build of %{name}.
 %pyproject_save_files -l '*'
 
  
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{name} -f %{pyproject_files}
 %doc README.md examples/*
 

@@ -148,6 +148,8 @@ PYTHONPATH=%{buildroot}/%{python3_sitelib} sphinx-build docs/ html
 %endif
 
 %check
+%pyproject_check_import
+
 #epel is missing deps for checks
 %if 0%{?fedora}
 #python3-pytest-pep8 seems to be missing in F32 at the moment

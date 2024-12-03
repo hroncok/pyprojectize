@@ -35,6 +35,9 @@ Parse and format link headers according to RFC 5988 "Web Linking".
 %pyproject_install
 %pyproject_save_files link_header
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 
 %changelog

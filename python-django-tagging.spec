@@ -46,6 +46,10 @@ simple.
 %pyproject_save_files tagging
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-django-tagging -f %{pyproject_files}
 %doc CHANGELOG.txt LICENSE.txt README.rst docs/*
 

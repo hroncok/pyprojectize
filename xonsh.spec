@@ -82,6 +82,8 @@ sed --in-place "s:#!\s*/usr.*::" xonsh/xoreutils/_which.py xonsh/webconfig/main.
 %pyproject_save_files xompletions xonsh xontrib
 
 %check
+%pyproject_check_import
+
 # Altering PYTHONPATH makes the tests importable.
 %global __pytest PYTHONPATH="$PYTHONPATH:$(pwd)" %{python3} -m xonsh run-tests.xsh test --
 # TODO: broken tests

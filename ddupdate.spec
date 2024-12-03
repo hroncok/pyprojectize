@@ -76,6 +76,10 @@ export FINAL_PREFIX=/
 %py_byte_compile %{__python3} %{buildroot}%{_datadir}/ddupdate/plugins
 
 
+%check
+%pyproject_check_import
+
+
 %files -f %{pyproject_files}
 %doc README.md NEWS CONTRIBUTE.md CONFIGURATION.md
 %{_bindir}/ddupdate

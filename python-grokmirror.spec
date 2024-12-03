@@ -49,6 +49,10 @@ Requires:       python3-GitPython, python3-anyjson, python3-setuptools, python3-
 %{__install} -m 0644 man/*.1 %{buildroot}/%{_mandir}/man1/
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-grokmirror -f %{pyproject_files}
 %doc README.rst CHANGELOG.rst
 %{_bindir}/grok-*

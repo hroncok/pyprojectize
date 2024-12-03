@@ -70,6 +70,8 @@ fi
 %pyproject_save_files -l M2Crypto
 
 %check
+%pyproject_check_import
+
 # FIXME: Make the tests pass on RHEL 9 again...
 PYTHONPATH=%{buildroot}%{python3_sitearch} %{__python3} -munittest discover -v tests/ %{?rhel: || :}
 

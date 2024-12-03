@@ -41,6 +41,9 @@ communication over different link types. Transport for a UDP socket is provided.
 %pyproject_install
 %pyproject_save_files -l piccata transport
 
+%check
+%pyproject_check_import
+
 %files -n python3-piccata -f %{pyproject_files}
 %doc README.md
 

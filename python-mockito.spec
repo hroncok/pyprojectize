@@ -29,6 +29,8 @@ This spying framework allows to easily create mocks with a very readable syntax.
 %{pyproject_wheel}
 
 %check
+%pyproject_check_import
+
 %pytest
 
 %install

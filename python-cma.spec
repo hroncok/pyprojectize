@@ -42,6 +42,9 @@ sed -i '1d' cma/{bbobbenchmarks.py,purecma.py,test.py}
 %pyproject_install
 %pyproject_save_files -l cma
 
+%check
+%pyproject_check_import
+
 %files -n python3-cma -f %{pyproject_files}
 %doc README.txt
 

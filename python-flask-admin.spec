@@ -65,6 +65,8 @@ rm flask_admin/translations/README.md
 %pyproject_save_files -l flask_admin
 
 %check
+%pyproject_check_import
+
 # Tests are not included as they require mongod running
 
 

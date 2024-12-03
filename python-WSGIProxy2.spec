@@ -39,6 +39,9 @@ Python 3 version.
 %pyproject_install
 %pyproject_save_files %{package_name}
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README_fixt.py README.rst
 

@@ -72,6 +72,8 @@ rm Makefile
 chmod a-x examples/*.py
 
 %check
+%pyproject_check_import
+
 # Note - tests fail on big-endian, see https://github.com/python-xlib/python-xlib/issues/76
 cp %SOURCE1 .
 if [ -x /usr/libexec/Xorg ]; then

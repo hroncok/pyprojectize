@@ -52,6 +52,8 @@ Summary:        %{summary}
 %pyproject_save_files -l evdev
 
 #------------------------------------------------------------------------------
+%check
+%pyproject_check_import
 %files -n python3-evdev -f %{pyproject_files}
 %doc README.rst
 

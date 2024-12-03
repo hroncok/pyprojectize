@@ -71,6 +71,8 @@ grep -B1000 "POSSIBILITY OF SUCH DAMAGE" README.md > LICENSE
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 pushd test
   ./cleanup.sh
   %{__python3} testlex.py

@@ -52,6 +52,10 @@ Sphinx domain for CMake.
 %pyproject_save_files catkin_sphinx
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %doc README.md
 

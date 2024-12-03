@@ -105,6 +105,8 @@ rm -rf  %{buildroot}/%{python3_sitelib}/lector/resources/raw/
 
 
 %check
+%pyproject_check_import
+
 desktop-file-validate %{buildroot}/%{_datadir}/applications/io.github.BasioMeusPuga.Lector.desktop
 appstream-util validate-relax --nonet %{buildroot}/%{_metainfodir}/io.github.BasioMeusPuga.Lector.metainfo.xml
 

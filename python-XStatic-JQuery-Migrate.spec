@@ -73,6 +73,9 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/jquery_migrate/data/
 # fix execute flags for js
 chmod 644 %{buildroot}%{_jsdir}/jquery_migrate/*.js
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
 %{python3_sitelib}/XStatic_JQuery_Migrate-%{version}-py%{python3_version}-nspkg.pth

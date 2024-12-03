@@ -235,6 +235,8 @@ install -p -m 0644 tools/solver-dnf.json %{buildroot}%{pkgdir}/solver.json
 %endif
 
 %check
+%pyproject_check_import
+
 exit 0
 # We have some integration tests, but those require running a VM, so that would
 # be an overkill for RPM check script.

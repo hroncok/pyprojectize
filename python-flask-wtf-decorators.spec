@@ -54,6 +54,8 @@ To do this you should provide a callback for error_handler.
 
 
 %check
+%pyproject_check_import
+
 %{python3} setup.py test
 
 

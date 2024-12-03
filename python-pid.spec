@@ -95,6 +95,8 @@ rm -rf %{srcname}.egg-info
 %endif
 
 %check
+%pyproject_check_import
+
 %if %{with python2_tests}
 PYTHONPATH=%{buildroot}%{python2_sitelib} nosetests-%{python2_version} --verbose
 %endif

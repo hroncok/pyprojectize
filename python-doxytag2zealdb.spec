@@ -67,6 +67,10 @@ chmod +x %{buildroot}%{python3_sitelib}/%{shortname}/doxytag2zealdb.py
 %py3_shebang_fix %{buildroot}%{python3_sitelib}/%{shortname}/doxytag2zealdb.py
 
 
+%check
+%pyproject_check_import
+
+
 %files -n %{shortname}
 %license COPYING
 %doc CONTRIBUTORS

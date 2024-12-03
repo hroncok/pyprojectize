@@ -44,6 +44,9 @@ networking.
 %pyproject_install
 %pyproject_save_files -l %{name}
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{name} -f %{pyproject_files}
 %doc CHANGES.txt README.md THANKS.txt TODO.txt examples/ docs/
 

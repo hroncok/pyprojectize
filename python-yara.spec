@@ -118,6 +118,8 @@ Summary:        Python2 binding for the YARA pattern matching tool
 
 #====================================================================
 %check
+%pyproject_check_import
+
 # testModuleData is always failing for architecture armv7hl
 # Remove once Fedora 36 is EOL
 %ifarch armv7hl

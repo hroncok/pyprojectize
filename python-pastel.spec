@@ -62,6 +62,8 @@ Summary:        %{summary}
 
 
 %check
+%pyproject_check_import
+
 PYTHONPATH=. pytest tests
 
 

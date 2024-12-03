@@ -49,6 +49,10 @@ Python bindings for the snappy compression library from Google.
 %pyproject_save_files -l snappy
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-snappy -f %{pyproject_files}
 %doc README.rst AUTHORS
 

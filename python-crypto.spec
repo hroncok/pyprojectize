@@ -133,6 +133,8 @@ rm -rf src/libtom
 find %{buildroot}%{python3_sitearch} -name '*.so' -exec chmod -c g-w {} \;
 
 %check
+%pyproject_check_import
+
 # Main test suite
 %{py3_test_envvars} %{python3} lib/Crypto/SelfTest/__init__.py
 

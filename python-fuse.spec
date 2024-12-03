@@ -40,6 +40,9 @@ It's just one file and is implemented using ctypes.
 %pyproject_install
 %pyproject_save_files fuse
 
+%check
+%pyproject_check_import
+
 %files -n python3-fusepy -f %{pyproject_files}
 %doc README.rst
 

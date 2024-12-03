@@ -78,6 +78,8 @@ Requires:       %{name}-conf = %{version}-%{release}
 %pyproject_save_files -l '*'
 
 %check
+%pyproject_check_import
+
 # testing requires complete composes available locally, which no buildsystem
 # would ever want included in a build root
 #{__python2} setup.py test

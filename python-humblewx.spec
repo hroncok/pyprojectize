@@ -36,6 +36,9 @@ Library that simplifies creating user interfaces with wxPython.
 %pyproject_install
 %pyproject_save_files -l '%{srcname}*'
 
+%check
+%pyproject_check_import
+
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %doc README.rst AUTHORS
 

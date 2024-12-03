@@ -79,6 +79,10 @@ mv %{buildroot}/%{python3_sitelib}/xstatic/pkg/js_yaml/data/js-yaml.js %{buildro
 rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/js_yaml/data/
 
 
+%check
+%pyproject_check_import
+
+
 %files -n xstatic-js-yaml-common
 %doc README.txt
 %{_jsdir}/js_yaml

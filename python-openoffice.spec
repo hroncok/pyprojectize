@@ -49,6 +49,9 @@ sed -i -e '1d' %{module}/interact.py
 %pyproject_install
 %pyproject_save_files -l '*'
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{module} -f %{pyproject_files}
 %doc README sample-scripts
 

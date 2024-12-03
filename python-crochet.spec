@@ -71,6 +71,8 @@ rm docs/_build/html/.buildinfo
 
 
 %check
+%pyproject_check_import
+
 %{__python3} -m unittest discover -v crochet.tests
 
 

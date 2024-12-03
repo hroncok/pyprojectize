@@ -47,6 +47,8 @@ Summary:        %{summary}
 
 
 %check
+%pyproject_check_import
+
 %py3_check_import crc32c
 
 %if %{with tests}

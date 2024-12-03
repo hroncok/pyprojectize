@@ -32,6 +32,9 @@ install -p -m644 man/en/rig.1 ${RPM_BUILD_ROOT}%{_mandir}/man1/
 %pyproject_install
 %pyproject_save_files -l rigging
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %{_bindir}/rig
 %{_mandir}/man1/*

@@ -74,6 +74,9 @@ install -pm 644 ../debian/radexreader.fr.1 %{buildroot}%{_mandir}/fr/man1/radexr
 mkdir -p %{buildroot}/lib/udev/rules.d/
 install -pm 644 ../debian/udev %{buildroot}/lib/udev/rules.d/60-%{name}.rules
 
+%check
+%pyproject_check_import
+
 %files -n python3-radexreader -f %{pyproject_files}
 %doc README.md
 %{_bindir}/radexreader

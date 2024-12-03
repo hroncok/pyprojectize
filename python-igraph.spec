@@ -60,6 +60,9 @@ documentation needed to develop application with %{name}.
 %pyproject_install
 %pyproject_save_files -l igraph
 
+%check
+%pyproject_check_import
+
 %files -n python3-igraph -f %{pyproject_files}
 %{_bindir}/igraph
 

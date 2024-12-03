@@ -87,6 +87,9 @@ Requires:           geoip-geolite
 #%%check
 #PYTHONPATH=$(pwd) nosetests-3
 
+%check
+%pyproject_check_import
+
 %files -n python3-pygeoip -f %{pyproject_files}
 %doc README.md COPYING DEVELOPER INSTALL apidocs/
 

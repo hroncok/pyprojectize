@@ -54,6 +54,8 @@ BuildArch: noarch
 
 %if %{with check}
 %check
+%pyproject_check_import
+
 PYTHONDONTWRITEBYTECODE=1 \
 PATH=%{buildroot}/usr/bin:${PATH} \
 PYTHONPATH=%{buildroot}%{python3_sitearch}:%{buildroot}%{python3_sitelib} \

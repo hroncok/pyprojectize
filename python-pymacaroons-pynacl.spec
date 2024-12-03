@@ -70,6 +70,10 @@ rm docs/_build/html/.buildinfo
 # nosetests-3
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{pkgname} -f %{pyproject_files}
 %doc README.md
 

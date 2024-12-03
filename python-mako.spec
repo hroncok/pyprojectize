@@ -68,6 +68,8 @@ ln -s ./mako-render-%{python3_version} %{buildroot}/%{_bindir}/mako-render
 
 
 %check
+%pyproject_check_import
+
 pytest-3
 
 

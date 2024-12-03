@@ -62,6 +62,8 @@ Python 3 libraries supporting tools for working with composes
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 %pytest
 %endif
 

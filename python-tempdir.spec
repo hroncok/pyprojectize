@@ -41,6 +41,9 @@ rm -r tempdir.egg-info
 %pyproject_install
 %pyproject_save_files tempdir
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pname} -f %{pyproject_files}
 %license docs/license.rst
 %doc docs/use.rst

@@ -49,6 +49,8 @@ POFile, MOFile, POEntry and MOEntry for creating new files/entries.
 %pyproject_save_files -l '*'
 
 %check
+%pyproject_check_import
+
 %{__python3} tests/tests.py
 
 %files -n python3-%{srcname} -f %{pyproject_files}

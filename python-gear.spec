@@ -55,6 +55,8 @@ Summary: %summary
 %pyproject_save_files -l %{srcname}
 
 %check
+%pyproject_check_import
+
 PYTHON=%{__python3} testr init
 PYTHON=%{__python3} testr run
 

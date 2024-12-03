@@ -41,6 +41,8 @@ rm -rf %{srcname}.egg-info
 %pyproject_save_files -l pbkdf2
 
 %check
+%pyproject_check_import
+
 %{python3} -m unittest test/*
 
 %files -n python3-%{srcname} -f %{pyproject_files}

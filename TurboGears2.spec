@@ -87,6 +87,9 @@ rm -fr %{buildroot}%{python3_sitelib}/tests
 #%check
 #PYTHONPATH=$(pwd) %{__python3} setup.py test
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{name} -f %{pyproject_files}
 %doc README.rst
 

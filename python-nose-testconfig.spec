@@ -70,6 +70,9 @@ cp %{SOURCE1} .
 %pyproject_install
 %pyproject_save_files -l testconfig
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc ACKS TODO docs/index.txt
 

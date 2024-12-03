@@ -53,6 +53,8 @@ sed -i '/fileio\/tests\/data\//d' setup.py
 %pyproject_save_files -l '*'
 
 %check
+%pyproject_check_import
+
 
 pushd nmrglue/fileio/tests
 

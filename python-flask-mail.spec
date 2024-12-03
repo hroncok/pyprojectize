@@ -41,6 +41,10 @@ A Flask extension for sending email messages.
 %pyproject_save_files -l flask_mail
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{pkg_name} -f %{pyproject_files}
 %doc README.rst
 

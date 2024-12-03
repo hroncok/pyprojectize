@@ -52,6 +52,8 @@ This library provides a bridge from Glyphs source files (.glyphs) to UFOs
 # Skipping check for now due to missing dependencies
 %if 0%{?with_check}
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 %endif
 

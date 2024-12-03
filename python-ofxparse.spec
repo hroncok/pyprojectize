@@ -47,6 +47,8 @@ accounts also provide account statements in OFX files.
 %pyproject_save_files -l %{upstream_name}
 
 %check
+%pyproject_check_import
+
 %pytest
 
 %files -n python3-%{upstream_name} -f %{pyproject_files}

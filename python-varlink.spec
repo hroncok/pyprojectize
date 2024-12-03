@@ -39,6 +39,8 @@ export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 %pyproject_wheel
 
 %check
+%pyproject_check_import
+
 export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 CFLAGS="%{optflags}" %{__python3} %{py_setup} %{?py_setup_args} check
 

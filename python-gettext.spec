@@ -38,6 +38,9 @@ for the newer msgctxt keyword.
 %pyproject_install
 %pyproject_save_files -l pythongettext
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{module} -f %{pyproject_files}
 %doc CHANGES.rst README.rst
 

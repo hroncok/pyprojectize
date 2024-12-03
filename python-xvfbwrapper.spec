@@ -54,6 +54,8 @@ sed -i '1{\@^#!/usr/bin/env python@d}' xvfbwrapper.py
 %pyproject_save_files %{pypi_name}
 
 %check
+%pyproject_check_import
+
 export DISPLAY=:0.0
 
 

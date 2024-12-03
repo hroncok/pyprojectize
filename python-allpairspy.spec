@@ -44,6 +44,8 @@ install -m 644 %{SOURCE1} .
 %pyproject_save_files -l allpairspy
 
 %check
+%pyproject_check_import
+
 %{pytest}
 
 

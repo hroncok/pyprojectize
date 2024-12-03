@@ -61,6 +61,10 @@ mv %{buildroot}%{_bindir}/testr{,-%{python3_version}}
 ln -s ./testr-%{python3_version} %{buildroot}%{_bindir}/testr
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt Apache-2.0
 %{_bindir}/testr

@@ -43,6 +43,9 @@ sed -i -e '/^#!\//, 1d' metrics2mqtt/base.py
 %pyproject_install
 %pyproject_save_files -l %{pypi_name}
 
+%check
+%pyproject_check_import
+
 %files
 %{_bindir}/%{pypi_name}
 

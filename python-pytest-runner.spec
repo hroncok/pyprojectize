@@ -43,6 +43,8 @@ Python 3 version.
 %pyproject_save_files -l ptr
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 %files -n python3-%{modulename} -f %{pyproject_files}

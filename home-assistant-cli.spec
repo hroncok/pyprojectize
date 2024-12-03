@@ -52,6 +52,8 @@ sed -i "/>=0.3.2,<0.4/d" setup.py
 %pyproject_save_files -l homeassistant_cli
 
 %check
+%pyproject_check_import
+
 PYTHONPATH=%{buildroot}/%{python3_sitelib}/ pytest-%{python3_version} -v tests \
   -k "not test_commands_loads[template]"
 

@@ -34,6 +34,9 @@ space via the spidev linux kernel driver.
 %pyproject_install
 %pyproject_save_files -l 'spidev*'
 
+%check
+%pyproject_check_import
+
 %files -n python3-spidev -f %{pyproject_files}
 
 %changelog

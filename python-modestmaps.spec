@@ -48,6 +48,9 @@ additional functionality.
 %pyproject_install
 %pyproject_save_files %{srcname}
 
+%check
+%pyproject_check_import
+
 %files -n python%{python3_pkgversion}-%{pkgname} -f %{pyproject_files}
 %doc CHANGELOG
 

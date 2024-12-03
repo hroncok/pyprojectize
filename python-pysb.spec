@@ -102,6 +102,9 @@ rm doc/_build/html/.buildinfo
 chmod +x %{buildroot}/%{python3_sitelib}/pysb/examples/run_*.py
 chmod +x %{buildroot}/%{python3_sitelib}/pysb/tools/[a-z]*.py
 
+%check
+%pyproject_check_import
+
 %files -n python3-pysb -f %{pyproject_files}
 %doc README.rst
 %{_bindir}/pysb_export

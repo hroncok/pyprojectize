@@ -68,6 +68,8 @@ ln -vsf %{_jsdir}/jquery/latest/jquery.min.js %{buildroot}%{_pkgdocdir}/html/_st
 rm %{buildroot}%{python3_sitelib}/sphinxcontrib_programoutput-*-nspkg.pth
 
 %check
+%pyproject_check_import
+
 OPTIONS=(
   # Those two fail because of some warnign:
   # > assert 'Unexpected return code 1 from command' in excinfo.exception.args[0]

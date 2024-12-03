@@ -67,6 +67,8 @@ rm -rf %{eggname}.egg-info
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 %pytest --verbose
 %endif
 

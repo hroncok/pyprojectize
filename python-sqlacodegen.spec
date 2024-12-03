@@ -54,6 +54,9 @@ Python 3 version.
 #check
 # Requires multiple DBs to be running
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{modname} -f %{pyproject_files}
 %doc README.rst CHANGES.rst
 %{_bindir}/%{modname}

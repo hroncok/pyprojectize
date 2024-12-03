@@ -95,6 +95,8 @@ rm -fr %{buildroot}%{_docdir}/%{name}
 
 %{?_with_tests:
 %check
+%pyproject_check_import
+
 %{python3} -m pytest -v
 }
 

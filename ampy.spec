@@ -51,6 +51,8 @@ sed -i '1d' $(grep -lr '#!/usr/')
 
 
 %check
+%pyproject_check_import
+
 %{__python3} -m unittest tests/test_*.py -v
 
 

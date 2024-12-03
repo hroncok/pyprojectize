@@ -58,6 +58,10 @@ sed -i -e '/^#!\//, 1d' %{srcname}/__main__.py
 %pyproject_save_files %{srcname}
 
 
+%check
+%pyproject_check_import
+
+
 %files -n %{srcname}
 %{_bindir}/glad
 

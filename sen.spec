@@ -62,6 +62,8 @@ sed -i 1d sen/cli.py
 %pyproject_save_files -l '*'
 
 %check
+%pyproject_check_import
+
 %if %{with tests}
 py.test-%{python3_version} -vv tests || :
 %endif  # tests

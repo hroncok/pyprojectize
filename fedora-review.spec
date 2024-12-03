@@ -134,6 +134,8 @@ cp -a pycodestyle.conf pylint.conf "%{buildroot}%{_datadir}/%{name}"
 
 
 %check
+%pyproject_check_import
+
 %if %{with tests}
 cd test
 export REVIEW_LOGLEVEL=warning

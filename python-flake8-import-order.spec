@@ -53,6 +53,8 @@ rm tests/test_pylama_linter.py
 
 
 %check
+%pyproject_check_import
+
 %if ! %{with pylama}
 mv flake8_import_order/pylama_linter.py flake8_import_order/pylama_linter.NOT
 %endif

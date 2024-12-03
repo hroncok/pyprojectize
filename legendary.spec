@@ -46,6 +46,10 @@ done
 %pyproject_save_files -l %{name}
 
 
+%check
+%pyproject_check_import
+
+
 %files -f %{pyproject_files}
 %doc README.md
 %{_bindir}/%{name}

@@ -38,6 +38,8 @@ rm MANIFEST.in
 %pyproject_save_files -l mopidy_mpd
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 %files -f %{pyproject_files}

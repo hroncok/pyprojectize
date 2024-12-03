@@ -49,6 +49,8 @@ applications via a simple object model and in a human-friendly fashion.
 sed -i -e '1{\@^#!/usr/bin/env python@d}' %{buildroot}%{python3_sitelib}/%{pypi_name}/*.py
 
 %check
+%pyproject_check_import
+
 %if %{with_tests}
 %{__python3} setup.py test
 %endif

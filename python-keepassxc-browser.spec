@@ -38,6 +38,9 @@ Summary:        %{summary}
 %pyproject_install
 %pyproject_save_files -l keepassxc_browser
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 

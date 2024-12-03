@@ -39,6 +39,9 @@ done
 %pyproject_install
 %pyproject_save_files pdftools
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc README.txt
 %{_bindir}/%{name}

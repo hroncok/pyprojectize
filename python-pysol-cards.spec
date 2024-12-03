@@ -42,6 +42,9 @@ sed -i '/^#! \/usr\/bin\/env python$/d' pysol_cards/*.py
 %pyproject_save_files -l pysol_cards
 rm -rf %{buildroot}/%{_bindir}
 
+%check
+%pyproject_check_import
+
 %files -n python%{python3_pkgversion}-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 

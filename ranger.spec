@@ -41,6 +41,10 @@ mv %{buildroot}%{_pkgdocdir} _doc
 find _doc -type f -exec chmod -R -x '{}' \;
 
 
+%check
+%pyproject_check_import
+
+
 %files -f %{pyproject_files}
 %doc _doc/*
 %{_bindir}/ranger

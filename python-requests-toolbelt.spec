@@ -53,6 +53,8 @@ sed -i -E -e 's/^(\s*)import mock/\1from unittest import mock/' \
 %pyproject_save_files -l %{altname}
 
 %check
+%pyproject_check_import
+
 # Some tests are disabled due to compatibility issues with Python 3.10, once it is fixed it
 # can be enabled again.
 # Downstream issue: https://bugzilla.redhat.com/show_bug.cgi?id=1926358

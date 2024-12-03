@@ -132,6 +132,8 @@ install -p -m 644 ./docs/source/mayavi/images/mayavi2-48x48.png \
  $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/48x48/apps/mayavi2.png
 
 %check
+%pyproject_check_import
+
 # This isn't working yet
 #libdir=`echo build/lib.*`
 #ln tvtk/tvtk_classes.zip ${libdir}/tvtk/

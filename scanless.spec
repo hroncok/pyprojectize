@@ -39,6 +39,9 @@ rm -rf %{pypi_name}.egg-info
 %pyproject_install
 %pyproject_save_files %{pypi_name}
 
+%check
+%pyproject_check_import
+
 %files -n %{pypi_name}
 %{_bindir}/%{pypi_name}
 

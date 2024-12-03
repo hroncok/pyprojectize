@@ -46,6 +46,8 @@ This small package is a Python3 wrapper around the MediaInfo library.
 
 
 %check
+%pyproject_check_import
+
 export LC_ALL=C.UTF-8
 PYTEST_ADDOPTS='-k "not test_parse_url"' %{__python3} setup.py test
 

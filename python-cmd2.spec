@@ -59,6 +59,9 @@ Requires:         /usr/bin/which
 %pyproject_install
 %pyproject_save_files -l cmd2
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc CHANGELOG.md README.md docs
 

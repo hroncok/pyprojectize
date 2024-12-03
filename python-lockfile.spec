@@ -74,6 +74,8 @@ rm -rf html/.{doctrees,buildinfo}
 
 
 %check
+%pyproject_check_import
+
 %if %{with tests}
 %pytest
 %endif

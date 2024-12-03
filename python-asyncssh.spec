@@ -73,6 +73,8 @@ sed -i '1,1s@^#!.*$@#!%{__python3}@' examples/*.py
 %pyproject_save_files -l %{srcname}
 
 %check
+%pyproject_check_import
+
 # tests fail on el9: https://github.com/ronf/asyncssh/issues/566
 %{__python3} -m unittest discover -s tests -t . -v
 

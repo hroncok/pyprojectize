@@ -82,6 +82,8 @@ chmod -x examples/realdata/census_2000/VROUTFSJ.TXt
 
 
 %check
+%pyproject_check_import
+
 # This tests fails because of local error.
 pytest-%{python3_version} tests -v -k "not test_convert_dbf and not test_decimal_format"
 

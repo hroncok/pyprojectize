@@ -48,6 +48,8 @@ This package provides the python3 version of the module.
 %pyproject_save_files -l 'speaklater*'
 
 %check
+%pyproject_check_import
+
 pushd build/lib
 %{__python3} -m doctest speaklater.py
 popd

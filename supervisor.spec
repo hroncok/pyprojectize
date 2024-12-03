@@ -48,6 +48,9 @@ sed -i s'/^#!.*//' $( find %{buildroot}/%{python3_sitelib}/supervisor/ -type f)
 
 rm -f %{buildroot}%{_prefix}/doc/*.txt
 
+%check
+%pyproject_check_import
+
 %post
 %systemd_post %{name}d.service
 

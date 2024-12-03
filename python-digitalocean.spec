@@ -89,6 +89,8 @@ This is the Python 3 version of the package.
 %endif
 
 %check
+%pyproject_check_import
+
 %if %{with python2}
 %{__python2} setup.py test
 %endif

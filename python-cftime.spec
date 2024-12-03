@@ -46,6 +46,8 @@ sed -i -e 's/1.26.0b1/1.24.4/' requirements.txt
 %pyproject_save_files -l %{srcname}
 
 %check
+%pyproject_check_import
+
 PYTHONPATH=%{buildroot}%{python3_sitearch} py.test-%{python3_version} -v
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}

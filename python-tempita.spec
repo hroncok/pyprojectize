@@ -54,6 +54,10 @@ sed -i '/use_2to3/d' setup.py
 %pyproject_save_files tempita
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-tempita -f %{pyproject_files}
 
 %changelog

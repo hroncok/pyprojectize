@@ -88,6 +88,8 @@ sed -i 's/^rednose = 1$//' setup.cfg
 %pyproject_save_files -l httpretty
 
 %check
+%pyproject_check_import
+
 %if %{run_tests}
 %{__python3} -m nose -v
 %endif

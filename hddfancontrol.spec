@@ -59,6 +59,8 @@ cp -a systemd/hddfancontrol.conf %{buildroot}%{_sysconfdir}/
 
 # Run the tests.
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 %files -f %{pyproject_files}

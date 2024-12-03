@@ -51,6 +51,8 @@ Summary:	%{summary}
 %pyproject_save_files -l %{srcname}
 
 %check
+%pyproject_check_import
+
 %pytest
 
 %files -n python3-%{srcname} -f %{pyproject_files}

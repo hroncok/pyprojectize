@@ -41,6 +41,9 @@ rm -rf aiolifx/update-products.py
 %pyproject_install
 %pyproject_save_files -l %{pypi_name}
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %{_bindir}/%{pypi_name}

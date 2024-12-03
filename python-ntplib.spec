@@ -64,6 +64,10 @@ Python 3 version.
 %endif # with_tests
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-ntplib -f %{pyproject_files}
 %doc CHANGELOG
 

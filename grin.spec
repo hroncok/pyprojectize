@@ -41,6 +41,9 @@ sed -i -e '1d' grin.py
 %{pyproject_install}
 %pyproject_save_files grin
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc README.rst
 %{_bindir}/grin

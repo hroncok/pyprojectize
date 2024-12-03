@@ -47,6 +47,8 @@ This package contains the Python library.
 %pyproject_save_files -l fprettify
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 %files

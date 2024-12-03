@@ -53,6 +53,9 @@ Requires:       python3dist(pyyaml)
 %pyproject_install
 %pyproject_save_files -l tablib
  
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md
 

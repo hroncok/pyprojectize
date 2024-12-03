@@ -52,6 +52,8 @@ This is an adapted version of Ruby PDFKit.
 %pyproject_save_files -l %{pypi_name}
 
 %check
+%pyproject_check_import
+
 mkdir -p tests/fixtures
 cp -t tests %{SOURCE10}
 cp -t tests/fixtures %{SOURCE11} %{SOURCE12} %{SOURCE13}

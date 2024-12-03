@@ -62,6 +62,8 @@ considered to be the domain of the WSGI application.
 %pyproject_save_files -l repoze
 
 %check
+%pyproject_check_import
+
 #PYTHONPATH=$(pwd) %%{__python3} setup.py test
 %pytest -k "not test_crypt_check"
 

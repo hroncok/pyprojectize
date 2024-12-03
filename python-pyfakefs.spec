@@ -48,6 +48,9 @@ rm -f {,test-}requirements.txt
 %pyproject_install
 %pyproject_save_files -l %{package_name}
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{package_name} -f %{pyproject_files}
 %doc README.md
 

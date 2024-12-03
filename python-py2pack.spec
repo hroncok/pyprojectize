@@ -68,6 +68,8 @@ rm -rf %{buildroot}/%{_docdir}/%{mod_name}
 
 
 %if 0%{?with_python3}
+%check
+%pyproject_check_import
 %files -n python3-%{mod_name} -f %{pyproject_files}
 %doc AUTHORS README.rst
 %doc doc/%{mod_name}.html

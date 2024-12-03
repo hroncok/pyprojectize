@@ -60,6 +60,10 @@ find example -name '._*.py' -exec rm '{}' \;
 rm -rf %{buildroot}/%{python3_sitelib}/example
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc AUTHORS README.rst docs/ example/
 

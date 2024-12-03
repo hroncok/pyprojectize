@@ -66,6 +66,10 @@ ln -s pytest-watch-%{python3_version} pytest-watch-3
 popd
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md CHANGES.md AUTHORS.md
 %{_bindir}/ptw-3*

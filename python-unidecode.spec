@@ -48,6 +48,10 @@ characters.
 %pyproject_save_files -l unidecode
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-unidecode -f %{pyproject_files}
 %doc README.rst ChangeLog
 %{_bindir}/unidecode

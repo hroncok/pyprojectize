@@ -37,6 +37,8 @@ rm -rf %{pypi_name}.egg-info
 %pyproject_save_files -l pytest_error_for_skips
 
 %check
+%pyproject_check_import
+
 %pytest -v tests
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

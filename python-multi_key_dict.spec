@@ -86,6 +86,8 @@ is extended to support multiple keys referring to the same element.
 
 
 %check
+%pyproject_check_import
+
 %if 0%{?with_python2}
 %{__python2} %{buildroot}%{python2_sitelib}/%{srcname}.py
 %endif

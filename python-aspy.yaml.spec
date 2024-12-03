@@ -44,6 +44,8 @@ Summary:        %{summary}
 
 %if %{with check}
 %check
+%pyproject_check_import
+
 %{python3} -m pytest -v
 %endif
 

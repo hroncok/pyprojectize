@@ -75,6 +75,9 @@ install -Dpm 0644 %{SOURCE2} \
 install -Dpm 0644 %{SOURCE3} \
   %{buildroot}%{_metainfodir}/name.ahlstrom.james.Quisk.metainfo.xml
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %license license.txt
 %doc docs.html defaults.html

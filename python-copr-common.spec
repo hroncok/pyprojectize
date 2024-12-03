@@ -104,6 +104,8 @@ version=%version %py2_install
 
 
 %check
+%pyproject_check_import
+
 %{__python} -m pytest -vv tests
 
 

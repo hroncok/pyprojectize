@@ -49,6 +49,9 @@ rm -rf html/.{doctrees,buildinfo}
 %pyproject_install
 %pyproject_save_files -l bibtexparser
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc CHANGELOG README.rst requirements.txt
 

@@ -522,6 +522,8 @@ ln -s -r %{buildroot}%{_jnidir}/opencv-%{javaver}.jar %{buildroot}%{_jnidir}/ope
 
 
 %check
+%pyproject_check_import
+
 #ifnarch ppc64
 %if %{with tests}
     cp %{S:5} %{__cmake_builddir}

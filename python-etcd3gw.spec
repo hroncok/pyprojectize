@@ -97,6 +97,8 @@ rm -f *requirements.txt
 %endif
 
 %check
+%pyproject_check_import
+
 %if %{with python2}
 export PYTHON=%{__python2}
 py.test

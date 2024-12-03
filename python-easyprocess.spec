@@ -45,6 +45,8 @@ rm -f tests/test_fast/test_deadlock.py
 %pyproject_save_files -l %{dist_name}
 
 %check
+%pyproject_check_import
+
 %pytest
 
 

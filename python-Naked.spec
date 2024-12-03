@@ -59,6 +59,10 @@ function update_scripts() {
 update_scripts "%{buildroot}/%{python3_sitelib}/%{pypi_name}"
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %license docs/LICENSE lib/Naked/templates/licenses.py
 %doc docs/README.rst lib/Naked/templates/readme_md_file.py

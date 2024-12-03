@@ -36,6 +36,9 @@ Use `arf-to-json` to generate a rule result in json. Using the
 %pyproject_install
 %pyproject_save_files -l %{module}
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc README.md
 %{_bindir}/arf-to-graph

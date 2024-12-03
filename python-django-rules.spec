@@ -34,6 +34,9 @@ Awesome Django authorization, without the database.
 %pyproject_install
 %pyproject_save_files -l rules
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{shortname} -f %{pyproject_files}
 
 %changelog

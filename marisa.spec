@@ -186,6 +186,10 @@ rm -f $RPM_BUILD_ROOT%{perl_vendorarch}/sample.pl
 %ldconfig_scriptlets
 
 
+%check
+%pyproject_check_import
+
+
 %files
 %doc docs/style.css AUTHORS README.md docs/readme.en.html
 %lang(ja) %doc docs/readme.ja.html

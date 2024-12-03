@@ -52,6 +52,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 find %{buildroot} -name exampletags\* -delete
 chmod 0644 %{buildroot}%{python3_sitelib}/puddlestuff/data/{menus,shortcuts}
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %license copyright
 %doc NEWS THANKS TODO

@@ -47,6 +47,8 @@ sed -i -e 's|--cov[^[:space:]]*||g' tox.ini
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 %pytest -v
 %endif
 

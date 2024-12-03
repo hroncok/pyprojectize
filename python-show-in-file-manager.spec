@@ -35,6 +35,9 @@ BuildRequires: python3-devel
 %{pyproject_install}
 %pyproject_save_files -l showinfm
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md CHANGELOG.md
 %{_bindir}/showinfilemanager

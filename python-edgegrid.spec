@@ -44,6 +44,8 @@ find akamai -name '*.py' -exec sed -r -e 's|^#!/usr/bin/env.*|#|' -i '{}' ';'
 %pyproject_wheel
 
 %check
+%pyproject_check_import
+
 # upstream uses custom test runner in this module
 %{__python3} -m akamai.edgegrid.test.test_edgegrid
 

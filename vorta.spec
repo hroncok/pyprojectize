@@ -41,6 +41,8 @@ sed -i 's/platformdirs >=2.6.0/platformdirs >=2.3.0/g' setup.cfg
 
 
 %check
+%pyproject_check_import
+
 # all tests require a GUI (pyqt5) to complete
 # so they won't work in mock
 

@@ -40,6 +40,9 @@ of existing PDFs in new PDFs created with reportlab.
 %pyproject_install
 %pyproject_save_files -l '*'
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %{!?_licensedir:%global license %%doc}
 %doc README.rst examples

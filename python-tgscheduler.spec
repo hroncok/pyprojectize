@@ -48,6 +48,8 @@ have one-time or recurring tasks run as needed. Python 3 version.
 %pyproject_save_files tgscheduler
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 

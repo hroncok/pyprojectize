@@ -41,6 +41,10 @@ Tools for testing processes for Python 3.
 %pyproject_save_files -l 'process_tests*'
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %doc README.rst
 

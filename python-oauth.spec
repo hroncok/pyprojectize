@@ -38,6 +38,10 @@ Summary: %summary
 %pyproject_save_files '*'
  
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-oauth -f %{pyproject_files}
 %doc LICENSE.txt
 

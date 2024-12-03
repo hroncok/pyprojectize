@@ -74,6 +74,8 @@ sphinx-build-3 doc/source html
 rm -rf html/.{doctrees,buildinfo}
 
 %check
+%pyproject_check_import
+
 # Ignore test results for now, they are trying to access external URLs
 # which are not accessible in Koji
 PYTHON=python3 %{__python3} setup.py test || true

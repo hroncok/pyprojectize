@@ -36,6 +36,9 @@ sed -e "s/requests>=2.21.0/requests>=2.20.0/" -i setup.py
 %pyproject_install
 %pyproject_save_files -l %{pypi_name}
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc README.md CHANGELOG.md
 

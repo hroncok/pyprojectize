@@ -42,6 +42,9 @@ and using the distance to it as .post marker.
 %pyproject_install
 %pyproject_save_files -l %{srcname}
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc CHANGELOG.rst README.rst 
 

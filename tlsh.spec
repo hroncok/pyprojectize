@@ -70,6 +70,8 @@ popd
 %global _docdir_fmt %{name}
 
 %check
+%pyproject_check_import
+
 bin/simple_unittest
 bin/timing_unittest
 # just check if we get 0 for identical files, and non-zero for different files

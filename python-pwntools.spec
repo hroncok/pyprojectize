@@ -149,6 +149,8 @@ rm -rf %{buildroot}%{_prefix}/pwntools-doc
 
 
 %check
+%pyproject_check_import
+
 export PYTHONPATH="${PYTHONPATH:-%{buildroot}%{python3_sitearch}:%{buildroot}%{python3_sitelib}}"
 %py3_check_import pwn pwnlib
 %{__python3} -c "from pwn import *; sh=process('bash'); sh.sendline(b'echo hello | md5sum'); x=sh.read(); assert (x == b'b1946ac92492d2347c6235b4d2611184  -\n');"

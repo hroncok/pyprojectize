@@ -46,6 +46,8 @@ An extension for colcon-core to provide information about the plugin system.
 
 
 %check
+%pyproject_check_import
+
 %pytest \
     --ignore=test/test_spell_check.py \
     --ignore=test/test_flake8.py \

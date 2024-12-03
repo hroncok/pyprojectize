@@ -41,6 +41,9 @@ find . -name \*.py -exec sed -i '/#!\/usr\/bin\/python/d' '{}' \;
 %pyproject_install
 %pyproject_save_files -l %{srcname}
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
 %{_bindir}/%{srcname}

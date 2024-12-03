@@ -40,6 +40,8 @@ This package installs the library for Python.
 %pyproject_save_files -l _jack jack
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 %files -f %{pyproject_files}

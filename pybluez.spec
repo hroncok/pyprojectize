@@ -45,6 +45,9 @@ chmod a-x examples/bluezchat/bluezchat.py
 %pyproject_install
 %pyproject_save_files -l '*'
 
+%check
+%pyproject_check_import
+
 %files -n python3-bluez -f %{pyproject_files}
 %{!?_licensedir:%global license %%doc}
 

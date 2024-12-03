@@ -44,6 +44,8 @@ pushd docs && make all
 %pyproject_save_files -l pyte
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 %files -n python3-pyte -f %{pyproject_files}

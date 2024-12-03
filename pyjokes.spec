@@ -43,6 +43,8 @@ Summary: %{global_desc}. This package includes a commandline interface.
 %pyproject_save_files -l pyjokes
 
 %check
+%pyproject_check_import
+
 %if %{with_tests}
 %{__python3} setup.py test
 %endif

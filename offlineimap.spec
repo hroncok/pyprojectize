@@ -94,6 +94,8 @@ install -p docs/offlineimap.1.gz %{buildroot}/%{_mandir}/man1/
 install -p docs/offlineimapui.7.gz %{buildroot}/%{_mandir}/man7/
 
 %check
+%pyproject_check_import
+
 
 ./offlineimap.py -V
 

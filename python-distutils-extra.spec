@@ -39,6 +39,9 @@ scrollkeeper based documentation into Python's distutils.
 %pyproject_install
 %pyproject_save_files -l DistUtilsExtra
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc doc/*
 

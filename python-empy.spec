@@ -36,6 +36,9 @@ text; it takes an EmPy source file, processes it, and produces output.
 %pyproject_install
 %pyproject_save_files em emdoc emhelp emlib
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %{_bindir}/em.py
 

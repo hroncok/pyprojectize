@@ -81,6 +81,8 @@ sed -i -e "s|--cov-fail-under=100 ||" tox.ini
 %pyproject_save_files -l %{modname}
 
 %check
+%pyproject_check_import
+
 pytest-%{python3_version} tests
 
 %files -n python%{python3_pkgversion}-%{modname} -f %{pyproject_files}

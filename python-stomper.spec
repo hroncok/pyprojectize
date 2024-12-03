@@ -84,6 +84,8 @@ sed -i "s/'future'//" setup.py
 %endif
 
 %check
+%pyproject_check_import
+
 %if %{with python2}
 PYTHONPATH=. nosetests-%{python2_version} -q
 %endif

@@ -48,6 +48,8 @@ Requires:      libarchive
 %{_fixperms} %{buildroot}
 
 %check
+%pyproject_check_import
+
 %{?el7:export LANG=en_US.UTF-8}
 pytest-%{python3_version} -s -vv tests %{?el7:-k "not test_check_archiveentry_using_python_testtar"}
 

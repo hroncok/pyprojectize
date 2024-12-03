@@ -50,6 +50,8 @@ rm -vr *.egg-info
 
 %if %{with check}
 %check
+%pyproject_check_import
+
 %python3 setup.py test
 %endif
 

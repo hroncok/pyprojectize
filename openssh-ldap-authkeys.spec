@@ -153,6 +153,10 @@ install -m 644 selinux/olak.if  %{buildroot}%{_datadir}/selinux/devel/include/co
 install -m 644 selinux/olak_selinux.8 %{buildroot}%{_mandir}/man8/
 
 
+%check
+%pyproject_check_import
+
+
 %changelog
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.2.0^git20230224.62ece4b-7
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_41_Mass_Rebuild

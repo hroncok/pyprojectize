@@ -47,6 +47,9 @@ find -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python3}|'
 %pyproject_install
 %pyproject_save_files %{srcname}
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 # The license text is available in README.md
 %doc README.md

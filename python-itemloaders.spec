@@ -53,6 +53,10 @@ BuildRequires:	python3-w3lib
 %pyproject_save_files -l itemloaders
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
 

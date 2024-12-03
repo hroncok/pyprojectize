@@ -84,6 +84,8 @@ make -C docs html
 %pyproject_save_files -l %{modname}
 
 %check
+%pyproject_check_import
+
 %if %{with tests}
 %{__python3} -m pytest -W ignore::pytest.PytestUnknownMarkWarning
 %else

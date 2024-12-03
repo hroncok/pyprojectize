@@ -220,6 +220,8 @@ fi
 
 
 %check
+%pyproject_check_import
+
 export SETUPTOOLS_SCM_PRETEND_VERSION='%{version}'
 %if %{with tests}
 # From ci/cpp_test.sh

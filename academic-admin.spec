@@ -34,6 +34,9 @@ An admin tool for the Academic website builder.
 %pyproject_install
 %pyproject_save_files -l academic
 
+%check
+%pyproject_check_import
+
 %files -n academic-admin -f %{pyproject_files}
 %doc README.md
 %{_bindir}/*

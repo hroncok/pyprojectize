@@ -36,6 +36,9 @@ sed -i -e '/^#!\//, 1d' hashid.py
 %pyproject_save_files %{name}
 install -Dp -m 0644 doc/man/%{name}.7 %{buildroot}%{_mandir}/man7/%{name}.7
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc README.rst doc/CHANGELOG
 %license doc/LICENSE

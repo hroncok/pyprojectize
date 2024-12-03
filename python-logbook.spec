@@ -47,6 +47,8 @@ Logbook can do that.
 %pyproject_save_files -l logbook
 
 %check
+%pyproject_check_import
+
 %pytest -k "not test_redis_handler"
 
 %files -n python3-logbook -f %{pyproject_files}

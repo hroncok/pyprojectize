@@ -46,6 +46,8 @@ Purge API, including authentication and error recovery.
 %pyproject_save_files -l %{srcname}
 
 %check
+%pyproject_check_import
+
 %{__python3} -m pytest -v
 
 %files -n python3-%{srcname} -f %{pyproject_files}

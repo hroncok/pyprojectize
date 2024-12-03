@@ -74,6 +74,9 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/termjs/data/
 # fix execute flags for js
 chmod 644 %{buildroot}%{_jsdir}/termjs/term.js
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pkgname} -f %{pyproject_files}
 %doc README.rst
 %{python3_sitelib}/XStatic_term.js-%{version}-py%{python3_version}-nspkg.pth

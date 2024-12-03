@@ -34,6 +34,9 @@ Summary:       Python 3 module to extract EXIF information
 %pyproject_save_files -l exifread
 ln -s EXIF.py %{buildroot}%{_bindir}/EXIF
 
+%check
+%pyproject_check_import
+
 %files -n python3-exif -f %{pyproject_files}
 %doc ChangeLog.rst README.rst
 %{_bindir}/EXIF

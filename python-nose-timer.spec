@@ -37,6 +37,9 @@ rm -rf %{pypi_name}.egg-info
 %pyproject_install
 %pyproject_save_files -l nosetimer
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 

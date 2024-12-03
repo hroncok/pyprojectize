@@ -85,6 +85,8 @@ rm -rfv test/bin
 %{?python3_other_pkgversion: %py3_other_install}
 
 %check
+%pyproject_check_import
+
 # https://github.com/Anorov/PySocks/issues/37
 # FIXME python module named test_server is needed but not packaged
 %if 0

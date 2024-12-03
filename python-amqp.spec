@@ -87,6 +87,8 @@ popd
 %endif
 
 %check
+%pyproject_check_import
+
 %if %{with tests}
 %pytest t/unit
 %endif

@@ -46,6 +46,10 @@ find -name '*.txt' | xargs chmod -x
 %pyproject_save_files -l '*'
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc /usr/share/myhdl/cosimulation/
 

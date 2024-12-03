@@ -72,6 +72,9 @@ install -p -m 644 scripts/%{name}.bash_completion %{buildroot}%{_datadir}/bash-c
 
 sed -i 's|/etc/%{name}.d|/etc/%{name}/conf.d|g' %{buildroot}%{_sysconfdir}/%{name}/%{name}.conf
 
+%check
+%pyproject_check_import
+
 %files
 %{_bindir}/%{name}
 %{_datadir}/bash-completion/completions/%{name}

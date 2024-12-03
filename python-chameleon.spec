@@ -54,6 +54,8 @@ rm -rf  %{buildroot}%{python3_sitelib}/chameleon/tests
 find %{buildroot}%{python3_sitelib}/chameleon -name '*.txt' -exec rm \{\} \;
 
 %check
+%pyproject_check_import
+
 #pytest
 %tox
 

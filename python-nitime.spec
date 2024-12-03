@@ -123,6 +123,8 @@ popd
 %pyproject_save_files -l %{srcname}
 
 %check
+%pyproject_check_import
+
 %if %{with tests}
 # From https://github.com/neurodebian/nitime/blob/3ca5a131ba1ea839e047a7a2e008b754be9fe4bb/debian/rules#L47
 PYTHONPATH=$RPM_BUILD_ROOT/%{python3_sitearch} nosetests-3 '--exclude=test_(coherence_linear_dependence|lazy_reload)' nitime

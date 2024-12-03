@@ -51,6 +51,8 @@ find %{buildroot} -name "*.po" | xargs rm -f
 
 
 %check
+%pyproject_check_import
+
 %{python3} -m unittest openid.test.test_suite
 
 

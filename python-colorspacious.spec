@@ -77,6 +77,8 @@ popd
 
 %if %{with check}
 %check
+%pyproject_check_import
+
 nosetests-3 --all-modules colorspacious
 %endif
 

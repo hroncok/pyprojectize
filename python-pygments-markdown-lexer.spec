@@ -47,6 +47,9 @@ Requires:           python3-pygments
 # Well this is weird...
 rm -rf %{buildroot}/usr/EGG-INFO
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{modname} -f %{pyproject_files}
 %doc README.md
 

@@ -90,6 +90,8 @@ export CFLAGS="-I../include -L../"
 %pyproject_wheel
 
 %check
+%pyproject_check_import
+
 #ctest -V %{?_smp_mflags}
 
 %install

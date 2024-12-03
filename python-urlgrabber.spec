@@ -58,6 +58,8 @@ rm -rf %{buildroot}%{_docdir}/urlgrabber-%{version}
 
 %if %{with check}
 %check
+%pyproject_check_import
+
 export PYTHONPATH=$PWD
 export URLGRABBER_EXT_DOWN="%{buildroot}%{_libexecdir}/urlgrabber-ext-down"
 %{__python3} test/runtests.py

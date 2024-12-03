@@ -50,6 +50,8 @@ added to a Box or BoxList object are converted automatically.
 %pyproject_save_files -l %{pypi_name}
 
 %check
+%pyproject_check_import
+
 %pytest -v test -k "not test_msgpack"
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

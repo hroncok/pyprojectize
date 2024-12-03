@@ -72,6 +72,9 @@ rm -f doc/_build/html/.buildinfo
 
 install -m755 -d %{buildroot}%{pkg_spooldir}
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %dir %{pkg_sysconfdir}
 %dir %{pkg_sysconfdir}/20-dist.d

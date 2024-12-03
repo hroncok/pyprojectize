@@ -75,6 +75,8 @@ install -p -D -m0644 shell/bash/%{srcname} %{buildroot}%{_sysconfdir}/bash_compl
 
 
 %check
+%pyproject_check_import
+
 %{__python3} -m nose2 test
 
 

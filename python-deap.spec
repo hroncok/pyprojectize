@@ -90,6 +90,8 @@ rm -rf build/html/.{doctrees,buildinfo}
 %pyproject_save_files -l deap
 
 %check
+%pyproject_check_import
+
 OPTIONS=(
   # Fails with: AssertionError: CMA algorithm did not converged properly.
   --deselect=tests/test_algorithms.py::test_cma

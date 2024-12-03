@@ -124,6 +124,8 @@ popd
 %endif
 
 %check
+%pyproject_check_import
+
 %if %{with python2}
 pushd python2
 # This doesn’t actually run any tests at all, therefore it doesn‘t fail:

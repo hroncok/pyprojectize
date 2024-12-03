@@ -107,6 +107,8 @@ rm -f tests/test_http.py
 
 %if 0%{?with_check}
 %check
+%pyproject_check_import
+
 py.test-3 -vv tests
 %endif # with_check
 

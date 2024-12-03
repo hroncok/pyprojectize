@@ -43,6 +43,8 @@ Python 3 version.
 %pyproject_wheel
 
 %check
+%pyproject_check_import
+
 py.test-%{python3_version} -v tests/test_unit*.py
 
 %install

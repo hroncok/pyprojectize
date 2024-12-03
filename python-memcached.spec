@@ -55,6 +55,8 @@ sed -i -e 's/^import mock/from unittest import mock/' \
 
 
 %check
+%pyproject_check_import
+
 pidfile=$(mktemp)
 memcached -d -P $pidfile
 

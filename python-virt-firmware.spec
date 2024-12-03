@@ -78,6 +78,9 @@ install -m 755 -d  %{buildroot}%{_prefix}/lib/kernel/install.d
 install -m 644 systemd/kernel-bootcfg-boot-successful.service %{buildroot}%{_unitdir}
 install -m 755 systemd/99-uki-uefi-setup.install %{buildroot}%{_prefix}/lib/kernel/install.d
 
+%check
+%pyproject_check_import
+
 %post -n uki-direct
 %systemd_post kernel-bootcfg-boot-successful.service
 

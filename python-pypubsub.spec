@@ -49,6 +49,8 @@ messages in larger applications.
 %pyproject_save_files '%{src_name}*' pubsub
 
 %check
+%pyproject_check_import
+
 pushd tests/suite
 PYTHONPATH=%{buildroot}%{python3_sitelib} PYTHONDONTWRITEBYTECODE=1 py.test-%{python3_version}
 popd

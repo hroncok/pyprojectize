@@ -46,6 +46,8 @@ Python module %srcname parser
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 # 3 deselected tests require internet connection
 %pytest -vv -k "not (test_load_should_ and (uri or redirect))"
 %endif

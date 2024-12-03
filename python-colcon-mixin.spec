@@ -52,6 +52,8 @@ For an example repository containing mixins see colcon-mixin-repository.
 
 
 %check
+%pyproject_check_import
+
 %{__python3} -m pytest \
     --ignore=test/test_spell_check.py \
     --ignore=test/test_flake8.py \

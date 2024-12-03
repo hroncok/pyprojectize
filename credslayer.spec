@@ -61,6 +61,8 @@ rm -rf html/.{doctrees,buildinfo}
 %pyproject_save_files -l %{pypi_name}
 
 %check
+%pyproject_check_import
+
 %if %{with local}
 PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v tests/tests.py
 %endif

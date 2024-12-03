@@ -42,6 +42,8 @@ cd python
 %pyproject_save_files -l http_ece
 
 %check
+%pyproject_check_import
+
 cd python
 %pytest
 

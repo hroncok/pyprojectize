@@ -44,6 +44,8 @@ rm -rf *.egg-info
 %pyproject_save_files gerrymander
 
 %check
+%pyproject_check_import
+
 %pytest
 
 %files

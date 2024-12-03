@@ -89,6 +89,8 @@ rm -vf %{buildroot}%{_bindir}/recon_qc
 
 %if %{with check}
 %check
+%pyproject_check_import
+
 PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} -v
 %endif
 

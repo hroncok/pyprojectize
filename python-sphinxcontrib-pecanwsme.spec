@@ -81,6 +81,8 @@ built with the Pecan WSGI object-dispatching web framework and WSME
 %endif
 
 %if %{with python2}
+%check
+%pyproject_check_import
 %files -n python2-%{pypi_name}
 %doc README.rst
 %license LICENSE

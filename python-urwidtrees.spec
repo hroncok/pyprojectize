@@ -73,6 +73,10 @@ popd
 %pyproject_save_files -l '*'
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 
 %files -n python-%{srcname}-doc

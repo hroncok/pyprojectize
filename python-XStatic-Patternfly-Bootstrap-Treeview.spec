@@ -75,6 +75,9 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/patternfly_bootstrap_treeview/d
 # fix execute flags for js
 chmod 644 %{buildroot}%{_jsdir}/patternfly_bootstrap_treeview/js/*.js
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %{python3_sitelib}/XStatic_Patternfly_Bootstrap_Treeview-%{version}-py%{python3_version}-nspkg.pth

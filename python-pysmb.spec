@@ -50,6 +50,9 @@ sed -i -e '/^#!\//, 1d' python3/smb/utils/sha256.py
 # https://github.com/miketeo/pysmb/issues/165
 #%%pytest -v python3/tests
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc CHANGELOG README.txt python3/tests/README_1st.txt
 

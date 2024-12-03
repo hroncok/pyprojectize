@@ -39,6 +39,9 @@ sed -i 's/install\_requires=requirements/install\_requires=\[\"sphinx\"\]/g' set
 %pyproject_install
 %pyproject_save_files -l sphinxcontrib
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %{python3_sitelib}/sphinxcontrib_phpdomain-%{version}-py*-*.pth

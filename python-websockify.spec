@@ -46,6 +46,9 @@ rm -Rf %{buildroot}/usr/share/websockify
 mkdir -p %{buildroot}%{_mandir}/man1/
 install -m 444 docs/websockify.1 %{buildroot}%{_mandir}/man1/
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pkgname} -f %{pyproject_files}
 %{_mandir}/man1/websockify.1*
 %{_bindir}/websockify

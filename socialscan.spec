@@ -48,6 +48,8 @@ rm -rf %{pypi_name}.egg-info
 
 %if %{with network}
 %check
+%pyproject_check_import
+
 PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v tests \
   -k "not Instagram"
 %endif

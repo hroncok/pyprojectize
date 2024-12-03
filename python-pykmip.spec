@@ -109,6 +109,8 @@ Structured InformationStandards`_ (OASIS).
 %endif
 
 %if %{with python2}
+%check
+%pyproject_check_import
 %files -n python2-%{sname}
 %doc README.rst
 %license LICENSE.txt

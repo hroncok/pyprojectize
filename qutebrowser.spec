@@ -80,6 +80,8 @@ chmod 755 %{buildroot}%{python3_sitelib}/%{srcname}/__main__.py
 find %{buildroot} -size 0 -delete
 
 %check
+%pyproject_check_import
+
 appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.appdata.xml
 
 %files -f %{pyproject_files}

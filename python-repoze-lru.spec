@@ -47,6 +47,8 @@ rm -rf %{modname}.egg-info
 %pyproject_save_files repoze
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 %files -n python3-repoze-lru -f %{pyproject_files}

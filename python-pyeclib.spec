@@ -42,6 +42,9 @@ or through the C interface liberasurecode.
 %pyproject_install
 %pyproject_save_files 'pyeclib*'
  
+%check
+%pyproject_check_import
+
 %files -n python3-pyeclib -f %{pyproject_files}
 %license License.txt
 %doc README.rst

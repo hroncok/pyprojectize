@@ -77,6 +77,9 @@ ln -s %{_bindir}/virtualenvwrapper.sh %{buildroot}/%{_bindir}/virtualenvwrapper-
 # Tests won't fly in koji since they try to install stuff from pypi
 #tox -e py27
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{modname} -f %{pyproject_files}
 %doc PKG-INFO docs
 %{_bindir}/virtualenvwrapper.sh

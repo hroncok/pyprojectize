@@ -89,6 +89,8 @@ install -Dpm 755 tpm2_ptool $RPM_BUILD_ROOT%{_bindir}/tpm2_ptool
 
 
 %check
+%pyproject_check_import
+
 make check
 cd tools
 %{__python3} setup.py test

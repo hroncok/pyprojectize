@@ -79,6 +79,8 @@ rm -rf $RPM_BUILD_ROOT%{_bindir}/runxlrd.py* \
   $RPM_BUILD_ROOT/%{python3_sitelib}/xlrd/examples
 
 %check
+%pyproject_check_import
+
 %tox
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}

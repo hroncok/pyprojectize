@@ -42,6 +42,9 @@ sed -i -e '/^#!\//, 1d' CppHeaderParser/CppHeaderParser.py
 %pyproject_install
 %pyproject_save_files CppHeaderParser
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt README.html
 

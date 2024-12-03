@@ -84,6 +84,8 @@ install -Dpm 0644 %{name}.service -t %{buildroot}%{_userunitdir}/
 
 
 %check
+%pyproject_check_import
+
 desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 

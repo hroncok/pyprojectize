@@ -50,6 +50,9 @@ popd
 %pyproject_install
 %pyproject_save_files %{srcname}
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %license license.txt
 %doc README.md

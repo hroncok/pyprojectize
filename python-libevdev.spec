@@ -45,6 +45,10 @@ devices and create uinput devices.
 %pyproject_save_files -l libevdev
 
 
+%check
+%pyproject_check_import
+
+
 %files -n	python3-libevdev -f %{pyproject_files}
 
 %changelog

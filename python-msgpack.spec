@@ -48,6 +48,8 @@ rm -rf test/test_timestamp.py
 %pyproject_save_files -l %{srcname}
 
 %check
+%pyproject_check_import
+
 %pytest -v test
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}

@@ -55,6 +55,9 @@ Basic features
 chmod 0755 %{buildroot}%{python3_sitelib}/%{name}/*txt.py
 chmod a+x %{buildroot}%{python3_sitelib}/%{name}/handler.py
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc CHANGELOG.md README.md
 %{_mandir}/man*/*.*

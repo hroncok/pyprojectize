@@ -68,6 +68,10 @@ A meta package aggregating colcon-core as well as a set of common extensions.
 %pyproject_save_files -l colcon_common_extensions
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %doc README.rst
 

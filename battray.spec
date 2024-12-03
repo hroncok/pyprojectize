@@ -32,6 +32,8 @@ low, dim the screen when you switch from AC to battery, etc.
 %pyproject_wheel
 
 %check
+%pyproject_check_import
+
 
 %install
 %pyproject_install

@@ -88,6 +88,8 @@ rm -rf third_party/*
 # We need torchdata to build torchtext :(
 %if %{with test}
 %check
+%pyproject_check_import
+
 %pytest
 %endif
 

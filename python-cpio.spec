@@ -38,6 +38,9 @@ Summary: %summary
 %pyproject_install
 %pyproject_save_files -l cpioarchive
 
+%check
+%pyproject_check_import
+
 %files -n python3-cpio -f %{pyproject_files}
 %doc AUTHORS ChangeLog README TODO
 

@@ -50,6 +50,9 @@ dependency on python-six.
 %pyproject_install
 %pyproject_save_files 'libmodernize*' 'modernize*'
 
+%check
+%pyproject_check_import
+
 %files -n python3-modernize -f %{pyproject_files}
 %doc README.rst
 %{_bindir}/python-modernize

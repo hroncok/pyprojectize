@@ -211,6 +211,9 @@ rm ../../Cargo.toml
 popd
 %endif
 
+%check
+%pyproject_check_import
+
 %files
 %doc README.md
 %license LICENSE.dependencies

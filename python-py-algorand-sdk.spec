@@ -43,6 +43,9 @@ cp %{SOURCE1} .
 %pyproject_install
 %pyproject_save_files -l algosdk
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 

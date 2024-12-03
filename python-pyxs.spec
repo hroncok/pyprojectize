@@ -88,6 +88,8 @@ BuildRequires:  python%{python3_pkgversion}-pytest >= 2.4
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 %{?with_python2:PYTHONPATH=%{buildroot}%{python2_sitelib} py.test-%{python2_version} --verbose}
 %{?with_python3:PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} --verbose}
 %endif

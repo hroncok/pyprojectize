@@ -52,6 +52,8 @@ install -p -D function/colcon_cd.sh %{buildroot}%{_datadir}/colcon_cd/function/c
 
 
 %check
+%pyproject_check_import
+
 %pytest \
     --ignore=test/test_spell_check.py \
     --ignore=test/test_flake8.py \

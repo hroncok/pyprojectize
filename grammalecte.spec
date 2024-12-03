@@ -137,6 +137,8 @@ install -Dpm 0644 %{SOURCE2} $RPM_BUILD_ROOT%{_metainfodir}/%{name}.appdata.xml
 
 
 %check
+%pyproject_check_import
+
 %{__python3} ./make.py fr -t
 
 pushd python/

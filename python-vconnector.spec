@@ -66,6 +66,8 @@ mkdir -p %{buildroot}%{_mandir}/man1
 help2man src/%{srcname}-cli >%{buildroot}%{_mandir}/man1/%{srcname}-cli.1
 
 %check
+%pyproject_check_import
+
 # run cli to see if any error on stderr
 src/%{srcname}-cli -v
 

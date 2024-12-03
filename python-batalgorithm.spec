@@ -37,6 +37,9 @@ BuildRequires:  python3-devel
 %pyproject_install
 %pyproject_save_files -l %{pretty_name}
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{new_name} -f %{pyproject_files}
 %doc README.md
 

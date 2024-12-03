@@ -132,6 +132,8 @@ make -C docs SPHINXBUILD=/usr/bin/sphinx-build-3 html
 
 
 %if 0%{with python2}
+%check
+%pyproject_check_import
 %files -n python2-x2go
 %license COPYING
 %doc ChangeLog README* TODO

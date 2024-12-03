@@ -65,6 +65,9 @@ rm -rf html/.{doctrees,buildinfo}
 #delete tests
 rm -fr %{buildroot}%{python3_sitelib}/%{pypi_name}/tests/
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md LICENSE
 

@@ -40,6 +40,8 @@ Jinja2 Extension for Dates and Times.
 %pyproject_save_files -l '*'
 
 %check
+%pyproject_check_import
+
 
 %{__python3} setup.py test
 

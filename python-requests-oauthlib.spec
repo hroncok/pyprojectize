@@ -54,6 +54,8 @@ This project provides first-class OAuth library support for python-request.
 %pyproject_save_files -l %{modname}
 
 %check
+%pyproject_check_import
+
 %if %{with tests}
 %pytest -k "not testCanPostBinaryData and not test_content_type_override and not test_url_is_native_str"
 %else

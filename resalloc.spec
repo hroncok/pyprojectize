@@ -271,6 +271,8 @@ rm %buildroot%_sysconfdir/resalloc-agent-spawner/config.yaml
 
 %if %{with check}
 %check
+%pyproject_check_import
+
 %if %{with python2}
 make check TEST_PYTHONS="python2"
 %else

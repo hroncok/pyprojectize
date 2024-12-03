@@ -60,6 +60,8 @@ rm -rf html/.{doctrees,buildinfo}
 %pyproject_save_files -l %{pretty_name}
 
 %check
+%pyproject_check_import
+
 %pytest
 
 %files -n python3-%{pretty_name} -f %{pyproject_files}

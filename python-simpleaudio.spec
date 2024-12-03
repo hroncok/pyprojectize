@@ -45,6 +45,10 @@ Summary: %{summary}
 %pyproject_save_files -l %{pypi_name}
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 
 

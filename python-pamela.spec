@@ -37,6 +37,8 @@ Yet another Python wrapper for PAM.
 %pyproject_save_files -l '%{srcname}*'
 
 %check
+%pyproject_check_import
+
 py.test-%{python3_version} -v
 
 

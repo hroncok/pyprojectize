@@ -53,6 +53,8 @@ Summary: %{summary}
 
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 

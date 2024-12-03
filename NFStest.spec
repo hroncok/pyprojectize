@@ -30,6 +30,9 @@ most of the functionality is focused mainly on testing the client.
 %pyproject_install
 %pyproject_save_files '*'
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %{_bindir}/nfstest_alloc
 %{_bindir}/nfstest_cache

@@ -42,6 +42,8 @@ package contains a Python 3 version of PyXDG.
 %pyproject_save_files -l xdg
 
 %check
+%pyproject_check_import
+
 # icon-test currently fails
 # https://bugs.freedesktop.org/show_bug.cgi?id=104846
 nosetests-%{python3_version} || :

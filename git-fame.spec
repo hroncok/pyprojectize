@@ -39,6 +39,8 @@ ln -s %{_bindir}/%{name} %{buildroot}%{_libexecdir}/git-core/%{name}
 install -Dpm0644 -t %{buildroot}%{_mandir}/man1 gitfame/git-fame.1
 
 %check
+%pyproject_check_import
+
 # Tests depend on real git repo
 
 %files -f %{pyproject_files}

@@ -99,6 +99,8 @@ sanction has been tested with the following OAuth2 providers:
 %pyproject_save_files %{modname}
 
 %check
+%pyproject_check_import
+
 %{python3} -m unittest discover -v
 
 %files -n python3-sanction -f %{pyproject_files}

@@ -48,6 +48,8 @@ sed -i -e "s/’/'/g" README.rst
 # skip tests on EL9 due to deprecated python-nose
 %if 0%{?rhel} && 0%{?rhel} < 9
 %check
+%pyproject_check_import
+
 # Exclude tests which require SSH server
 nosetests-%{python3_version} -v -e testing -e ssh_tests
 %endif

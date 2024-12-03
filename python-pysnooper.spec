@@ -45,6 +45,8 @@ Summary:        %{summary}
 %pyproject_save_files -l pysnooper
 
 %check
+%pyproject_check_import
+
 PYTHONPATH=%{buildroot}%{python3_sitelib} %python3 -m pytest -v tests/
 
 %files -n python3-pysnooper -f %{pyproject_files}

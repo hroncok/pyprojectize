@@ -53,6 +53,9 @@ done
 %pyproject_install
 %pyproject_save_files -l ovirtsdk4
 
+%check
+%pyproject_check_import
+
 %files -n python3-ovirt-engine-sdk4 -f %{pyproject_files}
 %doc README.adoc
 %doc examples

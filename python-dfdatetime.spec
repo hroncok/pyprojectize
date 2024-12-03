@@ -40,6 +40,8 @@ precision for digital forensics.
 rm -rf %{buildroot}%{_defaultdocdir}/%{pypi_name}/*
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

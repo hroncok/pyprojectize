@@ -43,6 +43,10 @@ when entering (resp. leaving) runtime context related to it.
 %pyproject_save_files flock
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-flock -f %{pyproject_files}
 %doc README.md LICENSE
 

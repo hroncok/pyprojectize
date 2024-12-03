@@ -62,6 +62,9 @@ LiveReload documentation and examples.
 #%%check
 #%%{__python3} setup.py test
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst CHANGES.rst
 %{_bindir}/%{pypi_name}

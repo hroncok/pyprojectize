@@ -89,6 +89,9 @@ install -m0600 conf/logrotate.d/imagefactoryd %{buildroot}/%{_sysconfdir}/logrot
 
 rm -f %{buildroot}/%{_initddir}/imagefactoryd
 
+%check
+%pyproject_check_import
+
 %post
 %systemd_post imagefactoryd.service
 

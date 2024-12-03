@@ -78,6 +78,8 @@ find examples -type f -print0 | xargs -0 chmod 0644
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 SKIP_MONGOENGINE=1 %pytest
 %endif
 

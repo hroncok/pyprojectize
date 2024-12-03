@@ -63,6 +63,8 @@ sed -i -e 's|path.py|path|' setup.py
 %pyproject_save_files '*'
 
 %check
+%pyproject_check_import
+
 # test_pretty_formatter requires termcolor
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} -m pytest
 

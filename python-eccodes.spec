@@ -94,6 +94,8 @@ rm %sphinx_doc_path/.buildinfo
 rm -rf %sphinx_doc_path/.doctrees
 
 %check
+%pyproject_check_import
+
 
 %{__python3} -m eccodes selfcheck
 %{__python3} -m pytest -v

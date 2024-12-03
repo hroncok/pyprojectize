@@ -154,6 +154,8 @@ cd -
 
 
 %check
+%pyproject_check_import
+
 desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.appdata.xml
 

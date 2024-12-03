@@ -72,6 +72,9 @@ desktop-file-install --add-category="Utility" \
   --dir=%{buildroot}%{_datadir}/applications \
   %{SOURCE1}
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc readme.md
 %{_bindir}/rtlsdr_scan

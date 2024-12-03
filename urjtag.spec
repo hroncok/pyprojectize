@@ -80,6 +80,9 @@ pushd bindings/python/
 
 %ldconfig_scriptlets
  
+%check
+%pyproject_check_import
+
 %files -f %{name}.lang
 %doc README NEWS ChangeLog COPYING AUTHORS
 %doc doc/howto_add_support_for_more_flash.txt

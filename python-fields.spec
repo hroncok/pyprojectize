@@ -72,6 +72,8 @@ rm -rf docs/_build/html/.buildinfo docs/_build/html/.doctrees
 %pyproject_save_files -l %{srcname}
 
 %check
+%pyproject_check_import
+
 # Perf tests require unmaintained 'characteristic' module
 PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} \
   --ignore=tests/test_perf.py \

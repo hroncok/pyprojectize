@@ -82,6 +82,8 @@ Collection of easy to use progress bars and spinners.
 
 
 %if 0%{with python2}
+%check
+%pyproject_check_import
 %files -n python2-%{pypi_name}
 %doc README.rst LICENSE
 %{python2_sitelib}/%{pypi_name}

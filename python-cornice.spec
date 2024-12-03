@@ -65,6 +65,8 @@ Requires:   %{py3_dist venusian}
 
 
 %check
+%pyproject_check_import
+
 %pytest -v
 
 

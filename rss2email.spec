@@ -66,6 +66,8 @@ install -D -m 644 -p %{SOURCE2} %{buildroot}%{_mandir}/man1/r2e-migrate.1
 
 
 %check
+%pyproject_check_import
+
 PATH="${PATH}:%{buildroot}%{_bindir}" PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} ./test/test.py
 
 

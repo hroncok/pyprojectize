@@ -71,6 +71,8 @@ find -type f -exec chmod 644 {} +
 
 
 %check
+%pyproject_check_import
+
 %if %runselftest == 0
 exit 0
 %endif

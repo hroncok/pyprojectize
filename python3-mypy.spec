@@ -58,6 +58,9 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} \
         --no-discard-stderr -o %{buildroot}%{_mandir}/man1/stubgen.1 \
         %{buildroot}%{_bindir}/stubgen
 
+%check
+%pyproject_check_import
+
 %pre
 # Remove for f38+
 %pretrans -p <lua>

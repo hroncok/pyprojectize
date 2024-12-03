@@ -41,6 +41,9 @@ sed -i -e '/^#!\//, 1d' dnslib/test_decode.py
 #%%check
 #./run_tests.sh
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README
 

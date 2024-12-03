@@ -73,6 +73,9 @@ export S3CMD_PACKAGING=1
 mkdir -p %{buildroot}%{_mandir}/man1
 install -D -p -m 0644 -t %{buildroot}%{_mandir}/man1 %{name}.1
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc NEWS README.md
 %{_bindir}/%{name}

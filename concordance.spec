@@ -100,6 +100,10 @@ cd %{name}
 make DESTDIR=%{buildroot} install
 
 
+%check
+%pyproject_check_import
+
+
 %files
 %doc Changelog CodingStyle LICENSE SubmittingPatches TODO 
 %doc README.md %{name}/INSTALL.linux

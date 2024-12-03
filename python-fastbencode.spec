@@ -47,6 +47,8 @@ Summary:        %{summary}
 %pyproject_save_files -l %{pypi_name}
 
 %check
+%pyproject_check_import
+
 %{py3_test_envvars} %{python3} -m unittest
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

@@ -64,6 +64,8 @@ sed -i "s|version=''|version='%{version}'|g" setup.py
 
 
 %check
+%pyproject_check_import
+
 desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 

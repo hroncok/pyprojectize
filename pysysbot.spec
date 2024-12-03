@@ -41,6 +41,9 @@ install -Dp -m 0644 data/%{name}.conf %{buildroot}%{_sysconfdir}/%{name}/%{name}
 install -Dp -m 0644 man/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 rm -rf %{buildroot}%{_defaultdocdir}
 
+%check
+%pyproject_check_import
+
 %post
 %systemd_post %{name}.service
 

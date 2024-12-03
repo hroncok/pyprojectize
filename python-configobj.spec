@@ -40,6 +40,8 @@ Requires:       python%{python3_pkgversion}-six
 %pyproject_save_files -l configobj validate
 
 %check
+%pyproject_check_import
+
 export PYTHONPATH=$(pwd)/build/lib
 %{__python3} src/tests/configobj_doctests.py
 %{__python3} -m configobj.validate

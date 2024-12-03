@@ -55,6 +55,8 @@ provides access to most API functionality. This is the Python 3 build of
 
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 %files -n python3-%{github_name} -f %{pyproject_files}

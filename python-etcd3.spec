@@ -44,6 +44,10 @@ sed -e 's|grpcio==.*|grpcio==1.26.0|' \
 %pyproject_save_files -l %{srcname}
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc AUTHORS.rst CONTRIBUTING.rst HISTORY.rst README.rst
 

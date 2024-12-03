@@ -40,6 +40,8 @@ Python3 flask_cors package.
 %pyproject_save_files -l flask_cors
 
 %check
+%pyproject_check_import
+
 %pytest
 
 %files -n python3-%{srcname} -f %{pyproject_files}

@@ -43,6 +43,10 @@ Conflicts:	python2-%{srcname} <= 0.8.0-1
 %pyproject_save_files tftpy
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README
 %{_bindir}/tftpy_client.py

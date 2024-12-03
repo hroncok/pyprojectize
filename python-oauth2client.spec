@@ -78,6 +78,8 @@ sed -r -i 's/\bmock.*//' tox.ini
 %pyproject_save_files -l %{srcname}
 
 %check
+%pyproject_check_import
+
 #tox -v --sitepackages -e py%%{python3_version_nodots}
 
 # We remove tests currently, we will ship them eventually

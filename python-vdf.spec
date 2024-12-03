@@ -50,6 +50,8 @@ Summary:    %{summary}
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 %{python3} -m pytest -v \
     %dnl # https://github.com/ValvePython/vdf/issues/33
     --ignore=tests/test_binary_vdf.py

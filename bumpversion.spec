@@ -46,6 +46,8 @@ commits and tags:
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 %pytest -k "not test_usage_string and not test_defaults_in_usage_with_config"
 %endif
 

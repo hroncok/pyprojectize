@@ -150,6 +150,8 @@ install -Dm0644 -t %{buildroot}%{_mandir}/man1/ doc/diffoscope.1
 install -Dm0644 -t %{buildroot}/usr/share/zsh/site-functions/ debian/zsh-completion/_diffoscope
 
 %check
+%pyproject_check_import
+
 DESELECT=(
   # s390x specific issue?
   --deselect=tests/comparators/test_ogg.py::test_diff

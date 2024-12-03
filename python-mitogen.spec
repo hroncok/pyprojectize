@@ -102,6 +102,8 @@ rm -r mitogen/compat ansible_mitogen/compat
 
 
 %check
+%pyproject_check_import
+
 # tests/README.md says the tests need:
 #    - internet connection
 #    - working docker daemon

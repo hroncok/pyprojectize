@@ -39,6 +39,9 @@ chmod -x LICENSE
 %pyproject_install
 %pyproject_save_files -l pcapkit
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %{_bindir}/pcapkit*

@@ -58,6 +58,8 @@ Python %{python3_version} version.
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 pytest-3
 %endif
 

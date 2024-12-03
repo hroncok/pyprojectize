@@ -55,6 +55,8 @@ BuildRequires:  python3-mock
 
 
 %check
+%pyproject_check_import
+
 nosetests-3
 
 

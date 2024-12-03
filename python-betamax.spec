@@ -48,6 +48,8 @@ Python 3 version.
 %pyproject_save_files -l %{srcname}
 
 %check
+%pyproject_check_import
+
 %if %{with tests}
 # test_pytest_fixture: not sure why it fails but better run some tests than none
 # test_replays_response_from_cassette: https://github.com/betamaxpy/betamax/issues/184

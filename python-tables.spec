@@ -90,6 +90,8 @@ sed -i 's|bin/env |bin/|' utils/*
 %pyproject_save_files -l tables
 
 %check
+%pyproject_check_import
+
 %if %{with tests}
 %ifarch %{ix86} s390x
 skip=true

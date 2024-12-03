@@ -80,6 +80,8 @@ rm -rf html/.{doctrees,buildinfo}
 
 %if %{with api_key}
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 %endif
 

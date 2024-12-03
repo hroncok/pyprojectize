@@ -83,6 +83,9 @@ popd
 
 rm %{buildroot}%{_libdir}/libsentencepiece*.a
 
+%check
+%pyproject_check_import
+
 %files libs
 %doc README.md
 %license LICENSE

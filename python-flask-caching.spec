@@ -63,6 +63,8 @@ rm -rf html/.{doctrees,buildinfo}
 %pyproject_save_files -l flask_caching
 
 %check
+%pyproject_check_import
+
 redis-server &
 %pytest
 kill %1

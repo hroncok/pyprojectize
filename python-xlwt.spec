@@ -54,6 +54,8 @@ sed -i "s|tests/python.bmp|python.bmp|g" tests/test_bitmaps.py
 
 
 %check
+%pyproject_check_import
+
 cd tests
 PYTHONPATH=.. %{__python3} -m unittest discover
 

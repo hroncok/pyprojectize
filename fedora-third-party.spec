@@ -42,6 +42,8 @@ go-md2man -in doc/%{name}.1.md -out doc/%{name}.1
 
 
 %check
+%pyproject_check_import
+
 %pytest
 
 

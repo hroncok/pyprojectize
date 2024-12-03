@@ -49,6 +49,8 @@ An extension for colcon-core to quickly re-run a recently executed verb.
 
 
 %check
+%pyproject_check_import
+
 %{__python3} -m pytest \
     --ignore=test/test_spell_check.py \
     --ignore=test/test_flake8.py \

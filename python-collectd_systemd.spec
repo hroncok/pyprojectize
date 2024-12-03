@@ -87,6 +87,8 @@ fi
 %{_datadir}/selinux/packages/%{name}/collectd_systemd.pp
 
 %check
+%pyproject_check_import
+
 PYTHONPATH=. pytest-3
 
 %changelog

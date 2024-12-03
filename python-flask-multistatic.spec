@@ -51,6 +51,10 @@ rm -rf %{modname}.egg-info
 %pyproject_save_files -l flask_multistatic
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{modname} -f %{pyproject_files}
 %doc README.rst
 

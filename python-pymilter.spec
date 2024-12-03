@@ -127,6 +127,8 @@ mkdir -p %{buildroot}%{_datadir}/selinux/targeted
 cp -p pymilter.pp %{buildroot}%{_datadir}/selinux/targeted
 
 %check
+%pyproject_check_import
+
 %if %{with python2}
 py2path=$(ls -d build/lib.linux-*-2.*)
 PYTHONPATH=${py2path}:. python2 test.py &&

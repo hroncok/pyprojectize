@@ -138,6 +138,9 @@ sed -i -e 's|/usr/bin/env python|/usr/bin/python3|' %{buildroot}/var/www/totpcgi
 sed -i -e 's|/usr/bin/env python|/usr/bin/python3|' %{buildroot}/var/www/totpcgi-provisioning/index.cgi
 sed -i -e 's|/usr/bin/env python|/usr/bin/python3|' %{buildroot}/usr/bin/totpprov
 
+%check
+%pyproject_check_import
+
 %pre -n python3-totpcgi
 # We always add both the totpcgi and totpcgi-provisioning user
 /usr/sbin/useradd -c "Totpcgi user" \

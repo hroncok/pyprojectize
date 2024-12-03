@@ -75,6 +75,8 @@ sed -i "s/version=.*/version='6.28',/" setup.py
 %pyproject_save_files fim
 
 %check
+%pyproject_check_import
+
 %if %{with tests}
 %{__python3} setup.py test
 %endif

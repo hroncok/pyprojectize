@@ -47,6 +47,8 @@ for lib in %{buildroot}%{python3_sitelib}/%{pypi_name}/{,*/}/*.py; do
 done
 
 %check
+%pyproject_check_import
+
 %{__python3} -m unittest discover -s tests
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

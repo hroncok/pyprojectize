@@ -806,6 +806,8 @@ popd
 
 
 %check
+%pyproject_check_import
+
 # This checks the code, if it fails it prints why, then re-raises the fail to shortcircuit the rpm build.
 %if %{with tsan}
 export TSAN_OPTIONS=print_stacktrace=1:second_deadlock_stack=1:history_size=7

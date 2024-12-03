@@ -50,6 +50,8 @@ BuildRequires:  python3-tornado >= 4.1
 
 
 %check
+%pyproject_check_import
+
 PYTHONPATH="%{buildroot}%{python3_sitelib}" PYTHONDONTWRITEBYTECODE=1 \
     py.test-%{python3_version}
 

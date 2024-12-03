@@ -50,6 +50,10 @@ rst2html README.rst > README.html
 %pyproject_save_files '*'
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %doc README.html
 %doc docs/Features.html

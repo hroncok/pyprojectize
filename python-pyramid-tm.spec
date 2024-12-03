@@ -73,6 +73,8 @@ rm docs/.gitignore
 %pyproject_save_files -l %{modname}
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 %files -n python3-pyramid-tm -f %{pyproject_files}

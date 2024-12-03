@@ -53,6 +53,8 @@ BuildRequires:  python3dist(pytest)
 
 
 %check
+%pyproject_check_import
+
 # Skip networked tests.
 MPLBACKEND=Agg %{pytest} --mpl tests -k 'not test_succeeds_remote and not test_succeeds_faulty_mirror'
 MPLBACKEND=Agg %{pytest} tests -k 'not test_succeeds_remote and not test_succeeds_faulty_mirror'

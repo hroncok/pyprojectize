@@ -48,6 +48,8 @@ Python 3 version.
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 %pytest
 %endif
 

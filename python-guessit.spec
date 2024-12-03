@@ -68,6 +68,8 @@ done
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 %pytest
 %endif
 

@@ -284,6 +284,8 @@ install -D -p -m 0644 bindings/java/%{name}.jar  %{buildroot}/%{_javadir}/%{name
 
 
 %check
+%pyproject_check_import
+
 # ln -s libcapstone.so.5 libcapstone.so
 make check LD_LIBRARY_PATH="`pwd`"
 

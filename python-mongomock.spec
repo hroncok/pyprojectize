@@ -43,6 +43,8 @@ rm -rf %{pypi_name}.egg-info
 %pyproject_save_files -l %{pypi_name}
 
 %check
+%pyproject_check_import
+
 %pytest -v tests -k "not BulkOperationsWithPymongoTest and not CollectionComparisonTest \
   and not MongoClientCollectionTest and not MongoClientSortSkipLimitTest \
   and not test__insert_do_not_modify_input"

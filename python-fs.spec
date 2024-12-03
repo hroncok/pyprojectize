@@ -57,6 +57,8 @@ Summary:        %{summary}
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 # tests/test_ftpfs.py needs pyftpdlib (not packaged yet)
 # test_seek_current and test_seek_end are skipped due to regression in Python 3.12
 # upstream issue: https://github.com/python/cpython/issues/102956

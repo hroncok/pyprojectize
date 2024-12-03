@@ -35,6 +35,9 @@ Summary: %summary
 %pyproject_install
 %pyproject_save_files -l 'schedutils*'
 
+%check
+%pyproject_check_import
+
 %files -n python3-schedutils -f %{pyproject_files}
 %{_bindir}/pchrt
 %{_bindir}/ptaskset

@@ -52,6 +52,11 @@ rm -rf $RPM_BUILD_ROOT
 
 
 
+%check
+%pyproject_check_import
+
+
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 
 

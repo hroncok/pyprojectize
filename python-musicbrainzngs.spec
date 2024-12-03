@@ -52,6 +52,8 @@ sed -i '1{\@^#!/usr/bin/env python@d}' examples/*.py
 
 
 %check
+%pyproject_check_import
+
 rm -rf musicbrainzngs
 PYTHONPATH=%{buildroot}%{python3_sitelib} nosetests-%{python3_version}
 

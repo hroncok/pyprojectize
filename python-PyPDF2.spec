@@ -82,6 +82,8 @@ chmod a-x Scripts/* Sample_Code/* LICENSE README.md CHANGELOG
 
 
 %check
+%pyproject_check_import
+
 # NOTE: Upstream has some testing bugs
 #python -m unittest Tests.tests
 

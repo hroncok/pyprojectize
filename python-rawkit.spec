@@ -40,6 +40,9 @@ rawkit is a ctypes-based set of LibRaw bindings for Python
 #%check
 #pytest-%{python3_version} -v tests
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 

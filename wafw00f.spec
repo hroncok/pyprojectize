@@ -29,6 +29,9 @@ sed -i -e '/^#!\//, 1d' {wafw00f/*.py,wafw00f/*/*.py}
 %pyproject_install
 %pyproject_save_files -l %{name}
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc CREDITS.txt README.md
 %{_bindir}/%{name}

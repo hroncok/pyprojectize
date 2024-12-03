@@ -49,6 +49,8 @@ sed -i "/seeddir/d" setup.py
 %pyproject_save_files %{pypi_name}
 
 %check
+%pyproject_check_import
+
 %{pytest} tests
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

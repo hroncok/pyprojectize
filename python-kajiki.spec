@@ -52,6 +52,9 @@ speed! Don't delay! Pick up your copy of Kajiki today!
 %pyproject_install
 %pyproject_save_files %{modname}
 
+%check
+%pyproject_check_import
+
 %files -n python3-kajiki -f %{pyproject_files}
 %doc README.rst LICENSE.rst CHANGES.rst PKG-INFO
 %{_bindir}/kajiki

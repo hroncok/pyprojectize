@@ -94,6 +94,8 @@ sed -i '1{/^#!\//d}' src/*.py
 %pyproject_save_files %{srcname} jp2
 
 %check
+%pyproject_check_import
+
 
 %if 0%{?epel} == 0
 

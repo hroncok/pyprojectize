@@ -51,6 +51,8 @@ chmod 755 %{buildroot}/%{python3_sitearch}/*.so
 
 %if 0%{?fedora}
 %check
+%pyproject_check_import
+
 %python3 setup.py nosetests
 %endif
 

@@ -51,6 +51,10 @@ This package provides the Python 3 version.
 %pyproject_save_files -l rpmmd
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md ChangeLog
 

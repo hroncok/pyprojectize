@@ -39,6 +39,8 @@ A set of third-party matchers for Betamax.
 %pyproject_save_files -l betamax_matchers
 
 %check
+%pyproject_check_import
+
 pytest-%{python3_version} -v tests
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

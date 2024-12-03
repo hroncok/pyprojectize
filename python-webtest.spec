@@ -84,6 +84,8 @@ rm -f docs/Makefile docs/conf.py docs/changelog.rst
 
 %if 0%{?with_tests}
 %check
+%pyproject_check_import
+
 %pytest
 %endif
 

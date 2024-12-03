@@ -55,6 +55,8 @@ install -m 644 $RPM_SOURCE_DIR/LICENSE LICENSE
 %pyproject_save_files -l '*'
 
 %check
+%pyproject_check_import
+
 # Regression test for https://bugzilla.redhat.com/2008899
 export PYTHONPATH=%{buildroot}%{python3_sitearch}
 %{python3} -c 'import kerberos; kerberos.channelBindings(application_data=b"")'

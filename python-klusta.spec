@@ -65,6 +65,8 @@ rm -fr *egg-info
 %pyproject_save_files -l %{srcname}
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 %files -n python3-%{srcname} -f %{pyproject_files}

@@ -60,6 +60,8 @@ rm -r %{buildroot}%{python3_sitelib}/pytz/zoneinfo
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 %pytest -v
 %endif
 

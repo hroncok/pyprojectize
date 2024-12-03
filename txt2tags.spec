@@ -45,6 +45,9 @@ Txt2tags is a document generator. It reads a text file with minimal markup as
 %{pyproject_install}
 %pyproject_save_files -l %{name}
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc CHANGELOG.md README.md
 %{_bindir}/txt2tags

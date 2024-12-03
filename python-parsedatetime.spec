@@ -50,6 +50,8 @@ strings.
 rm -rf %{buildroot}%{python3_sitelib}/%{realname}/tests
 
 %check
+%pyproject_check_import
+
 %if %{with tests}
 py.test-3 -x tests/*.py
 %endif

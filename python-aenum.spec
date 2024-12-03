@@ -64,6 +64,8 @@ Enum capabilities, however.
 %pyproject_save_files %{pypi_name}
 
 %check
+%pyproject_check_import
+
 # https://github.com/ethanfurman/aenum/issues/7
 # PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} %{pypi_name}/test.py
 

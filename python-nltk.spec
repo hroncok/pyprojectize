@@ -59,6 +59,8 @@ done
 
 
 %check
+%pyproject_check_import
+
 # skip tests since it requires nltk-data and a few utilities not available in
 # Fedora
 #%%{__python3} %%{mod_name}/test/runtests.py

@@ -46,6 +46,8 @@ and the Confluent Platform.
 rm -f  %{buildroot}/%{_prefix}/LICENSE.txt
 
 %check
+%pyproject_check_import
+
 # Unit tests are present in the upstream repo, but not in the PyPi distribution
 # So just import test
 %py3_check_import confluent_kafka

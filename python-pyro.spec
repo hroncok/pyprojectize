@@ -55,6 +55,9 @@ chmod -x examples/echoserver/{Readme.txt,client.py}
 chmod -x examples/gui_eventloop/{gui_threads.py,gui_nothreads.py}
 chmod -x examples/maxsize/Readme.txt
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc docs/* examples LICENSE
 %{_bindir}/pyro4*

@@ -42,6 +42,9 @@ Read the documentation at http://pythonhosted.org/asciitree
 #%check
 #PYTHONPATH=%{buildroot}/%{python3_sitelib} %{__python3} -v -m unittest discover %{pypi_name}
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 

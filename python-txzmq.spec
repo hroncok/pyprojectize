@@ -57,6 +57,8 @@ rm -rf %{eggname}.egg-info
 
 
 %check
+%pyproject_check_import
+
 %if %{with tests}
 PYTHONPATH=%{buildroot}%{python3_sitelib} trial-3 txzmq
 %endif

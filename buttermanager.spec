@@ -48,6 +48,10 @@ desktop-file-install \
   packaging/%{name}.desktop
 
 
+%check
+%pyproject_check_import
+
+
 %files -f %{pyproject_files}
 %doc README.md doc
 %{_bindir}/buttermanager

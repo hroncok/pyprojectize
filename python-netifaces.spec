@@ -41,6 +41,10 @@ from network interfaces.
 %pyproject_save_files '%{pypi_name}*'
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python%{python3_pkgversion}-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 

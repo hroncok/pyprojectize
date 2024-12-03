@@ -63,6 +63,8 @@ journal entries.
 
 %if 0%{?with_check}
 %check
+%pyproject_check_import
+
 %{__python3} %{py_setup} test
 %endif # with_check
 

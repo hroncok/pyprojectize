@@ -79,6 +79,8 @@ make -C docs html PYTHONPATH=$(pwd)
 %pyproject_save_files -l %{modname}
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 rm -rf docs/_build/html/.buildinfo

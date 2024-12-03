@@ -271,6 +271,8 @@ rm -rf %{buildroot}%{_docdir}/xpra/Build
 install -pm 644 README.md %{buildroot}%{_docdir}/xpra/
 
 %check
+%pyproject_check_import
+
 %{?fedora:appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/xpra.appdata.xml}
 desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 

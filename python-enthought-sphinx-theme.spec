@@ -44,6 +44,9 @@ Provides:       bundled(bootstrap) = 2.3.2
 #check
 # No tests
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %license licenses/*.txt
 %doc CHANGES.rst README.rst

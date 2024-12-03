@@ -50,6 +50,8 @@ sphinx-build -b html docs/ docs/html
 %pyproject_save_files scripttest
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 %files -n python%{python3_pkgversion}-scripttest -f %{pyproject_files}

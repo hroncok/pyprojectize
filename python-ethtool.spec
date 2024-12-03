@@ -61,6 +61,8 @@ cp -p man/*.8 %{buildroot}%{_mandir}/man8/
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 export PYTHONPATH=%{buildroot}%{python3_sitearch}
 %{__python3} tests/parse_ifconfig.py -v
 %{__python3}  -m unittest discover -v

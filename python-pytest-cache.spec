@@ -71,6 +71,8 @@ rm -rf *.egg-info
 
 
 %check
+%pyproject_check_import
+
 # No idea why the tests fail
 %if %{with python2}
 PYTHONPATH=%{buildroot}%{python2_sitelib} py.test-%{python2_version} -v || :

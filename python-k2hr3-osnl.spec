@@ -72,6 +72,8 @@ help2man --no-discard-stderr --version-string=%{version} %{buildroot}%{_bindir}/
 rm -rf %{buildroot}/usr/etc/k2hr3/k2hr3-osnl.conf
 
 %check
+%pyproject_check_import
+
 %{__python3} -m unittest
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

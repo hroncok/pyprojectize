@@ -36,6 +36,8 @@ BuildRequires:  python3-pytest-cov
 %pyproject_save_files %{srcname}
 
 %check
+%pyproject_check_import
+
 mkdir tests/
 touch tests/__init__.py
 cp %{SOURCE1} tests/

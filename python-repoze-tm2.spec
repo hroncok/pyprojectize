@@ -49,6 +49,11 @@ This package contains the python3 version of the library.
 
 
 
+%check
+%pyproject_check_import
+
+
+
 %files -n python3-repoze-tm2 -f %{pyproject_files}
 %doc README.rst COPYRIGHT.txt CHANGES.rst
 

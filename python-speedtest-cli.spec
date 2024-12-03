@@ -46,6 +46,9 @@ do
 done
 unset PYTHONPATH
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %{_bindir}/speedtest*

@@ -44,6 +44,10 @@ sed -i 's/\r$//' README.rst
 %pyproject_save_files aex_accounts continuous_delivery vsts_cd_manager vsts_info_provider
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
 

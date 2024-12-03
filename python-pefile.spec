@@ -60,6 +60,8 @@ sed -i -e '/^#!\//, 1d' pefile.py
 %pyproject_save_files -l '*'
 
 %check
+%pyproject_check_import
+
 %py3_check_import pefile peutils ordlookup
 # regression tests in this package are based on binary blob of exe files - commercial and malware
 # at this point (2019-09-20) not suitable to be in Fedora.

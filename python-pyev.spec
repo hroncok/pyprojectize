@@ -105,6 +105,8 @@ to libev library to be called from Python scripts.
 
 
 %if 0%{?with_python3}
+%check
+%pyproject_check_import
 %files -n python%{python3_pkgversion}-%{gitname} -f %{pyproject_files}
 #license LICENSE
 %doc README.md

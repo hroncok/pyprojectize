@@ -81,6 +81,8 @@ export USE_NCCONFIG=1
 
  
 %check
+%pyproject_check_import
+
 cd test
 export NO_NET=1
 %ifarch s390x

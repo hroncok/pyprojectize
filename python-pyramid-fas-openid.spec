@@ -53,6 +53,10 @@ Requires:           python3-openid-cla
 %pyproject_save_files -l %{modname}
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-pyramid-fas-openid -f %{pyproject_files}
 %doc README.txt
 

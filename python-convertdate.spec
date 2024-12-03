@@ -43,6 +43,8 @@ Julian, Mayan and Persian.
 %pyproject_save_files -l %{pypi_name}
 
 %check
+%pyproject_check_import
+
 %pytest -v tests -k "not testPersian"
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

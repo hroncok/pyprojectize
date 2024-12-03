@@ -59,6 +59,8 @@ no longer needed.
 rm -fr %{buildroot}%{python3_sitelib}/tests
 
 # Note that there is no %%files section for the unversioned python module if we are building for several python runtimes
+%check
+%pyproject_check_import
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc CHANGES.rst README.rst
 

@@ -103,6 +103,8 @@ cp -r %{_builddir}/%{name}-%{version}/docs/_build/html \
 %{__rm} %{buildroot}%{_datadir}/doc/%{name}/html/.buildinfo
 
 %check
+%pyproject_check_import
+
 
 # note: need to do out-of-source-dir testing
 #       otherwise the source pygrib folder is imported

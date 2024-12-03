@@ -44,6 +44,9 @@ This package allows for use of python-ly with Python 3.
 %pyproject_install
 %pyproject_save_files '*'
 
+%check
+%pyproject_check_import
+
 %files -n python3-ly -f %{pyproject_files}
 %doc ChangeLog README.rst
 %{_bindir}/ly

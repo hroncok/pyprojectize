@@ -45,6 +45,8 @@ sed -i -e '/^#!\//, 1d' %{srcname}/*.py
 %pyproject_save_files -l %{srcname}
 
 %check
+%pyproject_check_import
+
 #%{python3} setup.py test
 %pytest
 

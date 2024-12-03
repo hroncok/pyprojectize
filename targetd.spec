@@ -39,6 +39,9 @@ install -m 644 targetd.yaml.5 %{buildroot}%{_mandir}/man5/
 %pyproject_install
 %pyproject_save_files -l targetd
 
+%check
+%pyproject_check_import
+
 %post
 %systemd_post targetd.service
 

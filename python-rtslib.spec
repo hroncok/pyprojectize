@@ -100,6 +100,9 @@ install -m 644 systemd/target.service %{buildroot}%{_unitdir}/target.service
 install -m 644 doc/targetctl.8 %{buildroot}%{_mandir}/man8/
 install -m 644 doc/saveconfig.json.5 %{buildroot}%{_mandir}/man5/
 
+%check
+%pyproject_check_import
+
 %post -n target-restore
 %systemd_post target.service
 

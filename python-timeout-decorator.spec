@@ -37,6 +37,8 @@ A python module which provides a timeout decorator.
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 %endif
 

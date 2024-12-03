@@ -96,6 +96,8 @@ mkdir -p %{buildroot}%{_mandir}/man1
 install ${PWD}/man/abimap.1 %{buildroot}%{_mandir}/man1/abimap.1
 
 %check
+%pyproject_check_import
+
 # Generate test data (copied bootstrap-tests from Makefile)
 make -C tests ABIMAP_NAME_VERSION="abimap-%{version}" ABIMAP_VERSION="%{version}"
 # Run the tests using py.test

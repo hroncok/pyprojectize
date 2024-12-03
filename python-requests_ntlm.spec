@@ -47,6 +47,8 @@ Python 3 version.
 %pyproject_save_files -l %{srcname}
 
 %check
+%pyproject_check_import
+
 %python3 -m tests.test_server &
 %python3 -m pytest --ignore=tests/functional/test_functional.py --ignore=tests/test_server.py -vv -k 'not (TestRequestsNtlm and not username)'
 

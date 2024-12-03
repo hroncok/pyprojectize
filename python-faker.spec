@@ -58,6 +58,8 @@ Summary: Documentation for %{name}
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 # Exclude tests that require the faker.sphinx module
 %pytest --ignore-glob='tests/sphinx/*'
 %endif

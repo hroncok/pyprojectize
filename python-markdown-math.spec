@@ -41,6 +41,8 @@ formulas support to Python-Markdown.
 %pyproject_save_files -l mdx_math
 
 %check
+%pyproject_check_import
+
 %{__python3} test.py
 
 

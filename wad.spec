@@ -38,6 +38,8 @@ mv wad/etc/README.md wad/etc/README-wappalyzer.md
 %pyproject_save_files -l %{name}
 
 %check
+%pyproject_check_import
+
 %pytest -v %{name}/tests
 
 %files -f %{pyproject_files}

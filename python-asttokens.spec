@@ -46,6 +46,8 @@ git tag %{version}
 %pyproject_save_files -l '*'
 
 %check
+%pyproject_check_import
+
 # test_fixture9 and test_sys_modules tests are currently failing with Python 3.12
 %pytest tests/ -v "${TEST_ARGS[@]}"
 

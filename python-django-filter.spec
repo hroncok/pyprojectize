@@ -60,6 +60,9 @@ rm -rf html/.{doctrees,buildinfo}
 # %check
 # %{__python3} runtests.py
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc CHANGES.rst README.rst LICENSE docs/
 

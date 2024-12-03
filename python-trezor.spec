@@ -52,6 +52,8 @@ install -Dpm 644 bash_completion.d/trezorctl.sh %{buildroot}%{bash_completions_d
 
 
 %check
+%pyproject_check_import
+
 #Missing dependency on stellar_sdk
 %{pytest} \
   tests/test_btc.py \

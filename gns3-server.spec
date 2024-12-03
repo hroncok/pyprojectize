@@ -93,6 +93,8 @@ rm -fv %{buildroot}/%{python3_sitelib}/gns3server/disks/OVMF_CODE.fd
 rm -fv %{buildroot}/%{python3_sitelib}/gns3server/disks/OVMF_VARS.fd
 
 %check
+%pyproject_check_import
+
 
 
 %files -f %{pyproject_files}

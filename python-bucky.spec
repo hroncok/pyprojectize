@@ -63,6 +63,10 @@ rm -rf %{_bindir}/bucky
 %{__install} -m 644 %{SOURCE1} %{buildroot}%{_sysconfdir}/bucky/bucky.conf
 
 
+%check
+%pyproject_check_import
+
+
 %pre
 getent group bucky >/dev/null || groupadd -r bucky
 getent passwd bucky >/dev/null || \

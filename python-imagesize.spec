@@ -56,6 +56,8 @@ This is a pure Python library.
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 # test_get_filelike requires internet connection, hence we disable it
 py.test-3 -k 'not test_get_filelike'
 %endif

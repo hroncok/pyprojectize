@@ -60,6 +60,9 @@ You should use Twiggy because it is awesome. For more information, read the
 #%%check
 #./scripts/run-twiggy-tests.sh
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{modname} -f %{pyproject_files}
 %doc README.rst
 

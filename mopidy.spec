@@ -76,6 +76,8 @@ install -p -D -m 0644 extra/systemd/mopidy.service %{buildroot}%{_unitdir}/%{nam
 install -p -D -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/%{name}/conf.d/mopidy.conf
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 %pre

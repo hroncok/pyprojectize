@@ -66,6 +66,8 @@ cp %{buildroot}%{_bindir}/pyrsa-verify %{buildroot}%{_bindir}/pyrsa-verify-3
 %{_bindir}/pyrsa-verify-3
 
 %check
+%pyproject_check_import
+
 # Disabled following https://github.com/sybrenstuvel/python-rsa/issues/153
 # As for the multiple comments, it seems more like a test problem than a code problem
 # Please re-enable tests as soon as that Issue got solved

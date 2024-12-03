@@ -41,6 +41,10 @@ Summary:        %{summary}
 %pyproject_save_files -l sphinxcontrib
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %doc CHANGES.rst

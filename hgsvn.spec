@@ -41,6 +41,8 @@ fast local operations like hg log and hg annotate.
 %pyproject_save_files -l %{name}
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test || :
 
 %files -f %{pyproject_files}

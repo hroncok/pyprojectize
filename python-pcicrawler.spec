@@ -44,6 +44,9 @@ sed -e '\|#!/usr/bin/env python|d' -i */*.py
 %pyproject_install
 %pyproject_save_files %{pypi_name} pci_lib pci_vpd_lib
 
+%check
+%pyproject_check_import
+
 %files -n %{pypi_name} -f %{pyproject_files}
 %doc README.md
 %{_bindir}/pcicrawler

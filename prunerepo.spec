@@ -47,6 +47,8 @@ to recreate the repository metadata.
 %pyproject_buildrequires
 
 %check
+%pyproject_check_import
+
 tests/run.sh
 
 %build

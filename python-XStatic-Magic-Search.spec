@@ -56,6 +56,9 @@ sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/magic_search'|" xstatic/pkg/magic
 mkdir -p %{buildroot}/%{_jsdir}/magic_search
 mv %{buildroot}/%{python3_sitelib}/xstatic/pkg/magic_search/data/magic_search.* %{buildroot}/%{_jsdir}/magic_search
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
 %{python3_sitelib}/XStatic_Magic_Search-%{version}-py%{python3_version}-nspkg.pth

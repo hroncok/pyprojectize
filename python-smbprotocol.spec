@@ -43,6 +43,8 @@ based on the MS-SMB2 document.
 %pyproject_save_files -l %{pypi_name} smbclient
 
 %check
+%pyproject_check_import
+
 %pytest -v tests \
   -k "not reset_connection \
   and not config_domain \

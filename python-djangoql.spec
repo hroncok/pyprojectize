@@ -44,6 +44,8 @@ works with any Django models.
 %pyproject_save_files djangoql
 
 %check
+%pyproject_check_import
+
 PYTHONPATH=$(pwd) %{__python3} test_project/manage.py test core.tests
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

@@ -57,6 +57,8 @@ entrypoints and no code changes...
 %pyproject_save_files sqlalchemy_collectd
 
 %check
+%pyproject_check_import
+
 %if 0%{?with_checks} > 0
 %{__python3} -m pytest
 %endif

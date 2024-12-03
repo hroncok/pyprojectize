@@ -41,6 +41,8 @@ No magic, no special types, no polluting your objects.
 %pyproject_save_files -l %{pypi_name}
 
 %check
+%pyproject_check_import
+
 %pytest -v tests --ignore tests/test_performance.py \
   -k "not test_dump_list_strict_no_cls and not test_dump_union and not test_dump_load_parameterized_collections"
 

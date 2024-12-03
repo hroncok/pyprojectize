@@ -39,6 +39,9 @@ Conflicts:      systemd < 233
 # %%check
 # there are no useful checks, the stuff in tests/ is only useful for development so far
 
+%check
+%pyproject_check_import
+
 %files -n python3-systemd-coredump -f %{pyproject_files}
 %doc README
 %{python3_sitelib}/systemd_coredump.pth

@@ -72,6 +72,8 @@ chmod 0755 %{buildroot}/%{python3_sitearch}/ssh/*.so
 
 
 %check
+%pyproject_check_import
+
 # disable some options for sshd running inside mock
 echo UsePrivilegeSeparation no >> tests/embedded_server/sshd_config.tmpl
 echo StrictModes no >> tests/embedded_server/sshd_config.tmpl

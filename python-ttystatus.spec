@@ -66,6 +66,8 @@ BuildRequires:  python3-pep8
 
 
 %check
+%pyproject_check_import
+
 # CoverageTestRunner trips up on build directory;
 # since we've already done the install phase, remove it first
 rm -rf build

@@ -71,6 +71,8 @@ install -d -m 0755 %{buildroot}%{_mandir}/man1
 install -m 0644 Documentation/man1/git-filter-repo.1 %{buildroot}%{_mandir}/man1/git-filter-repo.1
 
 %check
+%pyproject_check_import
+
 t/run_tests
 
 %files -f %{pyproject_files}

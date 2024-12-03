@@ -49,6 +49,8 @@ minimal configuration.
 %pyproject_save_files -l %{realname}
 
 %check
+%pyproject_check_import
+
 %{__python3} -m pytest
 
 %files -n python3-%{realname} -f %{pyproject_files}

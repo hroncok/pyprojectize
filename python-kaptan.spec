@@ -39,6 +39,8 @@ sed -i -e 's/PyYAML>=3.13,<6/PyYAML/' requirements/base.txt
 %pyproject_save_files -l %{srcname}
 
 %check
+%pyproject_check_import
+
 %pytest -v tests
 
 # A man page has been requested upstream here:

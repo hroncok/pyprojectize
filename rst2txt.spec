@@ -42,6 +42,8 @@ sed -i -e 's/use_scm_version=True,/version="%{version}",/g' setup.py
 %pyproject_save_files -l %{pypi_name}
     
 %check
+%pyproject_check_import
+
 PYTHONPATH=%{buildroot}/%{python3_sitelib}/ pytest-%{python3_version} -v tests
 
 %files -f %{pyproject_files}

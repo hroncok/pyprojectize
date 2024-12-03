@@ -329,6 +329,8 @@ rm -rf $RPM_BUILD_ROOT%{_docdir}/%{name}-* \
 %find_lang %{name}
 
 %check
+%pyproject_check_import
+
 # minimal load test for the PHP extension
 %if %{with_php}
 LD_LIBRARY_PATH=%{buildroot}%{_libdir} php -n \

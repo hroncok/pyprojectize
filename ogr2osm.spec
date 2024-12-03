@@ -39,6 +39,10 @@ source to the .pbf or .osm output.
 %pyproject_save_files -l %{name}
 
 
+%check
+%pyproject_check_import
+
+
 %files -f %{pyproject_files}
 %{_bindir}/%{name}
 %doc README.md

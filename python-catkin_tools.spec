@@ -76,6 +76,8 @@ rm docs/_build/html/.buildinfo
 install -p -m0644 -D docs/_build/man/%{srcname}.1 %{buildroot}%{_mandir}/man1/%{srcname}.1
 
 %check
+%pyproject_check_import
+
 # Many system tests require catkin itself, which isn't packaged in Fedora
 %pytest tests/unit
 

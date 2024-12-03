@@ -281,6 +281,10 @@ find %{buildroot} -name '*.a' -exec rm -f {} ';'
 %ldconfig_scriptlets
 
 
+%check
+%pyproject_check_import
+
+
 %files
 %doc HISTORY.txt LIB.txt README.txt TODO.txt
 %{_libdir}/*.so.*

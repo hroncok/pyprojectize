@@ -44,6 +44,9 @@ the matrix, such that no row and no column are used more than once.
 %pyproject_install
 %pyproject_save_files -l %{srcname}
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc CHANGELOG.md README.md
 

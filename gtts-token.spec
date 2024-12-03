@@ -42,6 +42,8 @@ validation of Google Translate
 %pyproject_save_files -l gtts_token
 
 %check
+%pyproject_check_import
+
 %if %{with_tests}
 %{__python3} setup.py test
 %endif

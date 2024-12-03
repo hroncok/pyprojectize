@@ -46,6 +46,10 @@ find %{buildroot}%{python3_sitelib} -name '*.py' \
      -exec sed -i -e '1{/^#!/d}' {} \;
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python%{python3_pkgversion}-pycmd -f %{pyproject_files}
 %doc README.txt
 %doc CHANGELOG

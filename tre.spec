@@ -115,6 +115,8 @@ rm $RPM_BUILD_ROOT%{_libdir}/*.la
 %find_lang %{name}
 
 %check
+%pyproject_check_import
+
 %{__make} check
 
 %ldconfig_scriptlets

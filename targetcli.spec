@@ -39,6 +39,9 @@ install -m 644 targetcli*.8 %{buildroot}%{_mandir}/man8/
 mkdir -p %{buildroot}%{_unitdir}/
 install -m 644 systemd/* %{buildroot}%{_unitdir}/
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc README.md
 %{_bindir}/targetcli

@@ -81,6 +81,8 @@ rm -rf %{buildroot}%{_datadir}/doc/pycurl
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 # relax crypto policy for the test-suite to make it pass again (#1863711)
 export OPENSSL_SYSTEM_CIPHERS_OVERRIDE=XXX
 export OPENSSL_CONF=

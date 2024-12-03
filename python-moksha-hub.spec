@@ -173,6 +173,8 @@ ln -s ./moksha-hub %{buildroot}%{_bindir}/moksha-hub-%{python3_version}
 %endif
 
 %check
+%pyproject_check_import
+
 %if 0%{?rhel}
 # Test suite requires a more modern Twisted than is in el6, so don't run it for
 # now.

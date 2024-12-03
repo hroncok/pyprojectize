@@ -58,6 +58,8 @@ games.
 
 
 %check
+%pyproject_check_import
+
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.xml
 desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 

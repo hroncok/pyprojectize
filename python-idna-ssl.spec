@@ -47,6 +47,8 @@ BuildRequires:  python3dist(idna) >= 2
 
 %if %{with check}
 %check
+%pyproject_check_import
+
 %{__python3} setup.py pytest
 %endif
 

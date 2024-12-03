@@ -80,6 +80,10 @@ rm -rf html/{.doctrees,.buildinfo,conf.py,_sources}
 %pyproject_save_files -l nbsphinx
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-nbsphinx -f %{pyproject_files}
 %doc README.rst
 

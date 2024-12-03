@@ -52,6 +52,8 @@ rm -f {test-,}requirements.txt
 %pyproject_wheel
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 %install

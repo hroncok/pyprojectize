@@ -38,6 +38,9 @@ sed -i -e '/^#!\//, 1d' kerberoast/kerberoast.py
 %pyproject_install
 %pyproject_save_files -l %{pypi_name}
 
+%check
+%pyproject_check_import
+
 %files
 %{_bindir}/kerberoast
 

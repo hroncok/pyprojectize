@@ -75,6 +75,10 @@ rm -rf docs/_build/html/.{doctrees,buildinfo}
 %pyproject_save_files -l %{srcname}
 
 
+%check
+%pyproject_check_import
+
+
 %files doc
 %license LICENSE
 %doc docs/_build/html/

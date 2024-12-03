@@ -47,6 +47,9 @@ Interactive HTML widgets for Jupyter notebooks.
 mkdir -p %{buildroot}%{_sysconfdir}/jupyter/nbconfig/notebook.d/
 mv {%{buildroot}%{_prefix}/etc,%{buildroot}%{_sysconfdir}}/jupyter/nbconfig/notebook.d/widgetsnbextension.json
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %{_datadir}/jupyter/nbextensions/jupyter-js-widgets/
 %config(noreplace) %{_sysconfdir}/jupyter/nbconfig/notebook.d/widgetsnbextension.json

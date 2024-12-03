@@ -65,6 +65,8 @@ export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 %pyproject_save_files -l '*'
 
 %check
+%pyproject_check_import
+
 # Here we set upstream version based on setuptools_scm documentation
 # this is done to avoid the following error:
 # LookupError: setuptools-scm was unable to detect version

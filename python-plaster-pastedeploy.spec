@@ -55,6 +55,8 @@ Requires: python3-setuptools
 
 
 %check
+%pyproject_check_import
+
 PYTHONPATH="./src" py.test-3
 
 

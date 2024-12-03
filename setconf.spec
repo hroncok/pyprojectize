@@ -30,6 +30,8 @@ changing settings in configuration text files.
 %pyproject_wheel
 
 %check
+%pyproject_check_import
+
 %{__python3} setconf.py --test
 awk '/^..\/setconf.py/ { print "%{__python3} " $0; next } { print }' testcases/test.sh >testcases/py3_test.sh
 chmod a+x testcases/py3_test.sh

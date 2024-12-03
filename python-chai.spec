@@ -55,6 +55,8 @@ $(find tests -type f)
 %pyproject_save_files -l %{modname}
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 %files -n python%{python3_pkgversion}-%{modname} -f %{pyproject_files}

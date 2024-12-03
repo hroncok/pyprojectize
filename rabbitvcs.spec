@@ -109,6 +109,9 @@ install -p -m0644 clients/nemo/RabbitVCS.py -D %{buildroot}%{_datadir}/nemo-pyth
 
 %find_lang RabbitVCS
 
+%check
+%pyproject_check_import
+
 %files -f RabbitVCS.lang core
 %license COPYING
 %{_pkgdocdir}/

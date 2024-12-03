@@ -46,6 +46,8 @@ This package provides Python 3 build of %{pypi_name}.
 # Remove the "tests" subdirectory to avoid it polluting the main python
 # namespace:
 rm -rf %{buildroot}%{python3_sitelib}/tests
+%check
+%pyproject_check_import
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 

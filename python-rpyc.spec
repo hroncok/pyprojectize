@@ -44,6 +44,9 @@ Obsoletes:      python2-%{modname} < 4.0.1-4
 mv %{buildroot}%{_bindir}/rpyc_classic.py %{buildroot}%{_bindir}/rpyc_classic
 mv %{buildroot}%{_bindir}/rpyc_registry.py %{buildroot}%{_bindir}/rpyc_registry
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{modname} -f %{pyproject_files}
 %{_bindir}/rpyc_*
 

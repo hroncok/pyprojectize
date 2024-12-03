@@ -47,6 +47,8 @@ An extension for colcon-core to provide information about the packages.
 
 
 %check
+%pyproject_check_import
+
 %pytest -m 'not linter' test
 
 

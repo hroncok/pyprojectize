@@ -65,6 +65,8 @@ install -m644 %{SOURCE1} %{buildroot}%{_udevrulesdir}/20-ledger.rules
 
 
 %check
+%pyproject_check_import
+
 # Tests try to contact PyPi
 
 

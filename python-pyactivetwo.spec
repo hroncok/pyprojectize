@@ -43,6 +43,9 @@ cp -p %{SOURCE1} .
 # No tests
 #check
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst example.py
 

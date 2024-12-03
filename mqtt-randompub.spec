@@ -34,6 +34,9 @@ rm -rf %{pypi_name}.egg-info
 %pyproject_install
 %pyproject_save_files -l mqtt_randompub
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc AUTHORS ChangeLog README.rst
 %{_bindir}/mqtt-randompub

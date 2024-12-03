@@ -75,6 +75,8 @@ install -D -p -m 0644 man/*.1 %{buildroot}%{_mandir}/man1
 rm -rf docs/_build/{.buildinfo,.doctrees}
 
 %check
+%pyproject_check_import
+
 %pytest
 
 

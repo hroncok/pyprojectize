@@ -55,6 +55,9 @@ rm -f docs/._.DS_Store
 %pyproject_install
 %pyproject_save_files flask_openid
 
+%check
+%pyproject_check_import
+
 %files -n python3-flask-openid -f %{pyproject_files}
 %doc docs README.rst LICENSE PKG-INFO
 

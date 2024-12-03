@@ -41,6 +41,9 @@ and ASCII tables) with a very simple API.
 %pyproject_install
 %pyproject_save_files -l atpy
 
+%check
+%pyproject_check_import
+
 %files -n python3-ATpy -f %{pyproject_files}
 %doc CHANGES README.md
 

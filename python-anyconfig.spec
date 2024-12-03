@@ -84,6 +84,8 @@ rm -frv docs/build/html/_sources
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 export WITH_PYTHON_3=1
 ./pkg/runtest.sh
 %endif

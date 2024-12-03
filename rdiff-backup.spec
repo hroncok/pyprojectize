@@ -46,6 +46,9 @@ differences from the previous backup will be transmitted.
 # Remove doc files so we package them with rpmbuild
 rm -rf $RPM_BUILD_ROOT/usr/share/doc/*
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %defattr(-,root,root)
 %{_bindir}/rdiff-backup

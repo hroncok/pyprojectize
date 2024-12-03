@@ -82,6 +82,10 @@ mkdir -p %{buildroot}/%{_jsdir}/angular
 mv %{buildroot}/%{python3_sitelib}/xstatic/pkg/angular/data/angular* %{buildroot}/%{_jsdir}/angular
 
 
+%check
+%pyproject_check_import
+
+
 %files -n XStatic-Angular-common
 %{_jsdir}/angular
 

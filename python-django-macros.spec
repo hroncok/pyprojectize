@@ -78,6 +78,9 @@ dos2unix -- README.rst
 %pyproject_install
 %pyproject_save_files -l macros
 
+%check
+%pyproject_check_import
+
 %files -n python3-%srcname -f %{pyproject_files}
 %doc README.rst
 

@@ -84,6 +84,9 @@ mv pcapy.html.tmp pcapy.html
 
 rm -rf %{buildroot}/usr/share/doc/pcapy
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{gitname} -f %{pyproject_files}
 %doc README pcapy.html
 

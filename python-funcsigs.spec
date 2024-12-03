@@ -70,6 +70,8 @@ rm -rf html/.{doctrees,buildinfo}
 
 
 %check
+%pyproject_check_import
+
 %{__python3} -m unittest tests.test_formatannotation
 %{__python3} -m unittest tests.test_funcsigs
 %{__python3} -m unittest tests.test_inspect

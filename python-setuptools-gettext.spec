@@ -34,6 +34,8 @@ rm -rf ./setuptools_gettext.egg-info
 %pyproject_save_files -l setuptools_gettext
 
 %check
+%pyproject_check_import
+
 %py3_check_import setuptools_gettext
 
 %files -n python3-setuptools-gettext -f %{pyproject_files}

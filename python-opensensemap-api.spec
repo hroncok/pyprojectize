@@ -34,6 +34,9 @@ A Python client for interacting with the openSenseMap API.
 %pyproject_install
 %pyproject_save_files -l opensensemap_api
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst example.py
 

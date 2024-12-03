@@ -75,6 +75,9 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/d3/data/
 # fix execute flags for js
 chmod 644 %{buildroot}%{_jsdir}/d3/d3.js
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
 %{python3_sitelib}/XStatic_D3-%{version}-py%{python3_version}-nspkg.pth

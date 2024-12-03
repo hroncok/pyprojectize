@@ -54,6 +54,8 @@ Requires: python3-cpuinfo
 %pyproject_save_files -l pytest_benchmark
 
 %check
+%pyproject_check_import
+
 # Tests disabled (missing dependency: aspectlib)
 #%%pytest
 

@@ -46,6 +46,8 @@ directives.
 rm -rf %{buildroot}%{python3_sitelib}/tests
 
 %check
+%pyproject_check_import
+
 %pytest
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

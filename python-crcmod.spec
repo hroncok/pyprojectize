@@ -59,6 +59,8 @@ rm -rf html/.{doctrees,buildinfo}
 %pyproject_save_files -l %{pypi_name}
 
 %check
+%pyproject_check_import
+
 for test in test/*; do
   PYTHONPATH="%{buildroot}%{python3_sitearch}" %python3 $test
 done

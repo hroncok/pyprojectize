@@ -51,6 +51,10 @@ sed -i 's/\r$//' README.rst
 %pyproject_save_files -l gitapi
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-gitapi -f %{pyproject_files}
 %doc README.rst
 

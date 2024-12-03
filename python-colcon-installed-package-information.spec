@@ -57,6 +57,8 @@ extensions provided by colcon_core.
 
 
 %check
+%pyproject_check_import
+
 %pytest -m 'not linter' test
 
 

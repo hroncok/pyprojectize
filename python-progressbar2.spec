@@ -74,6 +74,8 @@ sed -i -E '/--(no-)?cov/d' pytest.ini
 %pyproject_save_files -l progressbar
 
 %check
+%pyproject_check_import
+
 %if %{with tests}
 PYTHONPATH=. %pytest tests
 %endif

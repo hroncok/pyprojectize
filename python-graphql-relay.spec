@@ -45,6 +45,9 @@ rm -rf %{pypi_name}.egg-info
 #%%check
 #%%pytest -v tests
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 

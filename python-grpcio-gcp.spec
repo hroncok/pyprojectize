@@ -46,6 +46,10 @@ pushd src/
 popd
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc src/{CHANGELOG.rst,README.md}
 %license src/LICENSE

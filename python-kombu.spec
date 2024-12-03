@@ -83,6 +83,8 @@ also provide proven and tested solutions to common messaging problems.
 %pyproject_save_files -l %{srcname}
 
 %check
+%pyproject_check_import
+
 %if %{with tests}
 %pytest
 %endif

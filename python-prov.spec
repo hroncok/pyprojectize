@@ -38,6 +38,9 @@ Python 3 version.
 %pyproject_install
 %pyproject_save_files -l '%{modname}*'
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{modname} -f %{pyproject_files}
 %doc AUTHORS.rst HISTORY.rst README.rst
 %{_bindir}/%{modname}-*

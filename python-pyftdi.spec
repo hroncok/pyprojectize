@@ -36,6 +36,10 @@ PyFtdi aims at providing a user-space driver for modern FTDI devices.
 %pyproject_save_files %{pypi_name}
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %{_bindir}/*.py

@@ -61,6 +61,9 @@ install -Dpm 0644 icon_48x48.png %{buildroot}%{_datadir}/icons/hicolor/48x48/app
 #%%check
 #%%{python3} setup.py test
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc README.rst docs/CODE_OF_CONDUCT.md docs/CONTRIBUTING.md AUTHORS.rst
 %{_bindir}/NanoVNASaver

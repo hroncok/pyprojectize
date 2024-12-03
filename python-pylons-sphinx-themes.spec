@@ -47,6 +47,10 @@ Summary: %{summary}
 %pyproject_save_files -l pylons_sphinx_themes
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
 

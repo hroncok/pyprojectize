@@ -50,6 +50,8 @@ Requires:       python3-six
 
 
 %check
+%pyproject_check_import
+
 # Ignore tests which require:
 # - test data (test_classic_plugin.py, test_core.py, id3/test_frames.py,
 # id3_test_rva.py, test_issues.py)

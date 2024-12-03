@@ -41,6 +41,8 @@ Summary: %{summary}
 %pyproject_save_files -l xattr
 
 %check
+%pyproject_check_import
+
 # selinux in koji produces unexpected xattrs for tests
 export TEST_IGNORE_XATTRS=security.selinux
 # the module is just a C extension => need to add the installed destination to

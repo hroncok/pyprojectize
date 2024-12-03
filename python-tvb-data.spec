@@ -67,6 +67,10 @@ sed -i 's/1.5.10/1.5.9/' setup.py
 %pyproject_save_files -l %{module_name}
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 

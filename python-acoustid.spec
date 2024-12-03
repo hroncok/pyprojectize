@@ -41,6 +41,9 @@ which provides fingerprint look ups.
 %{pyproject_install}
 %pyproject_save_files acoustid chromaprint
 
+%check
+%pyproject_check_import
+
 %files -n python3-acoustid -f %{pyproject_files}
 %doc README.rst aidmatch.py fpcalc.py
 

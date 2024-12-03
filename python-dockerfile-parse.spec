@@ -47,6 +47,8 @@ Python 3 version.
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 export LANG=C.UTF-8
 py.test-%{python3_version} -v tests
 %endif

@@ -66,6 +66,10 @@ popd
 %pyproject_save_files -l 'pathtools*'
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{upname} -f %{pyproject_files}
 %doc AUTHORS LICENSE README
 %doc docs/build/html

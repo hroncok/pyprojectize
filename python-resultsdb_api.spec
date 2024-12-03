@@ -47,6 +47,8 @@ Python3 interface to resultsdb.
 %pyproject_save_files -l resultsdb_api
 
 %check
+%pyproject_check_import
+
 %pytest
 
 %files -n python3-resultsdb_api -f %{pyproject_files}

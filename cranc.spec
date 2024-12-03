@@ -40,6 +40,8 @@ Cranc is a Pagure command line interface tool
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} -m pytest -v
 %endif
 

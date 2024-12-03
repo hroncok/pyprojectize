@@ -51,6 +51,10 @@ XStatic-* packages.
 mkdir %{buildroot}/%{python3_sitelib}/xstatic/pkg
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
 %{python3_sitelib}/XStatic-%{version}-py%{python3_version}-nspkg.pth

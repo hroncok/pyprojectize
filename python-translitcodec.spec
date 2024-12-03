@@ -41,6 +41,8 @@ Best-effort representations using smaller coded character sets
 %pyproject_save_files -l %{pypi_name}
 
 %check
+%pyproject_check_import
+
 %pytest
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

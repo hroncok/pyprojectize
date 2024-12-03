@@ -60,6 +60,8 @@ export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 %pyproject_save_files -l %{srcname}
 
 %check
+%pyproject_check_import
+
 %if 0%{?with_tests}
 # Here we set upstream version based on setuptools_scm documentation
 # this is done to avoid the following error:

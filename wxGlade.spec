@@ -42,6 +42,9 @@ desktop-file-install --dir=%{buildroot}%{_datadir}/applications %{S:1}
 install -pm 755 -d %{buildroot}%{_datadir}/icons/hicolor/32x32/apps
 install -pm 644 %{S:2} %{buildroot}%{_datadir}/icons/hicolor/32x32/apps
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %{_docdir}/wxglade/
 %{_bindir}/wxglade*

@@ -49,6 +49,9 @@ sed -i 's|0.0.1|%{version}|' manatools/version.py
 %pyproject_install
 %pyproject_save_files -l %{module}
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{module} -f %{pyproject_files}
 %doc README.md NEWS
 

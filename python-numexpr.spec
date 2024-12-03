@@ -54,6 +54,8 @@ chmod 0755 %{buildroot}%{python3_sitearch}/numexpr/cpuinfo.py
 sed -i "1s|/usr/bin/env python$|%{python3}|" %{buildroot}%{python3_sitearch}/numexpr/cpuinfo.py
 
 %check
+%pyproject_check_import
+
 pushd build/lib.linux*
 %py3_test_envvars %python3 -c 'import numexpr, sys; sys.exit(not numexpr.test().wasSuccessful())'
 popd

@@ -63,6 +63,9 @@ make buildroot=%{buildroot}/ docdir=%{_defaultdocdir}/ install
 rm -f %{buildroot}%{_defaultdocdir}/python-%{srcname}/LICENSE
 rm -f %{buildroot}%{_defaultdocdir}/python-%{srcname}/README
 
+%check
+%pyproject_check_import
+
 %files
 %doc README.rst
 %{_mandir}/man8/*.8*

@@ -50,6 +50,10 @@ export PBR_VERSION=%{version}
 %pyproject_save_files -l zuul_sphinx
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
 

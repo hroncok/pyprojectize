@@ -111,6 +111,9 @@ rm doc/conf.py
 #%%check
 #%%{__python3} setup.py test
 
+%check
+%pyproject_check_import
+
 %files
 %license COPYING
 %doc README.md

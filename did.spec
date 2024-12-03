@@ -45,6 +45,8 @@ mkdir -p %{buildroot}%{_mandir}/man1
 install -pm 644 did.1.gz %{buildroot}%{_mandir}/man1
 
 %check
+%pyproject_check_import
+
 export LANG=en_US.utf-8
 %{__python3} -m pytest -vv tests/test*.py -k 'not smoke'
 

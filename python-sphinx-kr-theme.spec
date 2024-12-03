@@ -50,6 +50,8 @@ Sphinx documentation, originally derived from Mitsuhiko's Flask theme.
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 export PYTHONPATH=%{buildroot}%{python3_sitelib}
 %pytest %{SOURCE1}
 %endif

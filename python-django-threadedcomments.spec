@@ -47,6 +47,9 @@ This package provides Python 3 build of %{pypi_name}.
 %pyproject_install
 %pyproject_save_files -l threadedcomments
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst LICENSE.txt CHANGELOG.rst
 

@@ -37,6 +37,9 @@ Summary:	Python module for writing pandoc filters
 %pyproject_install
 %pyproject_save_files -l pandocfilters
 
+%check
+%pyproject_check_import
+
 %files -n python3-pandocfilters -f %{pyproject_files}
 %doc README.rst
 

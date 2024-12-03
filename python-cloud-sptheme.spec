@@ -54,6 +54,10 @@ at http://packages.python.org/cloud_sptheme.
 %pyproject_save_files -l %{modname}
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README CHANGES docs/
 

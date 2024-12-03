@@ -43,6 +43,8 @@ A set of objects for performing math operations on font data.
 %pyproject_save_files %{srcname}
  
 %check
+%pyproject_check_import
+
 export LC_ALL=C.UTF-8
 %{__python3} setup.py test
 

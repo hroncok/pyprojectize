@@ -63,6 +63,9 @@ appstream-util validate-relax --nonet $RPM_BUILD_ROOT/%{_metainfodir}/*.appdata.
 #Link to font
 ln -s %{_datadir}/fonts/gnu-free/FreeSansBold.ttf $RPM_BUILD_ROOT%{python3_sitelib}/%{name}/data/FreeSansBold.ttf
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %{_bindir}/slingshot
 %doc README

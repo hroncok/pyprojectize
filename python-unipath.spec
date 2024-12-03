@@ -47,6 +47,9 @@ Summary:        %summary
 %{pyproject_install}
 %pyproject_save_files unipath
 
+%check
+%pyproject_check_import
+
 %files -n python3-unipath -f %{pyproject_files}
 %license CHANGES
 %doc BUGS.txt PKG-INFO README.html README.rst

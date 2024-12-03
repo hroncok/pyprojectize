@@ -40,6 +40,9 @@ This theme is based on VuePress.
 %pyproject_install
 %pyproject_save_files sphinx_press_theme
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 

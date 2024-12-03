@@ -74,6 +74,8 @@ cp %{S:1} %{S:2} .
 %pyproject_save_files -l '*'
 
 %check
+%pyproject_check_import
+
 %if !%{disable_python2}
 PYTHONPATH=%{buildroot}/%{python2_sitelib}/rmtest %{__python2} setup.py test
 %endif

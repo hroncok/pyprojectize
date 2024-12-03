@@ -41,6 +41,9 @@ rm -rf *.egg-info/
 %pyproject_install
 %pyproject_save_files -l shamir_mnemonic
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
 %doc CHANGELOG.rst

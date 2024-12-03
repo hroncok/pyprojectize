@@ -121,6 +121,8 @@ sed -i -e 's/-n auto //' setup.cfg
 
 
 %check
+%pyproject_check_import
+
 %if %{with tests}
 %pytest
 %endif

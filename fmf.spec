@@ -61,6 +61,8 @@ install -pm 644 fmf.1* %{buildroot}%{_mandir}/man1
 
 
 %check
+%pyproject_check_import
+
 %{__python3} -m pytest -vv -c tests/unit/pytest.ini -m 'not web'
 
 

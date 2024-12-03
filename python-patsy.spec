@@ -84,6 +84,8 @@ popd
 %pyproject_save_files -l 'patsy*'
 
 %check
+%pyproject_check_import
+
 %if %{with check}
 %pytest -v --deselect "patsy/eval.py::test_EvalEnvironment_eq"
 %endif

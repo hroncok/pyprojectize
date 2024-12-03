@@ -74,6 +74,8 @@ rm -rf %{pypi_name}.egg-info
 %endif # with_python2
 
 %if 0%{?with_python2}
+%check
+%pyproject_check_import
 %files -n python2-%{pypi_name}
 %doc LICENSE README.rst
 %{python2_sitelib}/%{pypi_name}

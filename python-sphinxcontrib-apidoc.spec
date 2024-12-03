@@ -63,6 +63,9 @@ Requires:   python3-sphinx
 # py.test-3 ||
 # %endif
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %{python3_sitelib}/sphinxcontrib_apidoc*nspkg.pth

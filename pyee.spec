@@ -46,6 +46,8 @@ A port of node.js's EventEmitter to python.
 %pyproject_save_files -l '*'
 
 %check
+%pyproject_check_import
+
 # currently segfaults
 # %%py3_check_import pyee
 %if %{with tests}

@@ -78,6 +78,8 @@ sed -i '/"install":/d' setup.py
 find %{buildroot} -name '*LICENSE' -print -delete
 
 %check
+%pyproject_check_import
+
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 appstream-util validate-relax --nonet %{buildroot}%{_datadir}/appdata/%{name}.appdata.xml
 

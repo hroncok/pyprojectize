@@ -48,6 +48,9 @@ rm -rf *.egg*
 # https://bitbucket.org/lcrees/stuf/issues/9/find_packages-should-exclude-tests
 rm -rf %{buildroot}%{python3_sitelib}/tests/
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{modname} -f %{pyproject_files}
 %doc README.rst
 

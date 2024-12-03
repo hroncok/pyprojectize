@@ -41,6 +41,9 @@ rm -rf %{buildroot}
 %pyproject_install
 %pyproject_save_files -l procfs
 
+%check
+%pyproject_check_import
+
 %files -n python3-linux-procfs -f %{pyproject_files}
 %defattr(0755,root,root,0755)
 %{_bindir}/pflags

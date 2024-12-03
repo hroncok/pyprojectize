@@ -47,6 +47,9 @@ rm -rf %{pypi_name}.egg-info
 mkdir -p %{buildroot}/%{_mandir}/man1/
 mv %{buildroot}/usr/man/man1/sv*.* %{buildroot}/%{_mandir}/man1/ 
 
+%check
+%pyproject_check_import
+
 %files
 %doc README.md
 %{_mandir}/man1/sv*.*

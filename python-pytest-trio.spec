@@ -65,6 +65,8 @@ sed -i s/--cov// pytest.ini
 
 # https://github.com/python-trio/pytest-trio/issues/84
 %check
+%pyproject_check_import
+
 %pytest -v -W "ignore::trio.TrioDeprecationWarning"
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

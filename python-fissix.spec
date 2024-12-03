@@ -57,6 +57,8 @@ cp -p fissix/*.txt %{buildroot}%{python3_sitelib}/%{srcname}/
 
 
 %check
+%pyproject_check_import
+
 # mv fissix-tests fissix/tests
 %{python3} -m pytest --verbose fissix/tests
 

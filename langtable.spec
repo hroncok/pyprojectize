@@ -48,6 +48,8 @@ perl -pi -e "s,_DATADIR = '(.*)',_DATADIR = '%{_datadir}/langtable'," langtable/
 %pyproject_save_files langtable
 
 %check
+%pyproject_check_import
+
 (cd $RPM_BUILD_DIR/%{name}-%{version}/langtable; %{__python3} langtable.py)
 (cd $RPM_BUILD_DIR/%{name}-%{version}; %{__python3} test_cases.py)
 xmllint --noout --relaxng \

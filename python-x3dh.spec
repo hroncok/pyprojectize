@@ -58,6 +58,11 @@ secrecy and cryptographic deniability.
 
 
 
+%check
+%pyproject_check_import
+
+
+
 %files -n python3-x3dh -f %{pyproject_files}
 %doc README.md
 # For noarch packages: sitelib

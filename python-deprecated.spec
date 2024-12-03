@@ -36,6 +36,9 @@ rm -rf %{pkgname}.egg-info
 %pyproject_install
 %pyproject_save_files -l %{pkgname}
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pkgname} -f %{pyproject_files}
 %doc README.md
 

@@ -63,6 +63,8 @@ sed 's|coverage == 4.4.0|coverage|' -i setup.py
 
 %if %{with check}
 %check
+%pyproject_check_import
+
 export PATH=%{buildroot}%{_bindir}:${PATH} 
 export PYTHONPATH=%{buildroot}%{python3_sitelib}
 %{python3} -m pytest -v

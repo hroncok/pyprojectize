@@ -82,6 +82,8 @@ cp man/*.1 %{buildroot}%{_mandir}/man1/
 
 
 %check
+%pyproject_check_import
+
 %{python3} -m pytest -vv
 
 

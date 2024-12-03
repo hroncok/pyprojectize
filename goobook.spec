@@ -38,6 +38,9 @@ for lib in %{buildroot}%{python3_sitelib}/goobook/*.py; do
 	mv $lib.new $lib
 done
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc LICENSE.txt README.rst CHANGES.rst CONTRIBUTORS.rst TODO.rst HACKING.rst
 %{_bindir}/goobook

@@ -63,6 +63,8 @@ popd
 %pyproject_save_files %{pname}
 
 %check
+%pyproject_check_import
+
 %if 0%{?fedora} || 0%{?rhel} > 7
 %pytest
 %else

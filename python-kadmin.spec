@@ -44,6 +44,9 @@ export CFLAGS="$CFLAGS -fcommon"
 %pyproject_install
 %pyproject_save_files -l '%{modname}*'
 
+%check
+%pyproject_check_import
+
 %files -n python%{python3_pkgversion}-%{modname} -f %{pyproject_files}
 %doc README.md
 

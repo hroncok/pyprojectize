@@ -50,6 +50,9 @@ browsing history).
 %pyproject_install
 %pyproject_save_files -l %{srcname}
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc README.md
 %{_bindir}/protonvpn

@@ -117,6 +117,8 @@ rm -rf %{buildroot}/etc/systemd
 
 
 %check
+%pyproject_check_import
+
 %if %{with tests}
 python3 -m pytest tests/unittests
 %else

@@ -40,6 +40,9 @@ commons/connection/target.py,crypto/pure/RC4/RC4.py}
 %pyproject_install
 %pyproject_save_files %{pypi_name}
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 # Missing license file: https://github.com/skelsec/aiosmb/pull/4

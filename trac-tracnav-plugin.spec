@@ -40,6 +40,10 @@ that was originally supplied with Trac.
 %pyproject_save_files -l tracnav
 
 
+%check
+%pyproject_check_import
+
+
 %files -f %{pyproject_files}
 %doc README.md
 

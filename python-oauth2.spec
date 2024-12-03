@@ -115,6 +115,8 @@ rm -rf %{buildroot}%{python2_sitelib}/tests/
 rm -rf %{buildroot}%{python3_sitelib}/tests/
 
 %check
+%pyproject_check_import
+
 # Tests try to access the network, which doesn't work in koji.
 # export PYTHONPATH=$RPM_BUILD_ROOT/%%{python_sitelib}
 # %%{__python} setup.py test

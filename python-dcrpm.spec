@@ -83,6 +83,8 @@ mv legacy_setup.py setup.py
 
 
 %check
+%pyproject_check_import
+
 %py3_check_import %{pypi_name}
 %if %{with check}
 %if 0%{?fedora} >= 37

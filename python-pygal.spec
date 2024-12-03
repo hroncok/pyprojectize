@@ -54,6 +54,8 @@ A python svg graph plotting library
 
 
 %check
+%pyproject_check_import
+
 ## python3 tests aren't quite working yet.  something to do with cairocffi, but
 ## I can't duplicate it locally....
 #py.test-%{python3_version} pygal/test

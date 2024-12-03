@@ -44,6 +44,8 @@ rm -rf lib/*.egg-info
 %pyproject_save_files -l '%{modname}*'
 
 %check
+%pyproject_check_import
+
 # https://github.com/carlos-jenkins/pydotplus/issues/2
 pushd test
   PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} pydot_unittest.py -v || :

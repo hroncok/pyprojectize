@@ -54,6 +54,10 @@ shell is bash.
 %pyproject_save_files -l colcon_spawn_shell
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %doc README.rst
 

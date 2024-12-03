@@ -123,6 +123,8 @@ rm -rv html/.buildinfo html/.doctrees
 %pyproject_save_files -l %{name}
 
 %check
+%pyproject_check_import
+
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 # FIXME rhbz#1752766, python3-sip not available

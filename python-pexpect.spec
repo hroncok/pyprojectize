@@ -81,6 +81,8 @@ rm -rf %{buildroot}%{python3_sitelib}/pexpect/tests
 
 %if %{with check}
 %check
+%pyproject_check_import
+
 export PYTHONIOENCODING=UTF-8
 # workaround for https://bugzilla.redhat.com/show_bug.cgi?id=1914843
 # upstream: https://github.com/pexpect/pexpect/issues/669

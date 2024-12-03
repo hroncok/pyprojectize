@@ -106,6 +106,8 @@ popd
 %endif
 
 %check
+%pyproject_check_import
+
 make check
 
 %if %{with python3}

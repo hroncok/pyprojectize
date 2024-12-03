@@ -44,6 +44,10 @@ sed -e "/LICENSE/d" -i setup.py
 %pyproject_save_files -l %{modname}
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-anytree -f %{pyproject_files}
 %doc README.rst
 

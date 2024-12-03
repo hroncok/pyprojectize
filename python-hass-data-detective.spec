@@ -46,6 +46,8 @@ sed -i -e 's/2.1/2.3/g' setup.py
 %pyproject_save_files -l detective
 
 %check
+%pyproject_check_import
+
 PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v tests
 
 %files -n python3-%{pkg_name} -f %{pyproject_files}

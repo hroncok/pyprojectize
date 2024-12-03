@@ -45,6 +45,9 @@ need of an elaborate UI system.
 %pyproject_install
 %pyproject_save_files '*'
 
+%check
+%pyproject_check_import
+
 %check            
 %{__python3} setup.py test
 

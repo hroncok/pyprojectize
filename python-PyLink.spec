@@ -51,6 +51,8 @@ rm -rf *.egg-info
 %pyproject_save_files -l pylink
 
 %check
+%pyproject_check_import
+
 # No network things available
 
 %files -n python3-%{modname} -f %{pyproject_files}

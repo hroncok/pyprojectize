@@ -123,6 +123,8 @@ popd
 
 %if %{with check}
 %check
+%pyproject_check_import
+
 %cargo_test
 %endif
 

@@ -57,6 +57,8 @@ Requires:       python3-cheroot
 %pyproject_save_files -l web
 
 %check
+%pyproject_check_import
+
 pytest -k 'not test_routing' tests
 
 %files -n python3-%{pkgname} -f %{pyproject_files}

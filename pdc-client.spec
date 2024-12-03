@@ -86,6 +86,8 @@ sed -i 's|^DEFAULT_PLUGIN_DIR = .*|DEFAULT_PLUGIN_DIR = "%{plugin_install_path}"
 %pyproject_wheel
 
 %check
+%pyproject_check_import
+
 # Override plugin directory for tests.
 export PDC_CLIENT_PLUGIN_PATH="%{buildroot}%{plugin_install_path}"
 test -d "$PDC_CLIENT_PLUGIN_PATH"

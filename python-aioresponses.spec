@@ -62,6 +62,8 @@ sed -i 's/def \(test_pass_through_with_origin_params\)(/def skip_\1(/' tests/tes
 %pyproject_save_files -l %{srcname}
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 %files -n python3-%{srcname} -f %{pyproject_files}

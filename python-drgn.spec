@@ -96,6 +96,8 @@ cp -PR contrib tools %{buildroot}%{_datadir}/drgn
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 %pytest
 %endif
 

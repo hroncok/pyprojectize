@@ -53,6 +53,8 @@ Flake8 plugins that intend to support Flake8 2.x and 3.x simultaneously.
 
 
 %check
+%pyproject_check_import
+
 PYTHONPATH=%{buildroot}%{python3_sitelib} \
   py.test-%{python3_version} \
   --ignore=tests/test_stdin.py \

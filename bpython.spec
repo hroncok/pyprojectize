@@ -96,6 +96,9 @@ install -m0644 -p -D doc/sphinx/build/man/bpython.1 \
 install -m0644 -p -D doc/sphinx/build/man/bpython-config.5 \
     %{buildroot}%{_mandir}/man5/bpython-config.5
 
+%check
+%pyproject_check_import
+
 %files -n python3-bpython -f %{pyproject_files}
 %doc AUTHORS.rst CHANGELOG.rst README.rst
 %doc theme/light.theme theme/sample.theme theme/windows.theme

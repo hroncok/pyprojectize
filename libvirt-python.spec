@@ -72,6 +72,8 @@ exit 1
 %pyproject_save_files libvirt libvirt_lxc libvirt_qemu libvirtaio 'libvirtmod*'
 
 %check
+%pyproject_check_import
+
 %pytest
 
 %files -n python3-libvirt -f %{pyproject_files}

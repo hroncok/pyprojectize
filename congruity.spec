@@ -46,6 +46,9 @@ This includes the Harmony 200 and Harmony 300. To use it, simply run
 desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}.desktop
 desktop-file-validate %{buildroot}/%{_datadir}/applications/mhgui.desktop
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc Changelog COPYING README.txt
 %{_bindir}/*

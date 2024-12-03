@@ -76,6 +76,8 @@ popd
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 pushd tests
 PYTHONPATH="%{buildroot}%{python3_sitelib}" \
     pytest-%{python3_version}

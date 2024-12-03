@@ -54,6 +54,10 @@ the 29 (xprint and xkb are missing) X extensions in 1.10.
 %pyproject_save_files xcffib
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-xcffib -f %{pyproject_files}
 %doc LICENSE
 %doc README.md

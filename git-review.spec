@@ -48,6 +48,9 @@ mkdir -p %{buildroot}%{_sysconfdir}/%{name}/
 
 install -p -m 0644 -D git-review.1 %{buildroot}%{_mandir}/man1/git-review.1
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc AUTHORS README.rst
 %{_bindir}/git-review

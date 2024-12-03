@@ -54,6 +54,9 @@ for lib in $(find %{buildroot}%{python3_sitelib}/ropgadget/ -name "*.py"); do
   mv $lib.new $lib
 done
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc LICENSE_BSD.txt README.md
 %{_bindir}/*

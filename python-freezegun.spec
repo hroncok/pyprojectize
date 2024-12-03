@@ -54,6 +54,8 @@ mocking the datetime module. This is the Python 3 library.
 %pyproject_save_files %{modname}
 
 %check
+%pyproject_check_import
+
 # Ignore two tests that are broken when run on systems in certain timezones.
 # Reported upstream: https://github.com/spulec/freezegun/issues/348
 pytest-3 --deselect tests/test_datetimes.py::TestUnitTestMethodDecorator::test_method_decorator_works_on_unittest_kwarg_frozen_time \

@@ -46,6 +46,8 @@ verification of the SSL peer. This is the python3 library.
 %pyproject_save_files ndg
 
 %check
+%pyproject_check_import
+
 pushd ndg/httpsclient/test/
 ./scripts/openssl_https_server.sh &
 sleep 1

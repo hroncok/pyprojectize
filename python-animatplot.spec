@@ -73,6 +73,8 @@ export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 
 
 %check
+%pyproject_check_import
+
 export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 %{pytest}
 

@@ -54,6 +54,9 @@ Detta paket tillhandahåller ett Python 3-bygge av %{pypi_name}.
 %pyproject_install
 %pyproject_save_files annoying
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc PKG-INFO
 

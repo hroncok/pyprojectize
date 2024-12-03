@@ -64,6 +64,8 @@ install -Dpm644 %{S:4} %{buildroot}%{_unitdir}/calypso.service
 
 %if %{with check}
 %check
+%pyproject_check_import
+
 %pytest
 %endif
 

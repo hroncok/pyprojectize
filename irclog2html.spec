@@ -34,6 +34,9 @@ echo "You may need the irclog.css file. It is available at
 mkdir -p %{buildroot}%{_datadir}/%{name}
 install -Dpm 0644 src/%{name}/irclog.css %{buildroot}%{_datadir}/%{name}
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc CHANGES.rst HACKING.rst README.rst README.fedora
 %{_bindir}/%{name}

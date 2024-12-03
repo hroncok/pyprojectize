@@ -66,6 +66,9 @@ rm -rf build/html/.{doctrees,buildinfo}
 %{pyproject_install}
 %pyproject_save_files -l %{srcname}
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %{_bindir}/%{srcname}
 

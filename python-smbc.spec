@@ -55,6 +55,9 @@ export PYTHONPATH=%{buildroot}%{python3_sitearch}
 %{_bindir}/mkdir html
 %{_bindir}/mv smbc.html html
 
+%check
+%pyproject_check_import
+
 %files -n python3-smbc -f %{pyproject_files}
 %doc README.md NEWS
 

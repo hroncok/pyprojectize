@@ -45,6 +45,8 @@ Requires:       python3-gssapi
 %pyproject_save_files -l '%{s_name}*'
 
 %check
+%pyproject_check_import
+
 %py3_check_import %{s_name}
 
 %files -n python3-%{sname} -f %{pyproject_files}

@@ -56,6 +56,8 @@ sed -i 's|http://www.google.com|https://getfedora.org/|' examples/MultipartPostH
 
 %if %{with internet}
 %check
+%pyproject_check_import
+
 # do it form a different folder
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} examples/MultipartPostHandler-example.py > py3.html
 # with internet

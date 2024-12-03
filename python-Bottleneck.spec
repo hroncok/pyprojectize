@@ -87,6 +87,8 @@ rm -rf doc/html/{.buildinfo,.doctrees}
 
 
 %check
+%pyproject_check_import
+
 pushd %{buildroot}%{python3_sitearch}
 pytest-%{python3_version} bottleneck -v
 popd

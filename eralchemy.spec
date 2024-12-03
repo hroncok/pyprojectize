@@ -52,6 +52,8 @@ Summary:        %sum
 
 
 %check
+%pyproject_check_import
+
 
 
 %files

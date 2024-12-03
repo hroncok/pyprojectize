@@ -67,6 +67,8 @@ rm -rf %{buildroot}/usr/config/
 
 # internationalization is currently broken. Uncomment this line once fixed.
 # %%files -f %%{name}.lang
+%check
+%pyproject_check_import
 %files
 %if 0%{?fedora} >= 39
 %{_bindir}/sos

@@ -155,6 +155,8 @@ Requires:       python%{python3_other_pkgversion}-wcwidth
 
 
 %check
+%pyproject_check_import
+
 export PYTHONIOENCODING=UTF8
 export TERM=xterm-256color
 %if %{with python2}

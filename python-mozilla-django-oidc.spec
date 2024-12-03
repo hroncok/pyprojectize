@@ -34,6 +34,9 @@ A django OpenID Connect library.
 %pyproject_install
 %pyproject_save_files -l mozilla_django_oidc
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{shortname} -f %{pyproject_files}
 
 %changelog

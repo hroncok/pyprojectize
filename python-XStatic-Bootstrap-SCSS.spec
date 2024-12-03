@@ -79,6 +79,9 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/bootstrap_scss/data/
 chmod 644 %{buildroot}%{_jsdir}/bootstrap_scss/js/*.js
 chmod 644 %{buildroot}%{_jsdir}/bootstrap_scss/js/bootstrap/*.js
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
 %{python3_sitelib}/XStatic_Bootstrap_SCSS-%{version}-py%{python3_version}-nspkg.pth

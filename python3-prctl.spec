@@ -32,6 +32,9 @@ cp -p %{SOURCE1} .
 %pyproject_install
 %pyproject_save_files -l '_prctl*' prctl
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc README
 

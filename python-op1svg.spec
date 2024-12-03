@@ -52,6 +52,9 @@ sed -e "\|#!/usr/bin/env python3|d" -i %{pypi_name}/*.py
 mkdir -p %{buildroot}%{_mandir}/man1
 cp -P %{SOURCE1} %{buildroot}%{_mandir}/man1
 
+%check
+%pyproject_check_import
+
 %files -n %{pypi_name} -f %{pyproject_files}
 %doc README.md template
 %{_bindir}/op1svg

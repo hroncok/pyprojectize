@@ -60,6 +60,10 @@ cp -p %SOURCE1 %SOURCE2 .
 rm %{buildroot}%{_bindir}/install_c_kernel
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md
 %{_datadir}/jupyter/kernels/c

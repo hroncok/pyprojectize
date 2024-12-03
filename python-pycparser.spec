@@ -62,6 +62,8 @@ popd
 %pyproject_save_files -l pycparser
 
 %check
+%pyproject_check_import
+
 %if %{with tests}
 %{python3} tests/all_tests.py
 %endif

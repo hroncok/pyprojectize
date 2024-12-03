@@ -99,6 +99,8 @@ Python bindings for the docker credentials store API
 
 # we are not using setup.py test here b/c the project pins to specific versions
 %check
+%pyproject_check_import
+
 # sanity test
 %if %{with python2}
 %{__python2} -c "import dockerpycreds"

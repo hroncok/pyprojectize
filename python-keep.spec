@@ -58,6 +58,8 @@ BuildRequires:  python3dist(terminaltables)
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 %pytest -v
 %endif
 

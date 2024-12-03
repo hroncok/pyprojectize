@@ -45,6 +45,10 @@ document.
 %pyproject_save_files %{pypi_name}
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 # No License, see https://github.com/baserge/osa/issues/1
 %doc README

@@ -57,6 +57,8 @@ sed -r -i '1d' ffc/__main__.py ffc/main.py
 %pyproject_save_files -l ffc
 
 %check
+%pyproject_check_import
+
 OPTIONS=(
   # test_evaluate.py uses libs/ffc-factory, which is currently ignored
   --ignore=test/unit/ufc/finite_element/test_evaluate.py

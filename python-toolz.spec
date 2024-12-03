@@ -79,6 +79,8 @@ BuildRequires:  python%{python3_pkgversion}-pytest
 
 
 %check
+%pyproject_check_import
+
 # shakespeare test downloads a file
 PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v -k 'not test_shakespeare'
 

@@ -59,6 +59,8 @@ rm -rf docs/html/.doctrees
 %pyproject_save_files -l whoosh
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 %files -n python%{python3_pkgversion}-whoosh -f %{pyproject_files}

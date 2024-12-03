@@ -128,6 +128,8 @@ chmod +x %{buildroot}%{python3_sitearch}/moose/_moose*.so
 popd
 
 %check
+%pyproject_check_import
+
 checksec --file=%{buildroot}%{_bindir}/moose
 
 pushd %{__cmake_builddir}

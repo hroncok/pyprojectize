@@ -112,6 +112,8 @@ install -Dpm0644 -t %{buildroot}%{_datadir}/zsh/site-functions/ data/shell-compl
 
 %if %{with check}
 %check
+%pyproject_check_import
+
 export MESON_PRINT_TEST_OUTPUT=1
 %{python3} ./run_unittests.py -v
 %{python3} ./run_meson_command_tests.py -v

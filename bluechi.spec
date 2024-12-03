@@ -240,6 +240,8 @@ popd
 
 
 %check
+%pyproject_check_import
+
 %meson_test
 
 

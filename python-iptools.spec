@@ -47,6 +47,8 @@ find -name .gitignore -delete
 
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
  

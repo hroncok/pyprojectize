@@ -35,6 +35,9 @@ oct2spec API.
 %pyproject_install
 %pyproject_save_files -l '*'
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc README CHANGELOG
 %config(noreplace) %{_sysconfdir}/%{name}.conf

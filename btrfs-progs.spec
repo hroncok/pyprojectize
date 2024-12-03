@@ -112,6 +112,9 @@ pushd libbtrfsutil/python
 %pyproject_save_files btrfsutil
 popd
 
+%check
+%pyproject_check_import
+
 %files
 %license COPYING
 %{_sbindir}/btrfsck

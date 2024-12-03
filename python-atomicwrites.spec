@@ -69,6 +69,8 @@ cp -r docs/_build/man/*.1 "$RPM_BUILD_ROOT%{_mandir}/man1"
 %endif
 
 %check
+%pyproject_check_import
+
 %if %{with tests}
 
 %{__python3} -m pytest -v

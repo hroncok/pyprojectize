@@ -79,6 +79,10 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/angular_mock/data/
 chmod 644 %{buildroot}%{_jsdir}/angular_mock/angular-mock.js
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
 %{python3_sitelib}/XStatic_Angular_Mock-%{version}-py%{python3_version}-nspkg.pth

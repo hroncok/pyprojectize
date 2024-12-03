@@ -92,6 +92,8 @@ ln -sf nosetests-3 %{buildroot}%{_bindir}/nosetests
 ln -sf nosetests-3.1 %{buildroot}%{_mandir}/man1/nosetests.1
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py build_tests
 %{__python3} selftest.py
 

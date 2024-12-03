@@ -61,6 +61,8 @@ sed -i "/namespace_packages/d" setup.py
 cp moksha/__init__.py %{buildroot}/%{python3_sitelib}/moksha/
 
 %check
+%pyproject_check_import
+
 %{__python3} -m nose
 
 %files -n python3-moksha-common -f %{pyproject_files}

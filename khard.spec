@@ -48,6 +48,10 @@ install -p -m 0644 misc/zsh/_email-khard %{buildroot}%{_datadir}/zsh/site-functi
 install -p -m 0644 misc/zsh/_khard %{buildroot}%{_datadir}/zsh/site-functions/_khard
 
 
+%check
+%pyproject_check_import
+
+
 %files -f %{pyproject_files}
 %doc CHANGES README.md todo.txt
 %{_bindir}/khard

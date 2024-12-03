@@ -94,6 +94,8 @@ rm -rf html/.{doctrees,buildinfo}
 
 
 %check
+%pyproject_check_import
+
 %pytest -sv -k "not test_names_demo"
 
 

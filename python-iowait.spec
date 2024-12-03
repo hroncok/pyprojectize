@@ -47,6 +47,8 @@ Python 3 version.
 %pyproject_save_files -l %{modname}
 
 %check
+%pyproject_check_import
+
 %{__python3} test.py -v
 
 %files -n python3-%{modname} -f %{pyproject_files}

@@ -74,6 +74,8 @@ rm -fv  $RPM_BUILD_ROOT%{python3_sitearch}/*.la
 rm -rfv $RPM_BUILD_ROOT%{_datadir}/doc/dbus-python/
 
 %check
+%pyproject_check_import
+
 make check -k || (cat test-suite.log && false)
 
 %files -n python%{python3_pkgversion}-dbus -f %{pyproject_files}

@@ -97,6 +97,8 @@ rm -f docs/_build/html/.buildinfo
 
 
 %check
+%pyproject_check_import
+
 %{?with_python2:py.test-%{python2_version} -v}
 %{?with_python3:py.test-%{python3_version} -v}
 

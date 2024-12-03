@@ -46,6 +46,8 @@ State machine implementation for Python objects.
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 nosetests-3 -i spec --with-specplugin
 %endif
 

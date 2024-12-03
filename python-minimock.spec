@@ -38,6 +38,8 @@ minimock is a simple library for doing Mock objects with doctest.
 
 
 %check
+%pyproject_check_import
+
 %{__python3} minimock.py -v
 
 

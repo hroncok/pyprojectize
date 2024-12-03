@@ -38,6 +38,9 @@ be by point, by range overlap, or by range envelopment.
 %pyproject_install
 %pyproject_save_files -l '*'
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md CHANGELOG.md
 

@@ -90,6 +90,9 @@ cp support/completion/zsh/_cekit %{buildroot}/%{_datadir}/zsh/site-functions/_ce
 %pyproject_install
 %pyproject_save_files -l cekit
 
+%check
+%pyproject_check_import
+
 %files -n %{modname}-bash-completion
 %doc README.rst
 %license LICENSE

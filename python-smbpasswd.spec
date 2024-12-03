@@ -46,6 +46,8 @@ This is a ported release for python 3.
 %pyproject_save_files -l smbpasswd
 
 %check
+%pyproject_check_import
+
 # there are no tests, let's do some sanity check ourselves
 %{py3_test_envvars} %{python3} -c '
 import smbpasswd

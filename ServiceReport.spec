@@ -30,6 +30,9 @@ the incorrect configuration
 %pyproject_install
 %pyproject_save_files -l servicereportpkg
 
+%check
+%pyproject_check_import
+
 %post
 %systemd_post servicereport.service
 

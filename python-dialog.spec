@@ -40,6 +40,8 @@ find examples -name '*.py' -print -exec sed -r -i 's|(.!)\s+/usr/bin/env python.
 %pyproject_save_files -l dialog
 
 %check
+%pyproject_check_import
+
 %py3_check_import dialog
 
 %files -n python3-dialog -f %{pyproject_files}

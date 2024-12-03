@@ -96,6 +96,10 @@ This package contains the documentation for %{name}
 %pyproject_save_files -l scrapy
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{pkg_name} -f %{pyproject_files}
 %doc AUTHORS PKG-INFO
 %{_bindir}/scrapy

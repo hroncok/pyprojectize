@@ -82,6 +82,9 @@ desktop-file-install --add-category="Utility" \
 install -Dpm 0644 %{SOURCE1} \
   %{buildroot}%{_metainfodir}/io.github.jopohl.urh.metainfo.xml
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc README.md
 %{_bindir}/urh

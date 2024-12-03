@@ -39,6 +39,9 @@ kernel and its /sys/class/power_supply folder.
 %pyproject_save_files -l %{srcname}
 rm -rf %{buildroot}%{_defaultdocdir}/%{srcname}/
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc AUTHORS README.md
 

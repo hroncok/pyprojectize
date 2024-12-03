@@ -88,6 +88,10 @@ popd
 %endif
 
 
+%check
+%pyproject_check_import
+
+
 %files -f %{pyproject_files}
 %doc README.rst CHANGELOG.rst
 %{_bindir}/gcovr

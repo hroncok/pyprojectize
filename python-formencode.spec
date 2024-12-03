@@ -95,6 +95,10 @@ rm -rf $RPM_BUILD_ROOT%{python3_sitelib}/formencode/i18n
 #PYTHONPATH=$(pwd) nosetests-%%{python3_version}
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-formencode -f %{pyproject_files}
 %doc PKG-INFO docs
 

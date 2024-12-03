@@ -50,6 +50,8 @@ introspecting the arguments to the setup() function call of setuptools.
 
 
 %check
+%pyproject_check_import
+
 %{__python3} -m pytest \
     --ignore=test/test_spell_check.py \
     --ignore=test/test_flake8.py \

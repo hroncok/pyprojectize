@@ -75,6 +75,8 @@ find . -type f -name "*.py" -exec sed -i '/^#![  ]*\/usr\/bin\/env.*$/ d' {} 2>/
 %pyproject_save_files -l %{pypi_name}
 
 %check
+%pyproject_check_import
+
 %if %{with tests}
 # Deselected tests that require internet
 %pytest --deselect neurodsp/tests/utils/test_download.py

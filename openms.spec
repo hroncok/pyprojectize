@@ -376,6 +376,8 @@ rm -rf %{buildroot}%{_datadir}/OpenMS/examples/examples
 %endif
 
 %check
+%pyproject_check_import
+
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %if %{with check}

@@ -82,6 +82,11 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/angular_uuid/data/
 
 
 
+%check
+%pyproject_check_import
+
+
+
 %files -n xstatic-angular-uuid-common
 %doc README.txt
 %{_jsdir}/angular_uuid

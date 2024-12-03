@@ -84,6 +84,8 @@ PKCS#12, PKCS#5, X.509 and TSP.
 
 
 %check
+%pyproject_check_import
+
 # asn1crypto source distribution doesn't come with tests
 # {__python2} setup.py test
 %if 0%{?with_python3}

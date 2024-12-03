@@ -46,6 +46,8 @@ Requires:       python3-zope-interface
 
 
 %check
+%pyproject_check_import
+
 %pytest
 
 

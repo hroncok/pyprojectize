@@ -57,6 +57,8 @@ sed -i -e '1{\@^#!/usr/bin/env python@d}' src/pyprinttags.py
 mv -f %{buildroot}%{_bindir}/pyprinttags{3,}
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py ptr
 
 %files -n python3-%{srcname} -f %{pyproject_files}

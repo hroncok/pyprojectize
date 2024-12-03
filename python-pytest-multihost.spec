@@ -44,6 +44,8 @@ specify how many machines they need and commands/checks to run on them.
 %pyproject_wheel
 
 %check
+%pyproject_check_import
+
 # Do not run the test that needs passwordless SSH to localhost set up
 %{__python3} -m pytest -m "not needs_ssh"
 

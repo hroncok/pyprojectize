@@ -39,6 +39,8 @@ Summary:        %{summary}
 %pyproject_save_files -l click_repl
 
 %check
+%pyproject_check_import
+
 %pytest
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

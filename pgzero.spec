@@ -46,6 +46,8 @@ sed -i "s/\(pygame.*\), <2.0.*/\1'/" setup.py
 %pyproject_save_files -l %{name} pgzrun
 
 %check
+%pyproject_check_import
+
 # Some tests cannot be run in a headles environment without display
 rm test/test_screen.py test/test_actor.py test/test_sound_formats.py
 %{__python3} -m unittest discover test/

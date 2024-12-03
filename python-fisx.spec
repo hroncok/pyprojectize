@@ -41,6 +41,8 @@ Summary: %summary
 %pyproject_save_files -l fisx
 
 %check
+%pyproject_check_import
+
 PYTHONPATH=%{buildroot}%{python3_sitearch} %python3 -m fisx.tests.testAll
 
 %files -n python3-fisx -f %{pyproject_files}

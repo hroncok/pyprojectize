@@ -59,6 +59,8 @@ BuildRequires:	python3-pytest
 
 
 %check
+%pyproject_check_import
+
 %{_bindir}/nosetests-%{python3_version} -vv
 
 

@@ -64,6 +64,8 @@ popd
 
 
 %check
+%pyproject_check_import
+
 %if 0%{?fedora}
 %pytest
 %endif

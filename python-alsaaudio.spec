@@ -36,6 +36,10 @@ The python3-AlsaAudio package contains python3 bindings for the ALSA sound API.
 %pyproject_save_files -l '*'
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-alsaaudio -f %{pyproject_files}
 
 %changelog

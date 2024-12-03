@@ -40,6 +40,9 @@ Requires:	python3-novaclient
 %pyproject_install
 %pyproject_save_files '*'
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
 

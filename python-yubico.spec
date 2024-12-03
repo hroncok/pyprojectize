@@ -45,6 +45,8 @@ Pure-python library for interacting with Yubikeys. For Python 3.
 
 
 %check
+%pyproject_check_import
+
 %pytest test/soft/
 
 

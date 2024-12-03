@@ -115,6 +115,8 @@ cd ..
 
 %if 0%{?with_check}
 %check
+%pyproject_check_import
+
 pushd scripts
 PYTHONPATH=$RPM_BUILD_ROOT%{python3_sitearch} nosetests-%{python3_version} --verbosity=2 \
  -w $RPM_BUILD_ROOT%{python3_sitearch}/prody/tests --tests prody -a '!slow'

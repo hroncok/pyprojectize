@@ -46,6 +46,8 @@ rm -rf adapt-parser.egg-info
 %pyproject_save_files -l %{name}
 
 %check
+%pyproject_check_import
+
 %if %{with_tests}
 %{__python3} setup.py test
 %endif

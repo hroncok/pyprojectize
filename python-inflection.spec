@@ -42,6 +42,8 @@ rm -vr *.egg-info
 %pyproject_save_files -l inflection
 
 %check
+%pyproject_check_import
+
 %python3 -m pytest -v
 
 %files -n python3-%{srcname} -f %{pyproject_files}

@@ -32,6 +32,8 @@ A simple tool to visualize the progress of the year based on the past days.
 %pyproject_save_files -l %{pypi_name}
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 %files -f %{pyproject_files}

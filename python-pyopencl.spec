@@ -92,6 +92,9 @@ rm -vf examples/download-examples-from-wiki.py
 
 find %{buildroot}%{python3_sitearch}/%{srcname} -name '*.so' -exec chmod 755 {} \+
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc examples
 

@@ -92,6 +92,8 @@ cp -a docs/manpage/atomic-reactor.1 %{buildroot}%{_mandir}/man1/
 
 %if 0%{?with_check}
 %check
+%pyproject_check_import
+
 %{__python3} -m pytest -vv tests
 %endif
 # with_check

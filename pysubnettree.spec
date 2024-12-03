@@ -31,6 +31,9 @@ Python objects. Lookups are performed by longest-prefix matching.
 %pyproject_install
 %pyproject_save_files -l SubnetTree _SubnetTree
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc CHANGES README
 

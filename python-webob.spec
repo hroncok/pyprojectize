@@ -66,6 +66,8 @@ rm docs/_static/.empty
 %pyproject_save_files webob
 
 %check
+%pyproject_check_import
+
 %if 0%{?with_tests}
 %pytest
 %endif

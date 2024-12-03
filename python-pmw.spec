@@ -53,6 +53,9 @@ chmod 644 Pmw/Pmw_2_1_1/doc/*
 
 rm -rf %{buildroot}%{python3_sitelib}/Pmw/Pmw_1_3_3
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc Pmw/Pmw_2_1_1/doc
 

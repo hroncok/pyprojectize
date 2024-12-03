@@ -42,6 +42,8 @@ A library and a cli tool for building module streams.
 
 
 %check
+%pyproject_check_import
+
 %pytest
 
 

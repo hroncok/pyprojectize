@@ -48,6 +48,8 @@ grep -rl '\.ply' | xargs -t sed -i -e 's/\.ply/ply/'
 %pyproject_save_files -l hcl
 
 %check
+%pyproject_check_import
+
 PYTHONPATH=%{buildroot}%{python3_sitelib} %python3 -m pytest tests
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

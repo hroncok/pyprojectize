@@ -46,6 +46,9 @@ to use Mako Templates instead of the default Jinja2 templating engine.
 %pyproject_install
 %pyproject_save_files flask_mako
 
+%check
+%pyproject_check_import
+
 %files -n python3-flask-mako -f %{pyproject_files}
 %doc PKG-INFO
 

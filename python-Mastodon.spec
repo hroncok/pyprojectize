@@ -55,6 +55,9 @@ Python %{python3_version} version.
 #%check
 #%{__python3} setup.py test
 
+%check
+%pyproject_check_import
+
 %files -n python%{python3_pkgversion}-%{modname} -f %{pyproject_files}
 %doc README.rst *.md
 

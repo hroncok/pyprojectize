@@ -40,6 +40,9 @@ location lookups to country, city and organization level within Python code.
 %pyproject_install
 %pyproject_save_files -l 'GeoIP*'
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst examples/
 

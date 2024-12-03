@@ -38,6 +38,9 @@ sed -i -e 's/pycryptodome/pycryptodomex/g' setup.py
 %pyproject_install
 %pyproject_save_files -l adb_shell
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 

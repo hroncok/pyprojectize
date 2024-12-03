@@ -36,6 +36,9 @@ for Fedora Project contributors.
 %pyproject_install
 %pyproject_save_files -l fedora_business_cards
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc README
 %{_bindir}/%{name}

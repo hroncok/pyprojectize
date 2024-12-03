@@ -44,6 +44,8 @@ rm -rf %{pypi_name}.egg-info
 # Requires access to a third-party MQTT Broker
 %if %{with network}
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 %endif
 

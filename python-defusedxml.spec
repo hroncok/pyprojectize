@@ -54,6 +54,8 @@ module. This is the python%{python3_pkgversion} build.
 %pyproject_save_files -l %{pypi_name}
 
 %check
+%pyproject_check_import
+
 %{python3} tests.py
 
 

@@ -61,6 +61,8 @@ Current methods of scanning:
 %pyproject_save_files -l %{srcname}
 
 %check
+%pyproject_check_import
+
 %{pytest} -v tests --ignore "tests/test_xboxone.py"
 
 %files -n python3-%{srcname} -f %{pyproject_files}

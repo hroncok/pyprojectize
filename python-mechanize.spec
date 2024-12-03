@@ -72,6 +72,8 @@ rm -rf SPECPARTS
 %pyproject_save_files -l mechanize
 
 %check
+%pyproject_check_import
+
 chmod +x examples/forms/{echo.cgi,example.py,simple.py}
 python3 run_tests.py
 chmod -x examples/forms/{echo.cgi,example.py,simple.py}

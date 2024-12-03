@@ -69,6 +69,8 @@ cp %{SOURCE1} ./LICENSE
 %pyproject_save_files -l '%{srcname}*'
 
 %check
+%pyproject_check_import
+
 %{__python3} src/mimerender.py
 
 %files -n python3-%{srcname} -f %{pyproject_files}

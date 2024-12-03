@@ -58,6 +58,9 @@ a2x -f manpage docs/stratis.txt
 %endif
 %{__install} -Dpm0644 -t %{buildroot}%{_mandir}/man8 docs/stratis.8
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc README.rst
 %{_bindir}/stratis

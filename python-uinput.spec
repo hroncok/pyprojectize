@@ -64,6 +64,10 @@ find . -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python3}|'
 chmod a-x examples/*
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-uinput -f %{pyproject_files}
 %doc COPYING NEWS README examples
 

@@ -58,6 +58,10 @@ sed -i "s|\r||g" dbf/README.md
 %pyproject_save_files %{pypi_name}
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc dbf/README.md
 

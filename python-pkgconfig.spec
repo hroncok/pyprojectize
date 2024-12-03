@@ -95,6 +95,8 @@ sed -i -e s/distutils.core/setuptools/ setup.py
 %pyproject_save_files -l %{srcname}
 
 %if %{with python2}
+%check
+%pyproject_check_import
 %files -n python2-%{srcname}
 %license LICENSE
 %doc README.rst

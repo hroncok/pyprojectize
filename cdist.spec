@@ -58,6 +58,9 @@ mkdir -p %{buildroot}%{_mandir}/man1/ %{buildroot}%{_mandir}/man7/
 cp docs/dist/man/man1/*.1 %{buildroot}%{_mandir}/man1/
 cp docs/dist/man/man7/*.7 %{buildroot}%{_mandir}/man7/
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %{_bindir}/%{name}
 %{_bindir}/%{name}-*

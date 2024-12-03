@@ -41,6 +41,8 @@ rm -rf %{pypi_name}.egg-info
 
 %if %{with network}
 %check
+%pyproject_check_import
+
 %pytest -v tests
 %endif
 

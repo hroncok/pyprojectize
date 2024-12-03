@@ -50,6 +50,9 @@ rm -r src/%{pypi_name}.egg-info
 rm %{buildroot}%{python3_sitelib}/%{pypi_name}/public_suffix_list.dat
 ln -s ../../../../share/publicsuffix/public_suffix_list.dat %{buildroot}%{python3_sitelib}/%{pypi_name}
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 

@@ -37,6 +37,9 @@ Summary: %summary
 %pyproject_install
 %pyproject_save_files '*'
 
+%check
+%pyproject_check_import
+
 %files -n python3-alsa -f %{pyproject_files}
 
 %changelog

@@ -71,6 +71,8 @@ done
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 # To make sure we get to use the installed version
 mv rpm_head_signing rpm_head_signing.orig
 

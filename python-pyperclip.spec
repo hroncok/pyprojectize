@@ -134,6 +134,8 @@ PYTHONPATH="${PWD}/src" %make_build -C docs latex \
 %pyproject_save_files -l pyperclip
 
 %check
+%pyproject_check_import
+
 %global __pytest /usr/bin/xvfb-run -a %{python3} -m pytest
 # Explicitly skip backends that we know will fail in the mock environment if
 # their dependencies happen to be present. See notes in the BuildRequires.

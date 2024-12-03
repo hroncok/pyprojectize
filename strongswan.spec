@@ -328,6 +328,8 @@ install -D -m 0644 %{SOURCE3} %{buildroot}/%{_tmpfilesdir}/strongswan-starter.co
 
 
 %check
+%pyproject_check_import
+
 %if %{with check}
   # Seen some tests hang. Ensure we do not block builder forever
   export TESTS_VERBOSITY=1

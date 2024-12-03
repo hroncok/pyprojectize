@@ -37,6 +37,9 @@ Requires:       python3-six
 %{pyproject_install}
 %pyproject_save_files -l construct
 
+%check
+%pyproject_check_import
+
 %files -n python3-construct -f %{pyproject_files}
 %doc README.rst
 

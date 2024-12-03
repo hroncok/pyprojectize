@@ -57,6 +57,8 @@ rm -rf %{buildroot}%{python3_sitelib}/tests
 
 
 %check
+%pyproject_check_import
+
 # Copy test template
 py.test-%{python3_version}
 

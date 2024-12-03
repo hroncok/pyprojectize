@@ -81,6 +81,9 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/angular_bootstrap/data/
 # fix execute flags for js
 chmod 644 %{buildroot}%{_jsdir}/angular_bootstrap/angular-bootstrap.js
 
+%check
+%pyproject_check_import
+
 %files -n xstatic-angular-bootstrap-common
 %doc README.txt
 %{_jsdir}/angular_bootstrap

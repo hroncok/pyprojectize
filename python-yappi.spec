@@ -43,6 +43,8 @@ ln -s %{srcname}-%{python3_version} %{buildroot}%{_bindir}/%{srcname}-3
 ln -s %{srcname}-3 %{buildroot}%{_bindir}/%{srcname}
 
 %check
+%pyproject_check_import
+
 export PATH=$PATH:%{buildroot}/usr/bin
 export PYTHONPATH=%{buildroot}/%{python3_sitearch}
 %{__python3} run_tests.py

@@ -46,6 +46,9 @@ sed -e "\|#!/usr/bin/env python3|d" -i %{pypi_name}/*.py
 %pyproject_install
 %pyproject_save_files -l %{pypi_name}
 
+%check
+%pyproject_check_import
+
 %files -n %{pypi_name} -f %{pyproject_files}
 %doc README.md CHANGELOG.md
 %{_bindir}/op1repacker

@@ -81,6 +81,8 @@ done
 popd
 
 %check
+%pyproject_check_import
+
 %{python3} -W ignore::ResourceWarning setup.py test
 # Delete tests
 rm -fr %{buildroot}%{python3_sitelib}/yaql/tests

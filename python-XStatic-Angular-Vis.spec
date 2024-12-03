@@ -79,6 +79,9 @@ mkdir -p %{buildroot}/%{_jsdir}/angular_vis
 mv %{buildroot}/%{python3_sitelib}/xstatic/pkg/angular_vis/data/angular-vis.js %{buildroot}/%{_jsdir}/angular_vis
 rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/angular_vis/data/
 
+%check
+%pyproject_check_import
+
 %files -n xstatic-angular-vis-common
 %doc README.txt
 %{_jsdir}/angular_vis

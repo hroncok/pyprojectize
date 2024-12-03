@@ -42,6 +42,8 @@ rm -rf %{pypi_name}.egg-info
 rm -rf %{buildroot}%{python3_sitelib}/%{pypi_name}/i18n
 
 %check
+%pyproject_check_import
+
 %pytest -v tests -k "not test_data"
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

@@ -41,6 +41,10 @@ This Trac plugin provides support for the Monotone SCM.
 %pyproject_save_files -l tracmtn
 
 
+%check
+%pyproject_check_import
+
+
 %files -f %{pyproject_files}
 %doc README
 

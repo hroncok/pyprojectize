@@ -36,6 +36,8 @@ A Django application to retrieve client's IP address.
 %pyproject_save_files -l 'django_ipware*' ipware
 
 %check
+%pyproject_check_import
+
 %{__python3} manage.py test
 
 %files -n python3-%{shortname} -f %{pyproject_files}

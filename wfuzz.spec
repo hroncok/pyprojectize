@@ -49,6 +49,9 @@ rm -rf html/.{doctrees,buildinfo}
 %pyproject_install
 %pyproject_save_files -l %{name}
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc README.md
 %{_bindir}/wfencode

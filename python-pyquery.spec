@@ -77,6 +77,8 @@ XML and HTML manipulation.
 
 
 %check
+%pyproject_check_import
+
 %if %{with tests}
 nosetests-%{python3_version}
 

@@ -88,6 +88,8 @@ rm -rf doc/build/html/.{doctrees,buildinfo} doc/build/html/objects.inv
 %pyproject_save_files -l os_client_config
 
 %check
+%pyproject_check_import
+
 # NOTE(jpena): we are disabling Python2 unit tests when building the Python 3 package.
 # The reason is that unit tests require glanceclient, and glanceclient is python3-only
 # when building with Python 3. We could revert that, but it is a rabbit hole we do not

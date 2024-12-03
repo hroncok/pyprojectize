@@ -34,6 +34,8 @@ spec2scl is a tool to convert RPM specfiles to SCL-style specfiles.
 install -D -m 644 spec2scl.1 %{buildroot}%{_mandir}/man1/spec2scl.1
 
 %check
+%pyproject_check_import
+
 %if 0%{?fedora}
 PYTHONPATH=$(pwd) py.test-%{python3_version}
 %endif

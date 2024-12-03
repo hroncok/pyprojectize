@@ -94,6 +94,9 @@ done
 # Fix ambiguous shebangs for RHEL > 7 and Fedora > 29
 %py3_shebang_fix %{buildroot}%{python3_sitelib}/os_testr/
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %{_bindir}/generate-subunit

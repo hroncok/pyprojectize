@@ -38,6 +38,9 @@ sed -i -e '/^#!\//, 1d' masscan/*.py
 %pyproject_install
 %pyproject_save_files -l masscan
 
+%check
+%pyproject_check_import
+
 %files -n python3-masscan -f %{pyproject_files}
 %doc CHANGELOG.md README.rst
 

@@ -74,6 +74,10 @@ install -m 755 -d %{buildroot}%{_mandir}/man1/
 install -m 644 build/sphinx/man/%{name}.1 %{buildroot}%{_mandir}/man1/
 
 
+%check
+%pyproject_check_import
+
+
 %files -f %{pyproject_files}
 %doc AUTHORS.rst CHANGELOG.rst README.md
 %{_bindir}/%{name}

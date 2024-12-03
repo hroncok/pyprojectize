@@ -38,6 +38,8 @@ rm -rf %{pypi_name}.egg-info
 %pyproject_save_files %{pypi_name}
 
 %check
+%pyproject_check_import
+
 PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v tests
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

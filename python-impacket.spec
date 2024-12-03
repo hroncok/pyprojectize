@@ -155,6 +155,8 @@ sed -i "s/'future',//" setup.py
 
 #===== Check
 %check
+%pyproject_check_import
+
 PYTHONPATH=$BUILD_ROOT/usr/lib/python%{python3_version}/site-packages/ python3 -c \
     'import impacket.ImpactPacket ; impacket.ImpactPacket.IP().get_packet()'
 

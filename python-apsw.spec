@@ -65,6 +65,8 @@ rm -f doc/.buildinfo
 %pyproject_save_files apsw
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py build_test_extension
 PYTHONPATH=%{buildroot}%{python3_sitearch} %{__python3} setup.py test
 

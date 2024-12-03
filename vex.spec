@@ -41,6 +41,8 @@ sed -i "s/^from mock import /from unittest.mock import /" vex/tests/test_config.
 %pyproject_save_files -l %{name}
 
 %check
+%pyproject_check_import
+
 %{__python3} -m pytest %{name}/tests/
 
 %files -f %{pyproject_files}

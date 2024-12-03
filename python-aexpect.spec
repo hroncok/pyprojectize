@@ -73,6 +73,8 @@ ln -s aexpect_helper %{buildroot}%{_bindir}/aexpect_helper-%{python3_version}
 
 %if %{with_tests}
 %check
+%pyproject_check_import
+
 selftests/checkall
 %endif
 

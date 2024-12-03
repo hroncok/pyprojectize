@@ -39,6 +39,8 @@ rm -rf %{pypi_name}.egg-info
 %pyproject_save_files -l %{pypi_name}
 
 %check
+%pyproject_check_import
+
 %if %{with local}
 %pytest -v tests
 %else

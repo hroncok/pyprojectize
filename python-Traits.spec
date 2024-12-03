@@ -83,6 +83,8 @@ sed -i -e '/extra_compile_args=/d' setup.py
 %pyproject_save_files -l '%{modname}*'
 
 %check
+%pyproject_check_import
+
 pushd build/lib.%{python3_platform}-*
   export PYTHONPATH=%{buildroot}%{python3_sitearch}
   xvfb-run %__python3 -s -m unittest discover -v

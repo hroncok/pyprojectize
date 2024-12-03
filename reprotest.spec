@@ -47,6 +47,9 @@ reprotest is developed as part of the "reproducible builds" Debian project.
 %pyproject_install
 %pyproject_save_files %{name}
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc README.rst
 %{_bindir}/reprotest

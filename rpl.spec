@@ -44,6 +44,11 @@ sed -i s/1\.5\.6/%{version}/ setup.py
 
 
 
+%check
+%pyproject_check_import
+
+
+
 %files -f %{pyproject_files}
 %doc LICENSE README.md
 %{_bindir}/rpl

@@ -54,6 +54,8 @@ pushd python
 popd
 
 %check
+%pyproject_check_import
+
 pushd %{_vpath_builddir}/tests
     ctest --output-on-failure
 popd

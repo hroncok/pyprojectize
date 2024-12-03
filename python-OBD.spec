@@ -53,6 +53,8 @@ Python 3 version.
 
 %if %{with check}
 %check
+%pyproject_check_import
+
 PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-3 -v
 %endif
 

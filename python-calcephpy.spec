@@ -63,6 +63,10 @@ export CPPFLAGS="$CXXFLAGS"
 %pyproject_save_files -l '*'
 
 
+%check
+%pyproject_check_import
+
+
 %files -n       python3-%{srcname} -f %{pyproject_files}
 
 

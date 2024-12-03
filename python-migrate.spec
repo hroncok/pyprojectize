@@ -76,6 +76,8 @@ sed -i 's/2010h/2010/' test-requirements.txt
 %pyproject_save_files '*'
 
 %check
+%pyproject_check_import
+
 # Need to set PATH for two reasons:
 # 1) Path isn't being cleared by mock so we have /root/bin/ in the PATH
 # 2) Need to be able to find the newly installed migrate binaries

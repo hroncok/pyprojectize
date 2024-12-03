@@ -86,6 +86,8 @@ ln -s /usr/share/fonts/gnu-free/FreeSansBold.ttf $RPM_BUILD_ROOT%{python3_sitear
 chmod 755 $RPM_BUILD_ROOT%{python3_sitearch}/%{name}/*.so
 
 %check
+%pyproject_check_import
+
 # base_test fails in mock, unable to find soundcard
 PYTHONPATH="$RPM_BUILD_ROOT%{python3_sitearch}" %{__python3} test/base_test.py || :
 PYTHONPATH="$RPM_BUILD_ROOT%{python3_sitearch}" %{__python3} test/rect_test.py

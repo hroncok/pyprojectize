@@ -41,6 +41,8 @@ rm -rf examples/__init__.py
 rm -rf %{buildroot}%{python3_sitelib}/examples
 
 %check
+%pyproject_check_import
+
 %pytest -v tests --ignore tests/test_benchmark.py \
   -k "not test_guess_memoryview and not test_guess_extension_memoryview \
     and not test_guess_mime_memoryview and not test_guess_zstd"

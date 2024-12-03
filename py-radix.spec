@@ -63,6 +63,8 @@ touch inet_ntop.c strlcpy.c
 %pyproject_save_files -l 'py_radix*' 'radix*'
 
 %check
+%pyproject_check_import
+
 %pytest -v
 
 %files -n python3-%{name} -f %{pyproject_files}

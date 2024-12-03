@@ -108,6 +108,10 @@ done
 popd
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python%{python3_pkgversion}-%{modname} -f %{pyproject_files}
 %doc README.rst AUTHORS.txt
 

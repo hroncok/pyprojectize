@@ -94,6 +94,8 @@ Requires:       python%{python3_other_pkgversion}-sphinx
 
 
 %check
+%pyproject_check_import
+
 %if %{with python3}
 %pytest
 %endif

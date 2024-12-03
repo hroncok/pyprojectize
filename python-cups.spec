@@ -65,6 +65,9 @@ export PYTHONPATH=%{buildroot}%{python3_sitearch}
 %{_bindir}/mkdir html
 %{_bindir}/mv cups.html html
 
+%check
+%pyproject_check_import
+
 %files -n python3-cups -f %{pyproject_files}
 %doc README NEWS TODO
 %{_rpmconfigdir}/fileattrs/psdriver.attr

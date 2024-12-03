@@ -165,6 +165,8 @@ install -D -p -m 0644 selinux/%{name}.if %{buildroot}%{_datadir}/selinux/devel/i
 
 
 %check
+%pyproject_check_import
+
 # These require an installed system with root access
 #pytest -v
 

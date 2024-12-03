@@ -49,6 +49,9 @@ sed -i '1,1s@^#!.*$@@' inema/frank.py inema/inema.py
 %pyproject_install
 %pyproject_save_files %{srcname}
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %{_bindir}/frank
 %doc README.rst

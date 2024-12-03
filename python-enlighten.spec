@@ -133,6 +133,8 @@ find -name '*.pyc' -delete
 
 
 %check
+%pyproject_check_import
+
 %if %{with python2}
 %{__python2} setup.py test
 %endif

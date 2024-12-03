@@ -63,6 +63,8 @@ mkdir -p %{buildroot}%{_mandir}/man1
 cp -a %{_builddir}/%{oname}-%{version}/doc/_build/man/%{lowname}.1* %{buildroot}%{_mandir}/man1
 
 %check
+%pyproject_check_import
+
 # Exclude only test_vm_builder tests, as they are failing due to missing vm files.
 py.test-%{python3_version} terml/test ometa/test --ignore=ometa/test/test_vm_builder.py
 

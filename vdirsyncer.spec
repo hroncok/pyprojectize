@@ -131,6 +131,8 @@ install -d "$RPM_BUILD_ROOT%{_mandir}/man1"
 cp -r docs/_build/man/%{name}.1 "$RPM_BUILD_ROOT%{_mandir}/man1"
 
 %check
+%pyproject_check_import
+
 %if %{with tests}
 sh build.sh tests
 %endif

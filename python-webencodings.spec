@@ -65,6 +65,8 @@ rm -rf docs/_build/.doctrees
 
 
 %check
+%pyproject_check_import
+
 py.test-3
 
 

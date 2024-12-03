@@ -62,6 +62,8 @@ popd  # Leave buildroot bindir
 
 
 %check
+%pyproject_check_import
+
 # Skip some tests because of https://github.com/readthedocs/recommonmark/issues/164
 %pytest --ignore tests/test_sphinx.py
 

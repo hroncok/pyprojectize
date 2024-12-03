@@ -47,6 +47,10 @@ rm -rf b2sdk.egg-info
 rm -rf %{buildroot}%{python3_sitelib}/test
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-b2sdk -f %{pyproject_files}
 %doc CHANGELOG.md
 %doc README.md

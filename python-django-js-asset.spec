@@ -41,6 +41,9 @@ rm -vr *.egg-info
 %pyproject_install
 %pyproject_save_files -l js_asset
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
 

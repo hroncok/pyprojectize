@@ -51,6 +51,9 @@ functions and classes. These operate directly on in-memory numpy arrays
 %pyproject_install
 %pyproject_save_files 'sep*'
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc AUTHORS.md README.md CHANGES.md
 %license licenses/MIT_LICENSE.txt licenses/LGPL_LICENSE.txt licenses/BSD_LICENSE.txt

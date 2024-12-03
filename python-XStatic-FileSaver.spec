@@ -80,6 +80,9 @@ mkdir -p %{buildroot}/%{_jsdir}/filesaver
 mv %{buildroot}/%{python3_sitelib}/xstatic/pkg/filesaver/data/FileSaver.js %{buildroot}/%{_jsdir}/filesaver
 rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/filesaver/data/
 
+%check
+%pyproject_check_import
+
 %files -n xstatic-filesaver-common
 %doc README.txt
 %{_jsdir}/filesaver

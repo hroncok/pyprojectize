@@ -46,6 +46,9 @@ find . -type f -name '*.py' -exec sed -i /env\ python/d {} ';'
 
 %{!?_licensedir: %global license %doc}
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{modname} -f %{pyproject_files}
 %doc README.md
 

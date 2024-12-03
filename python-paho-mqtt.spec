@@ -51,6 +51,9 @@ and/or network bandwidth is at a premium.
 %pyproject_install
 %pyproject_save_files -l paho
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc CONTRIBUTING.md README.rst *.html
 

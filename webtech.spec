@@ -33,6 +33,9 @@ sed -i -e '/^#!\//, 1d' webtech/*.py
 %pyproject_install
 %pyproject_save_files -l %{name}
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc README.md
 %{_bindir}/%{name}

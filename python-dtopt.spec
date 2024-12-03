@@ -58,6 +58,9 @@ rm dtopt/tests.py*
 %pyproject_install
 %pyproject_save_files dtopt
 
+%check
+%pyproject_check_import
+
 %files -n python3-dtopt -f %{pyproject_files}
 %doc docs/*
 

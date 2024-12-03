@@ -78,6 +78,8 @@ rm -r html/.buildinfo html/.doctrees
 
 
 %check
+%pyproject_check_import
+
 # let's find all modules and don't crash after execution
 pushd tests
 rm -f test_all.py

@@ -41,6 +41,9 @@ sed -i -e "s/from distutils.core import setup/from setuptools import setup/" set
 %pyproject_install
 %pyproject_save_files -l django_pglocks
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc CHANGES.txt
 

@@ -40,6 +40,9 @@ sed -i -e '/^#!\//, 1d' ldapdomaindump/__main__.py
 %pyproject_install
 %pyproject_save_files %{pypi_name}
 
+%check
+%pyproject_check_import
+
 %files
 %doc Readme.md
 %license LICENSE

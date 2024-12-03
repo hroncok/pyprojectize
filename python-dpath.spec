@@ -47,6 +47,9 @@ find -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python3}|'
 %pyproject_install
 %pyproject_save_files '%{pypi_name}*'
 
+%check
+%pyproject_check_import
+
 %files -n python3-dpath -f %{pyproject_files}
 %doc LICENSE.txt README.rst
 

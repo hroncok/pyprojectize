@@ -77,6 +77,8 @@ Requires:       python%{python3_other_pkgversion}-setuptools
 %endif
 
 %check
+%pyproject_check_import
+
 %if %{with python3}
 %{__python3} -m unittest
 %endif

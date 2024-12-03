@@ -47,6 +47,8 @@ is then an iterator over messages coming from the server.
 
 %if %{with network}
 %check
+%pyproject_check_import
+
 pytest-%{python3_version} -v
 %endif
 

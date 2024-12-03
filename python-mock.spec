@@ -61,6 +61,8 @@ https://fedoraproject.org/wiki/Changes/DeprecatePythonMock
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 %pytest
 %endif
 

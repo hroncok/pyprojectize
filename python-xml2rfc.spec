@@ -49,6 +49,8 @@ sed -i "s/jinja2>=2.11,<3.0/jinja2>=2.11/" requirements.txt
 %pyproject_wheel
 
 %check
+%pyproject_check_import
+
 # fails on AssertionError: 'Noto Sans Cherokee' not found
 #%{python3} setup.py test
 

@@ -45,6 +45,8 @@ sed -e "s/version='1.0.6',/version='%{version}',/" -i setup.py
 %pyproject_save_files -l python_freeipa
 
 %check
+%pyproject_check_import
+
 %python3 setup.py test
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}

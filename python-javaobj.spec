@@ -47,6 +47,8 @@ sed -i -e '/^#!\//, 1d' {javaobj/*.py,javaobj/v1/*.py,javaobj/v2/*.py}
 %pyproject_save_files -l %{pypi_name}
 
 %check
+%pyproject_check_import
+
 %pytest -v
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

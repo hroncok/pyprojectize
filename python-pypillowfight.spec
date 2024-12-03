@@ -58,6 +58,8 @@ echo "#define INTERNAL_PILLOWFIGHT_VERSION \"%{version}\"" > src/pillowfight/_ve
 
 
 %check
+%pyproject_check_import
+
 # https://gitlab.gnome.org/World/OpenPaperwork/libpillowfight/issues/11
 PYTHONPATH=%{buildroot}%{python3_sitearch} \
     nosetests-3 -v -P tests -I 'tests_swt.py' -I 'tests_canny.py'

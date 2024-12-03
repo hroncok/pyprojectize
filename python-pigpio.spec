@@ -35,6 +35,9 @@ Raspberry Pi Python module to access the pigpio daemon.
 %pyproject_install
 %pyproject_save_files %{pypi_name}
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 
 %changelog

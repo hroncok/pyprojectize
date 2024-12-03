@@ -114,6 +114,9 @@ for prog in %{buildroot}%{_bindir}/*; do
     esac
 done
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc docs/license.rst
 %{_bindir}/*

@@ -108,6 +108,8 @@ ln -s celery-3 celery
 popd
 
 %check
+%pyproject_check_import
+
 # python-moto is not packaged in Fedora, ignore S3 tests
 # mongodb is not packaged in Fedora, ignore mongodb tests
 # pytest-celery is not packaged in Fedora, ignore integration test

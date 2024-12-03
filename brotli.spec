@@ -111,6 +111,8 @@ done
 %ldconfig_scriptlets
 
 %check
+%pyproject_check_import
+
 %if 0%{?rhel} == 7
 . /opt/rh/devtoolset-7/enable
 %ctest3

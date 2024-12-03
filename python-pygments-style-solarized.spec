@@ -38,6 +38,9 @@ Requires:       python3-pygments >= 1.5
 %pyproject_install
 %pyproject_save_files '*'
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst AUTHORS.rst HISTORY.rst
 

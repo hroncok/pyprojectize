@@ -48,6 +48,8 @@ BuildRequires:  python3-pytest-cov
 %pyproject_save_files -l %{pretty_name}
 
 %check
+%pyproject_check_import
+
 #skipping three tests
 %if %{with tests}
 k="${k-}${k+ and }not test_bad_weekday"

@@ -42,6 +42,8 @@ checks considering generics and typesafe duck-typing.
 %pyproject_save_files -l %{pypi_name}
 
 %check
+%pyproject_check_import
+
 # https://github.com/ramonhagenaars/typish/issues/18
 %pytest -v tests -k "not test_instance_of_union and not test_is_type_annotation and not test_subclass_of_union and not test_get_origin and not test_instance_of_nptyping_ndarray"
 

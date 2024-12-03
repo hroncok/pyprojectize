@@ -94,6 +94,10 @@ for file in `find %{buildroot}%{python3_sitearch}/pyx -type f -name "*.py"`; do
 done
 
 
+%check
+%pyproject_check_import
+
+
 %files -f %{pyproject_files}
 %doc AUTHORS CHANGES PKG-INFO README.md
 %config(noreplace) %{_sysconfdir}/pyxrc

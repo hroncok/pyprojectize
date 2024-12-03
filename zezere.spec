@@ -43,6 +43,9 @@ mkdir -p %{buildroot}%{_sharedstatedir}/zezere
 mkdir -p %{buildroot}%{_sysconfdir}/issue.d/
 ln -s /run/zezere-ignition-banner %{buildroot}%{_sysconfdir}/issue.d/zezere_ignition.issue
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %{_sharedstatedir}/zezere
 %{_bindir}/zezere-manage

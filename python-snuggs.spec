@@ -50,6 +50,8 @@ BuildRequires:  python3-hypothesis
 
 
 %check
+%pyproject_check_import
+
 pytest-3 -v
 
 

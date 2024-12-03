@@ -38,6 +38,8 @@ providing policy visualization.
 %pyproject_save_files -l '*'
 
 %check
+%pyproject_check_import
+
 %if %{?_with_check:1}%{!?_with_check:0}
 %{__python3} setup.py test
 %endif

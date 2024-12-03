@@ -75,6 +75,8 @@ rm -rf src/%{pypi_name}.egg-info
 %endif
 
 %check
+%pyproject_check_import
+
 %pytest -v
 
 %if %{with pyproject}

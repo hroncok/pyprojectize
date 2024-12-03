@@ -65,6 +65,8 @@ cp -a $(ls -1 . | grep -v test_non_regression) test_non_regression/cairosvg_refe
 %pyproject_save_files -l %{modname}
 
 %check
+%pyproject_check_import
+
 %{__python3} -m pytest -v
 # remove file which is only required for unit tests
 rm -f %{buildroot}%{python3_sitelib}/%{modname}/test_api.py

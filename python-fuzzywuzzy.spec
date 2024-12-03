@@ -45,6 +45,8 @@ sed -i -e '/import pycodestyle/d' -e 's/test_pep8_conformance/notest_pep8_confor
 %pyproject_save_files -l %{pypi_name}
 
 %check
+%pyproject_check_import
+
 %{__python3} -m unittest
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

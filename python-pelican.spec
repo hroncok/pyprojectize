@@ -115,6 +115,8 @@ ln -s ./pelican-themes %{buildroot}/%{_bindir}/pelican-themes-3
 
 
 %check
+%pyproject_check_import
+
 # re-checked tests, upstream is on python3.8, we are using 3.9.
 # pytest -s --cov=pelican pelican
 

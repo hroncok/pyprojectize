@@ -112,6 +112,8 @@ install -pm 644 docs/*.1.gz %{buildroot}%{_mandir}/man1
 %py3_shebang_fix %{buildroot}%{_bindir}/nitrate
 
 %if %{with python2}
+%check
+%pyproject_check_import
 %files -n python2-nitrate
 %{python2_sitelib}/nitrate/
 %{python2_sitelib}/nitrate-*.egg-info/

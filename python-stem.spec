@@ -75,6 +75,8 @@ find docs/_build -name .buildinfo -delete
 install -D -m 0644 docs/_build/man/%{srcname}.1 %{buildroot}%{_mandir}/man1/%{srcname}.1
 
 %check
+%pyproject_check_import
+
 %if %{?tests_enabled}
 %{__python3} run_tests.py --unit
 %endif

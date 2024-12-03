@@ -98,6 +98,8 @@ mkdir -p %{buildroot}%{_datadir}/bash-completion/completions/
 install conf/testcloud-bash %{buildroot}%{_datadir}/bash-completion/completions/testcloud
 
 %check
+%pyproject_check_import
+
 %pytest
 # Remove compiled .py files from /etc after os_install_post
 rm -f %{buildroot}%{_sysconfdir}/testcloud/*.py{c,o}

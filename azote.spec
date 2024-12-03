@@ -60,6 +60,9 @@ for lib in %{buildroot}%{python3_sitelib}/%{name}/*.py; do
  mv $lib.new $lib
 done
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %{_bindir}/%{name}
 %{_datadir}/%{name}/

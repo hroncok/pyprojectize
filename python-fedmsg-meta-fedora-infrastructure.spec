@@ -57,6 +57,8 @@ Fedora Infrastructure <http://fedoraproject.org/wiki/Infrastructure>.
 %pyproject_save_files -l %{modname}
 
 %check
+%pyproject_check_import
+
 FEDMSG_META_NO_NETWORK=True %{__python3} setup.py test
 
 %files -n python3-fedmsg-meta-fedora-infrastructure -f %{pyproject_files}

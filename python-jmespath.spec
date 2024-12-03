@@ -46,6 +46,8 @@ rm -rf %{pypi_name}.egg-info
 %pyproject_save_files -l %{pypi_name}
 
 %check
+%pyproject_check_import
+
 # RHEL does not have python3-hypothesis. Only one file in the upstream repo
 # depends on hypothesis, so we can omit this dependency for RHEL.
 %pytest %{?rhel:--ignore=extra/test_hypothesis.py}

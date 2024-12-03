@@ -47,6 +47,8 @@ rm -rf %{pypi_name}.egg-info
 %pyproject_save_files -l %{pypi_name}
 
 %check
+%pyproject_check_import
+
 %pytest -v src/restview/tests.py -k "not restview.tests.doctest_RestViewer_rest_to_html"
 
 %files

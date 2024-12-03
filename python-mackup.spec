@@ -58,6 +58,8 @@ Requires:       procps-ng
 %pyproject_save_files -l %{pypi_name}
 
 %check
+%pyproject_check_import
+
 %pytest
 
 

@@ -42,6 +42,9 @@ rm -rf %{pypi_name}.egg-info
 # and is hostile against everything that doesn't match that idea.
 # Thus, the only thing that matters is that tests work in their CI
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc CHANGELOG.rst README.rst
 

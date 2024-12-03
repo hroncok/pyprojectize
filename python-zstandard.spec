@@ -62,6 +62,8 @@ rm -r %{pypi_name}.egg-info
 
 %if %{with check}
 %check
+%pyproject_check_import
+
 mv zstandard{,.src}
 export ZSTD_SLOW_TESTS=1
 %pytest -v\

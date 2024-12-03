@@ -37,6 +37,9 @@ sed -i -e '/^#!\//, 1d' aiosecretsdump/__init__.py
 %pyproject_install
 %pyproject_save_files -l %{pypi_name} bins
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %{_bindir}/aiosecretsdump

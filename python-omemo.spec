@@ -59,6 +59,8 @@ are offline.
 
 
 %check
+%pyproject_check_import
+
 # tests requires python-omemo-backend-signal, that introduce cyclic
 # dependancy: Disabling.
 

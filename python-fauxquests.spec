@@ -45,6 +45,8 @@ Python 3 version.
 %pyproject_save_files -l %{modname}
 
 %check
+%pyproject_check_import
+
 # https://github.com/lukesneeringer/fauxquests/issues/3
 %{__python3} tests/runtests.py -v || :
 

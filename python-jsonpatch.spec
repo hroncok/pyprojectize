@@ -54,6 +54,8 @@ ln -s ./jsonpatch-%{python3_version} %{buildroot}%{_bindir}/jsonpatch-3
 ln -s ./jsonpatch-%{python3_version} %{buildroot}%{_bindir}/jsonpatch
 
 %check
+%pyproject_check_import
+
 %{__python3} tests.py
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

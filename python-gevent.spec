@@ -88,6 +88,8 @@ find %{buildroot} -name '.buildinfo' -delete
 find %{buildroot} -name '*.so' -exec chmod 755 {} ';'
 
 %check
+%pyproject_check_import
+
 export PYTHONPATH=%{buildroot}%{python3_sitearch}
 %__python3 -m gevent.tests || :
 cd src/gevent/tests && GEVENT_FILE=thread %__python3 -mgevent.tests test__*subprocess*.py

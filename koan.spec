@@ -50,6 +50,9 @@ koan python%{python3_pkgversion} module.
 %pyproject_install
 %pyproject_save_files -l koan
 
+%check
+%pyproject_check_import
+
 %files
 %license COPYING
 %doc README.md

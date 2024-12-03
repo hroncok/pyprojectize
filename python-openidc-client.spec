@@ -46,6 +46,8 @@ Python 3 version.
 %pyproject_save_files -l %{pkgname}
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 %files -n python3-openidc-client -f %{pyproject_files}

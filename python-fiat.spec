@@ -66,6 +66,8 @@ sed -r -i 's/np[.]float/float/g' test/unit/test_discontinuous_taylor.py
 %pyproject_save_files -l FIAT
 
 %check
+%pyproject_check_import
+
 %__python3 -m pytest -v test/ --skip-download
 
 %files -n python3-fiat -f %{pyproject_files}

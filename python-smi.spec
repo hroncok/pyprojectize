@@ -61,6 +61,9 @@ mv %{buildroot}%{_bindir}/mibdump.py %{buildroot}%{_bindir}/mibdump
 #%check
 #%{__python3} setup.py test
 
+%check
+%pyproject_check_import
+
 %files -n python3-smi -f %{pyproject_files}
 %doc CHANGES.rst README.md THANKS.txt TODO.txt examples/*.py
 %{_bindir}/mibcopy

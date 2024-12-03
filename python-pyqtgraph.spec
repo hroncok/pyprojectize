@@ -68,6 +68,8 @@ rm -f doc/build/html/.buildinfo
 rm -f doc/build/html/objects.inv
 
 %check
+%pyproject_check_import
+
 # https://github.com/pyqtgraph/pyqtgraph/issues/1475 (test_reload)
 # https://github.com/pyqtgraph/pyqtgraph/issues/2110 (test_PolyLineROI)
 %pytest -k "not (test_reload or test_PolyLineROI)"

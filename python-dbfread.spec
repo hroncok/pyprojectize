@@ -79,6 +79,8 @@ popd
 
 
 %check
+%pyproject_check_import
+
 # The script will launch pytest for Python 2 and 3.
 pytest-%{python3_version}
 

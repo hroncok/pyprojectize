@@ -117,6 +117,9 @@ rm %{buildroot}%{_bindir}/keycloak-httpd-client-install
 install -d -m 755 %{buildroot}/%{_mandir}/man8
 install -c -m 644 doc/keycloak-httpd-client-install.8 %{buildroot}/%{_mandir}/man8
 
+%check
+%pyproject_check_import
+
 %files
 %license LICENSE.txt
 %doc README.md doc/ChangeLog

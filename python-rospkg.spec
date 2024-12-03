@@ -87,6 +87,8 @@ install -p -m0644 -D doc/man/rosversion.1 %{buildroot}%{_mandir}/man1/rosversion
 
 
 %check
+%pyproject_check_import
+
 %if 0%{?rhel}
 export LANG=en_US.UTF-8
 %endif

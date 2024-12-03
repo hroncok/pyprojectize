@@ -54,6 +54,9 @@ for lib in %{buildroot}%{python3_sitelib}/%{sys_name}/*.py; do
  mv $lib.new $lib
 done
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc README.md
 %{_bindir}/%{name}

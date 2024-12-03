@@ -270,6 +270,10 @@ EOF
 rm %{buildroot}%{_usr}/%{_sysconfdir}/mapserver-sample.conf
 
 
+%check
+%pyproject_check_import
+
+
 %files
 %doc README.md
 %doc etc/mapserver-sample.conf

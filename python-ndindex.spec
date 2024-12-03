@@ -54,6 +54,8 @@ rm pytest.ini
 %pyproject_save_files -l ndindex
 
 %check
+%pyproject_check_import
+
 OPTIONS=(
   # This test is flaky
   --deselect=ndindex/tests/test_shapetools.py::test_iter_indices_matmul

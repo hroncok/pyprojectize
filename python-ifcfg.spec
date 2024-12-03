@@ -57,6 +57,8 @@ A fallback to ip is included for newer Unix systems w/o ifconfig.
 
 
 %check
+%pyproject_check_import
+
 %{__python3} -m nose tests
 
 

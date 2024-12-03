@@ -68,6 +68,10 @@ Summary:        %{summary}
 %endif
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python%{python3_pkgversion}-%{pkgname} -f %{pyproject_files}
 %doc README.rst NEWS.rst
 %{python3_sitelib}/%{srcname}-%{version}*-py%{python3_version}-nspkg.pth

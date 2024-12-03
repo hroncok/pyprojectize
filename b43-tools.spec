@@ -68,6 +68,10 @@ cd debug
 %pyproject_save_files -l '*'
 
 
+%check
+%pyproject_check_import
+
+
 %files -f %{pyproject_files}
 %doc README.*
 %{_bindir}/b43-asm

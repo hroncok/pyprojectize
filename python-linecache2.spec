@@ -58,6 +58,8 @@ sed -i 's/import unittest2 as unittest/import unittest/' tests/*.py
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 mv tests %{pkgname}/
 %{__python3} -m unittest -v
 mv %{pkgname}/tests .

@@ -50,6 +50,10 @@ Requires:       python3-twisted
 %pyproject_save_files txredisapi
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-txredisapi -f %{pyproject_files}
 
 

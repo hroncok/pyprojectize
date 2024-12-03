@@ -67,6 +67,9 @@ the plugins in it for some particular purpose or intent.
 #%check
 #%{__python3} tests.py
 
+%check
+%pyproject_check_import
+
 %files -n python3-straight-plugin -f %{pyproject_files}
 # For noarch packages: sitelib
 

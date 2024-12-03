@@ -44,6 +44,8 @@ Python 3 version.
 %pyproject_save_files %{dir_name}
 
 %check
+%pyproject_check_import
+
 %pytest
 
 %files -n python3-%{srcname} -f %{pyproject_files}

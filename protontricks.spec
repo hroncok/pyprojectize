@@ -62,6 +62,8 @@ rm %{buildroot}%{_bindir}/%{name}-desktop-install
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 %{py3_test_envvars} %{python3} -m pytest -v
 desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %endif

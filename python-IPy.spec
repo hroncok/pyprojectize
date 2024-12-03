@@ -43,6 +43,8 @@ and IPv6 Addresses and Networks.
 
 
 %check
+%pyproject_check_import
+
 PYTHONPATH=$PWD %{__python3} test/test_IPy.py
 #PYTHONPATH=$PWD %{__python3} test_doc.py  # FAILS
 

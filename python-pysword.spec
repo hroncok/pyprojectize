@@ -49,6 +49,9 @@ Obsoletes:      python-%{srcname} < 0.2.7-7
 %pyproject_install
 %pyproject_save_files -l pysword
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
 

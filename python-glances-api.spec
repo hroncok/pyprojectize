@@ -34,6 +34,9 @@ A Python client for interacting with Glances.
 %pyproject_install
 %pyproject_save_files -l glances_api
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc CHANGES.rst README.rst example.py
 

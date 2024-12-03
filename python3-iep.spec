@@ -66,6 +66,8 @@ desktop-file-install                            \
 install -D -m0644 %{SOURCE2} %{buildroot}%{_datadir}/appdata/iep.appdata.xml
 
 %check
+%pyproject_check_import
+
 desktop-file-validate %{buildroot}/%{_datadir}/applications/iep.desktop
 
 %files -f %{pyproject_files}

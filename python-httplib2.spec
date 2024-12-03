@@ -60,6 +60,8 @@ sed -i '/--cov/d' setup.cfg
 
 
 %check
+%pyproject_check_import
+
 # test_get_301_no_redirect is disabled because it leads to Segfault on Python 3.11
 # the other disabled tests are broken PySocks tests
 PYTHONPATH=%{buildroot}%{python3_sitelib} pytest -k "not test_unknown_server \

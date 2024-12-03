@@ -48,6 +48,8 @@ objects, easy to analyze, transform, parse, print, and extend.
 %pyproject_save_files -l jsonpath_rw
 
 %check
+%pyproject_check_import
+
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} setup.py test
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

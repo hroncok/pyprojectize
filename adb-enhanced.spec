@@ -37,6 +37,8 @@ battery saver mode, data saver mode, doze mode, permission grant/revocation.
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 %pytest -v tests/adbe_tests.py
 %endif
 

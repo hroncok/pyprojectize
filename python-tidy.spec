@@ -57,6 +57,8 @@ Requires:       python3-six
 %pyproject_save_files -l tidy
 
 %check
+%pyproject_check_import
+
 # fail after tidy 5.6
 %{?py2:%{__python2} setup.py test || :}
 # todo: fails

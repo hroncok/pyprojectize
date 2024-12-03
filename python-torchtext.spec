@@ -84,6 +84,8 @@ rm -rf third_party/*
 
 %if %{with test}
 %check
+%pyproject_check_import
+
 %pytest -sv
 %endif
 

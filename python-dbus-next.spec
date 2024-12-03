@@ -74,6 +74,8 @@ chmod -x examples/*.py
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 # tests require dbus daemon to be running
 %global __pytest  /usr/bin/dbus-run-session -- %{__pytest}
 # test_tcp_connection_with_forwarding is broken by dbus 1.14.4

@@ -37,6 +37,9 @@ Linux kernel modules, using libkmod.
 %pyproject_install
 %pyproject_save_files kmod
 
+%check
+%pyproject_check_import
+
 %files -n python3-kmod -f %{pyproject_files}
 %doc COPYING.LESSER README
 

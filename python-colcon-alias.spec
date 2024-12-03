@@ -65,6 +65,8 @@ invocations.
 
 
 %check
+%pyproject_check_import
+
 %pytest -m 'not linter' test
 
 

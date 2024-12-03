@@ -84,6 +84,8 @@ Python libraries for the Ceph librados library with use cython instead of ctypes
 %endif
 
 %if %{with python2}
+%check
+%pyproject_check_import
 %files -n python2-%{pypi_name}
 %doc README.rst
 %license LICENSE

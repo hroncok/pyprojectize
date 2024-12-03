@@ -55,6 +55,8 @@ pymemcache supports the following features:
 %pyproject_save_files %{pypi_name}
 
 %check
+%pyproject_check_import
+
 py.test-3 ./pymemcache/test/
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

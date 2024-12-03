@@ -85,6 +85,8 @@ Python 3 version.
 #check
 
 %if %{with python2}
+%check
+%pyproject_check_import
 %files -n python2-%{srcname}
 %doc README.rst
 %license LICENSE

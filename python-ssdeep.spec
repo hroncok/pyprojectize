@@ -73,6 +73,8 @@ install -m 644 docs/build/man/pythonssdeep.1 %{buildroot}%{_mandir}/man5/python3
 
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 

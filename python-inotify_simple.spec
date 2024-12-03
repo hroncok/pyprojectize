@@ -85,6 +85,8 @@ Summary:        %{sum Python 3}
 
 
 %if %{with python2}
+%check
+%pyproject_check_import
 %files -n python2-%sname
 %license LICENSE
 %python2_sitelib/%sname.py*

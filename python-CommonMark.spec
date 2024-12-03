@@ -80,6 +80,8 @@ sed -i '1{\@^#!/usr/bin/env python@d}' commonmark/cmark.py
 
 
 %check
+%pyproject_check_import
+
 export PYTHONIOENCODING=UTF-8
 PYTHONPATH=$(pwd) %{__python3} setup.py test
 

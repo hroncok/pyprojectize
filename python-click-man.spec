@@ -42,6 +42,10 @@ use Click for option handling.
 %pyproject_save_files -l click_man
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %{_bindir}/click-man

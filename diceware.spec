@@ -60,6 +60,8 @@ rm -rf docs/_build/.doctrees
 
 
 %check
+%pyproject_check_import
+
 PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version}
 
 %files doc

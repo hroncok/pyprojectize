@@ -39,6 +39,8 @@ Brace expanding is used to generate arbitrary strings.
 %pyproject_save_files -l %{pypi_name}
 
 %check
+%pyproject_check_import
+
 %{python3} setup.py test
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

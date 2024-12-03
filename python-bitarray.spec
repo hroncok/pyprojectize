@@ -56,6 +56,10 @@ This is Python 3 version.
 %pyproject_save_files '%{srcname}*'
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 
 

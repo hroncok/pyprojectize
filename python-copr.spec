@@ -198,6 +198,8 @@ install -d %{buildroot}%{_pkgdocdir}
 cp -a docs/_build/html %{buildroot}%{_pkgdocdir}/
 
 %check
+%pyproject_check_import
+
 %if %{with python3}
 %{__python3} -m pytest -vv copr/test
 %endif

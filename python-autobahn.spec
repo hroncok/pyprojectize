@@ -86,6 +86,8 @@ export AUTOBAHN_USE_NVX=false
 %pyproject_save_files -l %{pypi_name} twisted
 
 %check
+%pyproject_check_import
+
 # Ignore tests that rely on optional and not packaged deps.
 k="${k-}${k+ and }not test_no_memory_arg"
 k="${k-}${k+ and }not test_basic"

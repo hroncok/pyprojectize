@@ -65,6 +65,10 @@ export DEBVER="%{version}"
 rm -rf %{buildroot}%{python3_sitelib}/apt_*-stubs*
 
 
+%check
+%pyproject_check_import
+
+
 %files -n  python3-apt -f %{pyproject_files}
 %doc README.md
 %{_datadir}/%{name}/

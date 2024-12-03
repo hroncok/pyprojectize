@@ -49,6 +49,8 @@ This is a Python3 version.
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 PYTHON=python3 stestr-3 run
 rm -rf .testrepository
 %endif

@@ -58,6 +58,8 @@ element.
 
 
 %check
+%pyproject_check_import
+
 %if 0%{?rhel} == 7
 # avoid UnicodeEncodeError: 'ascii' codec can't encode character '\xe9' in position 6: ordinal not in range(128)
 # in UnicodeTestCase.test_unicode_element

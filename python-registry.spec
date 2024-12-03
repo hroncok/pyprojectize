@@ -51,6 +51,8 @@ sed -i -e '/^#!\//, 1d' Registry/*.py
 %pyproject_save_files -l Registry
 
 %check
+%pyproject_check_import
+
 %pytest -v tests -k "not test_regsz_value and not test_decoding and not test_utf16le_kanji_with_nulls"
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}

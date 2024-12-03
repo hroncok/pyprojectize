@@ -53,6 +53,8 @@ A PEG-based parser interpreter with memoization.
 
 # Note that there is no %%files section for the unversioned python module
 %if %{py2support}
+%check
+%pyproject_check_import
 %files -n python2-%{srcname}
 %license LICENSE
 %doc README.md

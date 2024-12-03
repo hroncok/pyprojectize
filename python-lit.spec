@@ -75,6 +75,8 @@ sed -i -e '1{\@^#!/usr/bin/env python@d}' %{buildroot}%{python3_sitelib}/lit/*.p
 
 %if %{with check} && %{without snapshot_build}
 %check
+%pyproject_check_import
+
 %{__python3} lit.py -v tests
 %endif
 

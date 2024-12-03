@@ -42,6 +42,8 @@ dumps, loads and similar functions).
 %pyproject_save_files %{pypi_name}
 
 %check
+%pyproject_check_import
+
 # tests fail with "ModuleNotFoundError: No module named 'tests'"
 # disabling for now
 # %{__python3} setup.py test

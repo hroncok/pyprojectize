@@ -43,6 +43,9 @@ rm -r src/%{module_name}.egg-info
 %pyproject_install
 %pyproject_save_files -l %{module_name}
 
+%check
+%pyproject_check_import
+
 %postun
 %systemd_postun_with_restart collectd.service
 

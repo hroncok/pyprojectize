@@ -46,6 +46,8 @@ commands in SVG, and a parser for SVG path definitions.
 %pyproject_save_files svg
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 %files -n python3-svg-path -f %{pyproject_files}

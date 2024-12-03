@@ -35,6 +35,9 @@ Python library that implements API used by ydiff tool.
 %pyproject_install
 %pyproject_save_files %{name}
 
+%check
+%pyproject_check_import
+
 %files
 %doc README.rst
 %license LICENSE

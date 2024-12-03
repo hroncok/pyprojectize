@@ -79,6 +79,8 @@ doxygen Doxyfile
 %pyproject_wheel
 
 %check
+%pyproject_check_import
+
 make check
 
 %install

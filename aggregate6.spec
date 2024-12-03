@@ -65,6 +65,8 @@ sed -e '1{\|^#![[:space:]]*/|d}' -i $RPM_BUILD_ROOT%{python3_sitelib}/%{name}/%{
 touch -c -r %{name}/%{name}.py $RPM_BUILD_ROOT%{python3_sitelib}/%{name}/%{name}.py
 
 %check
+%pyproject_check_import
+
 %pytest
 
 %files

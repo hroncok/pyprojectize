@@ -44,6 +44,9 @@ printers and processors.
 find %{buildroot}/%{python3_sitelib} -name '*.py' | xargs sed -i '/^#!/d'
 %__rm -f %{buildroot}/usr/COPYING
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 
 %changelog

@@ -67,6 +67,8 @@ Recommends: python3dist(pycryptopp)
 
 
 %check
+%pyproject_check_import
+
 # we can't test mongo
 rm -f tests/test_managers/test_ext_mongodb.py
 

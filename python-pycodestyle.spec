@@ -98,6 +98,8 @@ install -D docs/_build/man/%{module_name}.1 %{buildroot}%{_mandir}/man1/%{module
 
 
 %check
+%pyproject_check_import
+
 %if %{with python2}
 %{__python2} pycodestyle.py --max-doc-length=72 --testsuite testsuite
 %{__python2} pycodestyle.py --max-doc-length=72 --doctest

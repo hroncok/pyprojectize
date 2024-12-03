@@ -59,6 +59,9 @@ for f in $(find %{buildroot} -type f \! -executable -print); do
     sed -i '/^#!\/usr\/bin\/env python/d' $f || :
 done
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc README.md ChangeLog AUTHORS
 %{_bindir}/virt-bootstrap

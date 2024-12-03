@@ -44,6 +44,8 @@ sed -i 's/\r$//' README.rst
 
 %if %{with device}
 %check
+%pyproject_check_import
+
 %pytest -v tests
 %endif
 

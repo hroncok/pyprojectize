@@ -58,6 +58,8 @@ rm -rf libusb1.egg-info
 %pyproject_save_files -l libusb1 usb1
 
 %check
+%pyproject_check_import
+
 %{python3} setup.py test
 
 %files -n python3-libusb1 -f %{pyproject_files}

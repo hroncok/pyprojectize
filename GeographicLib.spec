@@ -159,6 +159,8 @@ popd
 
 
 %check
+%pyproject_check_import
+
 %cmake_build -t testprograms
 %ctest
 

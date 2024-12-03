@@ -60,6 +60,8 @@ cp %SOURCE3 . -vp
 %pyproject_save_files -l %{pypi_name}
 
 %check
+%pyproject_check_import
+
 %if %{with tests}
 PYTHONPATH=%{buildroot}/%{python3_sitelib} %{__python3} -m unittest
 %endif

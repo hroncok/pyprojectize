@@ -69,6 +69,8 @@ This package contains API documentation of it.
 
 
 %check
+%pyproject_check_import
+
 export PYTHONPATH=%{buildroot}%{python3_sitearch}
 %make_build check
 

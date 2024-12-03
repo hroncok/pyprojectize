@@ -50,6 +50,8 @@ Requires:       python3-jdcal
 
 
 %check
+%pyproject_check_import
+
 pwd
 ls -R
 py.test-%{python3_version}

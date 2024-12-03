@@ -63,6 +63,8 @@ sed -i -e '/isort\|flake\|coverage\[toml\]/d' -e 's/\([a-z]\)[>=]\{2\}[0-9.]\+/\
 %pyproject_save_files -l %{srcname}
 
 %check
+%pyproject_check_import
+
 # skip tests that involve SHA1 since Fedora nowadays disables it, systemwide
 PYTHONPATH=src %{__python3} -m pytest tests -v -k 'not (SHA1 or test_sign_pw or test_verify_error or (test_signature and not test_signature_binary))'
 

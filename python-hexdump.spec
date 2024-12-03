@@ -59,6 +59,9 @@ sed -i -e 's|#!/usr/bin/env python|#|' hexdump.py
 mkdir -p %{buildroot}%{_mandir}/man1
 install -m 644 %{SOURCE1} %{buildroot}%{_mandir}/man1/hexdumpy.1
 
+%check
+%pyproject_check_import
+
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}
 %license UNLICENSE
 %doc README.txt

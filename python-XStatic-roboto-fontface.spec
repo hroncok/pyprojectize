@@ -94,6 +94,9 @@ pushd %{buildroot}/%{_jsdir}/roboto_fontface/fonts
 ln -s ../../../fonts/roboto_fontface/* .
 popd
 
+%check
+%pyproject_check_import
+
 %files -n roboto-fontface-common
 %doc README.txt
 %{_jsdir}/roboto_fontface

@@ -46,6 +46,8 @@ periodogram, the Supersmoother method, and others.
 %pyproject_save_files -l '*'
 
 %check
+%pyproject_check_import
+
 # Disabled for now as tests require online access
 #nosetests-%{python3_version} %{srcname}
 

@@ -38,6 +38,8 @@ in ISO 8601 format into datetime format.
 %pyproject_save_files -l %{srcname}
 
 %check
+%pyproject_check_import
+
 %{__python3} -m unittest discover aniso8601/tests/
 
 %files -n python3-%{srcname} -f %{pyproject_files}

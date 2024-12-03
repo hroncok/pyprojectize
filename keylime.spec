@@ -243,6 +243,9 @@ EOF
 
 install -p -D -m 0644 %{SOURCE1} %{buildroot}%{_sysusersdir}/%{srcname}.conf
 
+%check
+%pyproject_check_import
+
 %pre base
 %sysusers_create_compat %{SOURCE1}
 exit 0

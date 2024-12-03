@@ -37,6 +37,9 @@ communication and hence it easily integrates with the GLib mainloop.
 %pyproject_install
 %pyproject_save_files -l '%{name}*'
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{name} -f %{pyproject_files}
 
 %changelog

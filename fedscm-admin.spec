@@ -38,6 +38,8 @@ rm -vr *.egg-info
 %pyproject_wheel
 
 %check
+%pyproject_check_import
+
 #export FEDSCM_ADMIN_TEST_CONFIG=true
 #export PYTHONPATH=%{buildroot}/%{python3_sitelib}
 #export LC_ALL=C.UTF-8

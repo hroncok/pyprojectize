@@ -49,6 +49,8 @@ rm -rf python-%{modname}.egg-info
 %pyproject_save_files '*%{modname}*'
 
 %check
+%pyproject_check_import
+
 %{__python3} -m unittest -v
 
 %files -n python3-dbusmock -f %{pyproject_files}

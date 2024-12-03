@@ -43,6 +43,9 @@ libyal projects.
 %pyproject_save_files -l %{pypi_name}
 rm -rf %{buildroot}%{_defaultdocdir}/%{pypi_name}/*
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc ACKNOWLEDGEMENTS AUTHORS README
 %{_bindir}/*.py

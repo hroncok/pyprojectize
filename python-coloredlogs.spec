@@ -82,6 +82,8 @@ rm docs/build/html/.buildinfo
 
 
 %check
+%pyproject_check_import
+
 # Some hacking to get the pth file to get processed outside
 # of the build host's site dir. This sitecustomize.py needs
 # to be somewhere in the path.

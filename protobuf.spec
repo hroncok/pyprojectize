@@ -362,6 +362,8 @@ export MAVEN_OPTS=-Xmx1024m
 
 
 %check
+%pyproject_check_import
+
 %make_build check CXXFLAGS="%{build_cxxflags} -Wno-error=type-limits"
 
 

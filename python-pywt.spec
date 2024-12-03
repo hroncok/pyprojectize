@@ -77,6 +77,8 @@ popd
 %pyproject_save_files -l %{modname}
 
 %check
+%pyproject_check_import
+
 mkdir -p matplotlib
 touch matplotlib/matplotlibrc
 export XDG_CONFIG_HOME=`pwd`

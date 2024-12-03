@@ -46,6 +46,9 @@ Summary:        %{sum}
 %pyproject_save_files -l '*'
 chmod -x demos/*/*.{py,sh}
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc LICENSE README ReadMe.html VERSION
 

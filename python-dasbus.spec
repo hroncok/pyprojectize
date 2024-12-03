@@ -52,6 +52,9 @@ Requires:       python3-gobject-base
 %python_expand %fdupes %{buildroot}%{python3_sitelib}
 %endif
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.md
 

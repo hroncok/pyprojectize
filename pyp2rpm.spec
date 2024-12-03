@@ -51,6 +51,8 @@ Fedora Python Packaging Guidelines.
 %pyproject_save_files -l %{name}
 
 %check
+%pyproject_check_import
+
 # TestMetadataExtractor requires Python 2 setuptools
 PYTHONPATH="." py.test-3 -vv -m "not webtest" -k "not TestMetadataExtractor"
 

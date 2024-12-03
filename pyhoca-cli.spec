@@ -53,6 +53,10 @@ mkdir -p %{buildroot}/%{_mandir}/
 cp -rp man/* %{buildroot}/%{_mandir}/
 
 
+%check
+%pyproject_check_import
+
+
 %files -f %{pyproject_files}
 %doc README TODO
 %{_bindir}/%{name}

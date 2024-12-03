@@ -85,6 +85,8 @@ find . -name '*.py' -exec sed -i '1 { /^#!/ d }' {} \+
 %endif
 
 %check
+%pyproject_check_import
+
 %if %{with python2}
 %{__python2} setup.py test
 %endif

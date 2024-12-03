@@ -35,6 +35,8 @@ rm -rf cwcwidth.egg-info
 %pyproject_save_files -l cwcwidth
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 %files -n python3-cwcwidth -f %{pyproject_files}

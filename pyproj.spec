@@ -153,6 +153,8 @@ chrpath -d %{buildroot}/%{python3_sitearch}/%{name}/*.so
 
 
 %check
+%pyproject_check_import
+
 
 # follow the hint given in pyproj github issue
 # https://github.com/pyproj4/pyproj/issues/647

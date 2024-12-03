@@ -40,6 +40,8 @@ rm -r unidiff.egg-info
 %pyproject_save_files -l %{modname}
 
 %check
+%pyproject_check_import
+
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} -m unittest discover -s tests/
 
 %files -n python%{python3_pkgversion}-%{modname} -f %{pyproject_files}

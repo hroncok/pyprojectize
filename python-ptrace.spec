@@ -44,6 +44,8 @@ chmod 0644 examples/*.py
 rm -f %{buildroot}%{_bindir}/{gdb,strace}.{pyo,pyc}
 
 %check
+%pyproject_check_import
+
 %{__python3} runtests.py || :
 
 %files -n python3-ptrace -f %{pyproject_files}

@@ -55,6 +55,8 @@ and then parsing the output to know the result.
 rm -f %{buildroot}%{python3_sitearch}/%{pypi_name}/*.c
 
 %check
+%pyproject_check_import
+
 # This test fails in mock because systemd isn't running
 rm -f tests/test_daemon.py
 %if 0%{?el8}

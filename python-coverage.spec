@@ -98,6 +98,8 @@ ln -s coverage-%{python3_version} coverage
 popd
 
 %if %{py2support}
+%check
+%pyproject_check_import
 %files -n python2-coverage
 %license LICENSE.txt NOTICE.txt
 %doc README.rst

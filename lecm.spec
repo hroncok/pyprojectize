@@ -59,6 +59,10 @@ mkdir -p %{buildroot}%{_datadir}/%{srcname}/sample/
 install -p -m 0644 sample/*.conf %{buildroot}%{_datadir}/%{srcname}/sample/
 
 
+%check
+%pyproject_check_import
+
+
 %files -f %{pyproject_files}
 %doc README.rst
 %{_bindir}/%{srcname}

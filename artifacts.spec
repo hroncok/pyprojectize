@@ -41,6 +41,8 @@ sure they follow the specification.
 rm -rf %{buildroot}%{_defaultdocdir}/%{pypi_name}/LICENSE
 
 %check
+%pyproject_check_import
+
 PYTHONPATH=%{buildroot}/%{python3_sitelib}/ pytest-%{python3_version} -v tests
 
 %files -f %{pyproject_files}

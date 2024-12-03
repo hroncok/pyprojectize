@@ -48,6 +48,8 @@ sed -i "s/teardown(/teardown_method(/" test.py
 %pyproject_save_files -l %{pkg_name}
 
 %check
+%pyproject_check_import
+
 %pytest test.py
 
 

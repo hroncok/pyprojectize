@@ -67,6 +67,9 @@ popd
 # Delete buildinfo file
 find docs/_build/ -name ".buildinfo" -execdir rm -fv '{}' \;
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %{_bindir}/mllp_send
 

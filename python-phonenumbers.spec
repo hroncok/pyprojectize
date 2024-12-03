@@ -51,6 +51,8 @@ cd python
 
 
 %check
+%pyproject_check_import
+
 cd python
 %{__python3} setup.py test
 

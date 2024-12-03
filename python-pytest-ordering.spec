@@ -58,6 +58,8 @@ rm -rf html/.{doctrees,buildinfo}
 %pyproject_save_files -l pytest_ordering
 
 %check
+%pyproject_check_import
+
 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=%{buildroot}%{python3_sitelib} \
   pytest-%{python3_version} -v tests -k "not test_run_marker_registered"
 

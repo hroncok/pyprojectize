@@ -53,6 +53,10 @@ chmod -x examples/click-completion-*
 %pyproject_save_files -l 'click_completion*'
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{pkgname} -f %{pyproject_files}
 %doc examples README.md
 

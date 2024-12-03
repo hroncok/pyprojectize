@@ -67,6 +67,10 @@ Summary:        %{summary}
 %{__mkdir} -p %{buildroot}/%{_pkgdocdir}
 
 
+%check
+%pyproject_check_import
+
+
 %files doc
 %license LICENSE
 %doc %{_pkgdocdir}

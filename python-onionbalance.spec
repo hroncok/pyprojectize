@@ -93,6 +93,9 @@ cp docs/_build/man/%{pkgname}* %{buildroot}/%{_mandir}/man1/
 install -p -m 644 %{SOURCE5} .
 install -p -m 644 %{SOURCE6} .
 
+%check
+%pyproject_check_import
+
 %pre -n python3-%{pkgname}
 getent passwd %{pkgname} >/dev/null || \
     useradd -r -g %{toruser} -d %{_localstatedir}/lib/%{pkgname} -s /sbin/nologin \

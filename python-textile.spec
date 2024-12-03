@@ -67,6 +67,8 @@ find %{buildroot}%{python3_sitelib} -name '*.py' \
 
 
 %check
+%pyproject_check_import
+
 # run the testsuite and log results, but do not fail the build
 %{__python3} ./setup.py test || :
 

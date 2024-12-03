@@ -44,6 +44,8 @@ Summary:        %{summary}
 %pyproject_save_files -l ntlm_auth
 
 %check
+%pyproject_check_import
+
 %python3 -m pytest -vv
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}

@@ -100,6 +100,8 @@ rm -rf html/.{doctrees,buildinfo}
 %pyproject_save_files -l %{pypi_name}
 
 %check
+%pyproject_check_import
+
 LANG=C.utf-8 %{__python3} -m pytest --ignore=build -W ignore::DeprecationWarning -p no:unraisableexception
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

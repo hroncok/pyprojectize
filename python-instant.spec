@@ -43,6 +43,9 @@ chmod 0644 test/*
 %pyproject_install
 %pyproject_save_files -l %{srcname}
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc AUTHORS ChangeLog README TODO doc/sphinx/ test/
 %{_mandir}/man*/*.1*

@@ -102,6 +102,8 @@ popd
 install -D -m 0644 docs/_build/man/%{srcname}.1 %{buildroot}%{_mandir}/man1/%{srcname}.1
 
 %check
+%pyproject_check_import
+
 # Tests disabled because they connect to online services
 #%%{__python3} setup.py test
 

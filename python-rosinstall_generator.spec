@@ -59,6 +59,8 @@ ln -s %{srcname}-%{python3_version} %{buildroot}%{_bindir}/%{srcname}
 
 
 %check
+%pyproject_check_import
+
 %pytest test
 
 

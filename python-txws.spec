@@ -57,6 +57,8 @@ rm -rf %{eggname}.egg-info
 %pyproject_save_files -l %{libname}
 
 %check
+%pyproject_check_import
+
 %if %{with tests}
 PYTHONPATH=$(pwd) trial-3 tests
 %endif

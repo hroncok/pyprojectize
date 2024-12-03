@@ -70,6 +70,8 @@ module in the standard library. Specifically, their behaviour is:
 %pyproject_save_files -l '%{srcname}*'
 
 %check
+%pyproject_check_import
+
 %pytest
 
 

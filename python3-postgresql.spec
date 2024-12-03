@@ -37,6 +37,10 @@ support a developer working with PostgreSQL databases.
 %pyproject_save_files '*'
 
  
+%check
+%pyproject_check_import
+
+
 %files -f %{pyproject_files}
 %doc AUTHORS LICENSE README
 

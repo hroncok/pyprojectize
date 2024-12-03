@@ -44,6 +44,9 @@ cp -p %{SOURCE1} .
 %pyproject_install
 %pyproject_save_files -l 'husl*'
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{upname} -f %{pyproject_files}
 %doc README.md
 

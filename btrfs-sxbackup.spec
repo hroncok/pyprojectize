@@ -43,6 +43,8 @@ install -p -m644 etc/btrfs-sxbackup.conf %{buildroot}/%{_sysconfdir}
 
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 

@@ -52,6 +52,8 @@ sed -i -e 's/"psycopg2-binary>=2.8.4"/"psycopg2"/g' setup.py
 
 %if %{with docker}
 %check
+%pyproject_check_import
+
 %{pytest} -v tests
 %endif
 

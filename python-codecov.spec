@@ -51,6 +51,8 @@ sed -e "\|#!/usr/bin/env python3|d" -i %{pypi_name}/*.py
 %pyproject_save_files -l %{pypi_name}
 
 %check
+%pyproject_check_import
+
 # Disable tests that require network access
 %pytest tests/test.py \
   --deselect tests/test.py::TestUploader::test_bowerrc_none \

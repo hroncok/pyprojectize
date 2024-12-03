@@ -44,6 +44,8 @@ mv %{buildroot}/usr/sample-filters \
     %{buildroot}%{_datadir}/%{name}/sample-filters
 
 %check
+%pyproject_check_import
+
 PYTHONPATH=./ %{__python3} test/test-netstat
 
 %files -f %{pyproject_files}

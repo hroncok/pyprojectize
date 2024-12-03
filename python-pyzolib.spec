@@ -42,6 +42,10 @@ BuildRequires:  python%{python3_pkgversion}-devel
 %pyproject_save_files pyzolib
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python%{python3_pkgversion}-pyzolib -f %{pyproject_files}
 %doc
 

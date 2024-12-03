@@ -82,6 +82,8 @@ mv %{buildroot}%{_datadir}/%{pypi_name}/config.yml \
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 %{python3} -m pytest -v
 %endif
 

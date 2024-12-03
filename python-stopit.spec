@@ -55,6 +55,8 @@ sed -i "s/license='GPLv3',/license='MIT',/g" setup.py
 %pyproject_save_files -l %{pypi_name}
 
 %check
+%pyproject_check_import
+
 %if %{with tests}
 export PYTHONPATH=%{buildroot}%{python3_sitelib}
 %{__python3} tests.py

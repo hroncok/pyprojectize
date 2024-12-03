@@ -101,6 +101,8 @@ rm -rf requests_ftp.egg-info
 %endif
 
 %if %{with python2}
+%check
+%pyproject_check_import
 %files -n python2-%{srcname}
 %doc README.rst
 %license LICENSE

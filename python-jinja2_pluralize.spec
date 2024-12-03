@@ -52,6 +52,8 @@ Requires:       python3-inflect
 
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 
 

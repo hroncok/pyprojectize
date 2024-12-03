@@ -100,6 +100,8 @@ done
 install -m0755 "scripts/countme-rezip" "%{buildroot}%{_bindir}/"
 
 %check
+%pyproject_check_import
+
 %if %{with tests}
 PYTHONPATH="%{buildroot}%{python3_sitelib}" %{python3} -m pytest -v -n auto
 %endif

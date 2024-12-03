@@ -40,6 +40,9 @@ sed -r -i "s/'pyparsing.*'/'pyparsing'/" setup.py
 %pyproject_install
 %pyproject_save_files 'configshell*'
 
+%check
+%pyproject_check_import
+
 %files -n python3-configshell -f %{pyproject_files}
 %doc COPYING README.md
 

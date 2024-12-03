@@ -54,6 +54,9 @@ Documentation for django-health-check
 # export DJANGO_SETTINGS_MODULE=tests.testapp.settings
 # %%{__python3} -m pytest tests
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 

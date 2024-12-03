@@ -40,6 +40,8 @@ python3-augeas is a set of Python bindings around augeas.
 %pyproject_save_files -l augeas
 
 %check
+%pyproject_check_import
+
 pytest-3
 
 %files -n python3-augeas -f %{pyproject_files}

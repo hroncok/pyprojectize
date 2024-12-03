@@ -27,6 +27,9 @@ compatible with rm and you can use trash-put as an alias to rm.
 %pyproject_install
 %pyproject_save_files trashcli
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc README.rst
 

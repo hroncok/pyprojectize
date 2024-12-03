@@ -40,6 +40,8 @@ Python 3 version.
 %pyproject_save_files -l %{srcname}
 
 %check
+%pyproject_check_import
+
 pushd tests
   PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} -v
 popd

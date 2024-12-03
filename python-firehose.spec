@@ -65,6 +65,8 @@ chmod +x %{buildroot}/%{python3_sitelib}/firehose/parsers/gcc.py
 
 
 %check
+%pyproject_check_import
+
 %{__python3} -m unittest discover -v
 
 

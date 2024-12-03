@@ -73,6 +73,8 @@ Retry decorator with a bunch of configuration parameters.
 %endif
 
 %check
+%pyproject_check_import
+
 %if 0%{?with_python2}
 PYTHONPATH=. py.test-2.7
 %endif

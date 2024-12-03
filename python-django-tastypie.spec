@@ -65,6 +65,9 @@ rm -rf docs/_build/html/.??*
 %pyproject_install
 %pyproject_save_files 'django_tastypie*' tastypie
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst AUTHORS LICENSE
 

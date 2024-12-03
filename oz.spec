@@ -112,6 +112,8 @@ if [ ! -f %{_sysconfdir}/oz/id_rsa-icicle-gen ]; then
 fi
 
 %check
+%pyproject_check_import
+
 libvirtd -d
 %pytest tests/
 

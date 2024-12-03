@@ -34,6 +34,9 @@ Database update scripts for prewikka.
 %pyproject_install
 %pyproject_save_files prewikkaupdatedb
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{name} -f %{pyproject_files}
 
 %changelog

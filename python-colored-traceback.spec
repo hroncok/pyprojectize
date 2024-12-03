@@ -33,6 +33,8 @@ Colored-traceback is a python library to color exception traces.
 %pyproject_save_files colored_traceback
 
 %check
+%pyproject_check_import
+
 %py3_check_import colored_traceback
 
 %files -n python3-colored-traceback -f %{pyproject_files}

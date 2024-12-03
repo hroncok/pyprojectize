@@ -62,6 +62,8 @@ cp -p %{SOURCE1} .
 %endif
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 %if 0%{?with_python3_other}
 %{__python3_other} setup.py test

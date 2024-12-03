@@ -74,6 +74,9 @@ rmdir %{buildroot}%{python3_sitelib}/xstatic/pkg/angular_gettext/data/
 # fix execute flags for js
 chmod 644 %{buildroot}%{_jsdir}/angular_gettext/angular-gettext.js
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.txt
 %{python3_sitelib}/XStatic_Angular_Gettext-%{version}-py%{python3_version}-nspkg.pth

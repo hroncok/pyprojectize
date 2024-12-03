@@ -64,6 +64,8 @@ Provides:           robosignatory = %{version}-%{release}
 %pyproject_save_files %{modname}
 
 %check
+%pyproject_check_import
+
 %{__python3} -m pytest -v
 
 %files -n python3-robosignatory -f %{pyproject_files}

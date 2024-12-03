@@ -59,6 +59,8 @@ rm -rf html/.{doctrees,buildinfo}
 
 %if %{with mysqldb}
 %check
+%pyproject_check_import
+
 PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v tests
 %endif
 

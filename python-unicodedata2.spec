@@ -51,6 +51,8 @@ is data from Unicode 13.0.0.
 %pyproject_save_files -l %{pypi_name}%{python3_ext_suffix}
 
 %check
+%pyproject_check_import
+
 %pytest -v
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

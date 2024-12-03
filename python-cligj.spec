@@ -47,6 +47,8 @@ chmod -x README.rst
 
 
 %check
+%pyproject_check_import
+
 %{pytest}
 
 

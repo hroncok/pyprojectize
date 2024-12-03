@@ -48,6 +48,10 @@ This package provides the python3 version of this module
 #%{__python3} setup.py test
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{modname} -f %{pyproject_files}
 
 %changelog

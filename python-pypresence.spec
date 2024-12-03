@@ -46,6 +46,8 @@ rm -rf %{buildroot}/docs
 
 
 %check
+%pyproject_check_import
+
 %py3_check_import pypresence
 
 

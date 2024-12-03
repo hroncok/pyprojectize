@@ -45,6 +45,8 @@ Lexicon is a simple collection of dict sub-classes providing extra power.
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 %pytest
 %endif
 

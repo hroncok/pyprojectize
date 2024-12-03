@@ -46,6 +46,10 @@ Provides: python3-pyqt6-sip-api(%{_sip_api_major})%{?_isa} = %{_sip_api}
 %pyproject_save_files -l PyQt6 'PyQt6_sip*'
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-%{pkg_name} -f %{pyproject_files}
 %doc README
 

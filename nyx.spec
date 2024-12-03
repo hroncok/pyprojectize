@@ -46,6 +46,8 @@ Summary: %summary
 install -D -m 0644 nyx.1 %{buildroot}%{_mandir}/man1/nyx.1
 
 %check
+%pyproject_check_import
+
 %{__python3} run_tests.py
 
 %files -f %{pyproject_files}

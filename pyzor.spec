@@ -51,6 +51,8 @@ install -d -m 755 %{buildroot}%{_sysconfdir}/%{name}
 # Tests are failing without python3-redis, even it's optional
 %if 0%{?fedora}
 %check
+%pyproject_check_import
+
 %pytest tests/unit/
 %endif
 

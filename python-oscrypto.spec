@@ -59,6 +59,8 @@ BuildArch: noarch
 
 %if %{with check}
 %check
+%pyproject_check_import
+
 # run only non-network tests
 %pytest -k 'not TLSTests'
 %endif

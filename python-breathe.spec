@@ -90,6 +90,8 @@ rm documentation/build/html/.buildinfo
 %pyproject_save_files -l '*'
 
 %check
+%pyproject_check_import
+
 %make_build dev-test
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}

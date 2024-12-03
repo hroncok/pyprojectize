@@ -65,6 +65,8 @@ tl;dr Ansible is the frontend, buildah is the backend.
 
 %if %{with check}
 %check
+%pyproject_check_import
+
 %pytest \
   -v \
   --disable-pytest-warnings \

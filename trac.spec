@@ -76,6 +76,9 @@ mv $RPM_BUILD_ROOT{%{_bindir}/tracd,%{_sbindir}/tracd}
 #%%check
 #PYTHONPATH=$(pwd) PYTHON=/usr/bin/python3 make test
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc AUTHORS ChangeLog INSTALL* README* RELEASE* THANKS UPGRADE* contrib/
 %{_bindir}/trac-admin

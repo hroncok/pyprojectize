@@ -84,6 +84,8 @@ BuildRequires:  python%{python3_pkgversion}-pyparsing
 
 %if %{with check}
 %check
+%pyproject_check_import
+
 PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} -v
 %endif
 

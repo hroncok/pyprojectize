@@ -84,6 +84,8 @@ export PYCAIRO=true
 
 
 %check
+%pyproject_check_import
+
 # start a postgres instance for the tests to use
 PGTESTS_LOCALE="C.UTF-8" %postgresql_tests_run
 createdb template_postgis

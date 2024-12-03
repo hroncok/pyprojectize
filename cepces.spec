@@ -132,6 +132,8 @@ cat <<EOF>%{buildroot}%{_sysconfdir}/logrotate.d/%{name}
 EOF
 
 %check
+%pyproject_check_import
+
 # Create a symlink so test can locate cepces_test
 ln -s tests/cepces_test .
 %{__python3} setup.py test

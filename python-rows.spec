@@ -72,6 +72,8 @@ sed -i 's/\"pathlib\"//g' setup.py
 install -Dpm 0644 %{pypi_name}.1.txt %{buildroot}%{_mandir}/man1/%{pypi_name}.1
 
 %check
+%pyproject_check_import
+
 EXCLUDE_ARG=""
 # We don't package xlsx and parquet things yet
 EXCLUDE_ARG="$EXCLUDE_ARG -e tests_plugin_parquet -e tests_plugin_xlsx"

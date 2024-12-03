@@ -84,6 +84,8 @@ install -D -m0644 -p doc/build/man/pythonjenkins.1 %{buildroot}%{_mandir}/man1/p
 
 
 %check
+%pyproject_check_import
+
 %{__python3} -m testtools.run discover tests
 
 

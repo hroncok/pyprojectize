@@ -53,6 +53,8 @@ overridden.
 
 
 %check
+%pyproject_check_import
+
 %{__python3} -m pytest \
     --ignore=test/test_spell_check.py \
     --ignore=test/test_flake8.py \

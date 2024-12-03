@@ -52,6 +52,9 @@ rm -f %{buildroot}/%{_bindir}/pagcli
 # And, we're on python3, thank you setuptools.
 sed -i 's|/usr/bin/python$|/usr/bin/python3|' %{buildroot}/%{_bindir}/pag
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %doc README.rst
 %{_bindir}/pag

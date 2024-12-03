@@ -47,6 +47,10 @@ Requires:           open-sans-fonts
 ln -sfv /usr/share/fonts/open-sans/OpenSans-Regular.ttf %{buildroot}/%{python3_sitelib}/%{modname}/statics/opensans.ttf
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-backlash -f %{pyproject_files}
 %doc README.rst
 

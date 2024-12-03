@@ -65,6 +65,9 @@ popd
 %pyproject_install
 %pyproject_save_files -l 'intelhex*'
 
+%check
+%pyproject_check_import
+
 %files
 %doc NEWS.rst README.rst
 %{_bindir}/*.py

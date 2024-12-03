@@ -76,6 +76,8 @@ rm -rf %{buildroot}%{_prefix}/lib/python*/site-packages/flufl/i18n/{*.rst,docs,c
 
 
 %check
+%pyproject_check_import
+
 %{__python3} setup.py test
 %if 0%{?with_python3_other}
 %{__python3_other} setup.py test

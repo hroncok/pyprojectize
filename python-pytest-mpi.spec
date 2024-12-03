@@ -50,6 +50,8 @@ tests under MPI, and testing MPI-related code.
 
 
 %check
+%pyproject_check_import
+
 module load mpi/mpich-%{_host_cpu}
 export PYTHONPATH=%{buildroot}%{python3_sitelib}:$MPI_PYTHON3_SITEARCH
 py.test-%{python3_version} -p pytester --runpytest=subprocess -vv

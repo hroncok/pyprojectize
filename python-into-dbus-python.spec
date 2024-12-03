@@ -40,6 +40,9 @@ Python 3 version.
 %pyproject_install
 %pyproject_save_files -l into_dbus_python
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README.rst
 

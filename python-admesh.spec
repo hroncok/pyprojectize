@@ -55,6 +55,8 @@ cp %{SOURCE1} test/
 %pyproject_save_files -l %{pypi_name}
 
 %check
+%pyproject_check_import
+
 PYTHONPATH=%{buildroot}%{python3_sitearch} py.test-3 -v \
 %ifarch ppc64
   -k "not test_saved_equals_original_binary" # likely a bug in admesh itself

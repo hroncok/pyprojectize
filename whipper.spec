@@ -64,6 +64,9 @@ mv %{buildroot}%{_datadir}/metainfo/ \
 
 appstream-util validate-relax --nonet %{buildroot}/%{_metainfodir}/com.github.whipper_team.Whipper.metainfo.xml
 
+%check
+%pyproject_check_import
+
 %files -f %{pyproject_files}
 %{_bindir}/whipper
 %{_bindir}/accuraterip-checksum

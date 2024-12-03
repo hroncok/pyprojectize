@@ -71,6 +71,8 @@ sed -e 's/__CHANGELOG_VERSION__/%{version}/' < lib/debian/_version.py.in > lib/d
 %pyproject_save_files deb822 debian debian_bundle 'python_debian*'
 
 %check
+%pyproject_check_import
+
 %if 0%{?rhel}
 # this fail because of missing apt-get python module, but this file is
 # use to create test.ar file

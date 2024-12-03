@@ -41,6 +41,9 @@ products, to store firmware, microcode or configuration parameters.
 #%check
 #PYTHONPATH=%{buildroot}/%{python3_sitelib} %{__python3} i2cflash/tests/serialeeprom.py
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst AUTHORS
 

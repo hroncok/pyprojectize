@@ -57,6 +57,8 @@ Summary:        %{summary}
 %endif
 
 %if 0%{?rhel} && 0%{?rhel} < 8
+%check
+%pyproject_check_import
 %files -n python2-%{srcname}
 %doc README.md
 %license LICENSE

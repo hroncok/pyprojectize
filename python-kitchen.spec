@@ -82,6 +82,9 @@ rm -rf html/.buildinfo
 # PATH=/bin:/usr/bin
 # PYTHONPATH=.:kitchen3/ nosetests-%{python3_version} kitchen3/tests/
 
+%check
+%pyproject_check_import
+
 %files -n python%{python3_pkgversion}-kitchen -f %{pyproject_files}
 %doc README.rst NEWS.rst
 

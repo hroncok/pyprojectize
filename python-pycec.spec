@@ -44,6 +44,8 @@ rm -rf %{pypi_name}.egg-info
 %pyproject_save_files pycec
 
 %check
+%pyproject_check_import
+
 %pytest
 
 %files -n python3-%{mod_name} -f %{pyproject_files}

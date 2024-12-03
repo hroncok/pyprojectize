@@ -215,6 +215,8 @@ rm -rf %{pypi_name}.egg-info
 rm -f %{buildroot}/%{python3_sitelib}/bokeh/server/static/.keep
 
 %check
+%pyproject_check_import
+
 %if %{with tests}
 # https://docs.bokeh.org/en/latest/docs/dev_guide/testing.html
 # skip js tests, skip selenium tests

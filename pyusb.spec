@@ -39,6 +39,8 @@ sed -i -e 's/\r//g' README.rst
 %pyproject_save_files -l '*'
 
 %check
+%pyproject_check_import
+
 cd tests
 %{py3_test_envvars} %{python3} ./testall.py
 

@@ -45,6 +45,8 @@ export DISABLE_BLOSC_AVX2=1
 %pyproject_save_files -l blosc
 
 %check
+%pyproject_check_import
+
 cd / # avoid interference with build dir
 PYTHONPATH=%{buildroot}%{python3_sitearch} %__python3 -c 'import sys, blosc; sys.exit(blosc.test())'
 

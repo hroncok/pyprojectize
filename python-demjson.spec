@@ -54,6 +54,8 @@ find %{buildroot}%{python3_sitelib} \
 
 
 %check
+%pyproject_check_import
+
 pushd test
 PYTHONPATH=%{buildroot}%{python3_sitelib} \
 %{__python3} test_demjson.py

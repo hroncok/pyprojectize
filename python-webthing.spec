@@ -35,6 +35,10 @@ A server implementing the HTTP Web Thing implementation.
 %pyproject_save_files -l webthing
 
 
+%check
+%pyproject_check_import
+
+
 %files -n python3-webthing -f %{pyproject_files}
 %doc README.rst
 

@@ -39,6 +39,8 @@ rm -rf statgrab.c
 %pyproject_save_files -l '*'
 
 %check
+%pyproject_check_import
+
 PYTHONPATH=%{buildroot}/%{python3_sitearch} %{__python3} test.py
 
 %files -n python3-%{name} -f %{pyproject_files}

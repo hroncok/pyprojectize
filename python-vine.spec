@@ -76,6 +76,8 @@ rm -rf html/.{doctrees,buildinfo}
 
 %if %{with tests}
 %check
+%pyproject_check_import
+
 %pytest -xv --cov=vine --cov-report=xml --no-cov-on-fail
 %endif
 

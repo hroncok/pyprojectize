@@ -45,6 +45,9 @@ sed -i -e '1d;2i#!/usr/bin/python3' exampleresources.py
 %pyproject_install
 %pyproject_save_files coapthon
 
+%check
+%pyproject_check_import
+
 %files -n python3-coapthon3 -f %{pyproject_files}
 # Doc files are missing in the releases on PyPI
 # https://github.com/Tanganelli/CoAPthon3/issues/22

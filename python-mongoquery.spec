@@ -43,6 +43,8 @@ parsers. It follows the specification of queries for MongoDB version 3.2.
 %pyproject_save_files -l %{srcname}
 
 %check
+%pyproject_check_import
+
 %pytest -v tests
 
 %files -n python3-%{srcname} -f %{pyproject_files}

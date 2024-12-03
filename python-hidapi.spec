@@ -54,6 +54,8 @@ sed -i -e 's|/usr/include/hidapi|%{_includedir}/hidapi|' setup.py
 
 
 %check
+%pyproject_check_import
+
 %{pytest} tests.py
 
 

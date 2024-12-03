@@ -45,6 +45,9 @@ done
 #%check
 #nosetests-%{python3_version} test/test_groups.py
 
+%check
+%pyproject_check_import
+
 %files -n python3-%{srcname} -f %{pyproject_files}
 %doc README PKG-INFO
 

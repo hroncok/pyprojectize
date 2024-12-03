@@ -59,6 +59,8 @@ BuildArch:      noarch
 %pyproject_save_files -l dijitso
 
 %check
+%pyproject_check_import
+
 # We test with both mpi implementations, just because we can :_]
 
 %_mpich_load

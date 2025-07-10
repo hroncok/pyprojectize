@@ -24,7 +24,6 @@ Python Library for getting your Peloton workout data.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 # https://github.com/justmedude/pylotoncycle/pull/2
 sed -i -e '/^#!\//, 1d' pylotoncycle/*.py
 

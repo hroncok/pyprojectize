@@ -45,7 +45,6 @@ Documentation for %{name}.
 
 %prep
 %autosetup -n %{pypi_name}-%{version} -p1
-rm -rf %{pypi_name}.egg-info
 sed -i /RemovedInPytest4Warning/d pytest_trio/_tests/conftest.py
 sed -i s/--cov// pytest.ini
 

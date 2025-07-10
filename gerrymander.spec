@@ -31,7 +31,6 @@ find . -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python3}|'
 
 # Remove any egg info (as of submitting this review, there's no bundled
 # egg info)
-rm -rf *.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

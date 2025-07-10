@@ -31,7 +31,6 @@ Pure-Python API to git, which uses the command-line interface.
 %setup -q -n gitapi-%{version}a2
 cp %{SOURCE1} .
 # Remove egg
-rm -r gitapi.egg-info
 # Apply patches
 sed -i 's/\r$//' gitapi/testgitapi.py
 # Correct end of line encoding for README.rst

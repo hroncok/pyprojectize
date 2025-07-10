@@ -27,7 +27,6 @@ python-unidiff is a Python library to parse and interact with unified diffs
 
 %prep
 %autosetup -n %{modname}-%{version} -p1
-rm -r unidiff.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

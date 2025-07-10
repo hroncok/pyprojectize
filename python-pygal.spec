@@ -41,6 +41,7 @@ A python svg graph plotting library
 %prep
 %setup -q -n %{modname}-%{version}
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

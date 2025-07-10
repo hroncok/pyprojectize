@@ -68,7 +68,6 @@ Obsoletes: python3-ufolib <= 2.1.1-11
 
 %prep
 %autosetup -p1
-rm -rf *.egg-info
 
 sed -i '1d' Lib/fontTools/mtiLib/__init__.py
 

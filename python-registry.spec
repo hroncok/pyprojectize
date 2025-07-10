@@ -37,7 +37,6 @@ study of the Windows NT Registry.
 
 %prep
 %autosetup -p1 -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 sed -i -e '/^#!\//, 1d' Registry/*.py
 
 %generate_buildrequires

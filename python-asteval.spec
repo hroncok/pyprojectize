@@ -42,7 +42,6 @@ Documentation for %{name}.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 sed -i -e '/^#!\//, 1d' asteval/asteval.py
 
 %generate_buildrequires

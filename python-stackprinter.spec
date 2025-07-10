@@ -27,7 +27,6 @@ more code context and the current values of nearby variables.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

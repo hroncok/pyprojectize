@@ -30,7 +30,6 @@ Convert Voluptuous schemas to dictionaries so they can be serialized.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

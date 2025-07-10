@@ -29,7 +29,6 @@ BuildRequires: python3-devel
 
 %prep
 %autosetup -p1 -n %{pname}-%{version}
-rm -rf src/%{pname}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

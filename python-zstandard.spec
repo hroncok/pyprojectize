@@ -48,7 +48,6 @@ Provides: bundled(zstd) = 1.5.5
 
 %prep
 %autosetup -p1 -n %{pypi_name}-%{version}
-rm -r %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

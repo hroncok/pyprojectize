@@ -24,7 +24,6 @@ applications, tools and libraries.
 
 %prep
 %autosetup -n %{name}-%{version}
-rm -rf %{pypi_name}.egg-info
 mv wad/etc/README.md wad/etc/README-wappalyzer.md
 
 %generate_buildrequires

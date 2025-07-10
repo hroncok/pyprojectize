@@ -24,7 +24,6 @@ Python API interface implementation for Nuvo zone amplifier.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

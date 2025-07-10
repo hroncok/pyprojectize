@@ -46,6 +46,7 @@ You should use Twiggy because it is awesome. For more information, read the
 %prep
 %autosetup -n %{distname}-%{version}
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

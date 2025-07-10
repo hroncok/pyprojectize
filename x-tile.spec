@@ -34,6 +34,7 @@ filter to check some windows by default, command line interface.
 %autosetup
 
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

@@ -44,7 +44,6 @@ Documentation for %{pypi_name}.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 # Remove shebang
 sed -i -e '/^#!\//, 1d' mrcrowbar/lib/games/{boppin.py,keen.py,sam.py,titus.py}
 sed -i -e '/^#!\//, 1d' mrcrowbar/lib/hardware/{ibm_pc.py,megadrive.py}

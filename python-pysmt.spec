@@ -40,7 +40,6 @@ with Satisfiability Modulo Theory simple. Among others, you can:
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 sed -i -e '/^#!\//, 1d' pysmt/{cmd/shell.py,constants.py}
 
 %generate_buildrequires

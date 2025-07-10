@@ -30,8 +30,6 @@ flexible test runner, and supports both doctest and unittest.
 %prep
 %autosetup -p1 -n %{modname}-%{version}
 
-rm -rf %{modname}.egg-info
-
 %generate_buildrequires
 %pyproject_buildrequires
 

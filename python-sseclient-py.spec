@@ -28,7 +28,6 @@ urllib3 and requests.
 
 %prep
 %autosetup -n sseclient-%{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

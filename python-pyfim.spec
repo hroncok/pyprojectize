@@ -53,7 +53,6 @@ BuildRequires:  %{py3_dist Cython}
 
 %prep
 %autosetup -c -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 # Replace use of distutils.core.setup
 sed -i -e 's/distutils\.core/setuptools/' setup.py
 

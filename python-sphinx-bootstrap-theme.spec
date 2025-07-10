@@ -53,7 +53,6 @@ Requires:       python3-sphinx
 
 %prep
 %autosetup -n %{srcname}-%{version}
-rm -rf *.egg-info
 
 
 %generate_buildrequires

@@ -28,7 +28,6 @@ of symbols and a larger alphabet than UUID (A-Za-z0-9_-).
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 cp -a %{SOURCE1} LICENSE 
 
 %generate_buildrequires

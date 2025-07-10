@@ -46,6 +46,7 @@ This package contains the documentation.
 sed -i "s/, 'pkginfo.tests'//g" setup.py
 
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

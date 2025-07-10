@@ -51,7 +51,6 @@ Recommends:     %{py3_dist tvb-library}
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 
 # Upstream included a commit to prepare for 1.5.10 in the release tar
 sed -i 's/1.5.10/1.5.9/' setup.py

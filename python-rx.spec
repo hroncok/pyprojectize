@@ -49,7 +49,6 @@ BuildRequires:  python3-pytest-runner
 
 %prep
 %autosetup -n RxPY-%{version} -p 1
-rm -rf %{eggname}.egg-info
 
 
 %generate_buildrequires

@@ -30,6 +30,7 @@ This package provides the python3 version of this module
 %setup -q -n %{modname}-%{version}
 
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

@@ -38,7 +38,6 @@ Documentation for %{name}.
 
 %prep
 %autosetup -n PyMeeus-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

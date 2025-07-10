@@ -49,6 +49,7 @@ considered to be the domain of the WSGI application.
 %setup -q -n %{modname}-%{version}
 
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

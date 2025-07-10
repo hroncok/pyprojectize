@@ -39,6 +39,7 @@ Requires:       python3-setuptools
 %setup -q -n %{srcname}-%{version}
 
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

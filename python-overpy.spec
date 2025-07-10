@@ -42,7 +42,6 @@ Documentation for %{name}.
 
 %prep
 %autosetup -n %{github_name}-%{version}
-rm -rf %{pretty_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

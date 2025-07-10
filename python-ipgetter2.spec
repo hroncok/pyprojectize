@@ -47,7 +47,6 @@ Utility to fetch your external IP address.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 sed -i -e '/^#!\//, 1d' ipgetter2/*.py
 
 %generate_buildrequires

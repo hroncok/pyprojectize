@@ -37,7 +37,6 @@ Documentation for %{pypi_name}.
 
 %prep
 %autosetup -n python-arlo-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

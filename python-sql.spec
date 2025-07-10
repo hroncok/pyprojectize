@@ -30,7 +30,6 @@ Summary:        %{sum}
 %setup -q -n %{srcname}-%{version}
 
 # remove upstream egg-info
-rm -rf */*.egg-info
 
 
 %generate_buildrequires

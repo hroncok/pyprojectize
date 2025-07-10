@@ -30,7 +30,6 @@ TCP <=> HDMI bridge to control HDMI devices over TCP network.
 
 %prep
 %autosetup -p1 -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires -r

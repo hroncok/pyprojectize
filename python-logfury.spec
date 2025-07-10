@@ -28,7 +28,6 @@ BuildRequires:  python3-setuptools_scm
 
 %prep
 %setup -q -n %{srcname}-%{version}
-rm -rf %{srcname}.egg-info
 %patch -P0 -p1
 
 %generate_buildrequires

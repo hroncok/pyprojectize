@@ -38,7 +38,6 @@ Python 3 version.
 
 %prep
 %autosetup -n %{modname}-%{version}
-rm -rf *.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

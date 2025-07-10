@@ -26,7 +26,6 @@ and status updates.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 # https://github.com/StyraHem/pyShelly/pull/39
 sed -i 's/\r$//' README.md
 chmod -x README.md

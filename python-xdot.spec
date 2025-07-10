@@ -44,7 +44,6 @@ sed '1{\@^#!/usr/bin/env python@d}' xdot/__main__.py > xdot/__main__.py.new &&
  mv xdot/__main__.py.new xdot/__main__.py
 
 # Remove pre-built egg present in upstream tarball:
-rm -rf xdot.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

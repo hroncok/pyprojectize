@@ -27,7 +27,6 @@ A Python wrapper around the ZoneMinder RESTful API.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

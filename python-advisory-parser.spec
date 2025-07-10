@@ -32,7 +32,6 @@ others; for a full list, see the advisory_parser/flaw.py file.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

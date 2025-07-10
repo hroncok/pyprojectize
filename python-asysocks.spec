@@ -24,7 +24,6 @@ A Python Socks5/Socks4 client and server library.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 cp -a %{SOURCE1} LICENSE
 sed -i -e '/^#!\//, 1d' asysocks/__init__.py
 

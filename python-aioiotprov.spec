@@ -27,7 +27,6 @@ firmware, Shelly devices and E-Trix power monitors.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 sed -i -e '/^#!\//, 1d' {aioiotprov/plugins/*.py,aioiotprov/*.py}
 
 %generate_buildrequires

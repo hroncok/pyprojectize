@@ -27,7 +27,6 @@ class.
 
 %prep
 %autosetup -p1 -n CppHeaderParser-%{version}
-rm -rf %{pypi_name}.egg-info
 # Remove outdated parts (Python 2.x)
 rm -rf CppHeaderParser/{examples,docs}
 sed -i -e '/^#!\//, 1d' CppHeaderParser/CppHeaderParser.py

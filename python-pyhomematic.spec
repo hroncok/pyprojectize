@@ -26,7 +26,6 @@ devices hooked up to a regular CCU or Homegear.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 sed -i 's/\r$//' README.rst
 
 %generate_buildrequires

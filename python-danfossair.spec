@@ -25,7 +25,6 @@ Python module and client for Danfoss Air HRV systems.
 
 %prep
 %autosetup -n pydanfoss-air-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

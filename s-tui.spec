@@ -30,6 +30,7 @@ What it does
 %autosetup
 
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

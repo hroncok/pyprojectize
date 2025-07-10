@@ -24,7 +24,6 @@ AJPy aims to craft AJP requests in order to communicate with AJP connectors.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

@@ -450,6 +450,7 @@ cp %{SOURCE1000} .
 %autosetup -p1 -n pytorch-v%{version}
 %endif
 
+
 tar xf %{SOURCE1}
 rm -rf third_party/flatbuffers/*
 cp -r flatbuffers-23.3.3/* third_party/flatbuffers/

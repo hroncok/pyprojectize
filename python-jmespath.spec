@@ -33,7 +33,6 @@ a JSON document.
 
 %prep
 %setup -q -n jmespath.py-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

@@ -32,7 +32,6 @@ A Python module to get the version number of Home Assistant.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 sed -i -e 's/main/%{version}/g' setup.py
 
 %generate_buildrequires

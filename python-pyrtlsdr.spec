@@ -26,7 +26,6 @@ Python 3 binding for librtlsdr (a driver for Realtek RTL2832U based SDR's).
 
 %prep
 %setup -qn %{srcname}-%{version}
-rm -rf pyrtlsdr.egg-info
 chmod 644 rtlsdr/rtlsdrtcp/base.py
 
 find . -name '*.py' | xargs sed -i '1s|^#!.*|#!%{__python3}|'

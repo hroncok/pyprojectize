@@ -30,7 +30,6 @@ BuildRequires:  python3-devel
 
 %prep
 %setup -q -n %{pypi_name}-%{version}
-rm -rf *.egg-info
 
 
 %generate_buildrequires

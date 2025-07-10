@@ -24,7 +24,6 @@ Demangling C++ symbols in Python and interface to abi::__cxa_demangle.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

@@ -35,8 +35,6 @@ applications really easy.
 %prep
 %autosetup -n %{modname}-%{version}
 
-rm -rf %{modname}.egg-info
-
 
 %generate_buildrequires
 %pyproject_buildrequires

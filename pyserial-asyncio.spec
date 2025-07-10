@@ -34,7 +34,6 @@ Documentation for pyserial-asyncio.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 sed -i -e '/^#!\//, 1d' serial_asyncio/__init__.py
 
 %generate_buildrequires

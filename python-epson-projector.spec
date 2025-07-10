@@ -25,7 +25,6 @@ Asynchronous Python library to control Epson projectors.
 
 %prep
 %autosetup -n epson_projector-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

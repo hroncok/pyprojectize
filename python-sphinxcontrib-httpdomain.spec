@@ -30,7 +30,6 @@ for generating documentation from Flask routing tables.
 %prep
 %setup -q -n %{upstream_name}-%{version}
 %patch -P4 -p2
-rm -r *.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

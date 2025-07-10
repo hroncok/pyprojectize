@@ -38,7 +38,6 @@ changes to the repository (including hgrc).
 %setup -q -n hgapi-%{version}
 cp %{SOURCE1} .
 # Remove egg
-rm -r hgapi.egg-info
 # Apply patch
 sed -i 's/\r$//' hgapi/testhgapi.py
 # Correct end of line encoding for README.rst

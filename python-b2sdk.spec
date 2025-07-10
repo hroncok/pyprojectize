@@ -30,7 +30,6 @@ BuildRequires:  python3-setuptools_scm
 
 %prep
 %autosetup -p1 -n b2sdk-%{version}
-rm -rf b2sdk.egg-info
 
 
 %generate_buildrequires

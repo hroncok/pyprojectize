@@ -36,6 +36,7 @@ BuildRequires:  python3-hypothesis
 %autosetup -n %{srcname}-%{version} -p1
 
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

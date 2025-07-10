@@ -25,7 +25,6 @@ BuildRequires:  python3-devel
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 cp %{SOURCE1} . -vp
 
 # Comment out to remove /usr/bin/env shebangs

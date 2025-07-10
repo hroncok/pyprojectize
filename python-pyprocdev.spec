@@ -26,7 +26,6 @@ Requires: python3-six
 
 %prep
 %autosetup -n %{srcname}-%{version}
-rm -rf src/pyprocdev.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

@@ -32,7 +32,6 @@ data in your Home Assistant database.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 sed -i -e 's/2.1/2.3/g' setup.py
 
 %generate_buildrequires

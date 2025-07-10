@@ -59,6 +59,7 @@ sed -i 's/yaml.load(cfg)/yaml.load(cfg, Loader=yaml.FullLoader)/' \
 sed -i 's/GObject/PyGObject/g' setup.py
 
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

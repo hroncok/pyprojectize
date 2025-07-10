@@ -72,8 +72,6 @@ BuildRequires:  python%{python3_pkgversion}-pytest
 # This needs to have a blank line after because of a bug in the EL6 macros
 %autosetup -p1 -n %{srcname}-%{version}
 
-rm -rf %{srcname}.egg-info
-
 %generate_buildrequires
 %pyproject_buildrequires
 

@@ -31,7 +31,6 @@ Requires:       python3-vcrpy
 
 %prep
 %setup -qn %{pypi_name}-%{version}
-rm -rf *.egg-info
 
 
 %generate_buildrequires

@@ -41,7 +41,6 @@ when writing tests of asynchronous code (:code:asyncio). You can test:
 
 %prep
 %autosetup -p1 -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

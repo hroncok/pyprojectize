@@ -37,7 +37,6 @@ Documentation for adafruit-pureio.
 
 %prep
 %autosetup -n Adafruit_PureIO-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

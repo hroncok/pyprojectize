@@ -199,7 +199,6 @@ BuildRequires:  %{py3_dist typing_extensions} >= 3.7.4
 
 %prep
 %autosetup -n %{pypi_name}-%{version} -p1
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

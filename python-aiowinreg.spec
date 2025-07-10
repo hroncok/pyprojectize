@@ -24,7 +24,6 @@ Windows registry file reader.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 cp -a %{SOURCE1} LICENSE
 
 %generate_buildrequires

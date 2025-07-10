@@ -34,7 +34,6 @@ Requires:         python3-dbus, python3-gobject, dbus-x11
 
 %prep
 %autosetup -n %{name}-%{version}
-rm -rf python-%{modname}.egg-info
 
 
 %generate_buildrequires

@@ -37,6 +37,7 @@ transmitting them over-the-wire.
 %autosetup -n JSON_minify-%{version}
 
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

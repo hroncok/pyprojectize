@@ -36,7 +36,6 @@ database driver.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 # Use a different module
 sed -i -e 's/"psycopg2-binary>=2.8.4"/"psycopg2"/g' setup.py
 

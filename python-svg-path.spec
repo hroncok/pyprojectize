@@ -33,8 +33,6 @@ commands in SVG, and a parser for SVG path definitions.
 %prep
 %autosetup -n %{modname}-%{version}
 
-# Remove bundled egg-info in case it exists rm -rf %%{modname}.egg-info
-
 %generate_buildrequires
 %pyproject_buildrequires
 

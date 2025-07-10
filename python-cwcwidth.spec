@@ -22,7 +22,6 @@ Summary:        %{summary}
 
 %prep
 %autosetup -n cwcwidth-%{version}
-rm -rf cwcwidth.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

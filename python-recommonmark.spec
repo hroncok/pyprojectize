@@ -35,7 +35,6 @@ BuildRequires:  python%{python3_pkgversion}-sphinx
 %prep
 %setup -qn recommonmark-%{version}
 # Remove upstream's egg-info
-rm -rf recommonmark.egg-info
 
 sed -i '1{\@^#!/usr/bin/env python@d}' recommonmark/scripts.py
 

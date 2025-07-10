@@ -41,6 +41,7 @@ Loader made for your needs.
 %prep
 %autosetup -n %{srcname}-%{version}
 
+
 # Fix shebang
 sed -i -e '/^#!\//, 1d' %{srcname}/__main__.py
 

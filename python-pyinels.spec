@@ -26,7 +26,6 @@ intelligent system named iNels by ElkoEP company.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

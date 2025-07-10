@@ -574,7 +574,6 @@ the Portable, Extensible Toolkit for Scientific Computation.
 %setup -qc
 
 %if %{with python}
-rm -rf %{name}-%{version}/src/binding/petsc4py/src/*.egg-info
 
 %if 0%{?fedora}
 for i in `find . -name 'setup.py' -o -name 'configure' -o -name '*.py'`; do

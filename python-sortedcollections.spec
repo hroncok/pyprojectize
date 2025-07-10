@@ -33,7 +33,6 @@ sorted collections library.
 # brittle here. This patch modifies tox.ini so that pytest does not fail based
 # on coverage.
 sed -i -e '/--cov-fail-under=100/d' tox.ini
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

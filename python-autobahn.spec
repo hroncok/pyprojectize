@@ -57,7 +57,6 @@ Documentation for %{name}.
 
 %prep
 %autosetup -n %{pypi_name}-python-%{version}
-rm -rf %{pypi_name}.egg-info
 # There is a requirement for pytest 6.2+ in pytest.ini and we don't have that yet
 # it works with 6.0 just fine and the config file is not needed
 rm pytest.ini

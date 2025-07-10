@@ -31,7 +31,6 @@ provided data.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 sed -i 's/\r$//' README.md
 
 %generate_buildrequires

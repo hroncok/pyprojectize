@@ -41,7 +41,6 @@ this option globally from within a doctest, by doing:
 %setup -q -n dtopt-%{version}
 
 # Remove bundled egg info if it exists.
-rm -rf *.egg-info
 
 # There is a print statement in the test that is not python3 compatible.
 rm dtopt/tests.py*

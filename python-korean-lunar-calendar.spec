@@ -24,7 +24,6 @@ A library to convert Korean lunar-calendar to Gregorian calendar.
 
 %prep
 %autosetup -n %{internal_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

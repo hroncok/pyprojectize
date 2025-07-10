@@ -46,6 +46,7 @@ Fedora Infrastructure <http://fedoraproject.org/wiki/Infrastructure>.
 %autosetup -n %{modname}-%{version}
 #-S git
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

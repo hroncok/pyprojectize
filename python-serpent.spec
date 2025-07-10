@@ -34,7 +34,6 @@ the serialized data is safe to transport to other machines (over the network
 for instance) and de-serialize it there.
 %prep
 %autosetup -n %{pypi_name}-%{version} -p1
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

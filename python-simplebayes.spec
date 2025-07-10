@@ -41,6 +41,7 @@ BuildRequires:  python3-mock
 %autosetup -n %{srcname}-1.5.7
 
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

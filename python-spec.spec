@@ -48,6 +48,7 @@ A Python testing tool that provides:
 # LICENSE file
 cp -p %{SOURCE3} .
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

@@ -29,7 +29,6 @@ features such as range generation and business day calculation.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 # Not shipping dateadd and datediff as they are not ported to Python 3
 # https://github.com/jmcantrell/python-dateutils/issues/2 
 rm -rf dateutils/{dateadd.py,datediff.py}

@@ -25,7 +25,6 @@ Python-based Kerberos security toolkit.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 sed -i -e '/^#!\//, 1d' kerberoast/kerberoast.py
 
 %generate_buildrequires

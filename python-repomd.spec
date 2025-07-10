@@ -44,7 +44,6 @@ Requires:       python3-lxml
 
 %prep
 %autosetup -n %{srcname}-%{version}
-rm -r source/%{eggname}.egg-info setup.cfg
 
 
 %generate_buildrequires

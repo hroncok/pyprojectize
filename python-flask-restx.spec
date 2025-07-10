@@ -35,7 +35,6 @@ Obsoletes:      python3-flask-restplus = 0.13.0
 
 %prep
 %autosetup -p1 -n %{srcname}-%{version}
-rm -rf %{libname}.egg-info
 rm -f %{libname}/static/files/.npmignore
 
 %generate_buildrequires

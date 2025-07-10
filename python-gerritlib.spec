@@ -44,6 +44,7 @@ Requires:       python3-paramiko
 %autosetup -n %{pypi_name}
 sed -i 's/\r//' LICENSE
 
+
 # We handle requirements ourselves, remove requirements.txt
 rm -rf requirements.txt test-requirements.txt
 

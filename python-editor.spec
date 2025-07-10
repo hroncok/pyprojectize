@@ -26,7 +26,6 @@ Programmatically open an editor, capture the result.
 
 %prep
 %setup -q -n %{pypi_name}-%{upstream_version}
-rm -rf %{pypi_name}.egg-info
 # Change shebang according to Python version
 sed -i '1s=^#!/usr/bin/\(python\|env python\)[0-9.]*=#!%{__python3}=' editor.py
 

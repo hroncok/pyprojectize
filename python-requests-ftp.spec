@@ -76,7 +76,6 @@ This is the Python 3 version of the transport adapter module.
 
 %prep
 %autosetup -n %{srcname}-%{version} -p1
-rm -rf requests_ftp.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

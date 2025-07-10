@@ -34,7 +34,6 @@ and can follow links and submit forms. It doesn't do JavaScript.
 
 %prep
 %autosetup -n MechanicalSoup-%{version}
-rm -rf %{pypi_name}.egg-info
 # No linting
 sed -i -e 's/--flake8//g' setup.cfg
 

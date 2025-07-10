@@ -41,6 +41,7 @@ at http://packages.python.org/cloud_sptheme.
 %setup -q -n %{modname}-%{version}.post20200504175005
 
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

@@ -34,6 +34,7 @@ Summary:        %{summary}
 %autosetup -n %{pypi_name}-%{version}
 
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

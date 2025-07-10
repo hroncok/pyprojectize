@@ -66,6 +66,7 @@ Collection of easy to use progress bars and spinners.
 %autosetup -p1 -n %{pypi_name}-%{version}
 
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

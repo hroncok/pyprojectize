@@ -40,7 +40,6 @@ BuildRequires:  %{py3_dist twisted pyzmq}
 
 %prep
 %autosetup -n %{srcname}-%{version} -p 1
-rm -rf %{eggname}.egg-info
 
 
 %generate_buildrequires

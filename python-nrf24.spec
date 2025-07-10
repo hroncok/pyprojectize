@@ -25,7 +25,6 @@ modules on a Raspberry Pi using Python.
 
 %prep
 %autosetup -n py-%{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

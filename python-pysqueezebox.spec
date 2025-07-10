@@ -32,7 +32,6 @@ Python library to control a Logitech Media Server asynchronously.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

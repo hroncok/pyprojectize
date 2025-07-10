@@ -30,7 +30,6 @@ Summary:        %{summary}
 %autosetup -n %{pkgname}-%{version} -p1
 
 # Remove upstream egg-info
-rm -rf %{pkgname}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

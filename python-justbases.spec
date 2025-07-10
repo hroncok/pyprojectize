@@ -25,7 +25,6 @@ Python numbers.
 
 %prep
 %autosetup -n %{srcname}-%{version}
-rm -rf justbases.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

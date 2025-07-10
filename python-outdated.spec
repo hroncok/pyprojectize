@@ -38,7 +38,6 @@ BuildRequires:  %{py3_dist littleutils}
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 
 # Copy over sources
 cp %SOURCE1 . -vp

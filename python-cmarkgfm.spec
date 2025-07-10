@@ -26,7 +26,6 @@ Bindings to GitHub's cmark Minimalist bindings to GitHub's fork of cmark.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 chmod -x README.rst LICENSE.txt
 
 %generate_buildrequires

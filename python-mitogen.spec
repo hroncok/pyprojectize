@@ -80,8 +80,6 @@ BuildRequires:  python%{python3_pkgversion}-devel
 %prep
 %autosetup -n %{srcname}-%{version} -p 1
 
-rm -rf %{eggname}.egg-info
-
 # See patch0 comment above
 rm -r mitogen/compat ansible_mitogen/compat
 

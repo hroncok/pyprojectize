@@ -37,7 +37,6 @@ translation of the Angus Johnson's Clipper library.
 %prep
 %autosetup -p1 -n %{srcname}-%{version}
 # Remove upstream egg-info
-rm -rf pyclipper.egg-info
 # Since there are no .git dir, there is no need to exclude files in MANIFEST.in
 sed -i '/^exclude/d' MANIFEST.in
 

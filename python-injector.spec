@@ -48,6 +48,7 @@ BuildRequires:  python3dist(typing-extensions)
 %autosetup -n %{pypi_name}-%{version}
 
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

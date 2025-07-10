@@ -32,7 +32,6 @@ objects.
 
 %prep
 %autosetup -n python-ring-doorbell-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

@@ -43,6 +43,7 @@ mocking the datetime module. This is the Python 3 library.
 %prep
 %autosetup -p1 -n %{modname}-%{version}
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

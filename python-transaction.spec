@@ -32,6 +32,7 @@ Requires:       python3-zope-interface
 %autosetup -n transaction-%{version} -p1
 
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

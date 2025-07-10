@@ -46,7 +46,6 @@ BuildRequires:  python3-Cython
 %autosetup -p1 -n %{srcname}-%{version}
 
 # Remove egg files from source
-rm -r %{srcname}.egg-info
 
 
 %generate_buildrequires

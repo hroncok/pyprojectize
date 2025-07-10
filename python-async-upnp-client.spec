@@ -31,7 +31,6 @@ Async UPnP Client Asyncio UPnP Client library for Python.
 
 %prep
 %autosetup -n async_upnp_client-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

@@ -61,8 +61,6 @@ Documentation for python-binaryornot
 # not present in 0.4.4
 sed -i -e 's|average_size=|max_size=|' tests/test_check.py
 
-rm -rf %{modname}.egg-info
-
 
 %generate_buildrequires
 %pyproject_buildrequires

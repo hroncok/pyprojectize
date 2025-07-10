@@ -48,7 +48,6 @@ Pytest plugin with mechanisms for caching across test runs for Python 3.
 
 %prep
 %setup -q -n %{srcname}-%{version}
-rm -rf *.egg-info
 
 
 %generate_buildrequires

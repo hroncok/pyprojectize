@@ -26,7 +26,6 @@ Powerful and Lightweight Python Tree Data Structure with various plugins.
 
 %prep
 %setup -q -n %{modname}-%{version}
-rm -r %{modname}.egg-info
 # Prohibit that the file LICENSE will be installed in usr from the python setup
 sed -e "/LICENSE/d" -i setup.py
 

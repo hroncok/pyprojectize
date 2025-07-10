@@ -24,7 +24,6 @@ functions or methods.
 
 %prep
 %autosetup -n %{srcname}-%{version}
-rm -rf %{pkgname}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

@@ -60,7 +60,6 @@ The Documentation for the python module xlrd2
 
 %prep
 %autosetup -p 1 -n xlrd2-%{version}
-# Remove bundled egg-info
 rm -rf .egg-info
 
 # Fix CRLF ends of lines

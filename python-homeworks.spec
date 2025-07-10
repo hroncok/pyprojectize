@@ -26,7 +26,6 @@ systems over Ethernet.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 chmod -x README.md
 
 %generate_buildrequires

@@ -33,7 +33,6 @@ dark/light terminals. Works on Linux, OS X, and Windows.
 %prep
 %autosetup -n %{srcname}-%{version} -p1
 cp %{SOURCE1} .
-rm -rf colorclass.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

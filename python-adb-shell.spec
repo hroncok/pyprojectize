@@ -24,7 +24,6 @@ Python package implements ADB shell and FileSync functionality.
 
 %prep
 %autosetup -n adb_shell-%{version}
-rm -rf %{pypi_name}.egg-info
 # Conflict with crypto
 sed -i -e 's/pycryptodome/pycryptodomex/g' setup.py
 

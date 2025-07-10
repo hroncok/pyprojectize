@@ -45,7 +45,6 @@ Summary: %{summary}
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -p1 -n libusb1-%{version}
-rm -rf libusb1.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

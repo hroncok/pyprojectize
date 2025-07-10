@@ -33,7 +33,6 @@ sharing and Samba folders.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 sed -i -e '/^#!\//, 1d' python3/smb/utils/sha256.py
 
 %generate_buildrequires

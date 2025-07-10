@@ -44,7 +44,6 @@ command line client.
 
 %prep
 %setup -q
-rm -rf *.egg-info
 %if %{without python3}
 # Not needed on Py2, RPM fails to Bytecompile it
 rm -f S3/Custom_httplib3x.py

@@ -74,8 +74,6 @@ is the package you need.
 %prep
 %autosetup -p1 -n %{pypi_name}-%{version}
 
-rm -rf %{egginfo_name}.egg-info
-
 %generate_buildrequires
 %pyproject_buildrequires
 

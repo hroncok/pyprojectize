@@ -29,7 +29,6 @@ BuildRequires: python3-devel
 
 %prep
 %setup -q -n %{pname}-%{version}
-rm -r tempdir.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

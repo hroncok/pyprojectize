@@ -26,7 +26,6 @@ namp scans and process the output in various ways.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 sed -i -e '/^#!\//, 1d' libnmap/reportjson.py
 
 %generate_buildrequires

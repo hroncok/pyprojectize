@@ -31,7 +31,6 @@ Collectd plugin for puppet run status.
 %prep
 %autosetup -n %{module_name}-%{version}
 # Remove bundled egg_info
-rm -r src/%{module_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

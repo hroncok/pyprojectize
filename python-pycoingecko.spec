@@ -25,7 +25,6 @@ Python3 wrapper around the CoinGecko API (V3).
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

@@ -29,7 +29,6 @@ fully scriptable with Python (PSE).
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 
 # Fix build with setuptools 62.1
 # https://github.com/cytopia/pwncat/issues/113

@@ -32,8 +32,6 @@ defining, registering and looking up components.
 %prep
 %setup -q -n %{modname}-%{version}
 
-rm -rf %{modname}.egg-info
-
 %generate_buildrequires
 %pyproject_buildrequires
 

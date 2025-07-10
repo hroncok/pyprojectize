@@ -31,7 +31,6 @@ sphobjinv comes in.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 sed -i "s|\r||g" README.rst
 
 

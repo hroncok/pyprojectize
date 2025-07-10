@@ -36,6 +36,7 @@ A Django slugify application that guarantees Uniqueness and handles Unicode
 %prep
 %autosetup -p1 -n %{pypi_name}-%{version}
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

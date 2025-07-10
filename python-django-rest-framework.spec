@@ -51,6 +51,7 @@ Some reasons you might want to use REST framework:
 
 echo "recursive-include rest_framework/locale *.mo" >> MANIFEST.in
 
+
 # remove .po files
 find . -name *.po -exec rm -f '{}' \;
 

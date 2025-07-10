@@ -25,7 +25,6 @@ Simple library to encode/decode DNS wire-format packets.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 sed -i -e '/^#!\//, 1d' dnslib/test_decode.py
 
 %generate_buildrequires

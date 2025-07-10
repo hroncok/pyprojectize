@@ -30,6 +30,7 @@ for Ruby.
 %prep
 %setup -q -n %{modname}-%{version}
 
+
 # Remove py2-only files.  They make our tests fail on py3.
 rm chai/python2.py
 

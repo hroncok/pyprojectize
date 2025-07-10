@@ -42,7 +42,6 @@ Summary: udev rules for Ledger devices
 
 %prep
 %autosetup -n %{srcname}-%{version}
-rm -rf btchip_python.egg-info
 cp %{SOURCE2} .
 
 # Adjust version contstraint to comply with PEP-440

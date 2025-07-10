@@ -30,7 +30,6 @@ devices supported by deCONZ.
 
 %prep
 %autosetup -n %{pkg_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

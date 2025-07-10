@@ -21,7 +21,6 @@ Setuptools helpers for gettext. Compile .po files into .mo files.
 
 %prep
 %autosetup -n setuptools-gettext-%{version}
-rm -rf ./setuptools_gettext.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

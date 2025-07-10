@@ -29,7 +29,6 @@ Documentation for %{name}.
 
 %prep
 %autosetup
-rm -rf %{name}.egg-info
 # Remove shebang
 sed -i -e '/^#!\//, 1d' src/wfuzz/wfuzz.py
 # Remove release pinning 

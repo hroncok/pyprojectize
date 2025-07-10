@@ -49,7 +49,6 @@ asyncio. Documentation in html format.
 %setup -qn %{pypi_name}-%{version}
 %patch -P2 -p1
 # Remove upstream's egg-info
-rm -rf %{pypi_name}.egg-info
 # README is just a symlink to index.rst. Using this file as README
 rm docs/index.rst
 cp -a README.rst docs/index.rst

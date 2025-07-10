@@ -28,7 +28,6 @@ BuildRequires:  python3-pytest
 
 %prep
 %setup -q -n allpairspy-%{version}
-rm -rf allpairspy.egg-info
 
 chmod -R -x+X .
 install -m 644 %{SOURCE1} .

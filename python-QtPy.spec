@@ -42,8 +42,6 @@ qtpy instead of PyQt5.
 %prep
 %autosetup -n %{simple_name}-%{version}
 
-rm -rf %{pypi_name}.egg-info
-
 %generate_buildrequires
 %pyproject_buildrequires
 

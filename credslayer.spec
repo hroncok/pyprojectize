@@ -46,7 +46,6 @@ Documentation for %{pypi_name}.
 
 %prep
 %autosetup -n CredSLayer-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

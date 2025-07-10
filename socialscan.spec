@@ -34,7 +34,6 @@ returns whether it is available, taken or invalid on online platforms.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

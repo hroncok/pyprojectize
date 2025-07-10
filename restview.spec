@@ -34,7 +34,6 @@ A library for ReStructuredText documents that renders them.
 
 %prep
 %autosetup -p1 -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

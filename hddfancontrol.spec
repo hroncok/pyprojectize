@@ -34,6 +34,7 @@ according to hard drive temperature on Linux.
 %prep
 %autosetup -n %{pypi_name}-%{version} -p1
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

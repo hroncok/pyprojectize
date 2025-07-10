@@ -23,7 +23,6 @@ Fully asynchronous SMB library written in pure Python.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 rm -rf external
 # Remove shebang
 sed -i -e '/^#!\//, 1d' aiosmb/{authentication/spnego/asn1_structs.py,\

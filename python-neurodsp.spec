@@ -59,7 +59,6 @@ BuildRequires:  python3-pytest
 %prep
 # No keyring/signature from the upstream to verify the source
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 
 find . -type f -name "*.py" -exec sed -i '/^#![  ]*\/usr\/bin\/env.*$/ d' {} 2>/dev/null ';'
 

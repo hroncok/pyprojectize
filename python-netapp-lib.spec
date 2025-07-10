@@ -34,7 +34,6 @@ Summary:        %{summary}
 
 %prep
 %autosetup -n %{srcname}-%{version}
-rm -rf %{eggname}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

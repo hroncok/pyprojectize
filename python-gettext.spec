@@ -28,6 +28,7 @@ for the newer msgctxt keyword.
 %prep
 %autosetup -p1
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

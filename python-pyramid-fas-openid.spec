@@ -40,6 +40,7 @@ Requires:           python3-openid-cla
 %setup -q -n %{modname}-%{version}
 
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

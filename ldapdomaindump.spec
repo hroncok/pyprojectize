@@ -27,7 +27,6 @@ Active Directory information dumper via LDAP.
 
 %prep
 %autosetup -n %{pypi_name}-%{version} -p1
-rm -rf %{pypi_name}.egg-info
 sed -i -e '/^#!\//, 1d' ldapdomaindump/__main__.py
 
 %generate_buildrequires

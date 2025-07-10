@@ -220,7 +220,7 @@ PYTHONPATH=$(pwd) %pytest \
 %endif # with tests
 
 
-%files -n python%{python3_pkgversion}-setuptools %{?!with_bootstrap:-f\ %{pyproject_files}}
+%files -n python%{python3_pkgversion}-setuptools %{?!with_bootstrap:-f %{pyproject_files}}
 %license LICENSE
 %doc docs/* NEWS.rst README.rst
 %{python3_sitelib}/distutils-precedence.pth

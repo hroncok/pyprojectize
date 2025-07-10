@@ -94,6 +94,7 @@ Requires:       python%{python3_other_pkgversion}-prefixed
 %prep
 %autosetup -p1 -n %{pypi_name}-%{version}
 
+
 # Remove benchmark scripts
 rm -rf benchmarks
 

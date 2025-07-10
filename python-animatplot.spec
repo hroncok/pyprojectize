@@ -50,6 +50,7 @@ Documentation for python3-%{srcname}.
 %autosetup -n %{srcname}-ng-%{version} -p1 -S git
 
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

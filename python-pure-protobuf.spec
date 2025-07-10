@@ -42,6 +42,7 @@ Summary:        %{summary}
 %prep
 %autosetup -n protobuf-%{version}
 
+
 # Fix shebangs
 pushd pure_protobuf
 sed -i 's|/usr/bin/env python3|%{_bindir}/python3|' \

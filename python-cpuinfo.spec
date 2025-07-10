@@ -50,7 +50,6 @@ These approaches are used for getting info:
 
 %prep
 %setup -q -n py-%{srcname}-%{version}
-rm -rf *.egg-info
 
 sed -i -e '/^#!\//, 1d' cpuinfo/cpuinfo.py
 

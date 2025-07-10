@@ -44,6 +44,7 @@ Requires:       python3-ipykernel
 cp -p %SOURCE1 %SOURCE2 .
 
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

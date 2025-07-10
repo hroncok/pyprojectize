@@ -36,7 +36,6 @@ Requires: publicsuffix-list
 
 %prep
 %setup -q -n %{pypi_name}-%{version}
-rm -r src/%{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

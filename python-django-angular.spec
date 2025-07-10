@@ -77,7 +77,6 @@ This package contains the documentation-files for python3-%{pypi_name}.
 %autosetup -n %{pypi_name}-%{commit} -p 1
 %endif
 
-# Remove bundled egg-info and unneded files.
 %{__rm} -rf *.egg-info examples/.coveragerc
 
 

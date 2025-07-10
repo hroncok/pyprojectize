@@ -29,8 +29,6 @@ deprecate the previously mentioned Python objects.
 %prep
 %setup -q -n %{modname}-%{version}
 
-rm -rf %{modname}.egg-info
-
 %generate_buildrequires
 %pyproject_buildrequires
 

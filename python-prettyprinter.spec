@@ -65,7 +65,6 @@ Requires:       python3-pygments >= 2.2.0
 
 %prep
 %autosetup -n %{srcname}-%{version} -p 1
-rm -rf %{eggname}.egg-info
 
 # tests are incompatible with django 2
 # https://github.com/tommikaikkonen/prettyprinter/issues/54

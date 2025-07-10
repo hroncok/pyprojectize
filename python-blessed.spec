@@ -121,6 +121,7 @@ Requires:       python%{python3_other_pkgversion}-wcwidth
 %autosetup -p1 -n %{pypi_name}-%{version}
 
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

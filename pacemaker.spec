@@ -768,7 +768,7 @@ exit 0
 %dir %attr (770, %{uname}, %{gname}) %{_var}/log/pacemaker
 %dir %attr (770, %{uname}, %{gname}) %{_var}/log/pacemaker/bundles
 
-%files -n %{pkgname_pcmk_libs} %{?with_nls:-f\\\\\\\ %{name}.lang}
+%files -n %{pkgname_pcmk_libs} %{?with_nls:-f\\\\\\ %{name}.lang}
 %{_sysusersdir}/pacemaker.conf
 %{_libdir}/libcib.so.*
 %{_libdir}/liblrmd.so.*

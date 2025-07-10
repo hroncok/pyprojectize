@@ -41,6 +41,7 @@ Requires:       python3-pillow%{?_isa}
 %autosetup -n libpillowfight-%{version} -p1
 %setup -D -T -n libpillowfight-%{version} -q -a 1
 
+
 echo "#define INTERNAL_PILLOWFIGHT_VERSION \"%{version}\"" > src/pillowfight/_version.h
 
 

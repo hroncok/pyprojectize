@@ -55,6 +55,7 @@ Documentation for lockfile
 %prep
 %autosetup -p1 -n %{pypi_name}-%{version}
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

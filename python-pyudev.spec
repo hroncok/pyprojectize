@@ -60,7 +60,6 @@ integrating a pyudev monitor with the Qt5 main loop.
 
 %prep
 %autosetup -n %{srcname}-%{version}
-rm -rf pyudev.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

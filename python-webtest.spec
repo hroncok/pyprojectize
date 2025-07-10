@@ -65,7 +65,6 @@ with any WSGI-compatible framework.
 #%%autosetup -n webtest-%%{commit}
 
 # Remove bundled egg info if it exists.
-rm -rf *.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

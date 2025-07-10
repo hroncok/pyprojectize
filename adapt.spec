@@ -33,7 +33,6 @@ A python3 library for Adapt Intent Parser.
 
 %prep
 %autosetup -p1 -n %{name}-release-v%{version}
-rm -rf adapt-parser.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

@@ -24,7 +24,6 @@ Asynchronous python implementation of the Frontier Silicon API.
 
 %prep
 %autosetup -n %{name}-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

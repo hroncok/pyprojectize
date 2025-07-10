@@ -70,6 +70,7 @@ Requires:           geoip-geolite
 %prep
 %setup -q -n %{modname}-%{version}
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

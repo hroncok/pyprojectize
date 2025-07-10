@@ -43,7 +43,6 @@ Command-line tool to check MANIFEST.in files.
 
 %prep
 %autosetup -n %{pypi_name}-%{version} -p1
-rm -rf %{pypi_name}.egg-info
 sed -i -e '/^#!\//, 1d' check_manifest.py
 
 %generate_buildrequires

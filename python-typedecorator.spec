@@ -29,7 +29,6 @@ can be thrown, the mismatch can be logged, or it can be ignored.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 # Shebang: https://github.com/dobarkod/typedecorator/pull/14
 sed -i -e '/^#!\//, 1d' typedecorator/__init__.py
 

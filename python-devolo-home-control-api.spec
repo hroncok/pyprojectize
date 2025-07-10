@@ -34,7 +34,6 @@ in Python.
 
 %prep
 %autosetup -n devolo_home_control_api-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

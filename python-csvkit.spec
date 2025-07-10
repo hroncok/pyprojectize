@@ -48,7 +48,6 @@ Documentation package
 
 %prep
 %setup -q -n %{github_name}-%{version}
-rm -rf *.egg-info
 # Fix non-executable-script
 find csvkit -name \*.py -type f | xargs sed -i '1{\@^#!/usr/bin/env python@d}'
 

@@ -42,6 +42,7 @@ This project provides first-class OAuth library support for python-request.
 %autosetup -n %{distname}-%{version} -p1
 
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

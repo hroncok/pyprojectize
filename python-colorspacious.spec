@@ -58,7 +58,6 @@ This package contains the python3 module.
 %prep
 %setup -q -n %{pname}-%{version}
 %patch -P0 -p1
-rm -r *.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

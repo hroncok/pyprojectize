@@ -52,6 +52,7 @@ Requires:       python%{python3_other_pkgversion}-setuptools
 %autosetup -p0 -n %{pypi_name}-%{version}
 
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

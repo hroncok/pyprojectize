@@ -27,7 +27,6 @@ A Python library to communicate with the Xiaomi Gateway.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

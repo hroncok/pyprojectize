@@ -25,7 +25,6 @@ over your LAN.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 # https://github.com/frawau/aiolifx/pull/37
 sed -i -e '/^#!\//, 1d' aiolifx/{__main__.py,aiolifx.py,update-products.py}
 # Remove script to maintain parts of the source

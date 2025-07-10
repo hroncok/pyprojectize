@@ -24,7 +24,6 @@ Cloudant and CouchDB Client library for Python.
 
 %prep
 %autosetup -n %{name}-%{version}
-rm -rf %{pypi_name}.egg-info
 # Remove shebang
 sed -i -e '/^#!\//, 1d' src/cloudant/*.py
 

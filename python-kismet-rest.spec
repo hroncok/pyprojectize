@@ -26,7 +26,6 @@ Python API wrapper for Kismet RESTful API interface.
 
 %prep
 %autosetup -n python-kismet-rest-%{rel_version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

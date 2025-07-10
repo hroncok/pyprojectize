@@ -43,7 +43,6 @@ from Daikin. Currently the following Daikin WiFi modules are supported:
 
 %prep
 %autosetup -n mustang51-%{pypi_name}-d768d0acee75
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

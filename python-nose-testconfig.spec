@@ -57,7 +57,6 @@ This is the Python 3 version of the package.
 
 %prep
 %autosetup -n %{srcname}-%{version} -p1
-rm -rf nose_testconfig.egg-info
 cp %{SOURCE1} .
 
 %generate_buildrequires

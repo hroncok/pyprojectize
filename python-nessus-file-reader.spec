@@ -30,7 +30,6 @@ like file, scan, host and plugin to get specific information.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

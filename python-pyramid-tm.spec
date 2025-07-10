@@ -58,7 +58,6 @@ awk 'NR==1{print "import __main__; __main__.__requires__ = __requires__ = [\"zop
 mv setup.py.tmp setup.py
 
 # Remove bundled egg info
-rm -rf %{modname}.egg-info
 
 rm docs/.gitignore
 

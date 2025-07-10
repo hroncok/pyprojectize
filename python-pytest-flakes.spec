@@ -27,7 +27,6 @@ Python 3 version.
 
 %prep
 %autosetup -n %{srcname}-%{version}
-rm -rf *.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

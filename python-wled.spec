@@ -38,7 +38,6 @@ programs to automate the behavior of WLED.
 
 %prep
 %autosetup -n python-%{pypi_name}-%{version} -p1
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

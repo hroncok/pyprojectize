@@ -33,7 +33,6 @@ BuildRequires:  %{py3_dist construct-classes}
 
 %prep
 %autosetup -n trezor-%{version}
-rm -rf trezor.egg-info
 
 
 %generate_buildrequires

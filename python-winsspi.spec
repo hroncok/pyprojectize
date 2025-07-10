@@ -23,7 +23,6 @@ Windows SSPI wrapper in pure Python.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 sed -i -e '/^#!\//, 1d' winsspi/common/defines.py
 sed -i "s|\r||g" README.md
 

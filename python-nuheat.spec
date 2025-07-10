@@ -28,7 +28,6 @@ radiant floor thermostats.
 
 %prep
 %autosetup -n python-%{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

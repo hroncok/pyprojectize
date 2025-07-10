@@ -23,7 +23,6 @@ Dump secrets feature for aiosmb.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 # Remove shebang
 sed -i -e '/^#!\//, 1d' aiosecretsdump/__init__.py
 

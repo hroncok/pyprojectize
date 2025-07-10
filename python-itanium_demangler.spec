@@ -31,7 +31,6 @@ information, as opposed to having to interpret the C++ source code.
 
 %prep
 %autosetup -n python-%{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 cp -a %{SOURCE1} LICENSE-0BSD.txt
 
 %generate_buildrequires

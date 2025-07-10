@@ -31,6 +31,7 @@ Summary:        %{summary}
 %prep
 %autosetup -n three-merge-%{version}
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

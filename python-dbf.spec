@@ -39,7 +39,6 @@ Requires:       python3-aenum
 # Correct line endings for setup.py
 sed -i "s|\r||g" setup.py
 %autopatch -p1
-rm -rf *.egg-info
 rm -f dbf/ver_32.py
 rm -f dbf/ver_2.py
 sed -i "s|\r||g" dbf/README.md

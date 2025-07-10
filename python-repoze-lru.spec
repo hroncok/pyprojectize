@@ -32,7 +32,6 @@ and values that are used frequently.
 
 %prep
 %setup -q -n %{modname}-%{version}
-rm -rf %{modname}.egg-info
 
 
 %generate_buildrequires

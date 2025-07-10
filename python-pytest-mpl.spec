@@ -39,6 +39,7 @@ BuildRequires:  python3dist(pytest)
 %autosetup -n %{srcname}-%{version} -p1
 
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

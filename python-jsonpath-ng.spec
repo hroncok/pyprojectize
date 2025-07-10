@@ -36,7 +36,6 @@ original JSONPath proposal.
 %prep
 %autosetup -n %{pypi_name}-%{version}
 sed -i -e '/^#!\//, 1d' jsonpath_ng/bin/jsonpath.py
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

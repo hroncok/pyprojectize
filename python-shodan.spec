@@ -58,7 +58,6 @@ Command-line tool to to access Shodan.io.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 sed -i -e '/^#!\//, 1d' shodan/cli/worldmap.py
 dos2unix docs/{api.rst,tutorial.rst}
 dos2unix docs/examples/{basic-search.rst,cert-stream.rst,query-summary.rst}

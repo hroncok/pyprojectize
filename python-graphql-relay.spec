@@ -30,7 +30,6 @@ It allows the easy creation of Relay-compliant servers using GraphQL-core.
 
 %prep
 %autosetup -n %{pypi_name}-py-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

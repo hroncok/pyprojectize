@@ -26,7 +26,6 @@ PHP domain for sphinx.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-rm -rf %{pypi_name}.egg-info
 sed -i 's/install\_requires=requirements/install\_requires=\[\"sphinx\"\]/g' setup.py
 
 %generate_buildrequires

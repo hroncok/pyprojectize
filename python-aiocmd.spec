@@ -26,7 +26,6 @@ cmd module.
 
 %prep
 %autosetup  -n %{pypi_name}-%{version} -p 1
-rm -rf %{pypi_name}.egg-info
 cp -a %{SOURCE1} LICENSE
 
 %generate_buildrequires

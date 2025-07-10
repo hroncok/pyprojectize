@@ -41,6 +41,7 @@ This package contains the documentation for %{pypi_name}.
 %autosetup -n %{pypi_name}-%{version}
 
 
+
 %generate_buildrequires
 %pyproject_buildrequires
 

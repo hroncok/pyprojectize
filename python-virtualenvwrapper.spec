@@ -47,7 +47,6 @@ Requires:           which
 
 %prep
 %setup -q -n %{modname}-%{version}
-rm -rf %{modname}.egg-info
 # Fix default binaries
 %patch -P0 -p1 -b .default-binaries
 # Fix egrep -> grep -E

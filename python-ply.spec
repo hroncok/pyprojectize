@@ -55,7 +55,6 @@ find example/ -type f -executable -exec chmod -x {} ';'
 find example/ -type f -name '*.py' -exec sed -i \
   -e '1{\@^#!/usr/bin/env python@d}' -e '1{\@^#!/usr/local/bin/python@d}' \
   {} ';'
-rm -rf *.egg-info
 # extract license block from beginning of README.md
 grep -B1000 "POSSIBILITY OF SUCH DAMAGE" README.md > LICENSE
 

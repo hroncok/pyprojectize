@@ -27,7 +27,6 @@ TransportAdapter, which provides a custom SSLContext.
 
 %prep
 %autosetup -n requests_pkcs12-%{version}
-rm -rf %{pypi_name}.egg-info
 
 %generate_buildrequires
 %pyproject_buildrequires

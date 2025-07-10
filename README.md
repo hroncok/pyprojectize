@@ -26,8 +26,7 @@ and completion of the transition is strongly advised.
 
 ```
 $ python pyprojectize.py --help
-usage: pyprojectize [-h] [-l] [-i MODIFIER] [-x MODIFIER [MODIFIER ...] | -o MODIFIER] [-s SOURCEDIR]
-                    [SPECFILE]
+usage: pyprojectize [-h] [-l] [-i MODIFIER] [-x MODIFIER [MODIFIER ...] | -o MODIFIER] [-s SOURCEDIR] [SPECFILE]
 
 positional arguments:
   SPECFILE              path to the spec file to convert
@@ -42,9 +41,8 @@ options:
   -s, --sourcedir SOURCEDIR
                         path to the source directory, relevant for %include etc. (default: spec's parent)
 
-If you wish to process multiple specfiles at a time, run this tool via parallel, etc. If you wish to
-inspect/commit result of each modififer separatelly, you can loop over pyprojectize -l calling pyprojectize -o
-$modifer each time.
+If you wish to process multiple specfiles at a time, run this tool via parallel, etc. If you wish to inspect/commit result of each modififer separatelly, you can loop over pyprojectize -l calling pyprojectize -o $modifer
+each time.
 
 $ python pyprojectize.py ampy.spec  # 16a7deeb
 ✅ add_pyproject_buildrequires: %generate_buildrequires with %pyproject_buildrequires added

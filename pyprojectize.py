@@ -642,23 +642,14 @@ def remove_lines(
             continue
         del_lines = []
         maxidx = len(section) - 1
-        for idx, _ in enumerate(section):
-            re_idx = 0
-            maybe_del_lines = []
-            while (
-                (re_idx < len(regexes))
-                and (idx + re_idx <= maxidx)
-                and re.match(regexes[re_idx], section[idx + re_idx])
-            ):
-                maybe_del_lines.append(idx + re_idx)
-                if re_idx == len(regexes) - 1:
-                    ret = Result.UPDATED, msg_removed
-                    del_lines.extend(maybe_del_lines)
-                    if (idx == 0 or not section[idx - 1].strip()) and (
-                        idx + re_idx != maxidx and not section[idx + re_idx + 1].strip()
-                    ):
-                        del_lines.append(idx + re_idx + 1)
-                re_idx += 1
+        for idx, line in enumerate(section):
+            if any(re.match(r, line) for r in regexes):
+                ret = Result.UPDATED, msg_removed
+                del_lines.append(idx)
+                if (idx == 0 or not section[idx - 1].strip()) and (
+                    idx != maxidx and not section[idx + 1].strip()
+                ):
+                    del_lines.append(idx + 1)
         for idx in reversed(del_lines):
             del section[idx]
 

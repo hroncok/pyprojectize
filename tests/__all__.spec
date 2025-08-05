@@ -48,7 +48,6 @@ export CYTHON_COMPILE=1
 
 %check
 %pyproject_check_import
-
 %{__python3} setup.py test
 
 

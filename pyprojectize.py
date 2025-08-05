@@ -511,7 +511,15 @@ def add_pyproject_check_import(spec: Specfile, sections: Sections) -> ResultMsg:
                 "%check already has %pyproject_check_import",
             )
 
-    sections.check[:0] = ["%pyproject_check_import", ""]
+    check_import = ["%pyproject_check_import"]
+
+    # Add an empty line after %pyproject_check_import if
+    # the current content contains more than one line.
+    if len([l for l in sections.check if l.strip()]) > 1:
+        check_import += [""]
+
+    sections.check[:0] = check_import
+
     return (
         Result.UPDATED,
         "existing %check prepended with %pyproject_check_import",

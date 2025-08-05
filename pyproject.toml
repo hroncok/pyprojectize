@@ -56,4 +56,5 @@ commands = [["black", "."]]
 [tool.tox.env.doc]
 description = "regenerate README"
 deps = ["cogapp", "urllib3"]
+set_env = { COLUMNS = "80" }
 commands = [["cog", "-Pr", "README.md"]]

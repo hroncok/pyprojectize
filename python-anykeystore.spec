@@ -60,7 +60,6 @@ rm -rf %{modname}/tests/integration/tests.py
 
 %check
 %pyproject_check_import
-
 %pytest
 
 %files -n python3-%{modname} -f %{pyproject_files}

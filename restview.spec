@@ -47,7 +47,6 @@ A library for ReStructuredText documents that renders them.
 
 %check
 %pyproject_check_import
-
 %pytest -v src/restview/tests.py -k "not restview.tests.doctest_RestViewer_rest_to_html"
 
 %files

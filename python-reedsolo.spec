@@ -50,7 +50,6 @@ sed -r -i '1{/^#!/d}' %{srcname}.py
 
 %check
 %pyproject_check_import
-
 %pytest
 
 

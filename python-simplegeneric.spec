@@ -55,7 +55,6 @@ and other generic functions found in the Python standard library.
 
 %check
 %pyproject_check_import
-
 PYTHONPATH=$(pwd) %{__python3} setup.py test
 
 

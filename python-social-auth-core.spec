@@ -88,7 +88,6 @@ rm -r %{buildroot}%{python3_sitelib}/%{module_name}/tests/
 
 %check
 %pyproject_check_import
-
 %{pytest} %{module_name}/tests/
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

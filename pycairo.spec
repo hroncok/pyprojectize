@@ -49,7 +49,6 @@ libraries so that they interoperate with py3cairo.
 
 %check
 %pyproject_check_import
-
 %{__python3} setup.py test
 
 %files -n python3-cairo -f %{pyproject_files}

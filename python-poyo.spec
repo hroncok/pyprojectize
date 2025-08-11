@@ -54,7 +54,6 @@ Please see the examples below to get an idea of what Poyo understands.
 %check
 %pyproject_check_import
 
-
 %{__python3} setup.py test
 
 %files -n python3-%{pkgname} -f %{pyproject_files}

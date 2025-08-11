@@ -49,7 +49,6 @@ Summary: %{summary}
 
 %check
 %pyproject_check_import
-
 ./test.sh
 
 

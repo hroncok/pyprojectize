@@ -39,7 +39,6 @@ Anything the built-in Python function open() accepts can be generated.
 
 %check
 %pyproject_check_import
-
 %{__python3} setup.py test
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

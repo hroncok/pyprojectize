@@ -50,7 +50,6 @@ popd
 
 %check
 %pyproject_check_import
-
 pylint-3 hwdata.py example.py || :
 
 %files -n python3-hwdata -f %{pyproject_files}

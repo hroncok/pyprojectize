@@ -50,7 +50,6 @@ sed -i "s/if .--inplace. in sys.argv:/if True:/" setup.py
 
 %check
 %pyproject_check_import
-
 PYTHONPATH=%{buildroot}%{python3_sitearch} py.test-%{python3_version} -vv
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}

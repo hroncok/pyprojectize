@@ -78,7 +78,6 @@ rm -f %{buildroot}%{_bindir}/external-ip.sh
 
 %check
 %pyproject_check_import
-
 make CFLAGS="%{optflags} -DMINIUPNPC_SET_SOCKET_TIMEOUT" check
 
 %files

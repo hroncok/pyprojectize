@@ -43,7 +43,6 @@ ComfoAir 350 units.
 # https://github.com/mtdcr/pycomfoair/issues/2
 %check
 %pyproject_check_import
-
 %pytest -v test -k "not test_create_parse and not test_create_parse_hex and not test_bytes"
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

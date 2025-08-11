@@ -46,7 +46,6 @@ sed -i -e 's/main/%{version}/g' setup.py
 
 %check
 %pyproject_check_import
-
 %pytest -v tests -k "not test_stable_version and not test_etag" 
 
 %files -n python3-%{pkg_name} -f %{pyproject_files}

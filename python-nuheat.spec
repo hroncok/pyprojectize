@@ -41,7 +41,6 @@ radiant floor thermostats.
 
 %check
 %pyproject_check_import
-
 %pytest -v tests -k "not test_get_data_401"
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

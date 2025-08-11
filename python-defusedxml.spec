@@ -55,7 +55,6 @@ module. This is the python%{python3_pkgversion} build.
 
 %check
 %pyproject_check_import
-
 %{python3} tests.py
 
 

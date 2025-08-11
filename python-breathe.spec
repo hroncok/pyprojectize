@@ -91,7 +91,6 @@ rm documentation/build/html/.buildinfo
 
 %check
 %pyproject_check_import
-
 %make_build dev-test
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}

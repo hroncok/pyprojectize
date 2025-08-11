@@ -37,7 +37,6 @@ Summary:        %{summary}
 
 %check
 %pyproject_check_import
-
 %{__python3} -m unittest
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

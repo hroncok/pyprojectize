@@ -188,7 +188,6 @@ cp -a docs/build/html %{buildroot}%{_pkgdocdir}/
 
 %check
 %pyproject_check_import
-
 ./run_tests.sh -vv --no-cov
 
 %pre

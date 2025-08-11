@@ -49,7 +49,6 @@ system for feature requests.
 
 %check
 %pyproject_check_import
-
 %{__python3} setup.py test || :
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}

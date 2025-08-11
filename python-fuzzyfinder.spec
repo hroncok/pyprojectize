@@ -44,7 +44,6 @@ Python 3 version.
 
 %check
 %pyproject_check_import
-
 PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-3 -v
 
 %files -n python3-%{srcname} -f %{pyproject_files}

@@ -61,7 +61,6 @@ Requires:       python3-sphinx
 %if %{with tests}
 %check
 %pyproject_check_import
-
 %endif
 
 

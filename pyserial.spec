@@ -46,7 +46,6 @@ sed -i 's/unittest.findTestCases(module)/unittest.TestLoader().loadTestsFromModu
 
 %check
 %pyproject_check_import
-
 PYTHONPATH=%{buildroot}/%{python3_sitelib} %{python3} test/run_all_tests.py
 
 

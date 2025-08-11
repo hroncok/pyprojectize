@@ -76,7 +76,6 @@ ln -s %{_bindir}/renderspec-%{python3_version} %{buildroot}/%{_bindir}/renderspe
 
 %check
 %pyproject_check_import
-
 stestr run
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

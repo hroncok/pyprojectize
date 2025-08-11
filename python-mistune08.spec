@@ -54,7 +54,6 @@ Provides:       deprecated()
 
 %check
 %pyproject_check_import
-
 %pytest
 
 

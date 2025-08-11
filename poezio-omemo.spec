@@ -47,7 +47,6 @@ find ./%{srcname}/ -type f '(' -name __init__.py -o -name version.py ')' -ls -ex
 
 %check
 %pyproject_check_import
-
 # no tests to run with pytest
 
 

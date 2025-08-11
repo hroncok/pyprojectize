@@ -60,7 +60,6 @@ ln -s ./lesscpy %{buildroot}/%{_bindir}/py3-lesscpy
 
 %check
 %pyproject_check_import
-
 %pytest
 
 

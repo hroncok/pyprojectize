@@ -80,7 +80,6 @@ doxygen Doxyfile
 
 %check
 %pyproject_check_import
-
 make check
 
 %install

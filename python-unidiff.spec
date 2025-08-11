@@ -40,7 +40,6 @@ python-unidiff is a Python library to parse and interact with unified diffs
 
 %check
 %pyproject_check_import
-
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} -m unittest discover -s tests/
 
 %files -n python%{python3_pkgversion}-%{modname} -f %{pyproject_files}

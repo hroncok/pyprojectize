@@ -49,7 +49,6 @@ rm -rf html/.{doctrees,buildinfo}
 
 %check
 %pyproject_check_import
-
 %pytest
 
 %files -n python%{python3_pkgversion}-%{pypi_name} -f %{pyproject_files}

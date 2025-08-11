@@ -53,7 +53,6 @@ BuildRequires:  python3dist(pytest)
 
 %check
 %pyproject_check_import
-
 %pytest -v setuptools_git/tests.py
 
 %files -n python3-%{srcname} -f %{pyproject_files}

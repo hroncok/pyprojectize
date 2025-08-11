@@ -57,7 +57,6 @@ sed -i -e '/^#!\//, 1d' check_manifest.py
 
 %check
 %pyproject_check_import
-
 %pytest -v tests.py -k "not vcs and not git and not sdist"
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

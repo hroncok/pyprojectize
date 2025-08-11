@@ -61,7 +61,6 @@ An extension for colcon-core to support ROS packages.
 
 %check
 %pyproject_check_import
-
 %pytest -m 'not linter' test
 
 

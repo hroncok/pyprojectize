@@ -48,7 +48,6 @@ up rules for...
 
 %check
 %pyproject_check_import
-
 %{__python3} runtests.py
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

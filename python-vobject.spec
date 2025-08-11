@@ -54,7 +54,6 @@ rm vobject/win32tz.py
 
 %check
 %pyproject_check_import
-
 %{__python3} tests.py
 
 

@@ -59,7 +59,6 @@ Requires:       procps-ng
 
 %check
 %pyproject_check_import
-
 %pytest
 
 

@@ -93,7 +93,6 @@ rm -f %{buildroot}%{_pkgdocdir}/html/.buildinfo
 
 %check
 %pyproject_check_import
-
 %pytest
 
 

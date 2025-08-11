@@ -46,7 +46,6 @@ rm -f tests/test_fast/test_deadlock.py
 
 %check
 %pyproject_check_import
-
 %pytest
 
 

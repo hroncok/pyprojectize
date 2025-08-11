@@ -48,7 +48,6 @@ rm %{buildroot}%{_bindir}/bottle.py
 
 %check
 %pyproject_check_import
-
 %{pytest} test
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}

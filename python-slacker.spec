@@ -56,7 +56,6 @@ Documentation files for %{name}.
 
 %check
 %pyproject_check_import
-
 %{?with_tests: %{__python3} setup.py test}
 
 %files -n python3-%{srcname} -f %{pyproject_files}

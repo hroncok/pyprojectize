@@ -84,7 +84,6 @@ and sets up the environment to use the packages.
 
 %check
 %pyproject_check_import
-
 %pytest -m 'not linter' test
 
 

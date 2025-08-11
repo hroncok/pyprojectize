@@ -65,7 +65,6 @@ rm -rf _build/html/.{doctrees,buildinfo}
 
 %check
 %pyproject_check_import
-
 %{__python3} setup.py test
 
 

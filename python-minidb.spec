@@ -39,7 +39,6 @@ work with the data in an easy way with concise syntax.
 
 %check
 %pyproject_check_import
-
 %pytest -v test
 
 %files -n python3-%{srcname} -f %{pyproject_files}

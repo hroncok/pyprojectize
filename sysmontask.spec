@@ -58,7 +58,6 @@ rm %{buildroot}%{_docdir}/%{name}/LICENSE
 
 %check
 %pyproject_check_import
-
 desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 
 

@@ -108,7 +108,6 @@ install -pm 0644 %{SOURCE2} %{buildroot}%{fw_services}/
 
 %check
 %pyproject_check_import
-
 %{python3} setup.py test
 
 %files -n python3-%{srcname} -f %{pyproject_files}

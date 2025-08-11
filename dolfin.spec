@@ -161,7 +161,6 @@ chrpath --delete %{buildroot}%{python3_sitearch}/dolfin/*.so
 
 %check
 %pyproject_check_import
-
 ctest -V %{?_smp_mflags}
 
 %files

@@ -61,7 +61,6 @@ extension of XMPP protocol.
 
 %check
 %pyproject_check_import
-
 # Tests suite has been removed by upstream
 
 

@@ -73,7 +73,6 @@ exit 1
 
 %check
 %pyproject_check_import
-
 %pytest
 
 %files -n python3-libvirt -f %{pyproject_files}

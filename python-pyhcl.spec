@@ -49,7 +49,6 @@ grep -rl '\.ply' | xargs -t sed -i -e 's/\.ply/ply/'
 
 %check
 %pyproject_check_import
-
 PYTHONPATH=%{buildroot}%{python3_sitelib} %python3 -m pytest tests
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

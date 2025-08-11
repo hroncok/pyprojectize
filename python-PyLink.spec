@@ -51,7 +51,6 @@ Python 3 version.
 
 %check
 %pyproject_check_import
-
 # No network things available
 
 %files -n python3-%{modname} -f %{pyproject_files}

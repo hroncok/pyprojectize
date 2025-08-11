@@ -50,7 +50,6 @@ sed -i 's/from mock/from unittest.mock/' test/test_genty.py
 
 %check
 %pyproject_check_import
-
 %{__python3} setup.py test
 
 

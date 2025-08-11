@@ -51,7 +51,6 @@ sed -i -e '/^from deprecated/d' -e '/@deprecated/d' %{srcname}/*.py
 
 %check
 %pyproject_check_import
-
 %{__python3} -bb -m pytest %{srcname}/test*.py
 
 

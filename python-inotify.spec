@@ -41,7 +41,6 @@ sed -i '1c#! %{__python3}' python3/pyinotify.py
 
 %check
 %pyproject_check_import
-
 %py3_check_import pyinotify
 
 %files -n python%{python3_pkgversion}-inotify -f %{pyproject_files}

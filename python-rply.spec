@@ -43,7 +43,6 @@ sed -i "s/py\.test/pytest/" tests/test_*
 
 %check
 %pyproject_check_import
-
 pytest-%{python3_version} -v
 
 %files -n python3-%{modname} -f %{pyproject_files}

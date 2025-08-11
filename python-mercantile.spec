@@ -54,7 +54,6 @@ rm -rf html/.{buildinfo,doctrees}
 
 %check
 %pyproject_check_import
-
 %{pytest}
 
 %files -n python3-%{srcname} -f %{pyproject_files}

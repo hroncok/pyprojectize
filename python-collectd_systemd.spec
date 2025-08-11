@@ -88,7 +88,6 @@ fi
 
 %check
 %pyproject_check_import
-
 PYTHONPATH=. pytest-3
 
 %changelog

@@ -66,7 +66,6 @@ touch -c -r %{name}/%{name}.py $RPM_BUILD_ROOT%{python3_sitelib}/%{name}/%{name}
 
 %check
 %pyproject_check_import
-
 %pytest
 
 %files

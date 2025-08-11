@@ -71,7 +71,6 @@ module in the standard library. Specifically, their behaviour is:
 
 %check
 %pyproject_check_import
-
 %pytest
 
 

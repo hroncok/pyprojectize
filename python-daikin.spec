@@ -56,7 +56,6 @@ from Daikin. Currently the following Daikin WiFi modules are supported:
 
 %check
 %pyproject_check_import
-
 %pytest -v tests
 
 %files -n python3-%{pkg_name} -f %{pyproject_files}

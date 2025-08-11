@@ -72,7 +72,6 @@ rm -rf %{buildroot}%{python3_sitelib}/py/_vendored_packages/*.{dist,egg}-info
 
 %check
 %pyproject_check_import
-
 %py3_check_import %{srcname}
 
 %files -n python3-%{srcname} -f %{pyproject_files}

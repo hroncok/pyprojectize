@@ -42,7 +42,6 @@ BuildRequires:  (python3dist(legacy-cgi) if python3 >= 3.13)
 
 %check
 %pyproject_check_import
-
 %{__python3} setup.py test
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

@@ -45,7 +45,6 @@ Python. It makes use of numpy for fast numerical computation.
 
 %check
 %pyproject_check_import
-
 nosetests-%{python3_version} supersmoother
 
 %files -n python3-%{srcname} -f %{pyproject_files}

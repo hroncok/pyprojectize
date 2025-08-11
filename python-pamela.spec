@@ -38,7 +38,6 @@ Yet another Python wrapper for PAM.
 
 %check
 %pyproject_check_import
-
 py.test-%{python3_version} -v
 
 

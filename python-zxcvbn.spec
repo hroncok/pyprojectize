@@ -40,7 +40,6 @@ Summary: Realistic password strength estimator python3 module
 
 %check
 %pyproject_check_import
-
 %pytest
 
 %install

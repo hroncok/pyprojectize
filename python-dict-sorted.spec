@@ -51,7 +51,6 @@ rm -f docs/_build/html/.buildinfo
 
 %check
 %pyproject_check_import
-
 %{__python3} test.py -v
 
 %files -n python3-%{srcname} -f %{pyproject_files}

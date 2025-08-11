@@ -75,7 +75,6 @@ rm -rf html/.{doctrees,buildinfo}
 
 %check
 %pyproject_check_import
-
 ./run_tests.sh -vv
 
 

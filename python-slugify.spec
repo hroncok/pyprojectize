@@ -39,7 +39,6 @@ A Python slugify application that handles Unicode.
 
 %check
 %pyproject_check_import
-
 %{__python3} test.py
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

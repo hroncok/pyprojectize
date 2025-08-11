@@ -47,7 +47,6 @@ and values that are used frequently.
 
 %check
 %pyproject_check_import
-
 %{__python3} setup.py test
 
 %files -n python3-repoze-lru -f %{pyproject_files}

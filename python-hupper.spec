@@ -45,7 +45,6 @@ When files are changed the process is restarted.
 
 %check
 %pyproject_check_import
-
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} -m pytest
 
 %files -n python3-%{srcname} -f %{pyproject_files}

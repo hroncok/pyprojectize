@@ -46,7 +46,6 @@ find . -type f -name "*.py" -exec sed -i '/^#![  ]*\/usr\/bin\/env.*$/ d' {} 2>/
 
 %check
 %pyproject_check_import
-
 PYTHONPATH=. pytest-3
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

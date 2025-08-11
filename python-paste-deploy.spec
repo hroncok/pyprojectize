@@ -56,7 +56,6 @@ rm -rf %{buildroot}%{python3_sitelib}/test
 
 %check
 %pyproject_check_import
-
 %pytest
 
 

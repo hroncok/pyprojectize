@@ -54,7 +54,6 @@ sed -i -e '/test_version/d' tests/__init__.py
 
 %check
 %pyproject_check_import
-
 %{__python3} setup.py test
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

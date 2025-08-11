@@ -49,7 +49,6 @@ sed -i "s/teardown(/teardown_method(/" test.py
 
 %check
 %pyproject_check_import
-
 %pytest test.py
 
 

@@ -52,7 +52,6 @@ chmod 644 LICENSE NOTICE langdetect/profiles/*
 
 %check
 %pyproject_check_import
-
 %pytest
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

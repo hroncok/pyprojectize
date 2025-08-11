@@ -55,7 +55,6 @@ Summary:            %{summary}
 
 %check
 %pyproject_check_import
-
 %tox
 
 %files -n python3-nine -f %{pyproject_files}

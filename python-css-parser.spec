@@ -43,7 +43,6 @@ sed -r -i '1{/.usr.bin.env python/d;}' src/css_parser/*py src/css_parser/*/*py
 
 %check
 %pyproject_check_import
-
 %python3 run_tests.py
 
 %files -n python3-css-parser -f %{pyproject_files}

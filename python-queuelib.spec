@@ -41,7 +41,6 @@ Python. Queuelib goals are speed and simplicity.
 
 %check
 %pyproject_check_import
-
 nosetests-%{python3_version} queuelib/tests
 
 %files -n python3-%{srcname} -f %{pyproject_files}

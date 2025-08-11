@@ -67,7 +67,6 @@ popd
 
 %check
 %pyproject_check_import
-
 %{__python3} -m pytest
 
 

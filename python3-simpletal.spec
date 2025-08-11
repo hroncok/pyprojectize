@@ -39,7 +39,6 @@ find examples -name '*.py' -exec chmod -x {} \;
 
 %check
 %pyproject_check_import
-
 %{__python3} runtests.py || :
 
 

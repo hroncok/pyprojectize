@@ -50,7 +50,6 @@ make compile
 
 %check
 %pyproject_check_import
-
 %pytest
 
 

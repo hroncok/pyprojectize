@@ -77,7 +77,6 @@ install -p -D -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/%{name}/conf.d/mopidy.c
 
 %check
 %pyproject_check_import
-
 %{__python3} setup.py test
 
 %pre

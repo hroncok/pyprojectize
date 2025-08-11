@@ -54,7 +54,6 @@ This package provides Python 3 build of %{srcname}.
 
 %check
 %pyproject_check_import
-
 # Tests require unpackaged python-authres
 
 %install

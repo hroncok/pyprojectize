@@ -80,7 +80,6 @@ rm -rf $RPM_BUILD_ROOT%{_bindir}/runxlrd.py* \
 
 %check
 %pyproject_check_import
-
 %tox
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}

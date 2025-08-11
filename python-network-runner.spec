@@ -62,7 +62,6 @@ Role for Python Network Runner Library
 
 %check
 %pyproject_check_import
-
 LANG=C.utf-8 %{__python3} -m pytest --ignore=build
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

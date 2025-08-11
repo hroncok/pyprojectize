@@ -51,7 +51,6 @@ Summary: %{summary}
 
 %check
 %pyproject_check_import
-
 PYTHONPATH=$(pwd) python3 -m pytest
 
 

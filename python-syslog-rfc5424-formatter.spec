@@ -38,7 +38,6 @@ RFC5424-compatible Syslog messages to a given socket.
 
 %check
 %pyproject_check_import
-
 %py3_check_import syslog_rfc5424_formatter
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

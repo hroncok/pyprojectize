@@ -45,7 +45,6 @@ sed -i -e '1s|^.*$|#!%{__python3}|' %{buildroot}%{_bindir}/csl_unsorted
 
 %check
 %pyproject_check_import
-
 %{pytest}
 
 

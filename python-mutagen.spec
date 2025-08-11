@@ -76,7 +76,6 @@ rm -rf docs/_build/{.buildinfo,.doctrees}
 
 %check
 %pyproject_check_import
-
 %pytest
 
 

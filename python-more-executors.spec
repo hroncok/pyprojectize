@@ -49,7 +49,6 @@ the behavior of Future objects.
 
 %check
 %pyproject_check_import
-
 %{__python3} -m pytest -v
 
 %files -n python3-%{srcname} -f %{pyproject_files}

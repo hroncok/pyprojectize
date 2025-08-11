@@ -54,7 +54,6 @@ Python client for the kubernetes API.
 %check
 %pyproject_check_import
 
-
 %files -n %{py3}-%{library} -f %{pyproject_files}
 
 %changelog

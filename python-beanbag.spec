@@ -70,7 +70,6 @@ sed -i "s/py\.test/pytest/g" tests/test_attrdict.py tests/test_bbv1.py
 
 %check
 %pyproject_check_import
-
 %pytest
 
 %files -n python3-beanbag -f %{pyproject_files}

@@ -45,7 +45,6 @@ Python library to control a Logitech Media Server asynchronously.
 
 %check
 %pyproject_check_import
-
 %pytest -v tests --ignore tests/test_integration.py
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

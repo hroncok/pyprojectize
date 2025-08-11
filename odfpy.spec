@@ -88,7 +88,6 @@ find -type f -exec sed -i '1s=^#!/usr/bin/\(python\|env python\)[23]\?=#!%{__pyt
 
 %check
 %pyproject_check_import
-
 PYTHONPATH=%{_builddir}/%{name}-release-%{version} pytest
 
 %files -n python3-%{name} -f %{pyproject_files}

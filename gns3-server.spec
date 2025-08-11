@@ -96,7 +96,6 @@ rm -fv %{buildroot}/%{python3_sitelib}/gns3server/disks/OVMF_VARS.fd
 %pyproject_check_import
 
 
-
 %files -f %{pyproject_files}
 %doc README.md AUTHORS CHANGELOG
 %{_bindir}/gns3server

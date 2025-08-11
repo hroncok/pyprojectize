@@ -66,7 +66,6 @@ rm flask_admin/translations/README.md
 
 %check
 %pyproject_check_import
-
 # Tests are not included as they require mongod running
 
 

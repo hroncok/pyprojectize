@@ -44,7 +44,6 @@ in a compatible way to all Python versions typically in current use.
 
 %check
 %pyproject_check_import
-
 PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v test
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

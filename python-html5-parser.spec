@@ -58,7 +58,6 @@ sed -i -e '/^#!\//, 1d' src/html5_parser/*.py
 
 %check
 %pyproject_check_import
-
 %{__python3} setup.py test
 
 %files -n python3-%{srcname} -f %{pyproject_files}

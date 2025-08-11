@@ -48,7 +48,6 @@ to recreate the repository metadata.
 
 %check
 %pyproject_check_import
-
 tests/run.sh
 
 %build

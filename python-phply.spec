@@ -39,7 +39,6 @@ rm -rf %{buildroot}/%{python3_sitelib}/tests
 
 %check
 %pyproject_check_import
-
 %py3_check_import %{pypi_name}
 
 %files -n python%{python3_pkgversion}-%{pypi_name} -f %{pyproject_files}

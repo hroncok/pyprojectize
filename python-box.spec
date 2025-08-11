@@ -51,7 +51,6 @@ added to a Box or BoxList object are converted automatically.
 
 %check
 %pyproject_check_import
-
 %pytest -v test -k "not test_msgpack"
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

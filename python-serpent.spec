@@ -47,7 +47,6 @@ for instance) and de-serialize it there.
 
 %check
 %pyproject_check_import
-
 %pytest
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

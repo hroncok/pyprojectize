@@ -54,7 +54,6 @@ Requires:       %{py3_dist sexpdata}
 
 %check
 %pyproject_check_import
-
 pytest
 
 

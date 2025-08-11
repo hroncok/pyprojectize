@@ -44,7 +44,6 @@ Requires:       python3-execnet >= 1.2.0
 
 %check
 %pyproject_check_import
-
 py.test-%{python3_version} -v remoto/tests
 
 %files -n python3-%{srcname} -f %{pyproject_files}

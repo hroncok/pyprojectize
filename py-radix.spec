@@ -64,7 +64,6 @@ touch inet_ntop.c strlcpy.c
 
 %check
 %pyproject_check_import
-
 %pytest -v
 
 %files -n python3-%{name} -f %{pyproject_files}

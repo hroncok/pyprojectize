@@ -69,7 +69,6 @@ make -C doc html BUILDDIR=_doc_build SPHINXBUILD=sphinx-build-%{python3_version}
 
 %check
 %pyproject_check_import
-
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} tests/test_olefile.py
 
 

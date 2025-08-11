@@ -42,7 +42,6 @@ A Django slugify application that guarantees Uniqueness and handles Unicode
 
 %check
 %pyproject_check_import
-
 %{__python3} manage.py test
 
 %build

@@ -44,7 +44,6 @@ install -m 644 %{SOURCE1} .
 
 %check
 %pyproject_check_import
-
 %{pytest}
 
 

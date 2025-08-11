@@ -51,7 +51,6 @@ ln -s %{_bindir}/vulture-%{python3_version} %{buildroot}/%{_bindir}/vulture
 
 %check
 %pyproject_check_import
-
 %pytest -v tests
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

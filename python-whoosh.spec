@@ -60,7 +60,6 @@ rm -rf docs/html/.doctrees
 
 %check
 %pyproject_check_import
-
 %{__python3} setup.py test
 
 %files -n python%{python3_pkgversion}-whoosh -f %{pyproject_files}

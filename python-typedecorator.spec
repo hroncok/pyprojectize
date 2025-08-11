@@ -44,7 +44,6 @@ sed -i -e '/^#!\//, 1d' typedecorator/__init__.py
 
 %check
 %pyproject_check_import
-
 %{__python3} tests3.py
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

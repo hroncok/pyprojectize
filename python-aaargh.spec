@@ -48,7 +48,6 @@ Python 3 version.
 
 %check
 %pyproject_check_import
-
 py.test-3 -v
 
 %files -n python3-%{srcname} -f %{pyproject_files}

@@ -46,7 +46,6 @@ BuildRequires:	python3-pytest
 
 %check
 %pyproject_check_import
-
 %pytest
 
 %files -n python3-%{pkg_name} -f %{pyproject_files}

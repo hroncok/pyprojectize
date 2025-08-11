@@ -40,7 +40,6 @@ sed -i 's/\r$//' README.rst
 
 %check
 %pyproject_check_import
-
 %pytest -v tests
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

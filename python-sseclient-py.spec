@@ -41,7 +41,6 @@ urllib3 and requests.
 
 %check
 %pyproject_check_import
-
 %pytest -v tests/unittests.py
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

@@ -44,7 +44,6 @@ find . -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python3}|'
 
 %check
 %pyproject_check_import
-
 %pytest
 
 %files

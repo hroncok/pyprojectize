@@ -46,7 +46,6 @@ Low-level communication layer for PRAW 4+ library.
 
 %check
 %pyproject_check_import
-
 %pytest -v tests
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

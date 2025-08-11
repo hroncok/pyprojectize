@@ -39,7 +39,6 @@ RangeParser is a Python package to parse ranges easily.
 
 %check
 %pyproject_check_import
-
 %pytest -v rangeparser/test
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

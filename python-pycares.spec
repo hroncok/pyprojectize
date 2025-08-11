@@ -91,7 +91,6 @@ chmod 755 %{buildroot}%{python3_sitearch}/%{srcname}/_cares.cpython-*.so
 
 %check
 %pyproject_check_import
-
 # no tests to run with pytest: Disabling.
 
 

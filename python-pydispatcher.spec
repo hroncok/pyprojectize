@@ -54,7 +54,6 @@ This package contains the Python 3 version of %{pypi_name}.
 
 %check
 %pyproject_check_import
-
 %{__python3} setup.py test -s tests
 
 

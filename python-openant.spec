@@ -57,7 +57,6 @@ install -pm 644 %{SOURCE2} %{buildroot}/%{_udevrulesdir}
 
 %check
 %pyproject_check_import
-
 %{pytest}
 
 %post

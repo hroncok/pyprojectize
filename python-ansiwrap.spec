@@ -60,7 +60,6 @@ and display style, they have no logical length.
 
 %check
 %pyproject_check_import
-
 PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version} -v test
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

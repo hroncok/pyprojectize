@@ -86,7 +86,6 @@ rm -rf docs/_build/html/.buildinfo
 
 %check
 %pyproject_check_import
-
 PYTHONPATH="./src" py.test-3
 
 

@@ -59,7 +59,6 @@ rst2html README.rst README.html
 
 %check
 %pyproject_check_import
-
 %{__python3} setup.py test
 
 

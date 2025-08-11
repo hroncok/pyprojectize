@@ -39,7 +39,6 @@ to the newer version v1+ JSON format for use in GNS3 v1+.
 
 %check
 %pyproject_check_import
-
 # Does not have one
 
 

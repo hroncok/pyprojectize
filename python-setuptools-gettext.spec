@@ -34,7 +34,6 @@ Setuptools helpers for gettext. Compile .po files into .mo files.
 
 %check
 %pyproject_check_import
-
 %py3_check_import setuptools_gettext
 
 %files -n python3-setuptools-gettext -f %{pyproject_files}

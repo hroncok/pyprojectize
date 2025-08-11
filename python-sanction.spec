@@ -101,7 +101,6 @@ sanction has been tested with the following OAuth2 providers:
 
 %check
 %pyproject_check_import
-
 %{python3} -m unittest discover -v
 
 %files -n python3-sanction -f %{pyproject_files}

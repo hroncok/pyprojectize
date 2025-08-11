@@ -50,7 +50,6 @@ Requires:           python3-flask
 
 %check
 %pyproject_check_import
-
 %{__python3} setup.py test
 
 %files -n python3-flask-xml-rpc -f %{pyproject_files}

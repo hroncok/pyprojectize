@@ -83,7 +83,6 @@ sphinx-build -b html -d __tmp_docs/ docs/ __tmp_docs/html/
 
 %check
 %pyproject_check_import
-
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} tests/runtests.py || :
 
 

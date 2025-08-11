@@ -81,7 +81,6 @@ popd
 
 %check
 %pyproject_check_import
-
 nosetests-%{python3_version} tests -v
 
 

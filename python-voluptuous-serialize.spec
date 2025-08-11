@@ -43,7 +43,6 @@ Convert Voluptuous schemas to dictionaries so they can be serialized.
 
 %check
 %pyproject_check_import
-
 %pytest -v tests
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

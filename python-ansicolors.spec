@@ -43,7 +43,6 @@ Summary:        %{summary}
 
 %check
 %pyproject_check_import
-
 PYTHONPATH=$(pwd) py.test-3 -v test
 
 %files -n python3-%{pkgname} -f %{pyproject_files}

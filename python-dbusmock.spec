@@ -49,7 +49,6 @@ Requires:         python3-dbus, python3-gobject, dbus-x11
 
 %check
 %pyproject_check_import
-
 %{__python3} -m unittest -v
 
 %files -n python3-dbusmock -f %{pyproject_files}

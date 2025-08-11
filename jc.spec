@@ -67,7 +67,6 @@ install -m 644 -p completions/jc_bash_completion.sh "${COMPDIR}/%{name}"
 
 %check
 %pyproject_check_import
-
 TZ="America/Los_Angeles" ./runtests.sh
 
 

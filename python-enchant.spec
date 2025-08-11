@@ -52,7 +52,6 @@ rm -rf $RPM_BUILD_ROOT/%{python3_sitelib}/%{srcname}/share
 # Tests are not included in the upstream tarball
 %check
 %pyproject_check_import
-
 %py3_check_import %{srcname} %{srcname}.checker %{srcname}.tokenize
 
 

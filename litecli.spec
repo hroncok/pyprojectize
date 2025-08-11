@@ -50,7 +50,6 @@ and syntax highlighting.
 
 %check
 %pyproject_check_import
-
 %pytest -v tests
 
 %files

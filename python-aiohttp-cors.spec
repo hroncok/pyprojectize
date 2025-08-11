@@ -87,7 +87,6 @@ rm tox.ini
 
 %check
 %pyproject_check_import
-
 %{python3} -m pytest -v --ignore tests/integration/test_real_browser.py
 
 %files -n python3-%{srcname} -f %{pyproject_files}

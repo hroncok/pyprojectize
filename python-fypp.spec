@@ -42,7 +42,6 @@ BuildRequires: python3-devel
 
 %check
 %pyproject_check_import
-
 test/runtests.sh %{__python3}
 
 %files -n python3-%{pname} -f %{pyproject_files}

@@ -96,7 +96,6 @@ install -p -m0644 -D docs/_build/man/%{srcname}.1 %{buildroot}%{_mandir}/man1/%{
 
 %check
 %pyproject_check_import
-
 %pytest tests -k 'not test_code_format'
 
 

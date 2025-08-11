@@ -72,7 +72,6 @@ ln -s /usr/share/javascript/jquery/latest/jquery.min.js _build/html/_static/jque
 
 %check
 %pyproject_check_import
-
 %pytest -v test
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

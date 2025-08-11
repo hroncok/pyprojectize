@@ -56,7 +56,6 @@ rm -rf html/.{doctrees,buildinfo}
 
 %check
 %pyproject_check_import
-
 %pytest -v pyopnsense/tests
 
 %files -n python3-%{pkg_name} -f %{pyproject_files}

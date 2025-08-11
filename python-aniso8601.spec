@@ -39,7 +39,6 @@ in ISO 8601 format into datetime format.
 
 %check
 %pyproject_check_import
-
 %{__python3} -m unittest discover aniso8601/tests/
 
 %files -n python3-%{srcname} -f %{pyproject_files}

@@ -42,7 +42,6 @@ objects. Ideal for exposing these actions over a REST API.
 
 %check
 %pyproject_check_import
-
 # Tests are not included in the tarball
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

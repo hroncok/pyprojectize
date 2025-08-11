@@ -43,7 +43,6 @@ Requires:       python3-cwcwidth
 
 %check
 %pyproject_check_import
-
 nosetests .
 
 %files -n python3-curtsies -f %{pyproject_files}

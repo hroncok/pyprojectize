@@ -61,7 +61,6 @@ find -name '*.pyc' -delete
 
 %check
 %pyproject_check_import
-
 PYTHONPATH="$(pwd)" pytest-%{python3_version} -v
 
 

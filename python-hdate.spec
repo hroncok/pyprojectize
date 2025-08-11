@@ -40,7 +40,6 @@ Jewish/Hebrew date and Zmanim in native Python.
 
 %check
 %pyproject_check_import
-
 %pytest -v tests
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

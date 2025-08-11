@@ -48,7 +48,6 @@ Open source implementation of RML (Report Markup Language) from ReportLab
 
 %check
 %pyproject_check_import
-
 %py3_build test
 
 

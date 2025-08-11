@@ -55,7 +55,6 @@ Summary:        %sum
 %pyproject_check_import
 
 
-
 %files
 %doc readme.md
 %_bindir/eralchemy

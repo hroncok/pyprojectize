@@ -84,7 +84,6 @@ rm -r html/.doctrees
 
 %check
 %pyproject_check_import
-
 PYTHONPATH=%{buildroot}%{python3_sitelib} pytest-%{python3_version}
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}

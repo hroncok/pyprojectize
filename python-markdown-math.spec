@@ -42,7 +42,6 @@ formulas support to Python-Markdown.
 
 %check
 %pyproject_check_import
-
 %{__python3} test.py
 
 

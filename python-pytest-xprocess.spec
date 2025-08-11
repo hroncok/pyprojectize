@@ -55,7 +55,6 @@ chmod -x README.rst
 
 %check
 %pyproject_check_import
-
 %pytest
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

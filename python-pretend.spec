@@ -46,7 +46,6 @@ Pretend is a library to make stubbing with Python easier.
 
 %check
 %pyproject_check_import
-
 %pytest -v
 
 

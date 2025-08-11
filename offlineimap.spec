@@ -96,7 +96,6 @@ install -p docs/offlineimapui.7.gz %{buildroot}/%{_mandir}/man7/
 %check
 %pyproject_check_import
 
-
 ./offlineimap.py -V
 
 %files -f %{pyproject_files}

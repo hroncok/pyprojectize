@@ -43,7 +43,6 @@ cp %{SOURCE1} . -vp
 
 %check
 %pyproject_check_import
-
 # no tests
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

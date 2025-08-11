@@ -43,7 +43,6 @@ sed -i -E '/--(no-)?cov/d' setup.cfg
 
 %check
 %pyproject_check_import
-
 PYTHONPATH=%{buildroot}%{python3_sitelib} py.test-%{python3_version} -v tests 
 
 %files -n python%{python3_pkgversion}-%{srcname} -f %{pyproject_files}

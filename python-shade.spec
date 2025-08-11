@@ -70,7 +70,6 @@ Requires:       python3-netifaces                >= 0.10.4
 
 %check
 %pyproject_check_import
-
 #PYTHON=%{__python3} %{__python3} setup.py testr
 
 %install

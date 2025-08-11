@@ -42,7 +42,6 @@ rm -f %{buildroot}%{python3_sitelib}/zope/deprecation/tests.py*
 
 %check
 %pyproject_check_import
-
 %{__python3} setup.py test
 
 %files -n python3-zope-deprecation -f %{pyproject_files}

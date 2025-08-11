@@ -74,7 +74,6 @@ rm $RPM_BUILD_ROOT%{_libdir}/libunicorn.a
 
 %check
 %pyproject_check_import
-
 %ctest
 
 %files

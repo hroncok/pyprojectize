@@ -71,7 +71,6 @@ rm docs/build/html/.buildinfo
 
 %check
 %pyproject_check_import
-
 PYTHONUNBUFFERED=1 py.test-%{python3_version} %{srcname}/tests.py
 
 

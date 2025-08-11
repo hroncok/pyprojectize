@@ -49,7 +49,6 @@ interpolating data related to fonts, but if can handle any arithmetic object.
 
 %check
 %pyproject_check_import
-
 %{__python3} setup.py test
 
 %files -n python3-%{pkgname} -f %{pyproject_files}

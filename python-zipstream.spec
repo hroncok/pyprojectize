@@ -40,7 +40,6 @@ Python 3 version.
 
 %check
 %pyproject_check_import
-
 %{__python3} -m unittest discover -v
 
 

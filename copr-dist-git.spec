@@ -109,7 +109,6 @@ touch %{buildroot}%{_var}/log/copr-dist-git/main.log
 
 %check
 %pyproject_check_import
-
 ./run_tests.sh -vv --no-cov
 
 %post

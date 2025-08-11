@@ -43,7 +43,6 @@ sed -i /nose/d setup.py
 
 %check
 %pyproject_check_import
-
 %pytest -v test_columnize.py
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

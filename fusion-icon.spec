@@ -54,7 +54,6 @@ mv %{buildroot}%{_datadir}/{metainfo,appdata}/
 
 %check
 %pyproject_check_import
-
 desktop-file-validate %{buildroot}/%{_datadir}/applications/fusion-icon.desktop
 
 

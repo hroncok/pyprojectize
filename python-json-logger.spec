@@ -47,7 +47,6 @@ A python library adding a json log formatter
 
 %check
 %pyproject_check_import
-
 PYTHONPATH=%{buildroot}/%{python3_sitelib} %{__python3} -m unittest discover
 
 

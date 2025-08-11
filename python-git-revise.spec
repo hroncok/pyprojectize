@@ -72,7 +72,6 @@ This package contains the python modules for the git-revise program.
 
 %check
 %pyproject_check_import
-
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} -m pytest
 
 %files -n %{shortname}

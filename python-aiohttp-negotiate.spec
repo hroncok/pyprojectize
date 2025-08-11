@@ -65,7 +65,6 @@ cp -p %{SOURCE1} .
 
 %check
 %pyproject_check_import
-
 # No tests. :-(
 
 %files -n python%{python3_pkgversion}-%{upstream_name} -f %{pyproject_files}

@@ -47,7 +47,6 @@ Python 3 version.
 
 %check
 %pyproject_check_import
-
 %python3 -m pytest -vv winrm/tests
 
 %files -n python3-%{srcname} -f %{pyproject_files}

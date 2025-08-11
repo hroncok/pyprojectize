@@ -57,7 +57,6 @@ sed -i -e '1 s@^#!.*@#!%{__python3}@' examples/*.py
 
 %check
 %pyproject_check_import
-
 %{__python3} setup.py test
 
 

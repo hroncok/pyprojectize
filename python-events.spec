@@ -44,7 +44,6 @@ Summary:        %{summary}
 
 %check
 %pyproject_check_import
-
 %{__python3} setup.py test
 
 %files -n python3-events -f %{pyproject_files}

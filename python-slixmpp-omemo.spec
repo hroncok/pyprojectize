@@ -55,7 +55,6 @@ find ./%{srcname}/ -type f '(' -name __init__.py -o -name stanza.py -o -name ver
 
 %check
 %pyproject_check_import
-
 # no tests to run with pytest: Disabling.
 
 

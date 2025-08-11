@@ -40,7 +40,6 @@ A set of third-party matchers for Betamax.
 
 %check
 %pyproject_check_import
-
 pytest-%{python3_version} -v tests
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

@@ -39,7 +39,6 @@ rm MANIFEST.in
 
 %check
 %pyproject_check_import
-
 %{__python3} setup.py test
 
 %files -f %{pyproject_files}

@@ -58,7 +58,6 @@ awk 'BEGIN { start_print=0 }
 
 %check
 %pyproject_check_import
-
 %pytest
 
 

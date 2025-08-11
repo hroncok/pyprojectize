@@ -46,7 +46,6 @@ BuildRequires: python3-devel
 
 %check
 %pyproject_check_import
-
 %{python3} -m authres
 
 

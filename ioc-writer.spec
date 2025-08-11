@@ -33,7 +33,6 @@ supports a basic CRUD (create, read, update, delete) for various items.
 
 %check
 %pyproject_check_import
-
 %{__python3} setup.py test
 
 %files -f %{pyproject_files}

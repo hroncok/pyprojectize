@@ -58,7 +58,6 @@ rm -rf html/.{doctrees,buildinfo} html/_static/empty
 
 %check
 %pyproject_check_import
-
 %pytest -v tests
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}

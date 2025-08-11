@@ -47,7 +47,6 @@ Requires:       python3-wcwidth
 
 %check
 %pyproject_check_import
-
 PYTHONPATH=build/lib/ py.test-3
 
 %files -n python3-cli-helpers -f %{pyproject_files}

@@ -46,7 +46,6 @@ Summary:        %{summary}
 
 %check
 %pyproject_check_import
-
 %{python3} setup.py test
 
 %files -n python3-%{srcname} -f %{pyproject_files}

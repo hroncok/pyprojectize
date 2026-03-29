@@ -177,7 +177,7 @@ def py3_build_to_pyproject_wheel(spec: Specfile, sections: Sections) -> ResultMs
     if sections.build[index].rstrip().endswith("\\"):
         return (
             Result.ERROR,
-            "line with %py3_build ends with backslash, not touching that'",
+            "line with %py3_build ends with backslash, not touching that",
         )
 
     def repl(m):
@@ -243,7 +243,7 @@ def py3_install_to_pyproject_install(spec: Specfile, sections: Sections) -> Resu
     if sections.install[index].rstrip().endswith("\\"):
         return (
             Result.ERROR,
-            "line with %py3_install ends with backslash, not touching that'",
+            "line with %py3_install ends with backslash, not touching that",
         )
 
     newline = re.sub(
@@ -327,7 +327,7 @@ def egginfo_to_distinfo(spec: Specfile, sections: Sections) -> ResultMsg:
                     if "python2" in line or "python3_other" in line:
                         continue
                     newline = re.sub(
-                        r"/((?P<name>[^/-]+)-(?P<version>[^/-]+)-[^/-]*[^/\.-]|(?P<all>[^/]*[^/\.]))(?P<dot>\.)?egg-info(?P<end>(/|}|$))",
+                        r"/((?P<name>[^/-]+)-(?P<version>[^/-]+)-[^/-]*[^/.-]|(?P<all>[^/]*[^/.]))(?P<dot>\.)?egg-info(?P<end>(/|}|$))",
                         repl,
                         line,
                     )
@@ -639,12 +639,12 @@ def remove_lines(
     spec: Specfile,
     sections: Sections,
     regexes: list[str],
-    msg_not_remvoed: str,
+    msg_not_removed: str,
     msg_removed: str,
     *,
     limit_sections: collections.abc.Container[str] | None = None,
 ) -> ResultMsg:
-    ret = Result.NOT_NEEDED, msg_not_remvoed
+    ret = Result.NOT_NEEDED, msg_not_removed
     for section in sections:
         if limit_sections is not None and section.name not in limit_sections:
             continue

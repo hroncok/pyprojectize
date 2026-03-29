@@ -181,20 +181,20 @@ def py3_build_to_pyproject_wheel(spec: Specfile, sections: Sections) -> ResultMs
         )
 
     def repl(m):
-        LB = m["LB"] or ""
-        RB = m["RB"] or ""
-        rpmcond = m["rpmcond"] or ""
-        prefix = m["prefix"] or ""
+        lb = m.group("LB") or ""
+        rb = "}" if lb else ""
+        rpmcond = m.group("rpmcond") or ""
+        prefix = m.group("prefix") or ""
         if prefix.strip():
             environment = prefix.rstrip()
             prefix = f"export {environment}\n"
-        if m["arguments"]:
-            arguments = shlex_quote_with_macros(m["arguments"], spec=spec)
-            return f"{rpmcond}{prefix}%{LB}pyproject_wheel -C--global-option={arguments}{RB}"
-        return f"{rpmcond}{prefix}%{LB}pyproject_wheel{RB}"
+        if m.group("arguments"):
+            arguments = shlex_quote_with_macros(m.group("arguments").strip(), spec=spec)
+            return f"{rpmcond}{prefix}%{lb}pyproject_wheel -C--global-option={arguments}{rb}"
+        return f"{rpmcond}{prefix}%{lb}pyproject_wheel{rb}"
 
     newline = re.sub(
-        r"(?P<rpmcond>%{?[?!]+\S+:)?(?P<prefix>[^;]*\s)?(?<!%)%(?P<LB>{)?\??py3_build(\s+(--\s+)?(?P<arguments>[^}]+))?(?P<RB>})?",
+        r"(?P<rpmcond>%{?[?!]+\S+:)?(?P<prefix>[^;]*\s)?(?<!%)%(?P<LB>{)?\??py3_build\b(?:\s+(--\s+)?(?P<arguments>.*?))?(?(LB)})$",
         repl,
         sections.build[index],
     )
@@ -246,9 +246,16 @@ def py3_install_to_pyproject_install(spec: Specfile, sections: Sections) -> Resu
             "line with %py3_install ends with backslash, not touching that",
         )
 
+    def repl(m):
+        rpmcond = m.group("rpmcond") or ""
+        spaces = m.group("spaces") or ""
+        lb = m.group("LB") or ""
+        rb = "}" if lb else ""
+        return f"{rpmcond}{spaces}%{lb}pyproject_install{rb}"
+
     newline = re.sub(
-        r"(?P<rpmcond>%{?[?!]+\S+:)?(?P<spaces>\s*)([^;]*\s)?(?<!%)%(?P<LB>{)?\??py3_install(\s[^}]*)?(?P<RB>})?(\s[^}]*)?$",
-        r"\g<rpmcond>\g<spaces>%\g<LB>pyproject_install\g<RB>",
+        r"(?P<rpmcond>%{?[?!]+\S+:)?(?P<spaces>\s*)(?:[^;]*\s)?(?<!%)%(?P<LB>{)?\??py3_install\b.*?(?(LB)})$",
+        repl,
         sections.install[index],
     )
 

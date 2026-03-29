@@ -243,7 +243,7 @@ def py3_install_to_pyproject_install(spec: Specfile, sections: Sections) -> Resu
     if sections.install[index].rstrip().endswith("\\"):
         return (
             Result.ERROR,
-            "line with %py3_install ends with backslash, not touching that'",
+            "line with %py3_install ends with backslash, not touching that",
         )
 
     newline = re.sub(

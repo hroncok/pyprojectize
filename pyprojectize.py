@@ -243,7 +243,7 @@ def py3_install_to_pyproject_install(spec: Specfile, sections: Sections) -> Resu
     if sections.install[index].rstrip().endswith("\\"):
         return (
             Result.ERROR,
-            "line with %py3_install ends with backslash, not touching that'",
+            "line with %py3_install ends with backslash, not touching that",
         )
 
     newline = re.sub(
@@ -419,15 +419,20 @@ def add_pyproject_files(spec: Specfile, sections: Sections) -> ResultMsg:
             "No %{python3_sitelib}/%{python3_sitearch} lines left to remove from %files",
         )
 
+    install_subdir = None
     pyproject_install_index = None
     for idx, line in enumerate(sections.install):
+        # Detect if we are in a subdirectory before %pyproject_install
+        # We look for pushd or cd into a directory.
+        if match := re.search(r"^\s*(?:pushd|cd)\s+(?P<dir>\S+)", line):
+            install_subdir = match.group("dir")
+        elif "popd" in line or (re.search(r"^\s*cd\s+\.\.", line) and install_subdir):
+            install_subdir = None
+
         if re.search(r"(?<!%)%({\??)?pyproject_install\b", line):
             pyproject_install_index = idx
-        elif re.search(r"(?<!%)%({\??)?pyproject_save_files\b", line):
-            return (
-                Result.NOT_NEEDED,
-                "%install already uses %pyproject_save_files",
-            )
+            break
+
     if pyproject_install_index is None:
         return (
             Result.NOT_IMPLEMENTED,
@@ -453,10 +458,16 @@ def add_pyproject_files(spec: Specfile, sections: Sections) -> ResultMsg:
                             "NOTICE*",
                             "AUTHORS*",
                         ):
-                            if fnmatch.fnmatch(token.split("/")[-1], pattern):
-                                assert_license = True
-                                tokens.remove(token)
-                                break
+                            basename = token.split("/")[-1]
+                            dirname = "/".join(token.split("/")[:-1])
+                            if fnmatch.fnmatch(basename, pattern):
+                                # Only move to -l if it's a bare filename OR matches install context
+                                if not dirname or (
+                                    install_subdir and dirname == install_subdir
+                                ):
+                                    assert_license = True
+                                    tokens.remove(token)
+                                    break
                     if len(tokens) == 1:
                         pysite_lines.append(line)
                     else:

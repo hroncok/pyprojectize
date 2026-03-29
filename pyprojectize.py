@@ -90,7 +90,7 @@ def remove_setuptools_br(spec: Specfile, sections: Sections) -> ResultMsg:
     ret = Result.NOT_NEEDED, "no BuildRequires for setuptools found"
 
     setuptools = r"(python(3|%{python3_pkgversion})-setuptools|python3dist\(setuptools\)|%{py3_dist setuptools})"
-    rich = rf"\({setuptools}\s+.+\)"
+    rich = rf"\({setuptools}\s+[^)]+\)"
     last_rich = rf",?\s*{rich}\s*$"
     nolast_rich = rf"{rich}\s*,?(\s+|$)"
     regular = rf"{setuptools}(\s+[<>=]{{1,3}}\s+\S+)?"
@@ -243,7 +243,7 @@ def py3_install_to_pyproject_install(spec: Specfile, sections: Sections) -> Resu
     if sections.install[index].rstrip().endswith("\\"):
         return (
             Result.ERROR,
-            "line with %py3_install ends with backslash, not touching that",
+            "line with %py3_install ends with backslash, not touching that'",
         )
 
     newline = re.sub(
@@ -313,11 +313,14 @@ def egginfo_to_distinfo(spec: Specfile, sections: Sections) -> ResultMsg:
             filename = f"{name}-{version}"
         else:
             filename = m["all"]
-            # anecdotal evidence: everything before * is a name
-            sep = "-" if "-" in filename else "*"
-            name, sep, rest = filename.partition(sep)
-            name = canonicalize_name_with_macros(name, spec=spec)
-            filename = f"{name}{sep}{rest}"
+            # anecdotal evidence: everything before - or * is a name
+            if "-" in filename or "*" in filename:
+                sep = "-" if "-" in filename else "*"
+                name, sep, rest = filename.partition(sep)
+                name = canonicalize_name_with_macros(name, spec=spec)
+                filename = f"{name}{sep}{rest}"
+            else:
+                filename = canonicalize_name_with_macros(filename, spec=spec)
         return f"/{filename}{m['dot'] or ''}dist-info{m['end']}"
 
     for section in sections:
@@ -450,7 +453,7 @@ def add_pyproject_files(spec: Specfile, sections: Sections) -> ResultMsg:
                             "NOTICE*",
                             "AUTHORS*",
                         ):
-                            if fnmatch.fnmatch(token, pattern):
+                            if fnmatch.fnmatch(token.split("/")[-1], pattern):
                                 assert_license = True
                                 tokens.remove(token)
                                 break
@@ -557,7 +560,7 @@ def update_extras_subpkg(spec: Specfile, sections: Sections) -> ResultMsg:
 
 
 def alignment_of(line: str) -> tuple[str, int, str] | None:
-    tag_re = r"^(?P<prespace>\s*)(?P<align>\S+\s*:(?P<spaces>\s*))\S"
+    tag_re = r"^(?P<prespace>\s*)(?P<align>\S+\s*:(?P<spaces>\s*))"
     if match := re.search(tag_re, line):
         prespace = match["prespace"]
         col = len(match["align"])

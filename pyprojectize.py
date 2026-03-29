@@ -182,19 +182,38 @@ def py3_build_to_pyproject_wheel(spec: Specfile, sections: Sections) -> ResultMs
 
     def repl(m):
         lb = m.group("LB") or ""
-        rb = "}" if lb else ""
+        remainder = m.group("remainder")
+        if lb == "{":
+            if "}" in remainder:
+                args_str = remainder[:remainder.rfind("}")]
+                suffix = remainder[remainder.rfind("}")+1:]
+                rb = "}"
+            else:
+                args_str = remainder
+                suffix = ""
+                rb = ""
+        else:
+            args_str = remainder
+            suffix = ""
+            rb = ""
+
         rpmcond = m.group("rpmcond") or ""
         prefix = m.group("prefix") or ""
         if prefix.strip():
             environment = prefix.rstrip()
             prefix = f"export {environment}\n"
-        if m.group("arguments"):
-            arguments = shlex_quote_with_macros(m.group("arguments").strip(), spec=spec)
-            return f"{rpmcond}{prefix}%{lb}pyproject_wheel -C--global-option={arguments}{rb}"
-        return f"{rpmcond}{prefix}%{lb}pyproject_wheel{rb}"
+        
+        args_str = args_str.strip()
+        if args_str.startswith("--"):
+            args_str = args_str[2:].strip()
+
+        if args_str:
+            arguments = shlex_quote_with_macros(args_str, spec=spec)
+            return f"{rpmcond}{prefix}%{lb}pyproject_wheel -C--global-option={arguments}{rb}{suffix}"
+        return f"{rpmcond}{prefix}%{lb}pyproject_wheel{rb}{suffix}"
 
     newline = re.sub(
-        r"(?P<rpmcond>%{?[?!]+\S+:)?(?P<prefix>[^;]*\s)?(?<!%)%(?P<LB>{)?\??py3_build\b(?:\s+(--\s+)?(?P<arguments>.*?))?(?(LB)})$",
+        r"(?P<rpmcond>%{?[?!]+\S+:)?(?P<prefix>[^;]*\s)?(?<!%)%(?P<LB>{)?\??py3_build\b(?P<remainder>.*)$",
         repl,
         sections.build[index],
     )
@@ -247,14 +266,25 @@ def py3_install_to_pyproject_install(spec: Specfile, sections: Sections) -> Resu
         )
 
     def repl(m):
+        lb = m.group("LB") or ""
+        remainder = m.group("remainder")
+        if lb == "{":
+            if "}" in remainder:
+                suffix = remainder[remainder.rfind("}")+1:]
+                rb = "}"
+            else:
+                suffix = ""
+                rb = ""
+        else:
+            suffix = ""
+            rb = ""
+
         rpmcond = m.group("rpmcond") or ""
         spaces = m.group("spaces") or ""
-        lb = m.group("LB") or ""
-        rb = "}" if lb else ""
-        return f"{rpmcond}{spaces}%{lb}pyproject_install{rb}"
+        return f"{rpmcond}{spaces}%{lb}pyproject_install{rb}{suffix}"
 
     newline = re.sub(
-        r"(?P<rpmcond>%{?[?!]+\S+:)?(?P<spaces>\s*)(?:[^;]*\s)?(?<!%)%(?P<LB>{)?\??py3_install\b.*?(?(LB)})$",
+        r"(?P<rpmcond>%{?[?!]+\S+:)?(?P<spaces>\s*)(?:[^;]*\s)?(?<!%)%(?P<LB>{)?\??py3_install\b(?P<remainder>.*)$",
         repl,
         sections.install[index],
     )

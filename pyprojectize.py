@@ -183,34 +183,44 @@ def py3_build_to_pyproject_wheel(spec: Specfile, sections: Sections) -> ResultMs
     def repl(m):
         lb = m.group("LB") or ""
         remainder = m.group("remainder")
+        rpmcond = m.group("rpmcond") or ""
         if lb == "{":
-            if "}" in remainder:
-                args_str = remainder[:remainder.rfind("}")]
-                suffix = remainder[remainder.rfind("}")+1:]
-                rb = "}"
+            depth = 1
+            idx = 0
+            while idx < len(remainder) and depth > 0:
+                if idx + 1 < len(remainder) and remainder[idx:idx+2] == "%{":
+                    depth += 1
+                    idx += 1
+                elif remainder[idx] == "}":
+                    depth -= 1
+                    if depth == 0:
+                        break
+                idx += 1
+            args_str = remainder[:idx]
+            rb_suffix = remainder[idx:]
+        else:
+            if rpmcond and remainder.endswith("}"):
+                args_str = remainder[:-1]
+                rb_suffix = "}"
             else:
                 args_str = remainder
-                suffix = ""
-                rb = ""
-        else:
-            args_str = remainder
-            suffix = ""
-            rb = ""
+                rb_suffix = ""
 
-        rpmcond = m.group("rpmcond") or ""
         prefix = m.group("prefix") or ""
         if prefix.strip():
             environment = prefix.rstrip()
             prefix = f"export {environment}\n"
         
         args_str = args_str.strip()
-        if args_str.startswith("--"):
-            args_str = args_str[2:].strip()
+        if args_str.startswith("-- "):
+            args_str = args_str[3:].lstrip()
+        elif args_str == "--":
+            args_str = ""
 
         if args_str:
             arguments = shlex_quote_with_macros(args_str, spec=spec)
-            return f"{rpmcond}{prefix}%{lb}pyproject_wheel -C--global-option={arguments}{rb}{suffix}"
-        return f"{rpmcond}{prefix}%{lb}pyproject_wheel{rb}{suffix}"
+            return f"{rpmcond}{prefix}%{lb}pyproject_wheel -C--global-option={arguments}{rb_suffix}"
+        return f"{rpmcond}{prefix}%{lb}pyproject_wheel{rb_suffix}"
 
     newline = re.sub(
         r"(?P<rpmcond>%{?[?!]+\S+:)?(?P<prefix>[^;]*\s)?(?<!%)%(?P<LB>{)?\??py3_build\b(?P<remainder>.*)$",
@@ -268,15 +278,29 @@ def py3_install_to_pyproject_install(spec: Specfile, sections: Sections) -> Resu
     def repl(m):
         lb = m.group("LB") or ""
         remainder = m.group("remainder")
+        rpmcond = m.group("rpmcond") or ""
+        
         if lb == "{":
-            if "}" in remainder:
-                suffix = remainder[remainder.rfind("}")+1:]
-                rb = "}"
+            # Discard args until the matching }
+            depth = 1
+            idx = 0
+            while idx < len(remainder) and depth > 0:
+                if idx + 1 < len(remainder) and remainder[idx:idx+2] == "%{":
+                    depth += 1
+                    idx += 1
+                elif remainder[idx] == "}":
+                    depth -= 1
+                    if depth == 0:
+                        break
+                idx += 1
+            rb = "}" if idx < len(remainder) else ""
+            suffix = remainder[idx+1:] if idx < len(remainder) else ""
+        else:
+            # Unbracketed: Discard until end of line or conditional closer
+            if rpmcond and remainder.endswith("}"):
+                suffix = "}"
             else:
                 suffix = ""
-                rb = ""
-        else:
-            suffix = ""
             rb = ""
 
         rpmcond = m.group("rpmcond") or ""

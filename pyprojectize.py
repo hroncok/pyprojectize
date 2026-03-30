@@ -10,6 +10,7 @@ import argparse
 import collections.abc
 import enum
 import fnmatch
+import os
 import pathlib
 import re
 import shlex
@@ -33,6 +34,19 @@ ResultMsg = tuple[Result, str]
 ModFunc = collections.abc.Callable[[Specfile, Sections], ResultMsg]
 
 _modifiers: dict[str, ModFunc] = {}
+
+
+def _find_macro_end(s: str) -> int:
+    """Find the matching closing brace for a macro, handling nested ones."""
+    stack = 0
+    for i, char in enumerate(s):
+        if char == "{":
+            stack += 1
+        elif char == "}":
+            if stack == 0:
+                return i
+            stack -= 1
+    return len(s)
 
 
 def register(func: ModFunc) -> ModFunc:
@@ -90,7 +104,7 @@ def remove_setuptools_br(spec: Specfile, sections: Sections) -> ResultMsg:
     ret = Result.NOT_NEEDED, "no BuildRequires for setuptools found"
 
     setuptools = r"(python(3|%{python3_pkgversion})-setuptools|python3dist\(setuptools\)|%{py3_dist setuptools})"
-    rich = rf"\({setuptools}\s+.+\)"
+    rich = rf"\({setuptools}\s+[^)]+\)"
     last_rich = rf",?\s*{rich}\s*$"
     nolast_rich = rf"{rich}\s*,?(\s+|$)"
     regular = rf"{setuptools}(\s+[<>=]{{1,3}}\s+\S+)?"
@@ -181,20 +195,39 @@ def py3_build_to_pyproject_wheel(spec: Specfile, sections: Sections) -> ResultMs
         )
 
     def repl(m):
-        LB = m["LB"] or ""
-        RB = m["RB"] or ""
-        rpmcond = m["rpmcond"] or ""
-        prefix = m["prefix"] or ""
+        lb = m.group("LB") or ""
+        remainder = m.group("remainder")
+        rpmcond = m.group("rpmcond") or ""
+        if lb == "{":
+            idx = _find_macro_end(remainder)
+            args_str = remainder[:idx]
+            rb_suffix = remainder[idx:]
+        else:
+            if rpmcond and remainder.endswith("}"):
+                args_str = remainder[:-1]
+                rb_suffix = "}"
+            else:
+                args_str = remainder
+                rb_suffix = ""
+
+        prefix = m.group("prefix") or ""
         if prefix.strip():
             environment = prefix.rstrip()
             prefix = f"export {environment}\n"
-        if m["arguments"]:
-            arguments = shlex_quote_with_macros(m["arguments"], spec=spec)
-            return f"{rpmcond}{prefix}%{LB}pyproject_wheel -C--global-option={arguments}{RB}"
-        return f"{rpmcond}{prefix}%{LB}pyproject_wheel{RB}"
+        
+        args_str = args_str.strip()
+        if args_str.startswith("-- "):
+            args_str = args_str[3:].lstrip()
+        elif args_str == "--":
+            args_str = ""
+
+        if args_str:
+            arguments = shlex_quote_with_macros(args_str, spec=spec)
+            return f"{rpmcond}{prefix}%{lb}pyproject_wheel -C--global-option={arguments}{rb_suffix}"
+        return f"{rpmcond}{prefix}%{lb}pyproject_wheel{rb_suffix}"
 
     newline = re.sub(
-        r"(?P<rpmcond>%{?[?!]+\S+:)?(?P<prefix>[^;]*\s)?(?<!%)%(?P<LB>{)?\??py3_build(\s+(--\s+)?(?P<arguments>[^}]+))?(?P<RB>})?",
+        r"(?P<rpmcond>%{?[?!]+\S+:)?(?P<prefix>[^;]*\s)?(?<!%)%(?P<LB>{)?\??py3_build\b(?P<remainder>.*)$",
         repl,
         sections.build[index],
     )
@@ -246,9 +279,32 @@ def py3_install_to_pyproject_install(spec: Specfile, sections: Sections) -> Resu
             "line with %py3_install ends with backslash, not touching that",
         )
 
+    def repl(m):
+        lb = m.group("LB") or ""
+        remainder = m.group("remainder")
+        rpmcond = m.group("rpmcond") or ""
+        
+        if lb == "{":
+            idx = _find_macro_end(remainder)
+            suffix = remainder[idx+1:] if idx < len(remainder) else ""
+            rb = "}" if idx < len(remainder) else ""
+        else:
+            if rpmcond and remainder.endswith("}"):
+                suffix = "}"
+            else:
+                suffix = ""
+            rb = "" 
+
+        prefix = m.group("prefix") or ""
+        if prefix.strip():
+            environment = prefix.rstrip()
+            prefix = f"export {environment}\n"
+
+        return f"{rpmcond}{prefix}%{lb}pyproject_install{rb}{suffix}"
+
     newline = re.sub(
-        r"(?P<rpmcond>%{?[?!]+\S+:)?(?P<spaces>\s*)([^;]*\s)?(?<!%)%(?P<LB>{)?\??py3_install(\s[^}]*)?(?P<RB>})?(\s[^}]*)?$",
-        r"\g<rpmcond>\g<spaces>%\g<LB>pyproject_install\g<RB>",
+        r"(?P<rpmcond>%{?[?!]+\S+:)?(?P<prefix>[^;]*\s)?(?<!%)%(?P<LB>{)?\??py3_install\b(?P<remainder>.*)$",
+        repl,
         sections.install[index],
     )
 
@@ -313,11 +369,14 @@ def egginfo_to_distinfo(spec: Specfile, sections: Sections) -> ResultMsg:
             filename = f"{name}-{version}"
         else:
             filename = m["all"]
-            # anecdotal evidence: everything before * is a name
-            sep = "-" if "-" in filename else "*"
-            name, sep, rest = filename.partition(sep)
-            name = canonicalize_name_with_macros(name, spec=spec)
-            filename = f"{name}{sep}{rest}"
+            # Assuming everything before the first - or * is the package name
+            if "-" in filename or "*" in filename:
+                sep = "-" if "-" in filename else "*"
+                name, sep, rest = filename.partition(sep)
+                name = canonicalize_name_with_macros(name, spec=spec)
+                filename = f"{name}{sep}{rest}"
+            else:
+                filename = canonicalize_name_with_macros(filename, spec=spec)
         return f"/{filename}{m['dot'] or ''}dist-info{m['end']}"
 
     for section in sections:
@@ -416,15 +475,20 @@ def add_pyproject_files(spec: Specfile, sections: Sections) -> ResultMsg:
             "No %{python3_sitelib}/%{python3_sitearch} lines left to remove from %files",
         )
 
+    install_subdir = None
     pyproject_install_index = None
     for idx, line in enumerate(sections.install):
+        # Detect if in a subdirectory before %pyproject_install
+        # look for pushd or cd into a directory if we are
+        if match := re.search(r"^\s*(?:pushd|cd)\s+(?P<dir>\S+)", line):
+            install_subdir = match.group("dir")
+        elif "popd" in line or (re.search(r"^\s*cd\s+\.\.", line) and install_subdir):
+            install_subdir = None
+
         if re.search(r"(?<!%)%({\??)?pyproject_install\b", line):
             pyproject_install_index = idx
-        elif re.search(r"(?<!%)%({\??)?pyproject_save_files\b", line):
-            return (
-                Result.NOT_NEEDED,
-                "%install already uses %pyproject_save_files",
-            )
+            break
+
     if pyproject_install_index is None:
         return (
             Result.NOT_IMPLEMENTED,
@@ -450,10 +514,16 @@ def add_pyproject_files(spec: Specfile, sections: Sections) -> ResultMsg:
                             "NOTICE*",
                             "AUTHORS*",
                         ):
-                            if fnmatch.fnmatch(token, pattern):
-                                assert_license = True
-                                tokens.remove(token)
-                                break
+                            basename = os.path.basename(token)
+                            dirname = os.path.dirname(token)
+                            if fnmatch.fnmatch(basename, pattern):
+                                # Move to -l if it's a bare filename OR matches tracked subdir
+                                if not dirname or (
+                                    install_subdir and dirname == install_subdir
+                                ):
+                                    assert_license = True
+                                    tokens.remove(token)
+                                    break
                     if len(tokens) == 1:
                         pysite_lines.append(line)
                     else:
@@ -557,15 +627,11 @@ def update_extras_subpkg(spec: Specfile, sections: Sections) -> ResultMsg:
 
 
 def alignment_of(line: str) -> tuple[str, int, str] | None:
-    tag_re = r"^(?P<prespace>\s*)(?P<align>\S+\s*:(?P<spaces>\s*))\S"
+    tag_re = r"^(?P<prespace>\s*)(?P<align>\S+\s*:(?P<spaces>\s*))"
     if match := re.search(tag_re, line):
         prespace = match["prespace"]
         col = len(match["align"])
-        space_counts = {c: match["spaces"].count(c) for c in set(match["spaces"])}
-        most_common_space = max(space_counts, default=" ", key=space_counts.__getitem__)
-        for space in match["spaces"]:
-            if space == "\t":
-                col += 7  # approximation
+        most_common_space = "\t" if "\t" in match["spaces"] else " "
         return prespace, col, most_common_space
     return None
 

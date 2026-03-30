@@ -10,6 +10,7 @@ import argparse
 import collections.abc
 import enum
 import fnmatch
+import os
 import pathlib
 import re
 import shlex
@@ -33,6 +34,19 @@ ResultMsg = tuple[Result, str]
 ModFunc = collections.abc.Callable[[Specfile, Sections], ResultMsg]
 
 _modifiers: dict[str, ModFunc] = {}
+
+
+def _find_macro_end(s: str) -> int:
+    """Find the index of the matching closing brace for a macro."""
+    depth = 1
+    for i, char in enumerate(s):
+        if s[i:i+2] == "%{":
+            depth += 1
+        elif char == "}":
+            depth -= 1
+            if depth == 0:
+                return i
+    return len(s)
 
 
 def register(func: ModFunc) -> ModFunc:
@@ -185,17 +199,7 @@ def py3_build_to_pyproject_wheel(spec: Specfile, sections: Sections) -> ResultMs
         remainder = m.group("remainder")
         rpmcond = m.group("rpmcond") or ""
         if lb == "{":
-            depth = 1
-            idx = 0
-            while idx < len(remainder) and depth > 0:
-                if idx + 1 < len(remainder) and remainder[idx:idx+2] == "%{":
-                    depth += 1
-                    idx += 1
-                elif remainder[idx] == "}":
-                    depth -= 1
-                    if depth == 0:
-                        break
-                idx += 1
+            idx = _find_macro_end(remainder)
             args_str = remainder[:idx]
             rb_suffix = remainder[idx:]
         else:
@@ -281,28 +285,16 @@ def py3_install_to_pyproject_install(spec: Specfile, sections: Sections) -> Resu
         rpmcond = m.group("rpmcond") or ""
         
         if lb == "{":
-            # Discard args until the matching }
-            depth = 1
-            idx = 0
-            while idx < len(remainder) and depth > 0:
-                if idx + 1 < len(remainder) and remainder[idx:idx+2] == "%{":
-                    depth += 1
-                    idx += 1
-                elif remainder[idx] == "}":
-                    depth -= 1
-                    if depth == 0:
-                        break
-                idx += 1
+            idx = _find_macro_end(remainder)
             rb = "}" if idx < len(remainder) else ""
             suffix = remainder[idx+1:] if idx < len(remainder) else ""
         else:
-            # Unbracketed: Discard until end of line or conditional closer
+            # Discarding the arguments until the } is found
             if rpmcond and remainder.endswith("}"):
                 suffix = "}"
             else:
                 suffix = ""
-            rb = ""
-
+            rb = "" 
         rpmcond = m.group("rpmcond") or ""
         spaces = m.group("spaces") or ""
         return f"{rpmcond}{spaces}%{lb}pyproject_install{rb}{suffix}"
@@ -374,7 +366,7 @@ def egginfo_to_distinfo(spec: Specfile, sections: Sections) -> ResultMsg:
             filename = f"{name}-{version}"
         else:
             filename = m["all"]
-            # anecdotal evidence: everything before - or * is a name
+            # Assuming everything before the first - or * is the package name
             if "-" in filename or "*" in filename:
                 sep = "-" if "-" in filename else "*"
                 name, sep, rest = filename.partition(sep)
@@ -483,8 +475,8 @@ def add_pyproject_files(spec: Specfile, sections: Sections) -> ResultMsg:
     install_subdir = None
     pyproject_install_index = None
     for idx, line in enumerate(sections.install):
-        # Detect if we are in a subdirectory before %pyproject_install
-        # We look for pushd or cd into a directory.
+        # Detect if in a subdirectory before %pyproject_install
+        # look for pushd or cd into a directory if we are
         if match := re.search(r"^\s*(?:pushd|cd)\s+(?P<dir>\S+)", line):
             install_subdir = match.group("dir")
         elif "popd" in line or (re.search(r"^\s*cd\s+\.\.", line) and install_subdir):
@@ -519,8 +511,8 @@ def add_pyproject_files(spec: Specfile, sections: Sections) -> ResultMsg:
                             "NOTICE*",
                             "AUTHORS*",
                         ):
-                            basename = token.split("/")[-1]
-                            dirname = "/".join(token.split("/")[:-1])
+                            basename = os.path.basename(token)
+                            dirname = os.path.dirname(token)
                             if fnmatch.fnmatch(basename, pattern):
                                 # Only move to -l if it's a bare filename OR matches install context
                                 if not dirname or (
@@ -636,11 +628,7 @@ def alignment_of(line: str) -> tuple[str, int, str] | None:
     if match := re.search(tag_re, line):
         prespace = match["prespace"]
         col = len(match["align"])
-        space_counts = {c: match["spaces"].count(c) for c in set(match["spaces"])}
-        most_common_space = max(space_counts, default=" ", key=space_counts.__getitem__)
-        for space in match["spaces"]:
-            if space == "\t":
-                col += 7  # approximation
+        most_common_space = "\t" if "\t" in match["spaces"] else " "
         return prespace, col, most_common_space
     return None
 

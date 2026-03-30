@@ -37,15 +37,15 @@ _modifiers: dict[str, ModFunc] = {}
 
 
 def _find_macro_end(s: str) -> int:
-    """Find the index of the matching closing brace for a macro."""
-    depth = 1
+    """Find the matching closing brace for a macro, handling nested ones."""
+    stack = 0
     for i, char in enumerate(s):
-        if s[i:i+2] == "%{":
-            depth += 1
+        if char == "{":
+            stack += 1
         elif char == "}":
-            depth -= 1
-            if depth == 0:
+            if stack == 0:
                 return i
+            stack -= 1
     return len(s)
 
 
@@ -286,21 +286,24 @@ def py3_install_to_pyproject_install(spec: Specfile, sections: Sections) -> Resu
         
         if lb == "{":
             idx = _find_macro_end(remainder)
-            rb = "}" if idx < len(remainder) else ""
             suffix = remainder[idx+1:] if idx < len(remainder) else ""
+            rb = "}" if idx < len(remainder) else ""
         else:
-            # Discarding the arguments until the } is found
             if rpmcond and remainder.endswith("}"):
                 suffix = "}"
             else:
                 suffix = ""
             rb = "" 
-        rpmcond = m.group("rpmcond") or ""
-        spaces = m.group("spaces") or ""
-        return f"{rpmcond}{spaces}%{lb}pyproject_install{rb}{suffix}"
+
+        prefix = m.group("prefix") or ""
+        if prefix.strip():
+            environment = prefix.rstrip()
+            prefix = f"export {environment}\n"
+
+        return f"{rpmcond}{prefix}%{lb}pyproject_install{rb}{suffix}"
 
     newline = re.sub(
-        r"(?P<rpmcond>%{?[?!]+\S+:)?(?P<spaces>\s*)(?:[^;]*\s)?(?<!%)%(?P<LB>{)?\??py3_install\b(?P<remainder>.*)$",
+        r"(?P<rpmcond>%{?[?!]+\S+:)?(?P<prefix>[^;]*\s)?(?<!%)%(?P<LB>{)?\??py3_install\b(?P<remainder>.*)$",
         repl,
         sections.install[index],
     )
@@ -514,7 +517,7 @@ def add_pyproject_files(spec: Specfile, sections: Sections) -> ResultMsg:
                             basename = os.path.basename(token)
                             dirname = os.path.dirname(token)
                             if fnmatch.fnmatch(basename, pattern):
-                                # Only move to -l if it's a bare filename OR matches install context
+                                # Move to -l if it's a bare filename OR matches tracked subdir
                                 if not dirname or (
                                     install_subdir and dirname == install_subdir
                                 ):
